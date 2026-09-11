@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>O Placar — Arquivo Flávio</title>
+<meta name="description" content="Dez números sobre Flávio Bolsonaro, cada um com fonte e status jurídico.">
+<style>
+/* ---- Tema "documento": papel, tinta, zero brilho. -----------------------
+   Nada de webfont: em internet ruim a fonte externa vira tela em branco
+   justo no instante em que a pessoa decide se fica ou fecha. ------------ */
+:root{
+  --papel:#faf9f7; --tinta:#16130f; --cinza:#6b6560;
+  --azul:#1b3a5c;            /* só links de fonte */
+  --carimbo:#b23a2e;         /* só marcação de revisor, nunca fundo de bloco */
+  --linha:#e2ded7;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--papel); color:var(--tinta); font-family:var(--sans);
+  font-size:17px; line-height:1.5; -webkit-text-size-adjust:100%;
+  scroll-snap-type:y proximity;
+}
+.barra{
+  position:sticky; top:0; z-index:5; background:var(--tinta); color:var(--papel);
+  font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+  padding:7px 16px; display:flex; justify-content:space-between; gap:12px;
+}
+.barra a{color:var(--papel); text-decoration:underline; text-underline-offset:2px}
+
+.card{
+  min-height:100svh; scroll-snap-align:start;
+  padding:20px 20px calc(18px + env(safe-area-inset-bottom));
+  display:flex; flex-direction:column;
+  border-bottom:1px solid var(--linha);
+}
+.n-card{font-family:var(--mono); font-size:11px; color:var(--cinza); letter-spacing:.12em}
+.kicker{
+  font-family:var(--mono); font-size:12px; letter-spacing:.08em;
+  color:var(--carimbo); text-transform:uppercase; margin:12px 0 8px; font-weight:700;
+}
+.numero{
+  font-size:clamp(56px,19vw,124px); font-weight:800; line-height:.95;
+  letter-spacing:-.03em; font-variant-numeric:tabular-nums; margin:0 0 14px;
+}
+.numero.menor{font-size:clamp(26px,8.2vw,58px); white-space:nowrap}
+.frase{font-size:clamp(17px,4.7vw,22px); margin:0 0 12px; max-width:32em}
+.frase strong{font-weight:700}
+.corpo{flex:1}
+
+/* O status precisa caber no PRINT, não atrás de um clique. */
+.chip{
+  display:inline-block; background:var(--tinta); color:var(--papel);
+  font-family:var(--mono); font-size:11px; letter-spacing:.07em; font-weight:700;
+  padding:6px 10px; margin:4px 0 12px;
+}
+.fonte{font-family:var(--mono); font-size:12px; color:var(--cinza); margin:0 0 6px}
+.fonte a{color:var(--azul)}
+.ressalva{font-size:12.5px; line-height:1.45; color:var(--cinza); max-width:34em; margin:6px 0 0}
+
+.acoes{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px}
+.acoes button{
+  font-family:var(--sans); font-size:15px; font-weight:600; cursor:pointer;
+  padding:12px 16px; border:1.5px solid var(--tinta); background:var(--tinta);
+  color:var(--papel); border-radius:2px;
+}
+.acoes button.sec{background:transparent; color:var(--tinta)}
+.rodape-card{
+  display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+  margin-top:14px; padding-top:10px; border-top:1px solid var(--linha);
+  font-family:var(--mono); font-size:11px; color:var(--cinza);
+}
+.rodape-card b{color:var(--tinta)}
+
+svg{display:block; max-width:100%; height:auto; margin:2px 0 10px}
+.leg{font-family:var(--mono); font-size:11px; fill:var(--cinza)}
+.rot{font-family:var(--sans); font-size:13px; fill:var(--tinta); font-weight:600}
+
+.toast{
+  position:fixed; left:50%; bottom:26px; transform:translateX(-50%);
+  background:var(--tinta); color:var(--papel); padding:10px 16px;
+  font-family:var(--mono); font-size:13px; opacity:0; pointer-events:none;
+  transition:opacity .18s; z-index:9;
+}
+.toast.on{opacity:1}
+.fim{padding:44px 20px 60px; text-align:center}
+.fim a{
+  display:inline-block; margin-top:12px; font-size:18px; font-weight:700;
+  color:var(--tinta); text-decoration:none; border-bottom:3px solid var(--carimbo);
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="barra">
+  <span>ARQUIVO FLÁVIO · 252 registros, cada um com fonte</span>
+  <a href="index.html">ver o arquivo</a>
+</div>
+
+<!-- ============================ 01 ============================ -->
+<section class="card" id="doacoes">
+  <div class="corpo">
+    <div class="n-card">01 / 10</div>
+    <div class="kicker">Prestação de contas entregue ao TSE</div>
+    <p class="numero">R$ 6,01</p>
+    <p class="frase">é o total que <strong>pessoas físicas</strong> doaram à campanha presidencial de Flávio Bolsonaro.</p>
+    <p class="numero menor">R$ 42.000.000,00</p>
+    <p class="frase">vieram do PL, o partido dele.</p>
+    <div class="chip">FATO · CONTA QUE A PRÓPRIA CAMPANHA ENTREGOU</div>
+    <p class="fonte">Poder360, com dados do TSE · parcial, em 26/08/2026 ·
+      <a href="https://www.poder360.com.br/poder-eleicoes-2026/flavio-lidera-em-doacoes-a-candidatos-ao-planalto-lula-e-2o/" target="_blank" rel="noopener">ver a fonte</a></p>
+    <p class="ressalva">Prestações parciais na data da consulta; os valores do TSE podem divergir dos divulgados pelas campanhas.</p>
+  </div>
+  <div class="acoes">
+    <button data-share="doacoes">Mandar no WhatsApp</button>
+    <button class="sec" data-copy="doacoes">Copiar com a fonte</button>
+  </div>
+  <div class="rodape-card"><span><b>Arquivo Flávio</b> · 252 fatos com fonte</span><span>01</span></div>
+</section>
+
+<!-- ============================ 02 ============================ -->
+<section class="card" id="patrimonio">
+  <div class="corpo">
+    <div class="n-card">02 / 10</div>
+    <div class="kicker">Patrimônio que ele declarou ao TSE</div>
+    <p class="numero">4,7×</p>
+    <p class="frase">foi o salto do patrimônio de Flávio Bolsonaro em oito anos: de <strong>R$ 1,74 milhão</strong> (2018) para <strong>R$ 8,19 milhões</strong> (2026).</p>
+
+    <svg viewBox="0 0 420 196" role="img" aria-label="Patrimônio declarado: R$ 1,74 milhão em 2018 e R$ 8,19 milhões em 2026. A linha tracejada marca os R$ 2,6 milhões que a inflação sozinha explicaria; o excedente é de 211%.">
+      <line x1="30" y1="160" x2="410" y2="160" stroke="#16130f" stroke-width="1"/>
+
+      <rect x="52" y="133" width="54" height="27" fill="#16130f"/>
+      <text class="rot" x="52" y="126">R$ 1,74 mi</text>
+      <text class="leg" x="52" y="177">2018</text>
+
+      <rect x="196" y="33" width="54" height="127" fill="#16130f"/>
+      <text class="rot" x="196" y="26">R$ 8,19 mi</text>
+      <text class="leg" x="196" y="177">2026</text>
+
+      <!-- nível que a inflação sozinha explicaria: R$ 2,6 mi -->
+      <line x1="128" y1="119" x2="340" y2="119" stroke="#b23a2e" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+      <!-- o excedente -->
+      <line x1="262" y1="33" x2="262" y2="119" stroke="#b23a2e" stroke-width="1.5"/>
+      <line x1="256" y1="33" x2="268" y2="33" stroke="#b23a2e" stroke-width="1.5"/>
+      <line x1="256" y1="119" x2="268" y2="119" stroke="#b23a2e" stroke-width="1.5"/>
+      <text class="rot" x="276" y="72" fill="#b23a2e">+211%</text>
+      <text class="leg" x="276" y="88" fill="#b23a2e">acima da inflação</text>
+    </svg>
+
+    <p class="fonte" style="margin-top:-6px"><span style="color:#b23a2e">– – –</span> a linha tracejada marca os R$ 2,6 mi que só a inflação explicaria.</p>
+    <div class="chip">FATO · DECLARADO POR ELE, AO PRÓPRIO TSE</div>
+    <p class="fonte">Poder360 e InfoMoney, sobre o registro de candidatura de 13/08/2026 ·
+      <a href="https://www.poder360.com.br/poder-eleicoes-2026/flavio-declara-r-81-milhoes-em-patrimonio-quase-o-dobro-de-lula/" target="_blank" rel="noopener">ver a fonte</a></p>
+    <p class="ressalva">A declaração ao TSE usa valor de aquisição, não de mercado. A correção de 2018 para 2026 usa o IPCA. O maior item é uma casa no Lago Sul, de R$ 6,2 milhões.</p>
+  </div>
+  <div class="acoes">
+    <button data-share="patrimonio">Mandar no WhatsApp</button>
+    <button class="sec" data-copy="patrimonio">Copiar com a fonte</button>
+  </div>
+  <div class="rodape-card"><span><b>Arquivo Flávio</b> · 252 fatos com fonte</span><span>02</span></div>
+</section>
+
+<!-- ============================ 03 ============================ -->
+<section class="card" id="rachadinha">
+  <div class="corpo">
+    <div class="n-card">03 / 10</div>
+    <div class="kicker">Rachadinha da Alerj</div>
+    <p class="numero menor" style="white-space:normal">NUNCA CONDENADO</p>
+    <p class="frase">E também nunca julgado. O STJ anulou as provas em 2021, o STF reconheceu o foro privilegiado, o caso foi arquivado em 2022 e o STF negou os recursos do Ministério Público em 2025. <strong>O mérito nunca chegou a ser analisado.</strong></p>
+    <p class="frase">Se alguém disser que ele foi condenado por rachadinha, está errado. Quem diz isso aqui é este site.</p>
+    <div class="chip">DENÚNCIA ANULADA · SEM JULGAMENTO DE MÉRITO</div>
+    <p class="fonte">CartaCapital · decisão de Gilmar Mendes, 26/02/2025 ·
+      <a href="https://www.cartacapital.com.br/politica/o-que-aconteceu-com-o-caso-da-rachadinha-de-flavio-bolsonaro-suposto-candidato-em-2026/" target="_blank" rel="noopener">ver a fonte</a></p>
+    <p class="ressalva">Este card existe porque um arquivo só vale se a parte incômoda também estiver certa.</p>
+  </div>
+  <div class="acoes">
+    <button data-share="rachadinha">Mandar no WhatsApp</button>
+    <button class="sec" data-copy="rachadinha">Copiar com a fonte</button>
+  </div>
+  <div class="rodape-card"><span><b>Arquivo Flávio</b> · 252 fatos com fonte</span><span>03</span></div>
+</section>
+
+<!-- ============================ 04 ============================ -->
+<section class="card" id="educacao">
+  <div class="corpo">
+    <div class="n-card">04 / 10</div>
+    <div class="kicker">Emendas indicadas por ele, 2020–2026</div>
+    <p class="numero">R$ 0,80</p>
+    <p class="frase">de cada R$ 100 em emendas indicadas por Flávio Bolsonaro foram para <strong>educação</strong>. Metade foi para saúde; um quinto, para defesa.</p>
+
+    <svg viewBox="0 0 410 108" role="img" aria-label="Cem quadradinhos: 51 de saúde, 22 de defesa, 19 de segurança pública, 7 de outras áreas e 1 de educação.">
+      <g id="waffle"></g>
+      <circle cx="0" cy="0" r="0" id="marca" fill="none" stroke="#b23a2e" stroke-width="2"/>
+    </svg>
+    <p class="fonte" style="margin-top:-6px">■ saúde 50,8% · ■ defesa 21,8% · ■ segurança 19,4% · <span style="color:#b23a2e">○ educação 0,8%</span></p>
+
+    <div class="chip">FATO · ORÇAMENTO DA UNIÃO (SIGA BRASIL)</div>
+    <p class="fonte">Jornal de Brasília, 08/08/2026 ·
+      <a href="https://jornaldebrasilia.com.br/noticias/politica-e-poder/flavio-bolsonaro-concentrou-emendas-em-seguranca-e-defesa-e-deixou-ciencia-e-agricultura-de-fora/" target="_blank" rel="noopener">ver a fonte</a></p>
+    <p class="ressalva">Total de R$ 364 milhões corrigidos pela inflação. Educação ficou com R$ 2,9 milhões. Ciência e agricultura, com nada.</p>
+  </div>
+  <div class="acoes">
+    <button data-share="educacao">Mandar no WhatsApp</button>
+    <button class="sec" data-copy="educacao">Copiar com a fonte</button>
+  </div>
+  <div class="rodape-card"><span><b>Arquivo Flávio</b> · 252 fatos com fonte</span><span>04</span></div>
+</section>
+
+<div class="fim">
+  <p style="color:var(--cinza);font-family:var(--mono);font-size:12px">PROTÓTIPO · 4 dos 10 números</p>
+  <a href="index.html">Ver os 252 registros →</a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* Textos de compartilhamento: a fonte vai DENTRO da mensagem, para quem
+   recebe não precisar confiar em quem mandou. O endereço sai de
+   location — nada de domínio chumbado antes de o domínio existir. */
+const TEXTOS = {
+  doacoes: 'Pessoas físicas doaram R$ 6,01 para a campanha presidencial de Flávio Bolsonaro. O partido dele colocou R$ 42 milhões. Está na prestação de contas entregue ao TSE.',
+  patrimonio: 'O patrimônio que Flávio Bolsonaro declarou ao TSE saiu de R$ 1,74 milhão em 2018 para R$ 8,19 milhões em 2026 — 211% acima da inflação. Declarado por ele mesmo.',
+  rachadinha: 'Sobre a rachadinha da Alerj: Flávio Bolsonaro nunca foi condenado, e também nunca foi julgado — as provas foram anuladas em 2021 e o caso arquivado em 2022, sem análise de mérito.',
+  educacao: 'De cada R$ 100 em emendas indicadas por Flávio Bolsonaro entre 2020 e 2026, R$ 0,80 foi para educação. Metade foi para saúde. Ciência e agricultura ficaram com nada.'
+};
+const RODAPE = '\n\nMais 251 registros, todos com fonte: ';
+
+function urlDo(id){
+  return location.origin + location.pathname + '#' + id;
+}
+function mensagem(id){
+  return TEXTOS[id] + RODAPE + urlDo(id);
+}
+function toast(txt){
+  const t = document.getElementById('toast');
+  t.textContent = txt; t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'), 1900);
+}
+document.querySelectorAll('[data-share]').forEach(b=>{
+  b.addEventListener('click', async ()=>{
+    const id = b.dataset.share, txt = mensagem(id);
+    if (navigator.share){
+      try { await navigator.share({ text: txt }); return; }
+      catch(e){ if (e && e.name === 'AbortError') return; }
+    }
+    location.href = 'https://wa.me/?text=' + encodeURIComponent(txt);
+  });
+});
+document.querySelectorAll('[data-copy]').forEach(b=>{
+  b.addEventListener('click', async ()=>{
+    const txt = mensagem(b.dataset.copy);
+    try { await navigator.clipboard.writeText(txt); toast('copiado'); }
+    catch(e){
+      const ta = document.createElement('textarea');
+      ta.value = txt; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); toast('copiado'); } catch(_){ toast('copie manualmente'); }
+      ta.remove();
+    }
+  });
+});
+
+/* Waffle: 100 quadradinhos por área. 51 saúde, 22 defesa, 19 segurança,
+   7 outras, 1 educação (o último, circulado). */
+(function(){
+  const g = document.getElementById('waffle');
+  if (!g) return;
+  const cores = [].concat(
+    Array(51).fill('#16130f'), Array(22).fill('#5a544e'),
+    Array(19).fill('#9a938b'), Array(7).fill('#d8d3cb'), ['#b23a2e']
+  );
+  const lado = 18, gap = 2.2;
+  cores.forEach((cor,i)=>{
+    const lin = Math.floor(i/20), col = i%20;
+    const x = col*(lado+gap)+4, y = lin*(lado+gap)+4;
+    const r = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    r.setAttribute('x',x); r.setAttribute('y',y);
+    r.setAttribute('width',lado-gap); r.setAttribute('height',lado-gap);
+    r.setAttribute('fill',cor);
+    g.appendChild(r);
+    if (i === 99){
+      const m = document.getElementById('marca');
+      m.setAttribute('cx', x + (lado-gap)/2);
+      m.setAttribute('cy', y + (lado-gap)/2);
+      m.setAttribute('r', 11);
+    }
+  });
+})();
+</script>
+</body>
+</html>
