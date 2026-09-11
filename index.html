@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arquivo Flávio — 252 fatos com fonte sobre Flávio Bolsonaro</title>
+<meta name="description" content="Registro público sobre o senador e candidato à Presidência Flávio Bolsonaro: 252 fatos, cada um com fonte clicável e status jurídico.">
+
+<!-- Preview de link (WhatsApp, Telegram, X, Facebook).
+     AO PUBLICAR: troque as 2 linhas marcadas ABSOLUTO pelo endereço real do site.
+     Os robôs de preview não executam JavaScript e a maioria exige URL absoluta na imagem. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arquivo Flávio">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="R$ 6,01 de pessoas físicas. R$ 42 milhões do partido.">
+<meta property="og:description" content="É assim que a campanha presidencial de Flávio Bolsonaro é financiada, segundo a prestação de contas ao TSE. Mais 251 fatos, todos com fonte.">
+<!-- <meta property="og:url" content="https://SEU-SITE/"> ABSOLUTO: descomente ao publicar -->
+<meta property="og:image" content="og-arquivo-flavio.png">              <!-- ABSOLUTO: https://SEU-SITE/og-arquivo-flavio.png -->
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="R$ 6,01 doados por pessoas físicas contra R$ 42 milhões do partido.">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="assets/app.css?v=set2026">
+</head>
+<body>
+
+<header class="site-header">
+  <div id="revisar" class="revisar">fontes em conferência · status jurídico indicado em cada registro</div>
+  <div class="hrow">
+    <div class="brand">
+      <span class="mark">DOSSIER_FLÁVIO</span><span class="cursor"></span>
+      <span class="tag" id="meta-sub">dossiê de registro público</span>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-view="arquivo"><span class="ico">🗂️</span>BolsoDrive</button>
+      <button class="tab" data-view="rede"><span class="ico">💚</span>Close Friends</button>
+      <button class="tab" data-view="cronologia"><span class="ico">🕰️</span>Cronologia</button>
+      <button class="tab" data-view="noticias"><span class="ico">📰</span>Notícias</button>
+      <button class="tab" data-view="chat"><span class="ico">✦</span>FlávioGPT</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ARQUIVO -->
+  <section id="view-arquivo" class="view active">
+    <div class="view-head">
+      <h1>BolsoDrive</h1>
+      <p>O arquivo de tudo: vídeos, fotos, notícias e documentos de registro público, em pastas por tema. Cada item traz status jurídico e fonte. Clique numa pessoa citada para ir ao Close Friends.</p>
+    </div>
+    <div class="toolbar">
+      <div class="search">🔎 <input id="busca" placeholder="Buscar no arquivo (caso, pessoa, tema)…" autocomplete="off"></div>
+    </div>
+    <div id="arquivo-grid" class="grid"></div>
+    <div id="arquivo-itens" style="display:none"></div>
+  </section>
+
+  <!-- REDE -->
+  <section id="view-rede" class="view">
+    <div class="view-head">
+      <h1>Close Friends</h1>
+      <p>O mapa das relações de interesse público ligadas aos casos. Arraste os nós; role para zoom; clique numa pessoa (ou na legenda) para destacar. Busque um nome abaixo.</p>
+    </div>
+    <div class="toolbar">
+      <div class="search"><input id="rede-search" placeholder="buscar pessoa na rede…" autocomplete="off"></div>
+    </div>
+    <div class="rede-wrap">
+      <div class="canvas-box">
+        <canvas id="grafo"></canvas>
+        <button id="grafo-fit" title="Centralizar / ajustar">⤢ ajustar</button>
+        <div class="legenda" id="legenda"></div>
+      </div>
+      <aside id="rede-painel" class="rede-painel"><div class="ph">Carregando…</div></aside>
+    </div>
+  </section>
+
+  <!-- CRONOLOGIA -->
+  <section id="view-cronologia" class="view">
+    <div class="view-head">
+      <h1>A Cronologia</h1>
+      <p>Log de eventos: marcos curados + todos os itens datados do arquivo, por ano. Alterne para "faixas" para ver a vida de cada caso.</p>
+    </div>
+    <div class="cron-toggle">
+      <button class="cron-tab active" data-cron="log">log</button>
+      <button class="cron-tab" data-cron="faixas">faixas por caso</button>
+    </div>
+    <div id="timeline" class="timeline"></div>
+    <div id="swimlanes" class="swimlanes" style="display:none"></div>
+  </section>
+
+  <!-- NOTÍCIAS -->
+  <section id="view-noticias" class="view">
+    <div class="view-head">
+      <h1>Notícias</h1>
+      <p>As polêmicas mais recentes sobre o senador. Ao abrir a aba, o site tenta puxar o Google Notícias ao vivo; se o feed estiver fora do ar, mostra a última leva salva.</p>
+    </div>
+    <div class="news-bar">
+      <span id="news-status" class="news-status">…</span>
+      <button id="news-refresh" class="backlink">↻ atualizar</button>
+    </div>
+    <div class="news-sec">google notícias</div>
+    <div id="news-list" class="news-list"></div>
+    <div class="news-sec">do arquivo · fontes mais recentes</div>
+    <div id="news-arquivo" class="news-list"></div>
+  </section>
+
+  <!-- ESPECIALISTA -->
+  <section id="view-chat" class="view">
+    <div class="view-head">
+      <h1>FlávioGPT</h1>
+      <p>Pergunte sobre os casos. As respostas saem do BolsoDrive documentado — com status e fonte — e linkam o item de origem.</p>
+    </div>
+    <div class="chat-shell">
+      <div class="chat-disc">Responde só com base no arquivo. Não fala em nome do senador nem inventa fatos.</div>
+      <div id="chat-msgs" class="chat-msgs"></div>
+      <form id="chat-form" class="chat-form">
+        <input id="chat-inp" placeholder="Ex.: como ficou o caso da rachadinha?" autocomplete="off">
+        <button type="submit">↑</button>
+      </form>
+      <div id="chat-chips" class="chat-chips"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <button id="link-metodo">// método &amp; transparência</button>
+    <span class="foot-dim">dossiê em modo revisão · conteúdo de registro público com fonte</span>
+  </footer>
+
+</main>
+
+<div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
+
+<script src="data/dados.js?v=set2026"></script>
+<script src="assets/app.js?v=set2026"></script>
+</body>
+</html>
