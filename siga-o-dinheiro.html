@@ -20,18 +20,18 @@
 }
 .topo b{color:var(--tinta); font-weight:700}
 
-.valor{text-align:center; margin:6px 0 4px}
+.valor{text-align:center; margin:6px 0 10px}
 
-.fluxo{display:grid; grid-template-columns:36% 1fr 36%; align-items:stretch; margin:0 0 12px; cursor:pointer; -webkit-tap-highlight-color:transparent}
+.fluxo{display:grid; grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr); align-items:stretch; margin:0 0 12px; cursor:pointer; -webkit-tap-highlight-color:transparent}
 .caixa{
   border:1.5px solid var(--tinta); padding:9px 10px 10px; min-height:64px;
   display:flex; flex-direction:column; justify-content:center; overflow-wrap:anywhere;
 }
 .caixa .rot{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin:0 0 3px}
-.caixa .nome{font-size:15px; line-height:1.3; font-weight:600}
+.caixa .nome{font-size:15px; line-height:1.3; font-weight:600; hyphens:auto; overflow-wrap:break-word; font-size:14px}
 .seta{align-self:center; width:100%; height:32px; display:block; overflow:visible}
 .seta line{stroke:var(--tinta); stroke-width:2}
-.seta polygon{fill:var(--carimbo); opacity:0; transition:opacity .15s}
+.seta polygon{fill:var(--tinta); opacity:0; transition:opacity .15s}
 
 .obs{font-size:15px; margin:0 0 10px}
 .chip{text-transform:uppercase; line-height:1.5; margin-bottom:10px}
@@ -71,7 +71,7 @@
   <p class="sub" id="sub">Fluxos de dinheiro do arquivo, um de cada vez, com fonte e status.</p>
 
   <section class="palco" id="palco" aria-label="Fluxo de dinheiro">
-    <div class="topo"><span id="ind" aria-live="polite"></span><span>origem → destino</span></div>
+    <div class="topo"><span id="ind" aria-live="polite"></span><span id="legenda">origem → destino</span></div>
 
     <div id="cartao" hidden>
       <p class="numero menor valor" id="valor" role="img"><span id="pre"></span><span id="num"></span><span id="suf"></span></p>
@@ -114,7 +114,7 @@
 
 <noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="index.html">Ver os 252 registros →</a></p></noscript>
 
-<script src="data/dados.js?v=set2026"></script>
+<script src="data/dados.js?v=set2026b"></script>
 <script>
 (function(){
 'use strict';
@@ -123,51 +123,15 @@ var D = window.DOSSIE || {};
 var FD = D.fluxoDinheiro || {};
 var brutos = Array.isArray(FD.fluxos) ? FD.fluxos : [];
 
-/* Fora qualquer fluxo com "134" no valor ou no texto: o TSE mandou suspender
-   propaganda com essa alegação, e este arquivo não repete o número. */
-function tem134(f){ return /134/.test([f.valor, f.de, f.para, f.obs].join(' ')); }
-var FLUXOS = brutos.filter(function(f){ return f && typeof f.valor === 'string' && !tem134(f); });
+var FLUXOS = brutos.filter(function(f){ return f && typeof f.valor === 'string'; });
 var N = FLUXOS.length;
 
-/* Ajuste de texto de dado: o pedido de apuração à PF é de um deputado (Metrópoles, 02/07/2026). */
-function limpa(s){ return String(s || '').replace(/\bPT pediu\b/g, 'um deputado pediu'); }
+function limpa(s){ return String(s || ''); }
 
-/* Status jurídico por fluxo — literal, com a fonte do status quando ela não é a do fluxo. */
-var CARTA = {veiculo:'CartaCapital', url:'https://www.cartacapital.com.br/politica/o-que-aconteceu-com-o-caso-da-rachadinha-de-flavio-bolsonaro-suposto-candidato-em-2026/'};
-var PODER = {veiculo:'Poder360', url:'https://www.poder360.com.br/poder-eleicoes-2026/flavio-declara-r-81-milhoes-em-patrimonio-quase-o-dobro-de-lula/'};
-var BDF   = {veiculo:'Brasil de Fato', url:'https://www.brasildefato.com.br/2026/09/09/mendonca-aceita-delacao-de-empresario-que-enviou-r-60-milhoes-a-fundo-ligado-a-eduardo-bolsonaro/'};
-var RACH  = 'A denúncia do MP-RJ (2020) foi anulada: o STJ anulou as provas em 2021, o STF reconheceu o foro privilegiado, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025. Ele nunca foi condenado e o mérito nunca foi julgado.';
-var MASTER = 'Sobre o caso Vorcaro/“Dark Horse”: investigação em curso no STF, sem denúncia aceita nem condenação. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.';
-
-var STATUS = [
-  { quando:function(f){ return /Queiroz/.test(f.de) && /Michelle/.test(f.para); },
-    chip:'Fato noticiado · Flávio não é parte deste repasse', classe:'nenhum',
-    ressalva:'Repasse entre Fabrício Queiroz e Michelle Bolsonaro, segundo a reportagem. Sobre a rachadinha da Alerj: denúncia anulada; Flávio nunca foi condenado e o mérito nunca foi julgado.', extra:CARTA },
-  { quando:function(f){ return f.tema === 'rachadinha' || f.tema === 'patrimonio'; },
-    chip:'Denúncia anulada · nunca condenado', classe:'nenhum', ressalva:RACH, extra:CARTA },
-  { quando:function(f){ return /Lago Sul/.test(f.para); },
-    chip:'Fato noticiado', classe:'',
-    ressalva:'Na declaração de patrimônio ao TSE (registro da candidatura, 13/08/2026), o maior item é uma casa no Lago Sul, de R$ 6,2 milhões. A declaração usa valor de aquisição.', extra:PODER },
-  { quando:function(f){ return /QG/.test(f.para); },
-    chip:'Pedido de apuração à PF (02/07/2026)', classe:'',
-    ressalva:'Imóvel de R$ 14,5 milhões registrado em nome do advogado José Vicente Santini, coordenador da campanha: R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo BRB. Santini diz que a renda vem do escritório e de uma empresa de segurança e que “está tudo declarado”.' },
-  { quando:function(f){ return /Zettel/.test(f.de); },
-    chip:'Fato noticiado · campanha de 2022', classe:'nenhum',
-    ressalva:'Doação à campanha presidencial de 2022. ' + MASTER, extra:BDF },
-  { quando:function(f){ return /Havengate/.test(f.para); },
-    chip:'Investigação em curso (STF) · sem condenação', classe:'',
-    ressalva:'Inquérito autorizado pelo ministro André Mendonça em 22/07/2026; Flávio é investigado. A delação homologada em 09/09/2026 descreve 7 repasses em 2025, a pedido de Vorcaro, somando US$ 12,3 milhões (cerca de R$ 63 milhões). Sem denúncia aceita nem condenação. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.' },
-  { quando:function(f){ return f.tema === 'eleicoes'; },
-    chip:'Fato · prestação de contas ao TSE', classe:'',
-    ressalva:'Prestação de contas parcial ao TSE, consultada em 26/08/2026: R$ 6,01 de pessoas físicas; R$ 42 milhões do PL.' },
-  { quando:function(f){ return f.tema === 'senado'; },
-    chip:'Fato · Orçamento da União', classe:'',
-    ressalva:'Valores de 2020–2026 corrigidos pela inflação. Saúde 50,8% (R$ 185,5 mi), defesa 21,8% (R$ 79,5 mi), segurança pública 19,4% (R$ 70,9 mi), educação 0,8% (R$ 2,9 mi); ciência e agricultura, nada.' }
-];
+/* Status e ressalva vêm do próprio dado (fluxoDinheiro.fluxos[i].status / .ressalva). */
 var PADRAO = { chip:'Fato noticiado', classe:'nenhum', ressalva:'' };
 function statusDe(f){
-  for (var i = 0; i < STATUS.length; i++){ if (STATUS[i].quando(f)) return STATUS[i]; }
-  return PADRAO;
+  return { chip: f.status || PADRAO.chip, classe: '', ressalva: f.ressalva || '' };
 }
 
 /* "R$ 2,08 mi" → prefixo "R$ ", número 2,08, sufixo " mi". O prefixo guarda "~" e "até". */
@@ -185,7 +149,7 @@ var el = {
   valor:$('valor'), pre:$('pre'), num:$('num'), suf:$('suf'), fluxo:$('fluxo'), seta:$('seta'),
   linha:$('linha'), ponta:$('ponta'), de:$('de'), para:$('para'), obs:$('obs'), chip:$('chip'),
   fonte:$('fonte'), fonte2:$('fonte2'), ressalva:$('ressalva'), zap:$('zap'), ant:$('ant'),
-  prox:$('prox'), rever:$('rever'), assinaN:$('assina-n')
+  prox:$('prox'), rever:$('rever'), assinaN:$('assina-n'), legenda:$('legenda')
 };
 
 var reduz = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -235,13 +199,13 @@ function setHash(h){ try { history.replaceState(null, '', '#' + h); } catch(e){}
 function mostrar(i){
   atual = i;
   if (i >= N){
-    el.cartao.hidden = true; el.fecho.hidden = false;
+    el.cartao.hidden = true; el.fecho.hidden = false; el.legenda.hidden = true;
     el.ind.textContent = 'fim · ' + N + ' fluxos';
     el.assinaN.textContent = 'fim';
     setHash('fim'); return;
   }
   var f = FLUXOS[i], s = statusDe(f), pt = partes(f.valor);
-  el.fecho.hidden = true; el.cartao.hidden = false;
+  el.fecho.hidden = true; el.cartao.hidden = false; el.legenda.hidden = false;
   el.ind.textContent = 'fluxo ' + (i + 1) + ' / ' + N;
   el.de.textContent = limpa(f.de);
   el.para.textContent = limpa(f.para);
@@ -296,11 +260,11 @@ el.zap.addEventListener('click', function(){
   if (navigator.share){
     navigator.share({text:txt}).catch(function(e){
       if (e && e.name === 'AbortError') return;
-      location.href = 'https://wa.me/?text=' + encodeURIComponent(txt);
+      window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
     });
     return;
   }
-  location.href = 'https://wa.me/?text=' + encodeURIComponent(txt);
+  window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
 });
 
 document.addEventListener('keydown', function(e){

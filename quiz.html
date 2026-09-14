@@ -52,7 +52,7 @@ input[type=range]::-webkit-slider-runnable-track{height:4px; background:var(--li
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:28px; height:28px; border-radius:50%; background:var(--tinta); border:0; margin-top:-12px}
 input[type=range]::-moz-range-track{height:4px; background:var(--linha); border:0}
 input[type=range]::-moz-range-thumb{width:28px; height:28px; border-radius:50%; background:var(--tinta); border:0}
-.anel{position:absolute; top:50%; width:20px; height:20px; margin:-10px 0 0 -10px; border:2px solid var(--carimbo); border-radius:50%; pointer-events:none; display:none}
+.anel{position:absolute; top:50%; width:20px; height:20px; margin:-10px 0 0 -10px; border:2px solid var(--tinta); border-radius:50%; pointer-events:none; display:none}
 .anel.on{display:block}
 .extremos{display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; color:var(--cinza); margin:-2px 0 4px}
 .compara{font-size:16px; margin:12px 0 14px}
@@ -77,8 +77,9 @@ input[type=range]::-moz-range-thumb{width:28px; height:28px; border-radius:50%; 
 .gabarito small{grid-column:2 / 4; font-family:var(--mono); font-size:11px; color:var(--cinza); margin-top:2px}
 
 .fim{padding:36px 16px 60px; text-align:center}
-.fim a{display:inline-block; font-size:18px; font-weight:700; color:var(--tinta); text-decoration:none; border-bottom:3px solid var(--carimbo)}
+.fim a{display:inline-block; font-size:18px; font-weight:700; color:var(--tinta); text-decoration:none; border-bottom:3px solid var(--tinta)}
 noscript p{padding:20px 16px}
+.acoes button{flex:1 1 auto}
 </style>
 </head>
 <body>
@@ -129,14 +130,15 @@ const F = {
 const P = [
   { tipo:'faixa', min:0, max:1000000, passo:1, inicio:500000, fmt:fmtBRL, dif: d => fmtBRL(Math.round(d * 100) / 100),
     extremos:['R$ 0','R$ 1 milhão'],
-    pergunta:'Quanto pessoas físicas doaram, no total, à campanha presidencial dele?',
-    valor:6.01, acerta: v => v <= 100,
+    pergunta:'Até 26/08/2026, na prestação de contas parcial ao TSE, quanto pessoas físicas tinham doado à campanha presidencial dele?',
+    valor:6.01, acerta: v => v <= 10000,
     numero:'R$ 6,01',
-    resposta:'Pessoas físicas doaram <b>R$ 6,01</b> à campanha presidencial de Flávio Bolsonaro. O PL, partido dele, repassou <b>R$ 42 milhões</b>.',
+    resposta:'Na prestação de contas parcial ao TSE consultada em 26/08/2026, pessoas físicas tinham doado <b>R$ 6,01</b> à campanha presidencial de Flávio Bolsonaro. O PL, partido dele, repassou <b>R$ 42 milhões</b>.',
+    ressalva:'Em setembro de 2026, a maior doação de pessoa física registrada era de R$ 300 mil (Walter Schlatter).',
     chip:'FATO · PRESTAÇÃO DE CONTAS AO TSE',
     fontes:[F.poder_doacoes],
-    curto:'Doações de pessoas físicas', gab:'R$ 6,01',
-    zap:'Pessoas físicas doaram R$ 6,01 à campanha presidencial de Flávio Bolsonaro; o PL, partido dele, repassou R$ 42 milhões. Prestação de contas parcial ao TSE, consultada em 26/08/2026.' },
+    curto:'Doações de pessoas físicas até 26/08', gab:'R$ 6,01',
+    zap:'Até 26/08/2026, pessoas físicas tinham doado R$ 6,01 à campanha presidencial de Flávio Bolsonaro; o PL, partido dele, repassou R$ 42 milhões. Prestação de contas parcial ao TSE.' },
 
   { tipo:'multi',
     pergunta:'Quantos projetos de autoria dele viraram lei em 7 anos de Senado?',
@@ -164,14 +166,14 @@ const P = [
     pergunta:'De cada R$ 100 em emendas indicadas por ele, quanto foi para educação?',
     opcoes:['R$ 0,80','R$ 8','R$ 21','R$ 50'], certa:0,
     numero:'R$ 0,80',
-    resposta:'Das emendas indicadas por ele nos orçamentos 2020–2026 (R$ 364 milhões, corrigidos pela inflação), educação ficou com <b>0,8%</b> (R$ 2,9 mi). <b>Metade foi para saúde</b>: 50,8% (R$ 185,5 mi). Defesa, 21,8%; segurança pública, 19,4%; ciência e agricultura, nada.',
+    resposta:'Das emendas indicadas por ele nos orçamentos 2020–2026 (R$ 364 milhões, corrigidos pela inflação), educação ficou com <b>0,8%</b> (R$ 2,9 mi). <b>Pouco mais da metade foi para saúde</b>: 50,8% (R$ 185,5 mi). Defesa, 21,8%; segurança pública, 19,4%; ciência e agricultura, nada.',
     chip:'FATO · ORÇAMENTO DA UNIÃO',
     fontes:[F.jbr],
     curto:'Emendas para educação, de cada R$ 100', gab:'R$ 0,80',
     zap:'De cada R$ 100 em emendas indicadas por Flávio Bolsonaro nos orçamentos 2020–2026, R$ 0,80 foi para educação. Saúde ficou com 50,8%; defesa, 21,8%; segurança pública, 19,4%; ciência e agricultura, nada.' },
 
   { tipo:'multi',
-    pergunta:'Em 2026, ele deixou de votar em que fração das votações nominais do Senado?',
+    pergunta:'Em 2026, ele não registrou voto em que fração das votações nominais do Senado?',
     opcoes:['4%','20%','43%','71%'], certa:2,
     numero:'43%',
     resposta:'Não registrou voto em <b>43%</b> das 49 deliberações nominais do Senado analisadas em 2026 (até 16/06). <b>A média entre os 81 senadores é 20%</b>; ele é o <b>5º em ausências</b> (Romário, 53%, lidera).',
@@ -181,11 +183,11 @@ const P = [
     zap:'Flávio Bolsonaro não registrou voto em 43% das 49 deliberações nominais do Senado analisadas em 2026 (até 16/06). A média entre os 81 senadores é 20%; ele é o 5º em ausências.' },
 
   { tipo:'multi',
-    pergunta:'A quem ele deu a Medalha Tiradentes na Alerj, homenagem que defendeu na TV em 28/08/2026?',
-    opcoes:['A um bombeiro herói de enchente',
+    pergunta:'A quem ele deu a Medalha Tiradentes na Alerj, homenagem que justificou na TV em 28/08/2026?',
+    opcoes:['A um delegado da Polícia Civil',
             'A Adriano da Nóbrega, ex-capitão apontado como chefe do Escritório do Crime',
-            'A um médico do SUS',
-            'A um professor da rede pública'], certa:1,
+            'A um oficial do Corpo de Bombeiros',
+            'A um desembargador do TJ-RJ'], certa:1,
     resposta:'Flávio concedeu na Alerj a <b>Medalha Tiradentes (2005)</b> e uma moção de louvor (2003) a <b>Adriano Magalhães da Nóbrega</b>, ex-capitão do Bope apontado como chefe do “Escritório do Crime”, condenado por homicídio em 2014 e morto em operação policial em 09/02/2020. Em 28/08/2026, no Jornal Nacional, Flávio disse que ele era um <b>“policial exemplar”</b> à época.',
     chip:'FATO · ALERJ (2003 E 2005) · JORNAL NACIONAL, 28/08/2026',
     fontes:[F.itatiaia],
@@ -202,7 +204,7 @@ const P = [
     resposta:'A denúncia do MP-RJ (2020) foi <b>anulada</b>: o STJ anulou as provas em 2021, o STF reconheceu o foro privilegiado, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025. Ele <b>nunca foi condenado</b> e o mérito <b>nunca foi julgado</b>.',
     chip:'DENÚNCIA ANULADA · NUNCA CONDENADO',
     fontes:[F.carta],
-    ressalva:'Se alguém disser que ele foi condenado por rachadinha, está errado. Esta pergunta está no quiz porque um arquivo só vale se a parte que favorece o candidato também estiver certa.',
+    ressalva:'Se alguém disser que ele foi condenado por rachadinha, está errado. A pergunta está aqui para que o status do caso fique claro.',
     curto:'Rachadinha da Alerj', gab:'Nunca condenado',
     zap:'Sobre a rachadinha da Alerj: a denúncia foi anulada e Flávio Bolsonaro nunca foi condenado. O STJ anulou as provas em 2021, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025. O mérito nunca foi julgado.' },
 

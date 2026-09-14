@@ -3097,7 +3097,8 @@ window.DOSSIE = {
    "titulo": "Flávio diz que mansão de R$ 6 mi foi paga com renda de advogado",
    "resumo": "Em defesa a ação popular movida pela deputada Erika Kokay, Flávio afirmou que a mansão de cerca de R$ 6 mi comprada em Brasília (mar/2021) foi paga com sua renda como advogado, empresário e com o trabalho da esposa, dentista. Reportagens apontam não haver registro de atuação dele como advogado.",
    "pessoas": [
-    "flavio"
+    "flavio",
+    "fernanda-antunes-figueira-bolsonaro"
    ],
    "fontes": [
     {
@@ -6840,6 +6841,7 @@ window.DOSSIE = {
    "resumo": "Walderice Santos da Conceição, a 'Wal do Açaí', foi secretária parlamentar lotada no gabinete de JAIR Bolsonaro (então deputado federal) de 2003 a 2018, sob suspeita de ser funcionária fantasma. O MPF propôs ação de improbidade contra Jair e Wal. ATENÇÃO: o caso é do gabinete de JAIR, não de Flávio.",
    "observacao": "Caso do gabinete de JAIR Bolsonaro, NÃO de Flávio. Inserido aqui como contexto do clã. MPF apontou que 83,77% da remuneração foi sacada em espécie.",
    "pessoas": [
+    "walderice-santos-da-conceicao-wal-do-acai",
     "jair"
    ],
    "fontes": [
@@ -6894,6 +6896,7 @@ window.DOSSIE = {
    "resumo": "A juíza Ivani Silva da Luz definiu que Jair Bolsonaro e Wal do Açaí respondem por atos de improbidade em 5 incisos dos arts. 9 e 10 da Lei 14.230/2021; o TRF-1 rejeitou recurso e manteve a ação. Caso ainda sem sentença de mérito (de Jair, não de Flávio).",
    "observacao": "Caso de JAIR. Não localizei sentença de mérito final até junho/2026.",
    "pessoas": [
+    "walderice-santos-da-conceicao-wal-do-acai",
     "jair"
    ],
    "fontes": [
@@ -6926,8 +6929,7 @@ window.DOSSIE = {
    "pessoas": [
     "flavio",
     "jair",
-    "carlos-bolsonaro",
-    "rodrigo-bacellar"
+    "carlos-bolsonaro"
    ],
    "fontes": [
     {
@@ -7652,6 +7654,27 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "fernanda-antunes-figueira-bolsonaro",
+    "nome": "Fernanda Antunes Figueira Bolsonaro",
+    "papel": "Esposa de Flávio; coproprietária da mansão de Brasília",
+    "grupo": "familia",
+    "status": "Esposa de Flavio Bolsonaro, foi denunciada e investigada pelo MP-RJ em 2020 no caso das rachadinhas (lavagem de dinheiro e organizacao criminosa), mas a denuncia foi rejeitada/anulada por questoes de foro privilegiado; nao foi presa nem condenada.",
+    "situacao": [
+     "denunciado",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/mulher-de-flavio-bolsonaro-tambem-foi-denunciada-pelo-mp-rj/"
+     },
+     {
+      "veiculo": "Estado de Minas",
+      "url": "https://www.em.com.br/app/noticia/politica/2020/11/04/interna_politica,1201186/mulher-de-flavio-bolsonaro-tambem-e-denunciada-pelo-mp.shtml"
+     }
+    ]
+   },
+   {
     "id": "banco-de-brasilia-brb",
     "nome": "Banco de Brasília (BRB)",
     "papel": "Banco que concedeu o financiamento de R$ 3,1 milhões da mansão",
@@ -7666,24 +7689,6 @@ window.DOSSIE = {
      {
       "veiculo": "Times Brasil/CNBC",
       "url": "https://timesbrasil.com.br/empresas-e-negocios/entenda-como-funcionava-o-esquema-entre-brb-e-master/"
-     }
-    ]
-   },
-   {
-    "id": "bolsotini-chocolates-e-cafe",
-    "nome": "Bolsotini Chocolates e Café",
-    "papel": "Empresa de Flávio cuja conta movimentou dinheiro em espécie",
-    "grupo": "financeiro",
-    "status": "Loja de chocolates (franquia Kopenhagen) que pertenceu a Flavio Bolsonaro; foi investigada pelo MP-RJ como suposto instrumento de lavagem de dinheiro (cerca de R$ 2,1 mi) das rachadinhas, mas a investigacao foi anulada junto com o caso; a empresa nao foi condenada e Flavio deixou a operacao em 2021.",
-    "situacao": [],
-    "situacao_fontes": [
-     {
-      "veiculo": "Poder360",
-      "url": "https://www.poder360.com.br/brasil/flavio-bolsonaro-entrega-loja-de-chocolates-investigada-pelo-mp/"
-     },
-     {
-      "veiculo": "Crusoé",
-      "url": "https://crusoe.com.br/diario/loja-de-chocolates-de-flavio-bolsonaro-investigada-pelo-mp-e-vendida/"
      }
     ]
    },
@@ -7872,24 +7877,22 @@ window.DOSSIE = {
     ]
    },
    {
-    "id": "rodrigo-bacellar",
-    "nome": "Rodrigo Bacellar",
-    "papel": "Ex-presidente da Alerj",
-    "grupo": "aliado",
-    "status": "Ex-presidente da Alerj denunciado pela PGR por obstrução de investigação de organização criminosa armada; preso preventivamente em dezembro/2025, solto após decisão da Alerj e preso novamente em março/2026 por Moraes após o TSE cassar seu mandato; também investigado por lavagem de dinheiro; sem condenação criminal até junho/2026.",
+    "id": "walderice-santos-da-conceicao-wal-do-acai",
+    "nome": "Walderice Santos da Conceição (Wal do Açaí)",
+    "papel": "Ex-secretária parlamentar",
+    "grupo": "operadores",
+    "status": "Ex-secretária parlamentar de Jair Bolsonaro (não diretamente de Flávio); investigada pelo MPF como suposta funcionária-fantasma e alvo de ação de improbidade administrativa (esfera cível, não penal) ajuizada em 2022; não há denúncia criminal, condenação penal nem prisão registradas.",
     "situacao": [
-     "preso",
-     "denunciado",
      "investigado"
     ],
     "situacao_fontes": [
      {
-      "veiculo": "STF",
-      "url": "https://noticias.stf.jus.br/postsnoticias/relator-decreta-prisao-preventiva-do-ex-deputado-estadual-rodrigo-bacellar-uniao-rj/"
+      "veiculo": "Poder360",
+      "url": "https://www.poder360.com.br/justica/bolsonaro-respondera-por-5-atos-de-improbidade-no-caso-wal-do-acai/"
      },
      {
-      "veiculo": "Agência Brasil",
-      "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-03/pf-volta-prender-rodrigo-bacellar-ex-presidente-da-alerj"
+      "veiculo": "MPF",
+      "url": "https://www.mpf.mp.br/df/sala-de-imprensa/noticias-df/mpf-propoe-acao-de-improbidade-contra-o-presidente-da-republica-jair-bolsonaro-e-wal-do-acai"
      }
     ]
    },
@@ -7963,13 +7966,6 @@ window.DOSSIE = {
     "status": "Sem processo conhecido."
    },
    {
-    "id": "maria-claudia-bucchianeri",
-    "nome": "Maria Claudia Bucchianeri",
-    "papel": "advogada da campanha de Flávio Bolsonaro, escolhida em março de 2026 para a atuação contenciosa no TSE; ex-ministra do TSE, nomeada por Jair Bolsonaro em 2021, deixou a Corte em 2023.",
-    "grupo": "juridico",
-    "status": "Sem processo conhecido."
-   },
-   {
     "id": "claudio-lottenberg",
     "nome": "Cláudio Lottenberg",
     "papel": "anunciado por Flávio Bolsonaro em 28/8/2026, em entrevista à TV Globo, como seu futuro ministro da Saúde. Médico oftalmologista, 65 anos, preside o Conselho Deliberativo do Hospital Albert Einstein, o Instituto Coalizão Saúde e a Confederação Israelita do Brasil.",
@@ -8024,6 +8020,13 @@ window.DOSSIE = {
     "papel": "advogado e amigo de Flávio Bolsonaro; sua empresa, a WT Administração de Imóveis e Bens, é cotista da mansão à beira-mar em Angra dos Reis, gerida pela Prime You — que teve Daniel Vorcaro como sócio até setembro de 2025 —, onde Flávio comemorou o aniversário da filha caçula em fevereiro de 2026.",
     "grupo": "operadores",
     "status": "Alvo de busca e apreensão em 4/8/2026 na Operação Sem Desconto (fraudes contra aposentados do INSS). Não é indiciado, denunciado nem réu; sua defesa afirma que ele 'não figura como investigado' e que 'jamais teve qualquer envolvimento com os fatos apurados'. A apuração da PF nessa fase mira principalmente o senador Weverton Rocha (PDT) e não estabelece ligação com Flávio Bolsonaro. O Conselho Federal da OAB acusou a PF de violar sigilo profissional na busca e pediu para ingressar na investigação. Sobre a mansão, Tomaz disse que o empréstimo ao senador se deu 'exclusivamente em razão da relação de amizade', sem pagamento ou contraprestação."
+   },
+   {
+    "id": "renato-araujo",
+    "nome": "Renato Araújo",
+    "papel": "empresário e candidato a deputado federal pelo PL, amigo da família Bolsonaro; acompanhou Flávio Bolsonaro na barqueata de campanha em Angra dos Reis em 29/8/2026. Tentou registrar o nome de urna 'Renato Araújo do Bolsonaro', barrado pelo TRE-RJ.",
+    "grupo": "operadores",
+    "status": "Não é réu nem denunciado. Uma construtora ligada a ele foi alvo de busca e apreensão da Polícia Civil em 13/8/2026, em apuração sobre fraudes em obras de escolas estaduais — a empresa firmou ao menos R$ 16 milhões em contratos na gestão Cláudio Castro. Ele antecipou publicamente a possibilidade de nova operação e classificou a ação como perseguição política."
    },
    {
     "id": "elcio-de-queiroz",
@@ -8242,22 +8245,6 @@ window.DOSSIE = {
     ]
    },
    {
-    "id": "valdomiro-paes-garcia",
-    "nome": "Valdomiro Paes Garcia",
-    "papel": "Contraventor do jogo do bicho cuja família Adriano protegia como segurança a partir de 2006",
-    "grupo": "financeiro",
-    "status": "Bicheiro da família Paes Garcia (ligada ao Salgueiro); Adriano atuava na segurança de seus parentes, contexto em que cometeu homicídios a mando de contraventores.",
-    "situacao": [
-     "investigado"
-    ],
-    "situacao_fontes": [
-     {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/nacional/miliciano-adriano-da-nobrega-prestava-servicos-a-cupula-do-jogo-do-bicho-diz-mp/"
-     }
-    ]
-   },
-   {
     "id": "rivaldo-barbosa",
     "nome": "Rivaldo Barbosa",
     "papel": "Ex-chefe da Polícia Civil do RJ; teria garantido impunidade aos mandantes",
@@ -8348,6 +8335,27 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "mohana-figueiredo-lessa",
+    "nome": "Mohana Figueiredo Lessa",
+    "papel": "Filha de Ronnie Lessa, envolvida no esquema de importação de peças de armas",
+    "grupo": "financeiro",
+    "status": "Recebia e reembalava peças importadas pelo pai e as enviava ao Brasil; foi absolvida das acusações por falta de prova de dolo.",
+    "situacao": [
+     "denunciado",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/brasil/ronnie-lessa-e-condenado-na-justica-federal-por-contrabando-de-pecas-de-armas/"
+     },
+     {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/nacional/justica-do-rio-condena-ronnie-lessa-por-contrabando-de-pecas-para-armas-de-fogo/"
+     }
+    ]
+   },
+   {
     "id": "henrique-vorcaro",
     "nome": "Henrique Moura Vorcaro",
     "papel": "Pai de Daniel Vorcaro, apontado em operações financeiras do esquema Master",
@@ -8403,23 +8411,6 @@ window.DOSSIE = {
      {
       "veiculo": "ISTOÉ",
       "url": "https://istoe.com.br/augusto-lima-pf-nova-fase-compliance-zero"
-     }
-    ]
-   },
-   {
-    "id": "luiz-antonio-bull",
-    "nome": "Luiz Antonio Bull",
-    "papel": "Ex-diretor de compliance/riscos do Banco Master",
-    "grupo": "operadores",
-    "status": "Preso preventivamente na Operação Compliance Zero.",
-    "situacao": [
-     "preso",
-     "investigado"
-    ],
-    "situacao_fontes": [
-     {
-      "veiculo": "Wikipédia (Escândalo do Banco Master)",
-      "url": "https://pt.wikipedia.org/wiki/Esc%C3%A2ndalo_do_Banco_Master"
      }
     ]
    },
@@ -8574,6 +8565,24 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "shanna-harrouche-garcia",
+    "nome": "Shanna Harrouche Garcia",
+    "papel": "Filha de Maninho e ex-cunhada de Bello; acusa Bello de ser mandante de atentado contra ela",
+    "grupo": "financeiro",
+    "status": "Sobreviveu a tentativa de assassinato em 2019 e acusa Bernardo Bello de ser o mandante do atentado.",
+    "situacao": [],
+    "situacao_fontes": [
+     {
+      "veiculo": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/sociedade/quem-e-o-bicheiro-que-a-policia-do-rio-tenta-prender-em-operacao-nesta-quinta-feira/"
+     },
+     {
+      "veiculo": "Wikipédia (Bernardo Bello)",
+      "url": "https://pt.wikipedia.org/wiki/Bernardo_Bello"
+     }
+    ]
+   },
+   {
     "id": "fernando-iggnacio",
     "nome": "Fernando Iggnácio",
     "papel": "Bicheiro do Rio (parente de Castor de Andrade) assassinado em disputa pela contravenção",
@@ -8606,28 +8615,6 @@ window.DOSSIE = {
      {
       "veiculo": "ICL Notícias",
       "url": "https://iclnoticias.com.br/pgr-irmaos-brazao-aliaram-milicia-grilagem-voto/"
-     }
-    ]
-   },
-   {
-    "id": "allan-diego-magalhaes-aguiar",
-    "nome": "Allan Diego Magalhães Aguiar",
-    "papel": "Apontado como braço financeiro da organização de Bello e ex-cunhado; co-investigado no homicídio do advogado Carlos Daniel Dias",
-    "grupo": "financeiro",
-    "status": "Apontado como operador financeiro da organização de Bello; preso e co-investigado pelo assassinato do advogado Carlos Daniel Ferreira Dias em 2022.",
-    "situacao": [
-     "preso",
-     "denunciado",
-     "investigado"
-    ],
-    "situacao_fontes": [
-     {
-      "veiculo": "O Tempo",
-      "url": "https://www.otempo.com.br/brasil/quem-e-bernardo-bello-contraventor-apontado-como-chefe-do-jogo-do-bicho-no-rio-1.3344870"
-     },
-     {
-      "veiculo": "CartaCapital",
-      "url": "https://www.cartacapital.com.br/sociedade/quem-e-o-bicheiro-que-a-policia-do-rio-tenta-prender-em-operacao-nesta-quinta-feira/"
      }
     ]
    },
@@ -9072,6 +9059,28 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "marilia-de-alencar",
+    "nome": "Marília de Alencar",
+    "papel": "Ex-diretora de Inteligência do Ministério da Justiça; única mulher condenada no núcleo 2.",
+    "grupo": "milicia",
+    "status": "Condenada pelo STF (núcleo 2) pelos crimes de organização criminosa e tentativa de abolição violenta do Estado Democrático.",
+    "situacao": [
+     "condenado",
+     "denunciado",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2025-12/reus-do-nucleo-2-da-trama-golpista-recebem-penas-entre-8-e-26-anos"
+     },
+     {
+      "veiculo": "Conjur",
+      "url": "https://www.conjur.com.br/2025-dez-16/supremo-condena-cinco-reus-do-nucleo-2-da-trama-golpista/"
+     }
+    ]
+   },
+   {
     "id": "helio-ferreira-lima",
     "nome": "Hélio Ferreira Lima",
     "papel": "Tenente-coronel das Forças Especiais ('kids pretos'); operador do plano de sequestro/assassinato de autoridades.",
@@ -9360,6 +9369,22 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "andre-felipe-de-oliveira-seixas-maia",
+    "nome": "André Felipe de Oliveira Seixas Maia",
+    "papel": "Empresário, diretor da Tirreno; apontado por vender cerca de R$ 12 bilhões em créditos fictícios ao Master.",
+    "grupo": "financeiro",
+    "status": "Alvo de mandados na Operação Compliance Zero (preso/liberado).",
+    "situacao": [
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Wikipédia (Operação Compliance Zero)",
+      "url": "https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Compliance_Zero"
+     }
+    ]
+   },
+   {
     "id": "manoel-mendes-rodrigues",
     "nome": "Manoel Mendes Rodrigues",
     "papel": "Operador do jogo do bicho; apontado como líder de ações intimidatórias do grupo Vorcaro.",
@@ -9373,6 +9398,23 @@ window.DOSSIE = {
      {
       "veiculo": "Wikipédia (Operação Compliance Zero)",
       "url": "https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Compliance_Zero"
+     }
+    ]
+   },
+   {
+    "id": "luiz-philippe-machado-de-moraes-mourao",
+    "nome": "Luiz Philippe Machado de Moraes Mourão",
+    "papel": "Funcionário de Vorcaro conhecido como 'Sicário'; integrante do núcleo de intimidação e intermediário de pagamentos.",
+    "grupo": "milicia",
+    "status": "Preso na 3ª fase (mar/2026); morreu em custódia hospitalar após tentativa de suicídio na carceragem.",
+    "situacao": [
+     "preso",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Wikipédia (Escândalo do Banco Master)",
+      "url": "https://pt.wikipedia.org/wiki/Esc%C3%A2ndalo_do_Banco_Master"
      }
     ]
    },
@@ -9571,22 +9613,6 @@ window.DOSSIE = {
     ]
    },
    {
-    "id": "marcus-vinicius-reis-dos-santos-fininho",
-    "nome": "Marcus Vinicius Reis dos Santos (Fininho)",
-    "papel": "Miliciano do grupo que comanda a região de Jacarepaguá, apontado como sócio do clã Brazão em grilagem de terras",
-    "grupo": "milicia",
-    "status": "Identificado pela investigação como integrante da milícia parceira dos Brazão na zona oeste.",
-    "situacao": [
-     "investigado"
-    ],
-    "situacao_fontes": [
-     {
-      "veiculo": "ICL Notícias",
-      "url": "https://iclnoticias.com.br/pgr-irmaos-brazao-aliaram-milicia-grilagem-voto/"
-     }
-    ]
-   },
-   {
     "id": "laerte-silva-de-lima",
     "nome": "Laerte Silva de Lima",
     "papel": "Miliciano de Jacarepaguá apontado como sócio do clã Brazão nos negócios de grilagem da zona oeste",
@@ -9637,28 +9663,6 @@ window.DOSSIE = {
      {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/nacional/veja-quem-sao-os-principais-nomes-da-historia-do-jogo-do-bicho-no-rj/"
-     }
-    ]
-   },
-   {
-    "id": "gilmar-eneas-lisboa",
-    "nome": "Gilmar Enéas Lisboa",
-    "papel": "Apontado como cúmplice de Rogério de Andrade, acusado de monitorar Fernando Iggnácio de Angra dos Reis até a execução.",
-    "grupo": "operadores",
-    "status": "Denunciado pelo Gaeco/MPRJ em 2024 e alvo de mandado de prisão; responde junto com Rogério de Andrade em processo separado dos executores.",
-    "situacao": [
-     "preso",
-     "denunciado",
-     "investigado"
-    ],
-    "situacao_fontes": [
-     {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/nacional/sudeste/rj/acusados-pela-morte-de-fernando-iggnacio-vao-a-juri-popular/"
-     },
-     {
-      "veiculo": "Correio Braziliense",
-      "url": "https://www.correiobraziliense.com.br/brasil/2024/10/6976497-o-que-se-sabe-sobre-a-prisao-do-bicheiro-rogerio-andrade.html"
      }
     ]
    },
@@ -10213,18 +10217,6 @@ window.DOSSIE = {
    },
    {
     "de": "flavio",
-    "para": "bolsotini-chocolates-e-cafe",
-    "rotulo": "sócio (50%); conta movimentou R$ 3 mi em espécie",
-    "status": "investigacao",
-    "fontes": [
-     {
-      "veiculo": "Brasil de Fato",
-      "url": "https://www.brasildefato.com.br/2022/09/19/flavio-bolsonaro-usou-r-3-milhoes-em-dinheiro-vivo-para-pagar-despesas/"
-     }
-    ]
-   },
-   {
-    "de": "flavio",
     "para": "banco-de-brasilia-brb",
     "rotulo": "financiou R$ 3,1 mi da mansão; quitado em 3 anos",
     "status": "fato",
@@ -10268,6 +10260,18 @@ window.DOSSIE = {
      {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/blogs/jussara-soares/politica/delacao-de-ex-presidente-do-brb-pode-avancar-antes-de-vorcaro/"
+     }
+    ]
+   },
+   {
+    "de": "fernanda-antunes-figueira-bolsonaro",
+    "para": "flavio",
+    "rotulo": "cocompradora e corré na ação",
+    "status": "fato",
+    "fontes": [
+     {
+      "veiculo": "PT",
+      "url": "https://pt.org.br/acao-questiona-brb-e-flavio-bolsonaro-por-emprestimo-irregular/"
      }
     ]
    },
@@ -10452,6 +10456,18 @@ window.DOSSIE = {
     ]
    },
    {
+    "de": "jair",
+    "para": "walderice-santos-da-conceicao-wal-do-acai",
+    "rotulo": "empregou no SEU gabinete (não no de Flávio); réus na mesma ação de improbidade",
+    "status": "processo",
+    "fontes": [
+     {
+      "veiculo": "MPF",
+      "url": "https://www.mpf.mp.br/df/sala-de-imprensa/noticias-df/mpf-propoe-acao-de-improbidade-contra-o-presidente-da-republica-jair-bolsonaro-e-wal-do-acai"
+     }
+    ]
+   },
+   {
     "de": "carlos-bolsonaro",
     "para": "jorge-luiz-fernandes",
     "rotulo": "ex-chefe de gabinete apontado como chefe do esquema (caso de CARLOS, não de Flávio)",
@@ -10460,18 +10476,6 @@ window.DOSSIE = {
      {
       "veiculo": "Brado Jornal",
       "url": "https://www.bradojornal.com/noticias/justica/2026/02/25/mprj-reabre-investigacao-contra-carlos-bolsonaro-por-suspeita-de-rachadinha/"
-     }
-    ]
-   },
-   {
-    "de": "flavio",
-    "para": "rodrigo-bacellar",
-    "rotulo": "reunião em 2024 (também com Jair e Carlos)",
-    "status": "fato",
-    "fontes": [
-     {
-      "veiculo": "Estado de Minas",
-      "url": "https://www.em.com.br/politica/2026/05/7431770-cla-bolsonaro-e-a-relacao-com-suspeitos-de-envolvimento-no-crime-organizado.html"
      }
     ]
    },
@@ -10604,18 +10608,6 @@ window.DOSSIE = {
     ]
    },
    {
-    "de": "maria-claudia-bucchianeri",
-    "para": "flavio",
-    "rotulo": "advogada contratada pela campanha para a atuação no TSE",
-    "status": "Escolhida em março de 2026; ex-ministra do TSE nomeada por Jair Bolsonaro.",
-    "fontes": [
-     {
-      "veiculo": "Valor Econômico",
-      "url": "https://valor.globo.com/politica/eleicoes-2026/noticia/2026/08/26/campanhas-priorizam-gastos-com-marqueteiros-advogados-e-redes-na-largada.ghtml"
-     }
-    ]
-   },
-   {
     "de": "claudio-lottenberg",
     "para": "flavio",
     "rotulo": "anunciado por Flávio como futuro ministro da Saúde em 28/8/2026",
@@ -10732,6 +10724,18 @@ window.DOSSIE = {
     ]
    },
    {
+    "de": "renato-araujo",
+    "para": "flavio",
+    "rotulo": "amigo da família Bolsonaro; acompanhou o candidato na barqueata em Angra em 29/8/2026",
+    "status": "Construtora ligada a ele foi alvo de busca e apreensão da Polícia Civil em 13/8/2026; ele não é réu nem denunciado e trata a ação como perseguição política.",
+    "fontes": [
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/candidato-investigado-participa-de-barqueata-com-flavio-bolsonaro-em-angra"
+     }
+    ]
+   },
+   {
     "de": "adriano",
     "para": "ronald-paulo-alves-pereira",
     "rotulo": "co-chefe da milícia",
@@ -10788,18 +10792,6 @@ window.DOSSIE = {
      {
       "veiculo": "Wikipédia",
       "url": "https://pt.wikipedia.org/wiki/Adriano_da_N%C3%B3brega"
-     }
-    ]
-   },
-   {
-    "de": "adriano",
-    "para": "valdomiro-paes-garcia",
-    "rotulo": "segurança da família do bicheiro",
-    "status": "A partir de 2006 Adriano atuou na segurança de parentes do contraventor Valdomiro Paes Garcia.",
-    "fontes": [
-     {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/nacional/miliciano-adriano-da-nobrega-prestava-servicos-a-cupula-do-jogo-do-bicho-diz-mp/"
      }
     ]
    },
@@ -10952,6 +10944,18 @@ window.DOSSIE = {
     ]
    },
    {
+    "de": "ronnie-lessa",
+    "para": "mohana-figueiredo-lessa",
+    "rotulo": "pai e filha no esquema de armas",
+    "status": "Mohana recebia, reembalava e reenviava ao Brasil peças de armas importadas por Lessa; foi absolvida.",
+    "fontes": [
+     {
+      "veiculo": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/brasil/ronnie-lessa-e-condenado-na-justica-federal-por-contrabando-de-pecas-de-armas/"
+     }
+    ]
+   },
+   {
     "de": "domingos-brazao",
     "para": "robson-calixto-fonseca",
     "rotulo": "patrão e homem de confiança",
@@ -11036,22 +11040,6 @@ window.DOSSIE = {
      {
       "veiculo": "NeoFeed",
       "url": "https://neofeed.com.br/negocios/quem-e-o-ex-socio-do-banco-master-que-tambem-foi-preso-pela-policia-federal/"
-     }
-    ]
-   },
-   {
-    "de": "vorcaro",
-    "para": "luiz-antonio-bull",
-    "rotulo": "ex-diretor do Master",
-    "status": "Ex-diretor de compliance/riscos preso na 1ª fase; disse ter assinado documentos sem ler.",
-    "fontes": [
-     {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/politica/banco-master-ex-diretor-disse-a-pf-que-assinava-documentos-sem-ler/"
-     },
-     {
-      "veiculo": "Wikipédia",
-      "url": "https://pt.wikipedia.org/wiki/Esc%C3%A2ndalo_do_Banco_Master"
      }
     ]
    },
@@ -11237,6 +11225,18 @@ window.DOSSIE = {
    },
    {
     "de": "bernardo_bello",
+    "para": "shanna-harrouche-garcia",
+    "rotulo": "acusado de atentado",
+    "status": "Shanna acusa Bello de ser o mandante de tentativa de assassinato contra ela em 2019.",
+    "fontes": [
+     {
+      "veiculo": "Wikipédia (Bernardo Bello)",
+      "url": "https://pt.wikipedia.org/wiki/Bernardo_Bello"
+     }
+    ]
+   },
+   {
+    "de": "bernardo_bello",
     "para": "rogerio-de-andrade",
     "rotulo": "rivais na cúpula do bicho",
     "status": "Rogério Andrade é o principal rival de Bello na disputa pelos pontos de jogo do bicho do Rio.",
@@ -11292,18 +11292,6 @@ window.DOSSIE = {
      {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/politica/caso-marielle-delator-aponta-participacao-de-bicheiro-em-assassinato/"
-     }
-    ]
-   },
-   {
-    "de": "bernardo_bello",
-    "para": "allan-diego-magalhaes-aguiar",
-    "rotulo": "braço financeiro / co-réu",
-    "status": "Aguiar é apontado como operador financeiro de Bello e co-investigado no homicídio do advogado Carlos Daniel Dias (2022); está preso.",
-    "fontes": [
-     {
-      "veiculo": "O Tempo",
-      "url": "https://www.otempo.com.br/brasil/quem-e-bernardo-bello-contraventor-apontado-como-chefe-do-jogo-do-bicho-no-rio-1.3344870"
      }
     ]
    },
@@ -11697,6 +11685,18 @@ window.DOSSIE = {
    },
    {
     "de": "jair",
+    "para": "marilia-de-alencar",
+    "rotulo": "co-ré / ex-diretora de Inteligência do MJ",
+    "status": "Condenada a 8,5 anos no núcleo 2 por organização criminosa e tentativa de abolição do Estado de Direito.",
+    "fontes": [
+     {
+      "veiculo": "Conjur",
+      "url": "https://www.conjur.com.br/2025-dez-16/supremo-condena-cinco-reus-do-nucleo-2-da-trama-golpista/"
+     }
+    ]
+   },
+   {
+    "de": "jair",
     "para": "bernardo-romao-correa-netto",
     "rotulo": "co-réu / articulador dos 'kids pretos'",
     "status": "Coronel apontado como articulador do núcleo 3, condenado a 17 anos.",
@@ -11913,6 +11913,18 @@ window.DOSSIE = {
    },
    {
     "de": "vorcaro",
+    "para": "andre-felipe-de-oliveira-seixas-maia",
+    "rotulo": "vendedor de créditos fictícios",
+    "status": "Diretor da Tirreno; teria vendido ~R$ 12 bi em créditos fictícios ao Master.",
+    "fontes": [
+     {
+      "veiculo": "Wikipédia",
+      "url": "https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Compliance_Zero"
+     }
+    ]
+   },
+   {
+    "de": "vorcaro",
     "para": "manoel-mendes-rodrigues",
     "rotulo": "operador de intimidação",
     "status": "Operador do jogo do bicho; liderou ações intimidatórias do grupo; preso na 6ª fase.",
@@ -11920,6 +11932,18 @@ window.DOSSIE = {
      {
       "veiculo": "Wikipédia",
       "url": "https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Compliance_Zero"
+     }
+    ]
+   },
+   {
+    "de": "vorcaro",
+    "para": "luiz-philippe-machado-de-moraes-mourao",
+    "rotulo": "funcionário / 'Sicário' do núcleo de intimidação",
+    "status": "Funcionário de Vorcaro no núcleo de intimidação; preso na 3ª fase, morreu em custódia.",
+    "fontes": [
+     {
+      "veiculo": "Wikipédia",
+      "url": "https://pt.wikipedia.org/wiki/Esc%C3%A2ndalo_do_Banco_Master"
      }
     ]
    },
@@ -12353,18 +12377,6 @@ window.DOSSIE = {
    },
    {
     "de": "domingos-brazao",
-    "para": "marcus-vinicius-reis-dos-santos-fininho",
-    "rotulo": "sócio na grilagem",
-    "status": "Fininho, miliciano de Jacarepaguá, identificado pela PGR como sócio do clã Brazão na grilagem.",
-    "fontes": [
-     {
-      "veiculo": "ICL Notícias",
-      "url": "https://iclnoticias.com.br/pgr-irmaos-brazao-aliaram-milicia-grilagem-voto/"
-     }
-    ]
-   },
-   {
-    "de": "domingos-brazao",
     "para": "laerte-silva-de-lima",
     "rotulo": "sócio na grilagem",
     "status": "Laerte, miliciano de Jacarepaguá, identificado pela PGR como sócio do clã Brazão na grilagem.",
@@ -12444,18 +12456,6 @@ window.DOSSIE = {
      {
       "veiculo": "ND Mais",
       "url": "https://ndmais.com.br/seguranca/quem-e-rogerio-andrade-sobrinho-de-castor-e-dono-da-mocidade-acusado-de-comandar-mafia/"
-     }
-    ]
-   },
-   {
-    "de": "rogerio-de-andrade",
-    "para": "gilmar-eneas-lisboa",
-    "rotulo": "cúmplice no homicídio de Iggnácio",
-    "status": "Denunciado junto com Rogério; teria monitorado a vítima até a execução.",
-    "fontes": [
-     {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/nacional/sudeste/rj/acusados-pela-morte-de-fernando-iggnacio-vao-a-juri-popular/"
      }
     ]
    },
@@ -13089,148 +13089,148 @@ window.DOSSIE = {
  },
  "noticiasFallback": [
   {
-   "titulo": "Flávio Bolsonaro celebra aniversário da filha em mansão gerida por empresa ligada a Vorcaro",
-   "fonte": "ICL Notícias",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNWllnUE51a2IxSE55RU12bXJvRkZoVU5fbTBrd00ySHdWVzFUd3lDMTYzR3Y1UnNFMnYtWmk4UXZaOUlEN0NVZnhrRlZYTVpqdUFVcVQxVFRjQ2VKZURhd1VncTRBVWhmcFRORWljNzRUY0w5NHNhV1hMdWxPbGxBYQ?oc=5"
+   "titulo": "Análise: Ao expor suspeita sobre o PCC, Dino desafia Mendonça e expõe Flávio Bolsonaro",
+   "fonte": "Valor Econômico",
+   "data": "2026-09-13",
+   "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOSnpDM2xhLTNCT3VFeXdYT3YwVElROGFYVDNCd2c4ZTA1eHV3VzkyY3F3ZFF1c1Y0TEdWZ0c0a29RNzczRXd2MTlYckNlRndOYVBpRGpMVXBtTlVnUjFWT2FrZnlhby1wOWtGT2pkQ1JQRlJ6dkdpV0JpdVBjSjB1WXF5MGhhZGFiU2MxSEllbG9aeXdoZngtSWNGNVBtWnN5YlJNVWUxSTJzYjlSMkFyYmZzdzRSX29nUktEbEpZcy1BTWJlc0NYV2pMYjNwNEV4TEhaNFZGTkJ2OXViNUlOdXpQOV_SAfMBQVVfeXFMT3A4Vnlmb0xkRzBoWVUxWEl6VmtWNWtXRmt0UnR3QnlEZ0Z3RWNlUW9fSjJyaW8waUxxeDRMRTQ0b2NVNlgyaWQ4UEwzRXBxUEF1NWIzcU9pVkI1cGpvVzVvMEdIbk9pUm1FVVJOMm1zVnhjQUNJLTZSTndxWnNKMU9NMTg2Rkk1NHNhTi1JYXYwTnhUaU5Eb3VoMEZyeHp1RkJlaDdRcmNsQnRvV3ZxeGVtQU5uaHpwMWNVb0xDRld1SUJCZnNRXzlpR3hXeWZ3cm1NbUtQWjZ4SU9qWm50a3lqMkJ1cUFYOGdVcG5zT1hON2V3?oc=5"
   },
   {
-   "titulo": "Flávio Bolsonaro cobra ação do presidente do STF sobre decisão de Dino",
-   "fonte": "valor.globo.com",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQb1p6UVpiQmhhZmIwaU54MWNoNU5nNGo2NEZoenhHdnJ3eFJ3UllfdjdwenpUUk5sclk3R2JpSTc3c1Byb0lXRG1ub1dkQlNGNmlmYXpiaUpjTklnQW94ZHAyM2lMSF9VVzBJVlN0Mm1oaXNiSW13V0piVWhaSzM0cW9WaWhhX2V5Q0NjaDZOb3dRUHZIM2QxYU1LdHpFTUJRVWNIb25n0gG0AUFVX3lxTE5hb0RWaVV4QldkOEU5U3h5QjQzYVBhbTFTamNFQTluNU5FeElqcXo5U1NJdUhsSjdaWVBNb0phd3YxQTgyTzhTZ2tqMlNobGNSdElTWENxRHFRX0hla21Tb1pjanFQck94Zm83V25pWnRiN0NxZVpUbmtCNmI4YWRSQ3hqRmtqYmVYOE9UYkV6N1d1UUx5RGY2QldFcE50ZkQ2b1VYRzFqaWhXOG8zSlRycE1rWg?oc=5"
-  },
-  {
-   "titulo": "Carlos e ala radical voltam a cobrar conexão de Flávio Bolsonaro com o pai e criticar Daniella Marques",
-   "fonte": "Folha de S.Paulo",
-   "data": "2026-09-10",
-   "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPdTZWa3d2V3VPMTZzcFpvMkxzXzlxdjMwM1ZIQlVnU3VvTDhKYThYQ1QxdDRGUDNtVWFpaGR6LXdzM0x4YllCVFRJc3k5MHVtdzhyRjNhSC1nbW1IcHdVRnVBeDRtUlhxNzZvNzB3bUhWYS15THFEcnU5TjhvRUFXZjhtMk1iRmVZZTJuNnlqR2V2UnJ6cExwY2xSazVtSC1xaWxNdWd0SG04SFZJaEVaSGs4TjhDUHoyeXN6MFoxbm9NT01jbFBLVTlGLWp2Zy04UkZQUXdKVUtDd3ZxWHRCaFAxamN1ZHM?oc=5"
-  },
-  {
-   "titulo": "O amigo do Flávio Bolsonaro em Angra dos Reis",
-   "fonte": "Agência Pública",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPUE05cDBqdTRKNmltUUJmS3FNcmdNbzdVdmllNC1ObXAzUV9pdkMzSFhFS0lSa2dtYUVEcUdxU0lERDU5Qi1zR3RyZTExRU9Ea1plYzBoeUs1R3JQT1dPWGhQcFI2d1dRMjJhOFktTnd0UV8zWUNFMkUtQkdjWnB6WtIBhgFBVV95cUxNOEFIbGxORF9xaGFWMnZWelI2ckRSSW9MYWswRktmenFZOUV5QzdqdVRQZm5BYjdycnFhN0xKS0x3cVJlUVF3N2tJQThtWjlIOFBoZFlnTnd4VkJuVFRnSG0xcDRJTnJEODBCUEpEZUxUTDJ0Slk2VF9vcjRxNEdhWjdxQ1pCUQ?oc=5"
-  },
-  {
-   "titulo": "Mendonça homologa delação sobre financiamento do filme sobre Bolsonaro",
-   "fonte": "Agência Brasil",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPd2stNV9aeHhQQTBXeDA1Qzh2a1BFTG5kbjVuSUhXX2pOeXVWa19vOWRJTzF3d2F3Q0JiQXRnTWRhQnF4Z3pZdE55ZWJoOWFXZ1NlbG9UcVF0cGtKdUR2aGFIa21GZ1I2bVY0X1hfeGhIZnVHdmJLQmVVZFQta0pBbE1hV00ydnBXRno5ZjNjdl9Ec1AxdHBKV0VzRWdvX1BLME1rYUNhZml6cURLMXo5cExNMWg1Qlp5QUxkZ2Ntc0xiNV95T1E?oc=5"
-  },
-  {
-   "titulo": "Em meio à atuação de André Mendonça no STF, Lula e Flávio Bolsonaro aparecem empatados no 2º turno, aponta Meio/Ideia",
+   "titulo": "‘Interlocutor direto’: o que as investigações da PF revelam sobre a relação de Flávio Bolsonaro com Daniel Vorcaro",
    "fonte": "Brasil de Fato",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQd2RGMFVlX1c5akxuT2ZNdk5JWF91WUdKS0w4TkN4UEtvV2EtNWg1NEFXOHY0cDF1LTlabnNGOU1jU0ZVVFE1VkpBS2o3MXgwRExuWGszZi04a2Vkc3pEV3Y5MjhzSXZSSTFydDhpcnJYX01LR0NZMjNVcWxCVEZkZDQwZzNTamt6anpQQV9UWjF2OFJKZVZ3S2FVRGhoVHVWYmtmWmZDaW52Y3lPOHlySXZZdkstbnZkdlQyaURHMmJJSnVDaE5sNEdtNHc3Rm82VVV5UnFwN1dEa29LQkVjRXd3UFZwMEJqWFpaWEtOQQ?oc=5"
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNR0xmLUM1MzFfN294SzlhNjk2dEtBU1NHdnR2Y3ZjTEpjNFRIVmxPTDFmR3ZtOVpVM2NjeUFiMkZoc2w5RHVzWmRnNjdqaHF6MzNwVDFHUnlvNlNzUWxxSF9IRzQ2UGthdWxQWHdSVVlaUHlaQUVzZTNsUDJKWkFwdVoxQzRVbnNFZG1RTkZFcmN5WWlvZzF2UXhZbzBSVWRCeWNMUTZVNzRjRW5jQm5WQUVxWEJHcTlZcUwxbVBzZTBmWnY2ZjcycUJucDlaMnNvR2J3Zl9CLVRXTXo5UG9qY2IzMkpRaGhDOFVj?oc=5"
   },
   {
-   "titulo": "'Dark horse' e emendas: o 'arsenal' nas mãos de Flávio Dino no STF",
+   "titulo": "PGR pediu para apurar se Flávio Bolsonaro atuou no Senado para beneficiar Vorcaro",
    "fonte": "BBC",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9MYVpDUzQwQWdJYjNzem1LcEtaWURmanM2eVFlQXlmOUdsbndiNlIwbFFUcmZIM1MwcmdXbU1xdjFYMFdxUHlKSEt6bWdzNGIzWm9Zb1RRZmVFU0hQcHdXcVZR0gFnQVVfeXFMUDB5U0tIQmluUmJRd3J3SUJadHlqZGhsZzktQ0NuMmVDdElvTnNDRFAtcmZqYXcyM0RkNGN0NlFOUnVYMVZZLVlJU3NWQUF1QnVlMkdtTWNRVlhPbWlKbEc5VzItdkJxYw?oc=5"
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB4ZWlDTUpoWGgyS2FVV3A2eEY2YmVxZzN6bG4ya1ZhNG9CWTBuM05mUTg5UFJWVlJ4ZjJQV1FCVnpreXJSUkVXTkpYTUVsYmJiTV95RTRBbUNROEx5ZzdmZjBR0gFnQVVfeXFMTzZONFNvbVlrZExPNENHQmRHbmFWa0FWSV9fZEl6eEN5Q1VHbjAtZlR2VlI1M3hEazdSc2pSTF94c2s1ZzN0RjVYeDViTTJKMmJ1dVk0RjVSanNQcEJkU25IUjNwc2NFbw?oc=5"
   },
   {
-   "titulo": "Campanha de Flávio teme retaliação de STF e PF até eleição",
-   "fonte": "CNN Brasil",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNRUJTODMxZFA5T2g4MWs3TllmZjljOVotbEcwdTZvb0FuZXNvU1VSclVUbEliQVpXcVNYOWlBXzlNaXFqbEZ2eWVGUS1MdEN6Z2N0dE41Z1J0Tm1aOU1qMjgyNEs2eFBBMkFVZl9qSVI4cHpoWTEyMF9ZdllESzQxd25QM1dYQ1JsVUpST2lNZ3RMMV95RDBKTDMxeHpHRko5RVF2QWRFc2xmY2NxUm5Na3lmcjBSaFNoNXc?oc=5"
-  },
-  {
-   "titulo": "Janja cobra investigação contra Flávio e questiona sigilo do Master",
-   "fonte": "Congresso em Foco",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOZFVaTWo4VEprUVVNUGJTenNzRVptSzliWG1Cb2xDSV9yOFpqeVJmQS1TMEU5UnJtX3NYdXNPaUE2d0Q1anhRR0xhUnYwbFNVUTQ0OE1Pekh6dU1KdjljUjIxeHZhU2FzVzBSaTVfbmx0cGJKYjMwV29pTGJ5dlNjbzJTYVZVS2c3UGZNZ3h1MzZHcGtVMVhTTEZOelc3QmZ3Mkc4ZmFOeDVzcXRLal9lQzRyY2JveFp1?oc=5"
-  },
-  {
-   "titulo": "Crise no STF vira instrumento para proteger candidato e negar ao Brasil a verdade",
-   "fonte": "Partido dos Trabalhadores",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPdDRpT1FERFhseW1CekJQb2RnaDM0d3JqY0hsVi0xZ2hDWHZwazVxYkhCRmRQdU4yZXhmMWdCcEdUMjhUUmxpM0NNc1RMTHFyQ3RBMWttTXdENTR0U2swcldoZ1E5TlB6WUd5VWhzdDJ1YmlXMi15aEY2Zy1JRmN3Z3QtOTJMb1BrRWlYRFE4aUlWZXJYVXZIQmxtdFNONll3WFE?oc=5"
-  },
-  {
-   "titulo": "Na Avenida Paulista, Flávio Bolsonaro associa Moraes a Lula e diz que indicará ‘5 ministros’",
-   "fonte": "JOTA Info",
-   "data": "2026-09-07",
-   "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOaGJiMjFiQWRyQjMtdndBYXAzTnlPYXNja1A5QURiYl9vLWRmTVlyVXI1dF9Zd0VTUTU3aFNyejlmdDBqd2xRMFNDa19zZnlKeFhaMWljN2lneDJ6WU9BejJIVGtGTWRIcDk3VDVJY2Rja3pRNTdBSW12MjR0aHVWY1VsdmNUQ0R0bjZOQnQ1cFZTY0ZhZWk1a3pWTnVEb2VJU3JHVFBMX1didVFuLVlZYjdFT0RVTUU0QUxKV3lUejZfZEstZ0V6T21sS3JoRVk?oc=5"
-  },
-  {
-   "titulo": "Flávio Bolsonaro critica decisão de Dino no STF e diz que Lula quer vencer no tapetão",
+   "titulo": "Flávio Bolsonaro negociava recursos para 'Dark Horse' com Vorcaro, e Eduardo era gestor do dinheiro, diz PF",
    "fonte": "Folha de S.Paulo",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNTEwyQmtJVENzNjhwdjZWYldIMC10M2VGb3F6LWxTRTFERXNxWTg3WVpTaGxrcjZKUTFqNjYwbldJZzFmeTRjaXpKV2xYaFZncnRWWlJZUkZLSTFWUlhaZ1FoYURhS2RudTRVY3Z6a3NBVldSNFNqNk5TTTF2MDBWMXJGZlZwWlZoVGZKNDNLRHRBZnRZU0ZTN1ZXbmF4bXhlUm1iZUtsMURncFEtRUtIVXdHbklQdmdBUGluV0ZORGx0V0tKaHFaSFFucUVHaElZ?oc=5"
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPY1E5M3VOaEVLcE12bGo5SWFjRUNSWVN2dk5xZlZrWmhZTVkzb2lkWDZXeXNDeUQ3aXdMRzdnRDIwSnlqTEN0ZDczU0lFWnZ3SHZKNGlOenRXNTZ3MTdVdzE3Q1ZpTmQtcXBGQkpsRWJEakN4aWZpeHpvUVhLOWRXZC1nLTlQUzZELXhhbzFldDhfVWRKaUlxSF9LaHB0cjNvTXVLY0tnX01CR25mSTdGTllHSkZJWVN3cGw0a1pSNFpvaFdXVFVJWHFHcnJyZlVzYnJETWVnc2VYT045VzJfYTFzZS1MRWdy?oc=5"
   },
   {
-   "titulo": "Mendonça homologa delação sobre repasses a filme acerca de Bolsonaro",
-   "fonte": "Agência Brasil",
-   "data": "2026-09-10",
-   "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOaUtyYlJPWjJqNFl5alZ3SWVyQnBvTGt1aWxMbnhvb0ZRVHVISUwwc3JtZU1iYVBLMVdMcERzNWZxRFl3c1d3QzdJZDFCcmZxUVhRSVNXUlFGTVZ0ZWNhcm9rd3dUcnVaRklZcmFkSThuVS1Qa1RKVHVLTkhqMmsyOER2QjVrZTVpaFQ5XzZHb2lfQXdkSWR5NHlmOEVvbFZrQ1RoN3FXOGdTYlZtTWNheEdycTlIUjF6Y2Ewc0djajgzOTdyNUNFSDBvRmRmT3lUbXRBT2RWX21iZ0U?oc=5"
+   "titulo": "Por que tanto Lula como Flávio Bolsonaro contam com uma indicação a mais ao STF",
+   "fonte": "VEJA",
+   "data": "2026-09-13",
+   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPOVhNUl94U1pTZVpOel92N3NkS3BleFJnLTAxanh4WFFDMDRyWTBfSFVTSTEzTHNZUTBacDhvTUdUdXRJWjFDMnNxTmlvUWxVcG1ZMDdsSFc4OGRJSExJckdCWUtEZk5PUGVqZ0Q0ZEJDTnByaDFVV0s4YTVUNlhCVVhSTENiWTQyS0Z1WldHUF9xYlR0MVE0Z3ZoVVZTQ1ltOEMtOUhvVC1LQXpWc2ZNZ3pqSnhRQQ?oc=5"
   },
   {
-   "titulo": "Flávio chama de ‘canetada’ decisão de Dino que reintegrou Andrei à PF e acusa ministro de defender ‘causa de Lula’",
-   "fonte": "oglobo.globo.com",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNU3JwaXlsUEx1bTBrUzZRTFR2V1NQRDFrUTZLamlfQk5WWnpZS0tfZmRyTzkxMHNiZHlhZ0xvamlGT2RsdkdmWVlyWkQ4VG1LMElLLVcweTZVZVp0Yi1LSURjWWRMOE1vTGlvOTFCNUVLeHI0STJYQlVlb3Z4T1E4RlJDcmxEMF83N21SVXoycmtZSm5vX2ZpeU1XVURYbG1sYVRxTjFjYjdrY3BxOXpaR3AwQlJrdk1HUU54YkllSkdlYUJwUUZaUDNNYl9VNkxDSGZiaC1sQlNXLUExVDZxMUtLV1JwWmZoMUR6Y05aTjF2Zmw2TjBDQ2FnTdIBigJBVV95cUxOMFFJbEhJVmtBTjlTZmMwTkZUTkx1Z0poamZBb2ZxUlFKN0YzbTFaMll0OGMtOXpIU2xLYThyZmdUcGR5N0YwbE1ENnBqX19fanlBSmZuTlJoNXZCNVZBMFlndUE5aFA5T19JcFp4MXlpa1lsZ0Z0VWRmRV9QR2hidS1fUG9Cc0RhTGJSU2dEeTZIUDU0Y1NiWjhIcHdiZXFPN2NLTmtQdmtqOHJKeElYc01NTHFTOENCb1pZQWVCOGZ3cllUOExlTnhiWjFKaElCVzFUeGVJc3N4eU1SdFYtY2lGbjVKNnBSSmxqeU4xTG5mcnREU2IyUUFFd1hEemliV2N2ZnFsaElIUQ?oc=5"
+   "titulo": "Crise no STF reorganiza debate digital entre Lula e Flávio Bolsonaro",
+   "fonte": "Gazeta do Povo",
+   "data": "2026-09-13",
+   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQaF9vV0hFTXJQTl9JanVZWkxpLWFRTlNNR01ZaXBmbHhKRW50RWxOMHJ0M2o1cWxZN3pOVEQwV2MtYUdKSWpXZzhxdVk3Vl9wejBfa2dPVkc5dUlEdUZoVFJrRWFURXhRRkpkYl9Xa1FQbVd1RXJJOENjT1RRV193ZkhrWGZpY2l2X3BhOWFHQkZsZWxPVGlxZHEtRVI3SlNUOWZ6WXdxVUY1cThjcG1r?oc=5"
   },
   {
-   "titulo": "Crise do STF embala 7 de setembro e vira trunfo para Flávio Bolsonaro tentar recuperar força eleitoral",
+   "titulo": "PF lista série de contatos e encontros entre Flávio Bolsonaro e Vorcaro; veja cronologia",
+   "fonte": "G1",
+   "data": "2026-09-12",
+   "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNdTJlQjBCV19vR3JCSDJGLU5DMDBaNWNxUnBqZ3dIdDJfRVlsU2VMX1Y1VVh0d1diUGctUGkyYUtjdy0zOUhERlNDNWlaQzc4MExRd2VnRUtHeDhFUkxEUzlFVHpXMUxKQ1Q3Ry1LYVVRV3E3bW9nTkQ3Njl3THlvazdRbFc3a216SG5jMl95WkJWMl9kTmVacDl4QlR1dUNpT0RSbXc5bC1ZLTZGZ2ZUZUJRWnV0Wk5wN1hzbmNrRVhuWnREb3U3Y2dVNGJZbmtOc1JWUUNvSUxwQdIB6AFBVV95cUxPT2VhdXBVOTBzZkRMRjlmN0JxVHhsYUQxZE5TVUk5aGRrajc2LW1rMmQ4M2ZaZlZaZi1nVVI1WmRPVjE3UXIxTUEzbE0yQjduNjhORHUwc0NRM1pnd3dMVHpfTHU5TUpuT3dkRW1DeHhPdXlZbDVEcWM4eDBGUjJidHo3QzR5bUNxREF3RFVTVkFLY212S3I1ckpuMlZGODNjVjA2QVRrX29JOFdaUkstZzMxNy1zWEM4VEtTVl80RWN5VkRKLXFuODF0YUVkYThGM3dySkpTSFBjUVFoQk93VWctQVZNRVl5?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro e 'Dark Horse': 7 perguntas para entender inquérito — e o que falta ser esclarecido",
    "fonte": "BBC",
-   "data": "2026-09-07",
-   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1FR2dPUTdZOGR6dlgwbnhWSjFqSkxJR0JjcXQwampvbFI2UXI3MUNDYzJmQU5SWi1icEtBM3FNQ01Pdy02MXNRU1F5NTdQWDBUbXFFanNrY2FtQk1wWWtWSGN30gFnQVVfeXFMTkFnM2dKa0x3RWxzREhac3B5cTRaUnNGbm5DWTNXVnNoSzhnQ3RRNU9uMU9xUV95ZUpUMEJGcnFEemtQWTVWa1c3QldjOXNicThtdlFseWdjUUNZcVR6aUhKNnBkYjN3Zw?oc=5"
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBwYzNiaWkwRFBMWTRhOVlXUHBsRk1aMnVtdEN4YnpNYmlERzRXU3l0SXMxbTBIS05TZDlGdGtFaGJEX1ZuTERYWUxsNWRkX1Nka195eGdqSXNsRE8wWmJ0REpR0gFnQVVfeXFMTkZYdG1uWG9LSDUyVWxVeTEwNmhhOHE0TzN1b3Fqa0dGNW8yR2ZDbG80NEFzYXN0VDB0aGdMMFZER1FKcW92cGZObXIwSWh5OGpTMzVFOGVXVUJzMU50YTBSNHp6MTVmRQ?oc=5"
   },
   {
-   "titulo": "Milícia, Comando Vermelho e Banco Master: três histórias que assombram Flávio Bolsonaro",
-   "fonte": "Partido dos Trabalhadores",
-   "data": "2026-09-05",
-   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOMGtQSEYxMHZLUThHMC1NRkZYdkRSTkpack1RTVltOEowakg2ZW5mQ1ZLNzJPY3NlV2pCSXIwUE5Iei1qTFBFV2M1NGN5SXhBZG1uSm9oeEtoX04xVlJ3Z3RiQXp0TWVMYWVwa3BiSTFCRTVlTm9LbmpmajQ2OGNqS1ZId2cwQ2dqVkdyM0hEM0ZSX2IxcjlhTXRORFhaTHFOdFZyMndGQdIBrwFBVV95cUxQRV9XLXI5b1dvVHJZLWJVc2dtSGt5QUpiTy04aVVQRnl6VmxnMDA0NTcwNkdlVmR5N2tvX0pwVHhaUmZXR1BTVWI0aGgxT2x2QVRNTUZRdVFHRkZkYV9COFM4VVJrYjU2QzZSeEZiWGIzM0dWVi1wVEZ2SHkwUVR4MWhiMkNSMGdkTUdPT2pRWERSajZYUHBLZnFGUlNFMm5VS2hSb3hhc3dJUEpXRG5N?oc=5"
+   "titulo": "Flávio Bolsonaro é investigado no STF por suspeitas de corrupção e lavagem de dinheiro em financiamento de ‘Dark Horse’ negociado com Vorcaro",
+   "fonte": "Brasil de Fato",
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxNYmNhZVFfUVNVWXA5RTY0NUpGdDMxZDVGUmYzeHk5TFFud1M4OHpkRkpyUzJHOHRkWXBidnM1VmttMVlsRklCY2t2azg3ajh5R3BQQjBHM0k4ZVk5VWN0NnhETm0zMFRmd2I5Q245VENmZkR4ZldDM1dRdTdXTGRicGs4ZEpRTm4wNnRTMzVYdDRGRUptbUxublpLUzFoeHpKTGlZeXFSTjJrc1prSi1sNEc4WmNmLWE3OWRmdUF3QUUxbmJqajM3TjB6eUxucjl6dFRrMHZEc0xXTjhoWjFuNE4zQWYtY2lPbUNoTWxteDhLa0RhRkZXXy1fQTJ3RmJpMG9jNDR3SGdhM0prUlF0TA?oc=5"
   },
   {
-   "titulo": "Haddad diz que Banco Master é escândalo do governo Bolsonaro",
-   "fonte": "G1",
-   "data": "2026-09-08",
-   "url": "https://news.google.com/rss/articles/CBMitwJBVV95cUxPUjRxcXY3eUo3bUxNZXhWNFQ1R3VkVmpBN3dnUXMteGs1R2EwNmE0VC1fVm9ITk51TWdfVWpHTTlWZmdKYUNCLWJrdHFZSG9XYTFKeFlESW1lM0lVUjBXcGp6TjNiMlZBTDl3LWI3N19pby1rWThyRG1zYzZvOHIxSkUxeVdaTFhxSXRscUZnTnJaU0d5MkRlTmFMRV9ZcDhBVGNiaHFRV25oVmNwa19ucmlzbUNRSnBnMzVXTjI1alZUeldLNVk0NE9pQXlSc2FTaFdDSUU3dW5mNHRzZU9aTG1EdE9rZ3NsdlRkNTFjRklSS1JKS2tVU25TQmliQ2VuU2JJUGh1dWZpZ2xhM1ZPSXVVc0Ewenc1TE1oLTU1dnVJNU5yNW5SODNCUnZhT0JDTV9FSHJ2b9IBxgJBVV95cUxNWEFSalZsRHJ0VE9ndkV6R2loWDBEVTJWczNBWHh0Vlc2YWt1YS1Cbm91N1VTM2lZWVotYktXTTAyRkJQdllUTUpHVVRLZUgtY3NfUnpDSVh3Z1BpMUoyRzkwekxzTF9nRXo2UnBWXy1NWjFaNS1Hb1QxY0lTdkRMMlc4Q2RpOXlJV3hUdXZZNkZWZUJGc2xDTjlWVUdVNjloS1BJSDA1SHB4TlZPOU1FRjhwMWJwWTFyT2lSak5TcEw5VUtHMUF6VUNmbHR2ME00MWFhaWxOR1JLaXcwQ1BvZGdxOGVmOHBDaW5KelJwRHRMLWRxTzhTYVFIdENTMm5SVHlQTmRWSHhsMUZ2RmFYdFhGaFA0elR4TEFlYVFkbVd4NWlwNG1aQ1NueTQ5aWNjV1ZkR3U1TGlBd1lWZ2ZBdldkVjdCZw?oc=5"
-  },
-  {
-   "titulo": "Crise do STF nas campanhas: Flávio Bolsonaro intensifica ataques a Moraes, e parte da campanha de Lula defende distância do ministro",
-   "fonte": "G1",
-   "data": "2026-09-10",
-   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOM1NqbW9xbUZaVW5WMHM0dEZUcnlqVy1zeHVkQkdfYW83OXU2dk8xNHpBNHYyYXpYOHNCU19lVWg5WDdKMnFJWmpSXzY5SmNjUE1WbXhiUm9QNXJxZ3FDTGl4YVhFcWtZM2p1Mld1dXVQRVQ2Z2JKdTJtc0VSSU1mZXEwZmZQT1lxbFVCbWpyMk1JbGY3SGxDUzh5VXppQzh1WUc0LS14QkU0cEt5VXhJNDdMSF9vd9IBxAFBVV95cUxPcG5DbEFGNk9KQXBiaDZ3QzBScVlYLWpJdk1YdVNSR1VyX3V1elhfcHFMTE5qaGJaM2NwakQzNm1VUGFhRzJzZHNfd0xkYzIzelVObUpQWGp5eUc1SXJsYzdDWUVwTV91N3hrbklPZmRTYThncHhTMmxNaWw0aTBsS3RiMUZPaldmRlRPMmdYYTlYRzNYd0xfWUpWeHB0bk5DNEZqamgtY0JHaUVJTjdkcFhtU3lrOGxqVVd1aHZHd253dk83?oc=5"
-  },
-  {
-   "titulo": "Flávio faz campanha onde o pai foi esfaqueado e diz que Dino age para defender Lula",
-   "fonte": "G1",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPZTlYS1RRMExiZFFaaWQ0c3llTXhwaGpvVWhMMmJYYjVnb0ZuS01WTHJqVjRaNEprbTY3VnlGblU5VWVsT1FLSDRWd3dLcko1OVpaX3N5WW9oTkZlc2NVQTY4a1QxWHk4Q2JxdEExWlhaZGhwbkVyZk1KZUhkaElBbU5hWENaMjBrNXlSaW1TUVVMaFhVdnNQV0NmalJUZjFKTGNtZjZmbUZVcXFYUEU1cjZseDhxazluUk8zdVpjM0p0TzZBSFFPYnFVYW45d1dDSzNkdUVRR3VBSVg4TXfSAewBQVVfeXFMTldodTJldDBucERKVTVvQjdRWjRIdFdPV3hlMi1VeE9TY1NkbjFlaTBXaWtkWnprR05QWmxRaktYcWJaQWRwMnNLMFZmb2Y0ZXVWeVR2OE5TeXg4QkNTVk8teVowYnMzWjJLbVZNbXlsN0ctYnBZNnItLXpxYVlfc3RMcmxYbEFab0dOWkg4bFVOdWZvT0ltcVU0bmFJUXZFTU84QkQ1VTJWMHkzZEl5UVByYmpaNjNadElqZ2RhR0NxVENTSlNUdDZfMXN3cVJZR0llVXU5Rlc4WFdDNlNXN1RlV3pSbzU0LWw3YlY?oc=5"
-  },
-  {
-   "titulo": "Crise no STF: candidatos à Presidência da República criticam decisão de Dino",
-   "fonte": "valor.globo.com",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOV2xUNl91bURrMUhfT2Jmbm9nTmstd3RiUjRhaDhuRDdiQ3BBU2pFRlpQdjVZTkFUcGdldEx5MEh4T3BBYVhWZmI0RGxnQ2hXVVUxelJJb1RMOTA0YVhheTNtYVlRY1lNVHdqNFl2OTN3TWdfdkp0SFJJM1FCb0NicUVuZnFfRTNlQUM1NlhKQXpGZEJJZTAtSjdhb2NTNFVFZTA0ajJxb2wtODVCaUpVdWVheHl1M1p2NnhLdjZ6bWZjTVdCM0RkVmV6NGh6ZzhVMjJhdlZad042SlA3Z2xhN9IB7wFBVV95cUxNUXpmdUJKU094S3JvQnEwb1dHUm82WUU1WmVRTW5vN3NhTFpDUWpQR1JXYmtKdUNJSElnX19fUWVuSmY3ME9DdXo0QWRrNkRsaHBVb19raFotcTlJVnkzTVRiZUdSY2g0YkI4bXp3RndENmVtNjVZX3FxMVRXT2lYQXlpbnFTWU1qMFowUHU5NU9PR25aTkNCblVvZVRRc3FxQ1ZGaGVZT0x3M2pYSjFxQ29pX2w2YTBXR0JiTWNkN0d5M2cwUnpzQ01idlExLWtKLU9vOHVYOWRLMWRkczBYbDlGekp6di1QLXo1UGlRcw?oc=5"
-  },
-  {
-   "titulo": "Flávio Bolsonaro visita ex-assessor do pai preso no Paraná e chama Moraes de 'laranja podre' no STF",
-   "fonte": "G1",
-   "data": "2026-09-05",
-   "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOaVFrSnIzVkF5WWNKdVVKazItXzViWF9JbzJfM0Rqb1lSamdDOUFHM3ZqbFI5YUpRdjdLazZETjRZSVRITWQxNWZ3aEFHeDR0cU1aLUN5cXpkQi1ZSFVxSTFVVHlFR0pRRlNGckthMDVvTi1TTmZwRTY4cVBJWFFLZEZPS013dkhBZWplZVg2bU9aNFNpUGhFTHdzR3pmMTRrSG5z0gGyAUFVX3lxTE9nZ1JfSHB4XzhjQUxCcTZ4aVUtektfamtaZWVqYTdVVm1adDVUMDM1bUVkY0RtX2NNX0YzcE9iSHVXUWQtM3ZwMFlucGwtNWVENkpXT0pOOXpfcy0zd1dKb0tFZDZUVFN1WVdIZV9zZEtvVklsTWZ2X0d6U09FQUM3WGwyQzViUDczSG9JUDdlTW9sbkk2TWxGLTFyZlpqcGpCdFBKSWVCc29YQkJscnBVYlE?oc=5"
-  },
-  {
-   "titulo": "Flávio Bolsonaro associa Lula a crise no STF e diz que grupo do petista na PF foi desmascarado",
+   "titulo": "Flávio Bolsonaro é investigado no STF em inquérito sobre 'Dark Horse'",
    "fonte": "Folha de S.Paulo",
-   "data": "2026-09-08",
-   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNalFNVWZOQlJEMVlmNldiNU9FQ010N2p4R2RZSkpKem56aC1aenRfVEs0T2lNX1M3RF83VHNvMm9RRE1WTnlQVmxPT2lnMzd0TVdRcjNpV1dWcUdqTUplRTE3bG1tY0kwQVhNVDRRVFNOcHBxbHpWTnJpVXdJTm9RYklhSE5qV0F1UlBIVW1vdEJTb0VIeTJ1T1dDS3FRbllSZzREbnJGOHZVRUFEZjJqUTFvYTVHemw4NTgyb0ZBWmdDUThNZUh4R3FLWmR0NllCakxmOXltNDhwVk5Y?oc=5"
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNdWpua01KaHhidTd5OG5udHdUSzFIUmp6cjdTMEYtdnY0N3ZXREdrd3lscHdsUDFIWjBZaGNxcGZ0ZldwQmJSdi1kbFFRaDNZeW15b1JrWEY3UUxOWWEydWpFcmJCd3hLbUlHRGZ5UHAyMDZTbGR3TFRYNGJzaWlfSXRhbHQ5MHgyZFhUbDdRYW5SUlc3a3pHS09TRXZwVlVkclB1Y21rVnhDcHFESDNoS1Fha2xIdVlw?oc=5"
   },
   {
-   "titulo": "Delator do caso Master detalha pagamentos a fundo de 'Dark Horse' e revela uso de empresa nas Bahamas",
+   "titulo": "Flávio Bolsonaro é investigado no STF em inquérito sobre repasses de Vorcaro a 'Dark Horse'",
+   "fonte": "Valor Econômico",
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxOVE5GLXF3OUF6TVFFanRuS2xNYWFHREpQaTlmNzhwT1dLNWRlS1pxQ2N4RjU2VDZ4dF9kNzIzekp6akRRaWZZRTJPQjdzZi1nampibkFNQWw4bGR4YlJsU1FWcmJHeDZ5SGFzd0FFUHZjcXlIS1VWMzAtel9CNTlFdU01cDhBTmVBUS0zVl94dGJ2bkk3anZTOGVva2hrV0ZfcHlKS0J6WWVTMnVLcWtyYWl6YzdUR0txUWMta0lwOGM0cVpfR0FnV0x6WTJ0NUcycHJMcXNkbmN0WWVQYU4zT2JURHdELTFsM205bGpYa3VaeVnSAYICQVVfeXFMT0l5VWRTeXVkQldLMXVQbExQUVNyLTRvNnB0alBEZnZGeEdLZkxQT0RCWTBsWGk1b0pFM2sxYU55SFF5ZVgtSUgwX2FiMDNaVU5CNWxlTlQzVGxnQ3ZVb3BrQlVfMEdPVUJCMDlVZ29lV0RST3BrbGdZZDVST0loQjhBOG91ajZfMDg5bGZTRC1aa0o0UnpOVS1uMWI4YXRnN1B0elpjckxEQlFRQkR5ZDBoQTRNTmUxUktXVW8tcEVweHEzSS1VOElCbmRGVnQ4V3pqNFhMb2h2T2VvM2ZFXy1oVVA5NVF4S2M0c0Z6VHF6UXpBLVRTdjJJa2hzTWNqZFpR?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro é investigado por lavagem de dinheiro, evasão de divisas e corrupção no caso 'Dark Horse'; Mendonça mantém inquérito sob sigilo",
+   "fonte": "BBC",
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1rb01JaS1Qd1k3bGdCR19oUnduVXh4UnBIa0hGV2pzeTJ2YjhMalpoVDBMUzVXQWR2azFsMzNheFRRNE1vVGhDalpEZzVrU2lOaVNTUzdQTU9fTkNqaGtfM0h30gFnQVVfeXFMT3hSamRDRFBKNUdtT3AyQkgyZzZ0U2JzT0FSYkN6aWwwRkhTSjMzM2tjdWVzMnBKY2V0U2Q1NTZMM2xjYmRDaVhkNE9aQVhXT0xCTUF6SS0wYnhpR0p2SGN0Y3JSTzl5dw?oc=5"
+  },
+  {
+   "titulo": "Defesa de Flávio Bolsonaro pediu 4 vezes para STF tirar investigação sobre ‘Dark Horse’ de Dino",
+   "fonte": "Brasil de Fato",
+   "data": "2026-09-12",
+   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdWRKZXZRZFQzSG50c2lLLUFZbVZTQzJKSFFqd0NNQXc3LTdxZzRENVhXY0tjNzh0bVk0azhYT0F3TlNNUWk2alJTLXNSRTNscnJIUFRoOGdVYWNBRHUtXzhIYUhpSk51VVhZcVMzbE55YXFTOEJJSEhINkU1WDBjMXU1aFZwY3d2N2Y4SkVtQlJIbkZkdUNIQ3NYNGQwcU5aOXUzSkJuZndjWVdyTUs1VDhSWk96ZU9KN09SbzE2V2JxenBwUDhxMWdMOFl2c0cteEhz?oc=5"
+  },
+  {
+   "titulo": "Defesa de Flávio Bolsonaro tentou quatro vezes redirecionar de Dino para Mendonça investigação sobre 'Dark Horse'",
    "fonte": "G1",
-   "data": "2026-09-09",
-   "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxONTBjLXlKNmVSTW0zTzVYRWJyVWxLWDlIZkY2TUUzbmhoeWJGNG9ZZW51SXVYNjExWHdJbnlZMmdKWWhRV1lwU1phRVpHQXFMUW9DU1NacV90R2FwdjM4UlZlSVNSd0stdkpxQXFnblNYYXVTc3pYZzZGcElEUGNtUFRtd0lFeFA1R2RYVmxYbHJ0eWptTDNpNVA4S1ZlWlgtV1hGWHN4MlpmaHRqZjlOUHlrS2cxQkdtZmxuYkdjZ1ZaaHROLWE5NTJ1R05BZ9IB3AFBVV95cUxOeHBtLTFjVjRYa0FGYzBuR3B2cGxSMWcyaVZZN1QzY3dONjV6VnptSEJXX29IcVluSGxfVVZrekprd0x4ZWdSWnpmTG5TbzZRMnZUM2l2Zk5LUzZkZ3czc1FqNmFtTUpGQjlZRUE2NTRJVFJMdW9sQWlMVUcyOVVyaVBlNmVXY0MzQTE1OExHX0tmWndOdE0wMjVYUm9CSVNPc3hFMGxoWkFCR2x1TEp1LWZQTTNKUGtTNVZ1LVZuZjNzNjdCbmVzTWdpOHp4MXJHaEhybExxcHFoVWZR?oc=5"
+   "data": "2026-09-12",
+   "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQcHNSZG5WU2hOdTFYTXRiMnpueVpIelZtYmJPSHoxUDV1Mlg4QXpwZ0pPUXlMUGtIWU9vYWlLZjJBcUtack1IRDU3MmZRaFYtcTY2dWlTNjBreDlqNElRams1UENHbzJpaTJfVGh5N0EtNFkxazluUkNsajE5YlkwLUI0bHhUMlMtOHdzWWI3QjkwdTM2MXR6TV9VanV3c1JGWG5lbklyVXhkWnJmR2RLUEZPOGFnRnNsdUUtQ3BtWUZidm9Ea1A2dUVzMklXTTVpRjN3RkhaUWdjUVd1UmRYekExLTJHUTdZalV1RnAxWjhNc3fSAYICQVVfeXFMUGV2Z1cydkVMUlA2U09EdU9MclpOWnRvTjcxQ0pGUzdZckdYZ0FWczUyQUJOY2hDOFphUHExMVhlN2ZESUNoakQ0VlRxQ0JBQUR2dE56N3hyak9IdEo2cmt4NmdzcFpxQVAxa3RMeEhLbngtbTZpUDB3YjBZdlhpdnhjWnNkY3RzLVZCVXB6a2pETjlWVXByZUNrSFpfbTVqQmdRcWVCTE15VnI1cVFSdXNfX3h6Ulp6MkQzQkpXckUwczdzVFI1ajNMQnppeDNWeUpSQUhWZVZzM0FXMHJId0lyTElOMG42a1BTVEJzakYxT3A4bnhKNllvemtIbjkyekN3?oc=5"
   },
   {
-   "titulo": "Flávio Bolsonaro: relembre o processo da rachadinha",
-   "fonte": "valor.globo.com",
-   "data": "2026-09-01",
-   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOR3otLTAzaUJvY0g3Q0tRWnJ1ZUpsVmVqNTVvOUlfNTU3ODYxdHZiLUlqUlRvS1RmQk5nQS13c1BCejkzTHJVQnQybm5HOWl0bzd4S203NEt5enNudGViVTVnY3JlNURkVWR4MXFMQjBQd2l2LTczM2FaVmdsc0w1UFBhUi1velI1bTl6V3NvU25JTWJadDFmZnBucEdQN2ZweHFfempTdGhoNU9xTXlQejNSM1RGdlp4bWpMRlpGc9IBzgFBVV95cUxNQTV5WDg1dmQ2bDIza1doRzN4alBMMEFxRHF2SFB5aGozUk5tcDctTkdQZExqbHZvUEdnRkxyaXR0OHY4cnFIYmd0SkhiYjg5VHFEa3RNRmZ6UDQ3ZFhJZFJkdlJBcDlJVVVNMTh5MnFYV3Z5aWN3dmR6WWNGaHU5blRuam1abFV3a1RYQlMyTjV6WDBwa2hPQUZSTGJjQl9zQXNWRThVZG41Slg3VWU2VHNuNDFOYUp4OThPTkVBNjI0UTloS1JEM0pubzhCdw?oc=5"
+   "titulo": "O encontro secreto entre Flávio Bolsonaro e Queiroz, o pivô do escândalo das rachadinhas",
+   "fonte": "O GLOBO",
+   "data": "2026-09-13",
+   "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxObENoYkhMY3dQbnVlUlQwekFrcmdxRjZJdEp5Q3ppdkdjVmgzRTAteGNJLXJ1aWxkRXNnSS1KYmQ3NmptZXhNbXQybFFSQ1UxY3NiaFdsUjJCZGRCbmx0LWlGNDlfNGFsbTJzYXBtaktXeTRTYXhMaVVHRTJScjktWHA5YnJGVHF0eWdUZmkxSXN4YzdKYjg2UENsQXRkek5GMWxBVnRzaFdVdXZHUDgyWi1jTHVSTFVCSzJPUkw4X2t2YVBweWM2RERkTWZNTU83UE9YYjd6SW9iTFZPcXB4elBsVlTSAfMBQVVfeXFMTmdSbkEyY1lSVE5wUmphNm1pb1NBRERpeV92NERrb0kwVmk1Z05EOERFMndGUWVtTEZpY3drV0VlMDlsRkxiYVF1aDNmTkE3cUY1a1hKWWJjVTBoR3F2d1B0bE9BVVJXbHBmRFZ1ZHBQcU5ZNFRJc0J3cVR6LTh4SVYzY0JDb3M1a3dSeHVwYXRnajVheUtuYndJaTVrUkRrQkxLaTFGcUw1alhIUlNPX0Z3c0FuWHJXYzNRZWpqLUVUUTNwYVBlc0RDenJ2Ykhhd0xnMGhQdlJtZ1VuTXd5YjFMQzA0aVBSRVlITElQdFRuNm1B?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro investigado: veja o que documentos do caso Master revelam até agora",
+   "fonte": "Valor Econômico",
+   "data": "2026-09-12",
+   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQLWtTUFM3dDFJMFFqNGp0VUNUU0lqUWg1cV9OeEtMdVVwbjdSYksyZnNnOEUtelNQLXRfTG9VN3AyN1BlaXdrbW9mMGJ5R05TN1A1SUJZTWJGbkNmNF95MDBvTWdXNFdPNEhXN0l6cUxkOThCSmhDV0ZYUUlBQzhiM2Z3M2ozT1N6T1JxWVNBRWc3Qk41SXp3aXVYclRIendPRmdOa1lJU0xHM0VSVXZib0dyQ25KempQ0gHHAUFVX3lxTE1KeTMxcWE1ZDI1V3M3R1VZaXExODdEVzd0b3NwX1kwMzVwVXNfT3JQci0wVU5yVUdZNE9XU0NfNWpnTW1CWldjWV9HUHhwakFycHlfZGloYlNrZk42RC1JbWljSkdENWpSUjExdE5UZHZ5RTU2ckY1S3V3NjlsUU5pTElNV3ROWlh2dk5Tb1RRcWF0d3FRalRQVkZ5ME81T1huS1l2UUJlbW8tLXQ3LTZxY1dUWktsQVpwZXE0bnJSOXhCM2NOMjQ?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro é investigado em inquérito no STF aberto para apurar financiamento do filme 'Dark Horse'",
+   "fonte": "G1",
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQZnI1eGl0aUJKUVNmNXl3SURlVkZpRlFwSGdlUmx5TUxEa2VZZUswUGVQZGZlbktpdkZOSTcweGdhLXNvMURtQkdGdUFkWG1LYTQ0U3VhaHduTGVRTjF2WUlVdHZYaEpwTDE2Vm11UWJQamJQRmxvS20waXJ6WEh2WkI2UFFIaHpYRjZLZVBRLWJZX0JEX2VEN2YwZmJjS2l0bkFKVU5rUWZlbzdxVUxmYkdTTm5oX0IwTjRNbkVUVl9pZmU0QThXeTZHeWFHZE43bmZqcGhOOWZIUUc1V1RlS2Fac0RwejhwNFBwa2xn0gH8AUFVX3lxTE55TENOb05JbjdTV0lScko4OTVsSUpkcWJfZG5sNDFVX0t6ejNMSVI5TDljd0U5QmtkRW5scFB3d0ZLWTJrTlRlbUNSUUgxc0FyN05DVzN3TlUwOHloUXBiWVZOWlZmUXUxdHoyNzREb0hsQlNGZGU1SXN1MVl6TmRGd3dOeExNQUJtVUZuSVR5eXdPbjBUWWVaMXJ3U3BhSFVGbzVad1V6XzRDVkNQTGxvSXRpcXR5OFJyWTBLWUNMakktSXo1RndjLXVPM2pvZDVhQV9DZ0VnNmtGeGxxNGFtVDh6VjFqZ2FaLWpNWTYyUTVMWm90cWcwb2FLeQ?oc=5"
+  },
+  {
+   "titulo": "Inquérito sobre Flávio Bolsonaro apura lavagem de dinheiro, evasão de divisas e corrupção; entenda os crimes",
+   "fonte": "G1",
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOd2dydXNBMTdha0duakxjaHQ0RGJmYTlEM05rRjY4ZjRiakJ6ZTN6OFc0NDNkZXZwSEtzOEJjZ3l6MkNOU2RUbjEzQm5TbV9ndGdNaVBrVkxIeHpKQmlRSlFLRjYyby1wNWRMYmVCYXdSbmxaWW9fb0pPeDUtbnpmcEVLTW1jVFlHQTF1amgyRV9oVXlnQW5Qcmp2MjlFd21YWGVGR254eWPSAbcBQVVfeXFMTkJGRG50RnhWOGpCb0RXUkN0VHZpczYwRWZvNGRhaTE2c3FFbEZhRmx0NThrOG1tYjRVTno1WTlXUnpFVW02YnljUjU1VzRqVDRmVFBKWi1KbXNZVGYwWWVlSFdUUWpQNVA5TU5SNGY3U0hCZms5NFZPMVNQTTZBMS0yTm5GcU9JaThPdkR0YXUyS0IyMlFjcUFKQ0x4MUR0MFFuV0xRV2I3eXVIdVdSUVYza0I5VFBJ?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro é investigado: 5 pontos que a PF quer esclarecer sobre o financiamento de 'Dark Horse'",
+   "fonte": "G1",
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNY2lONVBlYnBTdlpDNFAybTZ1b0dTM0NobG5vRllEYjJqdkxUeHRqVHg3ZTBsTDFMclFwSjBOZ1cwNXd0cjhhY3RsLVI2SjJqZjNRbnZqRUxSMlE2YUFoTEk4a0dNQ2VFZzlOazN2TzFVV1dhQ1RCNjZVbDJjYU8wSy1GZmg2WDZxb0s2UnhYNmg3N2JTZGI1bV96S21JcUVVaVRGTEZTRUUxLUpZUjN4ZHY5YlBzVmY1ZUsxNmU4ZktZejlUVFo0ZFVMdkRBLU1pOFUtU3V2RUlWckVFMFZtTnhTSTZkS0h1UWtz0gH6AUFVX3lxTE9oX3ZvVXZGU2tKYnZjNWRYMTc5b0lUbXRoazEzeDA0Rk9iVWQxUnU0QjVWQ0JuSnZfOFI3azgwVVZKbFdTTGFtUXNXeHpwSGdTUlFvMnU5bE5hU29YakxOd29RTjhEb002QTNMaUxhTnJmYkVJNDkwbmxMTloyTEtZUXVVSW4zQWtLNkU0X3liZjIyUnp0WjA3d1JHMTRrQ0lseXVsbFJ0eFc0ZmlORG5ENTJXeVozYjdCRGt1Vl83SHU2NVpCeEowbUFKOEFMYlJ0MjF1ME9Xd0ltMk83eFV1Qm85VzNZZjZ4YnM0dFY3QTh6ZlY4VnVfY0E?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro é investigado, desde julho, em inquérito da PF que apura suspeitas de irregularidades no financiamento de 'Dark Horse'",
+   "fonte": "G1",
+   "data": "2026-09-12",
+   "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxPNWU3dXRuVVdNYXotRHdJUGxWWERCVFpXLXg0UmVaU3pDd1JkQ1Bxd2ZtSlNhS1lSWGFqY2ZmWDVWY0p5a1NCdE4zSG5RMzg5Z3Y5cFVMZWRJUDI1aDI3dFFlMFlwUzJPM0tlRTNneE1laDItZUE1R3JJS1ZSWGM3UjczYjJBLWdGTjBRTVN3bTFjbWRuVUk3T0lLalJPQTJJZV9TU1ZaUmNHanZJNzF0ZmQtVlo5QkYxOU5vOVdKV2ZMYjhXcW83MkhBNnNIRzZwWWxyeHVXaGsyVW1kdXV6ZWg5Szc5ZFZyeW5WZjc0RkFjOENUUzhYeEozcldnRGNNdlhzd1ctcEszM2RZWEZjcmJuOHU3RWJ5T1FCa3F30gGsAkFVX3lxTFBVUmhHcGg2SUhYVTlVbXh2N2xVR3pGSGRFSTRnejZNc0hrZTd1Z2txcHZNUzdxSE9qN3pFWDZuRUstUXlKQjVFbXdIdjhfWkdza0haS0NiZzRZcTQ5ZDhqclMtUEJXeGxpSEgzYVZ0NWN6SFhod2pocEhSR245Rmtfd2JHSUFEendBV2U3MGlHSE5uVEdGMjZWYW9BX0N3cDFXb0tIMko1Y3ZZQ1hUc1h2Y2Z4Si1nUWJTenZzU01JOXFvNlhhaXl5aHpCXzRpQjRyVmxJLUo5Z0VYMW5ZX1NubHJaZkc0bDd4UHV2RnJrRFprdHRxd1BsQWdJcTFwOTZFdXA4VWtmSXBjelI2U3NtWlVsQ2VsUWtPNld6SmlFd202ZmVIVXgxTm1FdQ?oc=5"
+  },
+  {
+   "titulo": "‘Corrupção não cola em Flávio Bolsonaro porque isso não importa para seu eleitor’, diz cientista política",
+   "fonte": "Brasil de Fato",
+   "data": "2026-09-12",
+   "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQTC01N3NEOF8xaTUyNnNNVjdUa0wxaWFxckZNRUtTb1o1dzRLNTdDWXpYQ1hpdzdXWGhRVVpuVlpUMzBpZU1FZmRVVHV6MTZURTNqUjROd3dXaDBhQW9ROVpzbnlMWUlLVlBUa1htaWNwR3JWX2s2RmltdG9ORV9lNmhIT2dLYlY4LWpqYy0zNk1fOW9KS1lncmxaYy1zSi1faTgxdmxRSmdvOG9pMk9DZXJmS2VENnFiR2NfczBqbGR5eGpodTZpNGJUOGg4d0x4TEpWOE1qZmZmNXp5clVv?oc=5"
+  },
+  {
+   "titulo": "Flávio é um candidato sob suspeita",
+   "fonte": "Estadão",
+   "data": "2026-09-12",
+   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0yckJDajY2Z2lQaEhXalFJM0Q1TE1yUnRjcU41bFlQNGV4VVVNSkVlUE5LWVNrMDlieDhOMDdLdHBzZkZLQ3VKbVZlVlJDaGdQMDVQNWc0QzF6MTU0SVhRVG93elRkc2JEc1k5eG55MzduaHJxWW9HaDFR?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro pede fim de sigilo em investigação sobre laços com Vorcaro, do Master",
+   "fonte": "Bloomberg Línea Brasil",
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPQWJfREVnczV4N05FakRVdF9RRGRTVEZhVW5QQ0VobFJfZlVCUWhWcWlXQlhzVFNtaG51Q1BibG9taDVUdVVhR2NwT2xVblBMYW1ZNExabTRubGJZRE5CV0hJUld5Nm51SWtyY1p2eTVOQ014d2pDcHJUMlhJZTdyMFZMalkwUkhFbXJYU1Q0d3p0Y0s3NEo1V2RQM0FwaVQwaGxqSGgyLVFUa0taaVZhLWJYallNS2Nrem1MR0pqWUdJaWVTQnfSAdoBQVVfeXFMTUQxSWVua0REQkZPZFp5Qms1Y09Fbkg1cU53ekFoclRmR0U3b2JOT2hyWU1mdUg1YnlWc05sT1BHb0lxamE0VDctWWRacVdPOF9ZUm5QWVgyLUJxcVZfVUMyNXZ3cXlHWUZYQWotYV9zZno1OEtuYjIxTTZpZHFmNWh2UmpzQlpob2JRSUxoemlNLXpveGl2MlJQRDlRTktZTXMtbWl2aTZ4WDBOZGQ0SEk5UkN3RndTa2JBdWh0RERLTVFFY05kRXlfVFpHc2l3U1NkYlhQQXB1UHc?oc=5"
+  },
+  {
+   "titulo": "'Dark Horse': o que Flávio Bolsonaro precisa esclarecer sobre financiamento do filme por Vorcaro",
+   "fonte": "BBC",
+   "data": "2026-09-10",
+   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5tTC15YzdkUzVSQU9TLXdZWF9iX0VLMnRoUWx0NE9WUGFsaWwwd2FhTXFhRDlWTmtBNUJJWTQ3VGxwbmtYalRWWmZKNXdocXBmRWNPLTRHczFibnNha3BvSHpn0gFnQVVfeXFMTVRieUhJMExMbm1hQzFXYlhwOUk1THRvMnVNbE9fNGpPR01WZDdDb013emM1cUs3N1lMTzdoQ2xCX2k0TVptTWJWUnRVbEYwSEpkWGM1alV0ZWdLdzJ3RzUtbDRoSXliYw?oc=5"
   },
   {
    "titulo": "Mendonça homologa delação de operador que enviou US$ 12,3 mi ao fundo do filme",
@@ -13261,112 +13261,85 @@ window.DOSSIE = {
    "fonte": "Metrópoles",
    "data": "2026-07",
    "url": "https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg"
-  },
-  {
-   "titulo": "Áudios: Flávio negociou ~R$ 134 mi com Vorcaro para filme sobre Jair",
-   "fonte": "Intercept Brasil",
-   "data": "2026-05",
-   "url": "https://www.intercept.com.br/2026/05/13/audio-flavio-negociou-vorcaro-milhoes/"
   }
  ],
- "noticiasCaptura": "2026-09-10",
+ "noticiasCaptura": "2026-09-13",
  "fluxoDinheiro": {
-  "nota": "Caminho do dinheiro segundo MP, COAF e reportagens. Valores nominais citados nas fontes.",
+  "nota": "Fluxos citados em reportagens e em documentos públicos. Cada um traz fonte e status jurídico; valores nominais.",
   "fluxos": [
    {
-    "de": "Servidores do gabinete (ALERJ)",
-    "para": "Fabrício Queiroz",
-    "valor": "R$ 2,08 mi",
-    "obs": "devoluções de salário 'comprovadas' (2007–2018)",
-    "tema": "rachadinha",
-    "fonte": {
-     "veiculo": "Folha PE",
-     "url": "https://www.folhape.com.br/politica/saiba-como-estao-casos-de-rachadinha-e-funcionarios-fantasmas-nos/269120/"
-    }
-   },
-   {
-    "de": "Esquema da rachadinha",
-    "para": "Imóveis + loja de chocolates",
-    "valor": "até R$ 2,3 mi",
-    "obs": "lavagem apontada pelo MP-RJ",
-    "tema": "patrimonio",
-    "fonte": {
-     "veiculo": "Jornal GGN",
-     "url": "https://jornalggn.com.br/justica/empresario-flavio-tem-uma-loja-de-chocolate-mas-enriqueceu-antes-disso-e-nao-quer-detalhar-como/"
-    }
-   },
-   {
-    "de": "Fabrício Queiroz",
-    "para": "Michelle Bolsonaro",
-    "valor": "~R$ 89 mil",
-    "obs": "27 cheques depositados",
-    "tema": "milicia",
-    "fonte": {
-     "veiculo": "CartaCapital",
-     "url": "https://www.cartacapital.com.br/politica/bolsonaro-diz-se-arrepender-de-ter-autorizado-queiroz-a-depositar-cheques-na-conta-de-michelle/"
-    }
-   },
-   {
     "de": "BRB (Banco de Brasília)",
-    "para": "Mansão no Lago Sul",
-    "valor": "R$ 5,9 mi",
-    "obs": "financiamento (2021); quitado em 3 anos",
+    "para": "Mansão de Flávio no Lago Sul",
+    "valor": "R$ 3,1 mi",
+    "obs": "financiamento em 2021, em 360 parcelas; imóvel de R$ 5,97 mi. Aprovado sob Paulo Henrique Costa, preso em 2026 no caso Master",
     "tema": "mansao",
+    "status": "FATO NOTICIADO",
+    "ressalva": "Imóvel de R$ 5,97 mi, com R$ 2,87 mi de entrada e 360 parcelas. A operação passou pela diretoria do BRB presidida por Paulo Henrique Costa, preso preventivamente em abril de 2026 no caso Master.",
     "fonte": {
-     "veiculo": "Brasil de Fato",
-     "url": "https://www.brasildefato.com.br/2021/03/02/imovel-comprado-por-flavio-bolsonaro-e-mais-de-tres-vezes-maior-do-que-patrimonio/"
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/colunas/grande-angular/paulo-henrique-era-presidente-do-brb-quando-banco-financiou-mansao-de-flavio"
     }
    },
    {
-    "de": "Daniel Vorcaro (Banco Master)",
-    "para": "Filme 'Dark Horse' sobre Jair",
-    "valor": "~R$ 134 mi",
-    "obs": "negociado (áudios vazados)",
-    "tema": "master",
-    "fonte": {
-     "veiculo": "Intercept Brasil",
-     "url": "https://www.intercept.com.br/2026/05/13/audio-flavio-negociou-vorcaro-milhoes/"
-    }
-   },
-   {
-    "de": "Entorno de Vorcaro (Fabiano Zettel)",
-    "para": "Campanha presidencial 2022",
-    "valor": "~R$ 3 mi",
-    "obs": "doação (cunhado de Vorcaro)",
-    "tema": "master",
-    "fonte": {
-     "veiculo": "CNN Brasil",
-     "url": "https://www.cnnbrasil.com.br/politica/entenda-o-caso-flavio-vorcaro-em-6-pontos/"
-    }
-   },
-   {
-    "de": "Operador de Vorcaro ('Mineiro')",
-    "para": "Fundo Havengate (EUA), ligado ao filme",
+    "de": "Operador, a pedido de Daniel Vorcaro",
+    "para": "Fundo nos EUA ligado ao filme sobre Jair",
     "valor": "US$ 12,3 mi",
-    "obs": "7 repasses em 2025; delação homologada pelo STF em 9/9/2026",
+    "obs": "7 repasses em 2025, descritos em delação homologada pelo STF em 9/9/2026. Flávio é investigado; nega irregularidade",
     "tema": "master",
+    "status": "INVESTIGAÇÃO EM CURSO · SEM CONDENAÇÃO",
+    "ressalva": "Inquérito autorizado pelo ministro André Mendonça em 22/07/2026; Flávio é investigado. A delação homologada em 09/09/2026 descreve 7 repasses em 2025, a pedido de Vorcaro, somando US$ 12,3 milhões (cerca de R$ 63 milhões). Sem denúncia aceita nem condenação. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.",
     "fonte": {
      "veiculo": "Brasil de Fato",
      "url": "https://www.brasildefato.com.br/2026/09/09/mendonca-aceita-delacao-de-empresario-que-enviou-r-60-milhoes-a-fundo-ligado-a-eduardo-bolsonaro/"
     }
    },
    {
-    "de": "PL (fundo partidário/eleitoral)",
+    "de": "PL (partido)",
     "para": "Campanha presidencial 2026",
     "valor": "R$ 42 mi",
-    "obs": "contra R$ 6,01 vindos de pessoas físicas",
+    "obs": "contra R$ 6,01 de pessoas físicas na prestação parcial consultada em 26/08/2026",
     "tema": "eleicoes",
+    "status": "FATO · PRESTAÇÃO DE CONTAS AO TSE",
+    "ressalva": "Prestação parcial. Em setembro de 2026 a maior doação de pessoa física registrada era de R$ 300 mil (Walter Schlatter); os valores do TSE podem divergir dos divulgados pela campanha.",
     "fonte": {
      "veiculo": "Poder360",
      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-lidera-em-doacoes-a-candidatos-ao-planalto-lula-e-2o/"
     }
    },
    {
+    "de": "Walter Schlatter",
+    "para": "Campanha presidencial 2026",
+    "valor": "R$ 300 mil",
+    "obs": "maior doação de pessoa física, confirmada pelo doador",
+    "tema": "eleicoes",
+    "status": "FATO · PRESTAÇÃO DE CONTAS AO TSE",
+    "ressalva": "Doação registrada na prestação de contas e confirmada pelo doador por telefone à reportagem.",
+    "fonte": {
+     "veiculo": "Agência da Notícia",
+     "url": "https://www.agenciadanoticia.com.br/mato-grosso/noticia/146289/prefeito-e-empresario-walter-schlatter-doa-r-300-mil-para-campanha-de-flavio-bolsonaro"
+    }
+   },
+   {
+    "de": "Campanha presidencial 2026",
+    "para": "JMartelo (agência de comunicação)",
+    "valor": "R$ 1,6 mi",
+    "obs": "contrato declarado na prestação de contas; agência de um ex-assessor da Casa Civil de Tarcísio de Freitas",
+    "tema": "eleicoes",
+    "status": "FATO · PRESTAÇÃO DE CONTAS AO TSE",
+    "ressalva": "Contrato sob a rubrica de serviços prestados por terceiros, na prestação de contas de setembro de 2026. O nome civil do dono da agência não foi confirmado em fonte aberta.",
+    "fonte": {
+     "veiculo": "Revista Fórum",
+     "url": "https://revistaforum.com.br/politica/flavio-bolsonaro-jmartelo/"
+    }
+   },
+   {
     "de": "BRB (Banco de Brasília)",
-    "para": "Mansão usada como QG da pré-campanha",
+    "para": "Mansão usada como QG da campanha",
     "valor": "R$ 10,5 mi",
-    "obs": "imóvel de R$ 14,5 mi em nome de terceiro; PT pediu apuração à PF",
+    "obs": "imóvel de R$ 14,5 mi em nome de um coordenador da campanha; um deputado pediu apuração à PF em 02/07/2026. O coordenador diz que está tudo declarado",
     "tema": "mansao",
+    "status": "PEDIDO DE APURAÇÃO À PF",
+    "ressalva": "Imóvel registrado em nome do advogado José Vicente Santini, coordenador da campanha: R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo BRB. Santini diz que a renda vem do escritório e de uma empresa de segurança e que está tudo declarado.",
     "fonte": {
      "veiculo": "Metrópoles",
      "url": "https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg"
@@ -13378,6 +13351,8 @@ window.DOSSIE = {
     "valor": "R$ 364 mi",
     "obs": "2020–2026; 50,8% para saúde, 0,8% para educação",
     "tema": "senado",
+    "status": "FATO · ORÇAMENTO DA UNIÃO",
+    "ressalva": "Valores de 2020–2026 corrigidos pela inflação. Saúde 50,8% (R$ 185,5 mi), defesa 21,8% (R$ 79,5 mi), segurança pública 19,4% (R$ 70,9 mi), educação 0,8% (R$ 2,9 mi); ciência e agricultura, nada.",
     "fonte": {
      "veiculo": "Jornal de Brasília",
      "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/flavio-bolsonaro-concentrou-emendas-em-seguranca-e-defesa-e-deixou-ciencia-e-agricultura-de-fora/"
