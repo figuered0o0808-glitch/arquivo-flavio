@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Quiz — Arquivo Flávio</title>
 <meta name="description" content="Quanto você sabe sobre Flávio Bolsonaro? Oito perguntas sobre fatos com fonte e status jurídico. Sem cadastro, sem cronômetro.">
-<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/base.css?v=2">
+<link rel="stylesheet" href="assets/header.css?v=2">
 <style>
 /* ---- Quiz: uma pergunta por tela; resposta, fonte e status no mesmo
    enquadramento, para o print carregar a prova junto. ---------------- */
@@ -84,7 +85,20 @@ noscript p{padding:20px 16px}
 </head>
 <body>
 
-<div class="barra"><span>ARQUIVO FLÁVIO · QUIZ</span><a href="placar.html">os números</a></div>
+<header class="site-header">
+  <div class="hrow">
+    <div class="brand"><a class="mark" href="index.html">ARQUIVO_FLÁVIO</a><span class="tag">dossiê de registro público</span></div>
+    <nav class="tabs">
+      <a class="tab" href="index.html#arquivo">BolsoDrive</a>
+      <a class="tab" href="close-friends.html">Close Friends</a>
+      <a class="tab" href="siga-o-dinheiro.html">Siga o dinheiro</a>
+      <a class="tab active" href="quiz.html">Quiz</a>
+      <a class="tab" href="index.html#cronologia">Cronologia</a>
+      <a class="tab" href="index.html#noticias">Notícias</a>
+      <a class="tab" href="index.html#chat">FlávioGPT</a>
+    </nav>
+  </div>
+</header>
 
 <main class="wrap" id="tela">
   <noscript><p>Este quiz precisa de JavaScript. Os mesmos fatos, com fonte, estão em <a href="placar.html">os números</a> e nos <a href="index.html">252 registros</a>.</p></noscript>
@@ -275,7 +289,7 @@ function ligarResposta(p){
   document.getElementById('zap').addEventListener('click', () => compartilhar(textoFato(p)));
   const r = document.getElementById('resposta');
   r.hidden = false;
-  const b = r.getBoundingClientRect(), barra = 44;
+  const b = r.getBoundingClientRect(), barra = (document.querySelector(".site-header")||{offsetHeight:44}).offsetHeight + 8;
   if (b.bottom > window.innerHeight){
     const dy = Math.min(b.top - barra, b.bottom - window.innerHeight + 12);
     if (dy > 0) window.scrollBy({ top: dy, behavior: reduzido ? 'auto' : 'smooth' });
@@ -387,5 +401,6 @@ function render(){ if (i >= N) renderFim(); else renderPergunta(i); }
 render();
 })();
 </script>
+<script>(function(){var a=document.querySelector('.site-header .tab.active');if(a&&a.scrollIntoView)a.scrollIntoView({inline:'center',block:'nearest'});})();</script>
 </body>
 </html>

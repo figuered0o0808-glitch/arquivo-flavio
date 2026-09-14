@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Close Friends — Arquivo Flávio</title>
 <meta name="description" content="As ligações diretas de Flávio Bolsonaro, uma pessoa por vez, com a situação de cada uma e a fonte de cada vínculo.">
-<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/base.css?v=2">
+<link rel="stylesheet" href="assets/header.css?v=2">
 <style>
 /* busca */
 .busca{display:flex; gap:8px; margin:0 0 10px}
-.busca input{flex:1; font:inherit; font-size:15px; padding:10px 12px; border:1.5px solid var(--linha); border-radius:2px; background:#fff; color:var(--tinta); min-width:0}
+.busca input{flex:1; font:inherit; font-size:15px; padding:10px 12px; border:1.5px solid var(--linha); border-radius:2px; background:var(--leve); color:var(--tinta); min-width:0}
 .busca input:focus{outline:none; border-color:var(--tinta)}
 
 /* caminho percorrido */
@@ -88,10 +89,20 @@ div.sat.some{opacity:0; pointer-events:none}
 </head>
 <body>
 
-<div class="barra">
-  <span>ARQUIVO FLÁVIO · CLOSE FRIENDS</span>
-  <a href="placar.html">os números</a>
-</div>
+<header class="site-header">
+  <div class="hrow">
+    <div class="brand"><a class="mark" href="index.html">ARQUIVO_FLÁVIO</a><span class="tag">dossiê de registro público</span></div>
+    <nav class="tabs">
+      <a class="tab" href="index.html#arquivo">BolsoDrive</a>
+      <a class="tab active" href="close-friends.html">Close Friends</a>
+      <a class="tab" href="siga-o-dinheiro.html">Siga o dinheiro</a>
+      <a class="tab" href="quiz.html">Quiz</a>
+      <a class="tab" href="index.html#cronologia">Cronologia</a>
+      <a class="tab" href="index.html#noticias">Notícias</a>
+      <a class="tab" href="index.html#chat">FlávioGPT</a>
+    </nav>
+  </div>
+</header>
 
 <div class="wrap">
   <h1>Close Friends</h1>
@@ -418,5 +429,6 @@ div.sat.some{opacity:0; pointer-events:none}
   let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(render, 120); });
 })();
 </script>
+<script>(function(){var a=document.querySelector('.site-header .tab.active');if(a&&a.scrollIntoView)a.scrollIntoView({inline:'center',block:'nearest'});})();</script>
 </body>
 </html>

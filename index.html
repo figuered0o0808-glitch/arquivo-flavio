@@ -19,23 +19,22 @@
 <meta property="og:image:alt" content="R$ 6,01 doados por pessoas físicas contra R$ 42 milhões do partido.">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="stylesheet" href="assets/app.css?v=set2026">
+<link rel="stylesheet" href="assets/app.css?v=set2026c">
+<link rel="stylesheet" href="assets/header.css?v=2">
 </head>
 <body>
 
 <header class="site-header">
-  <div id="revisar" class="revisar">fontes em conferência · status jurídico indicado em cada registro</div>
   <div class="hrow">
-    <div class="brand">
-      <span class="mark">DOSSIER_FLÁVIO</span><span class="cursor"></span>
-      <span class="tag" id="meta-sub">dossiê de registro público</span>
-    </div>
+    <div class="brand"><a class="mark" href="index.html">ARQUIVO_FLÁVIO</a><span class="tag" id="meta-sub">dossiê de registro público</span></div>
     <nav class="tabs">
-      <button class="tab active" data-view="arquivo"><span class="ico">🗂️</span>BolsoDrive</button>
-      <button class="tab" data-view="rede"><span class="ico">💚</span>Close Friends</button>
-      <button class="tab" data-view="cronologia"><span class="ico">🕰️</span>Cronologia</button>
-      <button class="tab" data-view="noticias"><span class="ico">📰</span>Notícias</button>
-      <button class="tab" data-view="chat"><span class="ico">✦</span>FlávioGPT</button>
+      <button class="tab active" data-view="arquivo">BolsoDrive</button>
+      <a class="tab" href="close-friends.html">Close Friends</a>
+      <a class="tab" href="siga-o-dinheiro.html">Siga o dinheiro</a>
+      <a class="tab" href="quiz.html">Quiz</a>
+      <button class="tab" data-view="cronologia">Cronologia</button>
+      <button class="tab" data-view="noticias">Notícias</button>
+      <button class="tab" data-view="chat">FlávioGPT</button>
     </nav>
   </div>
 </header>
@@ -46,32 +45,13 @@
   <section id="view-arquivo" class="view active">
     <div class="view-head">
       <h1>BolsoDrive</h1>
-      <p>O arquivo de tudo: vídeos, fotos, notícias e documentos de registro público, em pastas por tema. Cada item traz status jurídico e fonte. Clique numa pessoa citada para ir ao Close Friends.</p>
+      <p>O arquivo de tudo: vídeos, fotos, notícias e documentos de registro público, em pastas por tema. Cada item traz status jurídico e fonte. Toque numa pessoa citada para vê-la no Close Friends.</p>
     </div>
     <div class="toolbar">
       <div class="search">🔎 <input id="busca" placeholder="Buscar no arquivo (caso, pessoa, tema)…" autocomplete="off"></div>
     </div>
     <div id="arquivo-grid" class="grid"></div>
     <div id="arquivo-itens" style="display:none"></div>
-  </section>
-
-  <!-- REDE -->
-  <section id="view-rede" class="view">
-    <div class="view-head">
-      <h1>Close Friends</h1>
-      <p>O mapa das relações de interesse público ligadas aos casos. Arraste os nós; role para zoom; clique numa pessoa (ou na legenda) para destacar. Busque um nome abaixo.</p>
-    </div>
-    <div class="toolbar">
-      <div class="search"><input id="rede-search" placeholder="buscar pessoa na rede…" autocomplete="off"></div>
-    </div>
-    <div class="rede-wrap">
-      <div class="canvas-box">
-        <canvas id="grafo"></canvas>
-        <button id="grafo-fit" title="Centralizar / ajustar">⤢ ajustar</button>
-        <div class="legenda" id="legenda"></div>
-      </div>
-      <aside id="rede-painel" class="rede-painel"><div class="ph">Carregando…</div></aside>
-    </div>
   </section>
 
   <!-- CRONOLOGIA -->
@@ -123,7 +103,7 @@
 
   <footer class="site-footer">
     <button id="link-metodo">// método &amp; transparência</button>
-    <span class="foot-dim">dossiê em modo revisão · conteúdo de registro público com fonte</span>
+    <span class="foot-dim">conteúdo de registro público, com fonte e status jurídico em cada registro</span>
   </footer>
 
 </main>
@@ -131,6 +111,6 @@
 <div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
 
 <script src="data/dados.js?v=set2026b"></script>
-<script src="assets/app.js?v=set2026"></script>
+<script src="assets/app.js?v=set2026c"></script>
 </body>
 </html>

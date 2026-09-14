@@ -1,0 +1,39 @@
+/* Cabeçalho único do Arquivo Flávio — o mesmo em todas as seções.
+   Carregar por último, em toda página. */
+.site-header{
+  position:sticky; top:0; z-index:50; background:#070a07;
+  border-bottom:1px solid rgba(116,255,150,.18);
+}
+.site-header .hrow{
+  max-width:1120px; margin:0 auto; padding:10px 16px 0;
+  display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+}
+.site-header .brand{display:flex; align-items:baseline; gap:10px; min-width:0}
+.site-header .brand .mark{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:15px; font-weight:700; color:#ffb02e; white-space:nowrap; letter-spacing:.02em; text-decoration:none;
+}
+.site-header .brand .mark::before{content:"> "; color:#5c8a63}
+.site-header .brand .tag{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:11px; color:#5c8a63; white-space:nowrap;
+}
+.site-header .tabs{
+  display:flex; flex-wrap:nowrap; gap:6px; margin:8px -16px 0; padding:0 16px 8px;
+  overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; width:calc(100% + 32px);
+}
+.site-header .tabs::-webkit-scrollbar{display:none}
+.site-header .tab{
+  flex:none; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:12px; font-weight:700; letter-spacing:.02em; white-space:nowrap;
+  padding:8px 10px; border:1px solid rgba(116,255,150,.18); border-radius:4px;
+  background:transparent; color:#86a58c; text-decoration:none; cursor:pointer; line-height:1;
+}
+.site-header .tab::before{content:"[ "} .site-header .tab::after{content:" ]"}
+.site-header .tab .ico{display:none}
+.site-header .tab:hover{color:#d8efdd; border-color:rgba(116,255,150,.32)}
+.site-header .tab.active{color:#120c00; background:#ffb02e; border-color:#ffb02e}
+@media (min-width:900px){
+  .site-header .hrow{flex-wrap:nowrap; padding-bottom:0}
+  .site-header .tabs{margin:0; padding:10px 0; width:auto; overflow:visible}
+}

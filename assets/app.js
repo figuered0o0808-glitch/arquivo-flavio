@@ -61,13 +61,14 @@
 
   /* ---------------- Router ---------------- */
   function showView(name){
+    if(name==='rede'){ location.href='close-friends.html'; return; }     // a rede virou página própria
     $$('.view').forEach(v=>v.classList.toggle('active', v.id==='view-'+name));
     $$('.tab').forEach(t=>t.classList.toggle('active', t.dataset.view===name));
-    if(name==='rede') Grafo.ensure();
+    const at=$('.site-header .tab.active'); if(at&&at.scrollIntoView) at.scrollIntoView({inline:'center',block:'nearest'});
     if(name==='noticias') Noticias.ensure();
     if(location.hash !== '#'+name) history.replaceState(null,'','#'+name);
   }
-  $$('.tab').forEach(t=> t.addEventListener('click', ()=>showView(t.dataset.view)));
+  $$('.tab[data-view]').forEach(t=> t.addEventListener('click', ()=>showView(t.dataset.view)));
 
   /* ---------------- Arquivo ---------------- */
   const arqGrid = $('#arquivo-grid');
@@ -141,7 +142,7 @@
       abrirDetalhe(c.dataset.item);
     }));
     $$('.pchip', root).forEach(p=> p.addEventListener('click', e=>{
-      e.stopPropagation(); showView('rede'); Grafo.focus(p.dataset.pessoa);
+      e.stopPropagation(); location.href='close-friends.html#'+p.dataset.pessoa;
     }));
   }
 
@@ -176,7 +177,7 @@
         <div class="block"><div class="lbl">Fontes ${i.lastro?'· '+lastroBadge(i.lastro):''}</div><div class="src">${fontesHTML(i.fontes)}</div></div>
       </div>`;
     $('#fechar').addEventListener('click', fechar);
-    $$('.pchip', sheet).forEach(p=>p.addEventListener('click', ()=>{fechar();showView('rede');Grafo.focus(p.dataset.pessoa);}));
+    $$('.pchip', sheet).forEach(p=>p.addEventListener('click', ()=>{ location.href='close-friends.html#'+p.dataset.pessoa; }));
     overlay.classList.add('open');
   }
 
@@ -697,6 +698,7 @@
     addMsg('bot', `Olá. Sou o <b>FlávioGPT</b>. Respondo com base no acervo documentado do BolsoDrive — sempre com status e fonte. Sobre o que quer saber?`);
     const h = (location.hash||'#arquivo').slice(1);
     showView(['arquivo','rede','cronologia','noticias','chat'].includes(h)?h:'arquivo');
+    window.addEventListener('hashchange', ()=>{ const k=(location.hash||'#arquivo').slice(1); if(['arquivo','rede','cronologia','noticias','chat'].includes(k)) showView(k); });
   }
   init();
 })();
