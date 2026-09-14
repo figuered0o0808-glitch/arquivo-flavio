@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Quiz — Arquivo Flávio</title>
+<meta name="description" content="Quanto você sabe sobre Flávio Bolsonaro? Oito perguntas sobre fatos com fonte e status jurídico. Sem cadastro, sem cronômetro.">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+/* ---- Quiz: uma pergunta por tela; resposta, fonte e status no mesmo
+   enquadramento, para o print carregar a prova junto. ---------------- */
+h1{margin-top:2px}
+.sub{margin-bottom:18px}
+
+/* progresso */
+.prog{display:flex; align-items:center; justify-content:space-between; gap:14px; margin:2px 0 16px}
+.prog-n{font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--cinza); white-space:nowrap}
+.segs{display:flex; gap:4px; flex:1; max-width:220px}
+.segs i{flex:1; height:4px; background:var(--linha)}
+.segs i.feita{background:var(--tinta)}
+.segs i.atual{background:var(--cinza2)}
+
+/* pergunta */
+.pergunta{font-size:clamp(20px,5.6vw,26px); font-weight:700; line-height:1.25; letter-spacing:-.01em; margin:0 0 16px; outline:none}
+
+/* múltipla escolha */
+.opcoes{display:flex; flex-direction:column; gap:8px; margin:0 0 4px}
+.opc{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  width:100%; min-height:52px; padding:12px 14px; text-align:left;
+  font-size:16px; line-height:1.3; color:var(--tinta); background:transparent;
+  border:2px solid var(--cinza2); border-radius:2px; cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.opc .m{font-size:17px; font-weight:700; min-width:18px; text-align:right; visibility:hidden}
+.opc:disabled{cursor:default; color:var(--cinza); border-color:var(--linha)}
+.opc.certa:disabled{color:var(--tinta); border-color:var(--tinta); font-weight:700}
+.opc.certa .m{visibility:visible}
+.opc.errada:disabled{color:var(--cinza); border-color:var(--linha)}
+.opc.errada .t{text-decoration:line-through}
+.opc.errada .m{visibility:visible; color:var(--cinza)}
+.opc:focus-visible{outline:2px solid var(--tinta); outline-offset:2px}
+
+/* chute no controle deslizante */
+.chute{font-size:clamp(30px,10vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1; font-variant-numeric:tabular-nums; margin:0 0 6px; white-space:nowrap}
+.trilho{position:relative}
+input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:44px; margin:0; display:block; background:transparent; cursor:pointer}
+input[type=range]:disabled{cursor:default}
+input[type=range]:focus{outline:none}
+input[type=range]:focus-visible{outline:2px solid var(--tinta); outline-offset:2px}
+input[type=range]::-webkit-slider-runnable-track{height:4px; background:var(--linha)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:28px; height:28px; border-radius:50%; background:var(--tinta); border:0; margin-top:-12px}
+input[type=range]::-moz-range-track{height:4px; background:var(--linha); border:0}
+input[type=range]::-moz-range-thumb{width:28px; height:28px; border-radius:50%; background:var(--tinta); border:0}
+.anel{position:absolute; top:50%; width:20px; height:20px; margin:-10px 0 0 -10px; border:2px solid var(--carimbo); border-radius:50%; pointer-events:none; display:none}
+.anel.on{display:block}
+.extremos{display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; color:var(--cinza); margin:-2px 0 4px}
+.compara{font-size:16px; margin:12px 0 14px}
+.compara b{font-variant-numeric:tabular-nums}
+
+/* bloco de resposta */
+.resposta{border-top:1px solid var(--linha); margin-top:16px; padding-top:8px}
+.resposta .cab{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+.resposta .kicker{margin:10px 0 8px}
+.veredito{font-family:var(--mono); font-size:12px; letter-spacing:.08em; font-weight:700; color:var(--tinta); white-space:nowrap}
+.resposta .numero.menor{margin-bottom:8px}
+.resposta .frase{font-size:clamp(16px,4.3vw,19px)}
+.resposta .frase b{font-weight:700}
+.chip{max-width:100%; white-space:normal; line-height:1.5}
+.acoes button{min-height:44px}
+
+/* tela final */
+.gabarito{list-style:none; margin:14px 0 4px; padding:0; border-top:1px solid var(--linha)}
+.gabarito li{display:grid; grid-template-columns:22px 1fr auto; column-gap:8px; align-items:baseline; padding:9px 0; border-bottom:1px solid var(--linha); font-size:15px; line-height:1.3}
+.gabarito .m{font-size:16px; font-weight:700}
+.gabarito b{font-variant-numeric:tabular-nums; text-align:right}
+.gabarito small{grid-column:2 / 4; font-family:var(--mono); font-size:11px; color:var(--cinza); margin-top:2px}
+
+.fim{padding:36px 16px 60px; text-align:center}
+.fim a{display:inline-block; font-size:18px; font-weight:700; color:var(--tinta); text-decoration:none; border-bottom:3px solid var(--carimbo)}
+noscript p{padding:20px 16px}
+</style>
+</head>
+<body>
+
+<div class="barra"><span>ARQUIVO FLÁVIO · QUIZ</span><a href="placar.html">os números</a></div>
+
+<main class="wrap" id="tela">
+  <noscript><p>Este quiz precisa de JavaScript. Os mesmos fatos, com fonte, estão em <a href="placar.html">os números</a> e nos <a href="index.html">252 registros</a>.</p></noscript>
+</main>
+
+<div class="fim"><a href="index.html">Ver os 252 registros →</a></div>
+
+
+<script>
+(function(){
+'use strict';
+
+/* Endereço da página sai de location — nada de domínio chumbado. */
+const PAGINA = () => location.origin + location.pathname;
+
+const fmtBRL = v => 'R$ ' + Number(v).toLocaleString('pt-BR', {
+  minimumFractionDigits: Number.isInteger(v) ? 0 : 2, maximumFractionDigits: 2 });
+const fmtPct = v => Number(v).toLocaleString('pt-BR') + '%';
+
+/* Fontes (veículo, detalhe, URL). Cada resposta aponta para uma ou duas. */
+const F = {
+  poder_doacoes: { v:'Poder360', d:'prestação de contas parcial ao TSE, consultada em 26/08/2026',
+    u:'https://www.poder360.com.br/poder-eleicoes-2026/flavio-lidera-em-doacoes-a-candidatos-ao-planalto-lula-e-2o/' },
+  poder_patrimonio: { v:'Poder360', d:'registro da candidatura no TSE, 13/08/2026',
+    u:'https://www.poder360.com.br/poder-eleicoes-2026/flavio-declara-r-81-milhoes-em-patrimonio-quase-o-dobro-de-lula/' },
+  jbr: { v:'Jornal de Brasília', d:'08/08/2026',
+    u:'https://jornaldebrasilia.com.br/noticias/politica-e-poder/flavio-bolsonaro-concentrou-emendas-em-seguranca-e-defesa-e-deixou-ciencia-e-agricultura-de-fora/' },
+  em: { v:'Estado de Minas', d:'28/06/2026',
+    u:'https://www.em.com.br/politica/2026/06/7450571-flavio-bolsonaro-se-ausentou-em-43-das-votacoes-nominais-do-senado.html' },
+  bdf: { v:'Brasil de Fato', d:'02/04/2026',
+    u:'https://www.brasildefato.com.br/2026/04/02/em-sete-anos-flavio-bolsonaro-teve-apenas-um-projeto-de-lei-aprovado-no-congresso/' },
+  senado: { v:'Senado Federal', d:'Dados Abertos, cód. 5894, apurados em 09/09/2026',
+    u:'https://www25.senado.leg.br/web/senadores/senador/-/perfil/5894' },
+  itatiaia: { v:'Itatiaia', d:'entrevista ao Jornal Nacional, 28/08/2026',
+    u:'https://www.itatiaia.com.br/politica/eleicoes/flavio-bolsonaro-justifica-medalha-a-adriano-da-nobrega-policial-exemplar-na-epoca/' },
+  carta: { v:'CartaCapital', d:'decisão do STF de 26/02/2025',
+    u:'https://www.cartacapital.com.br/politica/o-que-aconteceu-com-o-caso-da-rachadinha-de-flavio-bolsonaro-suposto-candidato-em-2026/' },
+  metropoles: { v:'Metrópoles', d:'pedido à PF em 02/07/2026',
+    u:'https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg' }
+};
+
+/* As oito perguntas. Só fatos; nada em investigação. */
+const P = [
+  { tipo:'faixa', min:0, max:1000000, passo:1, inicio:500000, fmt:fmtBRL, dif: d => fmtBRL(Math.round(d * 100) / 100),
+    extremos:['R$ 0','R$ 1 milhão'],
+    pergunta:'Quanto pessoas físicas doaram, no total, à campanha presidencial dele?',
+    valor:6.01, acerta: v => v <= 100,
+    numero:'R$ 6,01',
+    resposta:'Pessoas físicas doaram <b>R$ 6,01</b> à campanha presidencial de Flávio Bolsonaro. O PL, partido dele, repassou <b>R$ 42 milhões</b>.',
+    chip:'FATO · PRESTAÇÃO DE CONTAS AO TSE',
+    fontes:[F.poder_doacoes],
+    curto:'Doações de pessoas físicas', gab:'R$ 6,01',
+    zap:'Pessoas físicas doaram R$ 6,01 à campanha presidencial de Flávio Bolsonaro; o PL, partido dele, repassou R$ 42 milhões. Prestação de contas parcial ao TSE, consultada em 26/08/2026.' },
+
+  { tipo:'multi',
+    pergunta:'Quantos projetos de autoria dele viraram lei em 7 anos de Senado?',
+    opcoes:['0','1','12','37'], certa:1,
+    numero:'1 projeto',
+    resposta:'Em 7 anos de Senado, <b>1 projeto de autoria dele virou lei</b>. Dados oficiais do Senado (cód. 5894, apurados em 09/09/2026): 188 relatorias, 1.142 votações, 1 projeto de autoria aprovado.',
+    chip:'FATO · DADOS ABERTOS DO SENADO',
+    fontes:[F.bdf, F.senado],
+    curto:'Projetos de autoria dele que viraram lei', gab:'1',
+    zap:'Em 7 anos de Senado, 1 projeto de autoria de Flávio Bolsonaro virou lei. Dados oficiais do Senado (cód. 5894, apurados em 09/09/2026): 188 relatorias, 1.142 votações, 1 projeto de autoria aprovado.' },
+
+  { tipo:'faixa', min:0, max:500, passo:5, inicio:250, fmt:fmtPct, dif: d => Number(d).toLocaleString('pt-BR') + (d === 1 ? ' ponto percentual' : ' pontos percentuais'),
+    extremos:['0%','500%'],
+    pergunta:'Quanto o patrimônio que ele declarou ao TSE cresceu de 2018 a 2026, acima da inflação?',
+    valor:211, acerta: v => v >= 180 && v <= 240,
+    numero:'211%',
+    resposta:'O patrimônio declarado ao TSE foi de <b>R$ 1,74 milhão</b> (2018, eleição ao Senado) a <b>R$ 8,19 milhões</b> (2026, registro da candidatura): <b>4,7 vezes</b>, cerca de <b>211% de alta real</b> descontado o IPCA. A inflação sozinha levaria 2018 a cerca de R$ 2,6 milhões.',
+    chip:'FATO · DECLARADO POR ELE AO TSE',
+    fontes:[F.poder_patrimonio],
+    ressalva:'A declaração usa valor de aquisição. O maior item é uma casa no Lago Sul, de R$ 6,2 milhões.',
+    curto:'Alta do patrimônio acima da inflação', gab:'211%',
+    zap:'O patrimônio que Flávio Bolsonaro declarou ao TSE foi de R$ 1,74 milhão (2018) a R$ 8,19 milhões (2026): 4,7 vezes, cerca de 211% de alta real descontado o IPCA.' },
+
+  { tipo:'multi',
+    pergunta:'De cada R$ 100 em emendas indicadas por ele, quanto foi para educação?',
+    opcoes:['R$ 0,80','R$ 8','R$ 21','R$ 50'], certa:0,
+    numero:'R$ 0,80',
+    resposta:'Das emendas indicadas por ele nos orçamentos 2020–2026 (R$ 364 milhões, corrigidos pela inflação), educação ficou com <b>0,8%</b> (R$ 2,9 mi). <b>Metade foi para saúde</b>: 50,8% (R$ 185,5 mi). Defesa, 21,8%; segurança pública, 19,4%; ciência e agricultura, nada.',
+    chip:'FATO · ORÇAMENTO DA UNIÃO',
+    fontes:[F.jbr],
+    curto:'Emendas para educação, de cada R$ 100', gab:'R$ 0,80',
+    zap:'De cada R$ 100 em emendas indicadas por Flávio Bolsonaro nos orçamentos 2020–2026, R$ 0,80 foi para educação. Saúde ficou com 50,8%; defesa, 21,8%; segurança pública, 19,4%; ciência e agricultura, nada.' },
+
+  { tipo:'multi',
+    pergunta:'Em 2026, ele deixou de votar em que fração das votações nominais do Senado?',
+    opcoes:['4%','20%','43%','71%'], certa:2,
+    numero:'43%',
+    resposta:'Não registrou voto em <b>43%</b> das 49 deliberações nominais do Senado analisadas em 2026 (até 16/06). <b>A média entre os 81 senadores é 20%</b>; ele é o <b>5º em ausências</b> (Romário, 53%, lidera).',
+    chip:'FATO · VOTAÇÕES NOMINAIS DO SENADO',
+    fontes:[F.em],
+    curto:'Ausência em votações nominais (2026)', gab:'43%',
+    zap:'Flávio Bolsonaro não registrou voto em 43% das 49 deliberações nominais do Senado analisadas em 2026 (até 16/06). A média entre os 81 senadores é 20%; ele é o 5º em ausências.' },
+
+  { tipo:'multi',
+    pergunta:'A quem ele deu a Medalha Tiradentes na Alerj, homenagem que defendeu na TV em 28/08/2026?',
+    opcoes:['A um bombeiro herói de enchente',
+            'A Adriano da Nóbrega, ex-capitão apontado como chefe do Escritório do Crime',
+            'A um médico do SUS',
+            'A um professor da rede pública'], certa:1,
+    resposta:'Flávio concedeu na Alerj a <b>Medalha Tiradentes (2005)</b> e uma moção de louvor (2003) a <b>Adriano Magalhães da Nóbrega</b>, ex-capitão do Bope apontado como chefe do “Escritório do Crime”, condenado por homicídio em 2014 e morto em operação policial em 09/02/2020. Em 28/08/2026, no Jornal Nacional, Flávio disse que ele era um <b>“policial exemplar”</b> à época.',
+    chip:'FATO · ALERJ (2003 E 2005) · JORNAL NACIONAL, 28/08/2026',
+    fontes:[F.itatiaia],
+    curto:'Medalha Tiradentes na Alerj', gab:'Adriano da Nóbrega',
+    zap:'Flávio Bolsonaro concedeu na Alerj a Medalha Tiradentes (2005) e uma moção de louvor (2003) a Adriano da Nóbrega, ex-capitão do Bope apontado como chefe do "Escritório do Crime", condenado por homicídio em 2014. Em 28/08/2026, no Jornal Nacional, disse que ele era um "policial exemplar" à época.' },
+
+  { tipo:'multi',
+    pergunta:'Ele foi condenado no caso da rachadinha da Alerj?',
+    opcoes:['Sim, em 2022',
+            'Sim, mas recorreu',
+            'Não: a denúncia foi anulada e o mérito nunca foi julgado',
+            'O caso ainda está em julgamento'], certa:2,
+    numero:'NUNCA CONDENADO',
+    resposta:'A denúncia do MP-RJ (2020) foi <b>anulada</b>: o STJ anulou as provas em 2021, o STF reconheceu o foro privilegiado, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025. Ele <b>nunca foi condenado</b> e o mérito <b>nunca foi julgado</b>.',
+    chip:'DENÚNCIA ANULADA · NUNCA CONDENADO',
+    fontes:[F.carta],
+    ressalva:'Se alguém disser que ele foi condenado por rachadinha, está errado. Esta pergunta está no quiz porque um arquivo só vale se a parte que favorece o candidato também estiver certa.',
+    curto:'Rachadinha da Alerj', gab:'Nunca condenado',
+    zap:'Sobre a rachadinha da Alerj: a denúncia foi anulada e Flávio Bolsonaro nunca foi condenado. O STJ anulou as provas em 2021, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025. O mérito nunca foi julgado.' },
+
+  { tipo:'multi',
+    pergunta:'Quanto custou a mansão usada como QG da pré-campanha dele, em nome de um coordenador da campanha?',
+    opcoes:['R$ 1,4 milhão','R$ 4 milhões','R$ 14,5 milhões','R$ 42 milhões'], certa:2,
+    numero:'R$ 14,5 milhões',
+    resposta:'A mansão de <b>R$ 14,5 milhões</b> em Brasília está registrada em nome do advogado José Vicente Santini, coordenador da campanha, e foi usada como QG da pré-campanha: R$ 4 milhões de entrada e <b>R$ 10,5 milhões financiados pelo BRB</b>. Em 02/07/2026 um deputado pediu à PF que apurasse a origem dos recursos. Santini diz que a renda vem do escritório e de uma empresa de segurança e que <b>“está tudo declarado”</b>.',
+    chip:'FATO · PEDIDO DE APURAÇÃO À PF EM 02/07/2026',
+    fontes:[F.metropoles],
+    curto:'Mansão usada como QG da pré-campanha', gab:'R$ 14,5 milhões',
+    zap:'A mansão de R$ 14,5 milhões usada como QG da pré-campanha de Flávio Bolsonaro está em nome do advogado José Vicente Santini, coordenador da campanha: R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo BRB. Em 02/07/2026 um deputado pediu à PF que apurasse a origem dos recursos; Santini diz que "está tudo declarado".' }
+];
+
+const N = P.length;
+const tela = document.getElementById('tela');
+let i = 0;
+const resp = Array(N).fill(null);   /* só em memória: nada de localStorage */
+
+/* ---------- utilidades ---------- */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+async function compartilhar(txt){
+  if (navigator.share){
+    try { await navigator.share({ text: txt }); return; }
+    catch(e){ if (e && e.name === 'AbortError') return; }
+  }
+  location.href = 'https://wa.me/?text=' + encodeURIComponent(txt);
+}
+function textoFato(p){
+  const fontes = p.fontes.map(f => f.v + ' — ' + f.u).join('; ');
+  return p.zap + '\n' + (p.fontes.length > 1 ? 'Fontes: ' : 'Fonte: ') + fontes +
+         '\n\nQuiz com ' + N + ' perguntas, todas com fonte: ' + PAGINA();
+}
+function textoFinal(acertos){
+  return 'Acertei ' + acertos + ' de ' + N + ' no quiz sobre Flávio Bolsonaro. Todas as respostas têm fonte: ' + PAGINA();
+}
+const reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- pedaços de tela ---------- */
+function progresso(k){
+  let segs = '';
+  for (let j = 0; j < N; j++){
+    segs += '<i class="' + (resp[j] ? 'feita' : (j === k ? 'atual' : '')) + '"></i>';
+  }
+  return '<div class="prog"><span class="prog-n">' + Math.min(k + 1, N) + ' / ' + N + '</span>' +
+         '<div class="segs" aria-hidden="true">' + segs + '</div></div>';
+}
+function fontesHtml(p){
+  return p.fontes.map(f =>
+    '<p class="fonte">' + esc(f.v) + ' · ' + esc(f.d) + ' · <a href="' + esc(f.u) + '" target="_blank" rel="noopener">ver a fonte</a></p>'
+  ).join('');
+}
+function blocoResposta(p, k, certo, extra){
+  const ultima = k === N - 1;
+  return '<div class="cab"><div class="kicker">Resposta</div>' +
+         '<span class="veredito">' + (certo ? '✓ VOCÊ ACERTOU' : '✗ VOCÊ ERROU') + '</span></div>' +
+         (extra || '') +
+         (p.numero ? '<p class="numero menor">' + esc(p.numero) + '</p>' : '') +
+         '<p class="frase">' + p.resposta + '</p>' +
+         '<div class="chip">' + esc(p.chip) + '</div>' +
+         fontesHtml(p) +
+         (p.ressalva ? '<p class="ressalva">' + esc(p.ressalva) + '</p>' : '') +
+         '<div class="acoes"><button type="button" id="proxima">' + (ultima ? 'Ver o resultado →' : 'Próxima →') + '</button>' +
+         '<button type="button" class="sec" id="zap">Mandar no WhatsApp</button></div>';
+}
+function ligarResposta(p){
+  document.getElementById('proxima').addEventListener('click', () => { i++; render(); });
+  document.getElementById('zap').addEventListener('click', () => compartilhar(textoFato(p)));
+  const r = document.getElementById('resposta');
+  r.hidden = false;
+  const b = r.getBoundingClientRect(), barra = 44;
+  if (b.bottom > window.innerHeight){
+    const dy = Math.min(b.top - barra, b.bottom - window.innerHeight + 12);
+    if (dy > 0) window.scrollBy({ top: dy, behavior: reduzido ? 'auto' : 'smooth' });
+  }
+}
+
+/* ---------- perguntas ---------- */
+function renderPergunta(k){
+  const p = P[k];
+  let html = progresso(k);
+  if (k === 0){
+    html += '<h1>Quanto você sabe sobre ele?</h1>' +
+            '<p class="sub">' + N + ' perguntas sobre fatos com fonte. Sem cadastro, sem cronômetro.</p>';
+  }
+  html += '<h2 class="pergunta" tabindex="-1">' + esc(p.pergunta) + '</h2>';
+
+  if (p.tipo === 'multi'){
+    html += '<div class="opcoes" role="group" aria-label="Opções">';
+    p.opcoes.forEach((o, j) => {
+      html += '<button type="button" class="opc" data-j="' + j + '"><span class="t">' + esc(o) + '</span><span class="m" aria-hidden="true"></span></button>';
+    });
+    html += '</div>';
+  } else {
+    html += '<div class="faixa">' +
+            '<p class="chute" id="chute" aria-live="off">' + esc(p.fmt(p.inicio)) + '</p>' +
+            '<div class="trilho"><input type="range" id="faixa" min="' + p.min + '" max="' + p.max + '" step="' + p.passo + '" value="' + p.inicio + '" aria-label="Seu chute"><i class="anel" id="anel"></i></div>' +
+            '<div class="extremos"><span>' + esc(p.extremos[0]) + '</span><span>' + esc(p.extremos[1]) + '</span></div>' +
+            '</div>' +
+            '<div class="acoes" id="rev"><button type="button" id="revelar">Revelar</button></div>';
+  }
+  html += '<div class="resposta" id="resposta" aria-live="polite" hidden></div>';
+  tela.innerHTML = html;
+
+  if (p.tipo === 'multi'){
+    tela.querySelectorAll('.opc').forEach(b => b.addEventListener('click', () => responderMulti(p, k, +b.dataset.j)));
+  } else {
+    const faixa = document.getElementById('faixa'), chute = document.getElementById('chute');
+    const mostra = () => { chute.textContent = p.fmt(+faixa.value); faixa.setAttribute('aria-valuetext', p.fmt(+faixa.value)); };
+    faixa.addEventListener('input', mostra); mostra();
+    document.getElementById('revelar').addEventListener('click', () => responderFaixa(p, k, +faixa.value));
+  }
+  window.scrollTo(0, 0);
+  tela.querySelector('.pergunta').focus({ preventScroll: true });
+}
+
+function responderMulti(p, k, j){
+  if (resp[k]) return;
+  const certo = j === p.certa;
+  resp[k] = { certo, escolha: j };
+  tela.querySelectorAll('.opc').forEach(b => {
+    const jj = +b.dataset.j;
+    b.disabled = true;
+    if (jj === p.certa){ b.classList.add('certa'); b.querySelector('.m').textContent = '✓'; }
+    else if (jj === j){ b.classList.add('errada'); b.querySelector('.m').textContent = '✗'; }
+  });
+  document.getElementById('resposta').innerHTML = blocoResposta(p, k, certo);
+  ligarResposta(p);
+}
+
+function posicionarAnel(p){
+  const faixa = document.getElementById('faixa'), anel = document.getElementById('anel');
+  if (!faixa || !anel) return;
+  const larg = faixa.getBoundingClientRect().width, polegar = 28;
+  const pct = (p.valor - p.min) / (p.max - p.min);
+  anel.style.left = (polegar / 2 + pct * (larg - polegar)) + 'px';
+  anel.classList.add('on');
+}
+function responderFaixa(p, k, v){
+  if (resp[k]) return;
+  const certo = p.acerta(v);
+  resp[k] = { certo, chute: v };
+  const faixa = document.getElementById('faixa');
+  faixa.disabled = true;
+  document.getElementById('rev').remove();
+  posicionarAnel(p);
+  const dif = Math.abs(v - p.valor);
+  const extra = '<p class="compara">Você chutou <b>' + esc(p.fmt(v)) + '</b>; a resposta é <b>' + esc(p.fmt(p.valor)) + '</b>. ' +
+                'Diferença: <b>' + esc(p.dif(dif)) + '</b>.</p>';
+  document.getElementById('resposta').innerHTML = blocoResposta(p, k, certo, extra);
+  ligarResposta(p);
+}
+window.addEventListener('resize', () => { if (i < N && resp[i] && P[i].tipo === 'faixa') posicionarAnel(P[i]); });
+
+/* ---------- resultado ---------- */
+function renderFim(){
+  const acertos = resp.filter(r => r && r.certo).length;
+  let lista = '';
+  P.forEach((p, k) => {
+    const r = resp[k];
+    lista += '<li><span class="m" aria-label="' + (r && r.certo ? 'acertou' : 'errou') + '">' + (r && r.certo ? '✓' : '✗') + '</span>' +
+             '<span>' + esc(p.curto) + '</span><b>' + esc(p.gab) + '</b>' +
+             (p.tipo === 'faixa' && r ? '<small>seu chute: ' + esc(p.fmt(r.chute)) + '</small>' : '') + '</li>';
+  });
+  tela.innerHTML = progresso(N) +
+    '<div class="kicker">Resultado</div>' +
+    '<p class="frase" style="margin-bottom:2px">Você acertou</p>' +
+    '<p class="numero">' + acertos + ' de ' + N + '</p>' +
+    '<ol class="gabarito" aria-label="Gabarito">' + lista + '</ol>' +
+    '<div class="chip">' + N + ' RESPOSTAS · CADA UMA COM FONTE E STATUS</div>' +
+    '<p class="fonte">Fontes: Poder360, Brasil de Fato, Senado Federal, Jornal de Brasília, Estado de Minas, Itatiaia, CartaCapital, Metrópoles.</p>' +
+    '<div class="acoes"><button type="button" id="zap-fim">Mandar no WhatsApp</button>' +
+    '<button type="button" class="sec" id="refazer">Refazer o quiz</button></div>';
+  document.getElementById('zap-fim').addEventListener('click', () => compartilhar(textoFinal(acertos)));
+  document.getElementById('refazer').addEventListener('click', () => { resp.fill(null); i = 0; render(); });
+  window.scrollTo(0, 0);
+}
+
+function render(){ if (i >= N) renderFim(); else renderPergunta(i); }
+render();
+})();
+</script>
+</body>
+</html>

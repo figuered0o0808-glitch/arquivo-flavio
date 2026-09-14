@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Siga o dinheiro — Arquivo Flávio</title>
+<meta name="description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+/* Siga o dinheiro — só o que esta página acrescenta à base.
+   Uma tela por fluxo: origem à esquerda, destino à direita, a linha cresce,
+   o valor conta. O único vermelho é a ponta da seta quando chega. */
+[hidden]{display:none!important}
+
+.palco{border:1px solid var(--linha); padding:14px 14px 12px; margin:10px 0 0; background:var(--papel)}
+.topo{
+  display:flex; justify-content:space-between; gap:10px;
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--cinza); margin:0 0 6px;
+}
+.topo b{color:var(--tinta); font-weight:700}
+
+.valor{text-align:center; margin:6px 0 4px}
+
+.fluxo{display:grid; grid-template-columns:36% 1fr 36%; align-items:stretch; margin:0 0 12px; cursor:pointer; -webkit-tap-highlight-color:transparent}
+.caixa{
+  border:1.5px solid var(--tinta); padding:9px 10px 10px; min-height:64px;
+  display:flex; flex-direction:column; justify-content:center; overflow-wrap:anywhere;
+}
+.caixa .rot{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin:0 0 3px}
+.caixa .nome{font-size:15px; line-height:1.3; font-weight:600}
+.seta{align-self:center; width:100%; height:32px; display:block; overflow:visible}
+.seta line{stroke:var(--tinta); stroke-width:2}
+.seta polygon{fill:var(--carimbo); opacity:0; transition:opacity .15s}
+
+.obs{font-size:15px; margin:0 0 10px}
+.chip{text-transform:uppercase; line-height:1.5; margin-bottom:10px}
+.fonte a{text-underline-offset:2px}
+
+.acoes{margin-top:10px}
+.acoes button{flex:1; min-height:44px}
+.acoes button[disabled]{opacity:.35; cursor:default}
+.acoes.nav{margin-top:8px}
+
+.fecho{padding:26px 0 10px; text-align:center}
+.fecho .frase{margin:0 auto 14px; max-width:22em}
+.fecho .grande{
+  display:inline-block; padding:10px 4px; min-height:44px; font-size:18px; font-weight:700;
+  color:var(--tinta); text-decoration:underline; text-underline-offset:3px;
+}
+.fecho .acoes{justify-content:center}
+.fecho .acoes button{flex:0 1 auto}
+
+.assina{
+  display:flex; justify-content:space-between; gap:10px; margin-top:14px; padding-top:10px;
+  border-top:1px solid var(--linha); font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--cinza);
+}
+.assina b{color:var(--tinta)}
+
+.vazio{padding:20px 0}
+.rodape{margin:28px 0 0; text-align:center; font-size:17px; font-weight:700}
+.rodape a{color:var(--tinta); text-decoration:underline; text-underline-offset:3px; display:inline-block; padding:10px 4px}
+</style>
+</head>
+<body>
+
+<div class="barra"><span>ARQUIVO FLÁVIO · SIGA O DINHEIRO</span><a href="placar.html">os números</a></div>
+
+<main class="wrap">
+  <h1>Siga o dinheiro</h1>
+  <p class="sub" id="sub">Fluxos de dinheiro do arquivo, um de cada vez, com fonte e status.</p>
+
+  <section class="palco" id="palco" aria-label="Fluxo de dinheiro">
+    <div class="topo"><span id="ind" aria-live="polite"></span><span>origem → destino</span></div>
+
+    <div id="cartao" hidden>
+      <p class="numero menor valor" id="valor" role="img"><span id="pre"></span><span id="num"></span><span id="suf"></span></p>
+
+      <div class="fluxo" id="fluxo" title="Toque para repetir a animação">
+        <div class="caixa"><span class="rot">de</span><span class="nome" id="de"></span></div>
+        <svg class="seta" id="seta" viewBox="0 0 100 32" aria-hidden="true" focusable="false">
+          <line id="linha" x1="0" y1="16" x2="89" y2="16" stroke-dasharray="89" stroke-dashoffset="89"/>
+          <polygon id="ponta" points="88,9 100,16 88,23"/>
+        </svg>
+        <div class="caixa"><span class="rot">para</span><span class="nome" id="para"></span></div>
+      </div>
+
+      <p class="obs" id="obs"></p>
+      <div class="chip" id="chip"></div>
+      <p class="fonte" id="fonte"></p>
+      <p class="fonte" id="fonte2" hidden></p>
+      <p class="ressalva" id="ressalva"></p>
+
+      <div class="acoes"><button type="button" class="sec" id="zap">Mandar no WhatsApp</button></div>
+      <div class="acoes nav">
+        <button type="button" class="sec" id="ant">← Anterior</button>
+        <button type="button" id="prox">Próximo fluxo →</button>
+      </div>
+    </div>
+
+    <div class="fecho" id="fecho" hidden>
+      <p class="frase">Todos os valores são os citados nas fontes.</p>
+      <a class="grande" href="index.html">Ver os 252 registros →</a>
+      <div class="acoes"><button type="button" class="sec" id="rever">← Rever do início</button></div>
+    </div>
+
+    <p class="ressalva vazio" id="vazio" hidden>Não há fluxos para mostrar. <a href="index.html">Ver os 252 registros →</a></p>
+
+    <div class="assina"><span><b>Arquivo Flávio</b> · siga o dinheiro</span><span id="assina-n"></span></div>
+  </section>
+
+  <p class="rodape"><a href="index.html">Ver os 252 registros →</a></p>
+</main>
+
+<noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="index.html">Ver os 252 registros →</a></p></noscript>
+
+<script src="data/dados.js?v=set2026"></script>
+<script>
+(function(){
+'use strict';
+
+var D = window.DOSSIE || {};
+var FD = D.fluxoDinheiro || {};
+var brutos = Array.isArray(FD.fluxos) ? FD.fluxos : [];
+
+/* Fora qualquer fluxo com "134" no valor ou no texto: o TSE mandou suspender
+   propaganda com essa alegação, e este arquivo não repete o número. */
+function tem134(f){ return /134/.test([f.valor, f.de, f.para, f.obs].join(' ')); }
+var FLUXOS = brutos.filter(function(f){ return f && typeof f.valor === 'string' && !tem134(f); });
+var N = FLUXOS.length;
+
+/* Ajuste de texto de dado: o pedido de apuração à PF é de um deputado (Metrópoles, 02/07/2026). */
+function limpa(s){ return String(s || '').replace(/\bPT pediu\b/g, 'um deputado pediu'); }
+
+/* Status jurídico por fluxo — literal, com a fonte do status quando ela não é a do fluxo. */
+var CARTA = {veiculo:'CartaCapital', url:'https://www.cartacapital.com.br/politica/o-que-aconteceu-com-o-caso-da-rachadinha-de-flavio-bolsonaro-suposto-candidato-em-2026/'};
+var PODER = {veiculo:'Poder360', url:'https://www.poder360.com.br/poder-eleicoes-2026/flavio-declara-r-81-milhoes-em-patrimonio-quase-o-dobro-de-lula/'};
+var BDF   = {veiculo:'Brasil de Fato', url:'https://www.brasildefato.com.br/2026/09/09/mendonca-aceita-delacao-de-empresario-que-enviou-r-60-milhoes-a-fundo-ligado-a-eduardo-bolsonaro/'};
+var RACH  = 'A denúncia do MP-RJ (2020) foi anulada: o STJ anulou as provas em 2021, o STF reconheceu o foro privilegiado, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025. Ele nunca foi condenado e o mérito nunca foi julgado.';
+var MASTER = 'Sobre o caso Vorcaro/“Dark Horse”: investigação em curso no STF, sem denúncia aceita nem condenação. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.';
+
+var STATUS = [
+  { quando:function(f){ return /Queiroz/.test(f.de) && /Michelle/.test(f.para); },
+    chip:'Fato noticiado · Flávio não é parte deste repasse', classe:'nenhum',
+    ressalva:'Repasse entre Fabrício Queiroz e Michelle Bolsonaro, segundo a reportagem. Sobre a rachadinha da Alerj: denúncia anulada; Flávio nunca foi condenado e o mérito nunca foi julgado.', extra:CARTA },
+  { quando:function(f){ return f.tema === 'rachadinha' || f.tema === 'patrimonio'; },
+    chip:'Denúncia anulada · nunca condenado', classe:'nenhum', ressalva:RACH, extra:CARTA },
+  { quando:function(f){ return /Lago Sul/.test(f.para); },
+    chip:'Fato noticiado', classe:'',
+    ressalva:'Na declaração de patrimônio ao TSE (registro da candidatura, 13/08/2026), o maior item é uma casa no Lago Sul, de R$ 6,2 milhões. A declaração usa valor de aquisição.', extra:PODER },
+  { quando:function(f){ return /QG/.test(f.para); },
+    chip:'Pedido de apuração à PF (02/07/2026)', classe:'',
+    ressalva:'Imóvel de R$ 14,5 milhões registrado em nome do advogado José Vicente Santini, coordenador da campanha: R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo BRB. Santini diz que a renda vem do escritório e de uma empresa de segurança e que “está tudo declarado”.' },
+  { quando:function(f){ return /Zettel/.test(f.de); },
+    chip:'Fato noticiado · campanha de 2022', classe:'nenhum',
+    ressalva:'Doação à campanha presidencial de 2022. ' + MASTER, extra:BDF },
+  { quando:function(f){ return /Havengate/.test(f.para); },
+    chip:'Investigação em curso (STF) · sem condenação', classe:'',
+    ressalva:'Inquérito autorizado pelo ministro André Mendonça em 22/07/2026; Flávio é investigado. A delação homologada em 09/09/2026 descreve 7 repasses em 2025, a pedido de Vorcaro, somando US$ 12,3 milhões (cerca de R$ 63 milhões). Sem denúncia aceita nem condenação. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.' },
+  { quando:function(f){ return f.tema === 'eleicoes'; },
+    chip:'Fato · prestação de contas ao TSE', classe:'',
+    ressalva:'Prestação de contas parcial ao TSE, consultada em 26/08/2026: R$ 6,01 de pessoas físicas; R$ 42 milhões do PL.' },
+  { quando:function(f){ return f.tema === 'senado'; },
+    chip:'Fato · Orçamento da União', classe:'',
+    ressalva:'Valores de 2020–2026 corrigidos pela inflação. Saúde 50,8% (R$ 185,5 mi), defesa 21,8% (R$ 79,5 mi), segurança pública 19,4% (R$ 70,9 mi), educação 0,8% (R$ 2,9 mi); ciência e agricultura, nada.' }
+];
+var PADRAO = { chip:'Fato noticiado', classe:'nenhum', ressalva:'' };
+function statusDe(f){
+  for (var i = 0; i < STATUS.length; i++){ if (STATUS[i].quando(f)) return STATUS[i]; }
+  return PADRAO;
+}
+
+/* "R$ 2,08 mi" → prefixo "R$ ", número 2,08, sufixo " mi". O prefixo guarda "~" e "até". */
+function partes(valor){
+  var m = /^(.*?)(\d+(?:,\d+)?)(.*)$/.exec(valor);
+  if (!m) return {pre:valor, num:'', suf:'', alvo:0, dec:0};
+  var dec = (m[2].split(',')[1] || '').length;
+  return {pre:m[1], num:m[2], suf:m[3], alvo:parseFloat(m[2].replace(',', '.')), dec:dec};
+}
+function fmt(v, dec){ return v.toFixed(dec).replace('.', ','); }
+
+var $ = function(id){ return document.getElementById(id); };
+var el = {
+  sub:$('sub'), palco:$('palco'), ind:$('ind'), cartao:$('cartao'), fecho:$('fecho'), vazio:$('vazio'),
+  valor:$('valor'), pre:$('pre'), num:$('num'), suf:$('suf'), fluxo:$('fluxo'), seta:$('seta'),
+  linha:$('linha'), ponta:$('ponta'), de:$('de'), para:$('para'), obs:$('obs'), chip:$('chip'),
+  fonte:$('fonte'), fonte2:$('fonte2'), ressalva:$('ressalva'), zap:$('zap'), ant:$('ant'),
+  prox:$('prox'), rever:$('rever'), assinaN:$('assina-n')
+};
+
+var reduz = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+var raf = 0, L = 89, prog = 0, atual = 0;
+
+function medir(){
+  var W = Math.max(40, Math.round(el.seta.getBoundingClientRect().width));
+  el.seta.setAttribute('viewBox', '0 0 ' + W + ' 32');
+  L = W - 11;
+  el.linha.setAttribute('x2', L);
+  el.linha.setAttribute('stroke-dasharray', L);
+  el.ponta.setAttribute('points', (W - 12) + ',9 ' + W + ',16 ' + (W - 12) + ',23');
+  aplicar(prog, prog >= 1);
+}
+function aplicar(e, chegou){
+  el.linha.setAttribute('stroke-dashoffset', L * (1 - e));
+  el.ponta.style.opacity = chegou ? 1 : 0;
+}
+function animar(pt){
+  if (raf) cancelAnimationFrame(raf);
+  if (reduz){ prog = 1; el.num.textContent = pt.num; aplicar(1, true); return; }
+  var dur = 1200, t0 = performance.now();
+  prog = 0; el.num.textContent = fmt(0, pt.dec); aplicar(0, false);
+  function frame(t){
+    var p = Math.min(1, (t - t0) / dur);
+    var e = 1 - Math.pow(1 - p, 3);
+    prog = e;
+    el.num.textContent = p >= 1 ? pt.num : fmt(pt.alvo * e, pt.dec);
+    aplicar(e, p >= 0.97);
+    if (p < 1) raf = requestAnimationFrame(frame); else raf = 0;
+  }
+  raf = requestAnimationFrame(frame);
+}
+
+function linkFonte(p, rotulo, f){
+  while (p.firstChild) p.removeChild(p.firstChild);
+  var ok = /^https?:\/\//.test(f.url || '');
+  p.appendChild(document.createTextNode(rotulo + ': ' + (f.veiculo || 'fonte') + (ok ? ' · ' : '')));
+  if (ok){
+    var a = document.createElement('a');
+    a.href = f.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'ver a fonte';
+    p.appendChild(a);
+  }
+}
+function setHash(h){ try { history.replaceState(null, '', '#' + h); } catch(e){} }
+
+function mostrar(i){
+  atual = i;
+  if (i >= N){
+    el.cartao.hidden = true; el.fecho.hidden = false;
+    el.ind.textContent = 'fim · ' + N + ' fluxos';
+    el.assinaN.textContent = 'fim';
+    setHash('fim'); return;
+  }
+  var f = FLUXOS[i], s = statusDe(f), pt = partes(f.valor);
+  el.fecho.hidden = true; el.cartao.hidden = false;
+  el.ind.textContent = 'fluxo ' + (i + 1) + ' / ' + N;
+  el.de.textContent = limpa(f.de);
+  el.para.textContent = limpa(f.para);
+  el.pre.textContent = pt.pre; el.suf.textContent = pt.suf;
+  el.valor.setAttribute('aria-label', f.valor);
+  el.obs.textContent = limpa(f.obs);
+  el.chip.textContent = s.chip;
+  el.chip.className = 'chip' + (s.classe ? ' ' + s.classe : '');
+  linkFonte(el.fonte, 'Fonte', f.fonte || {});
+  if (s.extra){ linkFonte(el.fonte2, 'Status', s.extra); el.fonte2.hidden = false; } else { el.fonte2.hidden = true; }
+  el.ressalva.textContent = s.ressalva; el.ressalva.hidden = !s.ressalva;
+  el.ant.disabled = (i === 0);
+  el.prox.textContent = (i === N - 1) ? 'Concluir →' : 'Próximo fluxo →';
+  el.assinaN.textContent = (i + 1) + '/' + N;
+  setHash(i + 1);
+  medir(); animar(pt);
+}
+
+function ir(d){ var i = atual + d; if (i < 0 || i > N) return; mostrar(i); window.scrollTo({top:0, behavior:reduz ? 'auto' : 'smooth'}); }
+
+/* Compartilhar: a frase, o status e a fonte vão dentro da mensagem; o endereço sai de location. */
+function base(){ return location.protocol === 'file:' ? location.href.split('#')[0] : location.origin + location.pathname; }
+function mensagem(i){
+  var f = FLUXOS[i], s = statusDe(f);
+  return limpa(f.de) + ' → ' + limpa(f.para) + ': ' + f.valor + ' (' + limpa(f.obs) + ').\n' +
+    'Status: ' + s.chip + '.\n' +
+    'Fonte: ' + (f.fonte && f.fonte.veiculo || '') + (f.fonte && f.fonte.url ? ' — ' + f.fonte.url : '') +
+    '\n\nArquivo Flávio · Siga o dinheiro, fluxo ' + (i + 1) + ' de ' + N + ': ' + base() + '#' + (i + 1);
+}
+
+/* Estado inicial */
+if (N === 0){
+  el.cartao.hidden = true; el.fecho.hidden = true; el.vazio.hidden = false; el.ind.textContent = 'sem fluxos';
+  return;
+}
+el.sub.textContent = N + ' fluxos, um de cada vez. ' + (FD.nota || '');
+
+function deHash(){
+  var h = (location.hash || '').slice(1);
+  if (h === 'fim') return N;
+  var n = parseInt(h, 10);
+  return (n >= 1 && n <= N) ? n - 1 : 0;
+}
+mostrar(deHash());
+
+el.prox.addEventListener('click', function(){ ir(1); });
+el.ant.addEventListener('click', function(){ ir(-1); });
+el.rever.addEventListener('click', function(){ mostrar(0); window.scrollTo({top:0, behavior:reduz ? 'auto' : 'smooth'}); });
+el.fluxo.addEventListener('click', function(){ if (atual < N) animar(partes(FLUXOS[atual].valor)); });
+el.zap.addEventListener('click', function(){
+  var txt = mensagem(atual);
+  if (navigator.share){
+    navigator.share({text:txt}).catch(function(e){
+      if (e && e.name === 'AbortError') return;
+      location.href = 'https://wa.me/?text=' + encodeURIComponent(txt);
+    });
+    return;
+  }
+  location.href = 'https://wa.me/?text=' + encodeURIComponent(txt);
+});
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'ArrowRight') ir(1);
+  else if (e.key === 'ArrowLeft') ir(-1);
+});
+
+var tx = 0, ty = 0, tt = 0;
+el.palco.addEventListener('touchstart', function(e){ var t = e.changedTouches[0]; tx = t.clientX; ty = t.clientY; tt = Date.now(); }, {passive:true});
+el.palco.addEventListener('touchend', function(e){
+  var t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty;
+  if (Date.now() - tt < 600 && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) ir(dx < 0 ? 1 : -1);
+}, {passive:true});
+
+window.addEventListener('resize', function(){ if (atual < N) medir(); });
+window.addEventListener('hashchange', function(){ var i = deHash(); if (i !== atual) mostrar(i); });
+})();
+</script>
+</body>
+</html>
