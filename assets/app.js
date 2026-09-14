@@ -61,10 +61,10 @@
 
   /* ---------------- Router ---------------- */
   function showView(name){
-    if(name==='rede'){ location.href='close-friends.html'; return; }     // a rede virou página própria
     $$('.view').forEach(v=>v.classList.toggle('active', v.id==='view-'+name));
     $$('.tab').forEach(t=>t.classList.toggle('active', t.dataset.view===name));
     const at=$('.site-header .tab.active'); if(at&&at.scrollIntoView) at.scrollIntoView({inline:'center',block:'nearest'});
+    if(name==='rede') Grafo.ensure();
     if(name==='noticias') Noticias.ensure();
     if(location.hash !== '#'+name) history.replaceState(null,'','#'+name);
   }
@@ -90,9 +90,20 @@
     }).join('');
     return `<div class="moneyflow-card"><div class="pc-h">💰 Siga o dinheiro</div>${rows}<div class="pc-src">${esc(f.nota||'')}</div></div>`;
   }
+  // presos ou condenados com ligação DIRETA a ele (não a rede inteira)
+  function presosDiretos(){
+    const g=D.grafo||{nodes:[],edges:[]}; const viz=new Set();
+    g.edges.forEach(e=>{ if(e.de==='flavio') viz.add(e.para); if(e.para==='flavio') viz.add(e.de); });
+    return g.nodes.filter(n=>viz.has(n.id) && (n.situacao||[]).some(x=>x==='preso'||x==='condenado'));
+  }
+  function placarHTML(){
+    const p = (D.placar||[]).slice(); const pd = presosDiretos();
+    if(pd.length) p.push({numero:String(pd.length), rotulo:'pessoas ligadas diretamente a ele estiveram presas ou foram condenadas', destino:'rede'});
+    return `<div class="placar-band">${p.map(x=>`<button class="pl" data-dest="${esc(x.destino)}"><span class="pn">${esc(x.numero)}</span><span class="pr">${esc(x.rotulo)}</span></button>`).join('')}</div>`;
+  }
   function renderTemas(){
     arqItens.style.display='none'; arqGrid.style.display='grid';
-    arqGrid.innerHTML = fluxoMoneyHTML() + D.temas.map(t=>{
+    arqGrid.innerHTML = placarHTML() + D.temas.map(t=>{
       const its = itensDoTema(t.id);
       const mid = its.filter(i=>(i.midia||[]).length).length;
       return `<div class="folder" data-tema="${t.id}">
@@ -104,6 +115,10 @@
       </div>`;
     }).join('');
     $$('.folder', arqGrid).forEach(f=> f.addEventListener('click', ()=>abrirTema(f.dataset.tema)));
+    $$('.placar-band .pl', arqGrid).forEach(b=> b.addEventListener('click', ()=>{
+      const d=b.dataset.dest||''; if(d==='rede'){ showView('rede'); Grafo.focus('flavio'); window.scrollTo(0,0); }
+      else if(d.startsWith('tema:')){ abrirTema(d.slice(5)); window.scrollTo(0,0); }
+    }));
   }
 
   function cardHTML(i){
@@ -142,7 +157,7 @@
       abrirDetalhe(c.dataset.item);
     }));
     $$('.pchip', root).forEach(p=> p.addEventListener('click', e=>{
-      e.stopPropagation(); location.href='close-friends.html#'+p.dataset.pessoa;
+      e.stopPropagation(); showView('rede'); Grafo.focus(p.dataset.pessoa);
     }));
   }
 
@@ -177,7 +192,7 @@
         <div class="block"><div class="lbl">Fontes ${i.lastro?'· '+lastroBadge(i.lastro):''}</div><div class="src">${fontesHTML(i.fontes)}</div></div>
       </div>`;
     $('#fechar').addEventListener('click', fechar);
-    $$('.pchip', sheet).forEach(p=>p.addEventListener('click', ()=>{ location.href='close-friends.html#'+p.dataset.pessoa; }));
+    $$('.pchip', sheet).forEach(p=>p.addEventListener('click', ()=>{fechar();showView('rede');Grafo.focus(p.dataset.pessoa);}));
     overlay.classList.add('open');
   }
 
@@ -335,7 +350,7 @@
     function showLabel(n){
       const act = activeIds();
       if(act) return act.has(n.id) || n===hover;
-      return n===hover || n.id==='flavio' || n.deg>=8 || cam.s>1.45;
+      return n===hover || n.id==='flavio' || n.deg>=6 || cam.s>1.25;
     }
     function draw(){
       ctx.clearRect(0,0,W,H);
@@ -350,6 +365,10 @@
         ctx.beginPath(); ctx.moveTo(SX(e.a),SY(e.a)); ctx.lineTo(SX(e.b),SY(e.b)); ctx.stroke();
       });
       ctx.textAlign='center'; ctx.lineJoin='round';
+      const caixas=[];   // rótulos já pintados neste quadro
+      const livre=(x,y,w,h)=>{ for(const c of caixas){ if(x<c.x+c.w && x+w>c.x && y<c.y+c.h && y+h>c.y) return false; } caixas.push({x,y,w,h}); return true; };
+      // prioridade de rótulo: selecionado, hover, Flávio, maior grau
+      const ordem=[...nodes].sort((a,b)=>(b.id===sel)-(a.id===sel) || (b===hover)-(a===hover) || (b.id==='flavio')-(a.id==='flavio') || b.deg-a.deg);
       nodes.forEach(n=>{
         const near = act ? act.has(n.id) : true;
         const ring = (n.id===sel) || (n===hover) || (filterSet && filterSet.has(n.id));
@@ -366,18 +385,28 @@
           ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fillStyle=grupoCor(n.grupo); ctx.fill();
         }
         ctx.shadowBlur=0;
-        if(ring){ ctx.lineWidth=2.5; ctx.strokeStyle='#fff'; ctx.stroke(); }
-        if(showLabel(n)){
-          const lab = n.nome.length>22 ? n.nome.slice(0,21)+'…' : n.nome;
-          ctx.font=(n.id==='flavio'?'600 ':'')+'11px Inter, system-ui';
-          ctx.lineWidth=3; ctx.strokeStyle='rgba(10,11,15,.9)'; ctx.strokeText(lab, x, y+r+12);
-          ctx.fillStyle = near?'#eef0f5':'#aab0bd'; ctx.fillText(lab, x, y+r+12);
-        }
+        // o anel vermelho diz o que importa: preso ou condenado
+        if(sitMatch(n,SIT[0]) || sitMatch(n,SIT[1])){ ctx.lineWidth=2.5; ctx.strokeStyle='#ff5c5c'; ctx.beginPath(); ctx.arc(x,y,r+2.5,0,Math.PI*2); ctx.stroke(); }
+        if(ring){ ctx.lineWidth=2.5; ctx.strokeStyle='#fff'; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.stroke(); }
+        ctx.globalAlpha=1;
+      });
+      // rótulos por último, em ordem de prioridade, sem sobreposição
+      ordem.forEach(n=>{
+        if(!showLabel(n)) return;
+        const near = act ? act.has(n.id) : true;
+        const x=SX(n), y=SY(n), r=Math.max(4, n.r*cam.s);
+        const lab = n.nome.length>22 ? n.nome.slice(0,21)+'…' : n.nome;
+        ctx.font=(n.id==='flavio'?'700 13px ':'600 12px ')+'system-ui, -apple-system, Roboto, sans-serif';
+        const w=ctx.measureText(lab).width+6, h=15;
+        if(!livre(x-w/2, y+r+2, w, h)) return;
+        ctx.globalAlpha = near?1:0.18;
+        ctx.lineWidth=3; ctx.strokeStyle='rgba(6,10,8,.92)'; ctx.strokeText(lab, x, y+r+12);
+        ctx.fillStyle = near?'#eef0f5':'#aab0bd'; ctx.fillText(lab, x, y+r+12);
         ctx.globalAlpha=1;
       });
     }
     function loop(){ step(); draw(); raf=requestAnimationFrame(loop); }
-    function nodeAt(mx,my){ for(let i=nodes.length-1;i>=0;i--){ const n=nodes[i]; const dx=mx-SX(n),dy=my-SY(n); const rr=Math.max(6,n.r*cam.s)+3; if(dx*dx+dy*dy<=rr*rr) return n; } return null; }
+    function nodeAt(mx,my){ for(let i=nodes.length-1;i>=0;i--){ const n=nodes[i]; const dx=mx-SX(n),dy=my-SY(n); const rr=Math.max(6,n.r*cam.s)+9; if(dx*dx+dy*dy<=rr*rr) return n; } return null; }
 
     function fitView(){
       if(!nodes.length) return;
@@ -387,6 +416,8 @@
       cam.s = Math.max(0.32, Math.min(1.6, Math.min((W-pad)/bw, (H-pad)/bh)));
       cam.tx = W/2 - ((minX+maxX)/2)*cam.s;
       cam.ty = H/2 - ((minY+maxY)/2)*cam.s;
+      // em tela pequena, começa mais perto, com Flávio no centro: o dedo precisa alcançar os nós
+      if(W<600){ const f=nodes.find(n=>n.id==='flavio'); if(f){ cam.s=Math.max(cam.s*1.5, .7); cam.tx=W/2-f.wx*cam.s; cam.ty=H/2-f.wy*cam.s; } }
     }
 
     // ---- placar (visão geral) ----
@@ -394,8 +425,9 @@
       sel=null; filterSet=null; filterCat=null;
       const total = nodes.length;
       const rows = SIT.map(c=>({...c, ids: nodes.filter(n=>sitMatch(n,c)).map(n=>n.id)}));
+      const pd = presosDiretos().length;
       painel.innerHTML = `<h3 style="margin-bottom:2px">Situação penal da rede</h3>
-        <div class="papel">${total} nomes no mapa · clique numa linha para destacar</div>
+        <div class="papel">${total} nomes no mapa. <b style="color:var(--text)">${pd} pessoas ligadas diretamente a ele estiveram presas ou foram condenadas.</b> Toque numa linha para destacar.</div>
         <div class="stats">${rows.map(r=>`<button class="stat-row" data-cat="${r.key}">
           <span class="se">${r.emoji}</span><span class="sl">${r.label}</span><span class="sn">${r.ids.length}</span></button>`).join('')}</div>
         <div class="ph" style="margin-top:12px">As categorias podem se sobrepor (ex.: alguém denunciado e também investigado).</div>`;
@@ -454,20 +486,37 @@
     function select(id){ filterSet=null; filterCat=null; sel=id; alpha=Math.max(alpha,.4); painelPessoa(id); }
 
     function bind(){
-      canvas.addEventListener('mousedown', e=>{ const r=canvas.getBoundingClientRect(); const mx=e.clientX-r.left,my=e.clientY-r.top;
-        const n=nodeAt(mx,my); downPos={mx,my}; moved=0; last={mx,my};
-        if(n){ drag=n; } else { panning=true; } });
-      window.addEventListener('mousemove', e=>{
-        const r=canvas.getBoundingClientRect(); const mx=e.clientX-r.left,my=e.clientY-r.top;
+      // Pointer Events cobrem mouse e toque; dois dedos = pinça (zoom).
+      const pts = new Map(); let pinch=null;
+      const pos = e => { const r=canvas.getBoundingClientRect(); return {mx:e.clientX-r.left, my:e.clientY-r.top}; };
+      canvas.addEventListener('pointerdown', e=>{
+        canvas.setPointerCapture(e.pointerId); pts.set(e.pointerId, pos(e));
+        if(pts.size===2){ const [a,b]=[...pts.values()]; pinch={d:Math.hypot(a.mx-b.mx,a.my-b.my), s:cam.s, cx:(a.mx+b.mx)/2, cy:(a.my+b.my)/2}; drag=null; panning=false; return; }
+        const {mx,my}=pos(e); const n=nodeAt(mx,my); downPos={mx,my}; moved=0; last={mx,my};
+        if(n){ drag=n; } else { panning=true; }
+      });
+      canvas.addEventListener('pointermove', e=>{
+        const {mx,my}=pos(e);
+        if(pts.has(e.pointerId)) pts.set(e.pointerId,{mx,my});
+        if(pinch && pts.size>=2){
+          const [a,b]=[...pts.values()]; const d=Math.hypot(a.mx-b.mx,a.my-b.my);
+          const ns=Math.max(0.25, Math.min(3, pinch.s*(d/pinch.d)));
+          const cx=(a.mx+b.mx)/2, cy=(a.my+b.my)/2;
+          cam.tx = cx - (pinch.cx-cam.tx)*(ns/cam.s) - (pinch.cx-cx)*0; cam.ty = cy - (pinch.cy-cam.ty)*(ns/cam.s);
+          cam.s=ns; pinch.cx=cx; pinch.cy=cy; moved=99; return;
+        }
         if(drag){ drag.wx=(mx-cam.tx)/cam.s; drag.wy=(my-cam.ty)/cam.s; drag.vx=drag.vy=0; alpha=Math.max(alpha,.3); moved+=Math.abs(mx-last.mx)+Math.abs(my-last.my); last={mx,my}; return; }
         if(panning){ cam.tx+=mx-last.mx; cam.ty+=my-last.my; moved+=Math.abs(mx-last.mx)+Math.abs(my-last.my); last={mx,my}; return; }
-        // hover
-        if(mx>=0&&my>=0&&mx<=W&&my<=H){ const h=nodeAt(mx,my); if(h!==hover){ hover=h; canvas.style.cursor=h?'pointer':'grab'; } }
+        if(e.pointerType==='mouse' && mx>=0&&my>=0&&mx<=W&&my<=H){ const h=nodeAt(mx,my); if(h!==hover){ hover=h; canvas.style.cursor=h?'pointer':'grab'; } }
       });
-      window.addEventListener('mouseup', e=>{
-        if(downPos && moved<5){ const r=canvas.getBoundingClientRect(); const mx=e.clientX-r.left,my=e.clientY-r.top; const n=nodeAt(mx,my);
+      const fim = e=>{
+        pts.delete(e.pointerId);
+        if(pinch){ if(pts.size<2){ pinch=null; drag=null; panning=false; downPos=null; } return; }
+        if(downPos && moved<6){ const {mx,my}=pos(e); const n=nodeAt(mx,my);
           if(n) select(n.id); else if(mx>=0&&my>=0&&mx<=W&&my<=H){ showOverview(); } }
-        drag=null; panning=false; downPos=null; });
+        drag=null; panning=false; downPos=null;
+      };
+      canvas.addEventListener('pointerup', fim); canvas.addEventListener('pointercancel', fim);
       canvas.addEventListener('wheel', e=>{ e.preventDefault(); const r=canvas.getBoundingClientRect(); const mx=e.clientX-r.left,my=e.clientY-r.top;
         const f=e.deltaY<0?1.12:0.89; const ns=Math.max(0.25, Math.min(3, cam.s*f));
         cam.tx = mx - (mx-cam.tx)*(ns/cam.s); cam.ty = my - (my-cam.ty)*(ns/cam.s); cam.s=ns; }, {passive:false});

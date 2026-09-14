@@ -19,17 +19,17 @@
 <meta property="og:image:alt" content="R$ 6,01 doados por pessoas físicas contra R$ 42 milhões do partido.">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="stylesheet" href="assets/app.css?v=set2026c">
+<link rel="stylesheet" href="assets/app.css?v=set2026f">
 <link rel="stylesheet" href="assets/header.css?v=2">
 </head>
 <body>
 
 <header class="site-header">
   <div class="hrow">
-    <div class="brand"><a class="mark" href="index.html">ARQUIVO_FLÁVIO</a><span class="tag" id="meta-sub">dossiê de registro público</span></div>
+    <div class="brand"><a class="mark" href="index.html">ARQUIVO_FLÁVIO</a><span class="tag" id="meta-sub">o que o registro público diz sobre o candidato</span></div>
     <nav class="tabs">
       <button class="tab active" data-view="arquivo">BolsoDrive</button>
-      <a class="tab" href="close-friends.html">Close Friends</a>
+      <button class="tab" data-view="rede">Close Friends</button>
       <a class="tab" href="siga-o-dinheiro.html">Siga o dinheiro</a>
       <a class="tab" href="quiz.html">Quiz</a>
       <button class="tab" data-view="cronologia">Cronologia</button>
@@ -45,7 +45,7 @@
   <section id="view-arquivo" class="view active">
     <div class="view-head">
       <h1>BolsoDrive</h1>
-      <p>O arquivo de tudo: vídeos, fotos, notícias e documentos de registro público, em pastas por tema. Cada item traz status jurídico e fonte. Toque numa pessoa citada para vê-la no Close Friends.</p>
+      <p class="tese"><b>Flávio Bolsonaro quer ser presidente.</b> Este arquivo mostra, com fonte em cada linha, o que ele fez com o mandato, com o dinheiro público e com quem andou. Os números abaixo resumem o caso; cada um abre a pasta que o prova.</p>
     </div>
     <div class="toolbar">
       <div class="search">🔎 <input id="busca" placeholder="Buscar no arquivo (caso, pessoa, tema)…" autocomplete="off"></div>
@@ -54,11 +54,31 @@
     <div id="arquivo-itens" style="display:none"></div>
   </section>
 
+  <!-- REDE -->
+  <section id="view-rede" class="view">
+    <div class="view-head">
+      <h1>Close Friends</h1>
+      <p>Quem anda com ele — e o que a Justiça diz de cada um. Toque numa pessoa para ver os vínculos e a situação penal; arraste para mover, pince para dar zoom. O anel vermelho marca quem está preso ou foi condenado.</p>
+    </div>
+    <div class="toolbar">
+      <div class="search"><input id="rede-search" placeholder="buscar pessoa na rede…" autocomplete="off"></div>
+      <a class="backlink" href="close-friends.html">◎ ver em órbita</a>
+    </div>
+    <div class="rede-wrap">
+      <div class="canvas-box">
+        <canvas id="grafo"></canvas>
+        <button id="grafo-fit" title="Centralizar / ajustar">⤢ ajustar</button>
+        <div class="legenda" id="legenda"></div>
+      </div>
+      <aside id="rede-painel" class="rede-painel"><div class="ph">Carregando…</div></aside>
+    </div>
+  </section>
+
   <!-- CRONOLOGIA -->
   <section id="view-cronologia" class="view">
     <div class="view-head">
       <h1>A Cronologia</h1>
-      <p>Log de eventos: marcos curados + todos os itens datados do arquivo, por ano. Alterne para "faixas" para ver a vida de cada caso.</p>
+      <p>Vinte anos de casos, um atrás do outro: da rachadinha na Alerj ao banqueiro preso do filme sobre o pai. Alterne para "faixas" para ver a vida de cada caso.</p>
     </div>
     <div class="cron-toggle">
       <button class="cron-tab active" data-cron="log">log</button>
@@ -88,7 +108,7 @@
   <section id="view-chat" class="view">
     <div class="view-head">
       <h1>FlávioGPT</h1>
-      <p>Pergunte sobre os casos. As respostas saem do BolsoDrive documentado — com status e fonte — e linkam o item de origem.</p>
+      <p>Pergunte o que quiser sobre ele. As respostas saem só do arquivo — com status e fonte — e linkam o registro de origem.</p>
     </div>
     <div class="chat-shell">
       <div class="chat-disc">Responde só com base no arquivo. Não fala em nome do senador nem inventa fatos.</div>
@@ -110,7 +130,7 @@
 
 <div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
 
-<script src="data/dados.js?v=set2026b"></script>
-<script src="assets/app.js?v=set2026c"></script>
+<script src="data/dados.js?v=set2026c"></script>
+<script src="assets/app.js?v=set2026f"></script>
 </body>
 </html>

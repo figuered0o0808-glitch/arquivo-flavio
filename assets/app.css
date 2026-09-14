@@ -121,7 +121,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
   background:linear-gradient(transparent 49%,rgba(116,255,150,.04) 50%,transparent 51%) 0 0/100% 30px,
             linear-gradient(90deg,transparent 49%,rgba(116,255,150,.04) 50%,transparent 51%) 0 0/30px 100%;
   box-shadow:inset 0 0 120px rgba(0,0,0,.7)}
-#grafo{position:relative;z-index:1;width:100%;height:100%;display:block;cursor:grab}
+#grafo{position:relative;z-index:1;width:100%;height:100%;display:block;cursor:grab;touch-action:none}
 #grafo-fit{position:absolute;z-index:2;top:10px;right:10px;font-size:11px;color:var(--amber);background:rgba(6,10,8,.85);border:1px solid var(--line2);border-radius:2px;padding:6px 10px;text-transform:uppercase}
 #grafo-fit:hover{box-shadow:0 0 10px rgba(255,176,46,.3)}
 .legenda{position:absolute;z-index:2;left:10px;bottom:10px;display:flex;gap:12px;flex-wrap:wrap;font-size:10.5px;color:var(--muted);background:rgba(6,10,8,.8);padding:7px 10px;border:1px solid var(--line);border-radius:2px;max-width:82%}
@@ -235,8 +235,19 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 
 @media (max-width:860px){
   .rede-wrap{grid-template-columns:1fr}
-  .canvas-box{height:440px}
+  .canvas-box{height:440px;overflow:visible;margin-bottom:96px}
+  .legenda{top:calc(100% + 8px);bottom:auto;left:0;max-width:100%;background:transparent;border:0;padding:0}
 
   .tl-year{top:0}
   .flux-mid{display:block;margin:2px 0}
 }
+
+/* placar da home: os números que resumem o caso */
+.placar-band{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:0 0 6px}
+.placar-band .pl{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius);padding:12px 12px 10px;cursor:pointer;color:var(--text);min-height:104px}
+.placar-band .pl:hover{border-color:var(--amber)}
+.placar-band .pn{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--amber);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.placar-band .pr{font-size:12.5px;line-height:1.35;color:var(--muted)}
+.tese{font-size:17px;line-height:1.5;color:var(--text);max-width:44em;margin:0 0 10px}
+.tese b{color:var(--amber);font-weight:700}
+@media (max-width:480px){.placar-band{grid-template-columns:1fr 1fr}.placar-band .pn{font-size:22px}}
