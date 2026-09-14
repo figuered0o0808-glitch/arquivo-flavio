@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Close Friends — Arquivo Flávio</title>
+<meta name="description" content="As ligações diretas de Flávio Bolsonaro, uma pessoa por vez, com a situação de cada uma e a fonte de cada vínculo.">
+<style>
+:root{
+  --papel:#faf9f7; --tinta:#16130f; --cinza:#6b6560; --cinza2:#a39d95;
+  --azul:#1b3a5c; --carimbo:#b23a2e; --linha:#e2ded7; --leve:#f0ede8;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--papel); color:var(--tinta); font-family:var(--sans); font-size:16px; line-height:1.45; -webkit-text-size-adjust:100%}
+a{color:var(--azul)}
+button{font-family:var(--sans)}
+
+.barra{
+  position:sticky; top:0; z-index:5; background:var(--tinta); color:var(--papel);
+  font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+  padding:7px 16px; display:flex; justify-content:space-between; gap:12px;
+}
+.barra a{color:var(--papel)}
+
+.wrap{max-width:560px; margin:0 auto; padding:16px 16px 60px}
+h1{font-size:26px; margin:6px 0 4px; letter-spacing:-.01em}
+.sub{color:var(--cinza); margin:0 0 14px; font-size:15px}
+
+/* trilhas guiadas */
+.trilhas{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 10px}
+.trilhas button{
+  font-size:13px; padding:8px 12px; border:1.5px solid var(--tinta); background:transparent;
+  color:var(--tinta); border-radius:999px; cursor:pointer; font-weight:600;
+}
+.trilhas button.on{background:var(--tinta); color:var(--papel)}
+
+/* caminho percorrido */
+.migalhas{font-family:var(--mono); font-size:12px; color:var(--cinza); margin:8px 0 6px; min-height:18px; display:flex; flex-wrap:wrap; gap:4px; align-items:center}
+.migalhas button{
+  font-family:var(--mono); font-size:12px; background:none; border:0; padding:0; color:var(--azul);
+  text-decoration:underline; text-underline-offset:2px; cursor:pointer;
+}
+.migalhas b{color:var(--tinta); font-weight:700}
+
+/* órbita */
+.orbita{position:relative; width:100%; aspect-ratio:1/1.08; margin:4px auto 0; user-select:none; -webkit-user-select:none}
+.orbita svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.orbita line{stroke:var(--linha); stroke-width:1.5; transition:stroke .25s}
+.orbita line.on{stroke:var(--tinta); stroke-width:2}
+.no{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:96px; text-align:center; cursor:pointer; opacity:1;
+  transition:left .45s cubic-bezier(.2,.7,.2,1), top .45s cubic-bezier(.2,.7,.2,1), opacity .3s;
+  -webkit-tap-highlight-color:transparent;
+}
+.no.some{opacity:0; pointer-events:none}
+.no .disco{
+  width:56px; height:56px; border-radius:50%; margin:0 auto 5px; background:var(--leve);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  font-weight:700; font-size:18px; color:var(--cinza); border:2px dotted var(--cinza2);
+  transition:transform .2s, box-shadow .2s;
+}
+.no .disco img{width:100%; height:100%; object-fit:cover; display:block}
+.no.medio .disco{border:2.5px solid var(--tinta)}
+.no.grave .disco{border:3px solid var(--carimbo)}
+.no.centro .disco{width:84px; height:84px; font-size:26px}
+.no.centro{width:120px; cursor:default}
+.no.sel .disco{box-shadow:0 0 0 4px var(--papel), 0 0 0 6px var(--tinta)}
+.no .nome{font-size:12px; line-height:1.15; color:var(--tinta); font-weight:600;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+.no.centro .nome{font-size:14px}
+.no.veio .nome::after{content:" ↩"; color:var(--cinza)}
+.mais{
+  display:block; margin:6px auto 0;
+  font-family:var(--mono); font-size:12px; padding:7px 14px; border-radius:999px;
+  border:1px solid var(--linha); background:var(--papel); color:var(--cinza); cursor:pointer;
+}
+
+.legenda{font-family:var(--mono); font-size:11px; color:var(--cinza); display:flex; gap:14px; flex-wrap:wrap; margin:14px 0 10px}
+.legenda i{display:inline-block; width:12px; height:12px; border-radius:50%; vertical-align:-2px; margin-right:5px; background:var(--leve)}
+.legenda i.g{border:2px solid var(--carimbo)}
+.legenda i.m{border:2px solid var(--tinta)}
+.legenda i.n{border:2px dotted var(--cinza2)}
+
+/* ficha */
+.ficha{border-top:1px solid var(--linha); padding-top:14px; min-height:150px}
+.ficha .quem{font-size:20px; font-weight:800; margin:0 0 2px; letter-spacing:-.01em}
+.ficha .papel{color:var(--cinza); font-size:14px; margin:0 0 10px}
+.chip{
+  display:inline-block; font-family:var(--mono); font-size:11px; letter-spacing:.06em; font-weight:700;
+  padding:5px 9px; margin:0 0 12px; border:1.5px solid var(--tinta); color:var(--tinta);
+}
+.chip.grave{background:var(--tinta); color:var(--papel)}
+.chip.nenhum{border-color:var(--cinza2); color:var(--cinza)}
+.vinculo{background:var(--leve); padding:12px 14px; border-left:3px solid var(--tinta); margin:0 0 12px}
+.vinculo .rot{font-family:var(--mono); font-size:11px; color:var(--cinza); letter-spacing:.06em; margin-bottom:4px}
+.vinculo p{margin:0 0 6px; font-size:15px}
+.vinculo .fonte{font-family:var(--mono); font-size:12px; color:var(--cinza)}
+.ficha .sit{font-size:14px; color:var(--cinza); margin:0 0 12px}
+.acoes{display:flex; gap:8px; flex-wrap:wrap}
+.acoes button, .acoes a{
+  font-size:15px; font-weight:600; padding:11px 15px; border-radius:2px; text-decoration:none;
+  border:1.5px solid var(--tinta); background:var(--tinta); color:var(--papel); cursor:pointer;
+}
+.acoes .sec{background:transparent; color:var(--tinta)}
+.dica{color:var(--cinza); font-size:14px; margin:6px 0 0}
+
+/* narrativa da trilha */
+.narra{background:var(--tinta); color:var(--papel); padding:12px 14px; margin:0 0 4px; font-size:15px}
+.narra .passo{font-family:var(--mono); font-size:11px; letter-spacing:.08em; opacity:.7; margin-bottom:6px}
+.narra p{margin:0 0 10px}
+.narra .bt{display:flex; gap:8px}
+.narra button{
+  font-size:14px; font-weight:600; padding:9px 14px; border-radius:2px; cursor:pointer;
+  border:1.5px solid var(--papel); background:var(--papel); color:var(--tinta);
+}
+.narra button.sec{background:transparent; color:var(--papel)}
+
+/* lista "mais" */
+.folha{position:fixed; inset:0; background:rgba(22,19,15,.45); display:none; z-index:20}
+.folha.on{display:block}
+.folha .cx{position:absolute; left:0; right:0; bottom:0; max-height:78vh; overflow:auto; background:var(--papel); padding:14px 16px 30px; border-radius:14px 14px 0 0}
+.folha h3{margin:0 0 8px; font-size:15px}
+.folha .it{display:flex; gap:10px; align-items:center; padding:9px 0; border-bottom:1px solid var(--linha); cursor:pointer}
+.folha .it .d{width:36px; height:36px; border-radius:50%; background:var(--leve); flex:none; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--cinza); overflow:hidden; border:2px dotted var(--cinza2)}
+.folha .it .d img{width:100%;height:100%;object-fit:cover}
+.folha .it.grave .d{border:2.5px solid var(--carimbo)} .folha .it.medio .d{border:2.5px solid var(--tinta)}
+.folha .it b{display:block; font-size:14px}
+.folha .it span{font-size:12px; color:var(--cinza); display:block}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="barra">
+  <span>ARQUIVO FLÁVIO · CLOSE FRIENDS</span>
+  <a href="placar.html">os números</a>
+</div>
+
+<div class="wrap">
+  <h1>Close Friends</h1>
+  <p class="sub">As ligações diretas de cada pessoa, uma de cada vez. Toque em alguém para ver o vínculo; toque de novo para explorar a partir dela.</p>
+
+  <div class="trilhas" id="trilhas">
+    <button data-trilha="filme">O dinheiro do filme</button>
+    <button data-trilha="milicia">Do gabinete à milícia</button>
+    <button data-trilha="chapa">A chapa de 2026</button>
+  </div>
+
+  <div id="narra" class="narra" hidden></div>
+  <div class="migalhas" id="migalhas"></div>
+
+  <div class="orbita" id="orbita">
+    <svg id="linhas" viewBox="0 0 1000 1000" preserveAspectRatio="none"></svg>
+  </div>
+  <button class="mais" id="mais" hidden></button>
+
+  <div class="legenda">
+    <span><i class="g"></i>preso ou condenado</span>
+    <span><i class="m"></i>denunciado ou investigado</span>
+    <span><i class="n"></i>sem processo conhecido</span>
+  </div>
+
+  <div class="ficha" id="ficha"></div>
+</div>
+
+<div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
+
+<script src="data/dados.js?v=set2026"></script>
+<script>
+(function(){
+  const D = window.DOSSIE;
+  const N = {}; D.grafo.nodes.forEach(n => N[n.id] = n);
+  const ADJ = {};
+  D.grafo.edges.forEach(e => { (ADJ[e.de] = ADJ[e.de] || []).push(e); (ADJ[e.para] = ADJ[e.para] || []).push(e); });
+  const ITENS = {};
+  D.itens.forEach(i => (i.pessoas || []).forEach(p => { (ITENS[p] = ITENS[p] || []).push(i); }));
+
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  /* ---------- situação: três estados, nada mais ---------- */
+  // A frase "não é réu, denunciado nem condenado" contém as palavras mas afirma
+  // o contrário. Frases negativas são ignoradas.
+  function sit(n){
+    const s = n.situacao || [];
+    if (s.includes('preso') || s.includes('condenado')) return 'grave';
+    if (s.includes('denunciado') || s.includes('investigado')) return 'medio';
+    const frases = (n.status || '').split(/[.;]/).filter(f => !/\b(n[ãa]o|nem|sem processo|sem den[úu]ncia)/i.test(f));
+    if (frases.some(f => /\b(preso|presa|condenad)/i.test(f))) return 'grave';
+    if (frases.some(f => /\b(denunciad|r[ée]u|indiciad|investigad|delator)/i.test(f))) return 'medio';
+    return 'nenhum';
+  }
+  const ROTULO = { grave:'PRESO OU CONDENADO', medio:'DENUNCIADO OU INVESTIGADO', nenhum:'SEM PROCESSO CONHECIDO' };
+
+  function vizinhos(id){
+    const seen = new Set(), out = [];
+    (ADJ[id] || []).forEach(e => { const o = e.de === id ? e.para : e.de; if (N[o] && !seen.has(o)) { seen.add(o); out.push({ id:o, e }); } });
+    return out;
+  }
+  function gravidade(id){
+    const s = sit(N[id]); return (s === 'grave' ? 30 : s === 'medio' ? 20 : 0) + Math.min(10, (ADJ[id] || []).length);
+  }
+  // "Ronald Paulo de Alves Pereira" -> "Ronald Pereira"; apelido entre parênteses vence.
+  function curto(nome){
+    const ap = nome.match(/\(([^)]+)\)/); if (ap) return ap[1].replace(/^['"]|['"]$/g, '');
+    const p = nome.replace(/\(.*?\)/g, '').trim().split(/\s+/).filter(w => !/^(de|da|do|dos|das|e)$/i.test(w));
+    if (p.length <= 2) return p.join(' ');
+    if (/^(instituto|banco|bolsotini|jmartelo|goup)/i.test(p[0])) return p.slice(0, 3).join(' ');
+    return p[0] + ' ' + p[p.length - 1];
+  }
+  function iniciais(nome){
+    const p = nome.replace(/\(.*?\)/g, '').trim().split(/\s+/).filter(w => w.length > 2 && !/^(de|da|do|dos|das|e)$/i.test(w));
+    return ((p[0] || '')[0] || '') + ((p[p.length - 1] || '')[0] || '');
+  }
+
+  /* ---------- fotos (Wikipédia, licença livre) ---------- */
+  const WIKI = {"flavio":"Flávio Bolsonaro","jair":"Jair Bolsonaro","michelle":"Michelle Bolsonaro","eduardo":"Eduardo Bolsonaro","carlos-bolsonaro":"Carlos Bolsonaro","vorcaro":"Daniel Vorcaro","ronnie-lessa":"Ronnie Lessa","adriano":"Adriano da Nóbrega","walter-braga-netto":"Walter Braga Netto","mauro-cesar-barbosa-cid":"Mauro Cid","anderson-torres":"Anderson Torres","augusto-heleno":"Augusto Heleno","almir-garnier":"Almir Garnier Santos","alexandre-ramagem":"Alexandre Ramagem","domingos-brazao":"Domingos Brazão","chiquinho-brazao":"Chiquinho Brazão","wassef":"Frederick Wassef","ciro-nogueira":"Ciro Nogueira","tarcisio-de-freitas":"Tarcísio de Freitas","ibaneis-rocha":"Ibaneis Rocha","mario-frias":"Mário Frias","nelson-tanure":"Nelson Tanure","rivaldo-barbosa":"Rivaldo Barbosa","silvinei-vasques":"Silvinei Vasques"};
+  const FOTO = {};
+  async function fotos(){
+    let cache = {}; try { cache = JSON.parse(localStorage.getItem('af_fotos_v1')) || {}; } catch(e){}
+    const faltam = Object.keys(WIKI).filter(id => !(WIKI[id] in cache));
+    if (faltam.length){
+      try{
+        const u = 'https://pt.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=200&redirects=1&origin=*&titles=' + encodeURIComponent(faltam.map(id => WIKI[id]).join('|'));
+        const d = await fetch(u).then(r => r.json());
+        const rd = {}; (d.query.redirects || []).forEach(x => rd[x.from] = x.to);
+        const byT = {}; Object.values(d.query.pages).forEach(p => { byT[p.title] = (p.thumbnail || {}).source || ''; });
+        faltam.forEach(id => { const url = byT[rd[WIKI[id]] || WIKI[id]]; if (url) cache[WIKI[id]] = url; });
+        try { localStorage.setItem('af_fotos_v1', JSON.stringify(cache)); } catch(e){}
+      }catch(e){}
+    }
+    Object.keys(WIKI).forEach(id => { if (cache[WIKI[id]]) FOTO[id] = cache[WIKI[id]]; });
+    document.querySelectorAll('.no[data-id]').forEach(el => pintaDisco(el.querySelector('.disco'), el.dataset.id));
+  }
+  function pintaDisco(disco, id){
+    if (FOTO[id] && !disco.querySelector('img')){ disco.innerHTML = '<img alt="" src="' + esc(FOTO[id]) + '">'; }
+    else if (!FOTO[id] && !disco.textContent) disco.textContent = iniciais(N[id].nome);
+  }
+
+  /* ---------- estado ---------- */
+  let centro = 'flavio', caminho = ['flavio'], sel = null, trilha = null, passo = 0;
+  const orb = $('#orbita'), svg = $('#linhas'), elMais = $('#mais');
+  const nos = new Map();      // id -> div
+
+  function capacidade(){ return orb.clientWidth < 480 ? 8 : 10; }
+
+  function anel(){
+    const v = vizinhos(centro).sort((a, b) => gravidade(b.id) - gravidade(a.id) || a.id.localeCompare(b.id));
+    const cap = capacidade();
+    // quem veio antes fica no anel, para o caminho de volta continuar visível
+    const anterior = caminho.length > 1 ? caminho[caminho.length - 2] : null;
+    let mostra = v.slice(0, cap);
+    if (anterior && !mostra.some(x => x.id === anterior)){
+      const ant = v.find(x => x.id === anterior);
+      if (ant) mostra = mostra.slice(0, cap - 1).concat([ant]);
+    }
+    return { mostra, resto: v.filter(x => !mostra.includes(x)) };
+  }
+
+  function pos(i, n){
+    const a = -Math.PI / 2 + (i * 2 * Math.PI) / n, r = 36;   // em % do quadrado
+    return { x: 50 + r * Math.cos(a), y: 50 + r * Math.sin(a) };
+  }
+
+  function criaNo(id){
+    const n = N[id], el = document.createElement('div');
+    el.className = 'no some ' + sit(n); el.dataset.id = id;
+    el.innerHTML = '<div class="disco"></div><div class="nome">' + esc(curto(n.nome)) + '</div>';
+    pintaDisco(el.querySelector('.disco'), id);
+    el.addEventListener('click', () => toque(id));
+    orb.appendChild(el); nos.set(id, el);
+    return el;
+  }
+
+  function render(){
+    const { mostra, resto } = anel();
+    const vivos = new Set([centro, ...mostra.map(x => x.id)]);
+    const anterior = caminho.length > 1 ? caminho[caminho.length - 2] : null;
+
+    // linhas
+    svg.innerHTML = mostra.map((x, i) => {
+      const p = pos(i, mostra.length);
+      return '<line data-a="' + esc(x.id) + '" x1="500" y1="500" x2="' + (p.x * 10) + '" y2="' + (p.y * 10) + '"' + (sel === x.id ? ' class="on"' : '') + '/>';
+    }).join('');
+
+    // nós: quem já existe desliza; quem chega aparece; quem sai some
+    nos.forEach((el, id) => { if (!vivos.has(id)) { el.classList.add('some'); setTimeout(() => { if (el.classList.contains('some')) { el.remove(); nos.delete(id); } }, 320); } });
+    const c = nos.get(centro) || criaNo(centro);
+    c.className = 'no centro ' + sit(N[centro]);
+    c.style.left = '50%'; c.style.top = '50%';
+    mostra.forEach((x, i) => {
+      const p = pos(i, mostra.length), el = nos.get(x.id) || criaNo(x.id);
+      el.className = 'no ' + sit(N[x.id]) + (sel === x.id ? ' sel' : '') + (x.id === anterior ? ' veio' : '');
+      // força o reflow para a transição valer em nó recém-criado
+      void el.offsetWidth;
+      el.style.left = p.x + '%'; el.style.top = p.y + '%';
+    });
+
+    elMais.hidden = !resto.length;
+    elMais.textContent = '+ ' + resto.length + ' ' + (resto.length === 1 ? 'ligação' : 'ligações');
+    elMais.onclick = () => abreFolha(resto);
+
+    migalhas();
+    ficha();
+  }
+
+  function toque(id){
+    if (id === centro) return;
+    if (sel === id) { explorar(id); return; }
+    sel = id; render();
+  }
+
+  function explorar(id){
+    if (!N[id]) return;
+    const k = caminho.indexOf(id);
+    caminho = k >= 0 ? caminho.slice(0, k + 1) : caminho.concat([id]);
+    centro = id; sel = null;
+    render();
+  }
+
+  function migalhas(){
+    $('#migalhas').innerHTML = caminho.map((id, i) =>
+      i === caminho.length - 1
+        ? '<b>' + esc(N[id].nome) + '</b>'
+        : '<button data-ir="' + esc(id) + '">' + esc(N[id].nome) + '</button><span>›</span>'
+    ).join('');
+    document.querySelectorAll('#migalhas [data-ir]').forEach(b => b.addEventListener('click', () => explorar(b.dataset.ir)));
+  }
+
+  function arestaEntre(a, b){
+    return (ADJ[a] || []).find(e => (e.de === a && e.para === b) || (e.de === b && e.para === a));
+  }
+  function fonteHTML(fontes){
+    const f = (fontes || [])[0]; if (!f || !f.url) return '';
+    return '<div class="fonte">fonte: <a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'ver') + '</a></div>';
+  }
+
+  function ficha(){
+    const id = sel || centro, n = N[id], s = sit(n);
+    const its = (ITENS[id] || []).length;
+    let vinculo = '';
+    if (sel){
+      const e = arestaEntre(centro, sel);
+      if (e) vinculo = '<div class="vinculo"><div class="rot">VÍNCULO COM ' + esc(N[centro].nome.toUpperCase()) + '</div><p>' + esc(e.rotulo || '') + '</p>' + fonteHTML(e.fontes) + '</div>';
+    } else if (caminho.length > 1){
+      const ant = caminho[caminho.length - 2], e = arestaEntre(ant, centro);
+      if (e) vinculo = '<div class="vinculo"><div class="rot">COMO SE LIGA A ' + esc(N[ant].nome.toUpperCase()) + '</div><p>' + esc(e.rotulo || '') + '</p>' + fonteHTML(e.fontes) + '</div>';
+    }
+    const sf = (n.situacao_fontes && n.situacao_fontes[0] && n.situacao_fontes[0].url)
+      ? ' <a href="' + esc(n.situacao_fontes[0].url) + '" target="_blank" rel="noopener">[fonte]</a>' : '';
+    $('#ficha').innerHTML =
+      '<p class="quem">' + esc(n.nome) + '</p>' +
+      '<p class="papel">' + esc(n.papel || '') + '</p>' +
+      '<div class="chip ' + s + '">' + ROTULO[s] + '</div>' +
+      vinculo +
+      (n.status ? '<p class="sit">' + esc(n.status) + sf + '</p>' : '') +
+      '<div class="acoes">' +
+        (sel ? '<button id="bt-explorar">Explorar a partir de ' + esc(n.nome.split(' ')[0]) + ' →</button>' : '') +
+        (its ? '<a class="sec" href="index.html#arquivo" target="_blank" rel="noopener">' + its + (its === 1 ? ' registro' : ' registros') + ' no arquivo</a>' : '') +
+      '</div>' +
+      (!sel && !trilha ? '<p class="dica">Toque em alguém da órbita.</p>' : '');
+    const b = $('#bt-explorar'); if (b) b.addEventListener('click', () => explorar(id));
+  }
+
+  /* ---------- "+ N ligações" ---------- */
+  function abreFolha(lista){
+    $('#folha-cx').innerHTML = '<h3>Todas as ligações de ' + esc(N[centro].nome) + '</h3>' +
+      lista.map(x => '<div class="it ' + sit(N[x.id]) + '" data-id="' + esc(x.id) + '"><div class="d">' + (FOTO[x.id] ? '<img alt="" src="' + esc(FOTO[x.id]) + '">' : esc(iniciais(N[x.id].nome))) + '</div><div><b>' + esc(N[x.id].nome) + '</b><span>' + esc((x.e.rotulo || '').slice(0, 90)) + '</span></div></div>').join('');
+    $('#folha').classList.add('on');
+    document.querySelectorAll('#folha-cx .it').forEach(el => el.addEventListener('click', () => { $('#folha').classList.remove('on'); explorar(el.dataset.id); }));
+  }
+  $('#folha').addEventListener('click', e => { if (e.target === $('#folha')) $('#folha').classList.remove('on'); });
+
+  /* ---------- trilhas guiadas ---------- */
+  // Cada passo: quem entra no centro e uma frase. As frases seguem o status
+  // registrado no arquivo — nada além do que a ficha de cada um já diz.
+  const TRILHAS = {
+    filme: { nome:'O dinheiro do filme', passos:[
+      ['flavio',  'Comece por ele. Em julho de 2026 virou investigado no STF por causa do financiamento de um filme sobre o pai.'],
+      ['vorcaro', 'O dono do Banco Master. Áudios divulgados pela imprensa mostram Flávio negociando com ele o dinheiro do filme. Está preso; sem condenação.'],
+      ['paulo_henrique', 'Presidia o BRB quando o banco financiou a mansão de Flávio. Preso na mesma operação do Master, por suspeita de propina. O banqueiro do filme e o banqueiro da casa se encontram aqui.']
+    ]},
+    milicia: { nome:'Do gabinete à milícia', passos:[
+      ['flavio',  'Comece pelo gabinete dele na Alerj, entre 2003 e 2018.'],
+      ['queiroz', 'Ex-assessor, apontado como operador da rachadinha. Foi denunciado; as provas foram anuladas e ninguém foi condenado.'],
+      ['adriano', 'Amigo de Queiroz desde 2003. Flávio deu a ele a Medalha Tiradentes na Alerj. Apontado como chefe do Escritório do Crime; morto em 2020.'],
+      ['ronnie-lessa', 'Parceiro de Adriano no Escritório do Crime. Condenado pelo assassinato de Marielle Franco.']
+    ]},
+    chapa: { nome:'A chapa de 2026', passos:[
+      ['flavio', 'Comece pela campanha presidencial de 2026.'],
+      ['marcio-canella', 'Candidato ao Senado pelo Rio com "apoio integral" de Flávio. Preso em flagrante com um fuzil em julho de 2026; responde em liberdade.'],
+      ['rogeria-nantes-bolsonaro', 'A suplente dele na chapa é a mãe de Flávio — indicada pelo próprio candidato.']
+    ]}
+  };
+  function iniciaTrilha(k){
+    trilha = TRILHAS[k]; passo = 0; $('.sub').hidden = true;
+    document.querySelectorAll('#trilhas button').forEach(b => b.classList.toggle('on', b.dataset.trilha === k));
+    caminho = []; sel = null;
+    vaiPasso();
+  }
+  function vaiPasso(){
+    const [id, txt] = trilha.passos[passo];
+    explorar(id);
+    const fim = passo === trilha.passos.length - 1;
+    const el = $('#narra'); el.hidden = false;
+    el.innerHTML = '<div class="passo">' + esc(trilha.nome.toUpperCase()) + ' · ' + (passo + 1) + ' / ' + trilha.passos.length + '</div><p>' + esc(txt) + '</p>' +
+      '<div class="bt">' + (fim ? '' : '<button id="prox">Próximo →</button>') + '<button class="sec" id="sair">' + (fim ? 'Encerrar' : 'Sair da trilha') + '</button></div>';
+    const p = $('#prox'); if (p) p.addEventListener('click', () => { passo++; vaiPasso(); });
+    $('#sair').addEventListener('click', encerraTrilha);
+  }
+  function encerraTrilha(){
+    trilha = null; $('#narra').hidden = true; $('.sub').hidden = false;
+    document.querySelectorAll('#trilhas button').forEach(b => b.classList.remove('on'));
+    ficha();
+  }
+  document.querySelectorAll('#trilhas button').forEach(b => b.addEventListener('click', () => iniciaTrilha(b.dataset.trilha)));
+
+  /* ---------- deep link e arranque ---------- */
+  const h = location.hash.replace('#', '');
+  if (h && N[h]) { caminho = h === 'flavio' ? ['flavio'] : ['flavio', h]; centro = h; }
+  render();
+  fotos();
+  window.addEventListener('resize', () => render());
+})();
+</script>
+</body>
+</html>
