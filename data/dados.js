@@ -1255,7 +1255,8 @@ window.DOSSIE = {
    "resumo": "Após não se eleger, Queiroz foi nomeado subsecretário de Segurança e Ordem Pública de Saquarema (RJ), supervisionando a Guarda Municipal. A nomeação resultou de articulação do ex-prefeito Antonio Peres com Flávio Bolsonaro, evidenciando que segue politicamente protegido.",
    "pessoas": [
     "queiroz",
-    "flavio"
+    "flavio",
+    "antonio-peres"
    ],
    "fontes": [
     {
@@ -1718,7 +1719,8 @@ window.DOSSIE = {
    "resumo": "Na denúncia de 2026, Julia Lotufo, viúva de Adriano, é apontada pelo MP-RJ como líder que controlava a contabilidade e os ativos da organização criminosa. Ela teria vendido imóveis avaliados em R$ 3,5 milhões, atribuídos ao miliciano, ao deputado federal Rogério Teixeira Júnior, o Juninho do Pneu.",
    "pessoas": [
     "julia_lotufo",
-    "adriano"
+    "adriano",
+    "rogerio-teixeira-junior-juninho-do-pneu"
    ],
    "fontes": [
     {
@@ -4047,6 +4049,7 @@ window.DOSSIE = {
    "observacao": "Trama financeira complexa; cifras e fluxos ainda sob apuração da PF. Flávio nega que Eduardo tenha gerido recursos do filme.",
    "pessoas": [
     "vorcaro",
+    "antonio-carlos-freixo-junior-mineiro",
     "eduardo",
     "paulo-calixto",
     "flavio"
@@ -4638,6 +4641,7 @@ window.DOSSIE = {
    "resumo": "A Ancine lavrou em 28 de julho de 2026 auto de infração contra a Go Up Entertainment por ter filmado no Brasil parte de 'Dark Horse', produção estrangeira sobre a trajetória política de Jair Bolsonaro, sem fazer a comunicação prévia exigida pela legislação. A penalidade prevista vai de R$ 2 mil a R$ 100 mil e não impede automaticamente o lançamento. Em 7 de agosto a mesma agência emitiu o Registro de Obra Estrangeira (ROE); ainda são necessários o Certificado de Registro de Título e a classificação indicativa do Ministério da Justiça para exibição comercial. Em reportagem de 22 de junho, a produtora e o deputado Mário Frias negaram ter recebido dinheiro direto de Vorcaro, embora Karina Ferreira da Gama tenha admitido em entrevista que 90% da verba do filme veio do fundo ligado ao banqueiro.",
    "observacao": "Processo administrativo em curso na Ancine, sem decisão final nem multa aplicada até 09/09/2026. Flávio Bolsonaro não é parte nesse processo. Este item absorveu o item que tratava da resistência das redes de cinema, cuja parte sobre a Ancine era duplicata e cuja parte sobre exibidores não nomeava nenhuma rede.",
    "pessoas": [
+    "karina-ferreira-da-gama",
     "mario-frias",
     "vorcaro"
    ],
@@ -4795,6 +4799,7 @@ window.DOSSIE = {
    "resumo": "Em 03/09/2026 a Procuradoria-Geral da República fechou acordo de colaboração premiada com o empresário Antonio Carlos Freixo Júnior, o 'Mineiro', dono da Entre Investimentos e Participações, apontado como operador de repasses ligados ao financiamento do filme 'Dark Horse'. O acordo foi enviado ao ministro André Mendonça, relator no STF, a quem cabe decidir se homologa a colaboração — ou seja, NÃO está homologado. As reportagens registram que 'as parcelas pagas por Vorcaro para a produção do Dark Horse foram negociadas pelo senador Flávio Bolsonaro' e que Flávio negociou com Vorcaro financiamento de US$ 24 milhões (cerca de R$ 134 milhões). As autoridades investigam o destino dos recursos e suspeitam que parte possa ter beneficiado Eduardo Bolsonaro. O senador afirmou ter buscado patrocínio privado para um filme sobre o próprio pai, sem dinheiro público.",
    "observacao": "Delação ASSINADA não é prova nem acusação: falta homologação por Mendonça. Nenhuma das duas fontes afirma que Freixo tenha imputado crime a Flávio; a CNN registra explicitamente que não se alega que Flávio tenha recebido recursos indevidos, apenas que negociou os pagamentos.",
    "pessoas": [
+    "antonio-carlos-freixo-junior-mineiro",
     "vorcaro",
     "flavio",
     "eduardo"
@@ -4828,6 +4833,7 @@ window.DOSSIE = {
    "observacao": "Delação homologada não equivale a prova; Flávio segue como investigado, não denunciado. Cortado 'mais de dez subscrições entre jan/2025 e jan/2026' (nenhuma fonte sustenta). Os US$ 24 mi correspondem aos R$ 134 mi do áudio já conhecido.",
    "pessoas": [
     "flavio",
+    "antonio-carlos-freixo-junior-mineiro",
     "vorcaro",
     "eduardo"
    ],
@@ -4866,6 +4872,7 @@ window.DOSSIE = {
    "resumo": "O ministro André Mendonça, do STF, homologou em 9 de setembro de 2026 o acordo de colaboração premiada de Antonio Carlos Freixo Júnior, o 'Mineiro', operador do mercado financeiro, fechado com a PGR em 8 de agosto. Ele confirmou sete transferências ao Havengate Development Fund, nos Estados Unidos, somando US$ 12,3 milhões (cerca de R$ 63 milhões pela cotação da época), feitas em 2025 a pedido de Daniel Vorcaro. Segundo a delação, o dinheiro foi pedido pelo senador e candidato à Presidência Flávio Bolsonaro e se destinava ao filme 'Dark Horse'. O fundo é administrado pelo advogado de imigração Paulo Calixto, próximo do ex-deputado Eduardo Bolsonaro, que nega envolvimento: 'Não exerci qualquer posição de gestão ou emprego no fundo, apenas cedi meus direitos de imagem'. Flávio sustenta que os recursos foram destinados integralmente à produção do filme. A homologação valida o acordo como meio de prova; não implica juízo sobre a veracidade do relato nem sobre culpa de terceiros.",
    "observacao": "Relato de colaborador premiado, que por lei não basta isoladamente para condenação e precisa ser corroborado. Nem Flávio nem Eduardo Bolsonaro foram denunciados. Fundi aqui o item separado de 08/09 sobre o conteúdo da delação, por tratar do mesmo fato. As fontes divergem sobre o período dos repasses (Brasil de Fato: janeiro a setembro de 2025; Diário Carioca: fevereiro a setembro), por isso o resumo diz apenas '2025'. Cortei 'cerca de quatro meses de negociação' e a movimentação de R$ 1,3 bilhão entre 2020 e 2025, não confirmadas nas fontes verificadas.",
    "pessoas": [
+    "antonio-carlos-freixo-junior-mineiro",
     "vorcaro",
     "flavio",
     "eduardo",
@@ -7450,7 +7457,8 @@ window.DOSSIE = {
    "observacao": "São declarações do senador, não fatos comprovados. O laudo citado é perícia privada contratada pela defesa da produtora, não perícia oficial. Corrigi o trecho de O Tempo, que trazia uma continuação ('que não tem contrapartida pública') não confirmada. Este item absorveu o item sobre a terceirização da prestação de contas, cuja fonte principal (coluna de Caio Junqueira na CNN) retorna HTTP 404; com isso caiu também a alegação de sigilo do fundo Havengate imposto pelo governo dos EUA, que ficou sem lastro.",
    "pessoas": [
     "flavio",
-    "vorcaro"
+    "vorcaro",
+    "karina-ferreira-da-gama"
    ],
    "fontes": [
     {
@@ -8078,7 +8086,8 @@ window.DOSSIE = {
    "pessoas": [
     "flavio",
     "jair",
-    "carlos-bolsonaro"
+    "carlos-bolsonaro",
+    "rodrigo-bacellar"
    ],
    "fontes": [
     {
@@ -8886,6 +8895,47 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "antonio-peres",
+    "nome": "Antonio Peres",
+    "papel": "Ex-prefeito de Saquarema (PL); articulou a nomeação de Queiroz",
+    "grupo": "operadores",
+    "status": "Antonio Peres Alves, ex-prefeito de Saquarema (RJ) e líder local do PL que articulou com Flávio Bolsonaro a nomeação de Fabrício Queiroz a cargo de segurança no município; é investigado/alvo de buscas em operações do MPRJ (2021 e 2025) por organização criminosa, peculato/desvio, lavagem e fraude tributária, sem registro de prisão.",
+    "situacao": [
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2021-05/ex-prefeito-de-saquarema-e-alvo-de-operacao-do-mprj"
+     },
+     {
+      "veiculo": "Diário do Rio",
+      "url": "https://diariodorio.com/mprj-deflagra-operacao-contra-ex-prefeita-de-saquarema-e-mais-20-pessoas-e-10-empresas"
+     }
+    ]
+   },
+   {
+    "id": "rogerio-teixeira-junior-juninho-do-pneu",
+    "nome": "Rogério Teixeira Júnior (Juninho do Pneu)",
+    "papel": "Deputado federal (União Brasil-RJ); comprou imóveis de Julia Lotufo atribuídos a Adriano",
+    "grupo": "operadores",
+    "status": "Deputado federal denunciado pelo MPRJ na Operação Legado por lavagem de dinheiro, exploração de jogo do bicho e ocultação de bens ligados ao grupo do miliciano Adriano da Nóbrega; denunciado junto com Raimunda Veras (mãe de Adriano e ex-assessora de Flávio na Alerj). Não há mandado de prisão contra ele.",
+    "situacao": [
+     "denunciado",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/colunas/manoela-alcantara/mp-denuncia-deputado-em-operacao-sobre-jogo-do-bicho-e-miliciano"
+     },
+     {
+      "veiculo": "Revista Fórum",
+      "url": "https://revistaforum.com.br/politica/juninho-do-pneu-adriano-nobrega-mprj/"
+     }
+    ]
+   },
+   {
     "id": "ronnie-lessa",
     "nome": "Ronnie Lessa",
     "papel": "Ex-PM e atirador; condenado por executar Marielle Franco",
@@ -9026,6 +9076,24 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "goup-entertainment",
+    "nome": "GOUP Entertainment",
+    "papel": "Produtora do filme",
+    "grupo": "financeiro",
+    "status": "Produtora do filme 'Dark Horse' sobre Bolsonaro é alvo de investigações (Polícia Civil-SP fez busca e apreensão na sede em junho/2026, além de apurações da PF, do STF sobre emendas a ONGs ligadas à empresa e da CGU por desvios no Sistema S); por ser pessoa jurídica não há prisão/condenação, e não consta ação penal formal instaurada contra a empresa até junho/2026.",
+    "situacao": [],
+    "situacao_fontes": [
+     {
+      "veiculo": "Wikipédia (Go Up Entertainment)",
+      "url": "https://pt.wikipedia.org/wiki/Go_Up_Entertainment"
+     },
+     {
+      "veiculo": "Revista Fórum",
+      "url": "https://revistaforum.com.br/politica/cpmi-do-dark-horse/"
+     }
+    ]
+   },
+   {
     "id": "paulo-calixto",
     "nome": "Paulo Calixto",
     "papel": "Advogado de Eduardo Bolsonaro",
@@ -9132,6 +9200,13 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "antonio-carlos-freixo-junior-mineiro",
+    "nome": "Antonio Carlos Freixo Júnior ('Mineiro')",
+    "papel": "Empresário do Grupo Entre",
+    "grupo": "operadores",
+    "status": "citado"
+   },
+   {
     "id": "walderice-santos-da-conceicao-wal-do-acai",
     "nome": "Walderice Santos da Conceição (Wal do Açaí)",
     "papel": "Ex-secretária parlamentar",
@@ -9148,6 +9223,28 @@ window.DOSSIE = {
      {
       "veiculo": "MPF",
       "url": "https://www.mpf.mp.br/df/sala-de-imprensa/noticias-df/mpf-propoe-acao-de-improbidade-contra-o-presidente-da-republica-jair-bolsonaro-e-wal-do-acai"
+     }
+    ]
+   },
+   {
+    "id": "rodrigo-bacellar",
+    "nome": "Rodrigo Bacellar",
+    "papel": "Ex-presidente da Alerj",
+    "grupo": "aliado",
+    "status": "Ex-presidente da Alerj denunciado pela PGR por obstrução de investigação de organização criminosa armada; preso preventivamente em dezembro/2025, solto após decisão da Alerj e preso novamente em março/2026 por Moraes após o TSE cassar seu mandato; também investigado por lavagem de dinheiro; sem condenação criminal até junho/2026.",
+    "situacao": [
+     "preso",
+     "denunciado",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "STF",
+      "url": "https://noticias.stf.jus.br/postsnoticias/relator-decreta-prisao-preventiva-do-ex-deputado-estadual-rodrigo-bacellar-uniao-rj/"
+     },
+     {
+      "veiculo": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-03/pf-volta-prender-rodrigo-bacellar-ex-presidente-da-alerj"
      }
     ]
    },
@@ -9170,6 +9267,55 @@ window.DOSSIE = {
       "url": "https://www.folhape.com.br/politica/quem-e-jorge-fernandes-apontado-como-operador-de-rachadinha-no/269237/"
      }
     ]
+   },
+   {
+    "id": "erasmo-carlos-battistella",
+    "nome": "Erasmo Carlos Battistella",
+    "papel": "Doador de Flávio: empresário gaúcho, fundador e CEO da Be8 (biocombustíveis, Passo Fundo/RS), integrante do Conselhão da Presidência e do conselho da Aprobio. Doou R$ 500 mil à campanha de Flávio e R$ 500 mil à de Lula no início de setembro/2026 (transferência eletrônica e Pix), tornando-se um dos dois maiores doadores pessoa física de Flávio e o maior de Lula até 09/09 (dados TSE/DivulgaCand). Versão da assessoria: doações como pessoa física, dentro dos limites da legislação eleitoral, com compromisso de 'governança, integridade e transparência'.",
+    "grupo": "financeiro",
+    "status": "Doador pessoa física registrado no TSE; sem investigação conhecida"
+   },
+   {
+    "id": "fernando-de-castro-marques",
+    "nome": "Fernando de Castro Marques",
+    "papel": "Doador de Flávio: dono e CEO da União Química Farmacêutica, descrito pelo Poder360 como 'conhecido aliado da direita bolsonarista' (tentou emplacar a vacina Sputnik V na Anvisa durante a pandemia; candidato derrotado ao Senado pelo DF em 2018). Aparece nos dados do TSE (08-09/09/2026) como doador de R$ 500 mil à campanha presidencial de Flávio, empatado com Battistella como maior doador pessoa física. Também doou R$ 500 mil à reeleição de Tarcísio de Freitas (SP). Sem manifestação pública dele nas matérias abertas.",
+    "grupo": "financeiro",
+    "status": "Doador pessoa física registrado no TSE; sem investigação conhecida"
+   },
+   {
+    "id": "angelo-calmon-de-sa",
+    "nome": "Ângelo Calmon de Sá",
+    "papel": "Doador de Flávio: ex-banqueiro (91 anos), ex-controlador do Banco Econômico (intervenção do BC em 1995, liquidado em 1996), ministro da Indústria e Comércio no governo Geisel (1977-79) e ministro no governo Collor (1992). Doação de R$ 400 mil registrada no DivulgaCand/TSE em setembro/2026 — Minha Bahia a lista entre as doações diretas à candidatura de Flávio, como 3º maior doador pessoa física; a Folha (10/09) o descreve como 'entre os maiores doadores da campanha de Flávio'. Já havia doado R$ 300 mil ao PL em 2024 (Metrópoles). Em 2026 também doou R$ 400 mil a ACM Neto (BA), R$ 200 mil a Pedro Lupion (PR) e valores menores a candidatos baianos. Sem manifestação dele nas matérias abertas.",
+    "grupo": "financeiro",
+    "status": "Doador registrado no TSE. Foi condenado pela Justiça Federal na Bahia por gestão fraudulenta do Banco Econômico (pena de 13 anos e 4 meses noticiada em 2007); em 2019 a defesa alegou prescrição e idade avançada no STF. A situação atual da pena não foi verificada."
+   },
+   {
+    "id": "karina-ferreira-da-gama",
+    "nome": "Karina Ferreira da Gama",
+    "papel": "Produtora do filme 'Dark Horse' (Go Up Entertainment), cujo financiamento por Vorcaro foi pedido por Flávio; preside o Instituto Conhecer Brasil (ICB) e controla a Academia Nacional de Cultura (ANC). Alvo de busca e apreensão na Operação Make Up (10/09/2026). Segundo decisão de Flávio Dino citada pelo Poder360, recursos saíam do ICB, passavam por terceirizadas e voltavam à ANC — R$ 6.175.273,64 com 'contornos de lavagem de dinheiro'; a movimentação se relaciona a contrato de Wi-Fi com a Prefeitura de SP. Versão da defesa (nota de 13/09, advogado Ricardo Sayeg): entregou voluntariamente mais de 20 mil páginas à PF, sua participação no filme 'se restringiu à prestação de serviços técnicos', desconhece detalhes do financiamento, 'investigação não é acusação, muito menos condenação'; ajuizou reclamação constitucional no STF.",
+    "grupo": "operadores",
+    "status": "Investigada; alvo de busca e apreensão (Operação Make Up, 10/09/2026); não denunciada"
+   },
+   {
+    "id": "renato-araujo",
+    "nome": "Renato Araújo",
+    "papel": "Aliado de Flávio e coordenador regional do PL na Costa Verde (RJ) desde maio/2025, escolhido por Jair Bolsonaro e Valdemar Costa Neto; candidato a deputado federal (PL-RJ) em 2026 (derrotado para prefeito de Angra em 2024). Empresário de 40 anos, fundador da Bravo Construções (2011; hoje no nome da esposa), que recebeu R$ 16 milhões do Estado do RJ para reparos em 15 escolas. Organizou motociata e carreata de barcos para Flávio em Angra (29/08/2026) e esteve no ato de 07/09 na Paulista. A PF encontrou contrato não assinado de R$ 900 mil para obras na casa de Bolsonaro em Angra. Perfil da Agência Pública (09/09/2026). Versão: não respondeu ao pedido de entrevista da Pública.",
+    "grupo": "operadores",
+    "status": "Investigado (Operação Sarasvati, Polícia Civil-RJ, ago/2026, 20 mandados: Bravo Construções alvo por suspeita de superfaturamento e lavagem em obras de escolas); não denunciado"
+   },
+   {
+    "id": "willer-tomaz",
+    "nome": "Willer Tomaz",
+    "papel": "Amigo e aliado de Flávio desde o início do governo Jair Bolsonaro: advogado, alvo de busca e apreensão da PF em 04/08/2026 (Operação Sem Desconto, fraudes no INSS; a PF o aponta como 'hub financeiro, patrimonial e logístico' de políticos). Novidades na janela: a revista piauí revelou (16/09) que Flávio usou na primeira quinzena de agosto, em SP, apartamento de 158 m² da WT Administração de Imóveis e Bens (empresa de Tomaz) para reuniões de campanha, podcasts e gravação de vídeos — imóvel comprado em 10/02/2026 por R$ 3,5 mi (deságio de R$ 2 mi; registro em 04/03/2026) de Fabiano Zettel, cunhado e operador de Vorcaro. Em 09/09, segundo a Revista Fórum, Flávio comparou a PF à 'Gestapo' ao defendê-lo. Versão de Flávio: 'apenas se hospedou em hotéis da região'. Versão de Tomaz: nega irregularidades, diz não conhecer Zettel nem Vorcaro e fala em 'ataques sem qualquer fundamento' de adversários. Não é investigado no caso Master.",
+    "grupo": "aliado",
+    "status": "Investigado (alvo de busca e apreensão da PF em 04/08/2026, caso INSS); não denunciado"
+   },
+   {
+    "id": "tallis-gomes",
+    "nome": "Tallis Gomes",
+    "papel": "Conselheiro informal de Flávio (autodeclarado): empresário (G4 Educação), membro da Rockbridge Network — rede de investidores dos EUA fundada em 2019 por J.D. Vance. Em vídeo citado pela Fórum (15/09): 'Eu tenho um papel de conselheiro do Flávio. Desde antes de ele anunciar a campanha dele, eu tenho agido ali como uma espécie do que o Elon Musk foi para o Trump' e 'faço parte de um grupo empresarial nos Estados Unidos chamado Rockbridge'. Renan Santos (Missão, adversário) e o site Amado Mundo o apontam, com Pedro Sang, como representante da Rockbridge que ofereceu apoio a candidaturas; o PT (Lindbergh Farias) levou notícia de fato ao STF em 13/09 sobre suposto custeio estrangeiro. Versão de Tallis (CNN): é membro simples da rede, sem função de gestão, nega integrar formalmente a campanha e diz nunca ter doado. Campanha de Flávio não respondeu. Mesma apuração cita Pedro Sang (documentado no comitê de SP; nega intermediar fundos) e André Marinho (memorando sobre terras raras; diz ser 'exercício hipotético').",
+    "grupo": "aliado",
+    "status": "Sem investigação conhecida; objeto de notícia de fato do PT ao STF (13/09/2026) — acusação de adversários, não de autoridade"
    },
    {
     "id": "alfredo-gaspar",
@@ -9249,13 +9395,6 @@ window.DOSSIE = {
     "status": "Sem processo conhecido. Confirmou pessoalmente a doação por telefone ao Portal Agência da Notícia em 6/9/2026."
    },
    {
-    "id": "erasmo-battistella",
-    "nome": "Erasmo Battistella",
-    "papel": "financiador da campanha de Flávio Bolsonaro: doou cerca de R$ 500 mil à candidatura no início de setembro de 2026 e valor equivalente à campanha de Lula, somando R$ 1 milhão. Dono da Be8, de Passo Fundo (RS), é chamado pela imprensa de 'rei do biodiesel'",
-    "grupo": "financeiro",
-    "status": "Sem processo conhecido. O total de R$ 1 milhão às duas campanhas está noticiado; a divisão exata por candidato não pôde ser confirmada em texto aberto."
-   },
-   {
     "id": "flavio-roscoe",
     "nome": "Flávio Roscoe",
     "papel": "candidato do PL ao governo de Minas Gerais, lançado em 5/8/2026 como o nome de Flávio Bolsonaro para dar palanque estadual à candidatura presidencial; é o candidato que mais recebeu doações privadas no país até o fim de agosto de 2026 (R$ 4 milhões de pessoas físicas). Empresário do setor têxtil, presidiu a Fiemg e disputa sua primeira eleição.",
@@ -9275,20 +9414,6 @@ window.DOSSIE = {
     "papel": "mãe de Flávio Bolsonaro e suplente na chapa ao Senado de Márcio Canella; a indicação foi feita pelo próprio Flávio.",
     "grupo": "familia",
     "status": "Sem processo conhecido. Não é alvo da Operação Unha e Carne."
-   },
-   {
-    "id": "willer-tomaz",
-    "nome": "Willer Tomaz",
-    "papel": "advogado e amigo de Flávio Bolsonaro; sua empresa, a WT Administração de Imóveis e Bens, é cotista da mansão à beira-mar em Angra dos Reis, gerida pela Prime You — que teve Daniel Vorcaro como sócio até setembro de 2025 —, onde Flávio comemorou o aniversário da filha caçula em fevereiro de 2026.",
-    "grupo": "operadores",
-    "status": "Alvo de busca e apreensão em 4/8/2026 na Operação Sem Desconto (fraudes contra aposentados do INSS). Não é indiciado, denunciado nem réu; sua defesa afirma que ele 'não figura como investigado' e que 'jamais teve qualquer envolvimento com os fatos apurados'. A apuração da PF nessa fase mira principalmente o senador Weverton Rocha (PDT) e não estabelece ligação com Flávio Bolsonaro. O Conselho Federal da OAB acusou a PF de violar sigilo profissional na busca e pediu para ingressar na investigação. Sobre a mansão, Tomaz disse que o empréstimo ao senador se deu 'exclusivamente em razão da relação de amizade', sem pagamento ou contraprestação."
-   },
-   {
-    "id": "renato-araujo",
-    "nome": "Renato Araújo",
-    "papel": "empresário e candidato a deputado federal pelo PL, amigo da família Bolsonaro; acompanhou Flávio Bolsonaro na barqueata de campanha em Angra dos Reis em 29/8/2026. Tentou registrar o nome de urna 'Renato Araújo do Bolsonaro', barrado pelo TRE-RJ.",
-    "grupo": "operadores",
-    "status": "Não é réu nem denunciado. Uma construtora ligada a ele foi alvo de busca e apreensão da Polícia Civil em 13/8/2026, em apuração sobre fraudes em obras de escolas estaduais — a empresa firmou ao menos R$ 16 milhões em contratos na gestão Cláudio Castro. Ele antecipou publicamente a possibilidade de nova operação e classificou a ação como perseguição política."
    },
    {
     "id": "elcio-de-queiroz",
@@ -9356,6 +9481,27 @@ window.DOSSIE = {
      {
       "veiculo": "Migalhas",
       "url": "https://www.migalhas.com.br/quentes/450632/stf-veja-penas-fixadas-pela-1-turma-a-mandantes-da-morte-de-marielle"
+     }
+    ]
+   },
+   {
+    "id": "mauricio-silva-da-costa",
+    "nome": "Maurício Silva da Costa",
+    "papel": "Tenente reformado da PMERJ apontado pelo MP-RJ como um dos chefes da milícia ao lado de Adriano e Major Ronald",
+    "grupo": "milicia",
+    "status": "Denunciado pelo MP-RJ como integrante da cúpula da milícia da zona oeste; segundo o MP, nenhuma ação ocorria sem o aval dele, de Adriano e de Ronald.",
+    "situacao": [
+     "denunciado",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Wikipédia",
+      "url": "https://pt.wikipedia.org/wiki/Adriano_da_N%C3%B3brega"
+     },
+     {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/nacional/miliciano-adriano-da-nobrega-prestava-servicos-a-cupula-do-jogo-do-bicho-diz-mp/"
      }
     ]
    },
@@ -10568,6 +10714,26 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "hans-river-do-nascimento",
+    "nome": "Hans River do Nascimento",
+    "papel": "Ex-funcionário de agência de disparo em massa de WhatsApp na campanha de 2018",
+    "grupo": "operadores",
+    "status": "Foi fonte de reportagem da Folha sobre disparos em massa pró-Bolsonaro em 2018; depôs na CPMI das Fake News, onde foi acusado de mentir pela empresa Yacows.",
+    "situacao": [
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "IstoÉ Dinheiro",
+      "url": "https://www.istoedinheiro.com.br/empresa-que-atuou-em-campanha-de-bolsonaro-diz-que-ex-funcionario-mentiu-em-cpi/"
+     },
+     {
+      "veiculo": "Aos Fatos",
+      "url": "https://www.aosfatos.org/noticias/nao-ha-discrepancia-entre-datas-de-reportagem-e-explicacao-da-folha-sobre-fonte/"
+     }
+    ]
+   },
+   {
     "id": "carlos-cezar-moretzsohn-rocha",
     "nome": "Carlos Cezar Moretzsohn Rocha",
     "papel": "Presidente do Instituto Voto Legal, produtor de relatórios falsos contra as urnas eletrônicas",
@@ -10641,6 +10807,22 @@ window.DOSSIE = {
      {
       "veiculo": "InfoMoney",
       "url": "https://www.infomoney.com.br/politica/master-declarou-pagamentos-de-r-109-mi-a-empresas-de-advogado-preso-pela-pf/"
+     }
+    ]
+   },
+   {
+    "id": "andre-felipe-de-oliveira-seixas-maia",
+    "nome": "André Felipe de Oliveira Seixas Maia",
+    "papel": "Empresário, diretor da Tirreno; apontado por vender cerca de R$ 12 bilhões em créditos fictícios ao Master.",
+    "grupo": "financeiro",
+    "status": "Alvo de mandados na Operação Compliance Zero (preso/liberado).",
+    "situacao": [
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Wikipédia (Operação Compliance Zero)",
+      "url": "https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Compliance_Zero"
      }
     ]
    },
@@ -10817,6 +10999,27 @@ window.DOSSIE = {
     "papel": "Delegado que chefiou a investigação na Delegacia de Homicídios e a sabotou, tentando obter falsa confissão para encobrir os mandantes",
     "grupo": "juridico",
     "status": "Denunciado pela PGR por associação criminosa e obstrução de Justiça; denúncia recebida por Moraes no STF em 2026.",
+    "situacao": [
+     "denunciado",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/caso-marielle-moraes-recebe-denuncia-contra-policiais-por-obstrucao"
+     },
+     {
+      "veiculo": "Tribuna do Sertão",
+      "url": "https://www.tribunadosertao.com.br/rj-em-foco/2026/02/13/858061-mpf-denuncia-delegados-rivaldo-barbosa-e-giniton-lages-por-obstrucao-de-justica-no-caso-marielle"
+     }
+    ]
+   },
+   {
+    "id": "marco-antonio-de-barros-pinto",
+    "nome": "Marco Antonio de Barros Pinto",
+    "papel": "Investigador/comissário de polícia apontado como integrante do grupo que obstruiu as apurações do caso Marielle",
+    "grupo": "juridico",
+    "status": "Denunciado pela PGR por associação criminosa e obstrução de Justiça junto com Rivaldo Barbosa e Giniton Lages.",
     "situacao": [
      "denunciado",
      "investigado"
@@ -11377,6 +11580,18 @@ window.DOSSIE = {
     ]
    },
    {
+    "de": "antonio-peres",
+    "para": "queiroz",
+    "rotulo": "Articulou nomeação como subsecretário em Saquarema",
+    "status": "fato",
+    "fontes": [
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/pos-rachadinha-subsecretario-queiroz-monitora-guarda-municipal-no-rj"
+     }
+    ]
+   },
+   {
     "de": "danielle",
     "para": "queiroz",
     "rotulo": "Devolveu ao menos R$ 150 mil (rachadinha), segundo MP-RJ",
@@ -11409,6 +11624,18 @@ window.DOSSIE = {
      {
       "veiculo": "istoÉ Dinheiro",
       "url": "https://istoedinheiro.com.br/miliciano-adriano-nobrega-integrava-nucleo-de-grupo-de-flavio-bolsonaro-diz-mp"
+     }
+    ]
+   },
+   {
+    "de": "julia_lotufo",
+    "para": "rogerio-teixeira-junior-juninho-do-pneu",
+    "rotulo": "Vendeu imóveis (R$ 3,5 mi) atribuídos a Adriano, segundo MP-RJ",
+    "status": "denuncia",
+    "fontes": [
+     {
+      "veiculo": "O Tempo",
+      "url": "https://www.otempo.com.br/politica/judiciario/2026/3/19/mp-denuncia-ex-assessora-de-flavio-bolsonaro-por-esquema-de-lavagem-de-dinheiro-de-filho-miliciano"
      }
     ]
    },
@@ -11537,6 +11764,22 @@ window.DOSSIE = {
      {
       "veiculo": "PT",
       "url": "https://pt.org.br/acao-questiona-brb-e-flavio-bolsonaro-por-emprestimo-irregular/"
+     }
+    ]
+   },
+   {
+    "de": "vorcaro",
+    "para": "goup-entertainment",
+    "rotulo": "teria financiado ~R$ 61 mi em seis transferências (2025)",
+    "status": "denuncia",
+    "fontes": [
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/vorcaro-pagou-r-61-milhoes-para-filme-de-bolsonaro-flavio-cobrou-dinheiro-ouca"
+     },
+     {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/produtora-nega-patrocinio-de-vorcaro-a-filme-de-bolsonaro-nenhum-centavo/"
      }
     ]
    },
@@ -11729,6 +11972,178 @@ window.DOSSIE = {
     ]
    },
    {
+    "de": "flavio",
+    "para": "rodrigo-bacellar",
+    "rotulo": "reunião em 2024 (também com Jair e Carlos)",
+    "status": "fato",
+    "fontes": [
+     {
+      "veiculo": "Estado de Minas",
+      "url": "https://www.em.com.br/politica/2026/05/7431770-cla-bolsonaro-e-a-relacao-com-suspeitos-de-envolvimento-no-crime-organizado.html"
+     }
+    ]
+   },
+   {
+    "de": "erasmo-carlos-battistella",
+    "para": "flavio",
+    "rotulo": "doou R$ 500 mil à campanha (início de set/2026; também doou R$ 500 mil a Lula)",
+    "status": "registrado no TSE",
+    "fontes": [
+     {
+      "veiculo": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7498014-empresario-gaucho-doa-rs-500-mil-as-campanhas-de-lula-e-flavio-bolsonaro.html"
+     },
+     {
+      "veiculo": "Agenda do Poder",
+      "url": "https://agendadopoder.com.br/flavio-bolsonaro-lidera-doacoes-com-r-44-milhoes-lula-soma-r-359-milhoes/"
+     },
+     {
+      "veiculo": "GZH",
+      "url": "https://gauchazh.clicrbs.com.br/colunistas/rosane-de-oliveira/noticia/2026/09/empresario-gaucho-doa-para-campanhas-de-lula-e-de-flavio-bolsonaro-cmtugrjob00wr0135lvs26qch.html"
+     }
+    ]
+   },
+   {
+    "de": "fernando-de-castro-marques",
+    "para": "flavio",
+    "rotulo": "doou R$ 500 mil à campanha (dados TSE de 08-09/09/2026); também doou R$ 500 mil a Tarcísio",
+    "status": "registrado no TSE",
+    "fontes": [
+     {
+      "veiculo": "Agenda do Poder",
+      "url": "https://agendadopoder.com.br/flavio-bolsonaro-lidera-doacoes-com-r-44-milhoes-lula-soma-r-359-milhoes/"
+     },
+     {
+      "veiculo": "Minha Bahia",
+      "url": "https://minhabahia.com.br/politica/flavio-bolsonaro-lidera-doacoes-eleitorais-com-r-443-milhoes-lula-recebeu-r-359-milhoes/"
+     }
+    ]
+   },
+   {
+    "de": "angelo-calmon-de-sa",
+    "para": "flavio",
+    "rotulo": "doou R$ 400 mil à campanha — 3º maior doador pessoa física (set/2026)",
+    "status": "registrado no TSE/DivulgaCand",
+    "fontes": [
+     {
+      "veiculo": "Minha Bahia",
+      "url": "https://minhabahia.com.br/politica/flavio-bolsonaro-lidera-doacoes-eleitorais-com-r-443-milhoes-lula-recebeu-r-359-milhoes/"
+     },
+     {
+      "veiculo": "Folha de S.Paulo (título confirmado via Google News; texto não aberto)",
+      "url": "https://www1.folha.uol.com.br/poder/2026/09/ex-ministro-de-geisel-condenado-por-fraude-esta-entre-maiores-doadores-da-campanha-de-flavio.shtml"
+     }
+    ]
+   },
+   {
+    "de": "antonio-carlos-freixo-junior-mineiro",
+    "para": "vorcaro",
+    "rotulo": "fez, a mando de Vorcaro, os 7 repasses (US$ 12,3 mi) ao fundo do filme sobre Jair; delator",
+    "status": "delação homologada pelo STF; Flávio nega irregularidade e diz que tudo foi para o filme",
+    "fontes": [
+     {
+      "veiculo": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-09/mendonca-homologa-delacao-sobre-financiamento-do-filme-sobre-bolsonaro"
+     },
+     {
+      "veiculo": "TMC",
+      "url": "https://tmc.com.br/politica/freixo-junior-delacao-flavio-bolsonaro-havengate-stf/"
+     }
+    ]
+   },
+   {
+    "de": "mario-frias",
+    "para": "flavio",
+    "rotulo": "deputado do PL ligado ao filme 'Dark Horse'; Flávio o defendeu após a Operação Make Up ('terceira facada', 'interferência política' de Dino)",
+    "status": "Frias investigado (busca e apreensão 10/09/2026)",
+    "fontes": [
+     {
+      "veiculo": "BNews",
+      "url": "https://www.bnews.com.br/noticias/politica/flavio-bolsonaro-reage-a-investigacao-da-pf-contra-mario-frias-terceira-facada.html"
+     },
+     {
+      "veiculo": "A Tarde",
+      "url": "https://atarde.com.br/politica/dark-horse-flavio-reage-a-operacao-e-fala-em-interferencia-politica-1401627"
+     },
+     {
+      "veiculo": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2026-09/mario-frias-e-produtora-de-dark-horse-sao-alvos-de-operacao-da-pf"
+     }
+    ]
+   },
+   {
+    "de": "karina-ferreira-da-gama",
+    "para": "flavio",
+    "rotulo": "produtora do filme 'Dark Horse', cujo financiamento por Vorcaro foi pedido por Flávio; alvo da Operação Make Up",
+    "status": "investigada (busca e apreensão 10/09/2026)",
+    "fontes": [
+     {
+      "veiculo": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/republica/policia-federal-investiga-produtora-do-filme-sobre-bolsonaro-por-desvios/"
+     },
+     {
+      "veiculo": "Poder360",
+      "url": "https://www.poder360.com.br/poder-justica/pf-ve-triangulacao-de-r-61-mi-ligada-a-produtora-de-dark-horse/"
+     }
+    ]
+   },
+   {
+    "de": "renato-araujo",
+    "para": "flavio",
+    "rotulo": "coordenador do PL na Costa Verde; organizou motociata/carreata de barcos para Flávio em Angra (29/08) e esteve no ato de 07/09; amigo da família",
+    "status": "investigado (Operação Sarasvati, ago/2026)",
+    "fontes": [
+     {
+      "veiculo": "Agência Pública",
+      "url": "https://apublica.org/2026/09/o-amigo-do-flavio-bolsonaro-em-angra-dos-reis/"
+     },
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/candidato-investigado-participa-de-barqueata-com-flavio-bolsonaro-em-angra"
+     }
+    ]
+   },
+   {
+    "de": "willer-tomaz",
+    "para": "flavio",
+    "rotulo": "amigo/advogado aliado; Flávio usou apartamento de sua empresa em SP na campanha (1ª quinzena de ago/2026), segundo piauí; Flávio o defendeu comparando a PF à 'Gestapo' (Fórum, 09/09)",
+    "status": "Tomaz investigado (caso INSS); Flávio diz ter ficado só em hotéis",
+    "fontes": [
+     {
+      "veiculo": "Times Brasil / CNBC (reproduz piauí)",
+      "url": "https://timesbrasil.com.br/brasil/apartamento-usado-por-flavio-bolsonaro-durante-campanha-eleitoral-pertenceu-a-cunhado-de-daniel-vorcaro/"
+     },
+     {
+      "veiculo": "Notícias ao Minuto (reproduz piauí)",
+      "url": "https://www.noticiasaominuto.com.br/politica/2413854/flavio-usou-em-campanha-imovel-de-advogado-alvo-de-buscas-da-pf-no-caso-inss-diz-revista"
+     },
+     {
+      "veiculo": "ICL Notícias",
+      "url": "https://iclnoticias.com.br/flavio-bolsonaro-aniversario-da-filha-em-mansao/"
+     },
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/quem-e-o-advogado-willer-tomaz-alvo-da-pf-na-operacao-sem-desconto"
+     }
+    ]
+   },
+   {
+    "de": "tallis-gomes",
+    "para": "flavio",
+    "rotulo": "autodeclarado 'conselheiro do Flávio' ('como o Elon Musk foi para o Trump'); membro da Rockbridge (rede de J.D. Vance); acusado por adversários de intermediar dinheiro estrangeiro — nega",
+    "status": "sem investigação; PT levou notícia de fato ao STF (13/09/2026)",
+    "fontes": [
+     {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/pt-aciona-stf-para-apurar-suposto-custeio-estrangeiro-a-campanha-de-flavio/"
+     },
+     {
+      "veiculo": "Revista Fórum (fonte com viés; transcreve o vídeo)",
+      "url": "https://revistaforum.com.br/politica/apoiador-de-flavio-bolsonaro-g4/"
+     }
+    ]
+   },
+   {
     "de": "alfredo-gaspar",
     "para": "flavio",
     "rotulo": "candidato a vice na chapa, anunciado em 5/8/2026",
@@ -11905,18 +12320,6 @@ window.DOSSIE = {
     ]
    },
    {
-    "de": "erasmo-battistella",
-    "para": "flavio",
-    "rotulo": "doou às campanhas de Flávio e de Lula (R$ 1 mi no total)",
-    "status": "No mesmo período doou R$ 500 mil à campanha de Lula, somando R$ 1 milhão às duas candidaturas.",
-    "fontes": [
-     {
-      "veiculo": "GZH",
-      "url": "https://gauchazh.clicrbs.com.br/colunistas/rosane-de-oliveira/noticia/2026/09/empresario-gaucho-doa-para-campanhas-de-lula-e-de-flavio-bolsonaro-cmtugrjob00wr0135lvs26qch.html"
-     }
-    ]
-   },
-   {
     "de": "flavio-roscoe",
     "para": "flavio",
     "rotulo": "candidato do PL ao governo de MG lançado em 5/8/2026 como o nome de Flávio no estado",
@@ -11969,34 +12372,6 @@ window.DOSSIE = {
     ]
    },
    {
-    "de": "willer-tomaz",
-    "para": "flavio",
-    "rotulo": "amigo; emprestou ao senador a mansão em Angra da qual sua empresa é cotista",
-    "status": "Alvo de busca e apreensão na Operação Sem Desconto em 4/8/2026, sem ser indiciado, denunciado ou réu; diz que a cessão do imóvel foi 'exclusivamente em razão da relação de amizade', sem contraprestação.",
-    "fontes": [
-     {
-      "veiculo": "ICL Notícias",
-      "url": "https://iclnoticias.com.br/flavio-bolsonaro-aniversario-da-filha-em-mansao/"
-     },
-     {
-      "veiculo": "Metrópoles",
-      "url": "https://www.metropoles.com/brasil/quem-e-o-advogado-willer-tomaz-alvo-da-pf-na-operacao-sem-desconto"
-     }
-    ]
-   },
-   {
-    "de": "renato-araujo",
-    "para": "flavio",
-    "rotulo": "amigo da família Bolsonaro; acompanhou o candidato na barqueata em Angra em 29/8/2026",
-    "status": "Construtora ligada a ele foi alvo de busca e apreensão da Polícia Civil em 13/8/2026; ele não é réu nem denunciado e trata a ação como perseguição política.",
-    "fontes": [
-     {
-      "veiculo": "Metrópoles",
-      "url": "https://www.metropoles.com/brasil/candidato-investigado-participa-de-barqueata-com-flavio-bolsonaro-em-angra"
-     }
-    ]
-   },
-   {
     "de": "adriano",
     "para": "ronald-paulo-alves-pereira",
     "rotulo": "co-chefe da milícia",
@@ -12005,6 +12380,18 @@ window.DOSSIE = {
      {
       "veiculo": "Wikipédia",
       "url": "https://pt.wikipedia.org/wiki/Escrit%C3%B3rio_do_Crime"
+     }
+    ]
+   },
+   {
+    "de": "adriano",
+    "para": "mauricio-silva-da-costa",
+    "rotulo": "co-chefe da milícia",
+    "status": "Citado pelo MP-RJ ao lado de Adriano e Major Ronald como integrante da cúpula sem cujo aval nenhuma ação da milícia ocorria.",
+    "fontes": [
+     {
+      "veiculo": "Wikipédia",
+      "url": "https://pt.wikipedia.org/wiki/Adriano_da_N%C3%B3brega"
      }
     ]
    },
@@ -13141,6 +13528,18 @@ window.DOSSIE = {
     ]
    },
    {
+    "de": "carlos-bolsonaro",
+    "para": "hans-river-do-nascimento",
+    "rotulo": "operador de disparo em massa pró-campanha",
+    "status": "Hans River atuou em esquema de disparo em massa de WhatsApp pró-Bolsonaro em 2018, estrutura associada às milícias digitais sob articulação de Carlos.",
+    "fontes": [
+     {
+      "veiculo": "IstoÉ Dinheiro",
+      "url": "https://www.istoedinheiro.com.br/empresa-que-atuou-em-campanha-de-bolsonaro-diz-que-ex-funcionario-mentiu-em-cpi/"
+     }
+    ]
+   },
+   {
     "de": "allan-dos-santos",
     "para": "carlos-cezar-moretzsohn-rocha",
     "rotulo": "rede de desinformação sobre urnas",
@@ -13185,6 +13584,18 @@ window.DOSSIE = {
      {
       "veiculo": "Times Brasil / CNBC",
       "url": "https://timesbrasil.com.br/brasil/operacoes-da-pf/daniel-monteiro-advogado-preso-papel-esquema-brb-banco-master/"
+     }
+    ]
+   },
+   {
+    "de": "vorcaro",
+    "para": "andre-felipe-de-oliveira-seixas-maia",
+    "rotulo": "vendedor de créditos fictícios",
+    "status": "Diretor da Tirreno; teria vendido ~R$ 12 bi em créditos fictícios ao Master.",
+    "fontes": [
+     {
+      "veiculo": "Wikipédia",
+      "url": "https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Compliance_Zero"
      }
     ]
    },
@@ -13625,6 +14036,18 @@ window.DOSSIE = {
      {
       "veiculo": "Tribuna do Sertão",
       "url": "https://www.tribunadosertao.com.br/rj-em-foco/2026/02/13/858061-mpf-denuncia-delegados-rivaldo-barbosa-e-giniton-lages-por-obstrucao-de-justica-no-caso-marielle"
+     }
+    ]
+   },
+   {
+    "de": "giniton-lages",
+    "para": "marco-antonio-de-barros-pinto",
+    "rotulo": "co-obstrutores",
+    "status": "Denunciados juntos pela PGR por obstrução e associação criminosa na investigação do caso Marielle.",
+    "fontes": [
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/caso-marielle-moraes-recebe-denuncia-contra-policiais-por-obstrucao"
      }
     ]
    },
@@ -14473,7 +14896,7 @@ window.DOSSIE = {
   },
   {
    "titulo": "A rede do crime que agasalha Flávio Bolsonaro",
-   "fonte": "Brasil de Fato",
+   "fonte": "brasildefato.com.br",
    "data": "2026-09-15",
    "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPdW1SbnFHVUJPazFrYTRBYUVQOFVxcG9pZW4tM1R2QW5xOGF0SW5wODN6MWRmVWpDSW80LTVJMUJ0a25JSDdhOS15QVBEdXV5VzF3cnhKWVJITmItaHkySVFxZ2hCWEFiSlNPWks4SnZ1ZzVOdVpObWxxTFdLTDYxSEhST1JxNEY3MVNvZk1zb3pmQ01vY3FiM0FMN0N6R21iMkwyeXhlUXpYa1NtMEU1ak9PblNVS2NQSWlpQg?oc=5"
   },
@@ -14520,16 +14943,16 @@ window.DOSSIE = {
    "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNMEFVUXVPbnFwSUlKcWNFQkE0V0twZUlvT1p4TS1ZVTREYmNiMlRLZm9nQ3l5Qi1sVW9IODJpeUlHdlJNS1hBcU5hU0RVdWRmNmdqdlZJbGZTX1dfMEltT3dEX1VmRDdjV1pNblk0a3hBN1UtbFBldnBIb3RLdDJYMjBNWDdkWldMeGFWODdGQm1UVklkTHEwRE9EaXZTd1FiWkxQR2g0d1VreURlZE52ZEFWNTA2eHhVakk0MUNkWk1icEpqYnZOVXVkOEdTR2RqMUhITnR3?oc=5"
   },
   {
+   "titulo": "‘Flávio é Vorcaro’: Levante Popular da Juventude denuncia ‘aliança criminosa’ entre ex-banqueiro e clã Bolsonaro em prédio símbolo do Master",
+   "fonte": "brasildefato.com.br",
+   "data": "2026-09-16",
+   "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPdDN1cHcwT3FvQ0tYeXktZnVpS2VMSFBLOXg3Vkk0N05QbERKWUtnYVkzeUdNQVhQbUFnVDA4VGxVcUpnRVlLLW1uaTEzWXA2VW5SQ3BwS2NGZTRWVFBpRFlVSDlOdGJBVUM1RG5WM2JpTVgxSnFTSzMtcERXSVVoR3pWSk56VmZNUHNvT3lhS2hVU1FvbngteE9ZU3hCc1dub19lNU10dEVDdEhINV9JZFEwdXMyUXBzZTVMUm9zaHNXWEVMSDFIUXVyUVoxNEhxMWN3Y2hvU3BOZWhuNWY1clFJVHdZUlF6eTFZTmVia0I2WEtMblhBdlJ5UGh3cFVKVV9XcWdDdk92Q3M?oc=5"
+  },
+  {
    "titulo": "Caiado diz que Vorcaro 'comprou' Lula e Flávio Bolsonaro",
    "fonte": "G1",
    "data": "2026-09-17",
    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxONWV0cEFGd3M2R3NsRjg0Y0pMNE5XYklrMXc4cjJBYlJ5OTEtN1ZCSnp6TnUtbmk3NGtSVEVTUnlBdTNmd3dNNXY4RVdQRU5FZm5HeGNqVExkMjNibWlScWdqakVLS0REZkFXaWNSYkxmWlhfOFhnNlVHV1FyTlpHUnkwVVVaQU40SnczODBfTDkxaGpGeUE0UmJVbUc2dU3SAa4BQVVfeXFMUHl3Y1hYcU9FbFRhNE9yTWxVLTI0QTZjVjBLWVFYVHRUUm9Rc0pNajJvNDhVWDM2UjB6d3R1d1UtNVg3aVpXa3Y3TllSU0ZtQ1JiQ01LTjcxOUR5Y2pLY2RnZnJrQmVfV3I2LV83YUNOUUZfQXk0NzJTdjV6NnlGNGpGMlpBSXVZWnc1SVJrV2U5eFFrelRSaURZLWxCRjJLSUNUOHRoNS1wUDlTRlpn?oc=5"
-  },
-  {
-   "titulo": "‘Flávio é Vorcaro’: Levante Popular da Juventude denuncia ‘aliança criminosa’ entre ex-banqueiro e clã Bolsonaro em prédio símbolo do Master",
-   "fonte": "Brasil de Fato",
-   "data": "2026-09-16",
-   "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPdDN1cHcwT3FvQ0tYeXktZnVpS2VMSFBLOXg3Vkk0N05QbERKWUtnYVkzeUdNQVhQbUFnVDA4VGxVcUpnRVlLLW1uaTEzWXA2VW5SQ3BwS2NGZTRWVFBpRFlVSDlOdGJBVUM1RG5WM2JpTVgxSnFTSzMtcERXSVVoR3pWSk56VmZNUHNvT3lhS2hVU1FvbngteE9ZU3hCc1dub19lNU10dEVDdEhINV9JZFEwdXMyUXBzZTVMUm9zaHNXWEVMSDFIUXVyUVoxNEhxMWN3Y2hvU3BOZWhuNWY1clFJVHdZUlF6eTFZTmVia0I2WEtMblhBdlJ5UGh3cFVKVV9XcWdDdk92Q3M?oc=5"
   },
   {
    "titulo": "Lula e Flávio Bolsonaro têm motivos para se preocupar com a crise no STF | José Casado",
@@ -14539,7 +14962,7 @@ window.DOSSIE = {
   },
   {
    "titulo": "Defesa de Flávio Bolsonaro pediu 4 vezes para STF tirar investigação sobre ‘Dark Horse’ de Dino",
-   "fonte": "Brasil de Fato",
+   "fonte": "brasildefato.com.br",
    "data": "2026-09-12",
    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdWRKZXZRZFQzSG50c2lLLUFZbVZTQzJKSFFqd0NNQXc3LTdxZzRENVhXY0tjNzh0bVk0azhYT0F3TlNNUWk2alJTLXNSRTNscnJIUFRoOGdVYWNBRHUtXzhIYUhpSk51VVhZcVMzbE55YXFTOEJJSEhINkU1WDBjMXU1aFZwY3d2N2Y4SkVtQlJIbkZkdUNIQ3NYNGQwcU5aOXUzSkJuZndjWVdyTUs1VDhSWk96ZU9KN09SbzE2V2JxenBwUDhxMWdMOFl2c0cteEhz?oc=5"
   },
@@ -14563,7 +14986,7 @@ window.DOSSIE = {
   },
   {
    "titulo": "Flávio Bolsonaro manteve contatos e pedidos com Vorcaro mesmo com investigações avançadas; veja cronologia",
-   "fonte": "Brasil de Fato",
+   "fonte": "brasildefato.com.br",
    "data": "2026-09-12",
    "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQYTBDbnZFNzFoU3NaVEp0MWdRa1JDOTdpckdTWVRONWdxRF9iQkxwSkx5NGxGVHhERlJvUFAzMEVmMkZNVTFsX2FwXzJaMEszYWFBYVgzT19IWWk5OEUydm5ySzQ0YUJPTVBYR2VXUVdFN19TZE9uZ0ZpQjJzN2lQWlctTlRVMzJkSzNXZXJEN2ZfZy04VVdiZFhIQkZRS1lMdmxCUDFlQWR1amtCZDhDR3hIRHdYUUJ6bTZnTFdWVnRPUlR3ZFNWTmt5VS1SSG9pYVVDZlVzZ2FBdHJUVWQtX01Ydw?oc=5"
   },
@@ -14574,16 +14997,16 @@ window.DOSSIE = {
    "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNaUhEbXlSRk1QWkpoVm82dVhVY19haGlzNWs5eTRsYTBkYWFZeGQxbTMyM0RfYUpPckdsWjlHNTZSRVMxV0otSTY4SmNMYmY4V1VkQ2ZaMkVONVJKRVdaZkV5dnhBUHhLbHQycGlGTUNfUzZiTjdRTlhpRF9DYWJrRXI2YXJRc0l4b3E1WTJvb0pIaEhOVmZsdGQ3QmdYcUpZN2ZqaWN0MFRORWtuWTk5VXpVSzBFdER3bnJSdzNNREZfa25CcDVpODNyeUdKVnFGZi00bncwUEVHWGFzQmxHY0pscXB0bmhFTWJzOXdUaFhrTmNJa3E0NzFua0ZJOGZxblRYaHZhTTQzeXpMS2fSAZwCQVVfeXFMTy1qd1owTHRpM2xuUmNQbmVGSDNQRlRzY1VLbUU0NlRaQVlIQzdHVGFOcldpMTFiYmhsTDR6OEdRVE5sbEVhOWdoOEQxYmQzRFY2VnVJWHQxRHM5U3E3RFpyWE1QdmVYMjFkcjNndmVHY2pQU0xQYlNhM3JMQmhyVVJidktpU3lTV1pvRVlBT1dUMFplTHdCaDlRQnJJVDdhR2pBcDNWME8zLXhtY01tazkyM0h3YjF1end5Szhmc3U2UVRBQkxCaUM3VUZVQnUwemVRaU5tMXJ3eUd3eG96T0VsY0s4VjJYWmk3Tk1zU2hnZHFISmM3TVBoS2ljYTJCQWRNVUpabFozWkVRbnktX3o0b3FhVjZ5OHA1REU?oc=5"
   },
   {
-   "titulo": "Mendonça manda apagar vídeo de IA que ligava Flávio Bolsonaro a Vorcaro",
-   "fonte": "CartaCapital",
-   "data": "2026-09-16",
-   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUUswMWdySmQ4MXl4bGl2TkZHellxMFVDb0NQRmRrWjI4T3lGSTdKZ1VyMDh2U2huUXM4eXRTWTZNdjh1cTJGbDNzTW4tay10U2R2YWdiSUpSQUNQMm9CRS1HWXRhRU1CTWYtQjkyb2haeTZrSFNnUlJiajd0VkRmcy1BZWExWlctTkxueFdEdmwzMnBQMWliQ004eGt3cDRHVFJuMmZPcUFzd201R2JmWjY0bw?oc=5"
-  },
-  {
    "titulo": "Lula e Flávio Bolsonaro trocam ataques sobre STF",
    "fonte": "Assine o Meio",
    "data": "2026-09-17",
    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNci1KRXhpTXpmVkhtQ05ZWU9pZHppZ3dmdE1QWlVWbU96dXFpdTNlQU92RENPSUlNVGt5U0dyM3lqelpSRzhBTFhoMlhzZWpRQVlTYlk2QjNXcmxnYlQzNGswLWhlZmFxLXRiTmUtbzZfNFJXOEszSW1sZ3JyZU5zVDNyT3I3OThRYzVyU3VtOE1fNzFDbVdfaldxbDVkdw?oc=5"
+  },
+  {
+   "titulo": "Mendonça manda apagar vídeo de IA que ligava Flávio Bolsonaro a Vorcaro",
+   "fonte": "CartaCapital",
+   "data": "2026-09-16",
+   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUUswMWdySmQ4MXl4bGl2TkZHellxMFVDb0NQRmRrWjI4T3lGSTdKZ1VyMDh2U2huUXM4eXRTWTZNdjh1cTJGbDNzTW4tay10U2R2YWdiSUpSQUNQMm9CRS1HWXRhRU1CTWYtQjkyb2haeTZrSFNnUlJiajd0VkRmcy1BZWExWlctTkxueFdEdmwzMnBQMWliQ004eGt3cDRHVFJuMmZPcUFzd201R2JmWjY0bw?oc=5"
   },
   {
    "titulo": "PGR pediu para apurar se Flávio Bolsonaro atuou no Senado para beneficiar Vorcaro",
@@ -14592,10 +15015,10 @@ window.DOSSIE = {
    "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB4ZWlDTUpoWGgyS2FVV3A2eEY2YmVxZzN6bG4ya1ZhNG9CWTBuM05mUTg5UFJWVlJ4ZjJQV1FCVnpreXJSUkVXTkpYTUVsYmJiTV95RTRBbUNROEx5ZzdmZjBR0gFnQVVfeXFMTzZONFNvbVlrZExPNENHQmRHbmFWa0FWSV9fZEl6eEN5Q1VHbjAtZlR2VlI1M3hEazdSc2pSTF94c2s1ZzN0RjVYeDViTTJKMmJ1dVk0RjVSanNQcEJkU25IUjNwc2NFbw?oc=5"
   },
   {
-   "titulo": "‘Interlocutor direto’: o que as investigações da PF revelam sobre a relação de Flávio Bolsonaro com Daniel Vorcaro",
-   "fonte": "Brasil de Fato",
-   "data": "2026-09-11",
-   "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNR0xmLUM1MzFfN294SzlhNjk2dEtBU1NHdnR2Y3ZjTEpjNFRIVmxPTDFmR3ZtOVpVM2NjeUFiMkZoc2w5RHVzWmRnNjdqaHF6MzNwVDFHUnlvNlNzUWxxSF9IRzQ2UGthdWxQWHdSVVlaUHlaQUVzZTNsUDJKWkFwdVoxQzRVbnNFZG1RTkZFcmN5WWlvZzF2UXhZbzBSVWRCeWNMUTZVNzRjRW5jQm5WQUVxWEJHcTlZcUwxbVBzZTBmWnY2ZjcycUJucDlaMnNvR2J3Zl9CLVRXTXo5UG9qY2IzMkpRaGhDOFVj?oc=5"
+   "titulo": "Flávio Bolsonaro projeta indicar 6 ministros do STF se for eleito presidente",
+   "fonte": "Estadão",
+   "data": "2026-09-17",
+   "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQWGRtWC01N3RILW9YLW1YTHZMb2VTUWdHalowUHBIejlub19XNmdmOE0xNXV0VWczS1dsM0xVSlkwdG9iUFA4NkEwNnhHSWxBTDRwM2U3TTQ0NFNYdnk4NmFsdHFTM1RvQ2E4R2p3bXFLQm02T2hydmQxSGVKUmpzcURYZEdRcmczRDhlNnFhcGI3YmFYS0Z0OVZlSk13S0RacS1nT0RHcjNhc252aHluZjdsd2tsYmc?oc=5"
   },
   {
    "titulo": "Mendonça homologa delação de operador que enviou US$ 12,3 mi ao fundo do filme",
