@@ -66,6 +66,7 @@
     const at=$('.site-header .tab.active'); if(at&&at.scrollIntoView) at.scrollIntoView({inline:'center',block:'nearest'});
     if(name==='rede') Grafo.ensure();
     if(name==='noticias') Noticias.ensure();
+    if(name==='recente') renderRecente();
     if(location.hash !== '#'+name) history.replaceState(null,'','#'+name);
   }
   $$('.tab[data-view]').forEach(t=> t.addEventListener('click', ()=>showView(t.dataset.view)));
@@ -730,6 +731,45 @@
     };
   })();
 
+  /* ---------------- Recentemente ---------------- */
+  const JANELA_DIAS = 14;
+  function diaKey(d){ const m=String(d||'').match(/^(\d{4})-(\d{2})-(\d{2})/); return m?m[0]:null; }
+  function fmtDia(k){ const [y,m,d]=k.split('-'); return `${d}/${m}/${y}`; }
+  function recentes(){
+    const hoje = new Date(); const lim = new Date(hoje.getTime()-JANELA_DIAS*864e5);
+    const limK = lim.toISOString().slice(0,10);
+    const ev = [];
+    (D.itens||[]).forEach(i=>{ const k=diaKey(i.data); if(k && k>=limK) ev.push({k, tipo:'fato', i}); });
+    (D.noticiasFallback||[]).forEach(n=>{ const k=diaKey(n.data); if(k && k>=limK) ev.push({k, tipo:'news', n}); });
+    // manchete que repete um fato do arquivo no mesmo dia não entra duas vezes
+    ev.sort((a,b)=> b.k.localeCompare(a.k) || (a.tipo==='fato'?-1:1));
+    return ev;
+  }
+  function renderRecente(){
+    const el = $('#recente'); if(!el) return;
+    const ev = recentes(); const fatos = ev.filter(e=>e.tipo==='fato').length;
+    const cap = D.noticiasCaptura ? fmtDia(D.noticiasCaptura) : '';
+    $('#rec-quando') && ($('#rec-quando').textContent = cap ? `Atualizado em ${cap}.` : '');
+    const n = $('#rec-n'); if(n) n.textContent = fatos ? String(fatos) : '';
+    if(!ev.length){ el.innerHTML = '<div class="ph">Nada novo nos últimos dias.</div>'; return; }
+    const dias = {}; ev.forEach(e=>{ (dias[e.k]=dias[e.k]||[]).push(e); });
+    el.innerHTML = Object.keys(dias).sort().reverse().map(k=>{
+      const lista = dias[k];
+      const rows = lista.map(e=>{
+        if(e.tipo==='fato'){ const i=e.i, t=temaById[i.tema], f=(i.fontes||[])[0];
+          return `<div class="rec-it" data-item="${i.id}"><span class="rk" style="color:${t?t.cor:'#888'}">[${esc((t?t.id:i.tema||'').toUpperCase())}]</span>
+            <span class="rt">${esc(i.titulo)}${badge(i.status)}</span>
+            <span class="rs">${f&&f.url?`fonte: <a href="${esc(f.url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(f.veiculo||'ver')}</a>`:''}</span></div>`; }
+        const x=e.n;
+        return `<a class="rec-it news" href="${esc(x.url)}" target="_blank" rel="noopener"><span class="rk">[NOTÍCIA]</span><span class="rt">${esc(x.titulo)}</span><span class="rs">» ${esc(x.fonte||'')}</span></a>`;
+      }).join('');
+      const nf = lista.filter(e=>e.tipo==='fato').length, nn = lista.length-nf;
+      return `<div class="rec-day"><h3>${fmtDia(k)}<span>${nf?`${nf} ${nf===1?'fato':'fatos'}`:''}${nf&&nn?' · ':''}${nn?`${nn} ${nn===1?'manchete':'manchetes'}`:''}</span></h3>${rows}</div>`;
+    }).join('');
+    $$('.rec-it[data-item]', el).forEach(r=> r.addEventListener('click', ()=>{ showView('arquivo'); abrirDetalhe(r.dataset.item); }));
+  }
+  $$('.rec-mais [data-go]').forEach(b=> b.addEventListener('click', ()=>{ showView(b.dataset.go); window.scrollTo(0,0); }));
+
   /* ---------------- init ---------------- */
   function medeHeader(){ const h=$('.site-header'); if(h) document.documentElement.style.setProperty('--hdr', h.offsetHeight+'px'); }
   window.addEventListener('resize', medeHeader);
@@ -748,9 +788,11 @@
       if(faixas && !swimDone) renderSwimlanes();
     }));
     addMsg('bot', `Olá. Sou o <b>FlávioGPT</b>. Respondo com base no acervo documentado do BolsoDrive — sempre com status e fonte. Sobre o que quer saber?`);
-    const h = (location.hash||'#arquivo').slice(1);
-    showView(['arquivo','rede','cronologia','noticias','chat'].includes(h)?h:'arquivo');
-    window.addEventListener('hashchange', ()=>{ const k=(location.hash||'#arquivo').slice(1); if(['arquivo','rede','cronologia','noticias','chat'].includes(k)) showView(k); });
+    renderRecente();
+    const VIEWS=['recente','arquivo','rede','cronologia','noticias','chat'];
+    const h = (location.hash||'#recente').slice(1);
+    showView(VIEWS.includes(h)?h:'recente');
+    window.addEventListener('hashchange', ()=>{ const k=(location.hash||'#recente').slice(1); if(VIEWS.includes(k)) showView(k); });
   }
   init();
 })();

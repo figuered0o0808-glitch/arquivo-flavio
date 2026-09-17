@@ -41,3 +41,5 @@
   .site-header .tab{padding:7px 7px; font-size:11px; letter-spacing:0}
   .site-header .brand{max-width:290px}
 }
+.site-header .tab.hot{border-color:#ff5555; color:#ff7a7a}
+.site-header .tab.hot.active{background:#ff5555; border-color:#ff5555; color:#fff}

@@ -19,8 +19,8 @@
 <meta property="og:image:alt" content="R$ 6,01 doados por pessoas físicas contra R$ 42 milhões do partido.">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="stylesheet" href="assets/app.css?v=set2026g">
-<link rel="stylesheet" href="assets/header.css?v=7">
+<link rel="stylesheet" href="assets/app.css?v=set2026h">
+<link rel="stylesheet" href="assets/header.css?v=8">
 </head>
 <body>
 
@@ -28,7 +28,8 @@
   <div class="hrow">
     <div class="brand"><a class="mark" href="index.html">ARQUIVO_FLÁVIO</a><span class="tag" id="meta-sub">o que o registro público diz sobre o candidato</span></div>
     <nav class="tabs">
-      <button class="tab active" data-view="arquivo">BolsoDrive</button>
+      <button class="tab hot" data-view="recente">Recentemente<b id="rec-n"></b></button>
+      <button class="tab" data-view="arquivo">BolsoDrive</button>
       <button class="tab" data-view="rede">Close Friends</button>
       <a class="tab" href="siga-o-dinheiro.html">Siga o dinheiro</a>
       <a class="tab" href="quiz.html">Quiz</a>
@@ -41,8 +42,18 @@
 
 <main class="wrap">
 
+  <!-- RECENTEMENTE -->
+  <section id="view-recente" class="view active">
+    <div class="view-head">
+      <h1>Recentemente</h1>
+      <p class="tese"><b>Flávio Bolsonaro quer ser presidente.</b> Isto é o que saiu sobre ele nos últimos dias — os fatos do arquivo, com fonte e status, e as manchetes do dia. <span id="rec-quando" class="rec-quando"></span></p>
+    </div>
+    <div id="recente" class="recente"></div>
+    <p class="rec-mais"><button class="backlink" data-go="cronologia">ver a cronologia completa →</button> <button class="backlink" data-go="arquivo">ver as pastas do arquivo →</button></p>
+  </section>
+
   <!-- ARQUIVO -->
-  <section id="view-arquivo" class="view active">
+  <section id="view-arquivo" class="view">
     <div class="view-head">
       <h1>BolsoDrive</h1>
       <p class="tese"><b>Flávio Bolsonaro quer ser presidente.</b> Este arquivo mostra, com fonte em cada linha, o que ele fez com o mandato, com o dinheiro público e com quem andou. Os números abaixo resumem o caso; cada um abre a pasta que o prova.</p>
@@ -130,7 +141,7 @@
 
 <div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
 
-<script src="data/dados.js?v=set2026c"></script>
-<script src="assets/app.js?v=set2026g"></script>
+<script src="data/dados.js?v=set2026d"></script>
+<script src="assets/app.js?v=set2026h"></script>
 </body>
 </html>
