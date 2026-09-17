@@ -26,7 +26,11 @@ button{font-family:var(--sans)}
 .barra a{color:var(--papel); text-decoration:underline; text-underline-offset:2px; display:inline-block; padding:10px 0; margin:-10px 0}
 
 .wrap{max-width:560px; margin:0 auto; padding:16px 16px 60px}
+@media (min-width:900px){ .wrap{max-width:720px; padding-top:24px} }
 h1{font-size:26px; margin:6px 0 4px; letter-spacing:-.01em}
+/* título de seção: o mesmo do BolsoDrive, em todas as páginas */
+h1.sec{font-family:var(--mono); font-size:22px; color:var(--amber); text-transform:uppercase; letter-spacing:2px; margin:0 0 6px}
+h1.sec::before{content:"// "; color:var(--cinza2)}
 .sub{color:var(--cinza); margin:0 0 14px; font-size:15px}
 
 /* tipografia de número */

@@ -146,7 +146,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 
 /* ===== Cronologia (log de eventos) ===== */
 .timeline{border:1px solid var(--line);border-radius:var(--radius);background:#070b08;padding:6px 0;overflow:hidden}
-.tl-year{position:sticky;top:64px;background:#0c140c;color:var(--amber);font-size:12px;font-weight:700;letter-spacing:2px;padding:7px 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tl-year{position:sticky;top:var(--hdr,94px);background:#0c140c;color:var(--amber);font-size:12px;font-weight:700;letter-spacing:2px;padding:7px 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .tl-log{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;padding:8px 16px;border-bottom:1px solid rgba(116,255,150,.06);cursor:pointer}
 .tl-log:hover{background:var(--panel2)}
 .tl-ts{color:var(--amber);font-size:11.5px;white-space:nowrap;min-width:64px}
@@ -238,12 +238,11 @@ button{font-family:inherit;cursor:pointer;color:inherit}
   .canvas-box{height:440px;overflow:visible;margin-bottom:96px}
   .legenda{top:calc(100% + 8px);bottom:auto;left:0;max-width:100%;background:transparent;border:0;padding:0}
 
-  .tl-year{top:0}
   .flux-mid{display:block;margin:2px 0}
 }
 
 /* placar da home: os números que resumem o caso */
-.placar-band{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:0 0 6px}
+.placar-band{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:0 0 6px}
 .placar-band .pl{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius);padding:12px 12px 10px;cursor:pointer;color:var(--text);min-height:104px}
 .placar-band .pl:hover{border-color:var(--amber)}
 .placar-band .pn{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--amber);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}

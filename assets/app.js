@@ -731,7 +731,10 @@
   })();
 
   /* ---------------- init ---------------- */
+  function medeHeader(){ const h=$('.site-header'); if(h) document.documentElement.style.setProperty('--hdr', h.offsetHeight+'px'); }
+  window.addEventListener('resize', medeHeader);
   function init(){
+    medeHeader();
     $('#meta-sub') && ($('#meta-sub').textContent = D.meta.subtitulo||'');
     if(D.meta && D.meta.revisar===false) $('#revisar') && ($('#revisar').style.display='none');
     Grafo.preloadFotos();
