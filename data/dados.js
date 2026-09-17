@@ -1276,6 +1276,61 @@ window.DOSSIE = {
    "lastro": "referencia"
   },
   {
+   "id": "queiroz-reaparece-em-ato-de-flavio-em-cabo-frio",
+   "tipo": "evento",
+   "tema": "queiroz",
+   "data": "2026-09-12",
+   "status": "fato",
+   "titulo": "Queiroz reaparece em ato de Flávio em Cabo Frio; diz que 'Flávio nem me viu'",
+   "resumo": "No sábado 12/9/2026, Fabrício Queiroz, ex-assessor de Flávio e apontado pelo MPRJ como operador da 'rachadinha' (caso anulado, sem condenação), compareceu ao ato de campanha do candidato em Cabo Frio (RJ), permanecendo 'de maneira discreta ao lado do palco', em área reservada a assessores e aliados, sem subir ao palanque. Em 16/8, a assessoria de Flávio dissera que Queiroz não estivera no ato de Copacabana, apesar de foto de abraço publicada por ele; desta vez a presença foi registrada. À coluna de Igor Gadelha (Metrópoles), Queiroz negou ter sido 'escondido': 'Flávio nem me viu. Não tem que subir no palanque, não sou candidato a nada'. A campanha de Flávio não comentou nas matérias abertas.",
+   "observacao": "Diário Carioca é portal regional. Queiroz ocupa cargo de subsecretário na prefeitura de Saquarema (RJ), segundo o próprio Diário Carioca.",
+   "pessoas": [
+    "flavio",
+    "queiroz"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles (coluna Igor Gadelha)",
+     "url": "https://www.metropoles.com/colunas/igor-gadelha/queiroz-rechaca-ter-sido-escondido-por-flavio-em-evento-no-rio",
+     "data": "2026-09-14",
+     "trecho": "Na verdade, Flávio nem me viu. Não tem que subir no palanque, não sou candidato a nada",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Diário Carioca",
+     "url": "https://www.diariocarioca.com/2026/09/12/politica/eleicoes/fabricio-queiroz-protagonista-das-rachadinhas-reaparece-em-ato-de-flavio-bolsonaro",
+     "data": "2026-09-12",
+     "trecho": "de maneira discreta ao lado do palco",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "jb-flavio-e-queiroz-tiveram-encontro-reservado-e",
+   "tipo": "noticia",
+   "tema": "queiroz",
+   "data": "2026-09-13",
+   "status": "fato",
+   "titulo": "JB: Flávio e Queiroz tiveram encontro reservado em Brasília no início de 2026, após insistência do ex-assessor",
+   "resumo": "Reportagem do Jornal do Brasil de 13/9/2026 relata que Fabrício Queiroz procurou repetidamente Flávio no início de 2026 até conseguir um encontro discreto em Brasília, no fim do primeiro trimestre. Segundo interlocutores, Flávio teria exigido sigilo máximo e que Queiroz não usasse avião; o ex-assessor fez cerca de 15 horas de carro do Rio a Brasília. O senador teria deixado claro que queria distância durante a campanha e pedido que Queiroz não o procurasse mais. Depois, os dois se cruzaram na Avenida Atlântica (RJ), com abraço registrado por celulares e publicado por Queiroz. 'Flávio preferiu não comentar o caso nem respondeu às tentativas de contato da reportagem'.",
+   "observacao": "Relato baseado em interlocutores não identificados; sem confirmação oficial de nenhuma das partes. Fonte única.",
+   "pessoas": [
+    "flavio",
+    "queiroz"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Jornal do Brasil",
+     "url": "https://www.jb.com.br/brasil/politica/2026/09/1060896-flavio-bolsonaro-e-fabricio-queiroz-se-reuniram-em-brasilia-apos-insistencia.html",
+     "data": "2026-09-13",
+     "trecho": "Flávio preferiu não comentar o caso nem respondeu às tentativas de contato da reportagem",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
    "id": "flavio-bolsonaro-concedeu-a-adriano-a-medalha-ti",
    "tipo": "evento",
    "tema": "milicia",
@@ -1747,6 +1802,30 @@ window.DOSSIE = {
     }
    ],
    "lastro": "agregador"
+  },
+  {
+   "id": "video-de-gregorio-duvivier-chama-flavio-de-cria",
+   "tipo": "midia",
+   "tema": "milicia",
+   "data": "2026-09-16",
+   "status": "declaracao",
+   "titulo": "Vídeo de Gregório Duvivier chama Flávio de 'cria da milícia de Rio das Pedras' e reacende tema da medalha a Adriano da Nóbrega",
+   "resumo": "Em 16/9/2026 repercutiu nas redes um vídeo do humorista Gregório Duvivier afirmando que 'Flávio Bolsonaro é cria da milícia de Rio das Pedras' e que 'O Flávio vai transformar o Brasil num grande Rio de Janeiro', em crítica ao discurso de segurança pública do candidato. O tema remete à Medalha Tiradentes concedida por Flávio, quando deputado estadual, a Adriano da Nóbrega, então preso preventivamente por homicídio e depois apontado como ligado à milícia de Rio das Pedras, e ao emprego da mãe e da ex-mulher de Adriano em seu gabinete na Alerj. Não há desdobramento judicial novo. Defesa de Flávio, conforme registrada pela Fórum: Adriano era 'policial exemplar' à época da homenagem, falas antigas sobre milícia foram 'retiradas de contexto' e hoje defende enquadrar milicianos como terroristas.",
+   "observacao": "Conteúdo de opinião/humor amplificado por veículo de esquerda (Revista Fórum), fonte única; não é fato judicial. Mantido por ser o único desdobramento do tema 'milícia' na janela.",
+   "pessoas": [
+    "flavio",
+    "adriano"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Revista Fórum",
+     "url": "https://revistaforum.com.br/politica/gregorio-flavio-bolsonaro-milicia/",
+     "data": "2026-09-16",
+     "trecho": "Flávio Bolsonaro é cria da milícia de Rio das Pedras",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
   },
   {
    "id": "tese-de-mandatos-cruzados-estrategia-central-da",
@@ -2955,6 +3034,71 @@ window.DOSSIE = {
    "lastro": "referencia"
   },
   {
+   "id": "mendonca-afasta-cupula-da-pf-por-liminar-flavio",
+   "tipo": "decisao_judicial",
+   "tema": "juridico",
+   "data": "2026-09-08",
+   "status": "decisao_judicial",
+   "titulo": "Mendonça afasta cúpula da PF por liminar; Flávio celebra 'grupo especial de Lula desmascarado'",
+   "resumo": "Em 8/9, o ministro André Mendonça (STF) concedeu liminar na Pet 16.662 afastando o diretor-geral da PF, Andrei Rodrigues, e o diretor de Inteligência, Leandro Almada, alegando 'monitoramento ilícito de Ministro da Suprema Corte' por relatórios de inteligência ('ao menos há mais de 30 dias este relator tem sido monitorado pela Polícia Federal'); também suspendeu a produção de relatórios sobre ministros. Em sessão virtual da 2ª Turma, Fux (10h04) e Nunes Marques (10h06) acompanharam o relator, mas Gilmar Mendes pediu vista e o referendo foi interrompido; Toffoli não votou. Flávio Bolsonaro, candidato do PL, escreveu nas redes: 'Grupo especial de Lula na Polícia Federal desmascarado oficialmente', e pediu que a PF 'volte a ter autonomia para ir atrás de bandidos, e não de adversários políticos de Lula'. A AGU recorreu alegando competência exclusiva do presidente da República para nomear e exonerar dirigentes federais.",
+   "observacao": "Item de contexto: Flávio não é parte do processo; entra pela declaração pública do candidato. Liminar revertida por Dino em 9/9 (ver item seguinte). Horários dos votos conferidos na Gazeta do Povo (8/9).",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "O Tempo",
+     "url": "https://www.otempo.com.br/eleicoes/2026/presidentes/2026/9/8/flavio-bolsonaro-apoia-afastamento-de-andrei-e-afirma-que-grupo-de-lula-na-pf-foi-desmascarado",
+     "data": "2026-09-08",
+     "trecho": "Grupo especial de Lula na Polícia Federal desmascarado oficialmente.",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Migalhas",
+     "url": "https://www.migalhas.com.br/quentes/463991/2-turma-tem-maioria-para-afastar-andrei-da-pf-gilmar-pede-vista",
+     "data": "2026-09-08",
+     "trecho": "Ao menos há mais de 30 dias este relator tem sido monitorado pela Polícia Federal",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Conjur",
+     "url": "https://conjur.com.br/2026-set-08/decisao-de-mendonca-de-afastar-diretor-da-pf-pode-ser-suspensa-por-fachin-e-submetida-ao-plenario/",
+     "data": "2026-09-08",
+     "trecho": "afastar de suas funções o diretor-geral da Polícia Federal, Andrei Rodrigues",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "dino-derruba-liminar-de-mendonca-e-reintegra-and",
+   "tipo": "decisao_judicial",
+   "tema": "juridico",
+   "data": "2026-09-09",
+   "status": "decisao_judicial",
+   "titulo": "Dino derruba liminar de Mendonça e reintegra Andrei Rodrigues à chefia da PF",
+   "resumo": "Um dia após o afastamento, o ministro Flávio Dino, na Pet 16.669 (acesso da PF ao material apreendido pela Polícia Civil de SP na apuração de emendas parlamentares destinadas a empresas do filme 'Dark Horse'), determinou a reintegração de Andrei Rodrigues e de Leandro Almada e vedou 'novas medidas cautelares fundadas em atos praticados no regular exercício de suas atribuições funcionais'. Dino apontou a ilegitimidade do partido Novo (que tem candidato próprio, Romeu Zema) para pedir cautelares em investigação criminal, a incompetência de Mendonça (nomeação do diretor-geral cabe à Presidência; relatórios da PF já estavam sob análise de Fachin) e o prejuízo às investigações: 'a interrupção dos trabalhos de direção de investigações policiais interessa, sobretudo, aos investigados'. Perguntou ainda: 'Uma parte pode ser juiz de si mesma e antecipar juízos de valor sobre relatórios da Polícia Federal que expressamente a mencionam?'. Só o Plenário poderia rever sua decisão, segundo o próprio Dino.",
+   "observacao": "Decisão proferida na petição ligada às emendas do Dark Horse, o que a conecta ao caso; Flávio não é parte. A expressão 'atropelos processuais' consta na Agência Brasil, não no Conjur.",
+   "pessoas": [],
+   "fontes": [
+    {
+     "veiculo": "Conjur",
+     "url": "https://conjur.com.br/2026-set-09/dino-reintegra-diretor-geral-da-pf-e-proibe-interferencia-de-ministros-do-stf/",
+     "data": "2026-09-09",
+     "trecho": "a interrupção dos trabalhos de direção de investigações policiais interessa, sobretudo, aos investigados",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-09/dino-determina-reintegracao-de-andrei-rodrigues-no-comando-da-pf",
+     "data": "2026-09-09",
+     "trecho": "atropelos processuais",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
    "id": "oab-alega-em-peticao-sigilosa-que-pf-recolheu-do",
    "tipo": "processo",
    "tema": "juridico",
@@ -2973,6 +3117,57 @@ window.DOSSIE = {
      "url": "https://www.poder360.com.br/poder-governo/flavio-compara-pf-do-governo-lula-a-policia-nazista/",
      "data": "2026-09-09",
      "trecho": "acusa investigadores da PF de extrapolarem suas prerrogativas legais",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "em-oficio-a-fux-gilmar-acusa-previo-ajuste-com-m",
+   "tipo": "noticia",
+   "tema": "juridico",
+   "data": "2026-09-11",
+   "status": "fato",
+   "titulo": "Em ofício a Fux, Gilmar acusa 'prévio ajuste' com Mendonça no afastamento da cúpula da PF",
+   "resumo": "Em ofício de 11/9 ao presidente da 2ª Turma, Luiz Fux, divulgado pelo Metrópoles em 17/9, o ministro Gilmar Mendes afirmou ter havido 'prévio ajuste — não comunicado a parcela dos demais colegas integrantes do colegiado' entre Fux e André Mendonça na sessão virtual de 8/9, na qual Fux (10h04) e Nunes Marques (10h06) votaram quatro e seis minutos após seu pedido de vista (10h). Gilmar sustenta que 'a Turma não é composta por seu presidente e mais um ou dois ministros. É colegiado de cinco membros'. Gilmar já havia formalizado proposta de emenda regimental para 'impedir que policiais e militares atuem nos gabinetes, exceto na segurança'. O afastamento de Andrei Rodrigues fora revertido por Dino em 9/9; a matéria não registra resposta formal de Fux ou Mendonça.",
+   "observacao": "Data do fato = ofício de 11/9; divulgação em 17/9. Cortada a afirmação de que Gilmar 'defende que o tema vá ao Plenário' (não consta). Item de contexto da briga no STF; Flávio não é parte.",
+   "pessoas": [],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/gilmar-diz-que-fux-combinou-com-mendonca-voto-para-afastar-diretor-da-pf",
+     "data": "2026-09-17",
+     "trecho": "prévio ajuste — não comunicado a parcela dos demais colegas integrantes do colegiado",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/republica/gilmar-mendes-suspende-julgamento-de-afastamento-de-andrei-determinado-por-mendonca/",
+     "data": "2026-09-08",
+     "trecho": "impedir que policiais e militares atuem nos gabinetes, exceto na segurança",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "coligacao-de-lula-aciona-o-tse-contra-o-pronunci",
+   "tipo": "processo",
+   "tema": "juridico",
+   "data": "2026-09-16",
+   "status": "processo",
+   "titulo": "Coligação de Lula aciona o TSE contra o 'pronunciamento' de Flávio e pede direito de resposta; relator é André Mendonça",
+   "resumo": "Em 16/09, a coligação de Lula protocolou representação no TSE contra Flávio Bolsonaro pelo vídeo do horário eleitoral de 15/09. Pede direito de resposta e, em liminar, a proibição de reexibição do programa. Argumenta que a propaganda veicula 'fato inverídico, mentiroso e malicioso, em evidente má-fé', desinforma sobre a 'arquitetura constitucional do Estado brasileiro', apresenta como 'fato consumado' a investigação ainda pendente contra Moraes e busca 'acirrar a crise institucional e convertê-la em instrumento de campanha'. O caso foi distribuído ao ministro André Mendonça. Até 17/09 não havia decisão publicada nem manifestação da campanha de Flávio nos autos localizada.",
+   "observacao": "Status jurídico literal: representação em tramitação no TSE, sem liminar conhecida até 17/09. A versão de Flávio é a própria peça de propaganda (ver item do pronunciamento). URL da fonte corrigida (o original tinha erro de digitação).",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles (coluna Manoela Alcântara)",
+     "url": "https://www.metropoles.com/colunas/manoela-alcantara/lula-vai-ao-tse-contra-flavio-apos-acusacao-de-dividir-poder-com-moraes",
+     "data": "2026-09-17",
+     "trecho": "acirrar a crise institucional e convertê-la em instrumento de campanha",
      "tier": "referencia"
     }
    ],
@@ -3095,7 +3290,8 @@ window.DOSSIE = {
    "titulo": "Flávio diz que mansão de R$ 6 mi foi paga com renda de advogado",
    "resumo": "Em defesa a ação popular movida pela deputada Erika Kokay, Flávio afirmou que a mansão de cerca de R$ 6 mi comprada em Brasília (mar/2021) foi paga com sua renda como advogado, empresário e com o trabalho da esposa, dentista. Reportagens apontam não haver registro de atuação dele como advogado.",
    "pessoas": [
-    "flavio"
+    "flavio",
+    "fernanda-antunes-figueira-bolsonaro"
    ],
    "fontes": [
     {
@@ -4622,6 +4818,45 @@ window.DOSSIE = {
    "lastro": "referencia"
   },
   {
+   "id": "mendonca-homologa-delacao-de-mineiro-us-12-3-mi",
+   "tipo": "investigacao",
+   "tema": "master",
+   "data": "2026-09-09",
+   "status": "investigacao",
+   "titulo": "Mendonça homologa delação de 'Mineiro': US$ 12,3 mi em 7 remessas ao Havengate; pedido inicial seria de US$ 24 mi",
+   "resumo": "Em 9/9 o ministro André Mendonça homologou a colaboração premiada de Antonio Carlos Freixo Júnior ('Mineiro'), dono da Entre Investimentos, que a mando de Daniel Vorcaro fez os repasses ao fundo Havengate Development (EUA), ligado ao filme 'Dark Horse'. Segundo o delator, foram sete transferências em 2025 somando US$ 12,3 milhões ('média de US$ 1,76 milhão por operação'; cerca de R$ 69 milhões), 51,3% dos US$ 24 milhões prometidos; Vorcaro o procurou por WhatsApp entre o fim de 2024 e o início de 2025, e o restante não foi pago por causa da prisão do ex-banqueiro em nov/2025. Conversas do celular de Vorcaro atribuem a Flávio Bolsonaro o pedido dos US$ 24 milhões. Flávio sustenta que os recursos foram integralmente para o filme. Segundo o Poder360, a campanha avalia que 'a colaboração de Mineiro não trouxe, por enquanto, um elemento inteiramente novo que altere a avaliação já feita sobre as transferências' e que tudo passou 'pelo sistema bancário, com utilização do código Swift e sob supervisão do Coaf'.",
+   "observacao": "Delação homologada não equivale a prova; Flávio segue como investigado, não denunciado. Cortado 'mais de dez subscrições entre jan/2025 e jan/2026' (nenhuma fonte sustenta). Os US$ 24 mi correspondem aos R$ 134 mi do áudio já conhecido.",
+   "pessoas": [
+    "flavio",
+    "vorcaro",
+    "eduardo"
+   ],
+   "fontes": [
+    {
+     "veiculo": "A Crítica (Campo Grande)",
+     "url": "https://acritica.net/justica/delator-eleva-a-us-12-3-milhoes-dinheiro-enviado-a-fundo-do-filme-sobre-bolsonaro/",
+     "data": "2026-09-10",
+     "trecho": "média de US$ 1,76 milhão por operação",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Jornal do Brasil",
+     "url": "https://www.jb.com.br/brasil/informe-jb/2026/09/1060868-delacao-aponta-uss-24-milhoes-prometidos-para-fundo-ligado-a-filme-sobre-bolsonaro.html",
+     "data": "2026-09-10",
+     "trecho": "entrou em contato com ele por WhatsApp no fim de 2024 e no início de 2025",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/caso-dark-horse-delacao-de-mineiro-nao-assusta-a-campanha-de-flavio/",
+     "data": "2026-09-09",
+     "trecho": "a colaboração de Mineiro não trouxe, por enquanto, um elemento inteiramente novo que altere a avaliação já feita sobre as transferências",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
    "id": "mendonca-homologa-delacao-de-operador-que-fez-se",
    "tipo": "decisao_judicial",
    "tema": "master",
@@ -4657,6 +4892,335 @@ window.DOSSIE = {
      "data": "2026-09-08",
      "trecho": "sete transferências para o fundo Havengate que somaram US$ 12,3 milhões",
      "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "operacao-make-up-dino-autoriza-49-mandados-contr",
+   "tipo": "investigacao",
+   "tema": "master",
+   "data": "2026-09-10",
+   "status": "investigacao",
+   "titulo": "Operação Make Up: Dino autoriza 49 mandados contra Frias e produtora do Dark Horse; defesa de Flávio tentara tirar o caso de Dino",
+   "resumo": "Em 10/9 (quinta) a PF deflagrou a Operação Make Up, com 49 mandados de busca e apreensão (SP, RJ, CE e DF) autorizados por Flávio Dino, contra o deputado Mário Frias (PL-SP) e a produtora Karina Gama, ligada à GoUp, ao Instituto Conhecer Brasil e à Academia Nacional de Cultura, por suspeita de desvio de emendas parlamentares (peculato, falsidade documental, lavagem, organização criminosa e crimes licitatórios). Na decisão, assinada em 3/9, Dino viu 'fortes indícios de uma única organização criminosa, estruturada para captar, disseminar e ocultar recursos provenientes de verbas públicas', ligando a frente das emendas à dos dólares de Vorcaro apurada por Mendonça. Segundo o Painel Político, a defesa de Flávio apresentou quatro pedidos entre 13 e 29 de julho para transferir o procedimento de Dino a Mendonça, alegando 'manipulação das regras de competência, a fim de criar uma prevenção artificial'; todos foram rejeitados. Flávio não é alvo da operação. As assessorias de Frias e Karina Gama não responderam.",
+   "observacao": "Mundo Positivo e Painel Político são fontes secundárias; data de 10/9 (quinta) confirmada por Poder360 e Painel Político. Revista Fórum datou a operação em 9/9 — divergência não adotada. Data da decisão (3/9) vem só da Fórum.",
+   "pessoas": [
+    "flavio",
+    "mario-frias"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Mundo Positivo",
+     "url": "https://www.mundopositivo.com.br/noticias/brasil/mario-frias-e-produtora-de-dark-horse-sao-alvos-de-operacao-da-pf/",
+     "data": "2026-09-11",
+     "trecho": "existência de organização criminosa que usou recursos públicos de maneira irregular",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Painel Político",
+     "url": "https://painelpolitico.com/defesa-de-flavio-tentou-4-vezes-tirar-dark-horse-de-dino-e-dar-a-mendonca",
+     "data": "2026-09-12",
+     "trecho": "verdadeira manipulação das regras de competência, a fim de criar uma prevenção artificial",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Revista Fórum",
+     "url": "https://revistaforum.com.br/politica/pf-elo-mario-frias-karina-gama-flavio-bolsonaro-master",
+     "data": "2026-09-10",
+     "trecho": "fortes indícios de uma única organização criminosa, estruturada para captar, disseminar e ocultar recursos provenientes de verbas públicas",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "sigilo-levantado-flavio-e-investigado-desde-julh",
+   "tipo": "investigacao",
+   "tema": "master",
+   "data": "2026-09-11",
+   "status": "investigacao",
+   "titulo": "Sigilo levantado: Flávio é investigado desde julho por corrupção, lavagem e evasão; PF o aponta como 'interlocutor direto' de Vorcaro",
+   "resumo": "Na madrugada de 11/9, após determinação do presidente do STF, Edson Fachin, de envio em 24h dos procedimentos ligados à Pet 15.556/Operação Compliance Zero, André Mendonça levantou o sigilo de parte dos autos do caso Master, incluindo a Pet 16.369 (Dark Horse). Os documentos mostram que a PF pediu em 8/7 a abertura de apuração contra Flávio Bolsonaro, a PGR opinou favoravelmente em 21/7 ('indícios consistentes'), Mendonça autorizou em 22/7 e o inquérito foi instaurado em 23/7, por 'lavagem de dinheiro, evasão de divisas, corrupção e outros delitos correlatos' no repasse de cerca de R$ 61 milhões de Vorcaro ao filme. Relatório da PF, com base no celular de Vorcaro e em dados do Coaf, descreve o senador como 'interlocutor direto de Vorcaro para viabilizar aportes financeiros', com cobranças reiteradas: áudio de 8/9/2025 cobrando 'repasses atrasados' e citando risco de calote com Jim Caviezel, e ligação em 16/9/2025, dia da remessa de US$ 1,66 milhão da Entre Investimentos ao Havengate. Os autos trazem projeção de bilheteria de até R$ 358 milhões. A defesa diz que a captação 'teve caráter estritamente privado', que não houve dinheiro público, que Flávio não recebeu qualquer valor diretamente e que não ofereceu vantagens ao banqueiro; ele não nega a autenticidade dos áudios.",
+   "observacao": "Status literal: INVESTIGADO (inquérito instaurado em julho; sigilo levantado em 11/9). Não há denúncia. ICL registrou, em versão anterior no mesmo dia, que o inquérito Dark Horse seguia sigiloso; Diário Carioca relata que Mendonça ampliou a abertura em 11/9 incluindo a Pet 16.369. ICL e Diário Carioca são fontes de menor porte.",
+   "pessoas": [
+    "flavio",
+    "vorcaro",
+    "eduardo"
+   ],
+   "fontes": [
+    {
+     "veiculo": "ICL Notícias",
+     "url": "https://iclnoticias.com.br/pf-investiga-flavio-bolsonaro-esquema-vorcaro/",
+     "data": "2026-09-11",
+     "trecho": "corrupção, lavagem de dinheiro e evasão de divisas",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Jornal do Brasil",
+     "url": "https://www.jb.com.br/brasil/justica/2026/09/1060884-mendonca-incluiu-flavio-bolsonaro-como-investigado-no-caso-dark-horse.html",
+     "data": "2026-09-11",
+     "trecho": "lavagem de dinheiro, evasão de divisas, corrupção e outros delitos correlatos",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Times Brasil / CNBC",
+     "url": "https://timesbrasil.com.br/brasil/politica/relatorio-pf-linha-tempo-flavio-bolsonaro-vorcaro/",
+     "data": "2026-09-12",
+     "trecho": "interlocutor direto de Vorcaro para viabilizar aportes financeiros",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "pf-ligacao-flaviovorcaro-em-16-9-2025-coincide-c",
+   "tipo": "investigacao",
+   "tema": "master",
+   "data": "2026-09-11",
+   "status": "investigacao",
+   "titulo": "PF: ligação Flávio–Vorcaro em 16/9/2025 coincide com última remessa de US$ 1,66 mi ao fundo do 'Dark Horse'",
+   "resumo": "Relatório da PF, com sigilo levantado pelo relator André Mendonça em 11/9 (após determinação de publicidade do presidente Edson Fachin, segundo a Fórum), registra ligação de 42 segundos entre Flávio e Daniel Vorcaro em 16/9/2025, mesmo dia da última transferência de US$ 1.666.666,67 da Entre Investimentos ao Havengate Development Fund, fundo nos EUA ligado ao filme 'Dark Horse'. As remessas identificadas somam US$ 12,33 milhões de um total combinado de US$ 24 milhões em 14 parcelas; a PF aponta orientação de Eduardo (21/3/2025) sobre envio de recursos aos EUA e áudio de Flávio em 8/9/2025 cobrando parcelas atrasadas ('Imagina a gente dando calote num Jim Caviezel'). O parecer fala em 'indícios consistentes' de corrupção passiva e ativa, evasão de divisas e lavagem. Status: Flávio é investigado, não denunciado. Defesa: sustenta que se tratou de captação privada de patrocínio para a obra audiovisual, nega recebimento direto de valores e irregularidades ou uso de verba pública.",
+   "observacao": "A coincidência de datas não prova, por si, que Flávio ordenou o pagamento. Revista Fórum e Brasil de Fato têm linha editorial à esquerda; CNN, O Povo e GPS Brasília confirmam os dados centrais.",
+   "pessoas": [
+    "flavio",
+    "vorcaro",
+    "eduardo",
+    "thiago-miranda"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Revista Fórum",
+     "url": "https://revistaforum.com.br/politica/flavio-bolsonaro-vorcaro-ultima-parcela-de-us-16-mi-eduardo",
+     "data": "2026-09-11",
+     "trecho": "há registro de ligação entre DANIEL VORCARO e FLÁVIO BOLSONARO, coincidindo temporalmente com a última remessa",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/pf-mostra-conversas-de-flavio-com-vorcaro-sobre-recursos-para-dark-horse/",
+     "data": "2026-09-12",
+     "trecho": "seria muito ruim não realizar o pagamento para o ator Jim Caviezel ou para Cyrus Nowrasteh",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "GPS Brasília",
+     "url": "https://gpsbrasilia.com.br/pf-revela-cronologia-de-contatos-entre-flavio-bolsonaro-e-vorcaro-para-financiar-filme-dark-horse/",
+     "data": "2026-09-12",
+     "trecho": "relação privada de captação de patrocínio",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "mendonca-retira-sigilo-do-inquerito-dark-horse-p",
+   "tipo": "investigacao",
+   "tema": "master",
+   "data": "2026-09-11",
+   "status": "investigacao",
+   "titulo": "Mendonça retira sigilo do inquérito Dark Horse; PF registra 'interlocução direta' e 'reiteradas cobranças' de Flávio a Vorcaro",
+   "resumo": "Em 11/9/2026, após pressão do presidente do STF, Edson Fachin, dos ministros Alexandre de Moraes e Cristiano Zanin e da PGR, André Mendonça levantou o sigilo de dezenas de peças ligadas ao caso Master (18 processos e 20 procedimentos, segundo o Brasil de Fato), entre elas o inquérito sobre o financiamento do filme Dark Horse, aberto em julho a pedido da PF e autorizado pelo próprio Mendonça. O relatório da PF registra 'interlocução direta' entre Flávio Bolsonaro e Daniel Vorcaro a partir de agosto de 2025 e 'reiteradas cobranças' do senador para liberação dos recursos, além de uma ligação entre os dois em 16/9/2025, dia da última remessa de US$ 1.666.666,67 ao Havengate. Parecer do PGR Paulo Gonet (21/7/2026) aponta 'indícios consistentes' de corrupção passiva e ativa, evasão de divisas e lavagem de capitais e afirma que Eduardo Bolsonaro 'orientou a gestão dos recursos em solo estrangeiro'. Flávio é investigado; não há denúncia. Defesa: no mesmo dia, em Manaus, Flávio disse 'abra o sigilo, tira o sigilo de tudo, mostra tudo para o povo' e que 'o ministro André Mendonça está certo'. Moraes, por sua vez, classificou o levantamento como 'seletivo e direcionado'.",
+   "observacao": "Brasil de Fato e Revista Fórum têm linha editorial à esquerda; Gazeta Brasil e Gazeta da Amazônia são portais de porte médio. Os trechos do relatório da PF coincidem entre os veículos. O relatório fala em 'interlocução direta', não em 'interlocutor direto'.",
+   "pessoas": [
+    "flavio",
+    "eduardo",
+    "vorcaro"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Brasil de Fato",
+     "url": "https://www.brasildefato.com.br/2026/09/11/pressionado-mendonca-retira-sigilo-de-investigacao-sobre-pedido-de-dinheiro-de-flavio-a-vorcaro-para-financiar-dark-horse/",
+     "data": "2026-09-11",
+     "trecho": "O levantamento seletivo e direcionado do sigilo realizado pelo Ministro André Mendonça, na proteção ostensiva de determinado grupo político",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Revista Fórum",
+     "url": "https://revistaforum.com.br/politica/flavio-bolsonaro-vorcaro-ultima-parcela-de-us-16-mi-eduardo",
+     "data": "2026-09-11",
+     "trecho": "há registro de ligação entre DANIEL VORCARO e FLÁVIO BOLSONARO, coincidindo temporalmente com a última remessa",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Gazeta da Amazônia",
+     "url": "https://gazetadaamazonia.com.br/11/09/2026/eduardo-bolsonaro-dark-horse/",
+     "data": "2026-09-11",
+     "trecho": "as reiteradas cobranças realizadas por FLÁVIO BOLSONARO para liberação dos recursos constituem, em juízo de cognição sumária, um conjunto coerente de elementos que evidencia justa causa",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "pgr-pediu-a-pf-apurar-se-flavio-atuou-no-senado",
+   "tipo": "investigacao",
+   "tema": "master",
+   "data": "2026-09-11",
+   "status": "investigacao",
+   "titulo": "PGR pediu à PF apurar se Flávio atuou no Senado a favor de Vorcaro e vê 'promessa de apoio ou interferências'",
+   "resumo": "Entre os documentos tornados públicos em 11/9 está o parecer do procurador-geral Paulo Gonet, de 21/7, que apontou 'indícios consistentes' de crimes e pediu à PF o levantamento das 'proposições legislativas apresentadas ou endossadas pelo senador Flávio Nantes Bolsonaro' e pelo deputado Mário Frias 'que possam ser de interesse do Banco Master ou de empresas a ele vinculadas', além de busca completa nos telefones apreendidos. Gonet destacou mensagem de Flávio a Vorcaro em 16/11/2025, véspera da prisão ('Irmão, estou e estarei contigo sempre, não tem meia conversa entre a gente. Só preciso que me dê uma luz! Abs!'), e escreveu que o banqueiro obteve, 'às vésperas da deflagração da fase ostensiva da Operação Compliance Zero, promessa de apoio ou interferências do próprio Senador'. O objetivo é verificar se houve 'ato típico da função parlamentar que possa ser atribuído, numa lógica de causa e efeito, ao negócio cinematográfico'; a PGR não afirma interferência comprovada. Flávio e Frias não responderam ao Poder360; em outras ocasiões o senador negou ter oferecido vantagens ao banqueiro.",
+   "observacao": "O parecer é de 21/7 (fora da janela); o fato datado é sua publicidade em 11/9 com o levantamento do sigilo. É pedido de diligência, não denúncia. A mensagem de 16/11/2025 consta no Diário Carioca e na Gazeta do Povo.",
+   "pessoas": [
+    "flavio",
+    "vorcaro",
+    "mario-frias"
+   ],
+   "fontes": [
+    {
+     "veiculo": "CartaCapital",
+     "url": "https://www.cartacapital.com.br/politica/dark-horse-pgr-pediu-levantamento-sobre-atuacao-de-flavio-bolsonaro-no-congresso/",
+     "data": "2026-09-11",
+     "trecho": "que possam ser de interesse do Banco Master ou de empresas a ele vinculadas",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/pgr-suspeita-que-flavio-atuou-no-senado-em-defesa-de-vorcaro/",
+     "data": "2026-09-11",
+     "trecho": "proposições legislativas apresentadas ou endossadas pelo senador Flávio Nantes Bolsonaro",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "ICL Notícias",
+     "url": "https://iclnoticias.com.br/gonet-vorcaro-promessa-apoio-flavio-bolsonaro/",
+     "data": "2026-09-11",
+     "trecho": "obteve, às vésperas da deflagração da fase ostensiva da Operação Compliance Zero, promessa de apoio ou interferências do próprio Senador",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "europa-filmes-adia-dark-horse-sem-nova-data-film",
+   "tipo": "noticia",
+   "tema": "master",
+   "data": "2026-09-11",
+   "status": "fato",
+   "titulo": "Europa Filmes adia 'Dark Horse' sem nova data; filme não estreou em 11/9 anunciado por Caviezel",
+   "resumo": "Em 11/9, data que Jim Caviezel havia anunciado nas redes para a estreia (nunca confirmada oficialmente para o mercado brasileiro), a distribuidora Europa Filmes disse que só lançará o filme quando houver clareza sobre o desfecho das investigações. O diretor-geral Wilson Feitosa afirmou: 'O lançamento do filme terá que estar livre de possíveis impedimentos. Não dá para saber o desenrolar de tudo isso, mas não seria responsável fazer o lançamento deste filme com todos estes acontecimentos', um dia após a Operação Make Up; em julho, já defendia lançamento pós-eleição. Em 14/9, a distribuidora desmentiu cartaz de suposta pré-estreia em 30/9 compartilhado pelo deputado Gustavo Gayer ('nunca demos data de lançamento'; o cartaz 'não foi produzido pela distribuidora'). A obra tem registro ROE na Ancine desde 7/8 sob o título 'O Azarão'. Não há reação da campanha de Flávio nas matérias.",
+   "observacao": "'Por tempo indeterminado' não consta nas fontes; título ajustado para 'sem nova data'. Papo de Cinema é site especializado em cinema.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/lancamento-de-dark-horse-e-adiado-por-distribuidora/",
+     "data": "2026-09-11",
+     "trecho": "não seria responsável fazer o lançamento deste filme com todos estes acontecimentos",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Papo de Cinema",
+     "url": "https://www.papodecinema.com.br/noticias/dark-horse-estreia",
+     "data": "2026-09-14",
+     "trecho": "nunca demos data de lançamento",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "pf-detalha-mensagens-de-flavio-a-vorcaro-pedido",
+   "tipo": "investigacao",
+   "tema": "master",
+   "data": "2026-09-12",
+   "status": "investigacao",
+   "titulo": "PF detalha mensagens de Flávio a Vorcaro: pedido de R$ 131 mi, cobranças de atraso e fundo 'operacionalmente inerte' por 4 anos",
+   "resumo": "Com o sigilo levantado, a imprensa publicou em 12 e 13/9/2026 o conteúdo do relatório da PF: Flávio pediu R$ 131 milhões a Vorcaro para o filme, dos quais R$ 60 milhões teriam sido pagos (US$ 24 milhões em 14 parcelas, segundo a CNN; a primeira de US$ 2 milhões em fevereiro de 2025 e as demais de US$ 1,66 milhão, via Entre Investimentos para o fundo Havengate). Em áudio de 8/9/2025, Flávio diz que seria 'muito ruim' não pagar o ator Jim Caviezel e o diretor Cyrus Nowrasteh e que 'tá todo mundo tenso'; em 22/10/2025 afirma que o filme está 'no limite'; em 16/11/2025, véspera da prisão de Vorcaro, escreve 'Só preciso que me dê uma luz! Abs!'. A PF afirma que o Havengate, criado para fins imobiliários, ficou 'operacionalmente inerte por quase 4 anos' até a primeira remessa, contrariando a versão de Flávio à GloboNews (maio) de que era 'um fundo exclusivo criado para a realização do filme'. Status: investigado, sem denúncia. Defesa: em 12/9, no interior do RJ, Flávio disse 'Graças a Deus o sigilo foi afastado e tudo está aí às claras', 'não tem absolutamente nada de errado nesse filme' e 'Eu acho que o impacto é zero'; ao Poder360, Flávio e Eduardo não responderam.",
+   "observacao": "Os valores variam entre veículos (R$ 131 mi / R$ 134 mi pedidos; R$ 60 mi pagos; CNN fala em US$ 24 mi em 14 parcelas, O Povo e a delação de Mineiro em US$ 12,3 mi remetidos). A frase 'Irmão, estou e estarei contigo sempre' não foi localizada nas fontes abertas e foi retirada.",
+   "pessoas": [
+    "flavio",
+    "vorcaro",
+    "thiago-miranda",
+    "mario-frias"
+   ],
+   "fontes": [
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/pf-mostra-conversas-de-flavio-com-vorcaro-sobre-recursos-para-dark-horse/",
+     "data": "2026-09-12",
+     "trecho": "Só preciso que me dê uma luz! Abs!",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/relatorio-da-pf-sobre-dark-horse-contraria-versao-de-flavio/",
+     "data": "2026-09-12",
+     "trecho": "operacionalmente inerte por quase 4 anos, sem qualquer atividade pública registrada",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "O Povo",
+     "url": "https://mais.opovo.com.br/jornal/dom/2026/09/13/pf-aponta-cobrancas-de-flavio-a-vorcaro-e-detalha-relacao-sobre-dark-horse.html",
+     "data": "2026-09-13",
+     "trecho": "É porque tá num momento muito decisivo aqui do filme e como tem muita parcela pra trás, cara, tá todo mundo tenso",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "pf-flavio-e-eduardo-pediram-reuniao-com-vorcaro",
+   "tipo": "investigacao",
+   "tema": "master",
+   "data": "2026-09-13",
+   "status": "investigacao",
+   "titulo": "PF: Flávio e Eduardo pediram reunião com Vorcaro no dia em que Eduardo anunciou ficar nos EUA",
+   "resumo": "Mensagem apreendida pela PF no celular de Vorcaro mostra que, às 9h34 de 18/3/2025, o intermediário Thiago Miranda escreveu ao banqueiro: 'Flavio B e Eduardo querem marcar uma agenda com vc. Filme.'; às 11h37 do mesmo dia Eduardo fez live anunciando que permaneceria nos EUA. A PF apura se recursos destinados ao 'Dark Horse' custearam a estadia de Eduardo no exterior (corrupção, lavagem e evasão de divisas). Defesa: Eduardo, por meio de Paulo Figueiredo, negou conversas ou reuniões com Vorcaro e qualquer ligação entre sua permanência nos EUA e o dinheiro do filme; a defesa de Flávio não comentou, mas o senador afirma não ter cometido irregularidades e já defendeu a retirada do sigilo da investigação.",
+   "observacao": "Fonte única (Revista Fórum, linha editorial à esquerda) citando relatório da PF; não localizada cobertura da grande imprensa sobre este trecho específico. A cronologia geral do relatório é confirmada pelo item de 11/9.",
+   "pessoas": [
+    "flavio",
+    "eduardo",
+    "vorcaro",
+    "thiago-miranda"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Revista Fórum",
+     "url": "https://revistaforum.com.br/politica/flavio-eduardo-bolsonaro-vorcaro-fuga-eua",
+     "data": "2026-09-13",
+     "trecho": "Flavio B e Eduardo querem marcar uma agenda com vc. Filme.",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "lula-diz-que-flavio-tem-raiva-de-moraes-por-mari",
+   "tipo": "declaracao",
+   "tema": "master",
+   "data": "2026-09-16",
+   "status": "declaracao",
+   "titulo": "Lula diz que Flávio tem 'raiva' de Moraes por Marielle e 8/1 e cobra 'os R$ 130 milhões' de Vorcaro",
+   "resumo": "Em entrevista ao podcast 'Desce a Letra Show' (Cauê Moura e Load Comics), em 16/9/2026, o presidente Lula afirmou: 'A raiva dele pelo Alexandre de Moraes é porque o Alexandre de Moraes mandou prender o cara que mandou matar a Marielle' e 'A bronca dele com o Alexandre de Moraes é porque o Alexandre de Moraes prendeu o pai dele e os golpistas que tentaram fazer o 8 de Janeiro'. Disse que Flávio está 'nervosinho' porque vão aparecer as 'falcatruas dele com o Vorcaro, o churrasco, as bebidas, as mulheres', que 'O que tem que explicar é cadê os R$ 130 milhões que ele pegou do Vorcaro' e que 'É quase que uma quadrilha, e não uma família'. Elogiou Moraes ('trabalho extraordinário para garantir a democracia nesse país'), mas defendeu que investigações contra o ministro prossigam se houver ilícitos. Resposta de Flávio, no mesmo dia, em ato no Recife: 'Se o Lula foi declarado presidente da República, ele deve ao Alexandre de Moraes' e Lula 'passou a mão na cabeça do Alexandre de Moraes'.",
+   "observacao": "A menção a Marielle refere-se à prisão dos irmãos Brazão. Flávio não é investigado no assassinato. O valor de R$ 130 milhões consta em O Tempo, não na matéria do Metrópoles.",
+   "pessoas": [
+    "flavio",
+    "vorcaro"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/lula-afirma-que-flavio-bolsonaro-tem-raiva-de-moraes-por-prisao-do-pai",
+     "data": "2026-09-16",
+     "trecho": "A raiva dele pelo Alexandre de Moraes é porque o Alexandre de Moraes mandou prender o cara que mandou matar a Marielle",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "O Tempo",
+     "url": "https://www.otempo.com.br/eleicoes/2026/presidentes/2026/9/16/lula-elogia-moraes-e-diz-que-flavio-esta-nervosinho-porque-vao-aparecer-falcatruas-com-vorcaro",
+     "data": "2026-09-16",
+     "trecho": "R$ 130 milhões que ele pegou do Vorcaro",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/lula-passou-a-mao-na-cabeca-de-moraes-diz-flavio-em-ato-no-recife",
+     "data": "2026-09-16",
+     "trecho": "passou a mão na cabeça do Alexandre de Moraes",
+     "tier": "referencia"
     }
    ],
    "lastro": "referencia"
@@ -5377,6 +5941,29 @@ window.DOSSIE = {
      "url": "https://www.metropoles.com/brasil/flavio-evita-indicar-posicao-sobre-6x1-e-volta-a-defender-pec-alternativa",
      "data": "2026-09-01",
      "trecho": "As propostas vão andar em conjunto, então não preciso escolher entre uma ou outra",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "sem-decisao-sobre-moraes-oposicao-no-senado-pres",
+   "tipo": "noticia",
+   "tema": "senado",
+   "data": "2026-09-16",
+   "status": "fato",
+   "titulo": "Sem decisão sobre Moraes, oposição no Senado pressiona Alcolumbre por impeachment; Flávio leva crise à campanha",
+   "resumo": "Após o STF suspender em 15/9 a análise sobre Moraes, senadores de oposição cobraram de Davi Alcolumbre posicionamento sobre pedidos de impeachment do ministro; o presidente do Senado já sinalizara resistência, citando 109 requerimentos contra os dez ministros ('Isso não é normal'). Rogério Marinho (PL-RN) propôs mudar o rito para que pedidos avancem automaticamente ao atingir maioria; Damares Alves (Republicanos-DF) disse que a vista serve para 'só adiar a sangria. Só adiar o desgaste' e há proposta de grupo de trabalho na CCJ para apresentar reforma do Judiciário em 60 dias. A CDH acompanhou a sessão do STF com telões no plenário. Flávio incorporou a crise do STF ao discurso de campanha.",
+   "observacao": "Fonte única. Afirmações sobre ausência de Flávio em votações nominais e sobre aprovação na CDH não constavam da fonte e foram cortadas.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/sem-decisao-sobre-moraes-julgamento-no-stf-amplia-reacao-no-senado",
+     "data": "2026-09-16",
+     "trecho": "adiar a sangria. Só adiar o desgaste",
      "tier": "referencia"
     }
    ],
@@ -6264,6 +6851,272 @@ window.DOSSIE = {
    "lastro": "referencia"
   },
   {
+   "id": "tse-admite-aije-da-coligacao-de-lula-contra-chap",
+   "tipo": "processo",
+   "tema": "eleicoes",
+   "data": "2026-09-08",
+   "status": "processo",
+   "titulo": "TSE admite AIJE da coligação de Lula contra chapa Flávio/Alfredo Gaspar por ato em Barretos",
+   "resumo": "O corregedor-geral eleitoral, ministro Antonio Carlos Ferreira, admitiu a Ação de Investigação Judicial Eleitoral proposta pela coligação 'Brasil Pronto pra Mais' (Lula/Alckmin) contra Flávio Bolsonaro e o vice Alfredo Gaspar por suposto abuso de poder econômico na 71ª Festa do Peão de Barretos (22/8), onde o candidato discursou no palco principal, em estrutura que a coligação diz ter sido custeada por empresas privadas, para público estimado em 60 mil pessoas ('o eleitor que comprou um ingresso para assistir a shows artísticos foi surpreendido com um verdadeiro ato de campanha eleitoral durante o intervalo'). A coligação pede cassação dos registros e inelegibilidade por oito anos. O TSE entendeu que os fatos 'podem, em tese, configurar irregularidade eleitoral e, por isso, devem ser apurados' e deu cinco dias para defesa; só depois deliberará sobre provas testemunhais. Não há juízo de mérito. A campanha de Flávio não se manifestou nas matérias consultadas.",
+   "observacao": "Data da decisão inferida pela publicação do BNews às 19h33 de 8/9. BNews fala em 'recursos públicos e privados' na festa; O Povo, em estrutura custeada por empresas privadas — mantida a versão do O Povo (Estadão), que reproduz a petição.",
+   "pessoas": [
+    "flavio",
+    "alfredo-gaspar"
+   ],
+   "fontes": [
+    {
+     "veiculo": "BNews",
+     "url": "https://www.bnews.com.br/noticias/politica/tse-abre-investigacao-contra-chapa-de-flavio-bolsonaro-que-pode-deixa-la-inelegivel.html",
+     "data": "2026-09-08",
+     "trecho": "somente após apresentar a defesa, a deliberação sobre os requerimentos de produção de prova testemunhal irá começar.",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "O Povo",
+     "url": "https://www.opovo.com.br/noticias/politica/2026/09/09/tse-abre-investigacao-sobre-suposto-abuso-de-poder-economico-em-ato-de-flavio-em-barretos.html",
+     "data": "2026-09-09",
+     "trecho": "podem, em tese, configurar irregularidade eleitoral e, por isso, devem ser apurados",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "pool-sbt-redetv-cnn-cancela-debate-de-14-09-apos",
+   "tipo": "evento",
+   "tema": "eleicoes",
+   "data": "2026-09-08",
+   "status": "fato",
+   "titulo": "Pool SBT/RedeTV!/CNN cancela debate de 14/09 após Lula e Flávio não confirmarem presença",
+   "resumo": "Em 08/09, o pool 'O Momento da Decisão' (CNN Brasil, Exame, Metrópoles, Nova Brasil FM, Rádio Itatiaia, RedeTV!, Rede Vida, SBT, SBT News, Terra e VEJA+ TV) anunciou o cancelamento do debate presidencial marcado para 14/09, porque Lula (PT) e Flávio Bolsonaro (PL) não confirmaram participação até o prazo de 07/09. Flávio mantém a posição de não participar de debates sem Lula presente; ambos já haviam faltado ao debate da Band em 23/08. Seguem no calendário os debates da Record (27/09, 21h) e da Globo (01/10, 21h30), sem confirmação dos dois líderes.",
+   "observacao": "Versão de Flávio: a condição pública de só debater com Lula no palco. Nenhuma nota específica da campanha sobre o cancelamento nas matérias abertas.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Revista Fórum",
+     "url": "https://revistaforum.com.br/politica/ula-flavio-debate-cancelado",
+     "data": "2026-09-08",
+     "trecho": "o motivo foi a ausência de confirmação de Lula (PT) e Flávio Bolsonaro (PL) dentro do prazo estabelecido pelos organizadores",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/eleicoes/2026/proximos-debates-tv-candidatos-presidente/",
+     "data": "2026-09-09",
+     "trecho": "Flávio confirmou que não vai participar de debates sem a presença de Lula",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "mendonca-no-tse-manda-apagar-video-de-ia-que-mos",
+   "tipo": "decisao_judicial",
+   "tema": "eleicoes",
+   "data": "2026-09-09",
+   "status": "decisao_judicial",
+   "titulo": "Mendonça, no TSE, manda apagar vídeo de IA que mostrava Flávio 'preso' em frente ao Banco Master",
+   "resumo": "Liminar assinada em 9/9 pelo ministro André Mendonça, como integrante do TSE, determinou a exclusão de vídeo gerado por inteligência artificial em que Flávio Bolsonaro aparece dançando diante de uma fachada do Banco Master entre cédulas e, em seguida, sendo algemado por agentes da PF; o dono do perfil foi intimado. Para o ministro, o conteúdo fotorrealista tinha 'grau de verossimilhança suficiente para que, no curso ordinário da visualização, o eleitor médio possa apreendê-lo como documentação autêntica' e construía a prisão fictícia de modo a 'dar aparência documental a um acontecimento que nunca ocorreu'. As matérias não informam quem pediu a remoção nem a plataforma. A Revista Fórum contrapõe que a relação Flávio-Vorcaro está documentada pela PF e que o TSE liberou dias antes vídeo de IA de Jair Bolsonaro feito para a campanha de Flávio.",
+   "observacao": "Decisão de 9/9 só noticiada em 16/9. Revista Fórum é veículo de linha editorial à esquerda; usada como segunda fonte.",
+   "pessoas": [
+    "flavio",
+    "vorcaro"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles (Grande Angular)",
+     "url": "https://www.metropoles.com/colunas/grande-angular/mendonca-manda-apagar-video-de-ia-que-ligava-flavio-bolsonaro-a-vorcaro",
+     "data": "2026-09-16",
+     "trecho": "grau de verossimilhança suficiente para que, no curso ordinário da visualização, o eleitor médio possa apreendê-lo como documentação autêntica",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Revista Fórum",
+     "url": "https://revistaforum.com.br/politica/mendonca-video-flavio-vorcaro/",
+     "data": "2026-09-16",
+     "trecho": "dar aparência documental a um acontecimento que nunca ocorreu",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "prestacao-parcial-ao-tse-flavio-lidera-arrecadac",
+   "tipo": "financeiro",
+   "tema": "eleicoes",
+   "data": "2026-09-09",
+   "status": "fato",
+   "titulo": "Prestação parcial ao TSE: Flávio lidera arrecadação com R$ 44,4 milhões, R$ 42,9 mi vindos do PL",
+   "resumo": "Dados de prestação de contas parcial do TSE divulgados em 09/09 mostram Flávio Bolsonaro (PL) na liderança da arrecadação entre presidenciáveis, com R$ 44,4 milhões, dos quais R$ 42,9 milhões repassados pelo PL. Lula (PT) aparece com R$ 35,9 milhões (R$ 35,1 mi do PT); Ronaldo Caiado (PSD) R$ 6,6 mi (R$ 4,1 mi do partido); Romeu Zema (Novo) R$ 3,9 mi (R$ 3,6 mi do partido); Renan Santos (Missão) R$ 1,3 mi (R$ 1,22 mi de financiamento coletivo); Augusto Cury (Avante) R$ 317 mil (R$ 250 mil do próprio bolso). A arrecadação pode seguir até 04/10.",
+   "observacao": "Cortados: prazo de prestação final (14/11) e cifra de gastos (R$ 49,5 mi), não sustentados pela fonte aberta.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/tse-flavio-bolsonaro-recebe-r-44-milhoes-e-lidera-doacoes-eleitorais",
+     "data": "2026-09-09",
+     "trecho": "R$ 42,9 milhões vieram do Partido Liberal (PL)",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "datafolha-810-09-lula-39-x-flavio-35-no-1-turno",
+   "tipo": "noticia",
+   "tema": "eleicoes",
+   "data": "2026-09-11",
+   "status": "fato",
+   "titulo": "Datafolha (8–10/09): Lula 39% x Flávio 35% no 1º turno; 2º turno 46% x 44%, empate técnico",
+   "resumo": "Pesquisa Datafolha divulgada em 11/09 (campo 8 a 10/09, 2.002 entrevistados, margem de 2 pontos, registro BR-01833/2026) mostra Lula (PT) com 39% e Flávio Bolsonaro (PL) com 35% no cenário estimulado de 1º turno, empate técnico dentro da margem. Seguem Augusto Cury (Avante) 6%, Ronaldo Caiado (PSD) 4% e Renan Santos (Missão) 3%. Na simulação de 2º turno, Lula 46% x Flávio 44%; contra Cury, Lula 45% x 43%; contra Renan Santos, 48% x 37%.",
+   "observacao": "Cortada a comparação com a rodada anterior (38% x 32%), não presente na fonte aberta.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026-2/",
+     "data": "2026-09-11",
+     "trecho": "Lula (PT): 39%; Flávio Bolsonaro (PL): 35%",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "flavio-faz-carreata-em-campos-com-douglas-ruas-e",
+   "tipo": "evento",
+   "tema": "eleicoes",
+   "data": "2026-09-12",
+   "status": "fato",
+   "titulo": "Flávio faz carreata em Campos com Douglas Ruas e promete 'neutralizar' narcotraficantes",
+   "resumo": "Em 12/09, Flávio Bolsonaro cumpriu agenda em Cabo Frio e Campos dos Goytacazes (RJ) ao lado de Douglas Ruas (PL), candidato ao governo do RJ. Em Campos, fez carreata acompanhado de Wladimir Garotinho (ex-prefeito e coordenador da campanha), Carlos Jordy e Carlos Portinho (candidatos ao Senado) e Sóstenes Cavalcante (Câmara). No discurso, tratou de segurança pública, preço dos alimentos e proposta de CNH a partir dos 16 anos, e disse: 'Os narcotraficantes serão presos ou neutralizados e vamos devolver a soberania aos territórios'. Não deu entrevista após a fala.",
+   "observacao": "Fonte regional única. Cortados: passagens por Macaé e Itaperuna e duração de 'cerca de uma hora' da carreata, não confirmadas na fonte.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Agenda do Poder",
+     "url": "https://agendadopoder.com.br/flavio-bolsonaro-e-douglas-ruas-fazem-carreata-juntos-em-campos-dos-goytacazes/",
+     "data": "2026-09-12",
+     "trecho": "Os narcotraficantes serão presos ou neutralizados e vamos devolver a soberania aos territórios",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "quaest-1013-09-lula-36-x-flavio-31-no-2-turno-fl",
+   "tipo": "noticia",
+   "tema": "eleicoes",
+   "data": "2026-09-14",
+   "status": "fato",
+   "titulo": "Quaest (10–13/09): Lula 36% x Flávio 31%; no 2º turno Flávio 42% x Lula 40%, empate técnico",
+   "resumo": "Pesquisa Genial/Quaest divulgada em 14/09 (campo 10 a 13/09, 2.004 entrevistados, margem de 2 pontos, registro BR-03607/2026) mostra Lula 36% e Flávio Bolsonaro 31% no 1º turno, com Cury 7%, Renan Santos 4%, Caiado 4% e Zema 1%; indecisos 10%, brancos/nulos 7%. Na rodada de 07/09, Flávio tinha 29% e Lula os mesmos 36%; a diferença caiu de sete para cinco pontos. No 2º turno, Flávio 42% x Lula 40%, empate técnico (brancos/nulos 13%, indecisos 5%). Ambos têm 55% de rejeição. A próxima rodada está prevista para 21/09. É a primeira vantagem numérica do senador na série da Quaest para o 2º turno.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Brasil de Fato",
+     "url": "https://www.brasildefato.com.br/2026/09/14/pesquisa-quaest-lula-registra-36-e-flavio-bolsonaro-alcanca-31-no-primeiro-turno/",
+     "data": "2026-09-14",
+     "trecho": "Flávio Bolsonaro aparece com 42% e Lula soma 40%, configurando uma situação de empate técnico",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "CartaCapital",
+     "url": "https://www.cartacapital.com.br/cartaexpressa/a-nova-pesquisa-quaest-sobre-lula-x-flavio-bolsonaro-a-menos-de-duas-semanas-do-1o-turno/",
+     "data": "2026-09-16",
+     "trecho": "O cenário, porém, é de empate técnico",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-42-contra-40-de-lula-no-2o-turno-diz-quaest/",
+     "data": "2026-09-14",
+     "trecho": "55% de rejeição cada",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "cnt-mda-913-09-lula-40-5-x-flavio-30-4-no-1-turn",
+   "tipo": "noticia",
+   "tema": "eleicoes",
+   "data": "2026-09-15",
+   "status": "fato",
+   "titulo": "CNT/MDA (9–13/09): Lula 40,5% x Flávio 30,4% no 1º turno; 2º turno 47,3% x 40%",
+   "resumo": "Pesquisa CNT/MDA divulgada em 15/09 (campo 9 a 13/09, 2.002 eleitores, coleta presencial domiciliar e em ponto de fluxo, margem de 2,2 pontos, registro BR-06902/2026) mostra Lula com 40,5% e Flávio Bolsonaro com 30,4% no 1º turno. No 2º turno, Lula 47,3% x Flávio 40%, com 10,2% de brancos/nulos e 2,5% de indecisos. Nos demais cenários de 2º turno, Lula vence Cury (45,3% x 38,4%), Caiado (46,4% x 37,3%), Zema (47,7% x 34,5%) e Renan Santos (47,3% x 33,9%).",
+   "observacao": "Cortados os percentuais de Cury, Caiado e Renan Santos no 1º turno e o juízo de 'mais favorável a Lula da semana', não sustentados pela fonte aberta.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Exame",
+     "url": "https://exame.com/brasil/cnt-mda-lula-tem-473-e-flavio-bolsonaro-40-no-2o-turno/",
+     "data": "2026-09-15",
+     "trecho": "Lula: 47,3%; Flávio: 40%; Brancos/nulos: 10,2%; Indecisos: 2,5%",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "acm-neto-evita-palanque-com-flavio-na-bahia-e-re",
+   "tipo": "noticia",
+   "tema": "eleicoes",
+   "data": "2026-09-17",
+   "status": "fato",
+   "titulo": "ACM Neto evita palanque com Flávio na Bahia e reitera apoio a Caiado no 1º turno",
+   "resumo": "Na agenda de Flávio Bolsonaro em Vitória da Conquista (BA) em 17/09 (concentração no antigo aeroporto e motocarreata até o Estádio Lomanto Júnior, recebido por João Roma, presidente do PL-BA e candidato ao Senado), o candidato ao governo ACM Neto (União Brasil) não participou: cumpriu reuniões com lideranças pela manhã, carreata em Eunápolis à tarde e caminhada e comício em Ibicaraí à noite. Neto já declarou apoio a Ronaldo Caiado (PSD) para presidente; sobre bandeiras com os nomes de Neto e Flávio vistas no ato de 7 de Setembro em Salvador, a campanha disse que não havia produzido o material. Não há manifestação do PL-BA ou de Flávio sobre a ausência na matéria aberta.",
+   "observacao": "Fonte regional única aberta; sem contraditório do PL na matéria.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "bahia.ba",
+     "url": "https://bahia.ba/politica/acm-neto-se-afasta-de-flavio-bolsonaro-em-agenda-na-bahia/",
+     "data": "2026-09-17",
+     "trecho": "ACM Neto já declarou apoio a Ronaldo Caiado (PSD) na disputa pela Presidência da República",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "atlasintel-1116-09-lula-44-1-x-flavio-41-7-no-1",
+   "tipo": "noticia",
+   "tema": "eleicoes",
+   "data": "2026-09-17",
+   "status": "fato",
+   "titulo": "AtlasIntel (11–16/09): Lula 44,1% x Flávio 41,7% no 1º turno; 2º turno Flávio 47,2% x Lula 46,8%",
+   "resumo": "Pesquisa AtlasIntel divulgada em 17/09 (campo 11 a 16/09, 5.018 entrevistados, margem de 1 ponto, registro BR-06221/2026) mostra Lula 44,1% e Flávio Bolsonaro 41,7% no 1º turno em votos totais, seguidos de Renan Santos 5,1%, Cury 3,5%, Caiado 1,7%, Zema 1,1% e Samara 0,7%; em votos válidos, Lula 45% x Flávio 42,6%. No 2º turno, Flávio 47,2% x Lula 46,8%, empate técnico. Aprovação de Lula: 45,4% aprovam, 53,6% desaprovam.",
+   "observacao": "Corrigido: Renan Santos tem 5,1% em votos totais (não 5,2% em válidos). Cortado o 2º turno em votos válidos (50,2% x 49,8%), não presente na fonte.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/",
+     "data": "2026-09-17",
+     "trecho": "Entrevistou 5.018 pessoas de 11 a 16 de setembro de 2026",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
    "id": "flavio-sugere-conspiracao-no-atentado-a-jair-que",
    "tipo": "declaracao",
    "tema": "declaracoes",
@@ -6717,6 +7570,305 @@ window.DOSSIE = {
    "lastro": "referencia"
   },
   {
+   "id": "em-manaus-flavio-pede-a-mendonca-abrir-os-sigilo",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-11",
+   "status": "declaracao",
+   "titulo": "Em Manaus, Flávio pede a Mendonça 'abrir os sigilos' e que Dino seja investigado",
+   "resumo": "Em Manaus (AM), em 11/9, horas após vir a público que é investigado formalmente, Flávio Bolsonaro declarou: 'abra os sigilos, tira o sigilo de tudo, mostra tudo pro povo' e 'Eu quero transparência para tudo'. Disse ainda: 'Eu estou pedindo que o Dino seja investigado formalmente', alegando que documentos apreendidos na operação indicariam ameaças à produtora Karina Gama por pessoas próximas a Dino e a Lula. Negou irregularidades e afirmou não ter recebido recursos pessoalmente. Não há registro de pedido formal protocolado nem de resposta dos ministros na matéria.",
+   "observacao": "Declaração do candidato; a alegação sobre ameaças a Karina Gama não foi verificada por fonte independente. Fonte única.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/flavio-defende-fim-dos-sigilos-do-caso-master-e-pede-investigacao-de-dino",
+     "data": "2026-09-11",
+     "trecho": "Eu estou pedindo que o Dino seja investigado formalmente",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "em-cabo-frio-flavio-diz-que-quem-vota-em-lula-es",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-12",
+   "status": "declaracao",
+   "titulo": "Em Cabo Frio, Flávio diz que 'quem vota em Lula está votando em Alexandre de Moraes' e acusa Dino de 'sequestrar' o caso Dark Horse",
+   "resumo": "Em discurso no sábado 12/9/2026 em Cabo Frio (RJ), Flávio Bolsonaro afirmou que 'quem vota em Lula está votando em Alexandre de Moraes' e que 'Quem governa o Brasil hoje é Alexandre de Moraes', além de 'Acabou a palhaçada no Brasil, porque o mau exemplo está vindo de cima, está vindo do presidente da República, que abandonou o país'. No mesmo dia, no X, comemorou a queda do sigilo do inquérito Dark Horse ('Graças a Deus caiu o sigilo'), acusou o ministro Flávio Dino de ter 'sequestrado' a investigação por um 'atalho' e disse que sua defesa pediu a devolução do caso ao 'relator natural', André Mendonça; escreveu ainda: 'Como Presidente do Brasil, vou proteger as instituições das laranjas podres que as contaminam'. Segundo o InfoMoney, a defesa havia pedido a Fachin em 3/7 a redistribuição do inquérito, aberto no âmbito da ADPF 854 (relatada por Dino) a pedido dos deputados Tabata Amaral e Pastor Henrique Vieira.",
+   "observacao": "TMC é veículo regional; o Portal Claudio Oliveira é blog pequeno que cita R7 e Metrópoles; a fala sobre Dino foi confirmada em InfoMoney, Jornal de Brasília e Jovem Pan.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "TMC",
+     "url": "https://tmc.com.br/politica/durante-discurso-flavio-bolsonaro-diz-que-quem-vota-em-lula-vota-em-moraes/",
+     "data": "2026-09-12",
+     "trecho": "quem vota em Lula está votando em Alexandre de Moraes",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "InfoMoney",
+     "url": "https://www.infomoney.com.br/politica/flavio-bolsonaro-dino-sequestrou-dark-horse-para-usa-lo-ilegalmente-contra-mim/",
+     "data": "2026-09-12",
+     "trecho": "Como Presidente do Brasil, vou proteger as instituições das laranjas podres que as contaminam",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Portal Claudio Oliveira (cita R7 e Metrópoles)",
+     "url": "https://www.portalclaudiooliveira.com/2026/09/gracas-deus-caiu-o-sigilo-diz-flavio.html",
+     "data": "2026-09-12",
+     "trecho": "Graças a Deus caiu o sigilo",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "em-cabo-frio-flavio-diz-que-quebra-de-sigilo-tem",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-12",
+   "status": "declaracao",
+   "titulo": "Em Cabo Frio, Flávio diz que quebra de sigilo tem 'impacto zero' na campanha",
+   "resumo": "Em comício em Cabo Frio (RJ) em 12/9, horas depois de Mendonça divulgar inquéritos do caso Master, Flávio Bolsonaro afirmou: 'Estou muito tranquilo. Acho que o impacto é zero'. Negou irregularidades na produção de 'Dark Horse' e pediu também a quebra de sigilo dos documentos da fraude no INSS, associando-a ao governo Lula.",
+   "observacao": "Fonte única; a frase 'Graças a Deus, o sigilo foi afastado e tudo está às claras' não foi confirmada na matéria e foi cortada.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "O Tempo",
+     "url": "https://www.otempo.com.br/eleicoes/2026/presidentes/2026/9/12/flavio-diz-estar-tranquilo-com-quebra-de-sigilo-e-que-caso-master-tem-impacto-zero-na-campanha",
+     "data": "2026-09-12",
+     "trecho": "Estou muito tranquilo. Acho que o impacto é zero",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "em-belem-flavio-diz-que-stf-tem-a-obrigacao-de-a",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-14",
+   "status": "declaracao",
+   "titulo": "Em Belém, Flávio diz que STF 'tem a obrigação' de autorizar investigação contra Moraes e que ele 'precisa ser afastado'",
+   "resumo": "Durante motociata em Belém (PA) em 14/09, véspera da sessão extraordinária do STF sobre a abertura de investigação da relação do ministro Alexandre de Moraes com o ex-banqueiro Daniel Vorcaro (Banco Master), Flávio afirmou que 'a maioria do Supremo no Plenário tem a obrigação de autorizar o início de investigação contra ele' e que Moraes 'precisa ser afastado'; disse que 15/09 'será um dos dias mais importantes dos últimos anos no Brasil'. Em 15/09, a sessão durou mais de seis horas e terminou sem decisão: por 4 a 3 o tribunal separou o caso de Moraes do exame dos atos do ministro André Mendonça, e um pedido de vista de Flávio Dino suspendeu o julgamento por até 90 dias. Não há investigação instaurada contra Moraes até 17/09.",
+   "observacao": "Status jurídico: deliberação no STF sobre abertura de investigação, suspensa por pedido de vista; nenhuma investigação instaurada. Moraes e o STF não responderam às declarações nas matérias abertas.",
+   "pessoas": [
+    "flavio",
+    "vorcaro"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/flavio-diz-que-stf-tem-obrigacao-de-autorizar-investigacao-contra-moraes",
+     "data": "2026-09-14",
+     "trecho": "a maioria do Supremo no Plenário tem a obrigação de autorizar o início de investigação contra ele [Moraes]. Precisa ser afastado",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "O Tempo",
+     "url": "https://www.otempo.com.br/eleicoes/2026/presidentes/2026/9/14/flavio-bolsonaro-sobre-julgamento-sobre-moraes-sera-um-dos-dias-mais-importantes-nos-ultimos-anos",
+     "data": "2026-09-14",
+     "trecho": "Amanhã (terça-feira, 15) será um dos dias mais importantes dos últimos anos no Brasil",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "O Povo",
+     "url": "https://mais.opovo.com.br/jornal/politica/2026/09/15/supremo-adia-definicao-sobre-moraes-mas-escancara-fraturas-em-sessao-historica.html",
+     "data": "2026-09-15",
+     "trecho": "Flávio Dino solicitou vista, interrompendo o julgamento",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "em-belem-flavio-torce-por-afastamento-de-moraes",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-14",
+   "status": "declaracao",
+   "titulo": "Em Belém, Flávio torce por afastamento de Moraes: 'um dos dias mais importantes dos últimos anos'",
+   "resumo": "Na segunda-feira 14/9/2026, em almoço com candidatos e apoiadores em Belém (PA), Flávio Bolsonaro disse: 'Amanhã (terça-feira, 15) será um dos dias mais importantes dos últimos anos no Brasil. É o início de um julgamento que tenho certeza que vai fazer com que o Alexandre de Moraes seja oficialmente investigado'. Afirmou também: 'Eu estou aqui na torcida para que o Alexandre de Moraes seja afastado amanhã do Supremo Tribunal Federal' e 'Ele precisa ser afastado', e acusou o ministro, sem apresentar provas, de trabalhar 'mais para enriquecer a família do que para seguir a Constituição'. A sessão extraordinária do STF de 15/9 analisaria a abertura de investigação contra Moraes por suposta relação com Daniel Vorcaro (caso Master). Flávio usava camiseta com o verso 'Verás que o filho teu não foge à luta'.",
+   "pessoas": [
+    "flavio",
+    "vorcaro"
+   ],
+   "fontes": [
+    {
+     "veiculo": "O Tempo",
+     "url": "https://www.otempo.com.br/eleicoes/2026/presidentes/2026/9/14/flavio-bolsonaro-sobre-julgamento-sobre-moraes-sera-um-dos-dias-mais-importantes-nos-ultimos-anos",
+     "data": "2026-09-14",
+     "trecho": "Amanhã (terça-feira, 15) será um dos dias mais importantes dos últimos anos no Brasil",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/em-belem-flavio-diz-torcer-por-afastamento-de-moraes-do-stf/",
+     "data": "2026-09-14",
+     "trecho": "Eu estou aqui na torcida para que o Alexandre de Moraes seja afastado amanhã do Supremo Tribunal Federal",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Diário do Grande ABC",
+     "url": "https://www.dgabc.com.br/Noticia/4346885/flavio-bolsonaro-terca-feira-sera-um-dos-dias-mais-importantes-nos-ultimos-anos-para-o-brasil",
+     "data": "2026-09-14",
+     "trecho": "a maioria do Supremo no plenário tem a obrigação de autorizar o início de investigação contra ele. Ele precisa ser afastado",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "no-horario-eleitoral-flavio-diz-que-lula-dividiu",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-15",
+   "status": "declaracao",
+   "titulo": "No horário eleitoral, Flávio diz que Lula 'dividiu o seu poder' com Moraes; Dino pede vista e STF adia decisão sobre o ministro",
+   "resumo": "Em 15/9/2026, dia da sessão extraordinária do STF sobre Moraes, Flávio Bolsonaro veiculou no horário eleitoral gratuito um vídeo em formato de 'pronunciamento à nação': 'O atual presidente dividiu o seu poder com Alexandre de Moraes e, no fim, o Brasil ficou sem presidente nenhum'; 'O atual governo criou um desequilíbrio institucional. Decidiu governar ao lado de uma parte do Supremo Tribunal Federal'; 'Sempre que me atacarem, é porque querem fugir da vergonha de assumir a decepção que causaram no povo brasileiro'. O STF encerrou a sessão sem decidir se Moraes será investigado: a questão de ordem de Gilmar Mendes, que propunha reunir os casos de Moraes e André Mendonça e adiar o julgamento para 23/9, foi rejeitada por 4 a 3 (Fachin, Fux, Cármen Lúcia e Mendonça contra; Gilmar, Moraes e Zanin a favor), e Flávio Dino pediu vista, com prazo regimental de até 90 dias, o que empurra a decisão para depois das eleições.",
+   "observacao": "A versão anterior do item dizia que a questão de ordem de Gilmar 'prevaleceu' e que o julgamento foi remarcado para 23/9; Poder360 e O Tempo (16/9) indicam o oposto: proposta rejeitada por 4 a 3, vista de Dino sem data de retorno.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "CNN Brasil (blog Caio Junqueira)",
+     "url": "https://www.cnnbrasil.com.br/blogs/caio-junqueira/politica/flavio-faz-pronunciamento-a-nacao-e-cola-moraes-em-lula-veja/",
+     "data": "2026-09-15",
+     "trecho": "O atual presidente dividiu o seu poder com Alexandre de Moraes",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "O Povo / Agência Estado",
+     "url": "https://www.opovo.com.br/noticias/politica/2026/09/15/flavio-bolsonaro-diz-que-lula-dividiu-seu-poder-com-moraes-em-programa-eleitoral.html",
+     "data": "2026-09-15",
+     "trecho": "Sempre que me atacarem, é porque querem fugir da vergonha de assumir a decepção",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Poder360 (ao vivo)",
+     "url": "https://www.poder360.com.br/ao-vivo/ao-vivo-stf-julga-se-moraes-sera-investigado-no-caso-master-acompanhe/",
+     "data": "2026-09-15",
+     "trecho": "STF tem 4 X 3 para analisar casos de Moraes e Mendonça separados; Dino pede vista",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "em-fortaleza-flavio-acusa-tropa-de-choque-do-lul",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-15",
+   "status": "declaracao",
+   "titulo": "Em Fortaleza, Flávio acusa 'tropa de choque do Lula' de blindar Moraes e dispensa apoio de Ciro",
+   "resumo": "Na noite de 15/9, em ato no Conjunto Ceará (Fortaleza), Flávio reagiu à suspensão do julgamento no STF: avaliou a sessão como 'positiva', mas disse que 'a tropa de choque do Lula no Supremo entrou em campo', citando o pedido de vista de Flávio Dino, a quem chamou de 'ex-ministro da Injustiça'; afirmou que 'Alexandre de Moraes será investigado pelos crimes em tese' e cunhou o mote 'Votar em Lula é votar em Alexandre de Moraes'. Questionado se buscaria o apoio de Ciro Gomes (PSDB, apoiado por políticos do PL no Ceará) num 2º turno, respondeu: 'Não vai precisar porque eu vou ganhar no primeiro'. Ciro dissera em 14/9 que se demitiu 'de qualquer participação da sucessão nacional'. Não há resposta de Dino ou Moraes registrada.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "A Tarde",
+     "url": "https://atarde.com.br/eleicoes/tentativa-de-proteger-moraes-diz-flavio-sobre-sessao-do-stf-1402301",
+     "data": "2026-09-16",
+     "trecho": "a tropa de choque do Lula no Supremo entrou em campo",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "O Povo",
+     "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/15/no-ce-flavio-bolsonaro-diz-nao-precisar-buscar-apoio-de-ciro.html",
+     "data": "2026-09-15",
+     "trecho": "Não vai precisar (buscar apoio) porque eu vou ganhar no primeiro",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "no-recife-flavio-diz-dizem-que-sou-o-bolsonaro-m",
+   "tipo": "evento",
+   "tema": "declaracoes",
+   "data": "2026-09-16",
+   "status": "declaracao",
+   "titulo": "No Recife, Flávio diz: 'Dizem que sou o Bolsonaro moderado, mas eu vou ser radical' e chama Moraes de 'laranja podre'",
+   "resumo": "Após agenda no Ceará (bloco no Conjunto Ceará, em Fortaleza, em 15/09; carreata em Juazeiro do Norte até o Horto do Padre Cícero em 16/09), Flávio fez comício no Cais/Paço Alfândega, no Recife, em 16/09, ao lado de Mendonça Filho (candidato ao Senado), Alfredo Gaspar (vice na chapa), Anderson Ferreira (presidente do PL-PE), Gilson Machado e Clarissa Tércio. Disse 'Dizem que eu sou o Bolsonaro moderado, mas eu vou ser radical' (sobre segurança), 'Quem está votando em Lula, está votando em Alexandre de Moraes e Flávio Dino' e 'Não dá para ter uma laranja podre como Alexandre de Moraes contaminando o ambiente, usando a caneta para enriquecer a família'. Prometeu indicar ao STF 'homens e mulheres que sejam contra o aborto, contra as drogas', 'declarar guerra às facções criminosas' e castração química para estupradores. Houve gritos de 'Fora, Moraes!' e 'Fora, Lula!' no ato.",
+   "observacao": "Cortados: caminhada 'do Marco Zero' e a atribuição a Mendonça Filho dos gritos de 'fora, Moraes', não confirmadas nas fontes. Agenda do Ceará vem de matéria prévia (programação anunciada), não de cobertura do evento. CBN cita Quaest de 08/09 com Flávio a 21% em Pernambuco, 30 pontos atrás de Lula (dado estadual não conferido na fonte primária).",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "O Povo",
+     "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/16/no-recife-flavio-diz-ser-bolsonaro-moderado-e-critica-stf.html",
+     "data": "2026-09-16",
+     "trecho": "Dizem que eu sou o Bolsonaro moderado, mas eu vou ser radical",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "CBN Recife",
+     "url": "https://www.cbnrecife.com/2026/09/16/no-recife-flavio-bolsonaro-associa-lula-a-alexandre-de-moraes-e-propoe-guerra-contra-faccoes/",
+     "data": "2026-09-16",
+     "trecho": "acabou para Alexandre de Moraes, acabou pra Flávio Dino",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "O Povo (agenda Ceará)",
+     "url": "https://mais.opovo.com.br/jornal/politica/2026/09/14/bloco-em-fortaleza-e-carreata-em-juazeiro-veja-a-agenda-de-flavio-bolsonaro-no-ceara.html",
+     "data": "2026-09-14",
+     "trecho": "cumprir dois dias de agenda no Estado, incluindo passagem por Fortaleza e pelo município de Juazeiro do Norte",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "apos-estadao-revelar-exigencia-eleitoral-de-trum",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-17",
+   "status": "declaracao",
+   "titulo": "Após Estadão revelar exigência eleitoral de Trump nas negociações do tarifaço, Flávio nega ajuda dos EUA: 'Essa narrativa não vai colar'",
+   "resumo": "Em 17/9/2026, em Vitória da Conquista (BA), Flávio Bolsonaro reagiu à revelação do Estadão de que o governo Trump enviou ao Brasil, em outubro de 2025, um documento com 21 exigências nas negociações sobre tarifas, incluindo eleição 'livre e justa' em 2026 e o compromisso de que o país 'não deterá, prenderá nem limitará arbitrariamente' a participação de 'dissidentes políticos', referência que integrantes do governo associaram a Jair Bolsonaro. Flávio declarou: 'Vamos ser bem claros: não existe ajuda do governo americano. Essa narrativa não vai colar' e 'Quem resolve a eleição é a gente aqui'. Chamou a diplomacia do governo Lula de 'porcaria' e disse: 'Eu vou me aproximar de grandes países, grandes democracias'. Segundo diplomatas ouvidos pelos veículos, o governo Lula considerou os termos inaceitáveis e comunicou que não negociaria nessa base.",
+   "observacao": "Item de declaração; o documento dos EUA é de outubro/2025, revelado em 16-17/9/2026. As menções a 'confirmação pela Folha', a 'tarifaço de 50%' e a Eduardo Bolsonaro como articulador não constam das fontes abertas e foram retiradas.",
+   "pessoas": [
+    "flavio",
+    "jair"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Jornal de Brasília",
+     "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/flavio-bolsonaro-nega-ter-recebido-ajuda-de-trump-apos-documento-dos-eua-ligar-tarifaco-a-eleicao/",
+     "data": "2026-09-17",
+     "trecho": "Vamos ser bem claros: não existe ajuda do governo americano. Essa narrativa não vai colar",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "A Crítica de Campo Grande",
+     "url": "https://acritica.net/eleicoes-2026/flavio-bolsonaro-nega-apoio-dos-eua-a-campanha-apos-revelacao-sobre-exigencias-eleitorais/",
+     "data": "2026-09-17",
+     "trecho": "Quem resolve a eleição é a gente aqui",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "O Povo",
+     "url": "https://www.opovo.com.br/noticias/politica/2026/09/17/flavio-bolsonaro-diz-que-nao-existe-ajuda-de-governo-dos-eua-nas-eleicoes-brasileiras.html",
+     "data": "2026-09-17",
+     "trecho": "Não existe ajuda do governo americano. Essa narrativa não vai colar",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
    "id": "mae-e-ex-esposa-de-adriano-da-nobrega-empregadas",
    "tipo": "investigacao",
    "tema": "familia",
@@ -6926,8 +8078,7 @@ window.DOSSIE = {
    "pessoas": [
     "flavio",
     "jair",
-    "carlos-bolsonaro",
-    "rodrigo-bacellar"
+    "carlos-bolsonaro"
    ],
    "fontes": [
     {
@@ -6980,7 +8131,8 @@ window.DOSSIE = {
    "resumo": "O MPRJ reabriu, em fev/2026, a investigação de rachadinha contra CARLOS Bolsonaro e 25 pessoas, após considerar prematuro o arquivamento de set/2024. O esquema teria movimentado cerca de R$ 1,9 milhão (2005-2021) sob o ex-chefe de gabinete Jorge Luiz Fernandes. ATENÇÃO: é caso de CARLOS, não de Flávio.",
    "observacao": "Caso de CARLOS Bolsonaro, NÃO de Flávio. Contexto do clã. Pontos suspeitos: apto em Copacabana (R$ 70 mil, 2009), plano de saúde irregular, acesso a cofre.",
    "pessoas": [
-    "carlos-bolsonaro"
+    "carlos-bolsonaro",
+    "jorge-luiz-fernandes"
    ],
    "fontes": [
     {
@@ -7136,7 +8288,8 @@ window.DOSSIE = {
    "resumo": "O Ministério Público do Rio de Janeiro ajuizou ação civil pública por improbidade administrativa contra sete ex-servidores do gabinete do vereador Carlos Bolsonaro na Câmara Municipal do Rio, pedindo a devolução de quase R$ 1,9 milhão aos cofres públicos por suposto esquema de repasses de salários entre 2005 e 2021. Entre os réus estão o ex-chefe de gabinete Jorge Luiz Fernandes, sua mulher e ex-assessora Regina Célia Sobral Fernandes e a ex-assessora Andrea Cristina da Cruz Martins; os outros quatro não são nomeados na reportagem. Segundo a matéria, 'o vereador Carlos Bolsonaro não consta como réu nesta ação específica'. A defesa de Jorge Luiz e Regina Célia informou que 'apresentará as justificativas e apontará os equívocos da acusação diretamente nos autos do processo'; a defesa de Carlos Bolsonaro não se manifestou e a reportagem não obteve retorno da defesa de Andrea Cristina.",
    "observacao": "LASTRO MODERADO: fonte única, veículo de pequeno porte, sem corroboração independente obtida. Ação é CÍVEL (improbidade), não criminal, e Carlos Bolsonaro não é réu nela. É o gabinete de CARLOS na Câmara do Rio, não o gabinete de Flávio na Alerj — não confundir com a apuração da rachadinha de Flávio, que foi anulada. Data é a da publicação; a data do ajuizamento não é informada.",
    "pessoas": [
-    "carlos-bolsonaro"
+    "carlos-bolsonaro",
+    "jorge-luiz-fernandes"
    ],
    "fontes": [
     {
@@ -7176,6 +8329,153 @@ window.DOSSIE = {
      "data": "2026-07-25",
      "trecho": "Todos nós cometemos erros, isso é humano",
      "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "michelle-convoca-exercito-rosa-do-pl-mulher-para",
+   "tipo": "midia",
+   "tema": "familia",
+   "data": "2026-09-09",
+   "status": "fato",
+   "titulo": "Michelle convoca 'Exército Rosa' do PL Mulher para apoiar Flávio; senador compartilha o vídeo (não é Flávio)",
+   "resumo": "Em vídeo publicado em 9/9, Michelle Bolsonaro convocou as presidentes estaduais do PL Mulher a formar um 'Exército Rosa' pela candidatura de Flávio; aparecem dirigentes de sete estados (CE, SP, MA, AM, PI, PR, PA), entre elas a deputada Priscila Costa, envolvida na crise entre Michelle e Flávio. É a reentrada pública de Michelle na campanha do enteado após deixar a presidência nacional do PL Mulher em junho, dias depois de publicar vídeos críticos a ele. Flávio compartilhou a publicação em suas redes.",
+   "observacao": "Fato do clã; único vínculo direto com Flávio é o compartilhamento do vídeo. Fonte única.",
+   "pessoas": [
+    "michelle",
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/eleicoes/2026/michelle-convoca-exercito-rosa-para-eleger-flavio-bolsonaro/",
+     "data": "2026-09-10",
+     "trecho": "Eu convoco vocês e todas as mulheres de bem da nossa nação para apoiarmos Flávio Bolsonaro como o próximo presidente do Brasil",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "moraes-autoriza-5-parentes-a-visitar-jair-para-l",
+   "tipo": "decisao_judicial",
+   "tema": "familia",
+   "data": "2026-09-10",
+   "status": "decisao_judicial",
+   "titulo": "Moraes autoriza 5 parentes a visitar Jair para liberar campanha de Michelle; Flávio segue vetado (não é Flávio)",
+   "resumo": "Alexandre de Moraes autorizou visitas permanentes a Jair Bolsonaro, em prisão domiciliar em Brasília, do irmão Renato Bolsonaro, do sogro Vicente de Paulo Reinaldo, da madrasta de Michelle, Maisa Torres Antunes, e das irmãs de Michelle, Geovanna e Suyane Lima, às quartas e sábados, nas janelas 8h-10h, 11h-13h e 14h-16h, para que Michelle, candidata ao Senado pelo DF, possa se ausentar em campanha. Moraes indeferiu incluir os ex-auxiliares Sérgio Cordeiro e Max Guilherme como 'profissionais de rotina' da residência. Flávio permanece proibido de visitar o pai até 11/10 por ter divulgado em live uma carta de Jair. Resposta: a assessoria de Michelle disse que a decisão 'é bem restritiva e não corresponde ao que foi solicitado', pois a petição de 31/8 pedia permanência dos parentes na casa, não visitas em horários fixos.",
+   "observacao": "Poder360 e Terra datam a decisão em 10/9; Estado de Minas cita terça (8/9). Adotada a data majoritária. Fonte Poder360 de 7/9 usada só para o prazo do veto a Flávio.",
+   "pessoas": [
+    "jair",
+    "michelle",
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/moraes-autoriza-visitas-permanentes-de-5-familiares-a-bolsonaro/",
+     "data": "2026-09-10",
+     "trecho": "quartas-feiras e aos sábados, nos períodos da manhã e da tarde",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Terra",
+     "url": "https://www.terra.com.br/noticias/brasil/politica/moraes-autoriza-sogro-a-visitar-bolsonaro-enquanto-michelle-estiver-fora-de-casa-em-campanha,9f05dac95b6d27e767c59d4de6265df8erzgkdf6.html",
+     "data": "2026-09-10",
+     "trecho": "medida razoável e compatível com os princípios constitucionais da eficiência e da celeridade processual",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "O Antagonista",
+     "url": "https://oantagonista.com.br/brasil/michelle-contesta-decisao-de-moraes-sobre-visitas-a-bolsonaro/",
+     "data": "2026-09-11",
+     "trecho": "restritiva e não corresponde ao que foi solicitado",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "stf-comeca-a-julgar-embargos-de-eduardo-moraes-v",
+   "tipo": "decisao_judicial",
+   "tema": "familia",
+   "data": "2026-09-11",
+   "status": "processo",
+   "titulo": "STF começa a julgar embargos de Eduardo; Moraes vota por manter 4 anos e 2 meses (não é Flávio)",
+   "resumo": "A 1ª Turma do STF abriu em 11/9, em plenário virtual, o julgamento dos embargos de declaração da Defensoria Pública da União contra a condenação de Eduardo Bolsonaro a 4 anos e 2 meses por coação no curso do processo; a votação vai até 18/9. O relator Alexandre de Moraes votou por rejeitar o recurso, que 'representa apenas inconformismo com o resultado do julgamento', e negou a atenuante de confissão espontânea porque Eduardo 'nunca admitiu a consumação do crime' e não compareceu ao interrogatório. A DPU questiona pontos do acórdão e pede o reconhecimento da atenuante. Faltam os votos de Cármen Lúcia, Zanin e Dino.",
+   "observacao": "Julgamento em curso; não é decisão final. Eduardo vive nos EUA e é representado pela DPU.",
+   "pessoas": [
+    "eduardo"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Terra / Estadão Conteúdo",
+     "url": "https://www.terra.com.br/noticias/brasil/politica/moraes-vota-para-manter-condenacao-de-eduardo-bolsonaro-a-4-anos-e-2-meses,4b78c2e3815cb9a8708af55da4e6ed52si8z146m.html",
+     "data": "2026-09-11",
+     "trecho": "o recurso representa apenas inconformismo com o resultado do julgamento",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Diário do Grande ABC",
+     "url": "https://www.dgabc.com.br/Noticia/4346326/stf-comeca-a-julgar-recurso-de-eduardo-bolsonaro-contra-condenacao-a-4-anos-e-2-meses",
+     "data": "2026-09-11",
+     "trecho": "embargos de declaração apresentados pela Defensoria Pública da União",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "condenacao-de-jair-completa-1-ano-pedido-de-anul",
+   "tipo": "noticia",
+   "tema": "familia",
+   "data": "2026-09-11",
+   "status": "processo",
+   "titulo": "Condenação de Jair completa 1 ano; pedido de anulação segue no STF com parecer contrário da PGR (não é Flávio)",
+   "resumo": "Em 11/9/2026 completou um ano a condenação de Jair Bolsonaro pela 1ª Turma do STF a 27 anos e 3 meses por tentativa de golpe. Ele cumpre a pena em prisão domiciliar desde março de 2026, com visitas restritas por Moraes. A defesa pediu em maio a anulação da condenação (relator Kassio Nunes Marques) e a PGR (Paulo Gonet) opinou em junho pela rejeição, citando 'vigoroso conjunto probatório'; a reversão é tida como improvável até por aliados. Flávio, proibido por Moraes de visitar o pai desde julho, repete que, se eleito, anistiará os condenados do 8 de Janeiro e subirá a rampa com o pai.",
+   "observacao": "Marco de calendário; nenhum ato judicial novo sobre Jair na janela além das visitas (item de 10/9). Fonte única.",
+   "pessoas": [
+    "jair",
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Estado de Minas",
+     "url": "https://www.em.com.br/politica/2026/09/7498425-condenacao-de-bolsonaro-completa-um-ano-com-stf-em-crise.html",
+     "data": "2026-09-11",
+     "trecho": "vigoroso conjunto probatório",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "eduardo-pede-no-departamento-de-estado-sancoes-m",
+   "tipo": "evento",
+   "tema": "familia",
+   "data": "2026-09-16",
+   "status": "fato",
+   "titulo": "Eduardo pede no Departamento de Estado sanções Magnitsky a Moraes, Dino e Gilmar (não é Flávio)",
+   "resumo": "Um dia após a sessão do STF, Eduardo Bolsonaro e Paulo Figueiredo se reuniram em 16/9 com integrantes do governo Trump no Departamento de Estado, em Washington, e pediram sanções contra Alexandre de Moraes, Flávio Dino e Gilmar Mendes. Figueiredo disse à CNN que 'Moraes continua sob a designação da Lei Global Magnitsky e que não há razão para que ele não seja reincluído' (a OFAC retirou a designação em dezembro de 2025) e que Dino e Gilmar 'estão prestando apoio material a um indivíduo designado'. Reunião na Casa Branca estava prevista para 17/9. Eduardo está condenado a 4 anos e 2 meses por coação, com recurso em julgamento até 18/9. Não há manifestação de Flávio sobre a viagem nas fontes.",
+   "observacao": "Fato do irmão; respinga em Flávio por ser a mesma articulação pela qual Eduardo foi condenado por coação.",
+   "pessoas": [
+    "eduardo"
+   ],
+   "fontes": [
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/internacional/eduardo-bolsonaro-pede-a-equipe-de-trump-sancoes-a-moraes-gilmar-e-dino/",
+     "data": "2026-09-16",
+     "trecho": "Flávio Dino e Gilmar Mendes estão prestando apoio material a um indivíduo designado",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "WSCOM",
+     "url": "https://wscom.com.br/noticias/2026/09/16/eduardo-bolsonaro-paulo-figueiredo-governo-trump-eua-moraes/",
+     "data": "2026-09-16",
+     "trecho": "série de reuniões em Washington",
+     "tier": "agregador"
     }
    ],
    "lastro": "referencia"
@@ -7609,6 +8909,27 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "fernanda-antunes-figueira-bolsonaro",
+    "nome": "Fernanda Antunes Figueira Bolsonaro",
+    "papel": "Esposa de Flávio; coproprietária da mansão de Brasília",
+    "grupo": "familia",
+    "status": "Esposa de Flavio Bolsonaro, foi denunciada e investigada pelo MP-RJ em 2020 no caso das rachadinhas (lavagem de dinheiro e organizacao criminosa), mas a denuncia foi rejeitada/anulada por questoes de foro privilegiado; nao foi presa nem condenada.",
+    "situacao": [
+     "denunciado",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/mulher-de-flavio-bolsonaro-tambem-foi-denunciada-pelo-mp-rj/"
+     },
+     {
+      "veiculo": "Estado de Minas",
+      "url": "https://www.em.com.br/app/noticia/politica/2020/11/04/interna_politica,1201186/mulher-de-flavio-bolsonaro-tambem-e-denunciada-pelo-mp.shtml"
+     }
+    ]
+   },
+   {
     "id": "banco-de-brasilia-brb",
     "nome": "Banco de Brasília (BRB)",
     "papel": "Banco que concedeu o financiamento de R$ 3,1 milhões da mansão",
@@ -7701,24 +9022,6 @@ window.DOSSIE = {
      {
       "veiculo": "InfoMoney",
       "url": "https://www.infomoney.com.br/politica/mario-frias-diz-ao-stf-que-emendas-para-ong-nao-foram-para-dark-horse/"
-     }
-    ]
-   },
-   {
-    "id": "goup-entertainment",
-    "nome": "GOUP Entertainment",
-    "papel": "Produtora do filme",
-    "grupo": "financeiro",
-    "status": "Produtora do filme 'Dark Horse' sobre Bolsonaro é alvo de investigações (Polícia Civil-SP fez busca e apreensão na sede em junho/2026, além de apurações da PF, do STF sobre emendas a ONGs ligadas à empresa e da CGU por desvios no Sistema S); por ser pessoa jurídica não há prisão/condenação, e não consta ação penal formal instaurada contra a empresa até junho/2026.",
-    "situacao": [],
-    "situacao_fontes": [
-     {
-      "veiculo": "Wikipédia (Go Up Entertainment)",
-      "url": "https://pt.wikipedia.org/wiki/Go_Up_Entertainment"
-     },
-     {
-      "veiculo": "Revista Fórum",
-      "url": "https://revistaforum.com.br/politica/cpmi-do-dark-horse/"
      }
     ]
    },
@@ -7849,24 +9152,22 @@ window.DOSSIE = {
     ]
    },
    {
-    "id": "rodrigo-bacellar",
-    "nome": "Rodrigo Bacellar",
-    "papel": "Ex-presidente da Alerj",
-    "grupo": "aliado",
-    "status": "Ex-presidente da Alerj denunciado pela PGR por obstrução de investigação de organização criminosa armada; preso preventivamente em dezembro/2025, solto após decisão da Alerj e preso novamente em março/2026 por Moraes após o TSE cassar seu mandato; também investigado por lavagem de dinheiro; sem condenação criminal até junho/2026.",
+    "id": "jorge-luiz-fernandes",
+    "nome": "Jorge Luiz Fernandes",
+    "papel": "Ex-chefe de gabinete de Carlos",
+    "grupo": "operadores",
+    "status": "Chefe de gabinete de Carlos Bolsonaro na Câmara do Rio (ligado ao entorno do clã, seguido por Flávio nas redes); investigado pelo MP-RJ como suposto operador de rachadinha, com inquérito reaberto em 2025/2026 após ter sido arquivado em 2024; não há denúncia formal, condenação nem prisão registradas.",
     "situacao": [
-     "preso",
-     "denunciado",
      "investigado"
     ],
     "situacao_fontes": [
      {
-      "veiculo": "STF",
-      "url": "https://noticias.stf.jus.br/postsnoticias/relator-decreta-prisao-preventiva-do-ex-deputado-estadual-rodrigo-bacellar-uniao-rj/"
+      "veiculo": "Exame",
+      "url": "https://exame.com/brasil/quem-e-jorge-fernandes-apontado-como-operador-de-rachadinha-no-gabinete-de-carlos-bolsonaro/"
      },
      {
-      "veiculo": "Agência Brasil",
-      "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-03/pf-volta-prender-rodrigo-bacellar-ex-presidente-da-alerj"
+      "veiculo": "Folha PE",
+      "url": "https://www.folhape.com.br/politica/quem-e-jorge-fernandes-apontado-como-operador-de-rachadinha-no/269237/"
      }
     ]
    },
@@ -8055,27 +9356,6 @@ window.DOSSIE = {
      {
       "veiculo": "Migalhas",
       "url": "https://www.migalhas.com.br/quentes/450632/stf-veja-penas-fixadas-pela-1-turma-a-mandantes-da-morte-de-marielle"
-     }
-    ]
-   },
-   {
-    "id": "mauricio-silva-da-costa",
-    "nome": "Maurício Silva da Costa",
-    "papel": "Tenente reformado da PMERJ apontado pelo MP-RJ como um dos chefes da milícia ao lado de Adriano e Major Ronald",
-    "grupo": "milicia",
-    "status": "Denunciado pelo MP-RJ como integrante da cúpula da milícia da zona oeste; segundo o MP, nenhuma ação ocorria sem o aval dele, de Adriano e de Ronald.",
-    "situacao": [
-     "denunciado",
-     "investigado"
-    ],
-    "situacao_fontes": [
-     {
-      "veiculo": "Wikipédia",
-      "url": "https://pt.wikipedia.org/wiki/Adriano_da_N%C3%B3brega"
-     },
-     {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/nacional/miliciano-adriano-da-nobrega-prestava-servicos-a-cupula-do-jogo-do-bicho-diz-mp/"
      }
     ]
    },
@@ -8559,6 +9839,24 @@ window.DOSSIE = {
     ]
    },
    {
+    "id": "shanna-harrouche-garcia",
+    "nome": "Shanna Harrouche Garcia",
+    "papel": "Filha de Maninho e ex-cunhada de Bello; acusa Bello de ser mandante de atentado contra ela",
+    "grupo": "financeiro",
+    "status": "Sobreviveu a tentativa de assassinato em 2019 e acusa Bernardo Bello de ser o mandante do atentado.",
+    "situacao": [],
+    "situacao_fontes": [
+     {
+      "veiculo": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/sociedade/quem-e-o-bicheiro-que-a-policia-do-rio-tenta-prender-em-operacao-nesta-quinta-feira/"
+     },
+     {
+      "veiculo": "Wikipédia (Bernardo Bello)",
+      "url": "https://pt.wikipedia.org/wiki/Bernardo_Bello"
+     }
+    ]
+   },
+   {
     "id": "fernando-iggnacio",
     "nome": "Fernando Iggnácio",
     "papel": "Bicheiro do Rio (parente de Castor de Andrade) assassinado em disputa pela contravenção",
@@ -8647,6 +9945,22 @@ window.DOSSIE = {
      {
       "veiculo": "Agência Brasil",
       "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2025-11/contraventor-e-ex-pm-vao-julgamento-pela-morte-de-alcebiades-garcia"
+     }
+    ]
+   },
+   {
+    "id": "jose-carlos-roque-barboza",
+    "nome": "José Carlos Roque Barboza",
+    "papel": "Chefe de segurança de Bello, acusado de fornecer o veículo usado no atentado contra Marielle Franco",
+    "grupo": "operadores",
+    "status": "Apontado como chefe de segurança de Bernardo Bello e acusado de ter fornecido o veículo Cobalt usado no atentado que matou Marielle Franco e Anderson Gomes.",
+    "situacao": [
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/caso-marielle-delator-aponta-participacao-de-bicheiro-em-assassinato/"
      }
     ]
    },
@@ -9254,26 +10568,6 @@ window.DOSSIE = {
     ]
    },
    {
-    "id": "hans-river-do-nascimento",
-    "nome": "Hans River do Nascimento",
-    "papel": "Ex-funcionário de agência de disparo em massa de WhatsApp na campanha de 2018",
-    "grupo": "operadores",
-    "status": "Foi fonte de reportagem da Folha sobre disparos em massa pró-Bolsonaro em 2018; depôs na CPMI das Fake News, onde foi acusado de mentir pela empresa Yacows.",
-    "situacao": [
-     "investigado"
-    ],
-    "situacao_fontes": [
-     {
-      "veiculo": "IstoÉ Dinheiro",
-      "url": "https://www.istoedinheiro.com.br/empresa-que-atuou-em-campanha-de-bolsonaro-diz-que-ex-funcionario-mentiu-em-cpi/"
-     },
-     {
-      "veiculo": "Aos Fatos",
-      "url": "https://www.aosfatos.org/noticias/nao-ha-discrepancia-entre-datas-de-reportagem-e-explicacao-da-folha-sobre-fonte/"
-     }
-    ]
-   },
-   {
     "id": "carlos-cezar-moretzsohn-rocha",
     "nome": "Carlos Cezar Moretzsohn Rocha",
     "papel": "Presidente do Instituto Voto Legal, produtor de relatórios falsos contra as urnas eletrônicas",
@@ -9292,6 +10586,23 @@ window.DOSSIE = {
      {
       "veiculo": "Agência Brasil",
       "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2025-10/stf-define-pena-dos-condenados-do-nucleo-de-desinformacao-do-golpe"
+     }
+    ]
+   },
+   {
+    "id": "angelo-antonio-ribeiro-da-silva",
+    "nome": "Ângelo Antônio Ribeiro da Silva",
+    "papel": "Sócio do Banco Master.",
+    "grupo": "operadores",
+    "status": "Preso preventivamente na 1ª fase da Operação Compliance Zero.",
+    "situacao": [
+     "preso",
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Wikipédia (Operação Compliance Zero)",
+      "url": "https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Compliance_Zero"
      }
     ]
    },
@@ -9334,12 +10645,13 @@ window.DOSSIE = {
     ]
    },
    {
-    "id": "andre-felipe-de-oliveira-seixas-maia",
-    "nome": "André Felipe de Oliveira Seixas Maia",
-    "papel": "Empresário, diretor da Tirreno; apontado por vender cerca de R$ 12 bilhões em créditos fictícios ao Master.",
-    "grupo": "financeiro",
-    "status": "Alvo de mandados na Operação Compliance Zero (preso/liberado).",
+    "id": "manoel-mendes-rodrigues",
+    "nome": "Manoel Mendes Rodrigues",
+    "papel": "Operador do jogo do bicho; apontado como líder de ações intimidatórias do grupo Vorcaro.",
+    "grupo": "milicia",
+    "status": "Preso preventivamente na 6ª fase da Operação Compliance Zero.",
     "situacao": [
+     "preso",
      "investigado"
     ],
     "situacao_fontes": [
@@ -9505,27 +10817,6 @@ window.DOSSIE = {
     "papel": "Delegado que chefiou a investigação na Delegacia de Homicídios e a sabotou, tentando obter falsa confissão para encobrir os mandantes",
     "grupo": "juridico",
     "status": "Denunciado pela PGR por associação criminosa e obstrução de Justiça; denúncia recebida por Moraes no STF em 2026.",
-    "situacao": [
-     "denunciado",
-     "investigado"
-    ],
-    "situacao_fontes": [
-     {
-      "veiculo": "Metrópoles",
-      "url": "https://www.metropoles.com/brasil/caso-marielle-moraes-recebe-denuncia-contra-policiais-por-obstrucao"
-     },
-     {
-      "veiculo": "Tribuna do Sertão",
-      "url": "https://www.tribunadosertao.com.br/rj-em-foco/2026/02/13/858061-mpf-denuncia-delegados-rivaldo-barbosa-e-giniton-lages-por-obstrucao-de-justica-no-caso-marielle"
-     }
-    ]
-   },
-   {
-    "id": "marco-antonio-de-barros-pinto",
-    "nome": "Marco Antonio de Barros Pinto",
-    "papel": "Investigador/comissário de polícia apontado como integrante do grupo que obstruiu as apurações do caso Marielle",
-    "grupo": "juridico",
-    "status": "Denunciado pela PGR por associação criminosa e obstrução de Justiça junto com Rivaldo Barbosa e Giniton Lages.",
     "situacao": [
      "denunciado",
      "investigado"
@@ -10238,18 +11529,14 @@ window.DOSSIE = {
     ]
    },
    {
-    "de": "vorcaro",
-    "para": "goup-entertainment",
-    "rotulo": "teria financiado ~R$ 61 mi em seis transferências (2025)",
-    "status": "denuncia",
+    "de": "fernanda-antunes-figueira-bolsonaro",
+    "para": "flavio",
+    "rotulo": "cocompradora e corré na ação",
+    "status": "fato",
     "fontes": [
      {
-      "veiculo": "Metrópoles",
-      "url": "https://www.metropoles.com/brasil/vorcaro-pagou-r-61-milhoes-para-filme-de-bolsonaro-flavio-cobrou-dinheiro-ouca"
-     },
-     {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/politica/produtora-nega-patrocinio-de-vorcaro-a-filme-de-bolsonaro-nenhum-centavo/"
+      "veiculo": "PT",
+      "url": "https://pt.org.br/acao-questiona-brb-e-flavio-bolsonaro-por-emprestimo-irregular/"
      }
     ]
    },
@@ -10430,14 +11717,14 @@ window.DOSSIE = {
     ]
    },
    {
-    "de": "flavio",
-    "para": "rodrigo-bacellar",
-    "rotulo": "reunião em 2024 (também com Jair e Carlos)",
-    "status": "fato",
+    "de": "carlos-bolsonaro",
+    "para": "jorge-luiz-fernandes",
+    "rotulo": "ex-chefe de gabinete apontado como chefe do esquema (caso de CARLOS, não de Flávio)",
+    "status": "investigacao",
     "fontes": [
      {
-      "veiculo": "Estado de Minas",
-      "url": "https://www.em.com.br/politica/2026/05/7431770-cla-bolsonaro-e-a-relacao-com-suspeitos-de-envolvimento-no-crime-organizado.html"
+      "veiculo": "Brado Jornal",
+      "url": "https://www.bradojornal.com/noticias/justica/2026/02/25/mprj-reabre-investigacao-contra-carlos-bolsonaro-por-suspeita-de-rachadinha/"
      }
     ]
    },
@@ -10718,18 +12005,6 @@ window.DOSSIE = {
      {
       "veiculo": "Wikipédia",
       "url": "https://pt.wikipedia.org/wiki/Escrit%C3%B3rio_do_Crime"
-     }
-    ]
-   },
-   {
-    "de": "adriano",
-    "para": "mauricio-silva-da-costa",
-    "rotulo": "co-chefe da milícia",
-    "status": "Citado pelo MP-RJ ao lado de Adriano e Major Ronald como integrante da cúpula sem cujo aval nenhuma ação da milícia ocorria.",
-    "fontes": [
-     {
-      "veiculo": "Wikipédia",
-      "url": "https://pt.wikipedia.org/wiki/Adriano_da_N%C3%B3brega"
      }
     ]
    },
@@ -11227,6 +12502,18 @@ window.DOSSIE = {
    },
    {
     "de": "bernardo_bello",
+    "para": "shanna-harrouche-garcia",
+    "rotulo": "acusado de atentado",
+    "status": "Shanna acusa Bello de ser o mandante de tentativa de assassinato contra ela em 2019.",
+    "fontes": [
+     {
+      "veiculo": "Wikipédia (Bernardo Bello)",
+      "url": "https://pt.wikipedia.org/wiki/Bernardo_Bello"
+     }
+    ]
+   },
+   {
+    "de": "bernardo_bello",
     "para": "rogerio-de-andrade",
     "rotulo": "rivais na cúpula do bicho",
     "status": "Rogério Andrade é o principal rival de Bello na disputa pelos pontos de jogo do bicho do Rio.",
@@ -11318,6 +12605,18 @@ window.DOSSIE = {
      {
       "veiculo": "Agência Brasil",
       "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2025-11/contraventor-e-ex-pm-vao-julgamento-pela-morte-de-alcebiades-garcia"
+     }
+    ]
+   },
+   {
+    "de": "bernardo_bello",
+    "para": "jose-carlos-roque-barboza",
+    "rotulo": "chefe de segurança",
+    "status": "Apontado como chefe de segurança de Bello e acusado de fornecer o veículo usado no atentado contra Marielle Franco.",
+    "fontes": [
+     {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/caso-marielle-delator-aponta-participacao-de-bicheiro-em-assassinato/"
      }
     ]
    },
@@ -11842,18 +13141,6 @@ window.DOSSIE = {
     ]
    },
    {
-    "de": "carlos-bolsonaro",
-    "para": "hans-river-do-nascimento",
-    "rotulo": "operador de disparo em massa pró-campanha",
-    "status": "Hans River atuou em esquema de disparo em massa de WhatsApp pró-Bolsonaro em 2018, estrutura associada às milícias digitais sob articulação de Carlos.",
-    "fontes": [
-     {
-      "veiculo": "IstoÉ Dinheiro",
-      "url": "https://www.istoedinheiro.com.br/empresa-que-atuou-em-campanha-de-bolsonaro-diz-que-ex-funcionario-mentiu-em-cpi/"
-     }
-    ]
-   },
-   {
     "de": "allan-dos-santos",
     "para": "carlos-cezar-moretzsohn-rocha",
     "rotulo": "rede de desinformação sobre urnas",
@@ -11862,6 +13149,18 @@ window.DOSSIE = {
      {
       "veiculo": "Agência Brasil",
       "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2025-10/stf-define-pena-dos-condenados-do-nucleo-de-desinformacao-do-golpe"
+     }
+    ]
+   },
+   {
+    "de": "vorcaro",
+    "para": "angelo-antonio-ribeiro-da-silva",
+    "rotulo": "sócio do Master",
+    "status": "Sócio do banco, preso na 1ª fase da Compliance Zero.",
+    "fontes": [
+     {
+      "veiculo": "Wikipédia",
+      "url": "https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Compliance_Zero"
      }
     ]
    },
@@ -11891,9 +13190,9 @@ window.DOSSIE = {
    },
    {
     "de": "vorcaro",
-    "para": "andre-felipe-de-oliveira-seixas-maia",
-    "rotulo": "vendedor de créditos fictícios",
-    "status": "Diretor da Tirreno; teria vendido ~R$ 12 bi em créditos fictícios ao Master.",
+    "para": "manoel-mendes-rodrigues",
+    "rotulo": "operador de intimidação",
+    "status": "Operador do jogo do bicho; liderou ações intimidatórias do grupo; preso na 6ª fase.",
     "fontes": [
      {
       "veiculo": "Wikipédia",
@@ -12326,18 +13625,6 @@ window.DOSSIE = {
      {
       "veiculo": "Tribuna do Sertão",
       "url": "https://www.tribunadosertao.com.br/rj-em-foco/2026/02/13/858061-mpf-denuncia-delegados-rivaldo-barbosa-e-giniton-lages-por-obstrucao-de-justica-no-caso-marielle"
-     }
-    ]
-   },
-   {
-    "de": "giniton-lages",
-    "para": "marco-antonio-de-barros-pinto",
-    "rotulo": "co-obstrutores",
-    "status": "Denunciados juntos pela PGR por obstrução e associação criminosa na investigação do caso Marielle.",
-    "fontes": [
-     {
-      "veiculo": "Metrópoles",
-      "url": "https://www.metropoles.com/brasil/caso-marielle-moraes-recebe-denuncia-contra-policiais-por-obstrucao"
      }
     ]
    },
@@ -13023,6 +14310,94 @@ window.DOSSIE = {
      "url": "https://maisminas.com.br/brasil/mendonca-homologa-delacao-sobre-financiamento-do-filme-sobre-bolsonaro/"
     }
    ]
+  },
+  {
+   "data": "2026-09-11",
+   "titulo": "Sigilo levantado: Flávio é investigado desde julho por corrupção, lavagem e evasão; PF o aponta como 'interlocutor direto' de Vorcaro",
+   "tema": "master",
+   "descricao": "Com o sigilo retirado por Mendonça, o inquérito mostra os crimes apurados — corrupção, lavagem e evasão — e a PF o descreve como interlocutor direto do banqueiro.",
+   "fontes": [
+    {
+     "veiculo": "ICL Notícias",
+     "url": "https://iclnoticias.com.br/pf-investiga-flavio-bolsonaro-esquema-vorcaro/"
+    },
+    {
+     "veiculo": "Jornal do Brasil",
+     "url": "https://www.jb.com.br/brasil/justica/2026/09/1060884-mendonca-incluiu-flavio-bolsonaro-como-investigado-no-caso-dark-horse.html"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-11",
+   "titulo": "PGR pediu à PF apurar se Flávio atuou no Senado a favor de Vorcaro e vê 'promessa de apoio ou interferências'",
+   "tema": "master",
+   "descricao": "A PGR quer saber se houve promessa de apoio ou interferência no Senado em favor do Banco Master.",
+   "fontes": [
+    {
+     "veiculo": "CartaCapital",
+     "url": "https://www.cartacapital.com.br/politica/dark-horse-pgr-pediu-levantamento-sobre-atuacao-de-flavio-bolsonaro-no-congresso/"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/pgr-suspeita-que-flavio-atuou-no-senado-em-defesa-de-vorcaro/"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-11",
+   "titulo": "Datafolha (8–10/09): Lula 39% x Flávio 35% no 1º turno; 2º turno 46% x 44%, empate técnico",
+   "tema": "eleicoes",
+   "descricao": "Primeira grande pesquisa da campanha oficial: empate técnico no 2º turno.",
+   "fontes": [
+    {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026-2/"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-12",
+   "titulo": "PF detalha mensagens de Flávio a Vorcaro: pedido de R$ 131 mi, cobranças de atraso e fundo 'operacionalmente inerte' por 4 anos",
+   "tema": "master",
+   "descricao": "Mensagens do próprio celular, no relatório da PF: pedido de R$ 131 milhões e cobranças de parcelas atrasadas.",
+   "fontes": [
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/pf-mostra-conversas-de-flavio-com-vorcaro-sobre-recursos-para-dark-horse/"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/relatorio-da-pf-sobre-dark-horse-contraria-versao-de-flavio/"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-14",
+   "titulo": "Quaest (10–13/09): Lula 36% x Flávio 31%; no 2º turno Flávio 42% x Lula 40%, empate técnico",
+   "tema": "eleicoes",
+   "descricao": "Pela primeira vez na série da Quaest, Flávio aparece numericamente à frente no 2º turno.",
+   "fontes": [
+    {
+     "veiculo": "Brasil de Fato",
+     "url": "https://www.brasildefato.com.br/2026/09/14/pesquisa-quaest-lula-registra-36-e-flavio-bolsonaro-alcanca-31-no-primeiro-turno/"
+    },
+    {
+     "veiculo": "CartaCapital",
+     "url": "https://www.cartacapital.com.br/cartaexpressa/a-nova-pesquisa-quaest-sobre-lula-x-flavio-bolsonaro-a-menos-de-duas-semanas-do-1o-turno/"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-17",
+   "titulo": "AtlasIntel (11–16/09): Lula 44,1% x Flávio 41,7% no 1º turno; 2º turno Flávio 47,2% x Lula 46,8%",
+   "tema": "eleicoes",
+   "descricao": "A três semanas do 1º turno, as pesquisas convergem para um 2º turno decidido no detalhe.",
+   "fontes": [
+    {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    }
+   ]
   }
  ],
  "patrimonioTSE": {
@@ -13133,6 +14508,18 @@ window.DOSSIE = {
    "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPSE9fRUhvWjFwaXpBd05LQ3dwUkx4MU4zRWgyMFI1c01MU0VRMVlzNlFFRmNUSlE4d2pWbUphV1hlMk94ajVBSmV5ZW9naG9kUG1fVGpDVThTaHJ5NTlRdjNZbmtrZ0FBdG5DRUdEZkl2c3FVXzlYTTR5V3cwbDZGcDdDSUdjSk9Uazh2V3NxalhMTjM0VGUtWGxUb3BQVUQ3MUU5ekRjVnlNakE4?oc=5"
   },
   {
+   "titulo": "Flávio cresce entre mulheres e amplia vantagem no Sudeste",
+   "fonte": "Gazeta do Povo",
+   "data": "2026-09-17",
+   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOMGxVUXd0MEpDRGUzNUM1SnpjNVZwalo4U0VYWE5JUDVxbzZ3TnV6MU42bXJEQ0hxZFhwb1NWXzN6ck94Rm5HUDk5cTgyUUd5eHpRZGY2Mm9uWkl0d2JyWUNHU3hFV0VYU0JEeFg4VlBRc0VoOEJ1VEFEbkRiMTk1RGFUMmJPN2RrV2Y4ckdlZnVWbUgtNmVBaDlNQUZTWXFwQUZEcWktbW5NbGZ2WjRUZGVVaC1hSXU0Y0R0RFB1UkZwcEplaW1j?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro usou apartamento de advogado investigado por fraudes no INSS, diz revista",
+   "fonte": "Folha de S.Paulo",
+   "data": "2026-09-17",
+   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNMEFVUXVPbnFwSUlKcWNFQkE0V0twZUlvT1p4TS1ZVTREYmNiMlRLZm9nQ3l5Qi1sVW9IODJpeUlHdlJNS1hBcU5hU0RVdWRmNmdqdlZJbGZTX1dfMEltT3dEX1VmRDdjV1pNblk0a3hBN1UtbFBldnBIb3RLdDJYMjBNWDdkWldMeGFWODdGQm1UVklkTHEwRE9EaXZTd1FiWkxQR2g0d1VreURlZE52ZEFWNTA2eHhVakk0MUNkWk1icEpqYnZOVXVkOEdTR2RqMUhITnR3?oc=5"
+  },
+  {
    "titulo": "Caiado diz que Vorcaro 'comprou' Lula e Flávio Bolsonaro",
    "fonte": "G1",
    "data": "2026-09-17",
@@ -13151,34 +14538,16 @@ window.DOSSIE = {
    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPTmNhei16eEpHemhLSFM2Q1J1dzBEY2w5eGFBRXY4aEx3dTBaYWtzV3FGNlFwUUlRdUJTaXUzWFNFYjFFdTg1TTBqODgwUkpqbDh2elF0c3ktczQyNmUxcFBnV3BCUkJiZEcxOElRQS13c3VFUUpBdW1uV2NHTFhGS0pUeTZ1Zm05TTJEVW1iNWJYVHN6WGpBaDE2ZS1JTGVjM0hVOU1rWVJ2MngzMTR5SjJhTXFXU0VzTEE?oc=5"
   },
   {
-   "titulo": "Flávio Bolsonaro usou apartamento de advogado investigado por fraudes no INSS, diz revista",
-   "fonte": "Folha de S.Paulo",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNMEFVUXVPbnFwSUlKcWNFQkE0V0twZUlvT1p4TS1ZVTREYmNiMlRLZm9nQ3l5Qi1sVW9IODJpeUlHdlJNS1hBcU5hU0RVdWRmNmdqdlZJbGZTX1dfMEltT3dEX1VmRDdjV1pNblk0a3hBN1UtbFBldnBIb3RLdDJYMjBNWDdkWldMeGFWODdGQm1UVklkTHEwRE9EaXZTd1FiWkxQR2g0d1VreURlZE52ZEFWNTA2eHhVakk0MUNkWk1icEpqYnZOVXVkOEdTR2RqMUhITnR3?oc=5"
-  },
-  {
-   "titulo": "Mendonça manda apagar vídeo de IA que ligava Flávio Bolsonaro a Vorcaro",
-   "fonte": "CartaCapital",
-   "data": "2026-09-16",
-   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUUswMWdySmQ4MXl4bGl2TkZHellxMFVDb0NQRmRrWjI4T3lGSTdKZ1VyMDh2U2huUXM4eXRTWTZNdjh1cTJGbDNzTW4tay10U2R2YWdiSUpSQUNQMm9CRS1HWXRhRU1CTWYtQjkyb2haeTZrSFNnUlJiajd0VkRmcy1BZWExWlctTkxueFdEdmwzMnBQMWliQ004eGt3cDRHVFJuMmZPcUFzd201R2JmWjY0bw?oc=5"
-  },
-  {
-   "titulo": "Lula e Flávio Bolsonaro trocam ataques sobre STF",
-   "fonte": "Assine o Meio",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNci1KRXhpTXpmVkhtQ05ZWU9pZHppZ3dmdE1QWlVWbU96dXFpdTNlQU92RENPSUlNVGt5U0dyM3lqelpSRzhBTFhoMlhzZWpRQVlTYlk2QjNXcmxnYlQzNGswLWhlZmFxLXRiTmUtbzZfNFJXOEszSW1sZ3JyZU5zVDNyT3I3OThRYzVyU3VtOE1fNzFDbVdfaldxbDVkdw?oc=5"
+   "titulo": "Defesa de Flávio Bolsonaro pediu 4 vezes para STF tirar investigação sobre ‘Dark Horse’ de Dino",
+   "fonte": "Brasil de Fato",
+   "data": "2026-09-12",
+   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdWRKZXZRZFQzSG50c2lLLUFZbVZTQzJKSFFqd0NNQXc3LTdxZzRENVhXY0tjNzh0bVk0azhYT0F3TlNNUWk2alJTLXNSRTNscnJIUFRoOGdVYWNBRHUtXzhIYUhpSk51VVhZcVMzbE55YXFTOEJJSEhINkU1WDBjMXU1aFZwY3d2N2Y4SkVtQlJIbkZkdUNIQ3NYNGQwcU5aOXUzSkJuZndjWVdyTUs1VDhSWk96ZU9KN09SbzE2V2JxenBwUDhxMWdMOFl2c0cteEhz?oc=5"
   },
   {
    "titulo": "No Recife, Flávio Bolsonaro faz discurso contra Lula e ministros do STF",
    "fonte": "G1",
    "data": "2026-09-16",
    "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOcXowRUpmcVhoc25xeTBBZFBvRGpDeVVyMUxBMUpYcXliVm42dDgzU0Vud3VQV3ZDZVl0Z3MtcjRUVlVoZDVQY3dHVG80M3BkWGQ1NG12RGNBWDdpS19sUzFQT1N0Q0JlY2VMQi1qcDlGeUlUMW5mNjJtekY2d2RpcTZxSjJ1RHJQa1dFdkpqZnFKVlYzRXgyUDNCbWc4VExKQ2U4YTZyME1TQ1VsMXFIYUt1UXkwN1pPaTZibW53LTl2UmhLQ2dOZVRDcm1RRG56bkx5ZklZNENBZGYt0gHrAUFVX3lxTFBIOE1LT0Rsd1JZQnpqWlo1YTBoaHZpaDhWY3dOV2JpSkNtZkdKR0hsa0l3UnppLWd2cXJ1Vk9sd0FCSE9uaFpYVW5oaW9jbjlyZGkzT3FvM0E0dGhYZFV0cG4taDRjc1MzSFNPQ2tPelB1RFM5MzF4eV8yLWdlWVlSeURhaGdZbXNnN1BNVmI3V1JDRGxJN04xZGFNV3NCU3lLTFk3cGtuZ2FlNFdHTEVjazNnYUVvSzJsOG9tc1E3MGJGTU4yT2RPYzZ3YTFVRjRFLU8yT2RJNHJDWkhFMTY3VngtSUFaWVlwcVE?oc=5"
-  },
-  {
-   "titulo": "Defesa de Flávio Bolsonaro pediu 4 vezes para STF tirar investigação sobre ‘Dark Horse’ de Dino",
-   "fonte": "Brasil de Fato",
-   "data": "2026-09-12",
-   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdWRKZXZRZFQzSG50c2lLLUFZbVZTQzJKSFFqd0NNQXc3LTdxZzRENVhXY0tjNzh0bVk0azhYT0F3TlNNUWk2alJTLXNSRTNscnJIUFRoOGdVYWNBRHUtXzhIYUhpSk51VVhZcVMzbE55YXFTOEJJSEhINkU1WDBjMXU1aFZwY3d2N2Y4SkVtQlJIbkZkdUNIQ3NYNGQwcU5aOXUzSkJuZndjWVdyTUs1VDhSWk96ZU9KN09SbzE2V2JxenBwUDhxMWdMOFl2c0cteEhz?oc=5"
   },
   {
    "titulo": "Flávio fala de crise no STF em propaganda eleitoral com vídeo em formato de 'pronunciamento'",
@@ -13205,6 +14574,18 @@ window.DOSSIE = {
    "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNaUhEbXlSRk1QWkpoVm82dVhVY19haGlzNWs5eTRsYTBkYWFZeGQxbTMyM0RfYUpPckdsWjlHNTZSRVMxV0otSTY4SmNMYmY4V1VkQ2ZaMkVONVJKRVdaZkV5dnhBUHhLbHQycGlGTUNfUzZiTjdRTlhpRF9DYWJrRXI2YXJRc0l4b3E1WTJvb0pIaEhOVmZsdGQ3QmdYcUpZN2ZqaWN0MFRORWtuWTk5VXpVSzBFdER3bnJSdzNNREZfa25CcDVpODNyeUdKVnFGZi00bncwUEVHWGFzQmxHY0pscXB0bmhFTWJzOXdUaFhrTmNJa3E0NzFua0ZJOGZxblRYaHZhTTQzeXpMS2fSAZwCQVVfeXFMTy1qd1owTHRpM2xuUmNQbmVGSDNQRlRzY1VLbUU0NlRaQVlIQzdHVGFOcldpMTFiYmhsTDR6OEdRVE5sbEVhOWdoOEQxYmQzRFY2VnVJWHQxRHM5U3E3RFpyWE1QdmVYMjFkcjNndmVHY2pQU0xQYlNhM3JMQmhyVVJidktpU3lTV1pvRVlBT1dUMFplTHdCaDlRQnJJVDdhR2pBcDNWME8zLXhtY01tazkyM0h3YjF1end5Szhmc3U2UVRBQkxCaUM3VUZVQnUwemVRaU5tMXJ3eUd3eG96T0VsY0s4VjJYWmk3Tk1zU2hnZHFISmM3TVBoS2ljYTJCQWRNVUpabFozWkVRbnktX3o0b3FhVjZ5OHA1REU?oc=5"
   },
   {
+   "titulo": "Mendonça manda apagar vídeo de IA que ligava Flávio Bolsonaro a Vorcaro",
+   "fonte": "CartaCapital",
+   "data": "2026-09-16",
+   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUUswMWdySmQ4MXl4bGl2TkZHellxMFVDb0NQRmRrWjI4T3lGSTdKZ1VyMDh2U2huUXM4eXRTWTZNdjh1cTJGbDNzTW4tay10U2R2YWdiSUpSQUNQMm9CRS1HWXRhRU1CTWYtQjkyb2haeTZrSFNnUlJiajd0VkRmcy1BZWExWlctTkxueFdEdmwzMnBQMWliQ004eGt3cDRHVFJuMmZPcUFzd201R2JmWjY0bw?oc=5"
+  },
+  {
+   "titulo": "Lula e Flávio Bolsonaro trocam ataques sobre STF",
+   "fonte": "Assine o Meio",
+   "data": "2026-09-17",
+   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNci1KRXhpTXpmVkhtQ05ZWU9pZHppZ3dmdE1QWlVWbU96dXFpdTNlQU92RENPSUlNVGt5U0dyM3lqelpSRzhBTFhoMlhzZWpRQVlTYlk2QjNXcmxnYlQzNGswLWhlZmFxLXRiTmUtbzZfNFJXOEszSW1sZ3JyZU5zVDNyT3I3OThRYzVyU3VtOE1fNzFDbVdfaldxbDVkdw?oc=5"
+  },
+  {
    "titulo": "PGR pediu para apurar se Flávio Bolsonaro atuou no Senado para beneficiar Vorcaro",
    "fonte": "BBC",
    "data": "2026-09-11",
@@ -13215,12 +14596,6 @@ window.DOSSIE = {
    "fonte": "Brasil de Fato",
    "data": "2026-09-11",
    "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNR0xmLUM1MzFfN294SzlhNjk2dEtBU1NHdnR2Y3ZjTEpjNFRIVmxPTDFmR3ZtOVpVM2NjeUFiMkZoc2w5RHVzWmRnNjdqaHF6MzNwVDFHUnlvNlNzUWxxSF9IRzQ2UGthdWxQWHdSVVlaUHlaQUVzZTNsUDJKWkFwdVoxQzRVbnNFZG1RTkZFcmN5WWlvZzF2UXhZbzBSVWRCeWNMUTZVNzRjRW5jQm5WQUVxWEJHcTlZcUwxbVBzZTBmWnY2ZjcycUJucDlaMnNvR2J3Zl9CLVRXTXo5UG9qY2IzMkpRaGhDOFVj?oc=5"
-  },
-  {
-   "titulo": "Flávio Bolsonaro e 'Dark Horse': 7 perguntas para entender inquérito — e o que falta ser esclarecido",
-   "fonte": "BBC",
-   "data": "2026-09-11",
-   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBwYzNiaWkwRFBMWTRhOVlXUHBsRk1aMnVtdEN4YnpNYmlERzRXU3l0SXMxbTBIS05TZDlGdGtFaGJEX1ZuTERYWUxsNWRkX1Nka195eGdqSXNsRE8wWmJ0REpR0gFnQVVfeXFMTkZYdG1uWG9LSDUyVWxVeTEwNmhhOHE0TzN1b3Fqa0dGNW8yR2ZDbG80NEFzYXN0VDB0aGdMMFZER1FKcW92cGZObXIwSWh5OGpTMzVFOGVXVUJzMU50YTBSNHp6MTVmRQ?oc=5"
   },
   {
    "titulo": "Mendonça homologa delação de operador que enviou US$ 12,3 mi ao fundo do filme",

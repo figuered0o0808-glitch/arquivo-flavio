@@ -274,3 +274,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .site-header .tab.hot b{display:inline-block;min-width:18px;margin-left:6px;padding:1px 5px;border-radius:999px;background:var(--red);color:#fff;font-size:10px;text-align:center;vertical-align:1px}
 .site-header .tab.hot.active b{background:#fff;color:var(--red)}
 .site-header .tab.hot b:empty{display:none}
+@media (max-width:600px){
+  .rec-it{grid-template-columns:1fr;gap:3px}
+  .rec-it .rk{padding-top:0}
+  .rec-it .rs{grid-column:1}
+}
