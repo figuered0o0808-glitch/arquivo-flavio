@@ -3203,33 +3203,6 @@ window.DOSSIE = {
    "lastro": "referencia"
   },
   {
-   "id": "compra-de-mansao-de-r-5-97-milhoes-em-brasilia-l",
-   "tipo": "patrimonio",
-   "tema": "mansao",
-   "data": "2020-01-29",
-   "status": "fato",
-   "titulo": "Compra de mansão de R$ 5,97 milhões em Brasília (Lago Sul)",
-   "resumo": "Flávio e a esposa Fernanda compraram mansão de R$ 5,97 milhões no Setor de Mansões Dom Bosco, Lago Sul, com 1.100 m² construídos em terreno de 2.500 m². Pagaram R$ 2,87 milhões de entrada e financiaram R$ 3,1 milhões pelo BRB em 360 parcelas (30 anos). Pagaram ainda R$ 181 mil à vista em impostos e taxas.",
-   "pessoas": [],
-   "fontes": [
-    {
-     "veiculo": "Exame",
-     "url": "https://exame.com/brasil/para-compra-de-mansao-flavio-bolsonaro-pagou-r-181-mil-a-vista-em-imposto-e-taxas/",
-     "data": "2021-02-25",
-     "trecho": "pagou R$ 181 mil à vista em imposto e taxas",
-     "tier": "agregador"
-    },
-    {
-     "veiculo": "Correio Braziliense",
-     "url": "https://www.correiobraziliense.com.br/politica/2021/03/4909818-valor-de-mansao-de-flavio-e-bem-maior-que-patrimonio-declarado-em-2018.html",
-     "data": "2021-03-01",
-     "trecho": "Valor de mansão de Flávio é bem maior que patrimônio declarado em 2018",
-     "tier": "agregador"
-    }
-   ],
-   "lastro": "agregador"
-  },
-  {
    "id": "flavio-compra-mansao-de-r-6-mi-no-lago-sul-com-f",
    "tipo": "patrimonio",
    "tema": "mansao",
@@ -3312,6 +3285,33 @@ window.DOSSIE = {
     }
    ],
    "lastro": "referencia"
+  },
+  {
+   "id": "compra-de-mansao-de-r-5-97-milhoes-em-brasilia-l",
+   "tipo": "patrimonio",
+   "tema": "mansao",
+   "data": "2021-02",
+   "status": "fato",
+   "titulo": "Compra de mansão de R$ 5,97 milhões em Brasília (Lago Sul)",
+   "resumo": "Flávio e a esposa Fernanda compraram mansão de R$ 5,97 milhões no Setor de Mansões Dom Bosco, Lago Sul, com 1.100 m² construídos em terreno de 2.500 m². Pagaram R$ 2,87 milhões de entrada e financiaram R$ 3,1 milhões pelo BRB em 360 parcelas (30 anos). Pagaram ainda R$ 181 mil à vista em impostos e taxas.",
+   "pessoas": [],
+   "fontes": [
+    {
+     "veiculo": "Exame",
+     "url": "https://exame.com/brasil/para-compra-de-mansao-flavio-bolsonaro-pagou-r-181-mil-a-vista-em-imposto-e-taxas/",
+     "data": "2021-02-25",
+     "trecho": "pagou R$ 181 mil à vista em imposto e taxas",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Correio Braziliense",
+     "url": "https://www.correiobraziliense.com.br/politica/2021/03/4909818-valor-de-mansao-de-flavio-e-bem-maior-que-patrimonio-declarado-em-2018.html",
+     "data": "2021-03-01",
+     "trecho": "Valor de mansão de Flávio é bem maior que patrimônio declarado em 2018",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
   },
   {
    "id": "mansao-custa-quase-4-vezes-o-patrimonio-declarad",
@@ -8837,7 +8837,7 @@ window.DOSSIE = {
     "nome": "Paulo Henrique Costa",
     "papel": "Ex-presidente do BRB que aprovou o financiamento da mansão de Flávio",
     "grupo": "financeiro",
-    "status": "Ex-presidente do BRB, preso preventivamente em 16/04/2026 na 4ª fase da Operação Compliance Zero (caso Banco Master) por suspeita de corrupção passiva e lavagem; prisão mantida por unanimidade pelo STF. Era presidente do BRB quando o banco financiou R$ 5,9 mi da mansão de Flávio Bolsonaro.",
+    "status": "Ex-presidente do BRB, preso preventivamente em 16/04/2026 na 4ª fase da Operação Compliance Zero (caso Banco Master) por suspeita de corrupção passiva e lavagem; prisão mantida por unanimidade pelo STF. Era presidente do BRB quando o banco financiou R$ 3,1 mi da mansão de Flávio Bolsonaro.",
     "situacao": [
      "preso",
      "investigado"
@@ -9406,7 +9406,11 @@ window.DOSSIE = {
     "nome": "Márcio Canella",
     "papel": "candidato ao Senado pelo Rio de Janeiro com apoio declarado de Flávio Bolsonaro, que manifestou publicamente 'apoio integral' a ele mesmo após a operação da PF; ex-prefeito de Belford Roxo.",
     "grupo": "operadores",
-    "status": "Responde em liberdade. Foi preso em flagrante em 7/7/2026, na Operação Unha e Carne da PF, por posse de fuzil calibre 5,56 encontrado em seu veículo — sua defesa alegou que a arma era do segurança. Em 10/7/2026 o ministro Alexandre de Moraes concedeu liberdade provisória, com tornozeleira, entrega de passaporte e suspensão do porte de arma; as cautelares foram revogadas em 24/7/2026. É investigado por lavagem de dinheiro em rede de postos de combustíveis. Não há denúncia formal conhecida."
+    "status": "Responde em liberdade. Foi preso em flagrante em 7/7/2026, na Operação Unha e Carne da PF, por posse de fuzil calibre 5,56 encontrado em seu veículo — sua defesa alegou que a arma era do segurança. Em 10/7/2026 o ministro Alexandre de Moraes concedeu liberdade provisória, com tornozeleira, entrega de passaporte e suspensão do porte de arma; as cautelares foram revogadas em 24/7/2026. É investigado por lavagem de dinheiro em rede de postos de combustíveis. Não há denúncia formal conhecida.",
+    "situacao": [
+     "preso",
+     "investigado"
+    ]
    },
    {
     "id": "rogeria-nantes-bolsonaro",
@@ -11530,7 +11534,7 @@ window.DOSSIE = {
    {
     "de": "paulo_henrique",
     "para": "flavio",
-    "rotulo": "como presidente do BRB, aprovou financiamento de R$ 5,9 mi para a mansão",
+    "rotulo": "como presidente do BRB, aprovou o financiamento de R$ 3,1 mi da mansão de R$ 5,97 mi",
     "status": "investigacao",
     "fontes": [
      {
@@ -14387,18 +14391,6 @@ window.DOSSIE = {
    ]
   },
   {
-   "data": "2020-01",
-   "titulo": "Flávio compra mansão de ~R$ 6 milhões no Lago Sul (Brasília)",
-   "tema": "mansao",
-   "descricao": "A aquisição, várias vezes o patrimônio declarado em 2018 (R$ 1,74 mi), foi financiada em parte com R$ 5,9 mi do BRB.",
-   "fontes": [
-    {
-     "veiculo": "Metrópoles",
-     "url": "https://www.metropoles.com/colunas/grande-angular/paulo-henrique-era-presidente-quando-brb-deu-polemico-financiamento-de-r-59-milhoes-a-flavio-bolsonaro"
-    }
-   ]
-  },
-  {
    "data": "2020-02-09",
    "titulo": "Adriano da Nóbrega é morto em operação policial na Bahia",
    "tema": "milicia",
@@ -14431,6 +14423,18 @@ window.DOSSIE = {
     {
      "veiculo": "ConJur",
      "url": "https://www.conjur.com.br/2020-nov-04/mp-denuncia-flavio-bolsonaro-esquema-rachadinha-alerj/"
+    }
+   ]
+  },
+  {
+   "data": "2021-02",
+   "titulo": "Flávio compra mansão de ~R$ 6 milhões no Lago Sul (Brasília)",
+   "tema": "mansao",
+   "descricao": "O imóvel de R$ 5,97 mi, várias vezes o patrimônio declarado em 2018 (R$ 1,74 mi), teve R$ 3,1 mi financiados pelo BRB.",
+   "fontes": [
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/colunas/grande-angular/paulo-henrique-era-presidente-quando-brb-deu-polemico-financiamento-de-r-59-milhoes-a-flavio-bolsonaro"
     }
    ]
   },
@@ -14877,130 +14881,34 @@ window.DOSSIE = {
  },
  "noticiasFallback": [
   {
+   "titulo": "TSE reconhece admissibilidade de ação de Flávio Bolsonaro contra Lula",
+   "fonte": "Consultor Jurídico",
+   "data": "2026-09-20",
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNS1N0em1hUDkySEMydjZ0T3B4QS1BTWFXWklrenZFZE5la091YmswYnF0Tk5qbGZRQ0EyTHZKcEdNV3BnUEZfTFhkUWJlUGppTEVOUnVxR1NPQUphemJXNGlHWTF1YTBMY2ZtaDRUZVNNR3doMWNOcFEyQVBjbEEteU0zY3BTRG5CcDFRSnRST2ZUTHE4S2xHbjJTam9vZzRfTTVUU0Qtaw?oc=5"
+  },
+  {
    "titulo": "FLÁVIO USOU IMÓVEL QUE PERTENCEU A CUNHADO DE VORCARO DURANTE CAMPANHA EM SÃO PAULO",
-   "fonte": "piaui.uol.com.br",
+   "fonte": "revista piauí",
    "data": "2026-09-16",
    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNQTcwQktyV0xTalRGbzItaWlzNXJHNXM3Vk9KNncyY1ZsWXNnN2pDVC1xc3R5YTJ1WVFvY0FkdnpnWFJwNHJEbzVKcUs0MWlEd0F5N2hCcnF6RndsSGN0c3ZSTlBFblVySFhURTBTLWlvd09ubjVjNXJEakE1bDFBTUx2dEFDbTNqU3VDVFZrZzRrbzdBaDk2ekUyV3A?oc=5"
   },
   {
-   "titulo": "Lula muda estratégia de campanha e passa a confrontar diretamente Flávio Bolsonaro: 'Quem vota em Flávio vota em Vorcaro'",
-   "fonte": "G1",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxQdm41dHVVdGhLckpQTVBNTHFjdTQ0eU9OaEt0Vm9JWXEyRmpkZTFCak93UUNPYmlUSEF2UlFyRDNoTTgzUkFod2QxTEd1d0NIYXFTbnJHRlVaN2xNRXE2MXNnQnkyMTJWVkdmb2ZERE5wVVVfd0Y4NFYyQ1ZzWEZlOG9wRmozS1Axc21xTVZHY2lETjVIVE01RTUwUHU5d1ptazR0cnMyQnNKYzJSNmV4OExTcUhqakNtRmhleXpLQ2pGUUZwcUNJOHlKeXFMQnVfTXJ1aTNsampzUVg5VjlkVHJwT2R4QURUVlJIb1B3VU0yeTRrUEhSQmx3cFVHNTFzZzZ4SzJLMUpyUDN4R3dSRGtJbkbSAaMCQVVfeXFMT1h5SGNYLVRkUmJHV1A4TEZKRlhKd1J2YVY4WjlFRzlESGZNMlA2YnFfdEp3MGZIbjVna1FlUG1lNmtTX3B2YVVRZTE3LWlRMXI2RXVGWVpwSVl3TzdMcl9kYlh1RmRKSDlVM0lObkxGNmdfdnNGUkxBX1ZFWVFtNmRWdUY3T055Q2c2Y0xpVnB2TFk3a3VxZk4tME1paDJsTzNnZ0QyeHVlNkpKb1JJLXhqM2QzZ2JNUlVrZnRleEdCZnp5TjhkWUhjUUtQX1F4cFlQWmtPS0xybHpNbFBLOUwzNWxzNkNKTUFpMW9YVVFuUTlaZEotTC1DUjJvMFZLbE5IeF9yMmo1MjY2UXBVbzRhYWswNVdWR2Y0UEc3RzlpeTI0?oc=5"
-  },
-  {
    "titulo": "O caminho para Flávio tirar Bolsonaro da prisão começou com o julgamento do STF",
-   "fonte": "jota.info",
+   "fonte": "JOTA Info",
    "data": "2026-09-16",
    "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQX01rME94WnE1d1BrV3pzcFhaaEIzZmFwdUc2MlVJaDcydWlFMXBaeHBIUFVXbGZXZ0xjRFR4am1nZ0dNb1pYRVRnYWlaMHFyUzNUOUNsb1p4eTY1TWZzQnhVM0U2OVA3djFfU3dScGp0ejdtS2NUbExpYkZfN2JLWEhNTnpxZUcycy10R1BCRklpV3RiZW4yeWRGLWNhVVgxZ2h3QmNyZXZ3U0JGUkVDZnJ3dW9KeEViSF9RS2JZNXItZw?oc=5"
   },
   {
-   "titulo": "A rede do crime que agasalha Flávio Bolsonaro",
-   "fonte": "brasildefato.com.br",
-   "data": "2026-09-15",
-   "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPdW1SbnFHVUJPazFrYTRBYUVQOFVxcG9pZW4tM1R2QW5xOGF0SW5wODN6MWRmVWpDSW80LTVJMUJ0a25JSDdhOS15QVBEdXV5VzF3cnhKWVJITmItaHkySVFxZ2hCWEFiSlNPWks4SnZ1ZzVOdVpObWxxTFdLTDYxSEhST1JxNEY3MVNvZk1zb3pmQ01vY3FiM0FMN0N6R21iMkwyeXhlUXpYa1NtMEU1ak9PblNVS2NQSWlpQg?oc=5"
-  },
-  {
-   "titulo": "AtlasIntel aponta empate técnico entre Flávio Bolsonaro e Lula no 2º turno",
-   "fonte": "sul21.com.br",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxORW1QaDU4RjlGUk84TmlqbjNqMW1jZG93NHpselo2TWc0eDdEX0VIS2RWVThjZzgwNlNXSUxuUER0a1VCbExHdmUxTW82bTlQYzhkbjlzcm03YzVxcEFUQkQwNU9jbVJPRXk2eDc4b0swQXNSeDV2bXpKOVhqd0lQSHlQR3l1MGV1R1FzVnF1U2lwX0RySzdpbG11X2R4bFZzWk13eVlPeEI4QzI4b0tKVU10OWRwek9ZUzdEWEpubw?oc=5"
-  },
-  {
-   "titulo": "Lula x Flávio: pesquisa mostra quem o eleitor acha que se prejudica mais com a crise do STF",
-   "fonte": "VEJA",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNWEd1VW10eUZxb1dUa09IVmxoQzAyY1BOSFBadlROcnJfbGx2QUZ4Z0NZWXI0eDZTQURKXzIwUzlDMTUteVdiUEs1LUNHREpFbF8ydUt4RUZDNV9XWkR5WEJpTXJrVUZSUHl5MzI5eFNQRUlna0RNbTEyYk1QSENJTDFtNElVTUtjenBaOWpzR3ZzQ1NMNUN4dmFpZ0I2bGNfN0lKSXRsQ3hKZDV0dF9HNVROZlMwR2p3TVNZSEpZRE1qLWdwWHhhVWhvTDRYYmRlUFI4MHk2dlk?oc=5"
-  },
-  {
-   "titulo": "Lula x Flávio Bolsonaro: pesquisas mostram 5 grupos de eleitores que podem definir eventual 2º turno",
-   "fonte": "BBC",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBfV0JTR1cxODZyMnJ0Qy1hcHF1ZllpQlczYWZXM3R4WFBNbEV0bnZJOWd3dHAxbHBEUkx0UlhYbmpISnpRZTc5Z2ljenNVYXNfbnZCN09VR1VJanVRdl85b3Jn0gFnQVVfeXFMT0pVS09aczJ3bzVBZk5DbnB0S2dzRVdVM2FhVUt1NFZpb2Zyc0ZkOHBUbDZFTzhjcUd4c3pHTnBYR0ExdnI5N0VQekl0dThkREVjdVZaRTNpZjVSSkZXeEJSR0U3UVQwOA?oc=5"
-  },
-  {
-   "titulo": "Lula e Flávio Bolsonaro trocam ataques sobre STF",
-   "fonte": "Assine o Meio",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPUktHWHdnUk1uY1ZTdEJFUTRwc284NVRqeldUYXAyZ2VQeTdmeGZ4bXFyZkJuR1ZMN1JxUnI5aUhtWHIyUi05aGxZczR0cS1GMElhNnB0OGFJTE9YWklBdlJhOXViYktzNl9fbndKOUdjdmlLWjl5aEpHY0ZMeW90MEw0eTFiVVNFelZhMU9WWWtlZk0?oc=5"
-  },
-  {
-   "titulo": "Lula resiste à crise do STF e Flávio Bolsonaro vai para a defensiva",
-   "fonte": "CartaCapital",
-   "data": "2026-09-15",
-   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPSE9fRUhvWjFwaXpBd05LQ3dwUkx4MU4zRWgyMFI1c01MU0VRMVlzNlFFRmNUSlE4d2pWbUphV1hlMk94ajVBSmV5ZW9naG9kUG1fVGpDVThTaHJ5NTlRdjNZbmtrZ0FBdG5DRUdEZkl2c3FVXzlYTTR5V3cwbDZGcDdDSUdjSk9Uazh2V3NxalhMTjM0VGUtWGxUb3BQVUQ3MUU5ekRjVnlNakE4?oc=5"
-  },
-  {
-   "titulo": "Flávio cresce entre mulheres e amplia vantagem no Sudeste",
-   "fonte": "Gazeta do Povo",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOMGxVUXd0MEpDRGUzNUM1SnpjNVZwalo4U0VYWE5JUDVxbzZ3TnV6MU42bXJEQ0hxZFhwb1NWXzN6ck94Rm5HUDk5cTgyUUd5eHpRZGY2Mm9uWkl0d2JyWUNHU3hFV0VYU0JEeFg4VlBRc0VoOEJ1VEFEbkRiMTk1RGFUMmJPN2RrV2Y4ckdlZnVWbUgtNmVBaDlNQUZTWXFwQUZEcWktbW5NbGZ2WjRUZGVVaC1hSXU0Y0R0RFB1UkZwcEplaW1j?oc=5"
-  },
-  {
-   "titulo": "Flávio Bolsonaro usou apartamento de advogado investigado por fraudes no INSS, diz revista",
-   "fonte": "Folha de S.Paulo",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNMEFVUXVPbnFwSUlKcWNFQkE0V0twZUlvT1p4TS1ZVTREYmNiMlRLZm9nQ3l5Qi1sVW9IODJpeUlHdlJNS1hBcU5hU0RVdWRmNmdqdlZJbGZTX1dfMEltT3dEX1VmRDdjV1pNblk0a3hBN1UtbFBldnBIb3RLdDJYMjBNWDdkWldMeGFWODdGQm1UVklkTHEwRE9EaXZTd1FiWkxQR2g0d1VreURlZE52ZEFWNTA2eHhVakk0MUNkWk1icEpqYnZOVXVkOEdTR2RqMUhITnR3?oc=5"
-  },
-  {
    "titulo": "‘Flávio é Vorcaro’: Levante Popular da Juventude denuncia ‘aliança criminosa’ entre ex-banqueiro e clã Bolsonaro em prédio símbolo do Master",
-   "fonte": "brasildefato.com.br",
+   "fonte": "Brasil de Fato",
    "data": "2026-09-16",
    "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPdDN1cHcwT3FvQ0tYeXktZnVpS2VMSFBLOXg3Vkk0N05QbERKWUtnYVkzeUdNQVhQbUFnVDA4VGxVcUpnRVlLLW1uaTEzWXA2VW5SQ3BwS2NGZTRWVFBpRFlVSDlOdGJBVUM1RG5WM2JpTVgxSnFTSzMtcERXSVVoR3pWSk56VmZNUHNvT3lhS2hVU1FvbngteE9ZU3hCc1dub19lNU10dEVDdEhINV9JZFEwdXMyUXBzZTVMUm9zaHNXWEVMSDFIUXVyUVoxNEhxMWN3Y2hvU3BOZWhuNWY1clFJVHdZUlF6eTFZTmVia0I2WEtMblhBdlJ5UGh3cFVKVV9XcWdDdk92Q3M?oc=5"
   },
   {
-   "titulo": "Caiado diz que Vorcaro 'comprou' Lula e Flávio Bolsonaro",
-   "fonte": "G1",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxONWV0cEFGd3M2R3NsRjg0Y0pMNE5XYklrMXc4cjJBYlJ5OTEtN1ZCSnp6TnUtbmk3NGtSVEVTUnlBdTNmd3dNNXY4RVdQRU5FZm5HeGNqVExkMjNibWlScWdqakVLS0REZkFXaWNSYkxmWlhfOFhnNlVHV1FyTlpHUnkwVVVaQU40SnczODBfTDkxaGpGeUE0UmJVbUc2dU3SAa4BQVVfeXFMUHl3Y1hYcU9FbFRhNE9yTWxVLTI0QTZjVjBLWVFYVHRUUm9Rc0pNajJvNDhVWDM2UjB6d3R1d1UtNVg3aVpXa3Y3TllSU0ZtQ1JiQ01LTjcxOUR5Y2pLY2RnZnJrQmVfV3I2LV83YUNOUUZfQXk0NzJTdjV6NnlGNGpGMlpBSXVZWnc1SVJrV2U5eFFrelRSaURZLWxCRjJLSUNUOHRoNS1wUDlTRlpn?oc=5"
-  },
-  {
-   "titulo": "Lula e Flávio Bolsonaro têm motivos para se preocupar com a crise no STF | José Casado",
-   "fonte": "VEJA",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPTmNhei16eEpHemhLSFM2Q1J1dzBEY2w5eGFBRXY4aEx3dTBaYWtzV3FGNlFwUUlRdUJTaXUzWFNFYjFFdTg1TTBqODgwUkpqbDh2elF0c3ktczQyNmUxcFBnV3BCUkJiZEcxOElRQS13c3VFUUpBdW1uV2NHTFhGS0pUeTZ1Zm05TTJEVW1iNWJYVHN6WGpBaDE2ZS1JTGVjM0hVOU1rWVJ2MngzMTR5SjJhTXFXU0VzTEE?oc=5"
-  },
-  {
-   "titulo": "Defesa de Flávio Bolsonaro pediu 4 vezes para STF tirar investigação sobre ‘Dark Horse’ de Dino",
-   "fonte": "brasildefato.com.br",
-   "data": "2026-09-12",
-   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdWRKZXZRZFQzSG50c2lLLUFZbVZTQzJKSFFqd0NNQXc3LTdxZzRENVhXY0tjNzh0bVk0azhYT0F3TlNNUWk2alJTLXNSRTNscnJIUFRoOGdVYWNBRHUtXzhIYUhpSk51VVhZcVMzbE55YXFTOEJJSEhINkU1WDBjMXU1aFZwY3d2N2Y4SkVtQlJIbkZkdUNIQ3NYNGQwcU5aOXUzSkJuZndjWVdyTUs1VDhSWk96ZU9KN09SbzE2V2JxenBwUDhxMWdMOFl2c0cteEhz?oc=5"
-  },
-  {
-   "titulo": "No Recife, Flávio Bolsonaro faz discurso contra Lula e ministros do STF",
-   "fonte": "G1",
-   "data": "2026-09-16",
-   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOcXowRUpmcVhoc25xeTBBZFBvRGpDeVVyMUxBMUpYcXliVm42dDgzU0Vud3VQV3ZDZVl0Z3MtcjRUVlVoZDVQY3dHVG80M3BkWGQ1NG12RGNBWDdpS19sUzFQT1N0Q0JlY2VMQi1qcDlGeUlUMW5mNjJtekY2d2RpcTZxSjJ1RHJQa1dFdkpqZnFKVlYzRXgyUDNCbWc4VExKQ2U4YTZyME1TQ1VsMXFIYUt1UXkwN1pPaTZibW53LTl2UmhLQ2dOZVRDcm1RRG56bkx5ZklZNENBZGYt0gHrAUFVX3lxTFBIOE1LT0Rsd1JZQnpqWlo1YTBoaHZpaDhWY3dOV2JpSkNtZkdKR0hsa0l3UnppLWd2cXJ1Vk9sd0FCSE9uaFpYVW5oaW9jbjlyZGkzT3FvM0E0dGhYZFV0cG4taDRjc1MzSFNPQ2tPelB1RFM5MzF4eV8yLWdlWVlSeURhaGdZbXNnN1BNVmI3V1JDRGxJN04xZGFNV3NCU3lLTFk3cGtuZ2FlNFdHTEVjazNnYUVvSzJsOG9tc1E3MGJGTU4yT2RPYzZ3YTFVRjRFLU8yT2RJNHJDWkhFMTY3VngtSUFaWVlwcVE?oc=5"
-  },
-  {
-   "titulo": "Flávio fala de crise no STF em propaganda eleitoral com vídeo em formato de 'pronunciamento'",
-   "fonte": "Folha de S.Paulo",
-   "data": "2026-09-15",
-   "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNbXJQcVFtYkppNGM3bTJzUVVxbTB2amFHSTMtMFNVY1FtLUt1MHI0dXB5MWlnRUVNRjM4WUxLMHpwWF9zTDJHdF9yRm9VUC05YjgtSDEydFUweEpwT1diMXFLYXZSOGpDVDF0akpNdExsLVlmTU93UEdOWk5jZVpfUXgyd2hMWUFCMzlrWEZzYVZiMUVwcUk1MV9XOThWZFB3bGtMLWw2ejlSUE1RYjhkbzFvYzlmUDBZRzV0OC1HNlFUUjIwYW9VcmFSVUVQYnMtSFZLVkFHOA?oc=5"
-  },
-  {
-   "titulo": "Crise no STF afeta estratégias de Lula e Flávio Bolsonaro",
-   "fonte": "G1",
-   "data": "2026-09-15",
-   "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPTmVNeXhTVWU0LXR5c3gycHlHVGpxMk5oaHdOcVZRN3Rwb3VxN21iRmFJSzdjc1pWZHB0M0QzQ0hfdHZtRjRsOE5rWm9oVExIVnZ6ME5YaHN1a0R2SFlGVlN0MUM3V0V1YldjU21XR1lzcXpnbTI2bWxBWEluUUcyLWdfczRpOWVBQ21lY1BCcHRkdlZiVG5pRklIbTZfLVdDamtKdHF2Qld4cFVNeXVpdVpGV1BXUzJXbVRtadIBywFBVV95cUxPeWFXR2p6cEMtZ1JUNmRrVjRwNXdZNnl1UE1XVGM4LS04Yk9YTlVhcUdGWm9aM3JRcVNVZGFYRUdsUWlyNXFaOTZIRkttXzhiV1Y1T1k0M3ctdTdINmZHUTRKQTQ4OHM5V2VnQnR5MExlU0lsWmVBNW43clVjUUhrVGNrTVdiRkdfSWM2MVBhQ0JIcUx5UzRwd09BSXZtZHlSWm5HX2dZSHU0ZVVoTUF4cGhRMjZHWjFZSkZjQ09kTmdKVTdITzBaRmQyQQ?oc=5"
-  },
-  {
-   "titulo": "Flávio Bolsonaro manteve contatos e pedidos com Vorcaro mesmo com investigações avançadas; veja cronologia",
-   "fonte": "brasildefato.com.br",
-   "data": "2026-09-12",
-   "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQYTBDbnZFNzFoU3NaVEp0MWdRa1JDOTdpckdTWVRONWdxRF9iQkxwSkx5NGxGVHhERlJvUFAzMEVmMkZNVTFsX2FwXzJaMEszYWFBYVgzT19IWWk5OEUydm5ySzQ0YUJPTVBYR2VXUVdFN19TZE9uZ0ZpQjJzN2lQWlctTlRVMzJkSzNXZXJEN2ZfZy04VVdiZFhIQkZRS1lMdmxCUDFlQWR1amtCZDhDR3hIRHdYUUJ6bTZnTFdWVnRPUlR3ZFNWTmt5VS1SSG9pYVVDZlVzZ2FBdHJUVWQtX01Ydw?oc=5"
-  },
-  {
-   "titulo": "Em dia de julgamento no STF, Flávio Bolsonaro liga Lula a Moraes, e presidente explora investigação contra senador em horário eleitoral",
-   "fonte": "G1",
-   "data": "2026-09-16",
-   "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNaUhEbXlSRk1QWkpoVm82dVhVY19haGlzNWs5eTRsYTBkYWFZeGQxbTMyM0RfYUpPckdsWjlHNTZSRVMxV0otSTY4SmNMYmY4V1VkQ2ZaMkVONVJKRVdaZkV5dnhBUHhLbHQycGlGTUNfUzZiTjdRTlhpRF9DYWJrRXI2YXJRc0l4b3E1WTJvb0pIaEhOVmZsdGQ3QmdYcUpZN2ZqaWN0MFRORWtuWTk5VXpVSzBFdER3bnJSdzNNREZfa25CcDVpODNyeUdKVnFGZi00bncwUEVHWGFzQmxHY0pscXB0bmhFTWJzOXdUaFhrTmNJa3E0NzFua0ZJOGZxblRYaHZhTTQzeXpMS2fSAZwCQVVfeXFMTy1qd1owTHRpM2xuUmNQbmVGSDNQRlRzY1VLbUU0NlRaQVlIQzdHVGFOcldpMTFiYmhsTDR6OEdRVE5sbEVhOWdoOEQxYmQzRFY2VnVJWHQxRHM5U3E3RFpyWE1QdmVYMjFkcjNndmVHY2pQU0xQYlNhM3JMQmhyVVJidktpU3lTV1pvRVlBT1dUMFplTHdCaDlRQnJJVDdhR2pBcDNWME8zLXhtY01tazkyM0h3YjF1end5Szhmc3U2UVRBQkxCaUM3VUZVQnUwemVRaU5tMXJ3eUd3eG96T0VsY0s4VjJYWmk3Tk1zU2hnZHFISmM3TVBoS2ljYTJCQWRNVUpabFozWkVRbnktX3o0b3FhVjZ5OHA1REU?oc=5"
-  },
-  {
-   "titulo": "Lula e Flávio Bolsonaro trocam ataques sobre STF",
-   "fonte": "Assine o Meio",
-   "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNci1KRXhpTXpmVkhtQ05ZWU9pZHppZ3dmdE1QWlVWbU96dXFpdTNlQU92RENPSUlNVGt5U0dyM3lqelpSRzhBTFhoMlhzZWpRQVlTYlk2QjNXcmxnYlQzNGswLWhlZmFxLXRiTmUtbzZfNFJXOEszSW1sZ3JyZU5zVDNyT3I3OThRYzVyU3VtOE1fNzFDbVdfaldxbDVkdw?oc=5"
+   "titulo": "PSOL reforça pedido de cassação de Flávio Bolsonaro por novas ligações com Vorcaro",
+   "fonte": "PSOL 50",
+   "data": "2026-09-18",
+   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNZHhWNGtGX21aUkRsNVVma1BYczA0RXdQUkdHZ0kzR04ta29kTHp3WmpoNmdJYnNTMDRVSjVHY3RqSmlpY3lIei1RR3BNWmxYWWdUUWkwcmVPTldqSGJnSUg1SGEzc3JmWUdEdjc1U0o1YUU4U0EwS3c2UGo4N1dSTGJmQVZFZW5CbDFTaGlGVVJWeU9iS3dhV0NPV0d1aWYxNkxHUEJSTzA?oc=5"
   },
   {
    "titulo": "Mendonça manda apagar vídeo de IA que ligava Flávio Bolsonaro a Vorcaro",
@@ -15009,16 +14917,112 @@ window.DOSSIE = {
    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUUswMWdySmQ4MXl4bGl2TkZHellxMFVDb0NQRmRrWjI4T3lGSTdKZ1VyMDh2U2huUXM4eXRTWTZNdjh1cTJGbDNzTW4tay10U2R2YWdiSUpSQUNQMm9CRS1HWXRhRU1CTWYtQjkyb2haeTZrSFNnUlJiajd0VkRmcy1BZWExWlctTkxueFdEdmwzMnBQMWliQ004eGt3cDRHVFJuMmZPcUFzd201R2JmWjY0bw?oc=5"
   },
   {
-   "titulo": "PGR pediu para apurar se Flávio Bolsonaro atuou no Senado para beneficiar Vorcaro",
-   "fonte": "BBC",
-   "data": "2026-09-11",
-   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB4ZWlDTUpoWGgyS2FVV3A2eEY2YmVxZzN6bG4ya1ZhNG9CWTBuM05mUTg5UFJWVlJ4ZjJQV1FCVnpreXJSUkVXTkpYTUVsYmJiTV95RTRBbUNROEx5ZzdmZjBR0gFnQVVfeXFMTzZONFNvbVlrZExPNENHQmRHbmFWa0FWSV9fZEl6eEN5Q1VHbjAtZlR2VlI1M3hEazdSc2pSTF94c2s1ZzN0RjVYeDViTTJKMmJ1dVk0RjVSanNQcEJkU25IUjNwc2NFbw?oc=5"
+   "titulo": "Flávio e aliados usam vídeo de Moraes em jatinho operado por empresa ligada a Vorcaro para desgastar Lula; PT rebate com Dark horse",
+   "fonte": "O GLOBO",
+   "data": "2026-09-20",
+   "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxNNUtqQmx4bGdoOERWbUh4RXUxTFFUenVJZF92WkVmUEh6cy1EY19zbHkzY3R5WmFiYlk3dm54ZHJ0eVd2Mk9LOFhaekZKcW5UTHF2US1rQTFTNkt1TkdWUjdWeTAwbjQ2bzJtejAzUUhCMkRWUWlSRGdCTlE1MnNFY1VtSHdsTTVqdXIxWVJ4SWo3UjA5Ukk0M2dIaXY0dm9RUm5XSHBOTFg1Vm1jdDJQVlNTWkl1MWNZaV9tN04xZHhDWnVoMmd3RzlmZlZ1czZFRHB0N0lwd0JnQTRSc2RBNG54Z3hDUnJXbXdEX296eHlKODVkMDV2aDc5Qzg0M01kdHAwRFNhY3lOdkRQazNDbzJiTnVucmtIanRyNHJFYTVzNy1sUlZ4aldsZ2UxWWV4c0ZhVi1FLXB5d0hjbzZBdTRWdXDSAdMCQVVfeXFMT1VqbDhYT2JTWm5QRE1PUkpleDZGRlNTT0w3VEtjNkUwbThjMkZfV0d6QjZpQ0pOU0ZUUGo4TUctUFQ1Z0xPVktvZmQxTEFjNkJxWkx5dTBfajB1MXFkRHR2dFpLNVNUNlBMeUxQZ3lqY2NSWUJKVEpoVTQxdGdHSUp3aHBYZjBFTlpCNWI0TllVTnJBTFd3d1BibmxfUDdpaWdaOGVVVnA2cl9oenBQdVRoTnNOakEwLTFrd0hsMXpIX0Z2TkRfdHNXYlR5TUhuZmVfaXdEQ1pycmJmUTJNeGg5WlRMV1EzTU1JVGh2UnlTRDN0WGRQT21RUTZlWWZnU09fbUFldHNOZVc4WkpVWHducWVCeWRIWFBoWUkxaHFfcWZDSVQ1ZktudGJoTXdXMVByaDBsa1dqUGlhdU1kRW16VDNBUGdyc3puaktaUTFSSVZF?oc=5"
   },
   {
-   "titulo": "Flávio Bolsonaro projeta indicar 6 ministros do STF se for eleito presidente",
-   "fonte": "Estadão",
+   "titulo": "Flávio critica Moraes após vídeo em avião de Vorcaro: \"Aparelhou o Estado\"",
+   "fonte": "CNN Brasil",
+   "data": "2026-09-20",
+   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQUFN0VU41Z0JTZUhBVWVfZl9HWDRGVUx6VW1sQnJDanE4NWZHdHZJV1pseUN4aDlRcFM0U19qTnNKQXk0ZUx6ZWR6YW8wUkptcENteUVHd2psNEZpWkNES0x0OG1iNGpqTHJGOWlXWDlvdHdkTTVqTW1mWkhVSXV6UEgzQzZOUTVyRG5pVTV1cEtaTlpxZnI3ZHdKblFSQmk3VmxwMnU2amFyVGt2Ync?oc=5"
+  },
+  {
+   "titulo": "O SAFÁRI DOS INVESTIGADOS",
+   "fonte": "revista piauí",
+   "data": "2026-09-19",
+   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBXVndBc0RYc2RmQks1OGVXYWNyUG9hYnNFbUE3Z01lcTItdTR0cW53OFVQalRGY2ctb2l4cHVLcGVBa2E4LTFndUFSajg1cXR5S2diV2VkWDFBUW41ME9ONlNocUotTWlIV0NsTzVWVWJsNkFzM2NZ?oc=5"
+  },
+  {
+   "titulo": "Crise no STF afeta estratégias de Lula e Flávio Bolsonaro",
+   "fonte": "G1",
+   "data": "2026-09-15",
+   "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPTmVNeXhTVWU0LXR5c3gycHlHVGpxMk5oaHdOcVZRN3Rwb3VxN21iRmFJSzdjc1pWZHB0M0QzQ0hfdHZtRjRsOE5rWm9oVExIVnZ6ME5YaHN1a0R2SFlGVlN0MUM3V0V1YldjU21XR1lzcXpnbTI2bWxBWEluUUcyLWdfczRpOWVBQ21lY1BCcHRkdlZiVG5pRklIbTZfLVdDamtKdHF2Qld4cFVNeXVpdVpGV1BXUzJXbVRtadIBywFBVV95cUxPeWFXR2p6cEMtZ1JUNmRrVjRwNXdZNnl1UE1XVGM4LS04Yk9YTlVhcUdGWm9aM3JRcVNVZGFYRUdsUWlyNXFaOTZIRkttXzhiV1Y1T1k0M3ctdTdINmZHUTRKQTQ4OHM5V2VnQnR5MExlU0lsWmVBNW43clVjUUhrVGNrTVdiRkdfSWM2MVBhQ0JIcUx5UzRwd09BSXZtZHlSWm5HX2dZSHU0ZVVoTUF4cGhRMjZHWjFZSkZjQ09kTmdKVTdITzBaRmQyQQ?oc=5"
+  },
+  {
+   "titulo": "Embate no STF ajudou candidatura de Flávio Bolsonaro?",
+   "fonte": "Brasil de Fato",
+   "data": "2026-09-19",
+   "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOb2FaT0FZbUpfdkxveWpqWXJBaWV3bGpuNVJEbk9QT1UzVUwxSGxabHZvWEJKcFZkZHhfOHVQdVFCVVN4aktmRGRPWW5NY2RKQnBHUFZIQUdIWWtrT2g0RFpETzIxZ3Q1bVF3UzVqalN3WTJEV01fcERacm9ZOE5SUUx4UTRDSUFmTHhfX0VtOW5Lcm12OEZ2VEtYM2ZHOHBNTlhxSldfZ0pGckxQNlBueUdHVm5pRzViNGRjNVljTGZLdXNmanE0bm5B?oc=5"
+  },
+  {
+   "titulo": "Lula resiste à crise do STF e Flávio Bolsonaro vai para a defensiva",
+   "fonte": "CartaCapital",
+   "data": "2026-09-15",
+   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPSE9fRUhvWjFwaXpBd05LQ3dwUkx4MU4zRWgyMFI1c01MU0VRMVlzNlFFRmNUSlE4d2pWbUphV1hlMk94ajVBSmV5ZW9naG9kUG1fVGpDVThTaHJ5NTlRdjNZbmtrZ0FBdG5DRUdEZkl2c3FVXzlYTTR5V3cwbDZGcDdDSUdjSk9Uazh2V3NxalhMTjM0VGUtWGxUb3BQVUQ3MUU5ekRjVnlNakE4?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro usou durante campanha apartamento que foi de cunhado de Vorcaro",
+   "fonte": "Folha de S.Paulo",
    "data": "2026-09-17",
-   "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQWGRtWC01N3RILW9YLW1YTHZMb2VTUWdHalowUHBIejlub19XNmdmOE0xNXV0VWczS1dsM0xVSlkwdG9iUFA4NkEwNnhHSWxBTDRwM2U3TTQ0NFNYdnk4NmFsdHFTM1RvQ2E4R2p3bXFLQm02T2hydmQxSGVKUmpzcURYZEdRcmczRDhlNnFhcGI3YmFYS0Z0OVZlSk13S0RacS1nT0RHcjNhc252aHluZjdsd2tsYmc?oc=5"
+   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNMEFVUXVPbnFwSUlKcWNFQkE0V0twZUlvT1p4TS1ZVTREYmNiMlRLZm9nQ3l5Qi1sVW9IODJpeUlHdlJNS1hBcU5hU0RVdWRmNmdqdlZJbGZTX1dfMEltT3dEX1VmRDdjV1pNblk0a3hBN1UtbFBldnBIb3RLdDJYMjBNWDdkWldMeGFWODdGQm1UVklkTHEwRE9EaXZTd1FiWkxQR2g0d1VreURlZE52ZEFWNTA2eHhVakk0MUNkWk1icEpqYnZOVXVkOEdTR2RqMUhITnR3?oc=5"
+  },
+  {
+   "titulo": "Em dia de julgamento no STF, Flávio Bolsonaro liga Lula a Moraes, e presidente explora investigação contra senador em horário eleitoral",
+   "fonte": "G1",
+   "data": "2026-09-16",
+   "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNaUhEbXlSRk1QWkpoVm82dVhVY19haGlzNWs5eTRsYTBkYWFZeGQxbTMyM0RfYUpPckdsWjlHNTZSRVMxV0otSTY4SmNMYmY4V1VkQ2ZaMkVONVJKRVdaZkV5dnhBUHhLbHQycGlGTUNfUzZiTjdRTlhpRF9DYWJrRXI2YXJRc0l4b3E1WTJvb0pIaEhOVmZsdGQ3QmdYcUpZN2ZqaWN0MFRORWtuWTk5VXpVSzBFdER3bnJSdzNNREZfa25CcDVpODNyeUdKVnFGZi00bncwUEVHWGFzQmxHY0pscXB0bmhFTWJzOXdUaFhrTmNJa3E0NzFua0ZJOGZxblRYaHZhTTQzeXpMS2fSAZwCQVVfeXFMTy1qd1owTHRpM2xuUmNQbmVGSDNQRlRzY1VLbUU0NlRaQVlIQzdHVGFOcldpMTFiYmhsTDR6OEdRVE5sbEVhOWdoOEQxYmQzRFY2VnVJWHQxRHM5U3E3RFpyWE1QdmVYMjFkcjNndmVHY2pQU0xQYlNhM3JMQmhyVVJidktpU3lTV1pvRVlBT1dUMFplTHdCaDlRQnJJVDdhR2pBcDNWME8zLXhtY01tazkyM0h3YjF1end5Szhmc3U2UVRBQkxCaUM3VUZVQnUwemVRaU5tMXJ3eUd3eG96T0VsY0s4VjJYWmk3Tk1zU2hnZHFISmM3TVBoS2ljYTJCQWRNVUpabFozWkVRbnktX3o0b3FhVjZ5OHA1REU?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro: relembre o processo da rachadinha",
+   "fonte": "Valor Econômico",
+   "data": "2026-09-01",
+   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOR3otLTAzaUJvY0g3Q0tRWnJ1ZUpsVmVqNTVvOUlfNTU3ODYxdHZiLUlqUlRvS1RmQk5nQS13c1BCejkzTHJVQnQybm5HOWl0bzd4S203NEt5enNudGViVTVnY3JlNURkVWR4MXFMQjBQd2l2LTczM2FaVmdsc0w1UFBhUi1velI1bTl6V3NvU25JTWJadDFmZnBucEdQN2ZweHFfempTdGhoNU9xTXlQejNSM1RGdlp4bWpMRlpGc9IBzgFBVV95cUxNQTV5WDg1dmQ2bDIza1doRzN4alBMMEFxRHF2SFB5aGozUk5tcDctTkdQZExqbHZvUEdnRkxyaXR0OHY4cnFIYmd0SkhiYjg5VHFEa3RNRmZ6UDQ3ZFhJZFJkdlJBcDlJVVVNMTh5MnFYV3Z5aWN3dmR6WWNGaHU5blRuam1abFV3a1RYQlMyTjV6WDBwa2hPQUZSTGJjQl9zQXNWRThVZG41Slg3VWU2VHNuNDFOYUp4OThPTkVBNjI0UTloS1JEM0pubzhCdw?oc=5"
+  },
+  {
+   "titulo": "Flávio fala de crise no STF em propaganda eleitoral com vídeo em formato de 'pronunciamento'",
+   "fonte": "Folha de S.Paulo",
+   "data": "2026-09-15",
+   "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNbXJQcVFtYkppNGM3bTJzUVVxbTB2amFHSTMtMFNVY1FtLUt1MHI0dXB5MWlnRUVNRjM4WUxLMHpwWF9zTDJHdF9yRm9VUC05YjgtSDEydFUweEpwT1diMXFLYXZSOGpDVDF0akpNdExsLVlmTU93UEdOWk5jZVpfUXgyd2hMWUFCMzlrWEZzYVZiMUVwcUk1MV9XOThWZFB3bGtMLWw2ejlSUE1RYjhkbzFvYzlmUDBZRzV0OC1HNlFUUjIwYW9VcmFSVUVQYnMtSFZLVkFHOA?oc=5"
+  },
+  {
+   "titulo": "Escândalo do Master vai eleger quem tomou dinheiro de Vorcaro?",
+   "fonte": "O GLOBO",
+   "data": "2026-09-18",
+   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPT1RTMV84MnFDYnp0d2RBeXFQOGh6WFpIelFmbDI1aWVpY1hLalY2ZDk1eHp2N251WUtkakNpTlY0TWxzTXJZLW4wMEEzZDVBY3F3MWlibWNxVnlPa19oNnBQUTBNbEJ3TDJhNzdqckJORWdCSzRma0NlLWt1ZzNQeHhtMThIMWhOenVDNVZ6SVotMVZuVURqb3FWVS0wNXY1dk1vR1N4N1AzMGwtSTB5bFR6dkFfNXZYdXNYZmdPaU50eFdtaHYxbkdDNWRSQVNq0gHfAUFVX3lxTE92dHBtZXlyQWttcFFpYkZqaVowcURIUzNZNlcyOWZjbHNpd1M4WHlUcXFjaFRFWjZic2JWUjJ2LXB4SF91WE1aMmdnb0hUeEFyc1N0Z1RwR1lFVnZNbk1jV3ZjVTdWd3RYUGpHNWJ5eEhTenNhdzdfUGxSUmVzcXdPNHUxR2hwTHpjcG1PeXVtRm12RzhWb3dWSUNQQmhPeFNLQlFtMTB3aWdvUlNOTDRZQlBSbzIxdnROZmNzdXRLbFAyN19LaVBOcFcxRUpndjRHRE1nU0hwVXVtM2JXQ0E?oc=5"
+  },
+  {
+   "titulo": "Flávio Bolsonaro e outros candidatos de direita usam foto de Gonet para atacar Lula e STF",
+   "fonte": "Folha de S.Paulo",
+   "data": "2026-09-19",
+   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNc01DNEg5VU9mU3JXMXFJMGNqRjlpVlBQT3p4NXRGRktYa0hJdG5IX3NlRUo1WENQalZIVXJWUlRZYm8tdW03U0RmbWhnNU1CbE5zbG5QOXp2dEZITlZka3pQVEsyRHhoTzRyMl9hS1lJQzJxN1NObW5VM0Q0ZDRIUFhyeDhpU2Vsd2lVbXhRSHR6MlRSdTVLcVFWbUEyNm5Xd0c3dkYzb0FFZWpoNUtxMEFKSFJPT2I2UE1SQ0Rvb2lQM1VTeV9VVDlTcURMMjFkSlN2cnJ3?oc=5"
+  },
+  {
+   "titulo": "Jogo Político: 'Evangélicos estão com André Mendonça e STF vai eleger Flávio Bolsonaro', diz Apóstolo César Augusto",
+   "fonte": "O GLOBO",
+   "data": "2026-09-19",
+   "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNNG9NNFBRSkxlVGZUakNab2QzNlk0Q25rRkFUVEFLc2k4QnV4LXhfUDNVOEFGVWs3MkRuT1hOekNicHZJS001cVhKN3Q2MVIxbUdHVVk2S3pMTUc1eGlscFZxcFN2YkNJRTdDUkVXbzJncjJXRnkzZjd4aEJMcUxWR2VOZW1JZ0k5bFZVSmQxWndNYzlnRTcyeFR6cXoyeTJKVVM0M1JkSGVCSWpSVnNSSkxSb3hHWDBKSFdJMUNnWXZsQTNfZk9uUUlCc2QxMHdNVXZYZkxKZWdfeVYzbmdGcWh6c2d6UmFqTTV2WGdyRDlSanAzYVRhQjZSSDZsbFRsclNVc2h2UkJHY05LLVJ0UjhR0gGgAkFVX3lxTE5XQkE1bkFZMGR5YklaNHpmTldGaTV6VUJYYVZOTkpaTE5Ybnp2WUtjUUdrdjc2TGxmaGJmYkQwOG40aUc2WnQyRmVNSjBDWG0xWUozakZ4TGs2TkIzcHQzalBSOHpxNlMyczhFODNuOG9YSHc4UU8xdGR1ZnRXZ01wU2Y4aGcyX3BkS0RCWmhfUmlUWkRQb0lVeS16MVpuYThFX2RvSnBJR3pIM0hSWDhZaXJiYTdoNngyeWN6aV9jcmFXSTJFNk1QaDF4NHRGSnZEVmhBa0pvc0xiSTlFcVVscFJIclZZbjg2T0lBODVnYUJYNVJoVUVqWTlNV3lIa3ZOZnZCQUZZSm5uSmJ0VkxNcExwd08wc3lUVmhVdFlkTA?oc=5"
+  },
+  {
+   "titulo": "Lula muda estratégia de campanha e passa a confrontar diretamente Flávio Bolsonaro: 'Quem vota em Flávio vota em Vorcaro'",
+   "fonte": "G1",
+   "data": "2026-09-17",
+   "url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxQdm41dHVVdGhLckpQTVBNTHFjdTQ0eU9OaEt0Vm9JWXEyRmpkZTFCak93UUNPYmlUSEF2UlFyRDNoTTgzUkFod2QxTEd1d0NIYXFTbnJHRlVaN2xNRXE2MXNnQnkyMTJWVkdmb2ZERE5wVVVfd0Y4NFYyQ1ZzWEZlOG9wRmozS1Axc21xTVZHY2lETjVIVE01RTUwUHU5d1ptazR0cnMyQnNKYzJSNmV4OExTcUhqakNtRmhleXpLQ2pGUUZwcUNJOHlKeXFMQnVfTXJ1aTNsampzUVg5VjlkVHJwT2R4QURUVlJIb1B3VU0yeTRrUEhSQmx3cFVHNTFzZzZ4SzJLMUpyUDN4R3dSRGtJbkbSAaMCQVVfeXFMT1h5SGNYLVRkUmJHV1A4TEZKRlhKd1J2YVY4WjlFRzlESGZNMlA2YnFfdEp3MGZIbjVna1FlUG1lNmtTX3B2YVVRZTE3LWlRMXI2RXVGWVpwSVl3TzdMcl9kYlh1RmRKSDlVM0lObkxGNmdfdnNGUkxBX1ZFWVFtNmRWdUY3T055Q2c2Y0xpVnB2TFk3a3VxZk4tME1paDJsTzNnZ0QyeHVlNkpKb1JJLXhqM2QzZ2JNUlVrZnRleEdCZnp5TjhkWUhjUUtQX1F4cFlQWmtPS0xybHpNbFBLOUwzNWxzNkNKTUFpMW9YVVFuUTlaZEotTC1DUjJvMFZLbE5IeF9yMmo1MjY2UXBVbzRhYWswNVdWR2Y0UEc3RzlpeTI0?oc=5"
+  },
+  {
+   "titulo": "Defesa de Flávio Bolsonaro pediu 4 vezes para STF tirar investigação sobre ‘Dark Horse’ de Dino",
+   "fonte": "Brasil de Fato",
+   "data": "2026-09-12",
+   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdWRKZXZRZFQzSG50c2lLLUFZbVZTQzJKSFFqd0NNQXc3LTdxZzRENVhXY0tjNzh0bVk0azhYT0F3TlNNUWk2alJTLXNSRTNscnJIUFRoOGdVYWNBRHUtXzhIYUhpSk51VVhZcVMzbE55YXFTOEJJSEhINkU1WDBjMXU1aFZwY3d2N2Y4SkVtQlJIbkZkdUNIQ3NYNGQwcU5aOXUzSkJuZndjWVdyTUs1VDhSWk96ZU9KN09SbzE2V2JxenBwUDhxMWdMOFl2c0cteEhz?oc=5"
+  },
+  {
+   "titulo": "Avião de Vorcaro pousou em Angra no dia de festa de Flávio Bolsonaro",
+   "fonte": "ICL Notícias",
+   "data": "2026-09-20",
+   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9PX1RNbldIUkY0UGZGcjNPNnU2MDNwZ0RVamVjTjZycmdiOUlLTFZIMWFLNGFTNV9yRkNOZHltbTB3bGpvcGZ2bU13Ti0xZjZYWGFvUFBmbENsNkV4ZDhIT1NlYXJhZDZqY1cxUUQ3RVgwM3VndTl0UXNn?oc=5"
+  },
+  {
+   "titulo": "Flávio diz que Moraes e Dino não têm condições de seguir no STF e fala em indicar até 6 nomes para a Corte se eleito",
+   "fonte": "G1",
+   "data": "2026-09-17",
+   "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPQmgxSWFNd0RESFhybWZnQzNCNmpSMDI4SXZ2UVVFcmtKRzNtTzkyUWpiM2gzOXI1WnlPN0duVnU2dzlDeUladFQzQXBrd0FJRkxjVVU1Um81NjQ1aGhodGJFeHp6TUZwdDBJcXBVdTZzM0NOQml5YjdLWmUxUXlUaU41Y2NVWWR0MTJMUVZLU0UxZFVFS1V0Z0VR0gGoAUFVX3lxTE1WWWNBa3h0UExLUmdjSG4xVGxxUjltX1J2RTZmOGpHV0JYd2lhd1UwQ0JjR3lzRC1nQzZfZ05Zd1FTZTc3OUlZZHVZbFNKS0V2RTlHTVo2WC1Wb3c1cjY1TGY0OF9QVEJKcVVYSGlDUm9wT0lKSjZfeHYyVnc0bWFxcWQ2Tk1UbWlBLTRyT3RuMmxSektRNTQtVW1WWTNmYklac255QUczYQ?oc=5"
+  },
+  {
+   "titulo": "‘Interlocutor direto’: o que as investigações da PF revelam sobre a relação de Flávio Bolsonaro com Daniel Vorcaro",
+   "fonte": "Brasil de Fato",
+   "data": "2026-09-11",
+   "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNR0xmLUM1MzFfN294SzlhNjk2dEtBU1NHdnR2Y3ZjTEpjNFRIVmxPTDFmR3ZtOVpVM2NjeUFiMkZoc2w5RHVzWmRnNjdqaHF6MzNwVDFHUnlvNlNzUWxxSF9IRzQ2UGthdWxQWHdSVVlaUHlaQUVzZTNsUDJKWkFwdVoxQzRVbnNFZG1RTkZFcmN5WWlvZzF2UXhZbzBSVWRCeWNMUTZVNzRjRW5jQm5WQUVxWEJHcTlZcUwxbVBzZTBmWnY2ZjcycUJucDlaMnNvR2J3Zl9CLVRXTXo5UG9qY2IzMkpRaGhDOFVj?oc=5"
   },
   {
    "titulo": "Mendonça homologa delação de operador que enviou US$ 12,3 mi ao fundo do filme",
@@ -15051,7 +15055,7 @@ window.DOSSIE = {
    "url": "https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg"
   }
  ],
- "noticiasCaptura": "2026-09-17",
+ "noticiasCaptura": "2026-09-20",
  "placar": [
   {
    "numero": "1",

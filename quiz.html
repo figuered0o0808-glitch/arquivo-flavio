@@ -81,6 +81,12 @@ input[type=range]::-moz-range-thumb{width:28px; height:28px; border-radius:50%; 
 .fim a{display:inline-block; font-size:18px; font-weight:700; color:var(--tinta); text-decoration:none; border-bottom:3px solid var(--tinta)}
 noscript p{padding:20px 16px}
 .acoes button{flex:1 1 auto}
+.blocos{display:grid; gap:10px; margin:6px 0 0}
+.bloco{display:flex; flex-direction:column; align-items:flex-start; gap:3px; text-align:left; padding:14px 16px; border:1.5px solid var(--cinza2); border-radius:2px; background:var(--leve); color:var(--tinta); cursor:pointer; font:inherit; min-height:44px}
+.bloco:hover{border-color:var(--amber)}
+.bloco b{font-size:17px; color:var(--amber)}
+.bloco span{font-size:14px; color:var(--cinza)}
+.bloco i{font-style:normal; font-family:var(--mono); font-size:11px; color:var(--cinza2); letter-spacing:.06em}
 </style>
 </head>
 <body>
@@ -108,6 +114,7 @@ noscript p{padding:20px 16px}
 <div class="fim"><a href="index.html">Ver os 294 registros →</a></div>
 
 
+<script src="assets/quiz-perguntas.js?v=1"></script>
 <script>
 (function(){
 'use strict';
@@ -141,15 +148,15 @@ const F = {
     u:'https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg' }
 };
 
-/* As oito perguntas. Só fatos; nada em investigação. */
-const P = [
+/* As perguntas. Só fatos; status jurídico dentro da resposta. */
+const BASICO = [
   { tipo:'faixa', min:0, max:1000000, passo:1, inicio:500000, fmt:fmtBRL, dif: d => fmtBRL(Math.round(d * 100) / 100),
     extremos:['R$ 0','R$ 1 milhão'],
     pergunta:'Até 26/08/2026, na prestação de contas parcial ao TSE, quanto pessoas físicas tinham doado à campanha presidencial dele?',
     valor:6.01, acerta: v => v <= 10000,
     numero:'R$ 6,01',
     resposta:'Na prestação de contas parcial ao TSE consultada em 26/08/2026, pessoas físicas tinham doado <b>R$ 6,01</b> à campanha presidencial de Flávio Bolsonaro. O PL, partido dele, repassou <b>R$ 42 milhões</b>.',
-    ressalva:'Em setembro de 2026, a maior doação de pessoa física registrada era de R$ 300 mil (Walter Schlatter).',
+    ressalva:'Em setembro de 2026, as maiores doações de pessoa física registradas eram de R$ 500 mil (Erasmo Battistella e Fernando de Castro Marques).',
     chip:'FATO · PRESTAÇÃO DE CONTAS AO TSE',
     fontes:[F.poder_doacoes],
     curto:'Doações de pessoas físicas até 26/08', gab:'R$ 6,01',
@@ -233,11 +240,35 @@ const P = [
     curto:'Mansão usada como QG da pré-campanha', gab:'R$ 14,5 milhões',
     zap:'A mansão de R$ 14,5 milhões usada como QG da pré-campanha de Flávio Bolsonaro está em nome do advogado José Vicente Santini, coordenador da campanha: R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo BRB. Em 02/07/2026 um deputado pediu à PF que apurasse a origem dos recursos; Santini diz que "está tudo declarado".' }
 ];
+BASICO.forEach(p => p.bloco = 'basico');
 
-const N = P.length;
+/* Perguntas dos blocos "relações" e "dinheiro" (formato igual; fontes inline). */
+const NOVAS = (window.__NOVAS_PERGUNTAS || []).map(q => {
+  if (q.tipo !== 'faixa' || q.fmt) return q;
+  const u = q.unidade || '';
+  const f = v => u === 'R$' ? fmtBRL(v) : (u === '%' ? String(v) + '%' : String(v) + (u ? ' ' + u : ''));
+  return Object.assign({}, q, { fmt: f, dif: d => f(Math.round(d)), acerta: v => Math.abs(v - q.valor) <= (q.tolerancia || 0) });
+});
+
+const BLOCOS = {
+  tudo:     { nome: 'Tudo',        desc: 'todas as perguntas' },
+  basico:   { nome: 'O básico',    desc: 'mandato, patrimônio, campanha' },
+  relacoes: { nome: 'As relações', desc: 'quem anda com ele e o que a Justiça diz de cada um' },
+  dinheiro: { nome: 'O dinheiro',  desc: 'mansões, banco, filme, investigações' },
+};
+const TODAS = BASICO.concat(NOVAS);
+let bloco = 'tudo';
+let P = TODAS, N = P.length;
 const tela = document.getElementById('tela');
-let i = 0;
-const resp = Array(N).fill(null);   /* só em memória: nada de localStorage */
+let i = -1;                          /* -1 = tela de escolha */
+let resp = Array(N).fill(null);      /* só em memória: nada de localStorage */
+function escolhe(b){
+  bloco = BLOCOS[b] ? b : 'tudo';
+  P = bloco === 'tudo' ? TODAS : TODAS.filter(p => p.bloco === bloco);
+  N = P.length; resp = Array(N).fill(null); i = 0;
+  try { history.replaceState(null, '', '#' + bloco); } catch(e){}
+  render();
+}
 
 /* ---------- utilidades ---------- */
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -254,7 +285,8 @@ function textoFato(p){
          '\n\nQuiz com ' + N + ' perguntas, todas com fonte: ' + PAGINA();
 }
 function textoFinal(acertos){
-  return 'Acertei ' + acertos + ' de ' + N + ' no quiz sobre Flávio Bolsonaro. Todas as respostas têm fonte: ' + PAGINA();
+  const b = bloco === 'tudo' ? '' : ' (bloco "' + BLOCOS[bloco].nome + '")';
+  return 'Acertei ' + acertos + ' de ' + N + ' no quiz sobre Flávio Bolsonaro' + b + '. Todas as respostas têm fonte: ' + PAGINA();
 }
 const reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -303,7 +335,7 @@ function renderPergunta(k){
   let html = progresso(k);
   if (k === 0){
     html += '<h1 class="sec">Quanto você sabe sobre ele?</h1>' +
-            '<p class="sub">' + N + ' perguntas sobre fatos com fonte. Sem cadastro, sem cronômetro.</p>';
+            '<p class="sub">' + BLOCOS[bloco].nome + ' · ' + N + ' perguntas sobre fatos com fonte. Sem cadastro, sem cronômetro.</p>';
   }
   html += '<h2 class="pergunta" tabindex="-1">' + esc(p.pergunta) + '</h2>';
 
@@ -390,16 +422,28 @@ function renderFim(){
     '<p class="numero">' + acertos + ' de ' + N + '</p>' +
     '<ol class="gabarito" aria-label="Gabarito">' + lista + '</ol>' +
     '<div class="chip">' + N + ' RESPOSTAS · CADA UMA COM FONTE E STATUS</div>' +
-    '<p class="fonte">Fontes: Poder360, Brasil de Fato, Senado Federal, Jornal de Brasília, Estado de Minas, Itatiaia, CartaCapital, Metrópoles.</p>' +
+    '<p class="fonte">Fontes: ' + esc([...new Set(P.flatMap(p => p.fontes.map(f => f.v)))].join(', ')) + '.</p>' +
     '<div class="acoes"><button type="button" id="zap-fim">Mandar no WhatsApp</button>' +
     '<button type="button" class="sec" id="refazer">Refazer o quiz</button></div>';
   document.getElementById('zap-fim').addEventListener('click', () => compartilhar(textoFinal(acertos)));
-  document.getElementById('refazer').addEventListener('click', () => { resp.fill(null); i = 0; render(); });
+  document.getElementById('refazer').addEventListener('click', () => { i = -1; render(); });
   window.scrollTo(0, 0);
 }
 
-function render(){ if (i >= N) renderFim(); else renderPergunta(i); }
-render();
+function renderInicio(){
+  const conta = b => b === 'tudo' ? TODAS.length : TODAS.filter(p => p.bloco === b).length;
+  tela.innerHTML =
+    '<h1 class="sec">Quanto você sabe sobre ele?</h1>' +
+    '<p class="sub">Perguntas sobre fatos com fonte e status jurídico. Sem cadastro, sem cronômetro. Escolha por onde começar:</p>' +
+    '<div class="blocos">' + Object.keys(BLOCOS).filter(b => conta(b) > 0).map(b =>
+      '<button type="button" class="bloco" data-b="' + b + '"><b>' + esc(BLOCOS[b].nome) + '</b><span>' + esc(BLOCOS[b].desc) + '</span><i>' + conta(b) + ' perguntas</i></button>').join('') +
+    '</div>';
+  tela.querySelectorAll('.bloco').forEach(b => b.addEventListener('click', () => escolhe(b.dataset.b)));
+  window.scrollTo(0, 0);
+}
+function render(){ if (i < 0) renderInicio(); else if (i >= N) renderFim(); else renderPergunta(i); }
+const h0 = (location.hash || '').slice(1);
+if (BLOCOS[h0]) escolhe(h0); else render();
 })();
 </script>
 <script>(function(){var a=document.querySelector('.site-header .tab.active');if(a&&a.scrollIntoView)a.scrollIntoView({inline:'center',block:'nearest'});})();</script>
