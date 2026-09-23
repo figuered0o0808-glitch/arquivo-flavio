@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A Foz — todos os escândalos levam ao Flávio · BolsoDrive</title>
+<meta name="description" content="Os escândalos que chegam a Flávio Bolsonaro — por ele mesmo, pelo gabinete, pela família e pelo entorno — com o caminho de cada um, elo por elo, e a fonte de cada elo.">
+<link rel="stylesheet" href="assets/base.css?v=3">
+<link rel="stylesheet" href="assets/header.css?v=9">
+<style>
+.wrap{max-width:760px}
+.tese{font-size:17px; line-height:1.5; margin:0 0 12px}
+.tese b{color:var(--amber)}
+.faixas{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:0 0 14px}
+.faixas button{display:flex; flex-direction:column; align-items:flex-start; gap:2px; padding:9px 10px; border:1px solid var(--linha); border-radius:4px; background:var(--leve); color:var(--tinta); cursor:pointer; font:inherit; text-align:left; min-height:44px}
+.faixas button b{font-family:var(--mono); font-size:22px; color:var(--amber); line-height:1}
+.faixas button span{font-size:12px; color:var(--cinza); line-height:1.25}
+.faixas button.on{border-color:var(--amber)}
+@media (max-width:520px){ .faixas{grid-template-columns:repeat(2,1fr)} }
+
+/* bacia */
+.bacia{position:relative; margin:0 0 6px; border:1px solid var(--linha); border-radius:4px; background:#050805; overflow:hidden}
+.bacia svg{display:block; width:100%; height:auto}
+.bacia .st{fill:none; stroke-linecap:round; stroke-linejoin:round; cursor:pointer; transition:opacity .2s}
+.bacia .rot{font-family:var(--sans); font-weight:600; cursor:pointer}
+.bacia .banda{font-family:var(--mono); font-size:10px; letter-spacing:.1em; fill:#ffb02e; font-weight:700}
+.bacia .foz-nome{font-family:var(--mono); font-size:12px; font-weight:700; fill:var(--amber); letter-spacing:.06em}
+.bacia .dim{opacity:.12}
+.bacia .acoes-b{position:absolute; right:8px; top:8px; display:flex; gap:6px}
+.bacia .acoes-b button{font-family:var(--mono); font-size:11px; padding:6px 9px; border:1px solid var(--linha); border-radius:3px; background:rgba(5,8,5,.85); color:var(--amber); cursor:pointer}
+.legenda{font-family:var(--mono); font-size:11px; color:var(--cinza); display:flex; gap:14px; flex-wrap:wrap; margin:6px 0 22px}
+.legenda i{display:inline-block; width:18px; height:4px; border-radius:2px; vertical-align:2px; margin-right:6px}
+
+/* rio para rolar */
+h2.sec2{font-family:var(--mono); font-size:15px; color:var(--amber); letter-spacing:2px; text-transform:uppercase; margin:10px 0 4px}
+h2.sec2::before{content:"// "; color:var(--cinza2)}
+.rio{position:relative; margin:8px 0 0}
+.rio > svg{position:absolute; left:0; top:0; overflow:visible; pointer-events:none}
+.rio .lane{fill:none; stroke-linecap:butt; stroke-linejoin:round; opacity:.82}
+.rio .lane.anim{stroke-dasharray:1; stroke-dashoffset:1; transition:stroke-dashoffset 1.5s cubic-bezier(.3,.6,.3,1)}
+.rio .lane.anim.on{stroke-dashoffset:0}
+.rio .lane.dim{opacity:.12}
+.trechos{position:relative}
+.trecho-h{font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber); margin:26px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--linha)}
+.trecho-h:first-child{margin-top:4px}
+.trecho-h span{color:var(--cinza); text-transform:none; letter-spacing:0; font-weight:400}
+.afl{display:block; width:100%; text-align:left; padding:10px 12px 11px; margin:0 0 12px; border:1px solid var(--linha); border-radius:4px; background:var(--leve); color:var(--tinta); cursor:pointer; font:inherit; transition:border-color .2s, box-shadow .2s}
+.afl:hover, .afl.flash{border-color:var(--amber)}
+.afl.flash{box-shadow:0 0 0 2px rgba(255,176,46,.35)}
+.afl .n{font-size:16px; font-weight:700; display:block; line-height:1.25}
+.afl .via{font-size:13px; color:var(--cinza); display:block; margin:3px 0 6px; line-height:1.35}
+.afl .sf{display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; padding:3px 7px; border:1px solid currentColor; border-radius:2px}
+.afl .mais{font-family:var(--mono); font-size:11px; color:var(--azul); display:block; margin-top:6px}
+.foz{position:absolute; transform:translateX(-50%); text-align:center; width:220px}
+.foz .disco{width:92px; height:92px; border-radius:50%; margin:0 auto 8px; overflow:hidden; border:3px solid var(--amber); background:var(--leve); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:26px; color:var(--cinza)}
+.foz .disco img{width:100%; height:100%; object-fit:cover}
+.foz b{display:block; font-family:var(--mono); font-size:14px; color:var(--amber); letter-spacing:.06em}
+.foz span{display:block; font-size:13px; color:var(--cinza); margin-top:2px}
+
+.ressalva{font-size:13px; color:var(--cinza); border-left:2px solid var(--cinza2); padding:2px 0 2px 10px; margin:0 0 14px}
+.ressalva b{color:var(--tinta)}
+.metodo{font-size:13px; color:var(--cinza); border-top:1px solid var(--linha); margin-top:28px; padding-top:14px}
+
+/* ficha do afluente */
+.folha{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; z-index:60}
+.folha.on{display:block}
+.folha .cx{position:absolute; left:0; right:0; bottom:0; max-height:86vh; overflow:auto; background:#0a100a; border-top:1px solid var(--linha); padding:16px 16px 30px; border-radius:14px 14px 0 0}
+@media (min-width:760px){ .folha .cx{left:50%; transform:translateX(-50%); width:720px; border:1px solid var(--linha)} }
+.folha .fx{position:sticky; top:0; float:right; background:none; border:1px solid var(--linha); color:var(--tinta); border-radius:3px; padding:4px 10px; cursor:pointer; font-family:var(--mono)}
+.folha h3{font-size:21px; margin:4px 0 2px; line-height:1.2}
+.folha .op{font-family:var(--mono); font-size:12px; color:var(--cinza); margin:0 0 10px}
+.folha .res{font-size:15px; margin:0 0 12px}
+.ele{border:1px solid var(--amber); border-radius:4px; padding:10px 12px; margin:0 0 14px}
+.ele .k{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--amber); display:block; margin-bottom:3px}
+.cam{list-style:none; margin:0 0 14px; padding:0; border-left:2px solid var(--cinza2)}
+.cam li{position:relative; padding:0 0 12px 16px}
+.cam li::before{content:""; position:absolute; left:-6px; top:5px; width:10px; height:10px; border-radius:50%; background:#0a100a; border:2px solid var(--cinza)}
+.cam li.grave::before{border-color:var(--carimbo)}
+.cam li.medio::before{border-color:var(--amber)}
+.cam .de{font-weight:700}
+.cam .rel{display:block; font-size:14px; color:var(--tinta); margin:2px 0}
+.cam .stt{display:block; font-family:var(--mono); font-size:11px; color:var(--cinza)}
+.cam .ft{font-family:var(--mono); font-size:11px}
+.cam li.fim::before{background:var(--amber); border-color:var(--amber)}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hrow">
+    <div class="brand"><a class="mark" href="index.html">BOLSODRIVE</a><span class="tag">o que o registro público diz sobre o candidato</span></div>
+    <nav class="tabs">
+      <a class="tab hot" href="index.html#recente">Recentemente</a>
+      <a class="tab" href="index.html#arquivo">Arquivo</a>
+      <a class="tab" href="index.html#rede">Close Friends</a>
+      <a class="tab active" href="foz.html">A Foz</a>
+      <a class="tab" href="siga-o-dinheiro.html">Siga o dinheiro</a>
+      <a class="tab" href="quiz.html">Quiz</a>
+      <a class="tab" href="index.html#cronologia">Cronologia</a>
+      <a class="tab" href="index.html#noticias">Notícias</a>
+      <a class="tab" href="index.html#chat">FlávioGPT</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <h1 class="sec">Todos os escândalos levam ao Flávio</h1>
+  <p class="tese" id="tese"></p>
+  <div class="faixas" id="faixas"></div>
+
+  <div class="bacia" id="bacia"><svg id="bacia-svg"></svg></div>
+  <div class="legenda">
+    <span><i style="background:#ff5c5c"></i>há alguém preso ou condenado no caminho</span>
+    <span><i style="background:#ffb02e"></i>há alguém investigado ou denunciado</span>
+    <span><i style="background:#5c8a63"></i>sem processo no caminho</span>
+  </div>
+
+  <h2 class="sec2">O rio, trecho por trecho</h2>
+  <p class="sub">Do mais distante ao mais perto. Toque num rio para ver o caminho até ele, elo por elo, com o status de cada pessoa e a fonte.</p>
+  <div class="rio" id="rio"><svg id="rio-svg"></svg><div class="trechos" id="trechos"></div></div>
+
+  <p class="metodo">Um rio não é uma acusação: é o caminho documentado de um escândalo até Flávio Bolsonaro, com a situação jurídica de cada pessoa no caminho. Quando ele não é investigado num caso, o rio diz — e diz por onde o caso chega a ele. Cada elo tem fonte. <a href="index.html#arquivo">Ver o arquivo completo →</a></p>
+</div>
+
+<div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
+
+<script src="data/dados.js?v=set2026h"></script>
+<script src="data/foz.js?v=1"></script>
+<script>
+(function(){
+'use strict';
+const D = window.DOSSIE || { itens: [] };
+const FOZ = window.FOZ || { escandalos: [] };
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const NS = 'http://www.w3.org/2000/svg';
+const reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- vocabulário ---------- */
+const FAIXAS = {
+  entorno:  { nome:'O entorno',  desc:'por amigos, aliados e financiadores', curto:'pelo entorno' },
+  familia:  { nome:'A família',  desc:'pelo pai e pelos irmãos',             curto:'pela família' },
+  gabinete: { nome:'O gabinete', desc:'por quem trabalhou para ele',          curto:'pelo gabinete' },
+  direto:   { nome:'Ele mesmo',  desc:'em que ele é investigado, foi denunciado ou é parte', curto:'com ele no centro' },
+};
+const ORDEM_RIO = ['entorno','familia','gabinete','direto'];      /* de cima (longe) para baixo (perto) */
+const ORDEM_BACIA = ['entorno','familia','direto','gabinete'];    /* da esquerda para a direita */
+const COR = { preso_ou_condenado_na_cadeia:'#ff5c5c', investigado_na_cadeia:'#ffb02e', sem_processo_na_cadeia:'#5c8a63' };
+const CLS = { preso_ou_condenado_na_cadeia:'grave', investigado_na_cadeia:'medio', sem_processo_na_cadeia:'' };
+const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const temaNome = {}; ((window.DOSSIE || {}).temas || []).forEach(t => { temaNome[t.id] = t.nome; });
+const PESO = { preso_ou_condenado_na_cadeia:2, investigado_na_cadeia:1, sem_processo_na_cadeia:0 };
+
+/* ---------- dados ---------- */
+const TODOS = (FOZ.escandalos || []).map(e => {
+  let n = 0;
+  if (e.busca){
+    const qs = norm(e.busca).split('|').map(t => t.trim()).filter(Boolean);
+    n = (D.itens || []).filter(i => { const t = norm(i.titulo + ' ' + (i.resumo || '') + ' ' + (temaNome[i.tema] || '')); return qs.some(x => t.includes(x)); }).length;
+  }
+  return Object.assign({}, e, { registros: n });
+});
+let filtro = null;          /* null = todas as faixas */
+
+function viaDe(e){
+  const c = e.cadeia || [];
+  if (e.faixa === 'direto' || !c.length) return e.status_flavio;
+  const ult = c[c.length - 1];
+  return 'via ' + ult.de + ': ' + ult.relacao;
+}
+function larguras(lista, total){
+  const base = lista.map(e => 2.2 + Math.sqrt(e.registros + 1) * 1.5 + PESO[e.gravidade] * 0.8);
+  const soma = base.reduce((a, b) => a + b, 0) || 1;
+  const k = Math.min(1, total / soma);
+  return base.map(w => Math.max(2.5, w * k));
+}
+function ordena(lista){
+  return lista.slice().sort((a, b) => PESO[b.gravidade] - PESO[a.gravidade] || b.registros - a.registros || a.nome.localeCompare(b.nome));
+}
+
+/* ---------- cabeçalho: tese e contagem ---------- */
+function cabecalho(){
+  const por = f => TODOS.filter(e => e.faixa === f).length;
+  const graves = TODOS.filter(e => e.gravidade === 'preso_ou_condenado_na_cadeia').length;
+  $('#tese').innerHTML = '<b>' + TODOS.length + ' escândalos. Todos chegam a ele.</b> Em ' + graves +
+    ' deles há alguém preso ou condenado no caminho. Cada rio mostra por onde o caso chega: por ele mesmo, pelo gabinete, pela família ou pelo entorno.';
+  $('#faixas').innerHTML = ['direto','gabinete','familia','entorno'].map(f =>
+    '<button type="button" data-f="' + f + '"' + (filtro === f ? ' class="on"' : '') + '><b>' + por(f) + '</b><span>' + esc(FAIXAS[f].nome) + ' — ' + esc(FAIXAS[f].desc) + '</span></button>').join('');
+  document.querySelectorAll('#faixas button').forEach(b => b.addEventListener('click', () => { filtro = filtro === b.dataset.f ? null : b.dataset.f; tudo(); }));
+}
+
+/* ---------- a bacia: tudo numa tela ----------
+   Funil de duas margens: nomes na horizontal, alinhados às margens; cada rio
+   atravessa até o leito central, que engrossa para baixo e fecha na foz.
+   Os primeiros rios ficam no meio do leito e os seguintes por fora, para que
+   nenhum atravesse outro. */
+const medidor = document.createElement('canvas').getContext('2d');
+function largTexto(t, px, peso){ medidor.font = (peso || 600) + ' ' + px + 'px system-ui, -apple-system, Roboto, sans-serif'; return medidor.measureText(t).width; }
+function el(tag, at){ const x = document.createElementNS(NS, tag); for (const k in at) x.setAttribute(k, at[k]); return x; }
+function cabe(t, px, max){ if (largTexto(t, px) <= max) return t; while (t.length > 3 && largTexto(t + '…', px) > max) t = t.slice(0, -1); return t + '…'; }
+
+function bacia(){
+  const svg = $('#bacia-svg'); svg.innerHTML = '';
+  const W = Math.round($('#bacia').clientWidth);
+  const estreita = W < 600;
+  if (!TODOS.length) return;
+  const M = estreita ? 8 : 10, px = estreita ? 11.5 : 13, rowH = estreita ? 18 : 20, hdrH = estreita ? 22 : 24, topo = 16;
+  const Tc = Math.round(Math.min(W * (estreita ? 0.16 : 0.16), 120));
+  const maxTxt = W / 2 - Tc / 2 - M - 16;
+  /* faixas nas duas margens, equilibrando o número de linhas e mantendo a ordem de distância */
+  const lados = { e: [], d: [] }, conta = { e: 0, d: 0 };
+  ORDEM_RIO.forEach(f => {
+    const itens = ordena(TODOS.filter(e => e.faixa === f)).reverse();
+    if (!itens.length) return;
+    const lado = conta.e <= conta.d ? 'e' : 'd';
+    lados[lado].push({ f, itens }); conta[lado] += itens.length + 1.2;
+  });
+  const wAll = larguras(TODOS, Tc);
+  const wOf = {}; TODOS.forEach((e, k) => wOf[e.id] = wAll[k]);
+
+  const linhas = [];      /* {lado, e, y} */
+  const cabecalhos = [];  /* {lado, f, n, y} */
+  let yMax = 0;
+  ['e','d'].forEach(l => {
+    let y = topo;
+    lados[l].forEach(g => {
+      cabecalhos.push({ lado: l, f: g.f, n: g.itens.length, y: y + hdrH * 0.62 }); y += hdrH;
+      g.itens.forEach(e => { linhas.push({ lado: l, e, y: y + rowH / 2 }); y += rowH; });
+      y += 6;
+    });
+    yMax = Math.max(yMax, y);
+  });
+  const yEnd = yMax + 10, yFoz = yEnd + 74, H = Math.round(yFoz + 66);
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  const cx = W / 2;
+  const acum = { e: 0, d: 0 };
+  const camadaSt = el('g', {}), camadaTx = el('g', {});
+  linhas.sort((a, b) => a.y - b.y).forEach(r => {
+    const e = r.e, w = wOf[e.id];
+    const x = r.lado === 'e' ? cx - acum.e - w / 2 : cx + acum.d + w / 2;
+    acum[r.lado] += w;
+    /* o nome pode ir até perto do próprio rio: os rios já desenhados estão todos mais ao centro */
+    const livre = Math.max(maxTxt, Math.abs(x - (r.lado === 'e' ? M : W - M)) - w / 2 - 26);
+    const nome = cabe(e.rotulo || e.nome, px, livre);
+    const tw = largTexto(nome, px);
+    const xs = r.lado === 'e' ? M + tw + 6 + w / 2 : W - M - tw - 6 - w / 2;   /* a ponta arredondada não encosta no nome */
+    const xf = cx + (x - cx) * 0.22;
+    const d = 'M' + xs.toFixed(1) + ',' + r.y.toFixed(1) +
+      ' C' + (x + (xs - x) * 0.45).toFixed(1) + ',' + r.y.toFixed(1) + ' ' + x.toFixed(1) + ',' + (r.y + 4).toFixed(1) + ' ' + x.toFixed(1) + ',' + (r.y + 18).toFixed(1) +
+      ' L' + x.toFixed(1) + ',' + yEnd.toFixed(1) +
+      ' C' + x.toFixed(1) + ',' + (yEnd + 44).toFixed(1) + ' ' + xf.toFixed(1) + ',' + (yFoz - 50).toFixed(1) + ' ' + xf.toFixed(1) + ',' + (yFoz - 26).toFixed(1);
+    camadaSt.appendChild(el('path', { d, class: 'st', stroke: COR[e.gravidade], 'stroke-width': w.toFixed(2), 'stroke-opacity': 0.9, 'data-id': e.id }));
+    const t = el('text', { x: r.lado === 'e' ? M : W - M, y: r.y.toFixed(1), class: 'rot', 'text-anchor': r.lado === 'e' ? 'start' : 'end', 'dominant-baseline': 'middle',
+      fill: e.gravidade === 'sem_processo_na_cadeia' ? '#9bb8a0' : COR[e.gravidade], 'data-id': e.id, 'font-size': px });
+    t.textContent = nome;
+    camadaTx.appendChild(t);
+  });
+  cabecalhos.forEach(c => {
+    const t = el('text', { x: c.lado === 'e' ? M : W - M, y: c.y.toFixed(1), class: 'banda', 'text-anchor': c.lado === 'e' ? 'start' : 'end' });
+    t.textContent = '// ' + FAIXAS[c.f].nome.toUpperCase() + ' · ' + c.n;
+    camadaTx.appendChild(t);
+  });
+  svg.appendChild(camadaSt); svg.appendChild(camadaTx);
+
+  /* a foz */
+  const F = { x: cx, y: yFoz };
+  const defs = el('defs', {}); const cp = el('clipPath', { id: 'cpfoz' }); cp.appendChild(el('circle', { cx: F.x, cy: F.y, r: 25 })); defs.appendChild(cp); svg.insertBefore(defs, svg.firstChild);
+  svg.appendChild(el('circle', { cx: F.x, cy: F.y, r: 28, fill: '#050805', stroke: '#ffb02e', 'stroke-width': 3 }));
+  const img = el('image', { x: F.x - 25, y: F.y - 25, width: 50, height: 50, 'clip-path': 'url(#cpfoz)', preserveAspectRatio: 'xMidYMid slice', id: 'foz-img-b' });
+  if (fotoFlavio) img.setAttribute('href', fotoFlavio);
+  svg.appendChild(img);
+  const tn = el('text', { x: F.x, y: F.y + 46, class: 'foz-nome', 'text-anchor': 'middle' }); tn.textContent = 'FLÁVIO BOLSONARO'; svg.appendChild(tn);
+
+  if (!reduzido){
+    svg.querySelectorAll('path.st').forEach((p, k) => {
+      const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+      p.getBoundingClientRect();
+      p.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.3,.6,.3,1) ' + (k * 0.04).toFixed(2) + 's';
+      requestAnimationFrame(() => requestAnimationFrame(() => { p.style.strokeDashoffset = 0; }));
+    });
+  }
+  svg.querySelectorAll('[data-id]').forEach(x => {
+    x.addEventListener('click', () => irPara(x.dataset.id));
+    x.addEventListener('mouseenter', () => realca(x.dataset.id));
+    x.addEventListener('mouseleave', () => realca(null));
+  });
+  aplicaFiltroBacia();
+}
+function aplicaFiltroBacia(){
+  document.querySelectorAll('#bacia-svg [data-id]').forEach(x => {
+    const e = TODOS.find(z => z.id === x.dataset.id);
+    x.classList.toggle('dim', !!filtro && e && e.faixa !== filtro);
+  });
+}
+function realca(id){
+  document.querySelectorAll('#bacia-svg [data-id]').forEach(x => {
+    const e = TODOS.find(z => z.id === x.dataset.id);
+    const fora = (filtro && e && e.faixa !== filtro) || (id && x.dataset.id !== id);
+    x.classList.toggle('dim', !!fora);
+  });
+  document.querySelectorAll('#rio-svg .lane').forEach(x => x.classList.toggle('dim', !!id && x.dataset.id !== id));
+}
+
+/* ---------- o rio para rolar ---------- */
+function rio(){
+  const box = $('#rio'), svg = $('#rio-svg'), col = $('#trechos');
+  const W = Math.round(box.clientWidth);
+  const M = 6, Tmax = Math.round(Math.min(W * (W < 600 ? 0.22 : 0.19), 150)), gap = 22;
+  col.style.marginLeft = (M + Tmax + gap) + 'px';
+  const lista = [];
+  let html = '';
+  ORDEM_RIO.forEach(f => {
+    if (filtro && f !== filtro) return;
+    const itens = ordena(TODOS.filter(e => e.faixa === f)).reverse();   /* o mais grave entra por último, mais perto da foz */
+    if (!itens.length) return;
+    html += '<div class="trecho-h">' + esc(FAIXAS[f].nome) + ' <span>— ' + esc(FAIXAS[f].desc) + ' · ' + itens.length + (itens.length === 1 ? ' rio' : ' rios') + '</span></div>';
+    itens.forEach(e => {
+      lista.push(e);
+      html += '<button type="button" class="afl" id="afl-' + esc(e.id) + '" data-id="' + esc(e.id) + '">' +
+        '<span class="n">' + esc(e.nome) + '</span>' +
+        '<span class="via">' + esc(viaDe(e)) + '</span>' +
+        '<span class="sf" style="color:' + COR[e.gravidade] + '">' + esc(e.faixa === 'direto' ? 'ELE NESTE CASO' : 'ELE: ' + e.status_flavio) + '</span>' +
+        (e.registros ? '<span class="mais">' + e.registros + ' registros no arquivo · ver o caminho →</span>' : '<span class="mais">ver o caminho →</span>') +
+        '</button>';
+    });
+  });
+  col.innerHTML = html;
+  col.querySelectorAll('.afl').forEach(b => b.addEventListener('click', () => abre(b.dataset.id)));
+
+  /* geometria medida do que foi desenhado */
+  const ws = larguras(lista, Tmax);
+  const xsCard = M + Tmax + gap - 4;
+  const topo = box.getBoundingClientRect().top;
+  let off = 0, fimCards = 0;
+  const lanes = lista.map((e, k) => {
+    const c = document.getElementById('afl-' + e.id).getBoundingClientRect();
+    const ys = c.top - topo + 16, yj = ys + 30;
+    const w = ws[k], xl = M + off + w / 2; off += w;
+    fimCards = Math.max(fimCards, c.bottom - topo);
+    return { e, w, xl, ys, yj };
+  });
+  const yEnd = fimCards + 24, yFoz = yEnd + 150, xf = W / 2;
+  const alto = yFoz + 150;
+  box.style.height = alto + 'px';
+  svg.setAttribute('width', W); svg.setAttribute('height', alto); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + alto);
+  svg.innerHTML = '';
+  const centro = M + off / 2;
+  lanes.forEach(l => {
+    const ofs = (l.xl - centro) * 0.3;
+    const d = 'M' + xsCard + ',' + l.ys.toFixed(1) +
+      ' C' + (l.xl + (xsCard - l.xl) * 0.35).toFixed(1) + ',' + l.ys.toFixed(1) + ' ' + l.xl.toFixed(1) + ',' + (l.ys + 8).toFixed(1) + ' ' + l.xl.toFixed(1) + ',' + l.yj.toFixed(1) +
+      ' L' + l.xl.toFixed(1) + ',' + yEnd.toFixed(1) +
+      ' C' + l.xl.toFixed(1) + ',' + (yEnd + 70).toFixed(1) + ' ' + (xf + ofs).toFixed(1) + ',' + (yFoz - 90).toFixed(1) + ' ' + (xf + ofs).toFixed(1) + ',' + (yFoz - 20).toFixed(1);
+    const p = el('path', { d, class: 'lane' + (reduzido ? '' : ' anim'), stroke: COR[l.e.gravidade], 'stroke-width': l.w.toFixed(2), 'data-id': l.e.id, pathLength: 1 });
+    svg.appendChild(p);
+  });
+  /* a foz, em HTML para a foto */
+  let foz = document.getElementById('foz-rio');
+  if (!foz){ foz = document.createElement('div'); foz.id = 'foz-rio'; foz.className = 'foz'; box.appendChild(foz); }
+  foz.style.left = xf + 'px'; foz.style.top = (yFoz - 30) + 'px';
+  foz.innerHTML = '<div class="disco">' + (fotoFlavio ? '<img alt="" src="' + esc(fotoFlavio) + '">' : 'FB') + '</div><b>FLÁVIO BOLSONARO</b><span>candidato à Presidência</span>';
+
+  /* o rio se enche conforme se rola */
+  if (!reduzido && 'IntersectionObserver' in window){
+    const io = new IntersectionObserver(ents => ents.forEach(en => {
+      if (!en.isIntersecting) return;
+      const p = svg.querySelector('.lane[data-id="' + en.target.dataset.id + '"]'); if (p) p.classList.add('on');
+      io.unobserve(en.target);
+    }), { rootMargin: '0px 0px -25% 0px' });
+    col.querySelectorAll('.afl').forEach(b => io.observe(b));
+  } else {
+    svg.querySelectorAll('.lane').forEach(p => p.classList.add('on'));
+  }
+}
+
+/* ---------- ficha do afluente ---------- */
+function irPara(id){
+  const b = document.getElementById('afl-' + id);
+  if (!b){ filtro = null; tudo(); return irPara(id); }
+  b.scrollIntoView({ behavior: reduzido ? 'auto' : 'smooth', block: 'center' });
+  b.classList.add('flash'); setTimeout(() => b.classList.remove('flash'), 1600);
+  const p = document.querySelector('#rio-svg .lane[data-id="' + id + '"]'); if (p) p.classList.add('on');
+}
+function statusCls(s){
+  s = (s || '').toLowerCase();
+  const neg = /\b(n[ãa]o|nunca|sem)\b/.test(s);
+  if (!neg && /(preso|presa|condenad)/.test(s)) return 'grave';
+  if (/(preso|presa|condenad)/.test(s) && !/sem condena/.test(s)) return 'grave';
+  if (/(investigad|denunciad|r[ée]u|alvo)/.test(s)) return 'medio';
+  return '';
+}
+function url(){ return location.origin + location.pathname; }
+function abre(id){
+  const e = TODOS.find(z => z.id === id); if (!e) return;
+  const c = e.cadeia || [];
+  const passos = c.map(l =>
+    '<li class="' + statusCls(l.status_de) + '"><span class="de">' + esc(l.de) + '</span> → ' + esc(l.para) +
+    '<span class="rel">' + esc(l.relacao) + '</span>' +
+    (l.status_de ? '<span class="stt">' + esc(l.status_de) + '</span>' : '') +
+    (l.fonte && l.fonte.url ? '<a class="ft" href="' + esc(l.fonte.url) + '" target="_blank" rel="noopener">' + esc(l.fonte.veiculo || 'fonte') + (l.fonte.data ? ' · ' + esc(l.fonte.data) : '') + '</a>' : '') + '</li>').join('') +
+    '<li class="fim"><span class="de">Flávio Bolsonaro</span><span class="rel">' + esc(e.status_flavio) + '</span></li>';
+  const fontes = (e.fontes || []).map(f => '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo) + (f.data ? ' (' + esc(f.data) + ')' : '') + '</a>').join(' · ');
+  $('#folha-cx').innerHTML =
+    '<button type="button" class="fx" id="fx">fechar ✕</button>' +
+    '<div class="kicker">' + esc(FAIXAS[e.faixa].nome) + ' — ' + esc(FAIXAS[e.faixa].desc) + '</div>' +
+    '<h3>' + esc(e.nome) + '</h3>' +
+    '<p class="op">' + esc([e.operacao, e.periodo].filter(Boolean).join(' · ')) + '</p>' +
+    '<p class="res">' + esc(e.resumo) + '</p>' +
+    '<div class="ele"><span class="k">ELE NESTE CASO</span>' + esc(e.status_flavio) + '</div>' +
+    '<div class="kicker">O caminho até ele</div><ol class="cam">' + passos + '</ol>' +
+    (fontes ? '<p class="fonte">Fontes: ' + fontes + '</p>' : '') +
+    (e.ressalva ? '<p class="ressalva"><b>Ressalva.</b> ' + esc(e.ressalva) + '</p>' : '') +
+    '<div class="acoes"><button type="button" id="zap">Mandar no WhatsApp</button>' +
+    (e.registros ? '<a class="sec" href="index.html?q=' + encodeURIComponent(e.q || e.busca || e.rotulo) + '#arquivo">' + e.registros + ' registros no arquivo</a>' : '') + '</div>';
+  $('#folha').classList.add('on');
+  try { history.replaceState(null, '', '#' + id); } catch(_){}
+  $('#fx').addEventListener('click', fecha);
+  $('#zap').addEventListener('click', () => compartilha(e));
+  realca(id);
+}
+function fecha(){ $('#folha').classList.remove('on'); realca(null); try { history.replaceState(null, '', location.pathname); } catch(_){} }
+$('#folha').addEventListener('click', ev => { if (ev.target === $('#folha')) fecha(); });
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape') fecha(); });
+async function compartilha(e){
+  const cam = (e.cadeia || []).map(l => l.de).concat(['Flávio Bolsonaro']).join(' → ');
+  const f = (e.fontes || [])[0];
+  const txt = e.nome + ': ' + e.status_flavio + '\nO caminho: ' + cam + '.' + (f ? '\nFonte: ' + f.veiculo + ' — ' + f.url : '') +
+              '\n\nTodos os escândalos que levam a Flávio Bolsonaro, com fonte: ' + url() + '#' + e.id;
+  if (navigator.share){ try { await navigator.share({ text: txt }); return; } catch(err){ if (err && err.name === 'AbortError') return; } }
+  window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+}
+
+/* ---------- foto da foz (Wikipédia, licença livre) ---------- */
+let fotoFlavio = null;
+(async function(){
+  let cache = {}; try { cache = JSON.parse(localStorage.getItem('af_fotos_v1')) || {}; } catch(_){}
+  fotoFlavio = cache['Flávio Bolsonaro'] || null;
+  if (!fotoFlavio){
+    try {
+      const d = await fetch('https://pt.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=200&redirects=1&origin=*&titles=' + encodeURIComponent('Flávio Bolsonaro')).then(r => r.json());
+      const p = Object.values(d.query.pages)[0]; fotoFlavio = (p.thumbnail || {}).source || null;
+      if (fotoFlavio){ cache['Flávio Bolsonaro'] = fotoFlavio; try { localStorage.setItem('af_fotos_v1', JSON.stringify(cache)); } catch(_){} }
+    } catch(_){}
+  }
+  if (fotoFlavio){
+    const i = document.getElementById('foz-img-b'); if (i) i.setAttribute('href', fotoFlavio);
+    const f = document.querySelector('#foz-rio .disco'); if (f) f.innerHTML = '<img alt="" src="' + esc(fotoFlavio) + '">';
+  }
+})();
+
+/* ---------- arranque ---------- */
+function tudo(){ cabecalho(); bacia(); rio(); }
+tudo();
+const h = decodeURIComponent((location.hash || '').slice(1));
+if (h && TODOS.some(e => e.id === h)) setTimeout(() => { irPara(h); abre(h); }, 300);
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { bacia(); rio(); }, 150); });
+})();
+</script>
+<script>(function(){var a=document.querySelector('.site-header .tab.active');if(a&&a.scrollIntoView)a.scrollIntoView({inline:'center',block:'nearest'});})();</script>
+</body>
+</html>

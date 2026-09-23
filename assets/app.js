@@ -1,4 +1,4 @@
-/* ===== Arquivo Flávio — app integrado (Arquivo / Rede / Cronologia / Especialista) ===== */
+/* ===== BolsoDrive — app integrado (Arquivo / Rede / Cronologia / Especialista) ===== */
 (function(){
   const D = window.DOSSIE;
   const $ = (s, r=document) => r.querySelector(s);
@@ -166,8 +166,10 @@
   busca && busca.addEventListener('input', ()=>{
     const q = norm(busca.value.trim());
     if(!q){ renderTemas(); return; }
-    const hits = D.itens.filter(i=> norm(i.titulo+' '+i.resumo+' '+(temaById[i.tema]?.nome||'')).includes(q));
-    listaItens(hits, `Busca: "${busca.value.trim()}" (${hits.length})`, ()=>{busca.value='';renderTemas();});
+    // "a|b" busca qualquer um dos termos (é o formato dos links da Foz)
+    const qs = q.split('|').map(t=>t.trim()).filter(Boolean);
+    const hits = D.itens.filter(i=>{ const t = norm(i.titulo+' '+i.resumo+' '+(temaById[i.tema]?.nome||'')); return qs.some(x=> t.includes(x)); });
+    listaItens(hits, `Busca: "${busca.value.trim().split('|').map(t=>t.trim()).join('" ou "')}" (${hits.length})`, ()=>{busca.value='';renderTemas();});
   });
 
   /* ---------------- Detalhe (overlay) ---------------- */
@@ -478,7 +480,7 @@
         <h3>${esc(n.nome)}</h3><div class="papel">${esc(n.papel||'')}${n.status?` · ${esc(n.status)}${sitFonte(n)}`:''}</div>
         <button class="backlink" id="ov-ficha" style="margin:10px 0 0">» ficha completa</button>
         <div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase">Vínculos (${edges.filter(e=>e.de===id||e.para===id).length})</div>${viz||'<div class="ph">—</div>'}</div>
-        ${its.length?`<div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase;margin-top:6px">No BolsoDrive</div>${lista}</div>`:''}`;
+        ${its.length?`<div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase;margin-top:6px">No arquivo</div>${lista}</div>`:''}`;
       $('#ov-back').addEventListener('click', showOverview);
       $('#ov-ficha').addEventListener('click', ()=> window.__abrirFicha(id));
       $$('.vrow[data-item]', painel).forEach(r=> r.addEventListener('click', ()=>abrirDetalhe(r.dataset.item)));
@@ -789,6 +791,9 @@
     }));
     addMsg('bot', `Olá. Sou o <b>FlávioGPT</b>. Respondo com base no acervo documentado do BolsoDrive — sempre com status e fonte. Sobre o que quer saber?`);
     renderRecente();
+    // index.html?q=termo#arquivo abre o Arquivo com a busca preenchida (links vindos da Foz)
+    const q0 = new URLSearchParams(location.search).get('q');
+    if(q0 && busca){ busca.value = q0; setTimeout(()=> busca.dispatchEvent(new Event('input')), 0); }
     const VIEWS=['recente','arquivo','rede','cronologia','noticias','chat'];
     const h = (location.hash||'#recente').slice(1);
     showView(VIEWS.includes(h)?h:'recente');

@@ -5,5 +5,5 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = 8090
 handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=ROOT)
 with socketserver.TCPServer(("127.0.0.1", PORT), handler) as httpd:
-    print(f"Arquivo Flavio em http://localhost:{PORT}  (servindo {ROOT})")
+    print(f"BolsoDrive em http://localhost:{PORT}  (servindo {ROOT})")
     httpd.serve_forever()

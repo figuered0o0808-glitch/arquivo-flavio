@@ -1,10 +1,10 @@
-/* Arquivo Flávio — base de dados. Atualizado em setembro de 2026. */
+/* BolsoDrive — base de dados. Atualizado em setembro de 2026. */
 
 window.DOSSIE = {
  "meta": {
   "revisar": true,
   "atualizadoEm": "2026-09",
-  "titulo": "Arquivo Flávio",
+  "titulo": "BolsoDrive",
   "subtitulo": "o que o registro público diz sobre o candidato",
   "aviso": "Compilação jornalística de fatos de interesse público, com fonte e status jurídico. Fontes em conferência."
  },

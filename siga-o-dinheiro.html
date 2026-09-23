@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Siga o dinheiro — Arquivo Flávio</title>
+<title>Siga o dinheiro — BolsoDrive</title>
 <meta name="description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
 <link rel="stylesheet" href="assets/base.css?v=3">
-<link rel="stylesheet" href="assets/header.css?v=8">
+<link rel="stylesheet" href="assets/header.css?v=9">
 <style>
 /* Siga o dinheiro — só o que esta página acrescenta à base.
    Uma tela por fluxo: origem à esquerda, destino à direita, a linha cresce,
@@ -67,11 +67,12 @@
 
 <header class="site-header">
   <div class="hrow">
-    <div class="brand"><a class="mark" href="index.html">ARQUIVO_FLÁVIO</a><span class="tag">o que o registro público diz sobre o candidato</span></div>
+    <div class="brand"><a class="mark" href="index.html">BOLSODRIVE</a><span class="tag">o que o registro público diz sobre o candidato</span></div>
     <nav class="tabs">
       <a class="tab hot" href="index.html#recente">Recentemente</a>
-      <a class="tab" href="index.html#arquivo">BolsoDrive</a>
+      <a class="tab" href="index.html#arquivo">Arquivo</a>
       <a class="tab" href="index.html#rede">Close Friends</a>
+      <a class="tab" href="foz.html">A Foz</a>
       <a class="tab active" href="siga-o-dinheiro.html">Siga o dinheiro</a>
       <a class="tab" href="quiz.html">Quiz</a>
       <a class="tab" href="index.html#cronologia">Cronologia</a>
@@ -121,7 +122,7 @@
 
     <p class="ressalva vazio" id="vazio" hidden>Não há fluxos para mostrar. <a href="index.html">Ver os 294 registros →</a></p>
 
-    <div class="assina"><span><b>Arquivo Flávio</b> · siga o dinheiro</span><span id="assina-n"></span></div>
+    <div class="assina"><span><b>BolsoDrive</b> · siga o dinheiro</span><span id="assina-n"></span></div>
   </section>
 
   <p class="rodape"><a href="index.html">Ver os 294 registros →</a></p>
@@ -129,7 +130,7 @@
 
 <noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="index.html">Ver os 294 registros →</a></p></noscript>
 
-<script src="data/dados.js?v=set2026g"></script>
+<script src="data/dados.js?v=set2026h"></script>
 <script>
 (function(){
 'use strict';
@@ -248,7 +249,7 @@ function mensagem(i){
   return limpa(f.de) + ' → ' + limpa(f.para) + ': ' + f.valor + ' (' + limpa(f.obs) + ').\n' +
     'Status: ' + s.chip + '.\n' +
     'Fonte: ' + (f.fonte && f.fonte.veiculo || '') + (f.fonte && f.fonte.url ? ' — ' + f.fonte.url : '') +
-    '\n\nArquivo Flávio · Siga o dinheiro, fluxo ' + (i + 1) + ' de ' + N + ': ' + base() + '#' + (i + 1);
+    '\n\nBolsoDrive · Siga o dinheiro, fluxo ' + (i + 1) + ' de ' + N + ': ' + base() + '#' + (i + 1);
 }
 
 /* Estado inicial */

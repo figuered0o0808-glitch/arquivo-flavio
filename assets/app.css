@@ -1,4 +1,4 @@
-/* ===== Arquivo Flávio — tema "TERMINAL DE INTELIGÊNCIA" (CRT/classified) ===== */
+/* ===== BolsoDrive — tema "TERMINAL DE INTELIGÊNCIA" (CRT/classified) ===== */
 :root{
   --bg:#060806; --bg2:#0a0f0a; --panel:#0b110b; --panel2:#0e160e; --panel3:#122012;
   --line:rgba(116,255,150,.16); --line2:rgba(116,255,150,.32);
@@ -63,7 +63,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
   text-transform:uppercase;white-space:nowrap;border:1px solid currentColor;padding:1px 6px;border-radius:2px;background:rgba(0,0,0,.25)}
 .badge::before{content:"";width:6px;height:6px;background:currentColor;margin-right:6px}
 
-/* ===== BolsoDrive ===== */
+/* ===== Arquivo (pastas) ===== */
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
 .search{flex:1;min-width:220px;display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:9px 12px}
 .search::before{font-family:var(--mono);content:"search>";color:var(--amber);font-size:12px}

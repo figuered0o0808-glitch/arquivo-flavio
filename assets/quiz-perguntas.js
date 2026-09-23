@@ -339,6 +339,11 @@ window.__NOVAS_PERGUNTAS = [
   "chip": "REGISTRO DA PF · INVESTIGAÇÃO EM CURSO · SEM CONDENAÇÃO",
   "fontes": [
    {
+    "v": "O Povo",
+    "d": "'Segundo a PF, Flávio pediu R$ 131 milhões', 13/09/2026",
+    "u": "https://mais.opovo.com.br/jornal/dom/2026/09/13/pf-aponta-cobrancas-de-flavio-a-vorcaro-e-detalha-relacao-sobre-dark-horse.html"
+   },
+   {
     "v": "CNN Brasil",
     "d": "relatório da PF, 12/09/2026",
     "u": "https://www.cnnbrasil.com.br/politica/pf-mostra-conversas-de-flavio-com-vorcaro-sobre-recursos-para-dark-horse/"
@@ -356,7 +361,7 @@ window.__NOVAS_PERGUNTAS = [
   ],
   "curto": "Pedido a Vorcaro, segundo a PF",
   "gab": "R$ 131 milhões",
-  "zap": "Segundo o relatório da PF com sigilo levantado em 11/09/2026, Flávio Bolsonaro pediu R$ 131 milhões ao banqueiro Daniel Vorcaro para o filme 'Dark Horse'; cerca de R$ 60 milhões teriam sido pagos. Ele confirmou ter pedido patrocínio ('era um filho buscando patrocínio') e nega irregularidade. É investigado no STF, sem denúncia nem condenação. Fontes: CNN Brasil e Poder360 (12/09/2026).",
+  "zap": "Segundo o relatório da PF com sigilo levantado em 11/09/2026, Flávio Bolsonaro pediu R$ 131 milhões ao banqueiro Daniel Vorcaro para o filme 'Dark Horse'; cerca de R$ 60 milhões teriam sido pagos. Ele confirmou ter pedido patrocínio ('era um filho buscando patrocínio') e nega irregularidade. É investigado no STF, sem denúncia nem condenação. Fontes: O Povo (13/09/2026), CNN Brasil e Poder360 (12/09/2026).",
   "bloco": "dinheiro"
  },
  {

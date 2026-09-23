@@ -1,4 +1,4 @@
-/* Cabeçalho único do Arquivo Flávio — o mesmo em todas as seções.
+/* Cabeçalho único do BolsoDrive — o mesmo em todas as seções.
    Carregar por último, em toda página. */
 .site-header{
   position:sticky; top:0; z-index:50; background:#070a07;
