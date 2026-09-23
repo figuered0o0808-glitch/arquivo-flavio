@@ -3,6 +3,139 @@ window.FOZ = {
  "gerado": "2026-09-23",
  "escandalos": [
   {
+   "id": "abin-defesa-rachadinha",
+   "nome": "Abin paralela e a defesa dele",
+   "rotulo": "Abin paralela",
+   "faixa": "direto",
+   "gravidade": "preso_ou_condenado_na_cadeia",
+   "status_flavio": "Não consta entre os indiciados do relatório final da PF sobre a Abin paralela (jun/2025). Em dez/2020 a ministra Cármen Lúcia mandou a PGR apurar os fatos. Flávio diz que o áudio da reunião mostra apenas as advogadas comunicando suspeitas sobre um grupo com interesses políticos dentro da Receita. Abin e GSI negaram ter produzido os relatórios.",
+   "operacao": "Operação Última Milha (PF) / inquérito da Abin paralela",
+   "periodo": "ago/2020 – jul/2026",
+   "resumo": "Em 25/08/2020, as advogadas de Flávio se reuniram no Planalto com Jair Bolsonaro, Augusto Heleno (GSI) e Alexandre Ramagem (Abin). Flávio não participou da reunião. Segundo a Época, dois relatórios sem timbre com orientações à defesa chegaram a Flávio por WhatsApp em 20/09 e 08/10/2020. Um deles tinha a finalidade de 'defender FB no caso Alerj'. Em 2024, a PF afirmou que a estrutura da Abin foi usada para monitorar os auditores da Receita autores do relatório fiscal que originou o caso.",
+   "cadeia": [
+    {
+     "de": "Alexandre Ramagem (então diretor-geral da Abin)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Segundo a Época, os dois relatórios chegaram a Flávio por WhatsApp, e ele os repassou à advogada Luciana Pires. Ela disse à revista que foi Ramagem quem os encaminhou a Flávio e que nenhuma orientação foi seguida.",
+     "status_de": "Indiciado pela PF no inquérito da Abin paralela (jun/2025). Em 20/07/2026, Moraes arquivou a apuração contra ele nesse caso, por entender que os fatos já foram abrangidos pela condenação na trama golpista. Condenado pelo STF a 16 anos e 1 mês na ação da trama golpista e foragido nos EUA.",
+     "fonte": {
+      "veiculo": "BBC News Brasil",
+      "url": "https://www.bbc.com/portuguese/brasil-55325486",
+      "data": "2020-12-15"
+     }
+    },
+    {
+     "de": "Jair Bolsonaro",
+     "para": "Flávio Bolsonaro",
+     "relacao": "É o pai. Participou da reunião de 25/08/2020 com Ramagem e as advogadas de Flávio. Segundo a CNN, na gravação dessa reunião Ramagem sugere abrir procedimento administrativo contra os auditores para anular a investigação.",
+     "status_de": "A PF afirmou que ele sabia da estrutura e a usou em benefício próprio, mas não o incluiu na lista formal de indiciados porque ele já respondia pelo mesmo crime na ação do golpe. Em 20/07/2026, Moraes arquivou a investigação contra ele no caso da Abin paralela, por entender que a condenação na trama golpista já abrangeu esses fatos.",
+     "fonte": {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/pf-conclui-abin-paralela-e-indicia-bolsonaro-ramagem-e-carlos/",
+      "data": "2025-06-17"
+     }
+    },
+    {
+     "de": "Auditores da Receita Federal responsáveis pelo RIF que originou o caso da rachadinha (não nomeados na fonte)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Produziram o relatório de inteligência fiscal que deu origem à investigação da rachadinha contra Flávio. Segundo representação da PF na 4ª fase da Operação Última Milha, a estrutura da Abin os monitorou, inclusive para 'encontrar podres' sobre eles.",
+     "status_de": "Alvos do monitoramento (vítimas).",
+     "fonte": {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/pf-abin-espionou-auditores-da-receita-federal-que-apuravam-possivel-rachadinha-de-flavio-bolsonaro/",
+      "data": "2024-07-11"
+     }
+    },
+    {
+     "de": "Carlos Bolsonaro",
+     "para": "Flávio Bolsonaro",
+     "relacao": "irmão; indiciado pela PF no 'núcleo político' da Abin paralela, que segundo a PF usou dados obtidos pela agência para atacar adversários nas redes",
+     "status_de": "indiciado pela PF (jun/2025); inquérito enviado ao TRF-1 em 20/07/2026; sem denúncia",
+     "fonte": {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/pf-conclui-abin-paralela-e-indicia-bolsonaro-ramagem-e-carlos/",
+      "data": "2025-06-17"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/governo/abin-produziu-relatorios-para-defender-flavio-bolsonaro-no-caso-queiroz/",
+     "data": "2020-12-11"
+    },
+    {
+     "veiculo": "BBC News Brasil",
+     "url": "https://www.bbc.com/portuguese/brasil-55325486",
+     "data": "2020-12-15",
+     "trecho": "Cármen Lúcia mandou a PGR investigar; até então Aras só tinha aberto apuração preliminar."
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/pf-abin-espionou-auditores-da-receita-federal-que-apuravam-possivel-rachadinha-de-flavio-bolsonaro/",
+     "data": "2024-07-11"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/pf-conclui-abin-paralela-e-indicia-bolsonaro-ramagem-e-carlos/",
+     "data": "2025-06-17"
+    },
+    {
+     "veiculo": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-07/moraes-arquiva-investigacao-contra-bolsonaro-no-caso-abin-paralela",
+     "data": "2026-07-20"
+    },
+    {
+     "veiculo": "Correio Braziliense",
+     "url": "https://www.correiobraziliense.com.br/politica/2021/04/4916780-abin-e-gsi-negam-relatorio-para-defesa-de-flavio-bolsonaro-e-dizem-que-servidor-vazou-informacoes.html",
+     "data": "2021-04-07",
+     "trecho": "Sindicância da Abin atribuiu o vazamento a um servidor, que foi alvo de busca da PF e de PAD."
+    },
+    {
+     "veiculo": "Jornal de Brasília (Folhapress)",
+     "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/afastamento-de-andrei-rodrigues-por-mendonca-remete-a-interferencias-de-bolsonaro-na-pf/",
+     "data": "2026-09-09",
+     "trecho": "Ramagem, condenado a 16 anos e 1 mês, está foragido nos EUA."
+    },
+    {
+     "veiculo": "Exame",
+     "url": "https://exame.com/ultimas-noticias/brasil/abin-paralela-investigacao-descobriu-audio-entre-bolsonaro-e-ramagem-para-proteger-flavio/",
+     "data": "2025-06-17",
+     "trecho": "áudio entre Bolsonaro e Ramagem para proteger Flávio"
+    },
+    {
+     "veiculo": "O Tempo",
+     "url": "https://www.otempo.com.br/politica/judiciario/2026/7/20/com-carlos-bolsonaro-entre-indiciados-moraes-manda-inquerito-da-abin-paralela-para-trf-1",
+     "data": "2026-07-20",
+     "trecho": "Moraes manda inquérito da 'Abin paralela' para TRF-1"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/pgr-quer-que-investigacao-sobre-abin-paralela-va-para-1a-instancia/",
+     "data": "2026-06-18",
+     "trecho": "PGR quer que investigação sobre 'Abin paralela' vá para 1ª instância"
+    },
+    {
+     "veiculo": "Terra/Estadão",
+     "url": "https://www.terra.com.br/noticias/brasil/politica/receita-e-serpro-abriram-investigacao-interna-3-dias-apos-reuniao-de-bolsonaro-sobre-rachadinha,09868a1f3950f64e3447c7ac4007198ez1suj78f.html",
+     "data": "2024-07-16",
+     "trecho": "a Receita afirmou que pagou R$ 490 mil para o Serpro realizar a apuração"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/audio-apreendido-pela-pf-mostra-ramagem-orientando-advogadas-de-flavio-bolsonaro-e-alertando-para-risco-politico-do-envolvimento-do-gsi-no-caso/",
+     "data": "2024-07-15"
+    },
+    {
+     "veiculo": "Correio do Estado/Folha",
+     "url": "https://correiodoestado.com.br/cidades/investigacao-da-receita-federal-sobre-flavio-bolsonaro-baseou-se-em/433942/",
+     "data": "2024-07-29",
+     "trecho": "ilações desprovidas de fundamento jurídico e sem nenhuma evidência"
+    }
+   ],
+   "ressalva": "A condenação de Ramagem é da trama golpista, não deste episódio. Flávio diz que as advogadas só relataram suspeitas sobre servidores da Receita. No caso da rachadinha, as provas foram anuladas, a denúncia foi arquivada em 2022 e ele nunca foi condenado."
+  },
+  {
    "id": "master",
    "nome": "Caso Master / filme Dark Horse",
    "rotulo": "Caso Master",
@@ -93,12 +226,133 @@ window.FOZ = {
    "ressalva": "Os valores variam entre as reportagens: US$ 24 milhões combinados em 14 parcelas (CNN, sobre o relatório da PF) e R$ 131 milhões pedidos, 'segundo a PF' (O Povo). A homologação da delação de 'Mineiro' a torna meio de prova, não juízo de culpa. A PGR sugeriu apurar a atuação dele no Senado; não afirmou que houve favorecimento."
   },
   {
+   "id": "cota-senado-viagens",
+   "nome": "Cota do Senado em viagens",
+   "rotulo": "Cota do Senado",
+   "faixa": "direto",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "É alvo de representação no TCU, processo de controle e não criminal, relatada pelo ministro Odair Cunha (mai/2026). Sobre a viagem de dezembro, disse que o pedido de reembolso foi equívoco da assessoria e que devolveria o valor. Sobre a viagem de novembro, confirmou o encontro com Vorcaro, que disse ter sido para tratar do filme do pai, afirmou que a viagem não envolveu benefício pessoal e negou uso irregular de recursos públicos.",
+   "operacao": "Representação no TCU (relator Odair Cunha)",
+   "periodo": "nov/2025 – mai/2026",
+   "resumo": "O Senado reembolsou R$ 2.629,99 em passagens de ida e volta de Flávio a São Paulo em 29/11/2025, dia em que ele visitou Daniel Vorcaro. A viagem consta no Portal da Transparência da Casa. O Senado também pagou R$ 13,6 mil em quatro bilhetes para Flávio e o assessor Fernando Nascimento Pessoa irem a um evento de pré-campanha com o mercado financeiro em SP, em 11–12/12/2025. A deputada Sâmia Bomfim (PSOL) pediu apuração, e o TCU autuou representação sobre o uso da cota (CEAPS) nos deslocamentos de Flávio.",
+   "cadeia": [
+    {
+     "de": "Senado Federal (Cota para o Exercício da Atividade Parlamentar)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Reembolsou as passagens de 29/11/2025 e pagou as de dezembro, pedidas pelo gabinete dele.",
+     "status_de": "Representação autuada na unidade técnica do TCU, sobre o custeio de deslocamentos de Flávio com a CEAPS.",
+     "fonte": {
+      "veiculo": "Correio da Manhã (coluna Paulo Cappelli)",
+      "url": "https://www.correiodamanha.com.br/colunistas/paulo-cappelli/2026/05/289481-flavio-bolsonaro-entra-na-mira-do-tcu-por-uso-de-cota-parlamentar-ex-deputado-do-pt-e-sorteado-relator.html",
+      "data": "2026-05-28"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "O Antagonista",
+     "url": "https://oantagonista.com.br/brasil/deputada-pede-ao-senado-e-tcu-investigacao-sobre-uso-da-cota-parlamentar-por-flavio/",
+     "data": "2026-05-20"
+    },
+    {
+     "veiculo": "Correio da Manhã",
+     "url": "https://www.correiodamanha.com.br/colunistas/paulo-cappelli/2026/05/289481-flavio-bolsonaro-entra-na-mira-do-tcu-por-uso-de-cota-parlamentar-ex-deputado-do-pt-e-sorteado-relator.html",
+     "data": "2026-05-28"
+    },
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/senado-custeou-viagem-de-pre-campanha-de-flavio-em-sao-paulo",
+     "data": "2026-01-07"
+    }
+   ],
+   "ressalva": "É um processo de controle no TCU, não uma investigação criminal. Ele disse que devolveria o valor da viagem de dezembro."
+  },
+  {
+   "id": "inquerito-cpi-covid",
+   "nome": "Inquérito da CPI da Covid",
+   "rotulo": "Inquérito da CPI",
+   "faixa": "direto",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "Investigado no inquérito aberto em set/2025, que tramita sob sigilo nível 3. Não há indiciamento nem denúncia conhecidos até set/2026.",
+   "operacao": "Pet 10.064 / inquérito no STF (relator Flávio Dino)",
+   "periodo": "out/2021 – set/2026",
+   "resumo": "Em 17/09/2025, o ministro Flávio Dino (STF) atendeu pedido da PF e converteu em inquérito policial a Petição 10.064, originada do relatório da CPI da Pandemia. Segundo a Agência Pública, o inquérito investiga Jair Bolsonaro e mais 23 pessoas, entre elas Flávio, Eduardo e Carlos. A decisão cita, sem individualizar condutas, indícios de fraude em licitações, superfaturamento, contratos com empresas de fachada, desvio de recursos e incitação da população a condutas prejudiciais ao enfrentamento da pandemia. No relatório da CPI (2021), o pedido de indiciamento de Flávio foi apenas por incitação ao crime. A PGR, na gestão de Augusto Aras, havia pedido o arquivamento da petição.",
+   "busca": "CPI da Covid|CPI da Pandemia",
+   "cadeia": [
+    {
+     "de": "Petição 10.064 (STF), originada do relatório final da CPI da Pandemia",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Flávio está na lista de investigados do inquérito policial aberto por Dino.",
+     "status_de": "Inquérito policial aberto em 17–18/09/2025, com prazo inicial de 60 dias prorrogável.",
+     "fonte": {
+      "veiculo": "Poder360",
+      "url": "https://www.poder360.com.br/poder-justica/saiba-quem-sao-os-investigados-no-inquerito-da-cpi-da-covid/",
+      "data": "2025-09-18"
+     }
+    },
+    {
+     "de": "Jair Bolsonaro",
+     "para": "Flávio Bolsonaro",
+     "relacao": "É o pai e também é investigado no mesmo inquérito, com Eduardo e Carlos.",
+     "status_de": "Investigado.",
+     "fonte": {
+      "veiculo": "Agência Pública",
+      "url": "https://apublica.org/nota/pandemia-quem-sao-os-investigados-no-inquerito-da-cpi-da-covid/",
+      "data": "2025-09-18"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/saiba-quem-sao-os-investigados-no-inquerito-da-cpi-da-covid/",
+     "data": "2025-09-18"
+    },
+    {
+     "veiculo": "Agência Pública",
+     "url": "https://apublica.org/nota/pandemia-quem-sao-os-investigados-no-inquerito-da-cpi-da-covid/",
+     "data": "2025-09-18",
+     "trecho": "A Pet 10.064 foi alvo de pedido de arquivamento da PGR na gestão Aras."
+    },
+    {
+     "veiculo": "Agência Senado",
+     "url": "https://www12.senado.leg.br/noticias/materias/2021/10/20/com-nove-crimes-atribuidos-a-bolsonaro-relatorio-da-cpi-e-oficialmente-apresentado",
+     "data": "2021-10-20",
+     "trecho": "todos são alvos de pedido de indiciamento por incitação ao crime"
+    },
+    {
+     "veiculo": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2025-09/dino-determina-que-pf-investigue-conduta-de-bolsonaro-durante-pandemia",
+     "data": "2025-09-18",
+     "trecho": "fraudes em licitações, superfaturamentos, desvio de recursos públicos"
+    },
+    {
+     "veiculo": "Correio Braziliense",
+     "url": "https://www.correiobraziliense.com.br/politica/2025/09/7251426-dino-abre-inquerito-contra-bolsonaro-e-23-investigados-da-cpi-da-covid.html",
+     "data": "2025-09-17"
+    },
+    {
+     "veiculo": "D'PontaNews",
+     "url": "https://dpontanews.com.br/brasil/pf-pede-prorrogao-de-prazo-para-inqurito-sobre-atuao-de-bolsonaro-na-pandemia/",
+     "data": "2026-01-13",
+     "trecho": "A PF solicitou a prorrogação do prazo"
+    },
+    {
+     "veiculo": "Aos Fatos",
+     "url": "https://www.aosfatos.org/noticias/bolsonaro-acusacoes-cpi-covid-19/",
+     "data": "2026-08-06",
+     "trecho": "O processo segue aberto e sob sigilo"
+    }
+   ],
+   "ressalva": "O inquérito corre sob sigilo. Não há indiciamento nem denúncia conhecidos."
+  },
+  {
    "id": "loja-chocolates",
    "nome": "Loja de chocolates",
    "rotulo": "Loja de chocolates",
    "faixa": "direto",
    "gravidade": "investigado_na_cadeia",
-   "status_flavio": "Denunciado em out/2020 por lavagem na denúncia da rachadinha, que cita o negócio de chocolates como um dos meios. A denúncia foi arquivada em 2022 após a anulação das provas, e ele não foi condenado.",
+   "status_flavio": "Denunciado em out/2020 por lavagem na denúncia da rachadinha, que cita o negócio de chocolates como um dos meios. A denúncia foi arquivada em 2022 após a anulação das provas, e ele nunca foi condenado. Flávio nega crime, diz que as operações da loja são legais e declaradas à Receita e acusa perseguição política.",
    "periodo": "2014–2021",
    "resumo": "Flávio foi sócio de uma franquia Kopenhagen na Barra da Tijuca (Bolsotini), comprada no fim de 2014. O MP-RJ apontou a loja como um dos meios de lavagem do dinheiro da rachadinha. Foram 1.512 depósitos em espécie, muitas vezes fracionados, entre 2015 e 2018, com cerca de R$ 2,1 mi sob suspeita. Houve busca e quebra de sigilos em dez/2019, e a franquia foi devolvida à Kopenhagen em 01/02/2021.",
    "busca": "chocolate|Kopenhagen|Bolsotini",
@@ -142,12 +396,145 @@ window.FOZ = {
    "ressalva": "Faz parte do processo da rachadinha, arquivado em 2022 depois da anulação das provas. Ele não foi condenado."
   },
   {
+   "id": "pec-praias-relatoria",
+   "nome": "PEC das Praias e amigo em Angra",
+   "rotulo": "PEC das Praias",
+   "faixa": "direto",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "Não é investigado. Uma investigação criminal do MP-RJ, aberta após denúncia anônima que citava Flávio, concluiu em out/2023 que não houve crime dele nem de Araújo. Segundo a piauí, o MP não fez diligência sobre a relação do senador com o condomínio. Araújo diz que Flávio nunca teve ligação com o empreendimento. Flávio não respondeu às reportagens sobre o amigo (piauí, 2024; Pública, 2026).",
+   "periodo": "jul/2022 – ago/2024",
+   "resumo": "Flávio relatou no Senado a PEC 3/2022, a PEC das Praias, e deu parecer favorável. Segundo a piauí, a mudança beneficiaria um condomínio de 31 mansões em Angra dos Reis, com 8 mil m² em terreno de marinha, da Bellavista Portogalo. Um dos sócios da empresa é o empreiteiro Renato de Araújo Correa, amigo de Flávio. A piauí mostra ainda que a construtora Valle Sul, cujas máquinas estavam na obra, foi contratada pela Prefeitura de Resende um mês depois de o município receber R$ 8,3 mi em emendas Pix de Flávio.",
+   "cadeia": [
+    {
+     "de": "Renato de Araújo Correa (sócio da Bellavista Portogalo)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Amigo de Flávio; segundo a piauí, os dois fazem passeios de barco e pescam juntos. O condomínio dele seria beneficiado pela PEC que Flávio relatou. A denúncia anônima de jul/2022 ao MP-RJ dizia que Araújo usava influência junto a Flávio para intimidar órgãos de fiscalização.",
+     "status_de": "Investigação criminal concluída em out/2023 sem ver crime. Inquérito civil sobre dano ambiental em área de preservação permanente em curso em ago/2024. A obra foi embargada pela prefeitura de Angra (nov/2022), e uma juíza mandou embargar as estradas do condomínio. A SPU disse desconhecer a mudança de regime do terreno.",
+     "fonte": {
+      "veiculo": "revista piauí",
+      "url": "https://piaui.uol.com.br/web/pec-praias-flavio-bolsonaro-amigo-angra-dos-reis/",
+      "data": "2024-08-06"
+     }
+    },
+    {
+     "de": "Valle Sul (construtora de Angra dos Reis)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Foi contratada pela Prefeitura de Resende, de prefeito do PL, um mês depois de o município receber R$ 8,3 mi em emendas Pix de Flávio. O prefeito registrou que a verba veio de Flávio. O contrato é de R$ 4,7 mi, com aditivo de R$ 1,8 mi, e a única concorrente foi desabilitada.",
+     "status_de": "Sem processo conhecido.",
+     "fonte": {
+      "veiculo": "revista piauí",
+      "url": "https://piaui.uol.com.br/web/pec-praias-flavio-bolsonaro-amigo-angra-dos-reis/",
+      "data": "2024-08-06"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "revista piauí",
+     "url": "https://piaui.uol.com.br/web/pec-praias-flavio-bolsonaro-amigo-angra-dos-reis/",
+     "data": "2024-08-06"
+    }
+   ],
+   "ressalva": "O MP-RJ concluiu em out/2023 que não houve crime dele nem do empresário. O inquérito civil trata de dano ambiental."
+  },
+  {
+   "id": "psl-rj-2018",
+   "nome": "PSL-RJ: suspeita de laranjas e cota feminina",
+   "rotulo": "PSL-RJ em 2018",
+   "faixa": "direto",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "Não é investigado no inquérito da PF: segundo o G1, o inquérito apura a conduta dos candidatos, não a dele. A verificação preliminar da Procuradoria Regional Eleitoral (nov/2020) tinha como alvo o diretório que ele presidia, e não há desfecho público conhecido. Procurado pelo UOL em out/2020, ele não respondeu.",
+   "operacao": "Inquérito da PF aberto por ordem da Justiça Eleitoral do RJ (2019); verificação preliminar da PRE-RJ (2020)",
+   "periodo": "2018–2020",
+   "resumo": "Em 2018, Flávio presidia o PSL-RJ e, segundo o G1, era o responsável pela distribuição do fundo eleitoral. Em 24/09/2019, um juiz eleitoral mandou a PF investigar três candidatos do partido por suspeita de laranjas e caixa 2 (art. 350 do Código Eleitoral). Segundo o UOL, o diretório repassou R$ 49 mil da cota feminina a empresas ligadas a uma assessora e ao advogado eleitoral de Flávio, e, das 33 candidatas do diretório estadual, 27 pagaram R$ 750 a cada uma dessas firmas, cerca de metade do que receberam do partido. Em agosto de 2020, o TRE-RJ desaprovou as contas do diretório por omissão de R$ 87 mil em gastos.",
+   "cadeia": [
+    {
+     "de": "Candidatos do PSL-RJ Raquel Stasiak, Clébio 'Jacaré' e Marcelo do Seu Dino",
+     "para": "PSL-RJ",
+     "relacao": "Candidatos do partido em 2018. Segundo reportagem do Jornal Nacional citada pelo G1, declararam como doação voluntária serviços de campanha que na verdade foram pagos. O juiz eleitoral Rudi Baldi Loewenkron atendeu ao pedido do promotor e mandou a PF apurar falsidade ideológica eleitoral e caixa 2.",
+     "status_de": "Investigados em inquérito da PF aberto por ordem de 24/09/2019; sem desfecho público conhecido",
+     "fonte": {
+      "veiculo": "G1",
+      "url": "https://g1.globo.com/rj/rio-de-janeiro/noticia/2019/10/11/justica-determina-que-pf-investigue-suposto-esquema-de-laranjas-e-caixa-2-do-psl-no-rj.ghtml",
+      "data": "2019-10-11"
+     }
+    },
+    {
+     "de": "Candidatas do PSL-RJ (cota feminina)",
+     "para": "Alê Soluções e Eventos (Alessandra Oliveira) e Jorge Domingues Sociedade Individual de Advocacia (ligada a Luis Gustavo Botto Maia)",
+     "relacao": "Segundo o UOL, o partido direcionou R$ 49 mil da cota feminina para essas duas empresas. Das 33 candidatas do diretório estadual, 27 pagaram R$ 750 a cada uma, cerca de metade do que receberam, e dez apresentavam indícios de fraude contábil.",
+     "status_de": "Sem processo próprio conhecido; o caso entrou na verificação preliminar da PRE-RJ (nov/2020), sem desfecho público conhecido",
+     "fonte": {
+      "veiculo": "UOL",
+      "url": "https://noticias.uol.com.br/politica/ultimas-noticias/2020/10/26/flavio-bolsonaro-rachadinha-gastos-candidaturas-fraudulentas.htm",
+      "data": "2020-10-26"
+     }
+    },
+    {
+     "de": "Alessandra Oliveira e Luis Gustavo Botto Maia",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Alessandra era assessora de Flávio na Alerj e primeira-tesoureira do PSL-RJ. Botto Maia era o advogado eleitoral de Flávio.",
+     "status_de": "Investigados pelo MP-RJ no caso da rachadinha, segundo o UOL (2020); as provas desse caso foram anuladas pelo STJ e a denúncia foi arquivada em mai/2022",
+     "fonte": {
+      "veiculo": "UOL",
+      "url": "https://noticias.uol.com.br/politica/ultimas-noticias/2020/11/19/procuradoria-eleitoral-investiga-contas-do-psl-sob-flavio-bolsonaro-em-2018.htm",
+      "data": "2020-11-19"
+     }
+    },
+    {
+     "de": "PSL-RJ",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Partido presidido por Flávio durante as eleições de 2018.",
+     "status_de": "O TRE-RJ desaprovou as contas de 2018 do diretório em ago/2020 (omissão de R$ 87 mil em gastos) e suspendeu por um mês os repasses do fundo de campanha; a PRE-RJ abriu verificação preliminar sobre o diretório em nov/2020",
+     "fonte": {
+      "veiculo": "UOL",
+      "url": "https://noticias.uol.com.br/politica/ultimas-noticias/2020/11/19/procuradoria-eleitoral-investiga-contas-do-psl-sob-flavio-bolsonaro-em-2018.htm",
+      "data": "2020-11-19"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "G1",
+     "url": "https://g1.globo.com/rj/rio-de-janeiro/noticia/2019/10/11/justica-determina-que-pf-investigue-suposto-esquema-de-laranjas-e-caixa-2-do-psl-no-rj.ghtml",
+     "data": "2019-10-11",
+     "trecho": "como presidente do partido, o senador é responsável pela distribuição do fundo eleitoral, mas não é investigado pela PF"
+    },
+    {
+     "veiculo": "UOL",
+     "url": "https://noticias.uol.com.br/politica/ultimas-noticias/2020/10/26/flavio-bolsonaro-rachadinha-gastos-candidaturas-fraudulentas.htm",
+     "data": "2020-10-26"
+    },
+    {
+     "veiculo": "UOL",
+     "url": "https://noticias.uol.com.br/politica/ultimas-noticias/2020/11/19/procuradoria-eleitoral-investiga-contas-do-psl-sob-flavio-bolsonaro-em-2018.htm",
+     "data": "2020-11-19"
+    },
+    {
+     "veiculo": "Congresso em Foco",
+     "url": "https://www.congressoemfoco.com.br/noticia/24409/campanha-de-bolsonaro-teve-11-milhoes-de-santinhos-nao-declarados-a-justica-eleitoral",
+     "data": "2019-11-26"
+    },
+    {
+     "veiculo": "Folha de S.Paulo",
+     "url": "https://www1.folha.uol.com.br/poder/2019/02/verba-publica-beneficiou-assessora-e-parente-em-gabinete-de-flavio-bolsonaro.shtml",
+     "data": "2019-02-21"
+    },
+    {
+     "veiculo": "Folha de S.Paulo",
+     "url": "https://www1.folha.uol.com.br/poder/2022/09/ex-assessora-de-flavio-citada-em-rachadinha-ganha-r-407-mil-de-candidatos-bolsonaristas.shtml",
+     "data": "2022-09-27"
+    }
+   ],
+   "ressalva": "O inquérito da PF apura a conduta dos candidatos, não a dele. Alessandra Oliveira e Luis Gustavo Botto Maia foram investigados na rachadinha, cujas provas foram anuladas; a denúncia foi arquivada em 2022 e Flávio nunca foi condenado."
+  },
+  {
    "id": "rachadinha-alerj",
    "nome": "Rachadinha na Alerj",
    "rotulo": "Rachadinha (Alerj)",
    "faixa": "direto",
    "gravidade": "investigado_na_cadeia",
-   "status_flavio": "Denunciado em 2020. A denúncia foi arquivada em 2022 depois que as provas foram anuladas, e ele nunca foi condenado. Em 22/09/2026 um deputado da oposição pediu a Moraes, no STF, a reabertura do caso; ainda não há decisão.",
+   "status_flavio": "Denunciado em 2020. A denúncia foi arquivada em 2022 depois que as provas foram anuladas, e ele nunca foi condenado. Em 22/09/2026 o deputado federal Lindbergh Farias pediu a Moraes, no STF, a reabertura do caso; ainda não há decisão.",
    "operacao": "PIC do MP-RJ / denúncia ao Órgão Especial do TJ-RJ",
    "periodo": "2007–2018 (fatos); 2018–2025 (processo)",
    "resumo": "Segundo o MP-RJ, assessores do gabinete de Flávio na Alerj devolviam parte dos salários a Fabrício Queiroz, e Flávio teria usado 'pelo menos R$ 2,7 milhões em dinheiro vivo do esquema'. Em out/2020 ele, Queiroz e mais 15 pessoas foram denunciados por peculato, lavagem, apropriação indébita e organização criminosa. Em nov/2021 o STJ anulou as decisões do juiz de 1ª instância e o STF anulou relatórios do Coaf. O TJ-RJ arquivou a denúncia em 16/05/2022, e Gilmar Mendes negou os recursos do MP em fev/2025.",
@@ -233,7 +620,250 @@ window.FOZ = {
      "data": "2020-06-18"
     }
    ],
-   "ressalva": "A denúncia foi arquivada em 2022, depois que o STJ e o STF anularam as provas. Ninguém foi condenado. Queiroz chegou a ser preso em 2020, mas a ordem de prisão também foi anulada."
+   "ressalva": "A denúncia foi arquivada em 2022, depois que o STJ e o STF anularam as provas. Ninguém foi condenado. Flávio sempre negou irregularidades e diz ser alvo de perseguição política. Queiroz chegou a ser preso em 2020, mas a ordem de prisão também foi anulada."
+  },
+  {
+   "id": "vazamento-furna-da-onca",
+   "nome": "Suposto vazamento da Furna",
+   "rotulo": "Suposto vazamento",
+   "faixa": "direto",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "Foi ouvido como testemunha em 20/7/2020 e negou ter recebido informação sobre a operação. Faltou a uma acareação com Marinho. A PGR arquivou em 21/10/2020 a representação por desobediência. Não é réu nem foi denunciado.",
+   "operacao": "Furna da Onça (PF/MPF, 8/11/2018)",
+   "periodo": "2018–2021",
+   "resumo": "A Operação Furna da Onça (8/11/2018) teve como alvo dez deputados da Alerj, entre eles André Corrêa (DEM). As investigações também apontaram movimentações atípicas de Fabrício Queiroz. Em 2020, o suplente Paulo Marinho disse ao MPF que Flávio foi avisado antes, por intermédio de um delegado da PF, de que Queiroz aparecia na investigação. O MPF abriu uma apuração, e Flávio, ouvido como testemunha em 20/7/2020, negou. Em julho de 2021, o MPF prorrogou a apuração por 90 dias, com recursos pendentes no TRF-2 contra a negativa de quebras de sigilo. Não há desfecho público conhecido.",
+   "busca": "Furna da Onça|Paulo Marinho",
+   "cadeia": [
+    {
+     "de": "Paulo Marinho",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Suplente de Flávio no Senado. Disse ao MPF que uma pessoa próxima a Flávio o avisou, com informação obtida por intermédio de um delegado da PF, de que Queiroz era um dos nomes da investigação",
+     "status_de": "Testemunha e autor do relato",
+     "fonte": {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/nacional/investigacao-sobre-suspeita-de-vazamento-da-pf-a-flavio-bolsonaro-e-prorrogada/",
+      "data": "2021-07-06"
+     }
+    },
+    {
+     "de": "Flávio Bolsonaro",
+     "para": "Victor Granado (advogado)",
+     "relacao": "Confirmou ao MPF que esteve na reunião de 13 de dezembro de 2018, na casa de Marinho, com advogados, mas negou que Victor Granado tenha contado ali como se deu o vazamento. Segundo a defesa, disse que apoiava André Corrêa, alvo da operação, para presidir a Alerj, e que não apoiaria um alvo se soubesse de vazamento",
+     "status_de": "Ouvido como testemunha em 20/07/2020; nega ter recebido informação sobre a operação; não denunciado",
+     "fonte": {
+      "veiculo": "Poder360",
+      "url": "https://www.poder360.com.br/justica/em-depoimento-flavio-nega-ter-sido-informado-sobre-operacao-furna-da-onca/",
+      "data": "2020-07-20"
+     }
+    },
+    {
+     "de": "Flávio Bolsonaro",
+     "para": "PGR",
+     "relacao": "O procurador Eduardo Benones (MPF-RJ) pediu à PGR que apurasse desobediência pela ausência na acareação. A PGR arquivou: como testemunha e senador, Flávio tinha a prerrogativa de marcar dia e hora",
+     "status_de": "Representação arquivada em 21/10/2020",
+     "fonte": {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/pgr-arquiva-representacao-contra-flavio-bolsonaro-por-faltar-a-acareacao/",
+      "data": "2020-10-21"
+     }
+    },
+    {
+     "de": "MPF-RJ",
+     "para": "Polícia Federal (Superintendência no Rio)",
+     "relacao": "O MPF prorrogou a apuração por 90 dias e pediu a geolocalização de quem esteve perto da PF na véspera da operação. Uma cautelar e um mandado de segurança no TRF-2, contra a decisão que negou as quebras de sigilo telefônico, estavam pendentes",
+     "status_de": "Apuração em curso em julho de 2021; sem desfecho público conhecido",
+     "fonte": {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/nacional/investigacao-sobre-suspeita-de-vazamento-da-pf-a-flavio-bolsonaro-e-prorrogada/",
+      "data": "2021-07-06"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/justica/em-depoimento-flavio-nega-ter-sido-informado-sobre-operacao-furna-da-onca/",
+     "data": "2020-07-20"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/nacional/investigacao-sobre-suspeita-de-vazamento-da-pf-a-flavio-bolsonaro-e-prorrogada/",
+     "data": "2021-07-06"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/pgr-arquiva-representacao-contra-flavio-bolsonaro-por-faltar-a-acareacao/",
+     "data": "2020-10-21"
+    },
+    {
+     "veiculo": "Wikipédia",
+     "url": "https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Furna_da_On%C3%A7a"
+    },
+    {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/republica/perguntas-sem-resposta-marinho-vazamento-furna-da-onca/"
+    },
+    {
+     "veiculo": "O Globo",
+     "url": "https://oglobo.globo.com/politica/ao-negar-quebra-de-sigilo-juiz-diz-que-nao-viu-ilegalidade-de-assessores-de-flavio-bolsonaro-em-vazamento-da-furna-da-onca-24586435",
+     "data": "2020-08-14"
+    },
+    {
+     "veiculo": "RIC (Estadão Conteúdo)",
+     "url": "https://ric.com.br/politica/mpf-prorroga-inquerito-sobre-vazamento-da-furna-da-onca-para-flavio-bolsonaro/",
+     "data": "2020-08-05"
+    },
+    {
+     "veiculo": "BBC News Brasil",
+     "url": "https://www.bbc.com/portuguese/brasil-52717130",
+     "data": "2020-05-18",
+     "trecho": "Exoneração de Queiroz e da filha em 15/10/2018; relato semelhante no livro 'Tormenta', de Thaís Oyama."
+    }
+   ],
+   "ressalva": "É o relato de Paulo Marinho. Flávio nega, foi ouvido como testemunha e não foi denunciado."
+  },
+  {
+   "id": "cargo-camara-durante-faculdade",
+   "nome": "Cargo na Câmara na faculdade",
+   "rotulo": "Cargo aos 19 anos",
+   "faixa": "direto",
+   "gravidade": "sem_processo_na_cadeia",
+   "status_flavio": "Não há investigação conhecida. A assessoria de Flávio disse que não responderia às perguntas da BBC News Brasil. O fato é anterior ao mandato na Alerj.",
+   "periodo": "2000–2002",
+   "resumo": "Entre 2000 e 2002, aos 19 anos, Flávio foi assistente técnico de gabinete na liderança do PPB na Câmara, cargo de 40 horas semanais em Brasília. No mesmo período, fazia faculdade presencial de direito e estágio voluntário na Defensoria, no Rio. Segundo a declaração de IR dele, o cargo rendeu em 2001 o equivalente a R$ 4.712 por mês. O posto tinha sido ocupado até uma semana antes por Ana Cristina Siqueira Valle, então mulher de Jair. O caso foi apurado pela BBC News Brasil e publicado pela Folha em janeiro de 2019.",
+   "cadeia": [
+    {
+     "de": "Flávio Bolsonaro",
+     "para": "Liderança do PPB na Câmara dos Deputados",
+     "relacao": "Ocupou um cargo de natureza especial (assistente técnico de gabinete) enquanto cursava direito na Candido Mendes e estagiava na Defensoria do Rio. A Câmara informou que esses cargos não têm a prerrogativa de ser exercidos fora de Brasília",
+     "status_de": "Sem processo",
+     "fonte": {
+      "veiculo": "Folha de S.Paulo (reportagem da BBC News Brasil)",
+      "url": "https://www1.folha.uol.com.br/poder/2019/01/flavio-bolsonaro-ocupou-cargo-na-camara-enquanto-fazia-faculdade-e-estagio-no-rio.shtml",
+      "data": "2019-01-23"
+     }
+    },
+    {
+     "de": "Ana Cristina Siqueira Valle",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Deixou o mesmo cargo na liderança do PPB uma semana antes de ser substituída por Flávio",
+     "status_de": "Sem processo relacionado",
+     "fonte": {
+      "veiculo": "Folha de S.Paulo (reportagem da BBC News Brasil)",
+      "url": "https://www1.folha.uol.com.br/poder/2019/01/flavio-bolsonaro-ocupou-cargo-na-camara-enquanto-fazia-faculdade-e-estagio-no-rio.shtml",
+      "data": "2019-01-23"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "Folha de S.Paulo",
+     "url": "https://www1.folha.uol.com.br/poder/2019/01/flavio-bolsonaro-ocupou-cargo-na-camara-enquanto-fazia-faculdade-e-estagio-no-rio.shtml",
+     "data": "2019-01-23"
+    }
+   ],
+   "ressalva": "Não há investigação sobre esse cargo. A assessoria dele não respondeu à BBC News Brasil."
+  },
+  {
+   "id": "defesa-milicias-alerj-2007-2008",
+   "nome": "Discursos sobre milícias na Alerj (2007–2011)",
+   "rotulo": "Falas sobre milícias",
+   "faixa": "direto",
+   "gravidade": "sem_processo_na_cadeia",
+   "status_flavio": "São posições públicas e não há processo sobre elas.",
+   "periodo": "2007–2011",
+   "resumo": "Em discurso na Alerj em 7/2/2007, Flávio definiu a milícia como 'um conjunto de policiais' que busca expulsar criminosos das comunidades. Disse também que gostaria de pagar de R$ 20 a R$ 40 por esse tipo de segurança. Em março de 2007, o Terra informou que ele tinha votado contra a instalação da CPI das milícias e planejava um projeto para regulamentar as 'polícias mineiras'. Em 10/6/2008, votou a favor da CPI proposta por Freixo, mas disse que as milícias eram consequência do descaso do Estado. Em 2011, disse que a juíza Patrícia Acioli, assassinada por PMs, 'humilhava policiais'.",
+   "cadeia": [
+    {
+     "de": "Flávio Bolsonaro",
+     "para": "Plenário da Alerj (discurso de 7/2/2007)",
+     "relacao": "Discurso em plenário: 'A milícia nada mais é do que um conjunto de policiais, militares ou não, regidos por uma certa hierarquia e disciplina'. No mesmo discurso, dirigindo-se ao deputado André Corrêa, disse que gostaria de pagar R$ 20, R$ 30 ou R$ 40 para não ter o carro furtado na porta de casa",
+     "status_de": "Deputado estadual; sem processo",
+     "fonte": {
+      "veiculo": "Alerj (taquigrafia)",
+      "url": "https://alerjln1.alerj.rj.gov.br/taqalerj2006.nsf/8b99ca38e07826db032565300046fdf1/c72af8829540eadd83257b6b00625299?OpenDocument",
+      "data": "2007-02-07"
+     }
+    },
+    {
+     "de": "Flávio Bolsonaro",
+     "para": "CPI das milícias (tentativa de 2007)",
+     "relacao": "Segundo o Terra, votou contra a instalação da CPI no primeiro mês do segundo mandato e planejava apresentar projeto para regulamentar as 'polícias mineiras'",
+     "status_de": "Sem processo",
+     "fonte": {
+      "veiculo": "Terra",
+      "url": "https://www.terra.com.br/noticias/brasil/politica/deputado-quer-legalizar-milicias-no-rio,f2fe24d51491139f856ce9e94d4a88bc1m7unakr.html",
+      "data": "2007-03-16"
+     }
+    },
+    {
+     "de": "Flávio Bolsonaro",
+     "para": "CPI das Milícias (PR 626/2008)",
+     "relacao": "Votou a favor da criação da CPI e disse que o fazia 'única e exclusivamente' em respeito aos repórteres de O Dia. No mesmo discurso, disse que as milícias são consequência do descaso do Estado e do salário dos policiais e sugeriu consultas populares em Rio das Pedras e no Batan",
+     "status_de": "Sem processo",
+     "fonte": {
+      "veiculo": "Alerj (taquigrafia, Ordem do Dia)",
+      "url": "https://alerjln1.alerj.rj.gov.br/taqalerj2006.nsf/5d50d39bd976391b83256536006a2502/d8acec134b8797f983257b6b0064c41f?OpenDocument",
+      "data": "2008-06-10"
+     }
+    },
+    {
+     "de": "Flávio Bolsonaro",
+     "para": "Patrícia Acioli (juíza assassinada em 2011)",
+     "relacao": "Depois do assassinato da juíza, que atuava contra grupos de extermínio formados por PMs, disse que a forma como ela atuava 'humilhava policiais'. Onze PMs do 7º BPM foram condenados pelo crime",
+     "status_de": "Sem processo",
+     "fonte": {
+      "veiculo": "Veja",
+      "url": "https://veja.abril.com.br/coluna/radar/flavio-bolsonaro-disse-que-juiza-assassinada-humilhava-policiais/",
+      "data": "2019-01-22"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "Alerj (taquigrafia)",
+     "url": "https://alerjln1.alerj.rj.gov.br/taqalerj2006.nsf/8b99ca38e07826db032565300046fdf1/c72af8829540eadd83257b6b00625299?OpenDocument",
+     "data": "2007-02-07"
+    },
+    {
+     "veiculo": "Terra",
+     "url": "https://www.terra.com.br/noticias/brasil/politica/deputado-quer-legalizar-milicias-no-rio,f2fe24d51491139f856ce9e94d4a88bc1m7unakr.html",
+     "data": "2007-03-16"
+    },
+    {
+     "veiculo": "Alerj (taquigrafia, Ordem do Dia)",
+     "url": "https://alerjln1.alerj.rj.gov.br/taqalerj2006.nsf/5d50d39bd976391b83256536006a2502/d8acec134b8797f983257b6b0064c41f?OpenDocument",
+     "data": "2008-06-10"
+    },
+    {
+     "veiculo": "Veja",
+     "url": "https://veja.abril.com.br/coluna/radar/flavio-bolsonaro-disse-que-juiza-assassinada-humilhava-policiais/",
+     "data": "2019-01-22"
+    },
+    {
+     "veiculo": "Terra (Estadão Conteúdo)",
+     "url": "https://www.terra.com.br/noticias/brasil/politica/flavio-bolsonaro-diz-a-tv-que-e-contra-milicias-e-que-frases-foram-tiradas-de-contexto,8bf0ae23c1260c1b4098136ed92263a4w82hatr4.html",
+     "data": "2019-01-24",
+     "trecho": "Discurso de 2007 e explicação de 2019 de que as frases foram tiradas de contexto."
+    },
+    {
+     "veiculo": "Estado de Minas",
+     "url": "https://www.em.com.br/app/noticia/nacional/2011/08/12/interna_nacional,244897/filho-de-bolsonaro-diz-que-que-juiza-humilhava-policiais.shtml",
+     "data": "2011-08-12",
+     "trecho": "Flávio diz que orientava denúncias ao CNJ, nunca atitude violenta."
+    },
+    {
+     "veiculo": "Wikipédia (Patrícia Acioli)",
+     "url": "https://pt.wikipedia.org/wiki/Patr%C3%ADcia_Acioli",
+     "trecho": "Onze policiais julgados e condenados. Ten.-cel. Cláudio Luiz de Oliveira: 36 anos (21/03/2014)."
+    },
+    {
+     "veiculo": "Wikipédia (Flávio Bolsonaro)",
+     "url": "https://pt.wikipedia.org/wiki/Fl%C3%A1vio_Bolsonaro",
+     "trecho": "Em 2008, na instalação da CPI das Milícias, Flávio voltou a defender milicianos."
+    }
+   ],
+   "ressalva": "São declarações públicas, sem processo. Em 2019 ele disse que as frases de 2007 foram tiradas de contexto e que é contra milícias. Sobre a juíza Patrícia Acioli, disse em 2011 que orientava os policiais a reclamar ao CNJ, nunca a ter atitude violenta."
   },
   {
    "id": "marielle-ifop",
@@ -244,7 +874,7 @@ window.FOZ = {
    "status_flavio": "Não é investigado no caso Marielle, e o relatório final da PF sobre o crime (2024) não menciona a família Bolsonaro. Na Operação Emendatio, a PF apura a emenda que ele destinou ao Ifop, mas ele não foi alvo dos mandados. Ele afirma que a emenda seguiu a legislação e os critérios técnicos do Ministério do Esporte.",
    "operacao": "Operação Emendatio (PF, jul/2026, autorizada por Alexandre de Moraes)",
    "periodo": "2023–2026",
-   "resumo": "Em out–nov/2023, uma assessora do gabinete de Flávio no Senado trocou mensagens com Robson Calixto, o 'Peixe', sobre uma emenda para o Ifop, instituto da Taquara ligado aos irmãos Brazão. Calixto foi condenado pelo STF no caso Marielle. Os R$ 199.999,79 foram pagos em 29/11/2023. A Operação Emendatio, da PF, apura o destino do dinheiro, e uma auditoria do TCU encontrou pagamentos a um escritório dos donos do instituto.",
+   "resumo": "Em out–nov/2023, uma assessora do gabinete de Flávio no Senado trocou mensagens com Robson Calixto, o 'Peixe', sobre uma emenda para o Ifop, instituto da Taquara ligado aos irmãos Brazão. Calixto foi condenado pelo STF no caso Marielle por integrar organização criminosa armada, não pela execução do crime. Os R$ 199.999,79 foram pagos em 29/11/2023. A Operação Emendatio, da PF, apura o destino do dinheiro, e uma auditoria do TCU encontrou pagamentos a um escritório dos donos do instituto.",
    "busca": "Ifop|Robson Calixto",
    "cadeia": [
     {
@@ -350,6 +980,48 @@ window.FOZ = {
      "veiculo": "Metrópoles (coluna Neila Guimarães)",
      "url": "https://www.metropoles.com/colunas/neila-guimaraes/lindbergh-pede-ao-stf-para-reabrir-caso-das-rachadinhas-e-investigar-flavio",
      "data": "2026-09-22"
+    },
+    {
+     "veiculo": "g1",
+     "url": "https://g1.globo.com/politica/noticia/2026/09/22/flavio-bolsonaro-destinou-emenda-a-miliciano-condenado-por-morte-de-marielle-veja-prints-de-conversa-com-assessora-do-senador.ghtml",
+     "data": "2026-09-22",
+     "trecho": "Prints das conversas entre Peixe e a secretária do gabinete, o pedido de ingressos e o relatório do TCU."
+    },
+    {
+     "veiculo": "Valor Econômico",
+     "url": "https://valor.globo.com/politica/noticia/2026/09/21/pf-encontra-mensagens-em-que-assessor-de-brazao-cobra-emenda-de-flavio-dois-dias-antes-de-ser-preso.ghtml",
+     "data": "2026-09-21",
+     "trecho": "Data do pagamento (29/11/2023) e a mensagem de 22/03/2024."
+    },
+    {
+     "veiculo": "O Globo",
+     "url": "https://oglobo.globo.com/politica/noticia/2026/05/20/pf-apura-emenda-de-flavio-bolsonaro-para-ong-suspeita-de-integrar-esquema-de-desvios-comandado-por-irmaos-brazao.ghtml",
+     "data": "2026-05-20",
+     "trecho": "Primeira revelação. Segundo a PF, as entidades receberam R$ 268 mi de parlamentares entre 2020 e 2024."
+    },
+    {
+     "veiculo": "InfoMoney (Estadão Conteúdo)",
+     "url": "https://www.infomoney.com.br/politica/lider-do-pt-aciona-stf-para-investigar-emenda-de-flavio-a-entidades-do-terceiro-setor/",
+     "data": "2026-09-22",
+     "trecho": "Pedido de Pedro Uczai a Dino. A Operação Emendatio, relatada por Moraes, foi deflagrada em julho."
+    },
+    {
+     "veiculo": "Terra (Estadão)",
+     "url": "https://www.terra.com.br/noticias/brasil/politica/pf-investiga-desvio-de-emendas-negociadas-entre-assessora-de-flavio-bolsonaro-e-condenado-por-morte-de-marielle-franco,ff6ccc1485254b4b7ba132c85f567457yt6mw5al.html",
+     "data": "2026-09-21",
+     "trecho": "Flávio não foi alvo da ação policial. Calixto já foi assessor de Domingos Brazão no TCE."
+    },
+    {
+     "veiculo": "Brasil de Fato",
+     "url": "https://www.brasildefato.com.br/2026/09/22/partidos-vao-a-pgr-por-ligacao-de-flavio-bolsonaro-e-miliciano-envolvido-na-morte-de-marielle/",
+     "data": "2026-09-22",
+     "trecho": "O PSOL pede à PGR que Flávio seja ouvido. O PT pede ao STF uma auditoria da CGU nas emendas dele."
+    },
+    {
+     "veiculo": "Migalhas",
+     "url": "https://www.migalhas.com.br/quentes/450632/stf-veja-penas-fixadas-pela-1-turma-a-mandantes-da-morte-de-marielle",
+     "data": "2026-02-25",
+     "trecho": "Calixto: 9 anos e 200 dias-multa por organização criminosa armada."
     }
    ],
    "ressalva": "Nenhuma fonte afirma que ele sabia quem era o intermediário. O que está registrado é a tratativa por meio da assessora e a autoria da emenda. Ele diz que a destinação seguiu a lei."
@@ -363,7 +1035,7 @@ window.FOZ = {
    "status_flavio": "As fontes não o apontam como investigado na Operação Sem Desconto, e ele nega envolvimento no esquema. A ligação é a contabilidade e o endereço fiscal da empresa dele e a administradora do escritório dele, irmã do contador preso. Ele não respondeu às reportagens de setembro de 2026 sobre a sala compartilhada.",
    "operacao": "Operação Sem Desconto (PF/CGU)",
    "periodo": "2019–2026",
-   "resumo": "A PF aponta Antonio Carlos Camilo Antunes, o 'Careca do INSS', como figura central dos descontos não autorizados que atingiram mais de 4,3 milhões de aposentados e pensionistas entre 2019 e 2024. Ele está preso desde set/2025. O contador Alexandre Caetano dos Reis, sócio dele numa offshore e preso desde dez/2025, é dono da Voga, contabilidade que atende a Bravo Grafeno, empresa de que Flávio e Carlos Bolsonaro são sócios, registrada na mesma sala em Águas Claras (DF) que ao menos 16 empresas do Careca. A irmã do contador, Letícia Caetano dos Reis, é administradora do escritório de advocacia de Flávio desde 2021.",
+   "resumo": "A PF aponta Antonio Carlos Camilo Antunes, o 'Careca do INSS', como figura central dos descontos não autorizados que atingiram mais de 4,3 milhões de aposentados e pensionistas entre 2019 e 2024. Ele está preso desde set/2025. O contador Alexandre Caetano dos Reis, sócio dele numa offshore e preso desde dez/2025, é dono da Voga, contabilidade que atende a Bravo Grafeno, empresa de que Flávio e Carlos Bolsonaro são sócios, registrada na mesma sala em Águas Claras (DF) que ao menos 16 empresas do Careca. A irmã do contador é administradora do escritório de advocacia de Flávio desde 2021.",
    "busca": "Careca do INSS|Bravo Grafeno|Sem Desconto",
    "cadeia": [
     {
@@ -391,7 +1063,7 @@ window.FOZ = {
     {
      "de": "Alexandre Caetano dos Reis",
      "para": "Flávio Bolsonaro",
-     "relacao": "A Voga presta serviços à Bravo Grafeno (sócios incluem Flávio e Carlos Bolsonaro), registrada na sala 2601. O advogado da Voga confirmou o serviço. Letícia Caetano dos Reis, irmã do contador, é administradora do escritório de advocacia de Flávio.",
+     "relacao": "A Voga presta serviços à Bravo Grafeno (sócios incluem Flávio e Carlos Bolsonaro), registrada na sala 2601. O advogado da Voga confirmou o serviço. A irmã do contador é administradora do escritório de advocacia de Flávio.",
      "status_de": "Preso desde dezembro de 2025.",
      "fonte": {
       "veiculo": "ICL Notícias",
@@ -432,7 +1104,7 @@ window.FOZ = {
      "trecho": "administradora desde 16 de abril de 2021"
     }
    ],
-   "ressalva": "Dividir contador e endereço fiscal não é crime. Em fev/2026 houve pedido de quebra de sigilo de Letícia na CPMI do INSS; não há investigação da PF conhecida contra ela."
+   "ressalva": "Dividir contador e endereço fiscal não é crime. Em fev/2026 houve pedido de quebra de sigilo da irmã do contador na CPMI do INSS; não há investigação da PF conhecida contra ela."
   },
   {
    "id": "quarto-elemento",
@@ -443,7 +1115,7 @@ window.FOZ = {
    "status_flavio": "Não é investigado. A ligação é Valdenice de Oliveira Meliga, assessora dele na Alerj e tesoureira do PSL-RJ, irmã dos PMs presos. Flávio negou que os irmãos fizessem parte da campanha; Valdenice disse que eles eram voluntários.",
    "operacao": "Operação Quarto Elemento (MP-RJ, 2018)",
    "periodo": "2018",
-   "resumo": "Operação do MP-RJ contra uma rede de policiais suspeitos de extorquir pessoas em situação irregular, com 46 mandados de prisão; também investigava organização criminosa, corrupção e loteamento irregular. Entre os presos estavam os PMs gêmeos Alan e Alex Rodrigues de Oliveira, irmãos de uma assessora de Flávio que era tesoureira do PSL-RJ.",
+   "resumo": "Fase de set/2018 da operação do MP-RJ, iniciada em 2017, contra uma rede de policiais suspeitos de extorquir pessoas em situação irregular, com 46 mandados de prisão; também investigava organização criminosa, corrupção e loteamento irregular. Entre os presos estavam os PMs gêmeos Alan e Alex Rodrigues de Oliveira, irmãos de uma assessora de Flávio que era tesoureira do PSL-RJ.",
    "busca": "Quarto Elemento|Valdenice",
    "cadeia": [
     {
@@ -461,7 +1133,7 @@ window.FOZ = {
      "de": "Alan e Alex Rodrigues de Oliveira",
      "para": "Valdenice de Oliveira Meliga",
      "relacao": "irmãos; participaram de eventos de campanha de Flávio em 2018 como apoio de segurança, segundo ela como voluntários",
-     "status_de": "presos em set/2018; desfecho do processo não localizado",
+     "status_de": "presos em set/2018; sem desfecho público conhecido do processo",
      "fonte": {
       "veiculo": "MEON (com O Estado de S. Paulo)",
       "url": "https://www.meon.com.br/noticias/prisao-de-pms-causa-mal-estar-na-campanha-de-filho-de-bolsonaro-no-rio",
@@ -492,9 +1164,108 @@ window.FOZ = {
      "url": "https://www.poder360.com.br/congresso/irma-de-milicianos-assinava-cheque-em-nome-de-flavio-bolsonaro-diz-revista/",
      "data": "2019-02-22",
      "trecho": "procuração para movimentar as contas da campanha"
+    },
+    {
+     "veiculo": "Revista Fórum",
+     "url": "https://revistaforum.com.br/politica/quem-sao-alan-e-alex-os-pms-nota-mil-de-flavio-bolsonaro/",
+     "data": "2019-02-10"
+    },
+    {
+     "veiculo": "Extra",
+     "url": "https://extra.globo.com/casos-de-policia/pms-acusados-em-esquema-de-extorsao-fazem-festa-com-herois-da-liga-da-justica-24234376.html",
+     "data": "2020-02-07"
+    },
+    {
+     "veiculo": "((o))eco",
+     "url": "https://oeco.org.br/salada-verde/braco-direito-de-flavio-bolsonaro-e-indicada-para-chefiar-parque-em-ilha-grande/",
+     "data": "2024-04-11"
+    },
+    {
+     "veiculo": "Extra",
+     "url": "https://extra.globo.com/casos-de-policia/dois-delegados-11-agentes-das-policias-civil-militar-sao-condenados-penas-de-ate-119-anos-veja-lista-25627553.html",
+     "data": "2022-12-14"
+    },
+    {
+     "veiculo": "Gazeta do Povo (IstoÉ)",
+     "url": "https://www.gazetadopovo.com.br/politica/republica/irma-de-milicianos-assinava-cheques-em-nome-de-flavio-bolsonaro-diz-revista-7qaxuqoonfjifkqkn9qqzddk9/",
+     "data": "2019-02-22",
+     "trecho": "Valdenice tinha procuração para movimentar dinheiro da campanha de Flávio."
     }
    ],
-   "ressalva": "O desfecho do processo contra os dois PMs não foi localizado nas fontes abertas. Flávio negou que eles fizessem parte da campanha."
+   "ressalva": "Não há desfecho público conhecido do processo contra os dois PMs. Flávio negou que eles fizessem parte da campanha."
+  },
+  {
+   "id": "servulo-assessor-em-portugal",
+   "nome": "Assessor 248 dias em Portugal",
+   "rotulo": "Sérvulo (Portugal)",
+   "faixa": "gabinete",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "Disse que não era verdade que o assessor morasse em Portugal, embora a família dele more lá. Disse também que Sérvulo tinha 160 dias de férias acumuladas na PM e mais 60 dias em 2015 e 2016. No caso da rachadinha, em que Sérvulo também foi denunciado, as provas foram anuladas, a denúncia foi arquivada em 2022 e ele nunca foi condenado.",
+   "periodo": "2015–2018",
+   "resumo": "O tenente-coronel da PM Wellington Sérvulo Romano da Silva foi nomeado assessor de Flávio na Alerj em abril de 2015. Até a exoneração, em 1º de setembro de 2016, fez oito viagens a Portugal e somou 248 dias fora do país, com salário e gratificações de R$ 5.400 por mês. O caso foi revelado pelo Jornal Nacional em dezembro de 2018. Sérvulo aparece no relatório do Coaf entre os autores de depósitos a Fabrício Queiroz e foi um dos denunciados pelo MP-RJ, com Flávio, no caso da rachadinha em 2020. A denúncia foi arquivada em 2022, depois da anulação das provas.",
+   "cadeia": [
+    {
+     "de": "Flávio Bolsonaro",
+     "para": "Wellington Sérvulo Romano da Silva",
+     "relacao": "Nomeou-o assessor, primeiro na vice-liderança do PP e depois no próprio gabinete na Alerj, de abril de 2015 a 1º de setembro de 2016",
+     "status_de": "Denunciado pelo MP-RJ em 2020, com Flávio e outras 15 pessoas, no caso da rachadinha; as provas foram anuladas, a denúncia foi arquivada em 2022 e ninguém foi condenado",
+     "fonte": {
+      "veiculo": "Folha de S.Paulo (sobre reportagem do Jornal Nacional)",
+      "url": "https://www1.folha.uol.com.br/poder/2018/12/ex-assessor-de-flavio-bolsonaro-recebia-da-alerj-mesmo-fora-do-brasil.shtml",
+      "data": "2018-12-12"
+     }
+    },
+    {
+     "de": "Wellington Sérvulo Romano da Silva",
+     "para": "Fabrício Queiroz",
+     "relacao": "Aparece no relatório do Coaf entre os autores de depósitos na conta de Queiroz, que movimentou R$ 1,2 milhão de forma atípica entre janeiro de 2016 e janeiro de 2017",
+     "status_de": "Queiroz: denunciado em 2020 com Flávio; provas anuladas e denúncia arquivada",
+     "fonte": {
+      "veiculo": "Folha de S.Paulo",
+      "url": "https://www1.folha.uol.com.br/poder/2018/12/ex-assessor-de-flavio-bolsonaro-recebia-da-alerj-mesmo-fora-do-brasil.shtml",
+      "data": "2018-12-12"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "Folha de S.Paulo",
+     "url": "https://www1.folha.uol.com.br/poder/2018/12/ex-assessor-de-flavio-bolsonaro-recebia-da-alerj-mesmo-fora-do-brasil.shtml",
+     "data": "2018-12-12"
+    }
+   ],
+   "ressalva": "Sérvulo e Flávio foram denunciados na rachadinha em 2020; as provas foram anuladas, a denúncia foi arquivada em 2022 e ninguém foi condenado. Flávio diz que o assessor tinha férias acumuladas na PM."
+  },
+  {
+   "id": "assessor-ex-caixa",
+   "nome": "Assessor ex-Caixa no gabinete",
+   "rotulo": "Assessor ex-Caixa",
+   "faixa": "gabinete",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "Não é investigado. Disse que o assessor omitiu da chefia pendências judiciais e exercia atividades particulares no horário de expediente, e determinou a exoneração.",
+   "periodo": "jun/2025 – mai/2026",
+   "resumo": "De jun/2025 a mai/2026, Flávio manteve como assessor, com salário de R$ 20,7 mil por mês, Celso Leonardo Barbosa. Ele foi vice-presidente da Caixa e saiu do banco em 2022, pouco depois de Pedro Guimarães, na crise de assédio. Segundo a Folha, fez acordo de não persecução penal no processo de assédio, assumindo a culpa, e é processado pelo MPF por falsidade ideológica. Foi exonerado depois que a Folha procurou o senador.",
+   "cadeia": [
+    {
+     "de": "Celso Leonardo Barbosa (ex-vice-presidente da Caixa)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Foi assessor no gabinete de Flávio no Senado, com R$ 20,7 mil por mês, de jun/2025 a mai/2026.",
+     "status_de": "Fez acordo de não persecução penal no caso de assédio, assumindo a culpa e prestando serviços comunitários. É processado pelo MPF sob acusação de falsidade ideológica em documentos usados para sua indicação à vice-presidência da Caixa. Não respondeu à Folha.",
+     "fonte": {
+      "veiculo": "Folha de S.Paulo",
+      "url": "https://www1.folha.uol.com.br/poder/2026/05/flavio-bolsonaro-manteve-como-assessor-ex-dirigente-da-caixa-demitido-por-assedio.shtml",
+      "data": "2026-05-25"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "Folha de S.Paulo",
+     "url": "https://www1.folha.uol.com.br/poder/2026/05/flavio-bolsonaro-manteve-como-assessor-ex-dirigente-da-caixa-demitido-por-assedio.shtml",
+     "data": "2026-05-25"
+    }
+   ],
+   "ressalva": "Acordo de não persecução penal não é condenação. Flávio exonerou o assessor depois que a Folha o procurou."
   },
   {
    "id": "escritorio-do-crime",
@@ -522,8 +1293,8 @@ window.FOZ = {
     {
      "de": "Adriano Magalhães da Nóbrega",
      "para": "Danielle Mendonça da Costa da Nóbrega",
-     "relacao": "ex-marido. Segundo a denúncia da rachadinha, o dinheiro do cargo dela e do cargo da mãe dele no gabinete foi repassado a Queiroz, também por meio de duas pizzarias ligadas a ele: R$ 203.002,57 no total",
-     "status_de": "foragido desde jan/2019; morto pela polícia na Bahia em fev/2020; nunca julgado",
+     "relacao": "ex-marido. Segundo a denúncia da rachadinha, o dinheiro do cargo dela e do cargo da mãe dele no gabinete foi repassado a Queiroz, também por meio de duas pizzarias controladas pela mãe dele: R$ 203.002,57 no total",
+     "status_de": "foragido desde jan/2019; morto pela polícia na Bahia em fev/2020; nunca foi julgado pelas acusações da Operação Os Intocáveis",
      "fonte": {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/politica/miliciano-repassou-mais-de-r-200-mil-a-queiroz-em-rachadinha-diz-denuncia/",
@@ -534,7 +1305,7 @@ window.FOZ = {
      "de": "Danielle Mendonça da Costa da Nóbrega",
      "para": "Flávio Bolsonaro",
      "relacao": "assessora no gabinete dele na Alerj (2007–2018)",
-     "status_de": "apontada pelo MP-RJ como funcionária-fantasma no caso da rachadinha (provas anuladas, denúncia rejeitada); sem condenação",
+     "status_de": "denunciada pelo MP-RJ no caso da rachadinha, que a apontou como funcionária-fantasma; provas anuladas e denúncia arquivada em 2022; sem condenação",
      "fonte": {
       "veiculo": "BBC News Brasil (via Terra)",
       "url": "https://www.terra.com.br/noticias/brasil/o-que-se-sabe-e-o-que-falta-saber-sobre-o-caso-de-adriano-da-nobrega-miliciano-do-rio-morto-na-bahia,274d017df9949fee1d4d4034251f576614ioxv2c.html",
@@ -562,7 +1333,7 @@ window.FOZ = {
      "trecho": "Adriano recebeu a Medalha Tiradentes; Ronald, moção de Flávio em 2004"
     }
    ],
-   "ressalva": "Adriano morreu sem ser julgado. As provas da rachadinha, onde aparecem os repasses ligados às duas assessoras, foram anuladas."
+   "ressalva": "Adriano morreu sem ser julgado pelas acusações da Os Intocáveis. Na rachadinha, onde aparecem os repasses ligados às duas assessoras, as provas foram anuladas, a denúncia foi arquivada em 2022 e ninguém foi condenado. Flávio chamou de 'ilação irresponsável' a ligação feita a partir do emprego das parentes e disse que homenageou Adriano porque acreditava que ele era injustiçado; o advogado dele afirmou que nunca houve contato de Flávio com Adriano."
   },
   {
    "id": "jogo-do-bicho",
@@ -635,7 +1406,7 @@ window.FOZ = {
    "status_flavio": "Flávio não é investigado no 8 de janeiro. A ligação é o primo, que trabalhou no gabinete dele na Alerj entre 2006 e 2012.",
    "operacao": "Lesa Pátria (PF, 19ª fase, 25/10/2023)",
    "periodo": "2023–2026",
-   "resumo": "Leonardo Rodrigues de Jesus, o Léo Índio, primo de Flávio, foi denunciado pela PGR em 22/01/2025 por participar, como instigador e executor, dos atos golpistas de 8 de janeiro de 2023. A 1ª Turma do STF o tornou réu em 28/02/2025. Ele foi para a Argentina, a PGR pediu a prisão preventiva em abril de 2025, Moraes a decretou, e ele segue foragido.",
+   "resumo": "Leonardo Rodrigues de Jesus, o Léo Índio, primo de Flávio, foi denunciado pela PGR em 22/01/2025, sob acusação de ter participado, como instigador e executor, dos atos golpistas de 8 de janeiro de 2023; não foi julgado. A 1ª Turma do STF o tornou réu em 28/02/2025. Ele foi para a Argentina, a PGR pediu a prisão preventiva em abril de 2025, Moraes a decretou, e ele segue foragido.",
    "cadeia": [
     {
      "de": "Atos golpistas de 8 de janeiro",
@@ -652,7 +1423,7 @@ window.FOZ = {
      "de": "Leonardo Rodrigues de Jesus (Léo Índio)",
      "para": "Flávio Bolsonaro",
      "relacao": "primo (filho de uma irmã de Rogéria Nantes, mãe de Flávio); trabalhou no gabinete de Flávio na Alerj de 2006 a 2012",
-     "status_de": "Réu no STF desde 28/02/2025; prisão preventiva decretada por Moraes; foragido na Argentina (junho de 2026)",
+     "status_de": "Réu no STF desde 28/02/2025; prisão preventiva decretada por Moraes; foragido na Argentina (setembro de 2026)",
      "fonte": {
       "veiculo": "Terra",
       "url": "https://www.terra.com.br/noticias/brasil/politica/quem-e-leo-indio-primo-dos-bolsonaro-denunciado-pela-pgr-por-tentativa-de-golpe-de-estado,4a504e32ead7dbc69f5378d009729c3eusol3fvh.html",
@@ -684,69 +1455,103 @@ window.FOZ = {
      "url": "https://www.metropoles.com/colunas/manoela-alcantara/foragido-leo-indio-surge-em-video-proximo-a-fronteira-com-o-brasil",
      "data": "2026-06-20",
      "trecho": "Réu desde 28/02/2025; mandado de prisão de Moraes; foragido, aparece em Puerto Iguazú"
+    },
+    {
+     "veiculo": "Estadão",
+     "url": "https://www.estadao.com.br/politica/quem-leo-indio-denunciado-pgr-procuradoria-geral-republica-tentativa-golpe-estado-jair-bolsonaro-nprp/",
+     "data": "2025-01-22",
+     "trecho": "Perfil: primo dos filhos mais velhos de Jair, ex-funcionário de Flávio na Alerj, denunciado por tentativa de golpe."
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/leo-indio-vira-reu-por-envolvimento-no-8-de-janeiro/",
+     "data": "2025-02-21",
+     "trecho": "Voto de Moraes para receber a denúncia pelos cinco crimes."
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/stf-mantem-leo-indio-como-reu-por-atos-de-8-de-janeiro/",
+     "data": "2025-03-27",
+     "trecho": "A 1ª Turma rejeita o recurso e mantém Léo Índio como réu."
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/moraes-decreta-prisao-preventiva-de-leo-indio-que-esta-na-argentina/",
+     "data": "2025-04-02",
+     "trecho": "Prisão preventiva após a viagem à Argentina."
+    },
+    {
+     "veiculo": "Veja",
+     "url": "https://veja.abril.com.br/politica/a-decisao-do-conare-da-argentina-que-pode-beneficiar-o-sobrinho-de-jair-bolsonaro/",
+     "data": "2026-06-28",
+     "trecho": "Foragido desde 2025, com mandado de prisão assinado por Moraes."
     }
    ]
   },
   {
-   "id": "balcao-mec",
-   "nome": "Balcão do MEC (pastores)",
-   "rotulo": "Balcão do MEC",
-   "faixa": "familia",
-   "gravidade": "preso_ou_condenado_na_cadeia",
-   "status_flavio": "Flávio não é investigado neste caso. A ligação é o pai: Jair é citado no áudio de Ribeiro e foi alvo de suspeita de interferência na investigação da PF, o que nega.",
-   "operacao": "Acesso Pago (PF, 22/06/2022)",
-   "periodo": "2021–2024",
-   "resumo": "Os pastores Gilmar Santos e Arilton Moura, sem cargo público, são suspeitos de intermediar a liberação de verbas do FNDE para prefeituras, e prefeitos relataram pedidos de propina. Em áudio revelado em março de 2022, o ministro Milton Ribeiro disse que priorizar os municípios dos pastores era um 'pedido especial' do presidente. Ribeiro e os pastores foram presos em 22/06/2022 e soltos no dia seguinte. Em agosto de 2024 o MPF pediu à Justiça que a investigação seguisse com celeridade.",
+   "id": "gabinete-do-odio-contas-falsas",
+   "nome": "Assessor de Flávio e contas falsas",
+   "rotulo": "Contas falsas",
+   "faixa": "gabinete",
+   "gravidade": "sem_processo_na_cadeia",
+   "status_flavio": "Não é investigado por isso. O elo é funcional: um assessor do gabinete dele foi apontado em relatório da PF. Não há notícia de indiciamento ou denúncia contra o assessor.",
+   "operacao": "Inquérito dos atos antidemocráticos (arquivado), provas enviadas ao inquérito das fake news",
+   "periodo": "2020–2021",
+   "resumo": "Em jul/2020 o Facebook removeu 35 contas do Facebook e 38 do Instagram que ligou a pessoas do PSL e a funcionários dos gabinetes de Jair, Flávio e Eduardo Bolsonaro e dos deputados estaduais Anderson Moraes e Alana Passos. Em jun/2021, um relatório da PF no inquérito dos atos antidemocráticos ligou ao IP de Fernando Nascimento Pessoa, assessor de Flávio no Senado, seis perfis, entre eles SnapNaro, TrumpWeTrust e DiDireita; a SnapNaro foi acessada 45 vezes a partir do Senado. Moraes arquivou esse inquérito em 01/07/2021, a pedido da PGR, e mandou compartilhar as provas com o inquérito das fake news.",
    "cadeia": [
     {
-     "de": "Balcão do MEC",
-     "para": "Milton Ribeiro",
-     "relacao": "ministro da Educação; no áudio, diz que a prioridade às prefeituras indicadas pelos pastores era um pedido do presidente",
-     "status_de": "Investigado por corrupção passiva, prevaricação, advocacia administrativa e tráfico de influência; preso preventivamente em 22/06/2022 e solto em 23/06/2022 por decisão judicial; não localizei denúncia",
-     "fonte": {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/politica/veja-o-que-se-sabe-sobre-o-caso-do-ex-ministro-da-educacao-milton-ribeiro/",
-      "data": "2022-06-28"
-     }
-    },
-    {
-     "de": "Milton Ribeiro",
-     "para": "Jair Bolsonaro",
-     "relacao": "ministro do governo Jair; atribuiu a prioridade aos pastores a um pedido do presidente. Em conversa interceptada, disse à filha que Jair o alertara sobre uma possível busca",
-     "status_de": "Investigado por suposta interferência na apuração da PF. O caso foi ao STF e voltou à Justiça Federal do DF depois que Jair perdeu o foro; em agosto de 2024 o MPF pediu a continuidade. Jair nega ter interferido",
-     "fonte": {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/politica/mpf-pede-que-justica-continue-investigacao-sobre-bolsonaro-e-milton-ribeiro/",
-      "data": "2024-08-21"
-     }
-    },
-    {
-     "de": "Jair Bolsonaro",
+     "de": "Fernando Nascimento Pessoa",
      "para": "Flávio Bolsonaro",
-     "relacao": "pai",
-     "status_de": "Investigado neste caso por suposta interferência (Justiça Federal do DF); nega",
+     "relacao": "Assessor de Flávio desde maio de 2014. A PF ligou o IP da internet em nome dele a três contas inautênticas.",
+     "status_de": "Citado em relatório da PF no inquérito dos atos antidemocráticos, arquivado em 01/07/2021; as provas foram compartilhadas com o inquérito das fake news. Não há denúncia conhecida.",
      "fonte": {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/politica/mpf-pede-que-justica-continue-investigacao-sobre-bolsonaro-e-milton-ribeiro/",
-      "data": "2024-08-21"
+      "veiculo": "Folha de Pernambuco",
+      "url": "https://www.folhape.com.br/politica/inquerito-aponta-mais-de-mil-acessos-de-perfis-falsos-ligados-aos/187323/",
+      "data": "2021-06-16"
+     }
+    },
+    {
+     "de": "Rede removida pelo Facebook",
+     "para": "Gabinetes de Jair, Flávio e Eduardo Bolsonaro",
+     "relacao": "O Facebook ligou a rede a funcionários desses gabinetes e a pessoas do PSL",
+     "status_de": "Remoção feita pela plataforma, não é decisão judicial",
+     "fonte": {
+      "veiculo": "O Tempo",
+      "url": "https://www.otempo.com.br/politica/facebook-remove-contas-falsas-ligadas-ao-psl-e-a-gabinetes-da-familia-bolsonaro-1.2357817",
+      "data": "2020-07-08"
      }
     }
    ],
    "fontes": [
     {
-     "veiculo": "CNN Brasil",
-     "url": "https://www.cnnbrasil.com.br/politica/veja-o-que-se-sabe-sobre-o-caso-do-ex-ministro-da-educacao-milton-ribeiro/",
-     "data": "2022-06-28",
-     "trecho": "Áudio do 'pedido especial' do presidente; prisão em 22/06 e soltura em 23/06/2022"
+     "veiculo": "Folha de Pernambuco",
+     "url": "https://www.folhape.com.br/politica/inquerito-aponta-mais-de-mil-acessos-de-perfis-falsos-ligados-aos/187323/",
+     "data": "2021-06-16",
+     "trecho": "SnapNaro foi acessada 45 vezes a partir do Senado"
     },
     {
-     "veiculo": "CNN Brasil",
-     "url": "https://www.cnnbrasil.com.br/politica/mpf-pede-que-justica-continue-investigacao-sobre-bolsonaro-e-milton-ribeiro/",
-     "data": "2024-08-21",
-     "trecho": "MPF pede continuidade com celeridade; caso na Justiça Federal do DF; Jair nega interferência"
+     "veiculo": "O Povo",
+     "url": "https://www.opovo.com.br/noticias/politica/2021/06/08/assessor-de-flavio-bolsonaro-aparece-como-membro-do--gabinete-do-odio.html",
+     "data": "2021-06-08",
+     "trecho": "Assessor de Flávio desde maio de 2014"
+    },
+    {
+     "veiculo": "DFRLab",
+     "url": "https://dfrlab.org/2021/06/11/investigation-reveals-link-between-flavio-bolsonaro-advisor-and-2020-facebook-takedown/",
+     "data": "2021-06-11"
+    },
+    {
+     "veiculo": "O Tempo",
+     "url": "https://www.otempo.com.br/politica/facebook-remove-contas-falsas-ligadas-ao-psl-e-a-gabinetes-da-familia-bolsonaro-1.2357817",
+     "data": "2020-07-08"
+    },
+    {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/republica/alexandre-de-moraes-arquiva-inquerito-dos-atos-antidemocraticos-mas-abre-outra-investigacao/",
+     "data": "2021-07-01"
     }
    ],
-   "ressalva": "Jair nega ter interferido na investigação. Até a última notícia localizada (ago/2024), não havia denúncia contra Milton Ribeiro."
+   "ressalva": "O inquérito dos atos antidemocráticos foi arquivado em 2021, e não há indiciamento do assessor. Procurados na época, o assessor e os filhos de Bolsonaro não responderam."
   },
   {
    "id": "coacao-eduardo",
@@ -801,7 +1606,8 @@ window.FOZ = {
      "data": "2025-07-14",
      "trecho": "somente os filhos parlamentares... haviam vocalizado o argumento"
     }
-   ]
+   ],
+   "ressalva": "Eduardo nega ter cometido crime e diz ser alvo de perseguição. Defender em público a ligação entre tarifaço e anistia não é crime, e Flávio não é parte no processo."
   },
   {
    "id": "trama-golpista",
@@ -811,7 +1617,7 @@ window.FOZ = {
    "gravidade": "preso_ou_condenado_na_cadeia",
    "status_flavio": "Não é investigado nem denunciado na trama golpista. A ligação é o pai e o que Flávio diz que fará se for eleito: trabalhar pela anistia ainda na transição ou, sem ela, dar indulto aos condenados do 8/1. Em 13/07/2026 Moraes suspendeu por 90 dias as visitas dele ao pai, porque ele divulgou nas redes uma carta obtida numa visita.",
    "periodo": "2022–2026",
-   "resumo": "Em 11/09/2025 a 1ª Turma do STF condenou Jair Bolsonaro a 27 anos e 3 meses por tentativa de golpe de Estado, organização criminosa armada e outros crimes. A condenação transitou em julgado em 25/11/2025. Desde março de 2026 ele cumpre a pena em prisão domiciliar. A defesa pediu a anulação em maio de 2026, e o PGR Paulo Gonet se manifestou contra.",
+   "resumo": "Em 11/09/2025 a 1ª Turma do STF condenou Jair Bolsonaro a 27 anos e 3 meses por tentativa de golpe de Estado, organização criminosa armada e outros crimes. A condenação transitou em julgado em 25/11/2025. Desde março de 2026 ele cumpre a pena em prisão domiciliar humanitária, que Moraes renovou em julho de 2026. A defesa pediu a anulação em maio de 2026, e o PGR Paulo Gonet se manifestou contra.",
    "busca": "golpista|golpe de Estado|8 de janeiro",
    "cadeia": [
     {
@@ -828,7 +1634,7 @@ window.FOZ = {
     {
      "de": "Jair Bolsonaro",
      "para": "Flávio Bolsonaro",
-     "relacao": "pai; Flávio promete anistiar os condenados do 8/1 e levar o pai à posse; Moraes proibiu as visitas dele ao pai",
+     "relacao": "pai; Flávio diz que trabalhará pela anistia aos condenados do 8/1 ou, sem ela, dará indulto, e que quer levar o pai à posse; Moraes suspendeu por 90 dias as visitas dele ao pai",
      "status_de": "condenado; cumpre pena em prisão domiciliar desde março de 2026",
      "fonte": {
       "veiculo": "Estado de Minas",
@@ -866,73 +1672,12 @@ window.FOZ = {
    "ressalva": "Flávio diz que o pai foi 'julgado pelos seus inimigos'. A condenação transitou em julgado."
   },
   {
-   "id": "abin-paralela",
-   "nome": "Abin paralela",
-   "rotulo": "Abin paralela",
-   "faixa": "familia",
-   "gravidade": "investigado_na_cadeia",
-   "status_flavio": "Não foi indiciado nem é investigado nesse inquérito. Segundo a PF, a reunião gravada tratou de medidas contra auditores da Receita que produziram um relatório sobre ele no caso da rachadinha, depois anulado. Flávio diz que o áudio mostra só seus advogados relatando irregularidades dos auditores e que ele é vítima de acesso ilegal aos próprios dados fiscais.",
-   "periodo": "2019–2026",
-   "resumo": "Em junho de 2025 a PF concluiu que a estrutura da Abin foi usada para monitorar ilegalmente autoridades, jornalistas e adversários. Carlos Bolsonaro foi indiciado no 'núcleo político'. O relatório descreve uma reunião gravada em 25/08/2020, no Planalto, entre Jair, Ramagem e advogados de Flávio sobre auditores da Receita que fizeram relatório no caso da rachadinha. Descreve também a tentativa de levantar informações contra esses auditores. Em 20/07/2026 Moraes mandou o inquérito ao TRF-1, porque não há indiciado com foro no STF. Não há denúncia contra esse grupo.",
-   "cadeia": [
-    {
-     "de": "Abin paralela",
-     "para": "Carlos Bolsonaro",
-     "relacao": "indiciado pela PF como chefe do chamado 'gabinete do ódio', que segundo a PF usou informações obtidas pela Abin paralela para atacar adversários nas redes",
-     "status_de": "indiciado pela PF (jun/2025); inquérito enviado ao TRF-1 em 20/07/2026; sem denúncia",
-     "fonte": {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/politica/pf-conclui-abin-paralela-e-indicia-bolsonaro-ramagem-e-carlos/",
-      "data": "2025-06-17"
-     }
-    },
-    {
-     "de": "Carlos Bolsonaro",
-     "para": "Flávio Bolsonaro",
-     "relacao": "irmão; o mesmo inquérito registra a reunião gravada (25/08/2020) de Jair, Ramagem e advogados de Flávio sobre os auditores da Receita do caso da rachadinha",
-     "status_de": "indiciado no 'núcleo político'; não denunciado",
-     "fonte": {
-      "veiculo": "Exame",
-      "url": "https://exame.com/ultimas-noticias/brasil/abin-paralela-investigacao-descobriu-audio-entre-bolsonaro-e-ramagem-para-proteger-flavio/",
-      "data": "2025-06-17"
-     }
-    }
-   ],
-   "fontes": [
-    {
-     "veiculo": "CNN Brasil",
-     "url": "https://www.cnnbrasil.com.br/politica/pf-conclui-abin-paralela-e-indicia-bolsonaro-ramagem-e-carlos/",
-     "data": "2025-06-17",
-     "trecho": "PF confirma atuação de Bolsonaro e indicia Ramagem e Carlos"
-    },
-    {
-     "veiculo": "Exame",
-     "url": "https://exame.com/ultimas-noticias/brasil/abin-paralela-investigacao-descobriu-audio-entre-bolsonaro-e-ramagem-para-proteger-flavio/",
-     "data": "2025-06-17",
-     "trecho": "áudio entre Bolsonaro e Ramagem para proteger Flávio"
-    },
-    {
-     "veiculo": "O Tempo",
-     "url": "https://www.otempo.com.br/politica/judiciario/2026/7/20/com-carlos-bolsonaro-entre-indiciados-moraes-manda-inquerito-da-abin-paralela-para-trf-1",
-     "data": "2026-07-20",
-     "trecho": "Moraes manda inquérito da 'Abin paralela' para TRF-1"
-    },
-    {
-     "veiculo": "Poder360",
-     "url": "https://www.poder360.com.br/poder-justica/pgr-quer-que-investigacao-sobre-abin-paralela-va-para-1a-instancia/",
-     "data": "2026-06-18",
-     "trecho": "PGR quer que investigação sobre 'Abin paralela' vá para 1ª instância"
-    }
-   ],
-   "ressalva": "Ele não é investigado nesse inquérito. A reunião e a tentativa de levantar dados contra os auditores são descrições do relatório da PF; não há denúncia."
-  },
-  {
    "id": "joias-sauditas",
    "nome": "Joias sauditas",
    "rotulo": "Joias sauditas",
    "faixa": "familia",
    "gravidade": "investigado_na_cadeia",
-   "status_flavio": "Não é investigado. A ligação tem dois caminhos: o pai, indiciado pela PF, e Frederick Wassef. Wassef foi advogado de Flávio no caso da rachadinha (depois anulado) até 21/06/2020, e Queiroz foi preso em 18/06/2020 num imóvel dele em Atibaia (SP).",
+   "status_flavio": "Não é investigado. A ligação tem dois caminhos: o pai, indiciado pela PF, e Frederick Wassef. Wassef foi advogado de Flávio no caso da rachadinha (provas anuladas, denúncia arquivada em 2022, sem condenação) até 21/06/2020, e Queiroz foi preso em 18/06/2020 num imóvel dele em Atibaia (SP).",
    "periodo": "2021–2026",
    "resumo": "Em julho de 2024 a PF indiciou Jair Bolsonaro e mais 11 pessoas por peculato, lavagem de dinheiro e associação criminosa, pelo desvio de presentes de alto valor do acervo presidencial. Um dos indiciados é Frederick Wassef, que segundo a PF recomprou nos EUA um Rolex vendido por Mauro Cid. Em 04/03/2026 a PGR pediu o arquivamento. Moraes mandou a PGR analisar novas provas antes de decidir e, em 30/06/2026, abriu uma apuração sigilosa separada sobre achados no celular de Wassef.",
    "busca": "joias|Rolex",
@@ -1077,7 +1822,128 @@ window.FOZ = {
      "trecho": "acessaram 153 vezes as duas caixas mantidas no local ao longo dos 12 anos"
     }
    ],
-   "ressalva": "Uso de cofre não é crime, e o relatório não diz a origem do dinheiro. É um processo diferente da rachadinha da Alerj."
+   "ressalva": "Uso de cofre não é crime, e o relatório não diz a origem do dinheiro. É um processo diferente da rachadinha da Alerj, em que as provas foram anuladas e a denúncia contra Flávio foi arquivada em 2022, sem condenação."
+  },
+  {
+   "id": "cla-valle-gabinetes",
+   "nome": "Suspeita de rachadinha no gabinete de Jair",
+   "rotulo": "Áudios da ex-cunhada",
+   "faixa": "familia",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "No ângulo deste item, o gabinete de Jair na Câmara, Flávio não é investigado. A ligação com ele: nove parentes de Ana Cristina, incluindo Andrea, foram lotados no gabinete dele na Alerj, e num dos áudios Andrea diz saber de fatos que poderiam 'ferrar' Flávio. A defesa dele chamou as gravações de clandestinas. A rachadinha da Alerj, em que Flávio foi denunciado, teve as provas anuladas e a denúncia arquivada em 2022; ele nunca foi condenado. O caso está em outro afluente.",
+   "periodo": "2000–2021",
+   "resumo": "Parentes de Ana Cristina Valle, segunda mulher de Jair, foram lotados nos gabinetes da família: ao menos cinco no de Jair na Câmara (2000–2007) e nove no de Flávio na Alerj (2007–2018). Em jul/2021 o UOL divulgou áudios atribuídos a Andrea Siqueira Valle, irmã de Ana Cristina. Neles, ela diz que o irmão André foi demitido do gabinete de Jair por não devolver os R$ 6 mil combinados do salário. A PGR abriu duas notícias de fato (apurações preliminares), uma na própria PGR e outra na PRDF, sem desfecho público conhecido. Um levantamento do GLOBO (2019) achou 102 assessores com parentesco entre si, de 286 nomeados nos gabinetes de Jair, Flávio, Carlos e Eduardo.",
+   "cadeia": [
+    {
+     "de": "Parentes de Ana Cristina Valle (ao menos 5)",
+     "para": "Gabinete de Jair na Câmara dos Deputados",
+     "relacao": "A irmã Andrea, o irmão André, a mãe e dois primos foram lotados no gabinete de Jair entre 2000 e 2007",
+     "status_de": "Sem processo próprio",
+     "fonte": {
+      "veiculo": "Época / O Globo",
+      "url": "https://oglobo.globo.com/epoca/os-13-parentes-de-jair-bolsonaro-nomeados-nos-gabinetes-da-familia-23665952",
+      "data": "2019-05-15"
+     }
+    },
+    {
+     "de": "Andrea Siqueira Valle",
+     "para": "Jair Bolsonaro",
+     "relacao": "Nos áudios divulgados pelo UOL, ela diz que o irmão André foi demitido do gabinete de Jair por devolver R$ 2 mil ou R$ 3 mil em vez dos R$ 6 mil combinados. Em outro áudio, diz saber de fatos que poderiam prejudicar Flávio, Jair e Ana Cristina.",
+     "status_de": "Não denunciada. A defesa de Flávio chamou as gravações de clandestinas; o Planalto disse não ter acesso à íntegra.",
+     "fonte": {
+      "veiculo": "g1",
+      "url": "https://g1.globo.com/rj/rio-de-janeiro/noticia/2021/07/05/audios-de-ex-cunhada-indicam-participacao-de-jair-bolsonaro-em-esquema-de-rachadinha-diz-uol.ghtml",
+      "data": "2021-07-05"
+     }
+    },
+    {
+     "de": "PGR e Procuradoria da República no DF",
+     "para": "Jair Bolsonaro",
+     "relacao": "Abriram duas notícias de fato sobre o que os áudios relatam. Segundo a coluna do UOL citada pelo Metrópoles, Andrea também diz que devolvia 90% do salário recebido da Câmara.",
+     "status_de": "Apuração preliminar aberta em 2021; sem desfecho público conhecido; nenhuma denúncia",
+     "fonte": {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/politica-brasil/pgr-apura-audios-de-ex-cunhada-que-envolvem-bolsonaro-com-rachadinha",
+      "data": "2021-08-24"
+     }
+    },
+    {
+     "de": "Quebra de sigilos do caso Flávio",
+     "para": "Gabinetes de Jair (Câmara) e de Carlos",
+     "relacao": "Segundo reportagem do UOL publicada pela Folha, os dados bancários do caso Flávio indicam rachadinha também nos gabinetes de Jair e de Carlos, além de transações suspeitas de Ana Cristina",
+     "status_de": "Os dados vêm de quebras de sigilo depois anuladas pelo STJ (fev/2021)",
+     "fonte": {
+      "veiculo": "Folha de S.Paulo / UOL",
+      "url": "https://www1.folha.uol.com.br/poder/2021/03/quebra-de-sigilos-do-caso-flavio-revela-indicios-de-rachadinha-em-gabinetes-de-jair-e-carlos-bolsonaro.shtml",
+      "data": "2021-03-15"
+     }
+    },
+    {
+     "de": "Parentes de Ana Cristina Valle (9)",
+     "para": "Flávio Bolsonaro (gabinete na Alerj)",
+     "relacao": "Pai, irmã, primos e tios foram nomeados no gabinete de Flávio entre 2007 e 2018, com salários brutos de R$ 4,4 mil a R$ 9,8 mil. Todos constam da lista de quebra de sigilo do caso Queiroz.",
+     "status_de": "Sigilos quebrados pelo TJRJ em 2019; quebras anuladas pelo STJ (fev/2021)",
+     "fonte": {
+      "veiculo": "Época / O Globo",
+      "url": "https://oglobo.globo.com/epoca/os-13-parentes-de-jair-bolsonaro-nomeados-nos-gabinetes-da-familia-23665952",
+      "data": "2019-05-15"
+     }
+    },
+    {
+     "de": "Assessores dos gabinetes da família (1991–2019)",
+     "para": "Jair, Flávio, Carlos e Eduardo Bolsonaro",
+     "relacao": "102 dos 286 assessores mapeados têm parentesco entre si, em 32 famílias. A família do próprio Jair é a mais numerosa, com 22 nomeados, incluindo as duas ex-mulheres.",
+     "status_de": "Levantamento jornalístico; sem processo próprio",
+     "fonte": {
+      "veiculo": "O Globo (infográfico)",
+      "url": "https://infograficos.oglobo.globo.com/politica/os-lacos-familiares-do-cla-bolsonaro.html",
+      "data": "2019-08-04"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "g1",
+     "url": "https://g1.globo.com/rj/rio-de-janeiro/noticia/2021/07/05/audios-de-ex-cunhada-indicam-participacao-de-jair-bolsonaro-em-esquema-de-rachadinha-diz-uol.ghtml",
+     "data": "2021-07-05",
+     "trecho": "Áudios atribuídos à ex-cunhada de Jair relatam cobrança de devolução de salário no gabinete dele."
+    },
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/politica-brasil/pgr-apura-audios-de-ex-cunhada-que-envolvem-bolsonaro-com-rachadinha",
+     "data": "2021-08-24",
+     "trecho": "A PGR informa duas notícias de fato, uma na PGR e outra na PRDF."
+    },
+    {
+     "veiculo": "Época / O Globo",
+     "url": "https://oglobo.globo.com/epoca/os-13-parentes-de-jair-bolsonaro-nomeados-nos-gabinetes-da-familia-23665952",
+     "data": "2019-05-15",
+     "trecho": "Doze parentes de Ana Cristina nomeados nos gabinetes de Jair e Flávio, e ela própria no de Carlos: 13 nomeações."
+    },
+    {
+     "veiculo": "Folha de S.Paulo / UOL",
+     "url": "https://www1.folha.uol.com.br/poder/2021/03/quebra-de-sigilos-do-caso-flavio-revela-indicios-de-rachadinha-em-gabinetes-de-jair-e-carlos-bolsonaro.shtml",
+     "data": "2021-03-15",
+     "trecho": "A quebra de sigilos do caso Flávio indica rachadinha nos gabinetes de Jair e Carlos."
+    },
+    {
+     "veiculo": "O Globo",
+     "url": "https://infograficos.oglobo.globo.com/politica/os-lacos-familiares-do-cla-bolsonaro.html",
+     "data": "2019-08-04",
+     "trecho": "286 assessores mapeados desde 1991; 102 com parentesco em 32 famílias."
+    },
+    {
+     "veiculo": "Folha de S.Paulo",
+     "url": "https://www1.folha.uol.com.br/poder/2021/07/gravacoes-apontam-envolvimento-direto-de-jair-bolsonaro-em-esquema-de-entrega-de-salarios-de-assessores.shtml",
+     "data": "2021-07-05"
+    },
+    {
+     "veiculo": "Folha de S.Paulo",
+     "url": "https://www1.folha.uol.com.br/poder/2021/07/conheca-indicios-da-atuacao-de-jair-bolsonaro-no-caso-das-rachadinhas.shtml",
+     "data": "2021-07-07"
+    }
+   ],
+   "ressalva": "Os áudios foram divulgados pelo UOL e a defesa os chama de clandestinos. Ninguém foi denunciado por esses fatos, e as quebras de sigilo do caso Flávio foram anuladas."
   },
   {
    "id": "imoveis-dinheiro-vivo",
@@ -1085,7 +1951,7 @@ window.FOZ = {
    "rotulo": "Imóveis em espécie",
    "faixa": "familia",
    "gravidade": "sem_processo_na_cadeia",
-   "status_flavio": "Não há processo sobre o conjunto dos 51 imóveis. Flávio é um dos compradores citados e foi quem pediu a retirada das reportagens. As compras de imóveis dele já foram apuradas pelo MP-RJ como possível lavagem na rachadinha, mas as provas foram anuladas pelo STJ.",
+   "status_flavio": "Não há processo sobre o conjunto dos 51 imóveis: um pedido de investigação no STF foi negado por André Mendonça em 2022, e em abril de 2025 a PGR defendeu o arquivamento do recurso, citando falta de indícios além da reportagem. Flávio é um dos compradores citados e foi quem pediu a retirada das reportagens. As compras de imóveis dele já foram apuradas pelo MP-RJ como possível lavagem na rachadinha, mas as provas foram anuladas pelo STJ, a denúncia foi arquivada em 2022 e ele nunca foi condenado.",
    "periodo": "1990–2022",
    "resumo": "Uma apuração do UOL com base em escrituras mostrou que 51 dos 107 imóveis negociados por Jair, os três filhos mais velhos, a mãe, cinco irmãos e duas ex-mulheres foram pagos total ou parcialmente em espécie: R$ 13,5 milhões, ou R$ 25,6 milhões corrigidos. A pedido de Flávio, o desembargador Demetrius Gomes Cavalcanti, do TJDFT, mandou retirar as reportagens do ar. Em 23/09/2022 o ministro André Mendonça, do STF, derrubou a censura.",
    "busca": "51 imóveis|16 imóveis",
@@ -1094,7 +1960,7 @@ window.FOZ = {
      "de": "Imóveis pagos em dinheiro vivo (UOL, 2022)",
      "para": "Família Bolsonaro (Jair, Flávio, Carlos, Eduardo, mãe, irmãos, ex-mulheres)",
      "relacao": "51 de 107 imóveis negociados pelo grupo foram pagos total ou parcialmente em espécie, segundo escrituras",
-     "status_de": "reportagem baseada em documentos de cartório; sem processo sobre o conjunto",
+     "status_de": "reportagem baseada em documentos de cartório; pedido de investigação no STF negado por Mendonça (2022), com parecer da PGR pelo arquivamento (abr/2025)",
      "fonte": {
       "veiculo": "Brasil de Fato",
       "url": "https://www.brasildefato.com.br/2022/08/30/cla-bolsonaro-comprou-51-imoveis-em-dinheiro-vivo-presidente-ira-a-menos-debates-e-mais/",
@@ -1141,7 +2007,7 @@ window.FOZ = {
    "rotulo": "Cheques a Michelle",
    "faixa": "familia",
    "gravidade": "sem_processo_na_cadeia",
-   "status_flavio": "Não é investigado por esses cheques. A ligação é que Queiroz foi assessor dele na Alerj e que os dados saíram da investigação da rachadinha dele, cujas provas o STJ anulou em 09/11/2021. Michelle é madrasta de Flávio.",
+   "status_flavio": "Não é investigado por esses cheques. A ligação é que Queiroz foi assessor dele na Alerj e que os dados saíram da quebra de sigilo feita na investigação da rachadinha dele, anulada pelo STJ em 09/11/2021; a denúncia foi arquivada em 2022 e ele nunca foi condenado. Michelle é madrasta de Flávio.",
    "periodo": "2011–2021",
    "resumo": "A quebra de sigilo de Fabrício Queiroz na investigação da rachadinha de Flávio mostrou 27 cheques, somando R$ 89 mil, depositados na conta de Michelle Bolsonaro entre 2011 e 2016. Foram 21 cheques de Queiroz e 6 da mulher dele, Márcia Aguiar. Jair disse que eram pagamento de um empréstimo que ele fez a Queiroz. Em maio de 2021 o então PGR Augusto Aras recusou abrir investigação contra Jair.",
    "busca": "89 mil|cheques de",
@@ -1223,7 +2089,7 @@ window.FOZ = {
     {
      "de": "Paulo Henrique Costa",
      "para": "Flávio Bolsonaro",
-     "relacao": "Presidia o BRB quando o banco concedeu a Flávio e à mulher, Fernanda, o financiamento de R$ 3,1 mi em 360 parcelas para a mansão no Lago Sul (2021). O empréstimo foi quitado em cerca de três anos. A fonte não diz que Costa aprovou o crédito pessoalmente.",
+     "relacao": "Presidia o BRB quando o banco concedeu a Flávio e à mulher dele o financiamento de R$ 3,1 mi em 360 parcelas para a mansão no Lago Sul (2021). O empréstimo foi quitado em cerca de três anos. A fonte não diz que Costa aprovou o crédito pessoalmente.",
      "status_de": "Preso preventivamente em 16/04/2026. Delação recusada pela PGR em 25/06/2026.",
      "fonte": {
       "veiculo": "Metrópoles",
@@ -1261,9 +2127,173 @@ window.FOZ = {
    "ressalva": "A Justiça considerou o financiamento regular (ação popular julgada improcedente em 01/07/2025). A prisão de Costa é por suspeita de propina do Master, não pelo empréstimo a Flávio."
   },
   {
+   "id": "mocoes-pms-reus-condenados",
+   "nome": "Homenagens a policiais depois presos ou condenados",
+   "rotulo": "Homenagens a PMs",
+   "faixa": "entorno",
+   "gravidade": "preso_ou_condenado_na_cadeia",
+   "status_flavio": "Não é investigado em nenhum desses casos. Diz que concedeu centenas de homenagens, que não havia como prever fatos posteriores e que quem erra deve responder pelos próprios atos.",
+   "periodo": "2003–2020",
+   "resumo": "Como deputado estadual (2003–2018), Flávio propôs moções e medalhas a policiais que depois foram presos ou condenados. O major Ronald Paulo Alves Pereira, homenageado em 2004, foi condenado por comandar a milícia de Rio das Pedras e Muzema, pela chacina da Via Show e, em fev/2026, pelo STF no caso Marielle. O capitão Edson Raimundo dos Santos, homenageado em 2008, foi condenado como mentor da tortura de Amarildo de Souza. O delegado Allan Turnowski, que recebeu em 2010 a Medalha Tiradentes e o título de Benemérito por projetos de Flávio e Paulo Melo, foi preso em 2022 sob suspeita de ligação com o jogo do bicho; em fev/2026 o STF anulou os atos da 1ª instância, e ele está solto desde ago/2025. Em 2019 a piauí contou ao menos 23 homenageados que eram réus ou condenados.",
+   "busca": "Moção|homenag|Medalha Tiradentes|Turnowski|Amarildo",
+   "cadeia": [
+    {
+     "de": "Major Ronald Paulo Alves Pereira",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Recebeu moção honrosa da Alerj por indicação de Flávio em 2004",
+     "status_de": "Condenado: 17 anos e 6 meses por organização criminosa (22/10/2021), 76 anos e 8 meses pela chacina da Via Show (11/10/2022) e 56 anos pelo STF no caso Marielle (25/02/2026)",
+     "fonte": {
+      "veiculo": "Notícias ao Minuto (a partir de O Globo)",
+      "url": "https://www.noticiasaominuto.com.br/politica/850505/flavio-bolsonaro-homenageou-milicianos-alvos-de-operacao",
+      "data": "2019-01-22"
+     }
+    },
+    {
+     "de": "Edson Raimundo dos Santos",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Recebeu dele a Moção 6841/2008, de louvor, cinco anos antes do desaparecimento de Amarildo de Souza na Rocinha, onde comandava a UPP",
+     "status_de": "Condenado como mentor intelectual da tortura de Amarildo; o STJ elevou a pena para 16 anos, 3 meses e 6 dias (ago/2023)",
+     "fonte": {
+      "veiculo": "G1",
+      "url": "https://g1.globo.com/politica/noticia/2023/08/22/6a-turma-do-stj-aumenta-penas-de-pms-condenados-pela-morte-de-amarildo.ghtml",
+      "data": "2023-08-22"
+     }
+    },
+    {
+     "de": "Allan Turnowski",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Recebeu a Medalha Tiradentes e o título de Benemérito em projetos de Flávio e Paulo Melo (29/11/2010), quando chefiava a Polícia Civil",
+     "status_de": "Preso em 09/09/2022 sob suspeita de ligação com o jogo do bicho; o STF anulou os atos da 1ª instância em fev/2026 e ele está solto desde ago/2025",
+     "fonte": {
+      "veiculo": "Alerj (sistema de proposições)",
+      "url": "https://alerjln1.alerj.rj.gov.br/scpro0711.nsf/0c5bf5cde95601f903256caa0023131b/61aa256c1d723509832577ea00740f94?OpenDocument",
+      "data": "2010-11-29"
+     }
+    },
+    {
+     "de": "Edson Alexandre Pinto de Góes",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Recebeu dele a Moção 3179/2004, de louvor, por uma operação no Conjunto Esperança (Maré)",
+     "status_de": "Condenado em setembro de 2018 a 5 anos em regime fechado por lavagem de dinheiro e ocultação de bens, segundo a piauí",
+     "fonte": {
+      "veiculo": "piauí",
+      "url": "https://piaui.uol.com.br/web/flavio-os-condenados-e-os-condecorados/",
+      "data": "2019-02-22"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "piauí",
+     "url": "https://piaui.uol.com.br/web/flavio-os-condenados-e-os-condecorados/",
+     "data": "2019-02-22"
+    },
+    {
+     "veiculo": "Alerj (sistema de proposições)",
+     "url": "https://alerjln1.alerj.rj.gov.br/scpro0307.nsf/0c5bf5cde95601f903256caa0023131b/971c27778228320083256e4d00711ebe?OpenDocument",
+     "data": "2004-03-08",
+     "trecho": "Moção 3179/2004 — ao 1º Ten PM Edson Alexandre Pinto de Góes (22º BPM)"
+    },
+    {
+     "veiculo": "Alerj (sistema de proposições)",
+     "url": "https://alerjln1.alerj.rj.gov.br/scpro0307.nsf/0c5bf5cde95601f903256caa0023131b/f18a4d0e064169d483256dd7005d40d4?OpenDocument",
+     "data": "2003-11-07"
+    },
+    {
+     "veiculo": "Alerj (sistema de proposições)",
+     "url": "https://alerjln1.alerj.rj.gov.br/scpro0307.nsf/0c5bf5cde95601f903256caa0023131b/8232d25fb101f0828325701400671945?OpenDocument",
+     "data": "2005-06-02"
+    },
+    {
+     "veiculo": "Alerj (sistema de proposições)",
+     "url": "https://alerjln1.alerj.rj.gov.br/scpro0307.nsf/0c5bf5cde95601f903256caa0023131b/301cb82dce2c0c2b832570b500435704?OpenDocument",
+     "data": "2005-11-10",
+     "trecho": "Moção 8572/2005 — ao policial civil Flávio Pacca Castello Branco; autores Flávio Bolsonaro e Coronel Rodrigues"
+    },
+    {
+     "veiculo": "O Dia",
+     "url": "https://odia.ig.com.br/rio-de-janeiro/2019/02/5623163-policial-preso-por-extorsao-recebeu-honraria-de-flavio-bolsonaro-na-alerj.html",
+     "data": "2019-02-28"
+    },
+    {
+     "veiculo": "O Globo",
+     "url": "https://oglobo.globo.com/rio/mp-pede-absolvicao-de-consultor-de-seguranca-de-witzel-acusado-de-extorquir-comerciante-24264191",
+     "data": "2020-02-21"
+    },
+    {
+     "veiculo": "Alerj (sistema de proposições)",
+     "url": "https://alerjln1.alerj.rj.gov.br/scpro0711.nsf/0c5bf5cde95601f903256caa0023131b/98b3a922e0418005832574b80063067a?OpenDocument",
+     "data": "2008-09-02",
+     "trecho": "Moção nº 6841/2008 — de louvor e congratulações ao Cap PM Edson Raimundo dos Santos (Bope)"
+    },
+    {
+     "veiculo": "G1",
+     "url": "https://g1.globo.com/politica/noticia/2023/08/22/6a-turma-do-stj-aumenta-penas-de-pms-condenados-pela-morte-de-amarildo.ghtml",
+     "data": "2023-08-22"
+    },
+    {
+     "veiculo": "Alerj (sistema de proposições)",
+     "url": "https://alerjln1.alerj.rj.gov.br/scpro0711.nsf/0c5bf5cde95601f903256caa0023131b/61aa256c1d723509832577ea00740f94?OpenDocument",
+     "data": "2010-11-29",
+     "trecho": "PR 1554/2010 — Medalha Tiradentes ao Delegado Allan Turnowski; autores Paulo Melo e Flávio Bolsonaro"
+    },
+    {
+     "veiculo": "Alerj (sistema de proposições)",
+     "url": "https://alerjln1.alerj.rj.gov.br/scpro0711.nsf/0c5bf5cde95601f903256caa0023131b/b1f2ab1f24c721d2832577ea007222e8?OpenDocument",
+     "data": "2010-11-29",
+     "trecho": "PR 1553/2010 — Título de Benemérito do Estado a Allan Turnowski"
+    },
+    {
+     "veiculo": "O Globo",
+     "url": "https://oglobo.globo.com/politica/eleicoes-2022/noticia/2022/09/preso-ex-chefe-da-policia-civil-discursou-no-mesmo-trio-eletrico-de-bolsonaro-no-7-de-setembro.ghtml",
+     "data": "2022-09-09"
+    },
+    {
+     "veiculo": "G1",
+     "url": "https://g1.globo.com/rj/rio-de-janeiro/noticia/2026/02/11/stf-processo-allan-turnowski.ghtml",
+     "data": "2026-02-11"
+    },
+    {
+     "veiculo": "Folha de S.Paulo",
+     "url": "https://www1.folha.uol.com.br/poder/2022/09/ex-assessora-de-flavio-citada-em-rachadinha-ganha-r-407-mil-de-candidatos-bolsonaristas.shtml",
+     "data": "2022-09-27"
+    },
+    {
+     "veiculo": "Notícias ao Minuto (O Globo)",
+     "url": "https://www.noticiasaominuto.com.br/politica/850505/flavio-bolsonaro-homenageou-milicianos-alvos-de-operacao",
+     "data": "2019-01-22",
+     "trecho": "Moção honrosa em 2004 por indicação de Flávio, quando Ronald já era investigado pela chacina da Via Show."
+    },
+    {
+     "veiculo": "AMAERJ",
+     "url": "https://amaerj.org.br/noticias/major-da-pm-e-condenado-a-17-anos-de-prisao-por-comandar-milicia-de-rio-das-pedras-e-da-muzema/",
+     "data": "2021-10-22",
+     "trecho": "17 anos e 6 meses por comandar a milícia de Rio das Pedras e da Muzema."
+    },
+    {
+     "veiculo": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2022-10/rio-justica-condena-pm-pela-morte-de-4-jovens-em-saida-de-festa",
+     "data": "2022-10-11",
+     "trecho": "76 anos e 8 meses pela morte de quatro jovens em 5/12/2003."
+    },
+    {
+     "veiculo": "Migalhas",
+     "url": "https://www.migalhas.com.br/quentes/450632/stf-veja-penas-fixadas-pela-1-turma-a-mandantes-da-morte-de-marielle",
+     "data": "2026-02-25",
+     "trecho": "56 anos no caso Marielle."
+    },
+    {
+     "veiculo": "Wikipédia (verbete Flávio Bolsonaro)",
+     "url": "https://pt.wikipedia.org/wiki/Fl%C3%A1vio_Bolsonaro",
+     "trecho": "Resposta: à época das homenagens, era impossível prever que alguns policiais desonrassem a farda."
+    }
+   ],
+   "ressalva": "Homenagear não é crime, e na maioria dos casos a homenagem veio antes do crime ou da condenação. A Medalha Tiradentes a Adriano da Nóbrega está no rio do Escritório do Crime."
+  },
+  {
    "id": "cv-governo-rj",
-   "nome": "Comando Vermelho no governo RJ",
-   "rotulo": "Comando Vermelho",
+   "nome": "Suspeita de CV em secretaria do RJ",
+   "rotulo": "CV e a secretaria",
    "faixa": "entorno",
    "gravidade": "preso_ou_condenado_na_cadeia",
    "status_flavio": "Não é investigado. A ligação é Gutemberg Fonseca, que Flávio indicou para a secretaria em 2023. Em nota, Flávio diz que combate facções criminosas e defende punição severa.",
@@ -1430,7 +2460,7 @@ window.FOZ = {
      "de": "Contrato da Covaxin (Ministério da Saúde)",
      "para": "Francisco Emerson Maximiano",
      "relacao": "sócio da Precisa Medicamentos, empresa com que o Ministério da Saúde assinou o contrato",
-     "status_de": "Contrato cancelado. A CPI da Covid pediu o indiciamento de Maximiano por falsidade ideológica, uso de documento falso, fraude processual, fraude em contrato, organização criminosa e improbidade. Pedido de CPI não é denúncia, e não localizei denúncia criminal",
+     "status_de": "Contrato cancelado. A CPI da Covid pediu o indiciamento de Maximiano por falsidade ideológica, uso de documento falso, fraude processual, fraude em contrato, organização criminosa e improbidade. Pedido de CPI não é denúncia, e não há denúncia criminal conhecida",
      "fonte": {
       "veiculo": "IstoÉ Dinheiro",
       "url": "https://istoedinheiro.com.br/cpi-da-covid-veja-lista-de-indiciados-e-crimes-atribuidos",
@@ -1479,6 +2509,47 @@ window.FOZ = {
      "url": "https://www.poder360.com.br/justica/rosa-weber-arquiva-inquerito-contra-bolsonaro-no-caso-covaxin/",
      "data": "2022-04-22",
      "trecho": "Rosa Weber arquiva o inquérito de prevaricação contra Jair, a pedido da PGR"
+    },
+    {
+     "veiculo": "Folha de S.Paulo",
+     "url": "https://www1.folha.uol.com.br/equilibrioesaude/2024/12/investigacao-sobre-desvios-em-compra-de-vacina-da-covid-volta-ao-stf-e-pgr-analisa-em-segredo.shtml",
+     "data": "2024-12-13"
+    },
+    {
+     "veiculo": "g1",
+     "url": "https://g1.globo.com/sp/sao-paulo/noticia/2021/09/30/pf-faz-operacao-em-sp-contra-alvo-da-cpi-da-covid-por-suspeita-de-lavagem-de-dinheiro.ghtml",
+     "data": "2021-09-30"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/cpi-da-pandemia-sugere-que-flavio-bolsonaro-esteve-nos-eua-com-danilo-trento/",
+     "data": "2021-09-23"
+    },
+    {
+     "veiculo": "Agência Senado",
+     "url": "https://www12.senado.leg.br/noticias/materias/2021/09/23/alem-de-lavagem-de-dinheiro-senadores-ligam-danilo-trento-a-lobby-da-jogatina",
+     "data": "2021-09-23"
+    },
+    {
+     "veiculo": "Agência Senado",
+     "url": "https://www12.senado.leg.br/noticias/materias/2021/10/20/com-nove-crimes-atribuidos-a-bolsonaro-relatorio-da-cpi-e-oficialmente-apresentado",
+     "data": "2021-10-20",
+     "trecho": "lista de indiciados inclui Maximiano, Marconny e a Precisa"
+    },
+    {
+     "veiculo": "Diário do Nordeste/Folhapress",
+     "url": "https://diariodonordeste.verdesmares.com.br/ultima-hora/pais/indicios-de-crime-na-compra-da-vacina-covaxin-pelo-governo-bolsonaro-sao-identificados-pelo-mpf-1.3100732",
+     "data": "2021-06-22"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/cpi-da-covid-ao-vivo-marconny-faria/",
+     "data": "2021-09-15"
+    },
+    {
+     "veiculo": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2022-04/ministra-do-stf-arquiva-inquerito-contra-presidente-no-caso-covaxin",
+     "data": "2022-04-23"
     }
    ],
    "ressalva": "A reunião que Flávio intermediou tratava de outra empresa de Maximiano, não da vacina. O inquérito contra Jair por prevaricação foi arquivado em 2022."
@@ -1553,6 +2624,84 @@ window.FOZ = {
    "ressalva": "Ciro nega ilícitos e não foi denunciado. Flávio o descartou como vice depois da operação."
   },
   {
+   "id": "valdemar-emendas-pl",
+   "nome": "Emendas de Valdemar (PL)",
+   "rotulo": "Emendas de Valdemar",
+   "faixa": "entorno",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "Não é investigado e não é citado no caso. Segundo O Globo, aliados avaliam que o caso abre nova frente de desgaste para a campanha, e o partido fala em perseguição.",
+   "operacao": "Operação Transparência (PF), relator Flávio Dino",
+   "periodo": "2024 – jul/2026",
+   "resumo": "Em 10/07/2026, o ministro Flávio Dino bloqueou R$ 119 milhões em bens de Valdemar Costa Neto, presidente do PL, num desdobramento da Operação Transparência. Segundo a PF, 21 emendas registradas entre 2024 e 2026 foram indicadas por Valdemar, que não tem mandato, por meio de servidores da liderança do PL na Câmara. Em 23/08/2026, Dino declarou nulas as indicações de emendas feitas por presidentes de partido e mandou à PF as respostas dos partidos. Valdemar centraliza a negociação de alianças e a estratégia nacional da campanha de Flávio.",
+   "cadeia": [
+    {
+     "de": "Valdemar Costa Neto (presidente nacional do PL)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Preside o partido de Flávio. Segundo O Globo, centraliza boa parte da negociação de alianças, da montagem dos palanques estaduais e da estratégia nacional da campanha presidencial.",
+     "status_de": "Investigado na Operação Transparência (PF). O STF bloqueou R$ 119 mi em bens, valor total das 21 emendas, para garantir ressarcimento em caso de condenação. A defesa nega 'categoricamente' qualquer crime.",
+     "fonte": {
+      "veiculo": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-07/dino-bloqueia-r-119-milhoes-de-valdemar-por-suspeitas-em-emendas",
+      "data": "2026-07-10"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "Congresso em Foco",
+     "url": "https://www.congressoemfoco.com.br/noticia/121579/dino-declara-nulas-indicacoes-de-emendas-por-presidentes-de-partidos",
+     "data": "2026-08-23"
+    },
+    {
+     "veiculo": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-07/dino-bloqueia-r-119-milhoes-de-valdemar-por-suspeitas-em-emendas",
+     "data": "2026-07-10"
+    },
+    {
+     "veiculo": "O Globo",
+     "url": "https://oglobo.globo.com/politica/noticia/2026/07/10/aliados-de-flavio-avaliam-que-bloqueio-de-bens-de-valdemar-em-caso-de-emendas-abre-nova-frente-de-desgaste-para-campanha.ghtml",
+     "data": "2026-07-10"
+    },
+    {
+     "veiculo": "Estadão",
+     "url": "https://www.estadao.com.br/politica/flavio-bolsonaro-defende-valdemar-costa-neto-e-critica-atuacao-de-forma-seletiva-da-pf/",
+     "data": "2026-07-10",
+     "trecho": "recursos herdados do orçamento secreto"
+    },
+    {
+     "veiculo": "O Globo",
+     "url": "https://oglobo.globo.com/politica/eduardo-bolsonaro-diz-ter-destinado-95-milhoes-via-orcamento-secreto-saiba-para-onde-filho-do-presidente-indicou-recursos-25505129",
+     "data": "2022-05-10"
+    },
+    {
+     "veiculo": "BBC News Brasil",
+     "url": "https://www.bbc.com/portuguese/articles/cevl3dzjdpzo",
+     "data": "2026-07-11"
+    },
+    {
+     "veiculo": "BBC News Brasil",
+     "url": "https://www.bbc.com/portuguese/articles/crexwvqp72zo",
+     "data": "2025-10-22"
+    },
+    {
+     "veiculo": "CartaCapital",
+     "url": "https://www.cartacapital.com.br/politica/indiciado-pela-pf-no-inquerito-do-golpe-valdemar-escapa-de-denuncia-da-pgr/",
+     "data": "2025-02-18"
+    },
+    {
+     "veiculo": "Consultor Jurídico",
+     "url": "https://conjur.com.br/2016-mai-05/condenado-mensalao-valdemar-costa-neto-recebe-indulto/",
+     "data": "2016-05-05"
+    },
+    {
+     "veiculo": "Congresso em Foco",
+     "url": "https://www.congressoemfoco.com.br/noticia/7556/alexandre-de-moraes-concede-liberdade-provisoria-a-valdemar",
+     "data": "2024-02-10"
+    }
+   ],
+   "ressalva": "Flávio não é citado no caso. Valdemar não foi denunciado."
+  },
+  {
    "id": "make-up",
    "nome": "Emendas do Dark Horse (Make Up)",
    "rotulo": "Operação Make Up",
@@ -1581,9 +2730,9 @@ window.FOZ = {
      "relacao": "roteirista e produtor-executivo de 'Dark Horse', o filme sobre Jair Bolsonaro para o qual Flávio pediu recursos a Vorcaro",
      "status_de": "alvo de buscas na Make Up; a PGR sugeriu à PF que apure proposições dele e de Flávio que possam ter beneficiado o Master; não denunciado",
      "fonte": {
-      "veiculo": "Agência Brasil",
-      "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2026-09/mario-frias-e-produtora-de-dark-horse-sao-alvos-de-operacao-da-pf",
-      "data": "2026-09-10"
+      "veiculo": "Poder360",
+      "url": "https://www.poder360.com.br/poder-justica/pgr-suspeita-que-flavio-atuou-no-senado-em-defesa-de-vorcaro/",
+      "data": "2026-09-11"
      }
     }
    ],
@@ -1623,7 +2772,60 @@ window.FOZ = {
      "trecho": "autorizou a abertura de inquérito para investigar o senador"
     }
    ],
-   "ressalva": "Ele não é alvo da Make Up. A frase de Dino sobre 'uma única organização criminosa' trata de verbas públicas; a ligação com os recursos de Vorcaro é leitura da imprensa sobre a decisão."
+   "ressalva": "Ele não é alvo da Make Up e chamou a operação de 'tentativa de interferência política'. A frase de Dino sobre 'uma única organização criminosa' trata de verbas públicas; a ligação com os recursos de Vorcaro é leitura da imprensa sobre a decisão."
+  },
+  {
+   "id": "ceperj-castro",
+   "nome": "Folha secreta da Ceperj",
+   "rotulo": "Ceperj (Castro)",
+   "faixa": "entorno",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "Não é parte. Castro era pré-candidato ao Senado pelo PL na chapa de Flávio até maio de 2026 e, segundo a CNN, vai atuar pela eleição de Flávio nos municípios fluminenses. A palavra final sobre o substituto seria de Flávio, com aval de Jair.",
+   "operacao": "AIJE no TSE (Ceperj/Uerj)",
+   "periodo": "2022–2026",
+   "resumo": "Em 24/03/2026, o TSE condenou Cláudio Castro (PL) por abuso de poder político e econômico nas eleições de 2022, por contratações temporárias sem amparo legal e repasses na Ceperj e na Uerj. Ele ficou inelegível até 2030, e o TSE rejeitou os recursos em 02/06/2026. Segundo a Folha, citada pela BBC, o MP encontrou saques em espécie que somam mais de R$ 240 milhões. Castro era pré-candidato ao Senado na chapa de Flávio e desistiu em 28/05/2026; segue como articulador do PL, com salário de R$ 38 mil acertado em abril.",
+   "cadeia": [
+    {
+     "de": "Contratações da Ceperj e da Uerj (2022)",
+     "para": "Cláudio Castro",
+     "relacao": "Segundo o TSE, uso indevido da máquina pública com potencial de desequilibrar a eleição de 2022.",
+     "status_de": "Julgadas pelo TSE em 24/03/2026: condenação por abuso de poder, por maioria (Nunes Marques e André Mendonça vencidos)",
+     "fonte": {
+      "veiculo": "BBC News Brasil",
+      "url": "https://www.bbc.com/portuguese/articles/cqj8z4zydy5o",
+      "data": "2026-03-24"
+     }
+    },
+    {
+     "de": "Cláudio Castro",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Ex-governador do RJ pelo PL. Foi pré-candidato ao Senado na chapa de Flávio até comunicar a desistência a Valdemar em 28/05/2026. Segue como articulador do PL, com salário de R$ 38 mil.",
+     "status_de": "Inelegível até 2030 por condenação eleitoral; alvo de operações da PF em 2026 por suspeita de favorecimento ao grupo Refit e de ligação com Daniel Vorcaro; nega",
+     "fonte": {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/blogs/jussara-soares/eleicoes/fora-do-palanque-castro-acerta-salario-de-r-38-mil-como-articulador-do-pl/",
+      "data": "2026-06-01"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/tse-rejeita-recursos-de-castro-e-mantem-inelegibilidade-de-ex-governador/",
+     "data": "2026-06-02"
+    },
+    {
+     "veiculo": "BBC News Brasil",
+     "url": "https://www.bbc.com/portuguese/articles/cqj8z4zydy5o",
+     "data": "2026-03-24"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/blogs/jussara-soares/eleicoes/fora-do-palanque-castro-acerta-salario-de-r-38-mil-como-articulador-do-pl/",
+     "data": "2026-06-01"
+    }
+   ],
+   "ressalva": "A condenação de Castro é eleitoral (inelegibilidade), não criminal. Flávio não é parte."
   },
   {
    "id": "inss-willer",
@@ -1631,7 +2833,7 @@ window.FOZ = {
    "rotulo": "INSS: Willer Tomaz",
    "faixa": "entorno",
    "gravidade": "investigado_na_cadeia",
-   "status_flavio": "Não é investigado na Operação Sem Desconto. A ligação é a amizade com Willer Tomaz. Em 26/08/2026, deputados da oposição pediram à PF que cruzasse dados dele; não há notícia de investigação aberta a partir desse pedido.",
+   "status_flavio": "Não é investigado na Operação Sem Desconto. A ligação é a amizade com Willer Tomaz. Em 26/08/2026, deputados federais pediram à PF que cruzasse dados dele; não há notícia de investigação aberta a partir desse pedido. O gabinete dele diz que a amizade com Tomaz é antiga e legítima e que 'qualquer tentativa de insinuar irregularidade a partir dessa afinidade pessoal é mera ilação'.",
    "operacao": "Operação Sem Desconto (PF/CGU)",
    "periodo": "2019–2026",
    "resumo": "Descontos associativos indevidos em aposentadorias e pensões atingiram mais de 4,3 milhões de beneficiários entre 2019 e 2024, com prejuízo estimado em R$ 2 bilhões. Na fase de 04/08/2026, a PF fez buscas contra o advogado Willer Tomaz, que ela descreve como um 'hub financeiro, patrimonial e logístico' a serviço do senador Weverton Rocha (PDT-MA). Segundo a PF, cerca de R$ 11 milhões saíram de empresas ligadas a Tomaz para a mulher do senador. Flávio não é alvo.",
@@ -1640,7 +2842,7 @@ window.FOZ = {
     {
      "de": "Fraude no INSS",
      "para": "Willer Tomaz",
-     "relacao": "Alvo de busca e apreensão na fase de 04/08/2026. A PF o descreve como 'hub financeiro, patrimonial e logístico' a serviço de Weverton Rocha e aponta cerca de R$ 11 mi saídos de empresas ligadas a ele para Samya Rocha, mulher do senador.",
+     "relacao": "Alvo de busca e apreensão na fase de 04/08/2026. A PF o descreve como 'hub financeiro, patrimonial e logístico' a serviço de Weverton Rocha e aponta cerca de R$ 11 mi saídos de empresas ligadas a ele para a mulher do senador.",
      "status_de": "Operação em curso no STF. Weverton Rocha é investigado.",
      "fonte": {
       "veiculo": "Poder360",
@@ -1701,6 +2903,81 @@ window.FOZ = {
    "ressalva": "Flávio não é alvo da operação. A defesa de Tomaz diz que ele não é investigado e que as viagens foram pagas com recursos próprios."
   },
   {
+   "id": "hospitais-federais-rj",
+   "nome": "Hospitais federais do Rio",
+   "rotulo": "Hospitais federais",
+   "faixa": "entorno",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "Não é investigado. A ligação com os nomeados vem de reportagem (O Globo) e do grupo de trabalho da CPI da Pandemia. O relatório final da CPI não incluiu esses gestores.",
+   "operacao": "Operação Clava Forte (PF, out/2021)",
+   "periodo": "2019 – 2022",
+   "resumo": "Em ago/2019, O Globo relatou trocas de diretores em hospitais federais do Rio 'chanceladas' por Flávio e conduzidas por Marcelo Lamberti. Em 2022 afirmou que os três ex-superintendentes do Ministério da Saúde no RJ e Lamberti estavam 'na cota de Flávio'. Um deles, o coronel George Divério, foi exonerado em 26/05/2021 e alvo de buscas da PF em 27/10/2021 por contratação sem licitação de R$ 20 milhões. A área técnica do TCU apontou quase R$ 100 milhões em contratos sem licitação no Hospital Federal de Bonsucesso entre 2019 e 2021, cerca de 70% dos gastos.",
+   "cadeia": [
+    {
+     "de": "George da Silva Divério (coronel da reserva, superintendente do Ministério da Saúde no RJ de jul/2020 a mai/2021)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Segundo O Globo (2022), estava entre os ex-superintendentes na cota de Flávio. Foi nomeado formalmente pelo ministro Eduardo Pazuello.",
+     "status_de": "Alvo de busca e apreensão na Operação Clava Forte (PF, 27/10/2021). Os investigados podem responder por contratação direta ilegal e frustração do caráter competitivo de licitação. O GT da CPI o apontou como responsável. À CNN (15/10/2021), disse que presta todas as informações às autoridades desde que, 'por vontade própria', cancelou os contratos.",
+     "fonte": {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/cpi-da-pandemia-aponta-4-responsaveis-por-irregularidades-em-hospitais-federais-do-rj/",
+      "data": "2021-10-15"
+     }
+    },
+    {
+     "de": "Marcelo Lamberti (coordenador-geral dos hospitais federais no RJ)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "O Globo o descreve como prestigiado junto ao senador. Ele reconhece manter contato com emissários de Flávio. Participou de reunião com Flávio e o ministro Mandetta em 28/05/2019, cerca de duas semanas antes de ser nomeado diretor de programas. Pediu nomeações que diretores dos hospitais do Andaraí e de Bonsucesso recusaram.",
+     "status_de": "O GT da CPI o apontou em out/2021 como um dos quatro responsáveis por irregularidades. Sem ação judicial conhecida.",
+     "fonte": {
+      "veiculo": "O Globo",
+      "url": "https://oglobo.globo.com/rio/chanceladas-por-flavio-bolsonaro-trocas-em-hospitais-federais-no-rio-geram-controversia-23891454",
+      "data": "2019-08-21"
+     }
+    },
+    {
+     "de": "Hospital Federal de Bonsucesso",
+     "para": "Flávio Bolsonaro",
+     "relacao": "O Globo (blog Malu Gaspar) descreve o hospital como 'feudo político' de Flávio.",
+     "status_de": "Relatório técnico do TCU (2022) aponta quase R$ 100 milhões em contratos sem licitação entre 2019 e 2021.",
+     "fonte": {
+      "veiculo": "O Globo (blog Malu Gaspar)",
+      "url": "https://oglobo.globo.com/blogs/malu-gaspar/post/2022/08/tcu-apura-irregularidades-em-hospital-federal-do-rio-sob-influencia-de-flavio-bolsonaro.ghtml",
+      "data": "2022-08-11"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "O Globo",
+     "url": "https://oglobo.globo.com/rio/chanceladas-por-flavio-bolsonaro-trocas-em-hospitais-federais-no-rio-geram-controversia-23891454",
+     "data": "2019-08-21"
+    },
+    {
+     "veiculo": "O Globo (blog Malu Gaspar)",
+     "url": "https://oglobo.globo.com/blogs/malu-gaspar/post/2022/08/tcu-apura-irregularidades-em-hospital-federal-do-rio-sob-influencia-de-flavio-bolsonaro.ghtml",
+     "data": "2022-08-11"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/cpi-da-pandemia-gt-que-investiga-hospitais-federais-do-rio-e-convoca-dirigentes/",
+     "data": "2021-08-04"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/cpi-da-pandemia-aponta-4-responsaveis-por-irregularidades-em-hospitais-federais-do-rj/",
+     "data": "2021-10-15",
+     "trecho": "GT aponta Divério, Jonas Roza, Lamberti e Joabe de Oliveira; contratos da superintendência somam R$ 28,8 mi."
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/nacional/pf-faz-buscas-para-apurar-fraudes-na-superintendencia-do-ministerio-da-saude-no-rio/",
+     "data": "2021-10-27"
+    }
+   ],
+   "ressalva": "A ligação dos nomeados com Flávio vem de reportagem do Globo e do grupo de trabalho da CPI. O relatório final da CPI não incluiu esses gestores."
+  },
+  {
    "id": "sarasvati",
    "nome": "Obras em escolas (Sarasvati)",
    "rotulo": "Obras em escolas",
@@ -1748,7 +3025,7 @@ window.FOZ = {
      "trecho": "candidato investigado participa de barqueata com Flávio Bolsonaro em Angra"
     }
    ],
-   "ressalva": "Não há denúncia. A obra na casa de Jair em Angra aparece num contrato não assinado."
+   "ressalva": "Não há denúncia, e Araújo não foi indiciado. A obra na casa de Jair em Angra aparece num contrato não assinado; Jair diz que pagou a reforma por Pix. Procurados pela Pública, Araújo e Flávio não responderam. Araújo é o mesmo empresário do rio da PEC das Praias."
   },
   {
    "id": "sem-refino",
@@ -1824,5 +3101,9 @@ window.FOZ = {
    ],
    "ressalva": "Castro nega irregularidades e não foi denunciado. Flávio não é investigado neste caso."
   }
- ]
+ ],
+ "redireciona": {
+  "balcao-mec": null,
+  "abin-paralela": "abin-defesa-rachadinha"
+ }
 };

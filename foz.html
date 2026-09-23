@@ -125,7 +125,7 @@ h2.sec2::before{content:"// "; color:var(--cinza2)}
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
 <script src="data/dados.js?v=set2026i"></script>
-<script src="data/foz.js?v=1"></script>
+<script src="data/foz.js?v=2"></script>
 <script>
 (function(){
 'use strict';
@@ -141,7 +141,7 @@ const FAIXAS = {
   entorno:  { nome:'O entorno',  desc:'por amigos, aliados e financiadores', curto:'pelo entorno' },
   familia:  { nome:'A família',  desc:'pelo pai e pelos irmãos',             curto:'pela família' },
   gabinete: { nome:'O gabinete', desc:'por quem trabalhou para ele',          curto:'pelo gabinete' },
-  direto:   { nome:'Ele mesmo',  desc:'em que ele é investigado, foi denunciado ou é parte', curto:'com ele no centro' },
+  direto:   { nome:'Ele mesmo',  desc:'o que ele fez, disse ou em que é investigado', curto:'com ele no centro' },
 };
 const ORDEM_RIO = ['entorno','familia','gabinete','direto'];      /* de cima (longe) para baixo (perto) */
 const ORDEM_BACIA = ['entorno','familia','direto','gabinete'];    /* da esquerda para a direita */
@@ -451,7 +451,8 @@ let fotoFlavio = null;
 /* ---------- arranque ---------- */
 function tudo(){ cabecalho(); bacia(); rio(); }
 tudo();
-const h = decodeURIComponent((location.hash || '').slice(1));
+const h0 = decodeURIComponent((location.hash || '').slice(1));
+const h = TODOS.some(e => e.id === h0) ? h0 : ((FOZ.redireciona || {})[h0] || '');   /* rio fundido a outro continua abrindo */
 if (h && TODOS.some(e => e.id === h)) setTimeout(() => { irPara(h); abre(h); }, 300);
 let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { bacia(); rio(); }, 150); });
 })();
