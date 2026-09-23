@@ -30,6 +30,24 @@
   const itensDoTema = id => D.itens.filter(i=>i.tema===id);
   const itensDaPessoa = pid => D.itens.filter(i=>(i.pessoas||[]).includes(pid));
 
+  // A Foz (data/foz.js): por quais rios cada nome passa. Só vale o que a cadeia registra
+  // (de_id/para_id de cada elo); nome fora da cadeia não ganha link.
+  const FOZ = window.FOZ || {escandalos:[]};
+  const fozPorNome = {};
+  (FOZ.escandalos||[]).forEach(e=> (e.cadeia||[]).forEach(l=> [l.de_id, l.para_id].forEach(id=>{
+    if(!id) return; const a = fozPorNome[id] || (fozPorNome[id]=[]); if(!a.includes(e)) a.push(e);
+  })));
+  function fozHTML(id){
+    const n = nodeById[id]; if(!n) return '';
+    if(id==='flavio'){
+      const k = (FOZ.escandalos||[]).length;
+      return k ? `<div class="foz-liga"><a href="foz.html">A Foz: ${k} escândalos chegam a ele →</a></div>` : '';
+    }
+    const es = fozPorNome[id] || []; if(!es.length) return '';
+    return `<div class="foz-liga"><div class="fl-k">Nos escândalos: ${es.length} ${es.length===1?'rio passa':'rios passam'} por ${esc(n.nome)}</div>` +
+      es.map(e=>`<a href="foz.html#${encodeURIComponent(e.id)}">${esc(e.rotulo||e.nome)} →</a>`).join('') + `</div>`;
+  }
+
   // gráfico de patrimônio declarado ao TSE (dados abertos oficiais)
   const fmtMi = v => 'R$ ' + (v/1e6).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' mi';
   function patrimonioChartHTML(){
@@ -62,21 +80,8 @@
   /* ---------------- Router ---------------- */
   const VIEWS=['recente','arquivo','rede','cronologia','noticias','chat'];
   // Regra: nenhum id de elemento pode ter o nome de uma view. Se tiver, o navegador
-  // rola até ele ao abrir index.html#<view> (era a "faixa preta" do #recente).
+  // rola até ele ao abrir drive.html#<view> (era a "faixa preta" do #recente).
   try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; }catch(e){}
-  // Faixa de abas no celular: rola até a aba ativa sem cortar a primeira visível.
-  // Encosta a faixa no começo de uma aba (nunca no meio) e deixa a ativa inteira
-  // antes do degradê da borda direita.
-  function mostraAbaAtiva(){
-    const t=$('.site-header .tabs'), a=t&&t.querySelector('.tab.active');
-    if(!t || !a || t.scrollWidth<=t.clientWidth+1) return;
-    const base=t.getBoundingClientRect().left - t.scrollLeft;
-    const pos=el=> el.getBoundingClientRect().left - base;
-    const fimA=pos(a)+a.offsetWidth, util=t.clientWidth-40;
-    let x=0;
-    if(fimA>util){ for(const tb of $$('.tab',t)){ const s=Math.max(0,pos(tb)-6); if(fimA-s<=util || tb===a){ x=s; break; } } }
-    t.scrollLeft=x;
-  }
   // hist==='push': troca pedida pela pessoa (aba, link, cartão) → vira entrada no
   // histórico, e o "voltar" do Android volta à view anterior em vez de sair do site.
   // Sem hist: só mostra (abertura da página, voltar/avançar); a URL não é reescrita.
@@ -90,15 +95,15 @@
       }catch(e){}
     }
     $$('.view').forEach(v=>v.classList.toggle('active', v===alvo));
-    $$('.tab').forEach(t=>t.classList.toggle('active', t.dataset.view===name));
-    mostraAbaAtiva();
+    // o cabeçalho do rio (assets/nav.js): a teia é o trecho 1; as outras views são margens
+    document.body.dataset.trecho = name==='rede' ? '1' : 'm';
+    if(window.BDNav) window.BDNav.atualiza();
     if(name==='rede') Grafo.ensure();
     if(name==='noticias') Noticias.ensure();
     if(name==='recente') renderRecente();
     if(mudou) window.scrollTo(0,0);
     return mudou;
   }
-  $$('.tab[data-view]').forEach(t=> t.addEventListener('click', ()=>showView(t.dataset.view,'push')));
 
   /* ---------------- Arquivo ---------------- */
   const arqGrid = $('#arquivo-grid');
@@ -262,6 +267,7 @@
       </header>
       <div class="body">
         <div class="block"><div class="lbl">${rotuloSit}</div><div class="meta-row">${flags||'<span class="src">—</span>'}</div>${n.status?`<div class="src" style="margin-top:6px">${esc(n.status)}${sf}</div>`:''}</div>
+        ${fozHTML(id)?`<div class="block">${fozHTML(id)}</div>`:''}
         <div class="block"><div class="lbl">Vínculos (${(g.edges||[]).filter(e=>e.de===id||e.para===id).length})</div><div class="vlist">${viz||'<div class="src">—</div>'}</div></div>
         ${its.length?`<div class="block"><div class="lbl">No arquivo (${its.length})</div><div class="vlist">${lista}</div></div>`:''}
       </div>`;
@@ -284,7 +290,7 @@
         <div class="block"><div class="lbl">1 · Fonte e status em tudo</div><div class="src">Cada registro traz fonte e o status jurídico correto: investigação ≠ denúncia ≠ processo ≠ anulado ≠ condenação. Acusação nunca é tratada como fato provado.</div></div>
         <div class="block"><div class="lbl">2 · Selo de procedência</div><div class="src">Cada fonte é classificada por nível: ${tierPip('primaria')} PRIMÁRIA (MP/STF/STJ/TSE/COAF/Senado), ${tierPip('referencia')} REFERÊNCIA (imprensa profissional), ${tierPip('agregador')} AGREGADOR, ${tierPip('blog')} BLOG/OPINIÃO. O "lastro" do item é o nível mais alto entre suas fontes.</div></div>
         <div class="block"><div class="lbl">3 · Sem condenação ≠ culpado</div><div class="src">Ex.: a rachadinha foi anulada/arquivada por STJ/STF — sem condenação, e o site diz isso. O Caso Master está em investigação.</div></div>
-        <div class="block"><div class="lbl">4 · Close Friends = proximidade</div><div class="src">A rede mostra só a roda de proximidade/favor do senador com gente suspeita. Quem o acusou/investigou/julgou e adversários políticos não entram. Sem dado privado / sem doxxing.</div></div>
+        <div class="block"><div class="lbl">4 · Close Friends = proximidade</div><div class="src">A rede mostra só a teia de proximidade/favor do senador com gente suspeita. Quem o acusou/investigou/julgou e adversários políticos não entram. Sem dado privado / sem doxxing.</div></div>
         <div class="block"><div class="lbl">5 · Dados oficiais</div><div class="src">Patrimônio (TSE) e atuação no Senado vêm de dados abertos oficiais — com o caminho de reprodução.</div></div>
         <div class="block"><div class="lbl">6 · Modo revisão</div><div class="src">As fontes seguem em conferência. Cada item linka a fonte para você <b>verificar por conta própria</b>.</div></div>
       </div>`;
@@ -437,7 +443,10 @@
         ctx.globalAlpha=1;
       });
     }
-    function loop(){ step(); draw(); raf=requestAnimationFrame(loop); }
+    // pausa com a view escondida ou o mapa fora da tela; volta no ensure() ou quando reaparece
+    let fora=false;
+    function loop(){ if(fora || !canvas.offsetParent){ raf=null; return; } step(); acompanha(); draw(); raf=requestAnimationFrame(loop); }
+    if(canvas && 'IntersectionObserver' in window) new IntersectionObserver(es=>{ fora=!es[es.length-1].isIntersecting; if(!fora && started && !raf) loop(); }).observe(canvas);
     function nodeAt(mx,my){ for(let i=nodes.length-1;i>=0;i--){ const n=nodes[i]; const dx=mx-SX(n),dy=my-SY(n); const rr=Math.max(6,n.r*cam.s)+9; if(dx*dx+dy*dy<=rr*rr) return n; } return null; }
 
     function fitView(){
@@ -508,6 +517,7 @@
       painel.innerHTML = `<button class="backlink" id="ov-back">← placar</button>
         <h3>${esc(n.nome)}</h3><div class="papel">${esc(n.papel||'')}${n.status?` · ${esc(n.status)}${sitFonte(n)}`:''}</div>
         <button class="backlink" id="ov-ficha" style="margin:10px 0 0">» ficha completa</button>
+        ${fozHTML(id)}
         <div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase">Vínculos (${edges.filter(e=>e.de===id||e.para===id).length})</div>${viz||'<div class="ph">—</div>'}</div>
         ${its.length?`<div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase;margin-top:6px">No arquivo</div>${lista}</div>`:''}`;
       $('#ov-back').addEventListener('click', showOverview);
@@ -516,6 +526,18 @@
       $$('.vrow[data-node]', painel).forEach(r=> r.addEventListener('click', ()=>select(r.dataset.node)));
     }
     function select(id){ filterSet=null; filterCat=null; sel=id; alpha=Math.max(alpha,.4); painelPessoa(id); }
+    // centraliza um nome (drive.html?p=<id>#rede). O layout ainda assenta por um instante
+    // depois da seleção; a câmera acompanha o nó por 2 s ou até a pessoa mexer no mapa.
+    let segue=null, segueAte=0;
+    function centra(id){
+      const n = nodes.find(x=>x.id===id); if(!n || !W) return;
+      cam.s = Math.max(cam.s, 1); segue = n; segueAte = performance.now()+2000; acompanha();
+    }
+    function acompanha(){
+      if(!segue) return;
+      if(performance.now()>segueAte){ segue=null; return; }
+      cam.tx = W/2 - segue.wx*cam.s; cam.ty = H/2 - segue.wy*cam.s;
+    }
 
     // No toque, o mapa começa "solto": um dedo rola a página por cima dele e o toque
     // simples ainda abre a pessoa. "mover o mapa" liga arrastar e pinçar (touch-action:none
@@ -532,6 +554,7 @@
       const pts = new Map(); let pinch=null;
       const pos = e => { const r=canvas.getBoundingClientRect(); return {mx:e.clientX-r.left, my:e.clientY-r.top}; };
       canvas.addEventListener('pointerdown', e=>{
+        segue=null;
         // modo solto no toque: sem captura, para o navegador poder rolar a página
         if(toque(e) && !movendo){ const {mx,my}=pos(e); downPos={mx,my}; last={mx,my}; moved=0; drag=null; panning=false; return; }
         canvas.setPointerCapture(e.pointerId); pts.set(e.pointerId, pos(e));
@@ -564,7 +587,7 @@
         drag=null; panning=false; downPos=null;
       };
       canvas.addEventListener('pointerup', fim); canvas.addEventListener('pointercancel', fim);
-      canvas.addEventListener('wheel', e=>{ e.preventDefault(); const r=canvas.getBoundingClientRect(); const mx=e.clientX-r.left,my=e.clientY-r.top;
+      canvas.addEventListener('wheel', e=>{ e.preventDefault(); segue=null; const r=canvas.getBoundingClientRect(); const mx=e.clientX-r.left,my=e.clientY-r.top;
         const f=e.deltaY<0?1.12:0.89; const ns=Math.max(0.25, Math.min(3, cam.s*f));
         cam.tx = mx - (mx-cam.tx)*(ns/cam.s); cam.ty = my - (my-cam.ty)*(ns/cam.s); cam.s=ns; }, {passive:false});
       const fitBtn = $('#grafo-fit'); if(fitBtn) fitBtn.addEventListener('click', ()=>{ showOverview(); fitView(); });
@@ -602,12 +625,12 @@
         const im=new Image(); im.onload=()=>{ fotoImg[id]=im; alpha=Math.max(alpha,.1); }; im.src=url; });
     }
     return {
-      ensure(){ if(started){ resize(); return; } started=true; resize(); build(); bind();
+      ensure(){ if(started){ resize(); if(!raf) loop(); return; } started=true; resize(); build(); bind();
         for(let i=0;i<600;i++) step();        // pré-assenta o layout
         fitView(); canvas.style.cursor='grab';
         showOverview(); renderLegenda(); loop(); carregarFotos();
       },
-      focus(id){ this.ensure(); select(id); },
+      focus(id, centrar){ this.ensure(); select(id); if(centrar) centra(id); },
       preloadFotos(){ try{ carregarFotos(); }catch(e){} }
     };
   })();
@@ -798,10 +821,9 @@
   }
   function renderRecente(){
     const el = $('#rec-lista'); if(!el) return;
-    const ev = recentes(); const fatos = ev.filter(e=>e.tipo==='fato').length;
+    const ev = recentes();
     const cap = D.noticiasCaptura ? fmtDia(D.noticiasCaptura) : '';
     $('#rec-quando') && ($('#rec-quando').textContent = cap ? `Atualizado em ${cap}.` : '');
-    const n = $('#rec-n'); if(n) n.textContent = fatos ? String(fatos) : '';
     if(!ev.length){ el.innerHTML = '<div class="ph">Nada novo nos últimos dias.</div>'; return; }
     const dias = {}; ev.forEach(e=>{ (dias[e.k]=dias[e.k]||[]).push(e); });
     el.innerHTML = Object.keys(dias).sort().reverse().map(k=>{
@@ -822,11 +844,8 @@
   $$('.rec-mais [data-go]').forEach(b=> b.addEventListener('click', ()=> showView(b.dataset.go,'push')));
 
   /* ---------------- init ---------------- */
-  function medeHeader(){ const h=$('.site-header'); if(h) document.documentElement.style.setProperty('--hdr', h.offsetHeight+'px'); }
-  window.addEventListener('resize', medeHeader);
+  // o cabeçalho e a variável --hdr são do assets/nav.js
   function init(){
-    medeHeader();
-    $('#meta-sub') && ($('#meta-sub').textContent = D.meta.subtitulo||'');
     if(D.meta && D.meta.revisar===false) $('#revisar') && ($('#revisar').style.display='none');
     Grafo.preloadFotos();
     renderTemas(); renderTimeline();
@@ -840,12 +859,17 @@
     }));
     addMsg('bot', `Olá. Sou o <b>FlávioGPT</b>. Respondo com base no acervo documentado do BolsoDrive — sempre com status e fonte. Sobre o que quer saber?`);
     renderRecente();
-    // index.html?q=termo#arquivo abre o Arquivo com a busca preenchida (links vindos da Foz)
+    // drive.html?q=termo#arquivo abre o Arquivo com a busca preenchida (links vindos da Foz)
     const q0 = new URLSearchParams(location.search).get('q');
     if(q0 && busca){ busca.value = q0; setTimeout(()=> busca.dispatchEvent(new Event('input')), 0); }
-    // lê o hash sem reescrever a URL (index.html, index.html#arquivo e ?q=a|b#arquivo seguem como vieram)
-    const h = (location.hash||'#recente').slice(1);
-    showView(VIEWS.includes(h)?h:'recente');
+    // lê o hash sem reescrever a URL (drive.html, drive.html#arquivo e ?q=a|b#arquivo seguem como vieram)
+    // drive.html?p=<id>#rede abre a teia com aquele nome no centro (links da Foz)
+    const p0 = new URLSearchParams(location.search).get('p');
+    const pessoa = p0 && nodeById[p0] ? p0 : null;
+    const h = (location.hash||'').slice(1);
+    const v0 = VIEWS.includes(h) ? h : (pessoa ? 'rede' : 'recente');
+    showView(v0);
+    if(pessoa && v0==='rede') Grafo.focus(pessoa, true);
     // voltar/avançar (popstate) e hash digitado ou clicado (hashchange): mostra a view e
     // devolve a rolagem guardada naquela entrada do histórico
     const sync = ()=>{

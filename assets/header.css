@@ -1,54 +1,153 @@
-/* Cabeçalho único do BolsoDrive — o mesmo em todas as seções.
-   Carregar por último, em toda página. */
+/* BOLSODRIVE · cabeçalho do rio (montado por assets/nav.js). Carregar por último.
+   Celular: uma linha de 48 px (marca, trecho atual, [ RIO ]) + a linha do curso de 8 px.
+   Desktop (≥ 900 px): os 4 trechos em linha como [ ABAS ] e as margens num menu.
+   Classes nv-* para não herdar as regras antigas de .hrow/.brand/.tab do app.css. */
+:root{--nv-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
 .site-header{
   position:sticky; top:0; z-index:50; background:#070a07;
   border-bottom:1px solid rgba(116,255,150,.18);
+  padding-top:env(safe-area-inset-top);
 }
-.site-header .hrow{
-  max-width:1180px; margin:0 auto; padding:10px 16px 0;
-  display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+.site-header:empty{min-height:57px}
+.nv-row{
+  max-width:1180px; margin:0 auto; height:48px; padding:0 4px 0 16px;
+  display:flex; align-items:center; gap:8px;
 }
-.site-header .brand{display:flex; flex-direction:column; gap:1px; min-width:0; flex:none; max-width:100%}
-.site-header .brand .mark{
-  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  font-size:15px; font-weight:700; color:#ffb02e; white-space:nowrap; letter-spacing:.02em; text-decoration:none;
+
+/* marca: > BOLSODRIVE e a tag embaixo */
+.nv-mark{
+  flex:none; display:flex; flex-direction:column; justify-content:center; min-height:44px;
+  text-decoration:none!important; font-family:var(--nv-mono); line-height:1.15;
 }
-.site-header .brand .mark::before{content:"> "; color:#5c8a63}
-.site-header .brand .tag{
-  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  font-size:11px; color:#5c8a63; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%;
+.nv-mark .nv-m{font-size:15px; font-weight:700; color:#ffb02e; letter-spacing:.02em; white-space:nowrap}
+.nv-mark .nv-m::before{content:">\00a0"; color:#5c8a63}
+.nv-mark .nv-tag{font-size:10px; color:#5c8a63; white-space:nowrap}
+.nv-mark .nv-tag::before{content:"//\00a0"}
+@media (max-width:379px){ .nv-row .nv-mark .nv-tag{display:none} .nv-aqui b{font-size:11px} .nv-row .nv-bt{padding:0 10px} }
+
+/* trecho atual (celular) */
+.nv-aqui{
+  flex:1; min-width:0; display:flex; flex-direction:column; align-items:flex-end; justify-content:center;
+  font-family:var(--nv-mono); line-height:1.2; text-transform:uppercase; text-align:right;
 }
-.site-header .brand .tag::before{content:"// "}
-@media (max-width:599px){ .site-header .brand .tag{display:none} }
-.site-header .tabs{
-  display:flex; flex-wrap:nowrap; gap:6px; margin:8px -16px 0; padding:0 16px 8px;
-  overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; width:calc(100% + 32px);
+.nv-aqui small{font-size:10.5px; letter-spacing:.04em; color:#5c8a63; white-space:nowrap}
+.nv-aqui b{max-width:100%; font-size:12px; font-weight:700; letter-spacing:0; color:#d8efdd; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+/* botão [ RIO ] / [ MARGENS ] */
+.nv-bt,.nv-fecha{
+  flex:none; min-height:44px; min-width:44px; padding:0 12px;
+  font-family:var(--nv-mono); font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap;
+  color:#ffb02e; background:transparent; border:1px solid rgba(116,255,150,.32); border-radius:4px; cursor:pointer;
 }
-.site-header .tabs::-webkit-scrollbar{display:none}
-/* celular: a faixa rola de lado. O degradê na borda direita avisa que tem mais aba;
-   o espaçador final deixa a última aba sair de baixo do degradê no fim da rolagem. */
-@media (max-width:899px){
-  .site-header .tabs{
-    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);
-            mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);
-  }
-  .site-header .tabs::after{content:""; flex:0 0 28px}
+.nv-bt::before,.nv-fecha::before{content:"[\00a0"} .nv-bt::after,.nv-fecha::after{content:"\00a0]"}
+.nv-bt:hover,.nv-fecha:hover{border-color:#ffb02e}
+.nv-bt[aria-expanded="true"]{background:#ffb02e; color:#120c00; border-color:#ffb02e}
+.nv-bt .nv-bt-d{display:none}
+.nv-bt:focus-visible,.nv-fecha:focus-visible,.nv-mark:focus-visible,.nv-trechos a:focus-visible,
+.nv-mapa a:focus-visible,.nv-segue a:focus-visible{outline:2px solid #ffb02e; outline-offset:2px}
+
+/* os 4 trechos em linha: só no desktop */
+.nv-trechos{display:none}
+
+/* a linha do curso: 4 estações, da nascente à foz */
+.nv-curso{position:relative; height:8px; max-width:1180px; margin:0 auto}
+.nv-curso::before{content:""; position:absolute; left:16px; right:16px; top:3px; height:2px; background:rgba(116,255,150,.18)}
+.nv-feito{position:absolute; left:16px; top:3px; height:2px; width:calc(100% - 32px); background:#7df59a; transform-origin:0 50%; transform:scaleX(0)}
+.nv-curso i{position:absolute; top:1px; width:6px; height:6px; margin-left:-3px; border-radius:50%; background:#4f6b51}
+.nv-curso i.ok{background:#7df59a}
+.nv-curso i.agora{background:#ffb02e; box-shadow:0 0 0 3px rgba(255,176,46,.25)}
+.nv-curso.margem::before{background:rgba(116,255,150,.09)}
+.nv-curso.margem i{background:#2c3d2e}
+.nv-curso.margem i.volta{background:#070a07; box-shadow:inset 0 0 0 1.5px #ffb02e}
+
+/* ---------- o mapa do rio ---------- */
+html.nv-trava,html.nv-trava body{overflow:hidden}
+.nv-mapa{
+  position:fixed; inset:0; z-index:70; background:#070a07; color:#d8efdd;
+  overflow:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
 }
-.site-header .tab{
-  flex:none; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  font-size:12px; font-weight:700; letter-spacing:.02em; white-space:nowrap; text-transform:uppercase;
-  padding:8px 10px; border:1px solid rgba(116,255,150,.18); border-radius:4px;
-  background:transparent; color:#86a58c; text-decoration:none; cursor:pointer; line-height:1;
+.nv-mapa[hidden]{display:none}
+.nv-mapa-in{max-width:560px; margin:0 auto; padding:calc(4px + env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom))}
+.nv-topo{display:flex; justify-content:space-between; align-items:center; gap:10px; height:48px; margin:0 -12px 4px 0}
+.nv-k{font-family:var(--nv-mono); font-size:12px; letter-spacing:.08em; color:#5c8a63; text-transform:uppercase; margin:18px 0 6px}
+.nv-k::before{content:"//\00a0"}
+
+.nv-lista{list-style:none; margin:0; padding:0 0 0 24px; position:relative}
+.nv-lista::before{content:""; position:absolute; left:7px; top:22px; bottom:26px; width:2px; background:linear-gradient(#4f6b51,#7df59a 60%,#ffb02e)}
+.nv-lista li{position:relative}
+.nv-lista li::before{content:""; position:absolute; left:-22px; top:21px; width:10px; height:10px; border-radius:50%; background:#070a07; border:2px solid #4f6b51}
+.nv-lista li.ok::before{background:#7df59a; border-color:#7df59a}
+.nv-lista li.agora::before{background:#ffb02e; border-color:#ffb02e; box-shadow:0 0 0 3px rgba(255,176,46,.25)}
+.nv-lista li.volta::before{border-color:#ffb02e}
+.nv-lista a{display:block; min-height:56px; padding:12px 0 12px 6px; text-decoration:none!important; color:#d8efdd; border-bottom:1px solid rgba(116,255,150,.12)}
+.nv-lista a .nv-n{font-family:var(--nv-mono); font-size:12px; color:#86a58c; margin-right:8px}
+.nv-lista a b{font-family:var(--nv-mono); font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.04em}
+.nv-lista a .nv-d{display:block; font-size:14px; line-height:1.35; color:#86a58c; margin-top:3px}
+.nv-lista a[aria-current] b{color:#ffb02e}
+.nv-lista a:hover b{color:#ffb02e}
+
+.nv-margens{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.nv-margens a{
+  display:flex; align-items:center; justify-content:space-between; gap:8px; min-height:44px; padding:0 10px;
+  font-family:var(--nv-mono); font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.02em;
+  color:#86a58c; text-decoration:none!important; border:1px solid rgba(116,255,150,.18); border-radius:4px;
 }
-.site-header .tab::before{content:"[ "} .site-header .tab::after{content:" ]"}
-.site-header .tab .ico{display:none}
-.site-header .tab:hover{color:#d8efdd; border-color:rgba(116,255,150,.32)}
-.site-header .tab.active{color:#120c00; background:#ffb02e; border-color:#ffb02e}
+.nv-margens a span::before{content:"[\00a0"} .nv-margens a span::after{content:"\00a0]"}
+.nv-margens a:hover{color:#d8efdd; border-color:rgba(116,255,150,.32)}
+.nv-margens a[aria-current]{color:#ffb02e; border-color:#ffb02e}
+.nv-margens a:last-child:nth-child(odd){grid-column:1/-1}
+.nv-conta{flex:none; min-width:22px; padding:2px 6px; border-radius:999px; background:#ffb02e; color:#120c00; font-size:11px; text-align:center; line-height:1.3}
+.nv-nota{font-family:var(--nv-mono); font-size:12px; line-height:1.5; color:#5c8a63; margin:22px 0 0}
+
+/* ---------- siga o rio → próximo trecho (antes do rodapé) ---------- */
+.nv-segue{margin:36px 0 0}
+.nv-segue.solto{max-width:720px; margin:36px auto 0; padding:0 16px}
+.nv-segue a{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 12px; min-height:56px; padding:14px 16px;
+  background:#0e160e; border:1px solid rgba(116,255,150,.32); border-left:3px solid #7df59a; border-radius:4px;
+  color:#d8efdd; text-decoration:none!important;
+}
+.nv-segue a:hover{border-color:#ffb02e; border-left-color:#ffb02e}
+.nv-segue .nv-k2{font-family:var(--nv-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#7df59a}
+.nv-segue b{font-family:var(--nv-mono); font-size:16px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:#ffb02e}
+.nv-segue .nv-d{flex-basis:100%; font-size:14px; line-height:1.4; color:#86a58c; margin-top:2px}
+body.nv-na-margem .nv-segue a{border-left-color:#5c8a63}
+body.nv-na-margem .nv-segue .nv-k2{color:#86a58c}
+
+/* ---------- desktop ---------- */
 @media (min-width:900px){
-  .site-header .hrow{flex-wrap:nowrap; padding:8px 16px}
-  .site-header .tabs{margin:0; padding:0; width:auto; overflow:visible; flex:1; flex-wrap:wrap; justify-content:flex-end}
-  .site-header .tab{padding:7px 7px; font-size:11px; letter-spacing:0}
-  .site-header .brand{max-width:290px}
+  .nv-row{padding:0 16px; gap:16px}
+  .nv-aqui{display:none}
+  .nv-trechos{display:flex; flex:1; justify-content:flex-end; gap:6px; min-width:0}
+  .nv-trechos a{
+    flex:none; display:flex; align-items:center; min-height:34px; padding:0 9px;
+    font-family:var(--nv-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; white-space:nowrap;
+    color:#86a58c; text-decoration:none!important; border:1px solid rgba(116,255,150,.18); border-radius:4px;
+  }
+  .nv-trechos a::before{content:"[\00a0"} .nv-trechos a::after{content:"\00a0]"}
+  .nv-trechos a .nv-n{color:#4f6b51; margin-right:6px}
+  .nv-trechos a:hover{color:#d8efdd; border-color:rgba(116,255,150,.32)}
+  .nv-trechos a[aria-current]{background:#ffb02e; color:#120c00; border-color:#ffb02e}
+  .nv-trechos a[aria-current] .nv-n{color:#6b4a00}
+  .nv-bt{min-height:34px; font-size:11px; max-width:230px; overflow:hidden; text-overflow:ellipsis}
+  .nv-bt .nv-bt-m{display:none}
+  .nv-bt .nv-bt-d{display:inline}
+  .nv-bt.nv-bt-margem{border-color:#ffb02e}
+  /* menu das margens, ancorado ao botão */
+  .nv-mapa{
+    inset:auto; top:var(--hdr,57px); right:max(16px, calc((100vw - 1180px) / 2 + 16px)); width:340px;
+    max-height:calc(100vh - var(--hdr,57px) - 24px);
+    border:1px solid rgba(116,255,150,.32); border-top:0; border-radius:0 0 4px 4px;
+  }
+  .nv-mapa-in{padding:4px 14px 16px}
+  .nv-topo,.nv-sec-rio{display:none}
+  .nv-mapa .nv-k{margin-top:12px}
+  .nv-margens{grid-template-columns:1fr}
+  .nv-margens a:last-child:nth-child(odd){grid-column:auto}
+  .nv-nota{margin-top:14px}
+  .nv-segue b{font-size:17px}
 }
-.site-header .tab.hot{border-color:#ff5555; color:#ff7a7a}
-.site-header .tab.hot.active{background:#ff5555; border-color:#ff5555; color:#fff}
+@media (min-width:900px) and (max-width:1099px){ .nv-row .nv-mark .nv-tag{display:none} }
+@media (min-width:1100px){ .nv-trechos a{font-size:12px; padding:0 10px} .nv-bt{font-size:12px} }
+@media (min-width:900px) and (pointer:coarse){ .nv-trechos a,.nv-bt{min-height:44px} }

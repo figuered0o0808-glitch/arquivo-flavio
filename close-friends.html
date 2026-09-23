@@ -6,7 +6,7 @@
 <title>Close Friends — BolsoDrive</title>
 <meta name="description" content="As ligações diretas de Flávio Bolsonaro, uma pessoa por vez, com a situação de cada uma e a fonte de cada vínculo.">
 <link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=10">
+<link rel="stylesheet" href="assets/header.css?v=11">
 <style>
 /* busca */
 .busca{display:flex; gap:8px; margin:0 0 10px}
@@ -87,24 +87,9 @@ div.sat.some{opacity:0; pointer-events:none}
 .folha .it span{font-size:12px; color:var(--cinza); display:block}
 </style>
 </head>
-<body>
+<body data-trecho="m">
 
-<header class="site-header">
-  <div class="hrow">
-    <div class="brand"><a class="mark" href="index.html">BOLSODRIVE</a><span class="tag">um rio de escândalos</span></div>
-    <nav class="tabs">
-      <a class="tab hot" href="index.html#recente">Recentemente</a>
-      <a class="tab" href="index.html#arquivo">Arquivo</a>
-      <a class="tab active" href="index.html#rede">Close Friends</a>
-      <a class="tab" href="foz.html">A Foz</a>
-      <a class="tab" href="siga-o-dinheiro.html">Siga o dinheiro</a>
-      <a class="tab" href="quiz.html">Quiz</a>
-      <a class="tab" href="index.html#cronologia">Cronologia</a>
-      <a class="tab" href="index.html#noticias">Notícias</a>
-      <a class="tab" href="index.html#chat">FlávioGPT</a>
-    </nav>
-  </div>
-</header>
+<header class="site-header" data-nav></header>
 
 <div class="wrap">
   <h1 class="sec">Close Friends</h1>
@@ -140,7 +125,7 @@ div.sat.some{opacity:0; pointer-events:none}
 
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
-<script src="data/dados.js?v=set2026j"></script>
+<script src="data/dados.js?v=set2026l"></script>
 <script>
 (function(){
   const D = window.DOSSIE;
@@ -357,7 +342,7 @@ div.sat.some{opacity:0; pointer-events:none}
       vinculo +
       (n.status ? '<p class="sit">' + esc(n.status) + sf + '</p>' : '') +
       '<div class="acoes">' +
-        (its ? '<a class="sec" href="index.html#arquivo" target="_blank" rel="noopener">' + its + (its === 1 ? ' registro' : ' registros') + ' no arquivo</a>' : '') +
+        (its ? '<a class="sec" href="drive.html#arquivo" target="_blank" rel="noopener">' + its + (its === 1 ? ' registro' : ' registros') + ' no arquivo</a>' : '') +
       '</div>' +
       (!trilha && caminho.length === 1 ? '<p class="dica">Toque em alguém da órbita para ver como se liga a ele.</p>' : '');
   }
@@ -432,10 +417,6 @@ div.sat.some{opacity:0; pointer-events:none}
   let rt, lw = window.innerWidth; window.addEventListener('resize', () => { if (window.innerWidth === lw) return; lw = window.innerWidth; clearTimeout(rt); rt = setTimeout(render, 120); });
 })();
 </script>
-<script>/* aba ativa visível sem cortar a primeira da faixa; --hdr = altura real do cabeçalho */
-(function(){var h=document.querySelector('.site-header');if(h)document.documentElement.style.setProperty('--hdr',h.offsetHeight+'px');
-var t=document.querySelector('.site-header .tabs'),a=t&&t.querySelector('.tab.active');if(!a||t.scrollWidth<=t.clientWidth+1)return;
-var b=t.getBoundingClientRect().left-t.scrollLeft,p=function(e){return e.getBoundingClientRect().left-b;},f=p(a)+a.offsetWidth,u=t.clientWidth-40,x=0,l=t.querySelectorAll('.tab');
-if(f>u)for(var i=0;i<l.length;i++){var s=Math.max(0,p(l[i])-6);if(f-s<=u||l[i]===a){x=s;break;}}t.scrollLeft=x;})();</script>
+<script src="assets/nav.js?v=2"></script>
 </body>
 </html>

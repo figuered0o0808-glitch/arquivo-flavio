@@ -2,148 +2,966 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>/* links antigos do app (#recente, #arquivo, #rede, #cronologia, #noticias, #chat e ?q=) moram em drive.html */
+(function(){ var h = location.hash, s = location.search;
+  if (/^#(recente|arquivo|rede|cronologia|noticias|chat)\b/.test(h) || /[?&]q=/.test(s)) location.replace('drive.html' + s + h); })();</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>BOLSODRIVE: Um rio de escândalos · Flávio Bolsonaro</title>
-<meta name="description" content="BOLSODRIVE: um rio de escândalos. O registro público sobre o senador e candidato à Presidência Flávio Bolsonaro: 294 fatos, cada um com fonte clicável e status jurídico.">
+<meta name="description" content="BOLSODRIVE: um rio de escândalos. O registro público sobre o senador e candidato à Presidência Flávio Bolsonaro: os nomes em volta dele, o dinheiro e os escândalos, cada fato com fonte e status jurídico.">
+<meta name="theme-color" content="#070a07">
 
 <!-- Preview de link (WhatsApp, Telegram, X, Facebook). Se o endereço do site mudar, troque og:url e og:image. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="R$ 6,01 de pessoas físicas. R$ 42 milhões do partido.">
-<meta property="og:description" content="É assim que a campanha presidencial de Flávio Bolsonaro é financiada, segundo a prestação de contas ao TSE. Mais 293 fatos, todos com fonte.">
+<meta property="og:title" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
 <meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/">
-<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-bolsodrive.png">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="R$ 6,01 doados por pessoas físicas contra R$ 42 milhões do partido.">
+<meta property="og:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BOLSODRIVE: Um rio de escândalos">
+<meta name="twitter:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
+<meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 
-<link rel="stylesheet" href="assets/app.css?v=set2026j">
-<link rel="stylesheet" href="assets/header.css?v=10">
+<link rel="stylesheet" href="assets/base.css?v=4">
+<style>
+/* ===== A abertura: a nascente do rio =====
+   Primeira tela: a bacia (o site inteiro visto de cima, tudo descendo até a foto dele).
+   Rolando: três trechos atravessados por um rio só, que termina na foto dele; depois, as margens.
+   A água é canvas (assets/rio.js, o mesmo motor da Foz); texto, foto e portas são HTML. */
+html{scroll-padding-top:calc(var(--hdr,57px) + 6px)}
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+body{overflow-x:hidden}
+.so-leitor{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* ---------- primeira tela ---------- */
+.abre{display:flex; flex-direction:column; min-height:min(calc(100vh - var(--hdr,57px)), 960px)}
+@supports (height:100svh){ .abre{min-height:min(calc(100svh - var(--hdr,57px)), 960px)} }
+.abre-txt{padding:10px 16px 0}
+.quem{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin:0 0 3px}
+.abre h1.sec{font-size:clamp(18px,5.3vw,30px); letter-spacing:1px; margin:0; line-height:1.2}
+.tese{font-size:clamp(22px,6.4vw,44px); font-weight:800; line-height:1.05; letter-spacing:-.015em; margin:3px 0 6px}
+.lead{font-size:15px; line-height:1.42; margin:0 0 6px; max-width:34em}
+.semana-l{display:inline-flex; align-items:center; gap:8px; min-height:36px; font-family:var(--mono); font-size:12px; color:var(--cinza); text-decoration:none; margin:0 0 2px}
+.semana-l b{color:var(--amber); font-size:15px}
+.semana-l:hover{color:var(--tinta)}
+@media (max-width:899px) and (max-height:760px){ .lead{display:none} }
+@media (max-width:899px) and (max-height:700px){ .semana-l{display:none} }
+
+.palco{position:relative; height:340px; overflow:hidden; background:var(--papel)}
+.palco canvas{position:absolute; left:0; top:0; display:block}
+.palco .sem-js{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:16px; text-align:center; color:var(--cinza); font-size:15px}
+/* braços: número, nome e o que é; levam ao trecho */
+.br{position:absolute; left:0; top:0; display:flex; align-items:center; gap:8px; min-height:44px; padding:4px 10px 4px 9px; z-index:2;
+  border:1px solid rgba(125,245,154,.30); border-radius:4px; background:rgba(7,10,7,.86); color:var(--tinta); text-decoration:none; transition:opacity .2s, border-color .2s}
+.br b{font-family:var(--mono); font-size:22px; line-height:1; color:var(--amber); font-weight:700; font-variant-numeric:tabular-nums}
+.br .nm{display:block; font-family:var(--mono); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; line-height:1.2; white-space:nowrap}
+.br .sb{display:block; font-family:var(--mono); font-size:11px; color:var(--cinza); line-height:1.25; white-space:nowrap}
+.br:hover, .br:focus-visible{border-color:var(--amber)}
+.br:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.br.dim{opacity:.35}
+/* a foz: a foto dele */
+.foto{position:absolute; left:0; top:0; z-index:2; display:block; border-radius:50%; text-decoration:none}
+.disco{display:flex; align-items:center; justify-content:center; width:var(--fd,56px); height:var(--fd,56px); border-radius:50%; overflow:hidden;
+  border:2px solid var(--amber); background:#0e160e; font-family:var(--mono); font-weight:700; font-size:14px; color:var(--cinza); transition:border-color .18s}
+.disco img{width:100%; height:100%; object-fit:cover; display:block}
+.disco.pulso{animation:pulso 1.4s ease-out 1}
+@keyframes pulso{0%{box-shadow:0 0 0 0 rgba(255,176,46,.7)} 100%{box-shadow:0 0 0 22px rgba(255,176,46,0)}}
+.foto:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.foto-n{position:absolute; left:0; top:0; z-index:2; transform:translateX(-50%); font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--amber); white-space:nowrap; pointer-events:none}
+
+.abre-pe{padding:4px 16px 12px}
+.leg{display:flex; flex-wrap:wrap; gap:1px 12px; font-family:var(--mono); font-size:11px; color:var(--cinza); margin:0 0 3px; line-height:1.5}
+.leg i{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; vertical-align:0}
+.leg i.gt{width:6px; height:6px; background:#fff4dc; box-shadow:0 0 5px 1px var(--amber); vertical-align:1px}
+.leg-nota{font-size:13px; line-height:1.38; color:var(--cinza); margin:0 0 8px; max-width:36em}
+.leg-nota b{color:var(--tinta); font-weight:600}
+.acoes-abre{display:flex; gap:8px}
+.bt{flex:1 1 0; display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:10px 12px; font-size:16px; font-weight:700;
+  border-radius:3px; text-decoration:none; cursor:pointer; border:1.5px solid var(--amber); background:var(--amber); color:#120c00; font-family:var(--sans); line-height:1.15; text-align:center}
+.bt.sec{background:transparent; color:var(--tinta); border-color:var(--cinza2); font-weight:600}
+.bt.sec:hover{border-color:var(--tinta)}
+.bt:focus-visible, .porta:focus-visible, .enviar:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+
+@media (min-width:900px){
+  .abre{display:grid; grid-template-columns:minmax(300px,370px) minmax(0,1fr); grid-template-rows:auto 1fr; grid-template-areas:"txt palco" "pe palco";
+    column-gap:36px; max-width:1320px; margin:0 auto; padding:18px 24px 8px; min-height:0}
+  .abre-txt{grid-area:txt; padding:28px 0 0}
+  .abre-pe{grid-area:pe; padding:18px 0 0; align-self:start}
+  .palco{grid-area:palco}
+  .lead{font-size:17px; margin-bottom:10px}
+  .leg-nota{font-size:14px}
+  .acoes-abre{flex-direction:column; align-items:stretch; max-width:300px}
+}
+
+/* ---------- os trechos: o mesmo rio atravessa, até a foto ---------- */
+.curso{position:relative; max-width:1180px; margin:0 auto}
+.curso > canvas{position:absolute; left:0; top:0; pointer-events:none; z-index:0; display:block}
+.trecho{position:relative; z-index:1; padding:52px 56px 36px 16px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
+.col{max-width:540px}
+h2.k{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 4px; font-family:var(--mono); font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); font-weight:700}
+h2.k span::before{content:"// "; color:var(--cinza2)}
+.enviar{flex:none; min-height:44px; padding:0 11px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--cinza); background:transparent; border:1px solid var(--linha); border-radius:3px; cursor:pointer; text-transform:none}
+.enviar:hover{color:var(--tinta); border-color:rgba(125,245,154,.4)}
+.num{font-size:clamp(64px,19vw,120px); font-weight:800; line-height:.95; letter-spacing:-.03em; font-variant-numeric:tabular-nums; margin:6px 0 10px}
+.fr{font-size:clamp(18px,4.8vw,22px); line-height:1.35; margin:0 0 10px}
+.fr b{color:var(--amber)}
+.nota{font-size:14px; line-height:1.45; color:var(--cinza); margin:0 0 10px}
+.nota b{color:var(--tinta); font-weight:600}
+.nota a{color:var(--azul)}
+.linhas{list-style:none; margin:16px 0 14px; padding:0}
+.linha{position:relative; padding:10px 22px 10px 0; border-top:1px solid rgba(125,245,154,.11); font-size:15px; line-height:1.38}
+.linha:last-child{border-bottom:1px solid rgba(125,245,154,.11)}
+.linha .pt{position:absolute; right:2px; top:17px; width:8px; height:8px; border-radius:50%}
+.linha .pt.sai{background:transparent!important; border:2px solid currentColor; width:9px; height:9px}
+.linha .nm{font-weight:700}
+.linha .pp{display:block; font-size:13.5px; color:var(--cinza); line-height:1.35}
+.linha .st{display:block; font-family:var(--mono); font-size:11.5px; color:var(--cinza); letter-spacing:.02em; margin-top:2px}
+.linha .v{font-family:var(--mono); font-weight:700; color:var(--amber); margin-right:6px; white-space:nowrap}
+.linha .dir{font-family:var(--mono); font-size:11px; color:var(--cinza); border:1px solid var(--cinza2); border-radius:2px; padding:0 4px; margin-left:4px; white-space:nowrap}
+.linha .n{font-family:var(--mono); font-weight:700; color:var(--amber); font-size:18px; margin-right:6px; font-variant-numeric:tabular-nums}
+.linha a{color:var(--azul)}
+.porta{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 16px; background:var(--amber); color:#120c00; font-weight:700; font-size:15px;
+  line-height:1.2; text-decoration:none; border-radius:3px; border:1.5px solid var(--amber)}
+.porta.sec{background:transparent; color:var(--tinta); border-color:var(--cinza2)}
+.portas{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 0}
+/* a foz */
+.foz-fim{position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; padding-top:150px}
+.foz-fim .disco{--fd:88px; border-width:3px; font-size:24px}
+.foz-fim b{display:block; font-family:var(--mono); font-size:14px; color:var(--amber); letter-spacing:.06em; margin-top:10px}
+.foz-fim span{display:block; font-size:13px; color:var(--cinza); margin-top:2px}
+.sit{margin-top:22px}
+.sit .fr{font-size:clamp(17px,4.5vw,20px)}
+.caso{padding:10px 0; border-top:1px solid rgba(125,245,154,.11); font-size:15px; line-height:1.42}
+.caso a{color:var(--tinta); font-weight:700; text-decoration:none; border-bottom:1px solid var(--cinza2)}
+.caso a:hover{border-bottom-color:var(--amber)}
+.caso .inc{display:block; font-family:var(--mono); font-size:11.5px; color:var(--cinza); margin-top:2px}
+.fim-rio{font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--cinza); margin:26px 0 0}
+@media (min-width:900px){
+  .trecho{padding:84px 24px 48px}
+  .foz-grade{display:grid; grid-template-columns:minmax(0,540px) minmax(0,1fr); column-gap:40px; align-items:start}
+  .foz-grade .sit{grid-column:1; grid-row:1; margin-top:0}
+  .foz-grade .foz-fim{grid-column:2; grid-row:1; padding-top:36px}
+}
+
+/* ---------- as margens, depois da foz (sem rio) ---------- */
+.margem{max-width:1180px; margin:0 auto; padding:52px 16px 20px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
+.margem + .margem{border-top:1px solid var(--linha)}
+.margem h2.k{max-width:720px}
+.bloco{max-width:720px}
+.recentes{list-style:none; margin:14px 0; padding:0}
+.recentes li{padding:10px 0 10px 18px; border-top:1px solid rgba(125,245,154,.11); font-size:15px; line-height:1.4; position:relative}
+.recentes li i{position:absolute; left:0; top:17px; width:8px; height:8px; border-radius:50%}
+.recentes .d{font-family:var(--mono); font-size:12px; color:var(--cinza); margin-right:6px}
+.recentes .st{font-family:var(--mono); font-size:11px; color:var(--cinza); white-space:nowrap}
+.opcoes{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:14px 0 10px; max-width:420px}
+.opcoes button{min-height:56px; font-family:var(--mono); font-size:22px; font-weight:700; color:var(--tinta); background:var(--leve); border:1.5px solid var(--linha); border-radius:4px; cursor:pointer}
+.opcoes button:hover{border-color:var(--amber)}
+.opcoes button.certa{background:var(--amber); color:#120c00; border-color:var(--amber)}
+.opcoes button.errada{opacity:.45}
+.resp{font-size:15px; line-height:1.45; margin:4px 0 10px}
+.resp b{color:var(--amber)}
+.indice{display:grid; grid-template-columns:1fr; gap:0; margin:14px 0 8px; padding:0; list-style:none}
+.indice a{display:flex; flex-direction:column; gap:2px; min-height:44px; padding:11px 0; border-top:1px solid var(--linha); text-decoration:none; color:var(--tinta)}
+.indice a b{font-family:var(--mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--azul)}
+.indice a b::after{content:" →"}
+.indice a span{font-size:14.5px; color:var(--cinza); line-height:1.4}
+.indice a:hover b{color:var(--amber)}
+.rodape{max-width:1180px; margin:0 auto; padding:18px 16px 48px; font-size:14px; line-height:1.45; color:var(--cinza)}
+@media (min-width:900px){
+  .margem{display:grid; grid-template-columns:minmax(0,540px) minmax(0,1fr); column-gap:56px; padding:72px 24px 28px}
+  .margem h2.k{grid-column:1}
+  .margem .bloco{grid-column:1}
+  .margem .lado{grid-column:2; align-self:start; padding-top:8px}
+  .indice{grid-template-columns:1fr 1fr; column-gap:28px}
+  .rodape{padding:18px 24px 56px}
+  .nv-segue{max-width:1180px; margin-left:auto; margin-right:auto; padding:0 24px}
+}
+@media (max-width:899px){ .nv-segue{margin:36px 16px 0} }
+
+/* ---------- modo imagem de prévia (index.html?og=1): só a abertura, em 1200×630, para gerar og-rio.png ----------
+   A classe só entra com ?og=1 na URL; quem visita o site não vê este modo. */
+html.og, html.og body{overflow:hidden}
+html.og .site-header, html.og .nv-mapa, html.og .nv-segue, html.og .abre-pe, html.og .lead, html.og .semana-l,
+html.og #curso, html.og .margem, html.og .rodape{display:none!important}
+html.og .abre{display:grid; grid-template-columns:440px minmax(0,1fr); grid-template-areas:"txt palco"; align-items:center;
+  column-gap:20px; max-width:none; width:1200px; height:630px; min-height:0; margin:0; padding:0 32px 0 60px; overflow:hidden}
+html.og .abre-txt{grid-area:txt; padding:0 0 40px}
+html.og .quem{font-size:14px; margin:0 0 14px}
+html.og .abre h1.sec{font-size:26px; letter-spacing:2px; white-space:nowrap}
+html.og .tese{font-size:68px; line-height:1.02; margin:14px 0 0}
+html.og .og-marca{display:block}
+.og-marca{display:none; margin:34px 0 0; font-family:var(--mono); font-size:13px; line-height:1.7; letter-spacing:.08em; color:var(--cinza); white-space:nowrap}
+.og-marca b{color:var(--tinta); font-weight:700}
+</style>
+<script>try { if (/[?&]og=1(&|$)/.test(location.search)) document.documentElement.classList.add('og'); } catch (e) {}</script>
+<link rel="stylesheet" href="assets/header.css?v=11">
 </head>
-<body>
+<body data-trecho="0">
 
-<header class="site-header">
-  <div class="hrow">
-    <div class="brand"><a class="mark" href="index.html">BOLSODRIVE</a><span class="tag" id="meta-sub">um rio de escândalos</span></div>
-    <nav class="tabs">
-      <button class="tab hot" data-view="recente">Recentemente<b id="rec-n"></b></button>
-      <button class="tab" data-view="arquivo">Arquivo</button>
-      <button class="tab" data-view="rede">Close Friends</button>
-      <a class="tab" href="foz.html">A Foz</a>
-      <a class="tab" href="siga-o-dinheiro.html">Siga o dinheiro</a>
-      <a class="tab" href="quiz.html">Quiz</a>
-      <button class="tab" data-view="cronologia">Cronologia</button>
-      <button class="tab" data-view="noticias">Notícias</button>
-      <button class="tab" data-view="chat">FlávioGPT</button>
-    </nav>
+<header class="site-header" data-nav></header>
+
+<main>
+<section class="abre" id="nascente" aria-labelledby="h-abre">
+  <div class="abre-txt">
+    <p class="quem">Flávio Bolsonaro · candidato à Presidência</p>
+    <h1 class="sec" id="h-abre">Um rio de escândalos</h1>
+    <p class="tese">Tudo deságua nele.</p>
+    <p class="og-marca" aria-hidden="true"><b>BOLSODRIVE</b> · cada fato com fonte e status jurídico<br>Estar no rio não é ser acusado.</p>
+    <p class="lead">Os nomes em volta dele, o dinheiro e os escândalos do registro público. Cada fato com fonte e status jurídico.</p>
+    <a class="semana-l" id="semana-l" href="#semana" hidden></a>
   </div>
-</header>
 
-<main class="wrap">
+  <div class="palco" id="palco" role="img" aria-label="A bacia: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro.">
+    <canvas id="b-leito" aria-hidden="true"></canvas>
+    <canvas id="b-agua" aria-hidden="true"></canvas>
+    <div id="b-rot"></div>
+    <a class="foto" id="b-foto" href="#foz" aria-label="A foz: Flávio Bolsonaro"><span class="disco" id="b-disco">FB</span></a>
+    <span class="foto-n" id="b-nome" aria-hidden="true">FLÁVIO BOLSONARO</span>
+    <noscript><div class="sem-js">O desenho do rio precisa de JavaScript. Os trechos estão logo abaixo.</div></noscript>
+  </div>
 
-  <!-- RECENTEMENTE -->
-  <section id="view-recente" class="view active">
-    <div class="view-head">
-      <h1>Recentemente</h1>
-      <p class="tese"><b>Flávio Bolsonaro quer ser presidente.</b> Isto é o que saiu sobre ele nos últimos dias — os fatos do arquivo, com fonte e status, e as manchetes do dia. <span id="rec-quando" class="rec-quando"></span></p>
+  <div class="abre-pe">
+    <p class="leg" aria-label="Legenda das cores">
+      <span><i style="background:#ff5c5c"></i>preso ou condenado</span>
+      <span><i style="background:#ffb02e"></i>investigado ou denunciado</span>
+      <span><i style="background:#5c8a63"></i>sem processo</span>
+      <span><i class="gt"></i>gota = um fato</span>
+    </p>
+    <p class="leg-nota">A cor é a situação de cada nome ou caso, <b>não a dele</b>. Cada gota que desce é um fato do arquivo. <b>Estar no rio não é ser acusado.</b></p>
+    <div class="acoes-abre">
+      <a class="bt" href="#quem">Siga o rio ↓</a>
+      <button type="button" class="bt sec" id="zap">Mandar no WhatsApp</button>
     </div>
-    <div id="rec-lista" class="recente"></div>
-    <p class="rec-mais"><button class="backlink" data-go="cronologia">ver a cronologia completa →</button> <button class="backlink" data-go="arquivo">ver as pastas do arquivo →</button></p>
+  </div>
+</section>
+
+<div class="curso" id="curso">
+  <canvas id="c-leito" aria-hidden="true"></canvas>
+  <canvas id="c-agua" aria-hidden="true"></canvas>
+
+  <section class="trecho" id="quem" aria-labelledby="h-quem">
+    <div class="col">
+      <h2 class="k" id="h-quem"><span>01 · Quem anda com ele</span><button type="button" class="enviar" data-t="quem" aria-label="Enviar o trecho Quem anda com ele">enviar ↗</button></h2>
+      <div id="quem-c"></div>
+      <div class="portas"><a class="porta" href="drive.html#rede">Ver a teia de nomes →</a></div>
+    </div>
   </section>
 
-  <!-- ARQUIVO -->
-  <section id="view-arquivo" class="view">
-    <div class="view-head">
-      <h1>Arquivo</h1>
-      <p class="tese"><b>Flávio Bolsonaro quer ser presidente.</b> Este arquivo mostra, com fonte em cada linha, o que ele fez com o mandato, com o dinheiro público e com quem andou. Os números abaixo resumem o caso; cada um abre a pasta que o prova.</p>
+  <section class="trecho" id="dinheiro" aria-labelledby="h-din">
+    <div class="col">
+      <h2 class="k" id="h-din"><span>02 · O dinheiro</span><button type="button" class="enviar" data-t="dinheiro" aria-label="Enviar o trecho O dinheiro">enviar ↗</button></h2>
+      <div id="din-c"></div>
+      <div class="portas"><a class="porta" href="siga-o-dinheiro.html">Siga o dinheiro →</a></div>
     </div>
-    <div class="toolbar">
-      <label class="search">🔎 <input id="busca" placeholder="Buscar no arquivo…" autocomplete="off"></label>
-    </div>
-    <div id="arquivo-grid" class="grid"></div>
-    <div id="arquivo-itens" style="display:none"></div>
   </section>
 
-  <!-- REDE -->
-  <section id="view-rede" class="view">
-    <div class="view-head">
-      <h1>Close Friends</h1>
-      <p>Quem anda com ele — e o que a Justiça diz de cada um. Toque numa pessoa para ver os vínculos e a situação penal. Arraste para mover e pince para dar zoom; no celular, toque antes em “mover o mapa”. O anel vermelho marca quem está preso ou foi condenado.</p>
+  <section class="trecho" id="foz" aria-labelledby="h-foz">
+    <div class="col">
+      <h2 class="k" id="h-foz"><span>03 · Os escândalos · a foz</span><button type="button" class="enviar" data-t="foz" aria-label="Enviar o trecho A foz">enviar ↗</button></h2>
+      <div id="foz-c"></div>
     </div>
-    <div class="toolbar">
-      <label class="search"><input id="rede-search" placeholder="buscar pessoa na rede…" autocomplete="off"></label>
-      <a class="backlink" href="close-friends.html">◎ ver em órbita</a>
-    </div>
-    <div class="rede-wrap">
-      <div class="canvas-box">
-        <canvas id="grafo"></canvas>
-        <button id="grafo-fit" title="Centralizar / ajustar">⤢ ajustar</button>
-        <button id="grafo-mover" type="button" aria-pressed="false">mover o mapa</button>
-        <div class="legenda" id="legenda"></div>
+    <div class="foz-grade">
+      <div class="foz-fim">
+        <span class="disco" id="c-disco">FB</span>
+        <b>FLÁVIO BOLSONARO</b><span id="foz-cargo">candidato à Presidência</span>
       </div>
-      <aside id="rede-painel" class="rede-painel"><div class="ph">Carregando…</div></aside>
+      <div class="sit col" id="sit"></div>
+    </div>
+    <div class="col">
+      <div class="portas"><a class="porta" href="foz.html">A Foz, caso a caso →</a></div>
+      <p class="fim-rio">// aqui o rio termina. Nas margens:</p>
     </div>
   </section>
+</div>
 
-  <!-- CRONOLOGIA -->
-  <section id="view-cronologia" class="view">
-    <div class="view-head">
-      <h1>A Cronologia</h1>
-      <p>Vinte anos de casos, um atrás do outro: da rachadinha na Alerj ao banqueiro preso do filme sobre o pai. Alterne para "faixas" para ver a vida de cada caso.</p>
-    </div>
-    <div class="cron-toggle">
-      <button class="cron-tab active" data-cron="log">log</button>
-      <button class="cron-tab" data-cron="faixas">faixas por caso</button>
-    </div>
-    <div id="timeline" class="timeline"></div>
-    <div id="swimlanes" class="swimlanes" style="display:none"></div>
-  </section>
+<section class="margem" id="semana" aria-labelledby="h-sem">
+  <h2 class="k" id="h-sem"><span>Margem · a semana mais recente</span><button type="button" class="enviar" data-t="semana" aria-label="Enviar: a semana mais recente">enviar ↗</button></h2>
+  <div class="bloco" id="sem-c"></div>
+  <div class="lado"><ul class="recentes" id="sem-l"></ul><div class="portas"><a class="porta" href="drive.html#recente">Recentemente →</a></div></div>
+</section>
 
-  <!-- NOTÍCIAS -->
-  <section id="view-noticias" class="view">
-    <div class="view-head">
-      <h1>Notícias</h1>
-      <p>As polêmicas mais recentes sobre o senador. Ao abrir a aba, o site tenta puxar o Google Notícias ao vivo; se o feed estiver fora do ar, mostra a última leva salva.</p>
-    </div>
-    <div class="news-bar">
-      <span id="news-status" class="news-status">…</span>
-      <button id="news-refresh" class="backlink">↻ atualizar</button>
-    </div>
-    <div class="news-sec">google notícias</div>
-    <div id="news-list" class="news-list"></div>
-    <div class="news-sec">do arquivo · fontes mais recentes</div>
-    <div id="news-arquivo" class="news-list"></div>
-  </section>
+<section class="margem" id="teste" aria-labelledby="h-teste">
+  <h2 class="k" id="h-teste"><span>Margem · teste você</span><button type="button" class="enviar" data-t="teste" aria-label="Enviar a pergunta">enviar ↗</button></h2>
+  <div class="bloco" id="teste-c"></div>
+  <div class="lado"><div class="resp" id="resp" aria-live="polite"></div><div class="portas"><a class="porta" href="quiz.html">Quiz completo →</a></div></div>
+</section>
 
-  <!-- ESPECIALISTA -->
-  <section id="view-chat" class="view">
-    <div class="view-head">
-      <h1>FlávioGPT</h1>
-      <p>Pergunte o que quiser sobre ele. As respostas saem só do arquivo — com status e fonte — e linkam o registro de origem.</p>
-    </div>
-    <div class="chat-shell">
-      <div class="chat-disc">Responde só com base no arquivo. Não fala em nome do senador nem inventa fatos.</div>
-      <div id="chat-msgs" class="chat-msgs"></div>
-      <form id="chat-form" class="chat-form">
-        <input id="chat-inp" placeholder="Ex.: como ficou o caso da rachadinha?" autocomplete="off">
-        <button type="submit" aria-label="Perguntar">↑</button>
-      </form>
-      <div id="chat-chips" class="chat-chips"></div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <button id="link-metodo">// método &amp; transparência</button>
-    <span class="foot-dim">conteúdo de registro público, com fonte e status jurídico em cada registro</span>
-  </footer>
-
+<section class="margem" id="adiante" aria-labelledby="h-adi">
+  <h2 class="k" id="h-adi"><span>Mande o rio adiante</span></h2>
+  <div class="bloco">
+    <p class="fr">Cada trecho tem o próprio link. Quem recebe entra no rio pelo mesmo ponto.</p>
+    <div class="portas"><button type="button" class="porta" id="zap2">Mandar no WhatsApp</button></div>
+  </div>
+  <div class="lado"><ul class="indice" id="indice" aria-label="As margens do rio"></ul></div>
+</section>
 </main>
 
-<div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
+<footer class="rodape" id="rodape">Compilação jornalística de fatos de interesse público, com fonte e status jurídico. Estar no rio não é ser acusado.</footer>
 
-<script src="data/dados.js?v=set2026j"></script>
-<script src="assets/app.js?v=set2026l"></script>
+<script src="data/dados.js?v=set2026l"></script>
+<script src="data/foz.js?v=4"></script>
+<script src="assets/rio.js?v=3"></script>
+<script src="assets/nav.js?v=2"></script>
+<script>
+/* =====================================================================
+   A abertura. Todo número sai de window.DOSSIE e window.FOZ; nada é digitado à mão.
+   Regras de texto: status jurídico literal; itens "(não é Flávio)" ficam fora das
+   contagens e das gotas; o grafo tem entidades, por isso "nomes"; nada de Lula nem PT
+   na vitrine; declarações de terceiros não entram na vitrine.
+   ===================================================================== */
+(function(){
+'use strict';
+if (!window.RIO) return;
+const D = window.DOSSIE || {}, FZ = window.FOZ || {};
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.prototype.slice.call((r || document).querySelectorAll(s));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+const hash = s => { let h = 2166136261; for (let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967296; };
+const TAU = RIO.TAU, suave = RIO.suave, lerp = RIO.lerp, reduzido = RIO.reduzido;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const OG = document.documentElement.classList.contains('og');   /* modo imagem de prévia (?og=1) */
+const fmtN = n => Number(n).toLocaleString('pt-BR');
+const dm = k => String(k).slice(8, 10) + '/' + String(k).slice(5, 7);
+const plural = (n, um, varios) => fmtN(n) + ' ' + (n === 1 ? um : varios);
+const RGB = { grave: [255, 92, 92], medio: [255, 176, 46], leve: [92, 138, 99] };
+const HEX = { grave: '#ff5c5c', medio: '#ffb02e', leve: '#5c8a63' };
+const AGUA = [125, 245, 154], FUNDO = [7, 10, 7];
+const NAOE = /\(n[ãa]o é Flávio\)/i;
+const LULAPT = /\bLula\b|\bPT\b/;
+const ITENS = D.itens || [];
+const temaNome = {}; (D.temas || []).forEach(t => { temaNome[t.id] = t.nome; });
+const porData = (a, b) => String(ITENS[a].data || '').localeCompare(String(ITENS[b].data || '')) || a - b;
+const sobreEle = i => !NAOE.test(i.titulo || '');
+
+/* ---------- os nomes: quem tem ligação direta com ele no grafo ---------- */
+const G = D.grafo || { nodes: [], edges: [] };
+const NO = {}; (G.nodes || []).forEach(n => { NO[n.id] = n; });
+const vizinhos = new Set();
+(G.edges || []).forEach(e => { if (e.de === 'flavio') vizinhos.add(e.para); if (e.para === 'flavio') vizinhos.add(e.de); });
+vizinhos.delete('flavio');
+const nivelSit = s => { s = s || []; if (s.includes('preso') || s.includes('condenado')) return 'grave'; if (s.includes('investigado') || s.includes('denunciado')) return 'medio'; return 'leve'; };
+const SUBST = [['condenado', 'condenação'], ['preso', 'prisão'], ['denunciado', 'denúncia'], ['investigado', 'investigação']];
+const situacaoTxt = s => { const l = SUBST.filter(p => (s || []).includes(p[0])).map(p => p[1]); return l.length ? l.join(' · ') : 'sem processo conhecido'; };
+const filaPessoa = id => ITENS.map((i, k) => k).filter(k => (ITENS[k].pessoas || []).includes(id) && sobreEle(ITENS[k])).sort(porData);
+const NOMES = [...vizinhos].map(id => NO[id]).filter(Boolean).map(n => ({
+  id: 'p-' + n.id, no: n, nome: n.nome, grupo: n.grupo || 'outro', nivel: nivelSit(n.situacao), fila: filaPessoa(n.id) }));
+const nNome = { grave: 0, medio: 0, leve: 0 }; NOMES.forEach(n => { nNome[n.nivel]++; });
+
+/* ---------- os escândalos (window.FOZ): registros achados como na Foz ---------- */
+const GRAV = { preso_ou_condenado_na_cadeia: 'grave', investigado_na_cadeia: 'medio', sem_processo_na_cadeia: 'leve' };
+const ESC = (FZ.escandalos || []).map(e => {
+  const fila = [];
+  if (e.busca){
+    const qs = norm(e.busca).split('|').map(t => t.trim()).filter(Boolean);
+    ITENS.forEach((i, k) => {
+      const t = norm(i.titulo + ' ' + (i.resumo || '') + ' ' + (temaNome[i.tema] || ''));
+      if (qs.some(x => t.includes(x)) && sobreEle(i)) fila.push(k);
+    });
+    fila.sort(porData);
+  }
+  return { id: 'e-' + e.id, e, nome: e.rotulo || e.nome, faixa: e.faixa, grupo: e.faixa, nivel: GRAV[e.gravidade] || 'leve', fila };
+});
+const escPorId = {}; ESC.forEach(x => { escPorId[x.e.id] = x; });
+const FAIXAS = [
+  { f: 'entorno', curto: 'pelo entorno', desc: 'aliados, indicados e outras ligações registradas' },
+  { f: 'familia', curto: 'pela família', desc: 'o pai, os irmãos e outros parentes' },
+  { f: 'gabinete', curto: 'pelo gabinete', desc: 'quem trabalhou para ele' },
+  { f: 'direto', curto: 'por ele mesmo', desc: 'o que ele fez ou disse, ou em que é investigado' },
+];
+const nEscGrave = ESC.filter(x => x.nivel === 'grave').length;
+const fl = NO.flavio || {};
+const elePresoOuCondenado = (fl.situacao || []).some(s => s === 'preso' || s === 'condenado');
+
+/* casos em que ele mesmo é ou foi investigado, denunciado, réu ou condenado (texto literal do status).
+   Um caso cuja denúncia é a de outro caso da lista entra junto com ele: a mesma denúncia não conta duas vezes. */
+const FORMAL = /^(Investigad|Denunciad|R[ée]u\b|Condenad)/i;
+const formais = ESC.filter(x => x.faixa === 'direto' && FORMAL.test(String(x.e.status_flavio || '').trim()));
+const CASOS = [];
+formais.forEach(x => {
+  const m = String(x.e.status_flavio).match(/den[úu]ncia d[aoe]s? ([A-Za-zÀ-ú]+)/i);
+  const mae = m && formais.find(y => y !== x && norm(y.nome + ' ' + y.e.id).includes(norm(m[1])));
+  if (!mae) CASOS.push({ x, junto: [] });
+});
+formais.forEach(x => {
+  const m = String(x.e.status_flavio).match(/den[úu]ncia d[aoe]s? ([A-Za-zÀ-ú]+)/i);
+  const mae = m && CASOS.find(c => c.x !== x && norm(c.x.nome + ' ' + c.x.e.id).includes(norm(m[1])));
+  if (mae) mae.junto.push(x);
+});
+const frases = t => String(t || '').split(/\.\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/).map((s, i, a) => (i < a.length - 1 ? s + '.' : s));
+/* a primeira frase do status, a seguinte quando diz o desfecho, e a primeira frase da versão dele (ou do que o favorece) que houver */
+const statusCurto = t => {
+  const f = frases(t); let o = f[0] || '';
+  if (f[1] && /anulad|arquivad|condenad|improcedente|nega|r[ée]u|den[úu]ncia|indicia/i.test(f[1])) o += ' ' + f[1];
+  const d = f.slice(1).find(s => /\bneg[ao]u?\b|afirma|diz que|diz ser|sempre negou|foi só por/i.test(s));
+  if (d && !o.includes(d)) o += ' ' + d;
+  return o.replace(/\.?$/, '.');
+};
+
+/* ---------- o dinheiro ---------- */
+/* âmbar só para investigação, denúncia ou inquérito; um pedido de apuração ainda não é investigação */
+const nivelFluxo = s => /PEDIDO DE/i.test(s || '') ? 'leve' : (/INVESTIGA|DEN[ÚU]NCIA|INQU[ÉE]RITO/i.test(s || '') ? 'medio' : 'leve');
+const saiDele = f => /campanha|flávio/i.test(f.de || '') || /indicad[oa]s? por flávio/i.test(f.para || '');
+const FLUX = (((D.fluxoDinheiro || {}).fluxos) || []).filter(f => f && typeof f.valor === 'string').map((f, k) => {
+  let fila;
+  if (f.foz && escPorId[f.foz]) fila = escPorId[f.foz].fila.slice();
+  else fila = ITENS.map((i, j) => j).filter(j => ITENS[j].tema === f.tema && /financeiro|patrimonio/.test(ITENS[j].tipo || '') && sobreEle(ITENS[j])).sort(porData);
+  return { id: 'f-' + k, k, f, nome: f.valor, sai: saiDele(f), grupo: saiDele(f) ? 'sai' : 'chega', nivel: nivelFluxo(f.status), fila, foz: f.foz && escPorId[f.foz] ? escPorId[f.foz] : null };
+});
+const nSai = FLUX.filter(x => x.sai).length;
+/* patrimônio declarado ao TSE (o ponto marcado como aproximado fica de fora) */
+const PT = (((D.patrimonioTSE || {}).pontos) || []).filter(p => p && p.valor && !/aproximad/i.test(p.obs || '')).sort((a, b) => a.ano - b.ano);
+const p0 = PT.filter(p => /senador/i.test(p.cargo || ''))[0] || PT[0], p1 = PT[PT.length - 1];
+const razao = p0 && p1 && p0 !== p1 ? p1.valor / p0.valor : 0;
+const fmtMi = v => { const m = v / 1e6; return 'R$ ' + m.toFixed(2).replace('.', ',') + (m < 2 ? ' milhão' : ' milhões'); };
+const fontePT = (D.patrimonioTSE || {}).fonte || {};
+
+/* ---------- a semana mais recente do arquivo (pela data dos fatos, não pelo relógio) ---------- */
+const DIAS = ITENS.map(i => String(i.data || '')).filter(k => /^\d{4}-\d\d-\d\d/.test(k)).map(k => k.slice(0, 10)).sort();
+const kMax = DIAS[DIAS.length - 1] || '';
+const kMin = kMax ? new Date(Date.parse(kMax + 'T12:00:00Z') - 6 * 864e5).toISOString().slice(0, 10) : '';
+const SEMANA = ITENS.filter(i => { const k = String(i.data || '').slice(0, 10); return k.length === 10 && k >= kMin && k <= kMax && sobreEle(i); });
+/* vitrine: sem declarações (de terceiros ou dele), sem mídia, sem citar Lula ou PT, sem apelido */
+const PRIO = { condenacao: 0, denuncia: 1, investigacao: 1, processo: 2, decisao_judicial: 2, suspeita: 3, fato: 4 };
+const VITRINE = SEMANA.filter(i => i.status !== 'declaracao' && i.tipo !== 'declaracao' && i.tipo !== 'midia' && !LULAPT.test(i.titulo || '') && !/\bchama\b|apelid|\bcria\b/i.test(i.titulo || ''))
+  .sort((a, b) => (PRIO[a.status] ?? 5) - (PRIO[b.status] ?? 5) || String(b.data).localeCompare(String(a.data))).slice(0, 4)
+  .sort((a, b) => String(b.data).localeCompare(String(a.data)));
+const nivelItem = s => s === 'condenacao' ? 'grave' : (/^(investigacao|denuncia|processo)$/.test(s) ? 'medio' : 'leve');
+const rotuloStatus = s => ((D.status || {})[s] || {}).rotulo || '';
+
+/* ---------- a pergunta de um toque (placar e Senado) ---------- */
+const PL = (D.placar || []).filter(p => p.destino === 'tema:senado' && /^\d+$/.test(String(p.numero).trim()))[0];
+const quizN = PL ? parseInt(PL.numero, 10) : null;
+const quizAnos = PL ? (String(PL.rotulo).match(/(\d+)\s+anos/) || [])[1] : null;
+const SEN = D.senadoStats || {};
+
+/* =====================================================================
+   Textos (todos calculados)
+   ===================================================================== */
+const cargo = String(fl.papel || '').split(';')[0].trim();
+if (cargo) $('#foz-cargo').textContent = cargo + ', candidato à Presidência';
+if (SEMANA.length){ const l = $('#semana-l'); l.hidden = false; l.innerHTML = '<b>' + fmtN(SEMANA.length) + '</b> fatos sobre ele de ' + dm(kMin) + ' a ' + dm(kMax) + ' →'; }
+
+const TXT = {
+  geral: () => 'BOLSODRIVE: um rio de escândalos. O registro público sobre Flávio Bolsonaro, candidato à Presidência: ' + plural(NOMES.length, 'nome', 'nomes') +
+    ' em volta dele, ' + plural(FLUX.length, 'fluxo', 'fluxos') + ' de dinheiro e ' + ESC.length + ' escândalos, cada fato com fonte e status jurídico.',
+  quem: () => 'Dos ' + NOMES.length + ' nomes ligados diretamente a Flávio Bolsonaro no registro público, ' + nNome.grave + (nNome.grave === 1 ? ' esteve preso ou foi condenado.' : ' estiveram presos ou foram condenados.') + ' Estar no rio não é ser acusado; a situação de cada um tem fonte.',
+  dinheiro: () => razao ? 'O patrimônio que Flávio Bolsonaro declarou à Justiça Eleitoral foi de ' + fmtMi(p0.valor) + ' em ' + p0.ano + ' para ' + fmtMi(p1.valor) + ' em ' + p1.ano + ': ' + razao.toFixed(1).replace('.', ',') + ' vezes, em valores nominais.' : TXT.geral(),
+  foz: () => ESC.length + ' escândalos chegam a Flávio Bolsonaro: por ele mesmo, pelo gabinete, pela família ou pelo entorno. ' +
+    (CASOS.length ? 'Em ' + CASOS.length + (CASOS.length === 1 ? ' caso' : ' casos') + ' ele mesmo é ou foi investigado ou denunciado' + (elePresoOuCondenado ? '. ' : '; não foi preso nem condenado em nenhum. ') : '') +
+    'Estar no rio não é ser acusado. Cada elo tem fonte.',
+  semana: () => fmtN(SEMANA.length) + ' fatos sobre Flávio Bolsonaro, de ' + dm(kMin) + ' a ' + dm(kMax) + ', estão no arquivo do BOLSODRIVE, todos com fonte.',
+  teste: () => (quizAnos ? 'Em ' + quizAnos + ' anos de Senado, quantos' : 'Quantos') + ' projetos de lei de autoria de Flávio Bolsonaro viraram lei? Responda:'
+};
+
+/* trecho 1 */
+const TOP = NOMES.slice().sort((a, b) => b.fila.length - a.fila.length || a.nome.localeCompare(b.nome)).slice(0, 8);
+/* o papel: a primeira parte e, se houver, a parte que liga o nome a Flávio (que é o motivo de ele estar na lista) */
+const papelCurto = p => {
+  const ps = String(p || '').split(/;\s*/).map(s => s.trim()).filter(Boolean);
+  const liga = ps.slice(1).find(s => /Flávio/.test(s));
+  const o = (ps[0] || '') + (liga ? '; ' + liga : '');
+  return o.length > 110 ? o.slice(0, 108).replace(/[\s,]+\S*$/, '') + '…' : o;
+};
+$('#quem-c').innerHTML =
+  '<p class="num">' + nNome.grave + '</p>' +
+  '<p class="fr">dos <b>' + NOMES.length + ' nomes</b> ligados diretamente a ele no arquivo ' + (nNome.grave === 1 ? 'esteve preso ou foi condenado.' : 'estiveram presos ou foram condenados.') + '</p>' +
+  '<p class="nota">Outros ' + nNome.medio + ' foram investigados ou denunciados, sem prisão nem condenação. ' + nNome.leve + ' não têm processo conhecido. Entre os nomes há pessoas, empresas e instituições. <b>Estar no rio não é ser acusado.</b></p>' +
+  '<p class="nota">Os ' + TOP.length + ' com mais registros no arquivo. Cada afluente leva os fatos de um nome:</p>' +
+  '<ul class="linhas">' + TOP.map(n => '<li class="linha" data-trib="' + esc(n.id) + '"><span class="nm">' + esc(n.nome) + '</span>' +
+    (n.no.papel ? '<span class="pp">' + esc(papelCurto(n.no.papel)) + '</span>' : '') +
+    '<span class="st">' + esc(situacaoTxt(n.no.situacao)) + ' · ' + plural(n.fila.length, 'registro', 'registros') + '</span>' +
+    '<i class="pt" style="background:' + HEX[n.nivel] + '"></i></li>').join('') + '</ul>';
+
+/* trecho 2 */
+/* a casa do Lago Sul dentro do total de 2026 (obs do ponto do TSE), com o financiamento do BRB (fluxo com foz brb-mansao) */
+const mCasa = String((p1 && p1.obs) || '').match(/^R\$ ([\d,]+) mi só na casa do Lago Sul$/);
+const brbCasa = FLUX.some(x => x.f.foz === 'brb-mansao' && /BRB/.test(x.f.de || ''));
+const casaLago = mCasa ? ' Desse total, R$ ' + mCasa[1] + ' milhões são a casa do Lago Sul' + (brbCasa ? ', comprada com financiamento do BRB' : '') + '.' : '';
+$('#din-c').innerHTML =
+  (razao ? '<p class="num">' + razao.toFixed(1).replace('.', ',') + '×</p>' +
+    '<p class="fr">é quanto cresceu o patrimônio que ele declarou à Justiça Eleitoral: de <b>' + fmtMi(p0.valor) + '</b> em ' + p0.ano + ' para <b>' + fmtMi(p1.valor) + '</b> em ' + p1.ano + '.</p>' +
+    '<p class="nota">Valores nominais, sem correção pela inflação: são os bens declarados em cada candidatura.' + casaLago + ' Fonte: ' +
+      (fontePT.url ? '<a href="' + esc(fontePT.url) + '" target="_blank" rel="noopener">' + esc(fontePT.veiculo || 'TSE') + '</a>' : esc(fontePT.veiculo || 'TSE')) + '.</p>' : '') +
+  '<p class="nota">' + plural(FLUX.length, 'fluxo', 'fluxos') + ' de dinheiro com fonte, de onde vem e para onde vai.' +
+    (nSai ? ' Em ' + nSai + ', marcados com <span class="dir">sai</span>, o dinheiro sai da campanha ou vai para onde ele indicou: ali a água corre para fora.' : '') + '</p>' +
+  '<ul class="linhas">' + FLUX.map(x => '<li class="linha" data-trib="' + x.id + '"><span class="v">' + esc(x.f.valor) + '</span>' + esc(x.f.de) + ' → ' + esc(x.f.para) +
+    (x.sai ? ' <span class="dir">sai</span>' : '') +
+    '<span class="st">' + esc(x.f.status || '') + (x.f.defesa ? ' · ' + esc(x.f.defesa) : '') + (x.foz ? ' · deságua em <a href="foz.html#' + esc(x.foz.e.id) + '">' + esc(x.foz.nome) + '</a>' : '') + '</span>' +
+    '<i class="pt' + (x.sai ? ' sai' : '') + '" style="' + (x.sai ? 'color:' : 'background:') + HEX[x.nivel] + '"></i></li>').join('') + '</ul>';
+
+/* trecho 3 */
+const porFaixa = f => ESC.filter(x => x.faixa === f);
+$('#foz-c').innerHTML =
+  '<p class="num">' + ESC.length + '</p>' +
+  '<p class="fr">escândalos chegam até ele. Cada um desce por um caminho: pelo entorno, pela família, pelo gabinete ou por ele mesmo.</p>' +
+  '<ul class="linhas">' + FAIXAS.filter(F => porFaixa(F.f).length).map(F => {
+    const l = porFaixa(F.f), g = l.filter(x => x.nivel === 'grave').length;
+    const cor = RIO.css(RIO.mistura(l.map(x => [RGB[x.nivel], 1 + Math.sqrt(x.fila.length) / 3])));
+    return '<li class="linha" data-trib="x-' + F.f + '"><span class="n">' + l.length + '</span><span class="nm">' + esc(F.curto) + '</span>' +
+      '<span class="pp">' + esc(F.desc) + '</span><span class="st">' + (g ? g + ' com alguém preso ou condenado no caminho' : 'ninguém preso ou condenado no caminho') + '</span>' +
+      '<i class="pt" style="background:' + cor + '"></i></li>'; }).join('') + '</ul>' +
+  '<p class="nota">Em ' + nEscGrave + ' dos ' + ESC.length + ' há alguém preso ou condenado no caminho' + (elePresoOuCondenado ? '.' : '; <b>ele mesmo não foi preso nem condenado</b>.') + ' Estar no rio não é ser acusado.</p>';
+$('#sit').innerHTML = CASOS.length ?
+  '<p class="fr">Em <b>' + CASOS.length + (CASOS.length === 1 ? ' caso' : ' casos') + '</b>, ele mesmo é ou foi investigado ou denunciado. A situação em cada um, como está no registro:</p>' +
+  CASOS.map(c => '<div class="caso"><a href="foz.html#' + esc(c.x.e.id) + '">' + esc(c.x.e.nome || c.x.nome) + '</a>. ' + esc(statusCurto(c.x.e.status_flavio)) +
+    (c.junto.length ? '<span class="inc">inclui ' + c.junto.map(j => esc(j.nome)).join(', ') + ': a mesma denúncia</span>' : '') + '</div>').join('') : '';
+
+/* margem: a semana */
+$('#sem-c').innerHTML = SEMANA.length ?
+  '<p class="num">' + fmtN(SEMANA.length) + '</p><p class="fr">fatos sobre ele, datados de ' + dm(kMin) + ' a ' + dm(kMax) + ', a semana mais recente do arquivo.</p>' +
+  '<p class="nota">Aqui, alguns deles. O resto, com as manchetes do dia, está em Recentemente.</p>' : '';
+$('#sem-l').innerHTML = VITRINE.map(i => '<li><i style="background:' + HEX[nivelItem(i.status)] + '"></i><span class="d">' + dm(i.data) + '</span>' + esc(i.titulo) +
+  (rotuloStatus(i.status) ? ' <span class="st">[' + esc(rotuloStatus(i.status)) + ']</span>' : '') + '</li>').join('');
+/* a versão dele no caso Master, quando a vitrine traz o caso (texto do status dele na Foz) */
+const fm = escPorId.master;
+if (fm && VITRINE.some(i => i.tema === 'master')){
+  const versao = frases(fm.e.status_flavio).slice(1).join(' ');
+  if (versao) $('#sem-l').insertAdjacentHTML('afterend', '<p class="nota">A versão dele no caso Master: ' + esc(versao) + '</p>');
+}
+
+/* margem: teste você */
+if (quizN != null){
+  const ops = [0, quizN, quizN + 5, quizN + 14].filter((v, i, a) => a.indexOf(v) === i).sort((a, b) => a - b);
+  $('#teste-c').innerHTML = '<p class="fr"><b>' + (quizAnos ? 'Em ' + quizAnos + ' anos de Senado' : 'No Senado') + '</b>, quantos projetos de lei de autoria dele viraram lei?</p>' +
+    '<div class="opcoes" role="group" aria-label="Respostas">' + ops.map(v => '<button type="button" data-v="' + v + '">' + v + '</button>').join('') + '</div>';
+  $$('#teste-c .opcoes button').forEach(b => b.addEventListener('click', () => {
+    const v = +b.dataset.v;
+    $$('#teste-c .opcoes button').forEach(o => { o.classList.toggle('certa', +o.dataset.v === quizN); o.classList.toggle('errada', +o.dataset.v !== quizN); o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+    const outros = ((SEN.itens) || []).filter(x => !/aprovad/i.test(x.label)).map(x => esc(x.label) + ': ' + esc(x.valor)).join(' · ');
+    $('#resp').innerHTML = (v === quizN ? 'Isso. ' : 'Não. ') + '<b>' + quizN + '</b> ' + esc(PL.rotulo) + '.' + (outros ? ' No mesmo período: ' + outros + '.' : '') +
+      (SEN.fonte && SEN.fonte.url ? ' Fonte: <a href="' + esc(SEN.fonte.url) + '" target="_blank" rel="noopener">' + esc(SEN.fonte.veiculo || 'Senado') + '</a>.' : '');
+  }));
+} else { $('#teste').hidden = true; }
+
+/* margem: o índice das margens */
+const anos = (D.timeline || []).map(t => parseInt(String(t.data || '').slice(0, 4), 10)).filter(Boolean);
+const MARG = [
+  ['drive.html#recente', 'Recentemente', kMax ? 'O que entrou no arquivo por último. Fato mais recente: ' + dm(kMax) + '.' : 'O que entrou no arquivo por último.'],
+  ['drive.html#arquivo', 'Arquivo', plural(ITENS.length, 'registro', 'registros') + ' em ' + (D.temas || []).length + ' pastas, com busca.'],
+  ['drive.html#cronologia', 'Cronologia', plural((D.timeline || []).length, 'marco', 'marcos') + (anos.length ? ', de ' + Math.min(...anos) + ' a ' + Math.max(...anos) : '') + '.'],
+  ['drive.html#noticias', 'Notícias', 'As manchetes do dia, com link para a fonte.'],
+  ['drive.html#chat', 'FlávioGPT', 'Pergunte ao arquivo. A resposta vem com status e fonte.'],
+  ['quiz.html', 'Quiz', 'Perguntas sobre o que está no arquivo, com a fonte na resposta.'],
+  ['close-friends.html', 'A rede em órbita', 'Os nomes em volta dele, em órbita.'],
+];
+$('#indice').innerHTML = MARG.map(m => '<li><a href="' + m[0] + '"><b>' + esc(m[1]) + '</b><span>' + esc(m[2]) + '</span></a></li>').join('');
+if ((D.meta || {}).aviso) $('#rodape').textContent = D.meta.aviso + ' Estar no rio não é ser acusado.';
+
+/* ---------- compartilhar: navigator.share, com wa.me de reserva ---------- */
+const base = () => location.origin + location.pathname;
+async function manda(txt, id){
+  const url = base() + (id ? '#' + id : '');
+  if (navigator.share){ try { await navigator.share({ title: 'BOLSODRIVE: Um rio de escândalos', text: txt, url }); return; } catch (err){ if (err && err.name === 'AbortError') return; } }
+  window.open('https://wa.me/?text=' + encodeURIComponent(txt + ' ' + url), '_blank', 'noopener');
+}
+$('#zap').addEventListener('click', () => manda(TXT.geral(), ''));
+$('#zap2').addEventListener('click', () => manda(TXT.geral(), ''));
+$$('.enviar').forEach(b => b.addEventListener('click', () => manda((TXT[b.dataset.t] || TXT.geral)(), b.dataset.t)));
+
+/* ---------- foto da foz (Wikipédia, licença livre; o mesmo cache da Foz) ---------- */
+let fotoUrl = null;
+function poeFoto(){
+  if (!fotoUrl) return;
+  ['#b-disco', '#c-disco'].forEach(s => { const d = $(s); if (d && !d.querySelector('img')){ const im = new Image(); im.alt = ''; im.onload = () => { d.textContent = ''; d.appendChild(im); }; im.src = fotoUrl; } });
+}
+(async function(){
+  let cache = {}; try { cache = JSON.parse(localStorage.getItem('af_fotos_v1')) || {}; } catch (_){}
+  fotoUrl = cache['Flávio Bolsonaro'] || null;
+  if (!fotoUrl){
+    try {
+      const d = await fetch('https://pt.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=200&redirects=1&origin=*&titles=' + encodeURIComponent('Flávio Bolsonaro')).then(r => r.json());
+      const p = Object.values(d.query.pages)[0]; fotoUrl = (p.thumbnail || {}).source || null;
+      if (fotoUrl){ cache['Flávio Bolsonaro'] = fotoUrl; try { localStorage.setItem('af_fotos_v1', JSON.stringify(cache)); } catch (_){} }
+    } catch (_){}
+  }
+  poeFoto();
+})();
+
+/* o aro da foto pulsa na cor da gota que chega */
+function aroPulsa(sel){
+  if (OG) return () => {};   /* na imagem de prévia o aro não muda de cor */
+  let t = 0;
+  return cor => { const f = $(sel); if (!f) return; f.style.borderColor = RIO.css(cor); clearTimeout(t); t = setTimeout(() => { f.style.borderColor = ''; }, 260); };
+}
+
+/* =====================================================================
+   A BACIA (primeira tela): três braços descem até a foto.
+   Cada nascente é um nome, um fluxo ou um escândalo; os afluentes se juntam por grupo,
+   os grupos num braço, os braços no rio principal, que deságua na foto. Largura = raiz
+   da vazão acumulada (vazão de uma nascente = 1 + raiz dos seus fatos / 3), como na Foz.
+   A cor do leito é a média das águas que já chegaram; cada gota tem a cor da nascente.
+   O dinheiro que sai dele corre ao contrário: da confluência para a ponta.
+   ===================================================================== */
+const ARMS = [
+  { id: 'nomes', itens: NOMES, nm: 'nomes', sb: 'em volta dele', href: '#quem', setor: [138, 302],
+    ordem: ['familia', 'operadores', 'milicia', 'financeiro', 'juridico', 'aliado', 'politico', 'outro'] },
+  { id: 'dinheiro', itens: FLUX, nm: FLUX.length === 1 ? 'fluxo' : 'fluxos', sb: 'de dinheiro', href: '#dinheiro', setor: [232, 398], ordem: ['chega', 'sai'] },
+  { id: 'escandalos', itens: ESC, nm: 'escândalos', sb: 'chegam a ele', href: '#foz', setor: [-82, 84], ordem: ['entorno', 'familia', 'gabinete', 'direto'] },
+].filter(a => a.itens.length);
+const palco = $('#palco'), bRot = $('#b-rot');
+ARMS.forEach(a => {
+  const el = document.createElement('a');
+  el.className = 'br'; el.href = a.href;
+  el.innerHTML = '<b>' + a.itens.length + '</b><span><span class="nm">' + esc(a.nm) + '</span><span class="sb">' + esc(a.sb) + '</span></span>';
+  el.setAttribute('aria-label', a.itens.length + ' ' + a.nm + ' ' + a.sb + '. Ir ao trecho');
+  const entra = () => realcaBacia(a.id), sai = () => realcaBacia(null);
+  el.addEventListener('mouseenter', entra); el.addEventListener('focus', entra);
+  el.addEventListener('mouseleave', sai); el.addEventListener('blur', sai);
+  bRot.appendChild(el); a.el = el;
+});
+const BCIC = 12;                 /* em quantos segundos cada nascente solta a sua fila inteira */
+let B = null;
+
+/* raio livre a partir do centro do leque, parando na borda da região e antes do rótulo */
+function raio(c, th, Rg, obst, teto){
+  const dx = Math.cos(th), dy = Math.sin(th);
+  let r = teto;
+  if (dx > 1e-6) r = Math.min(r, (Rg.x1 - c.x) / dx); else if (dx < -1e-6) r = Math.min(r, (Rg.x0 - c.x) / dx);
+  if (dy > 1e-6) r = Math.min(r, (Rg.y1 - c.y) / dy); else if (dy < -1e-6) r = Math.min(r, (Rg.y0 - c.y) / dy);
+  obst.forEach(o => {
+    let t0 = -Infinity, t1 = Infinity;
+    if (Math.abs(dx) < 1e-9){ if (c.x < o.x0 || c.x > o.x1) return; } else { let p = (o.x0 - c.x) / dx, q = (o.x1 - c.x) / dx; if (p > q){ const z = p; p = q; q = z; } t0 = Math.max(t0, p); t1 = Math.min(t1, q); }
+    if (Math.abs(dy) < 1e-9){ if (c.y < o.y0 || c.y > o.y1) return; } else { let p = (o.y0 - c.y) / dy, q = (o.y1 - c.y) / dy; if (p > q){ const z = p; p = q; q = z; } t0 = Math.max(t0, p); t1 = Math.min(t1, q); }
+    if (t0 <= t1 && t1 > 0) r = Math.min(r, Math.max(0, t0));
+  });
+  return Math.max(10, r - 4);
+}
+
+function bacia(){
+  const W = Math.round(palco.clientWidth); if (!W) return;
+  if (B){ B.solta(); B = null; }
+  const desk = window.innerWidth >= 900, mob = W < 640;
+  const hdr = ($('.site-header') || { offsetHeight: 57 }).offsetHeight;
+  let H;
+  if (OG) H = 630 - 48;           /* a imagem de prévia tem 1200×630; folga em cima para os selos */
+  else if (desk) H = clamp(window.innerHeight - hdr - 36, 520, 780);
+  else H = clamp(window.innerHeight - hdr - $('.abre-txt').offsetHeight - $('.abre-pe').offsetHeight - 4, 250, 640);
+  H = Math.round(H);
+  palco.style.height = H + 'px';
+
+  const m = mob ? 8 : 16;
+  const R = Math.round(clamp(H * 0.068, 22, 42));
+  const cx = Math.round(W / 2);
+  const F = { x: cx, y: H - R - 22 };
+  const gap = mob ? 18 : 34;
+  const yC1 = Math.round(H * 0.42);
+  const yJ3 = Math.round(lerp(yC1, F.y - R, 0.6));
+  const REG = {
+    nomes: { x0: m, x1: cx - gap * 0.6, y0: m, y1: yC1 - 8 },
+    dinheiro: { x0: cx + gap * 0.6, x1: W - m, y0: m, y1: Math.round(yC1 * 0.8) },
+    escandalos: { x0: cx + gap, x1: W - m, y0: Math.round(yC1 * 0.8) + (mob ? 10 : 18), y1: Math.min(H - m, F.y + R * 0.5) },
+  };
+  const HUBF = { nomes: [0.66, 0.72], dinheiro: [0.32, 0.72], escandalos: [0.26, 0.4] };
+
+  /* rótulos: nomes no alto à esquerda, dinheiro no alto à direita, escândalos embaixo à direita */
+  ARMS.forEach(a => {
+    const Rg = REG[a.id], w = a.el.offsetWidth, h = a.el.offsetHeight;
+    const x = a.id === 'nomes' ? Rg.x0 : Rg.x1 - w, y = a.id === 'escandalos' ? Rg.y1 - h : Rg.y0;
+    a.el.style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(y) + 'px)';
+    a.lr = { x0: x - 6, y0: y - 6, x1: x + w + 6, y1: y + h + 6 };
+  });
+  const fotoEl = $('#b-foto'), nomeEl = $('#b-nome');
+  fotoEl.style.setProperty('--fd', (2 * R) + 'px'); $('#b-disco').style.setProperty('--fd', (2 * R) + 'px');
+  fotoEl.style.transform = 'translate(' + (F.x - R) + 'px,' + (F.y - R) + 'px)';
+  nomeEl.style.transform = 'translate(-50%,0) translate(' + F.x + 'px,' + (F.y + R + 6) + 'px)';
+
+  /* rio principal: nasce em C1 (onde nomes e dinheiro se encontram), desvia para a esquerda e volta à foto */
+  const A = mob ? W * 0.13 : W * 0.085, a2 = mob ? 3 : 9;
+  const ptsT = [];
+  for (let y = yC1; y < F.y; y += 3){
+    const t = (y - yC1) / (F.y - yC1);
+    ptsT.push([cx - A * Math.pow(Math.sin(Math.PI * t), 1.2) + a2 * Math.sin(TAU * t * 1.3) * Math.sin(Math.PI * t), y]);
+  }
+  ptsT.push([F.x, F.y]);
+  const tronco = RIO.curso(ptsT);
+  const iJ3 = RIO.primeiro(tronco.y, yJ3);
+  const J3 = { x: tronco.x[iJ3], y: tronco.y[iJ3] };
+  const C1 = { x: tronco.x[0], y: tronco.y[0] };
+
+  /* vazões e larguras */
+  const vazao = it => 1 + Math.sqrt(it.fila.length) / 3;
+  const Qtot = ARMS.reduce((s, a) => s + a.itens.reduce((t, it) => t + vazao(it), 0), 0);
+  const wMin = mob ? 1.0 : 1.25, wMax = mob ? 13 : 22;
+  const kW = (wMax - wMin) / Math.sqrt(Qtot);
+  const larg = Q => wMin + kW * Math.sqrt(Math.max(0, Q));
+
+  const tribs = [], grupos = [], bracos = [];
+  ARMS.forEach(a => {
+    const Rg = REG[a.id], hub = { x: lerp(Rg.x0, Rg.x1, HUBF[a.id][0]), y: lerp(Rg.y0, Rg.y1, HUBF[a.id][1]) };
+    const teto = Math.min(mob ? 118 : 250, (mob ? 38 : 64) + (mob ? 12 : 24) * Math.sqrt(a.itens.length));
+    const sec = a.setor.map(d => d * Math.PI / 180);
+    const mapa = new Map();
+    a.itens.forEach(it => { const g = a.id === 'dinheiro' ? it.grupo : it.grupo; if (!mapa.has(g)) mapa.set(g, []); mapa.get(g).push(it); });
+    const pos = k => { const i = a.ordem.indexOf(k); return i < 0 ? 99 : i; };
+    const Gs = [...mapa.keys()].sort((p, q) => pos(p) - pos(q) || mapa.get(q).length - mapa.get(p).length).map(k => ({ k, itens: mapa.get(k).sort((p, q) => hash(p.id) - hash(q.id)) }));
+    const gapA = (Gs.length > 1 ? 6 : 0) * Math.PI / 180;
+    const pesos = Gs.map(g => g.itens.length + 0.7), tot = pesos.reduce((s, v) => s + v, 0);
+    const livre = (sec[1] - sec[0]) - gapA * (Gs.length - 1);
+    let ang = sec[0];
+    const obst = [a.lr];
+    a.Q = 0;
+    Gs.forEach((g, gi) => {
+      const span = livre * pesos[gi] / tot, ac = ang + span / 2;
+      const rg = Math.max(12, 0.4 * raio(hub, ac, Rg, obst, teto));
+      const gp = { x: hub.x + Math.cos(ac) * rg, y: hub.y + Math.sin(ac) * rg };
+      g.Q = 0;
+      g.itens.forEach((it, j) => {
+        const th = ang + span * (j + 0.5) / g.itens.length;
+        const rm = raio(hub, th, Rg, obst, teto);
+        const r = Math.max(rg + 9, rm * (0.66 + 0.32 * hash(it.id + 'r')));
+        const src = { x: hub.x + Math.cos(th) * r, y: hub.y + Math.sin(th) * r };
+        const d = Math.hypot(gp.x - src.x, gp.y - src.y);
+        const c = RIO.curso(RIO.meandro([src.x, src.y], [gp.x, gp.y], { amp: Math.min(mob ? 2.4 : 5, d * 0.1), ondas: Math.max(1, Math.round(d / (mob ? 34 : 58))), fase: hash(it.id) * Math.PI, tensao: 0.3 }));
+        const q = vazao(it), wq = larg(q), cor = RGB[it.nivel];
+        RIO.pinta(c, (i, y, t) => [wMin + (wq - wMin) * Math.pow(t, 0.6), cor]);
+        tribs.push({ it, a, g, src, curso: c, cor, q });
+        g.Q += q;
+      });
+      const dg = Math.hypot(hub.x - gp.x, hub.y - gp.y);
+      g.curso = RIO.curso(RIO.meandro([gp.x, gp.y], [hub.x, hub.y], { amp: Math.min(3, dg * 0.08), ondas: 1, fase: hash(a.id + g.k) * 3, tensao: 0.3 }));
+      g.cor = RIO.mistura(g.itens.map(it => [RGB[it.nivel], vazao(it)]));
+      const wg = larg(g.Q);
+      RIO.pinta(g.curso, () => [wg, g.cor]);
+      g.a = a; grupos.push(g);
+      a.Q += g.Q;
+      ang += span + gapA;
+    });
+    a.cor = RIO.mistura(Gs.map(g => [g.cor, g.Q]));
+    a.hub = hub; a.Gs = Gs;
+    /* o braço: do centro do leque até o rio principal */
+    const alvo = a.id === 'escandalos' ? J3 : C1;
+    const d = Math.hypot(alvo.x - hub.x, alvo.y - hub.y);
+    let pts;
+    if (a.id === 'escandalos') pts = RIO.bezier([hub.x, hub.y], [hub.x - (hub.x - alvo.x) * 0.35, hub.y + d * 0.12], [alvo.x + Math.min(24, d * 0.3), alvo.y - Math.min(14, d * 0.15)], [alvo.x, alvo.y], 30);
+    else { const u = [(alvo.x - hub.x) / d, (alvo.y - hub.y) / d]; pts = RIO.bezier([hub.x, hub.y], [hub.x + u[0] * d * 0.35, hub.y + u[1] * d * 0.35], [alvo.x, alvo.y - Math.max(10, (alvo.y - hub.y) * 0.5)], [alvo.x, alvo.y], 30); }
+    a.curso = RIO.curso(pts);
+    const wa = larg(a.Q);
+    RIO.pinta(a.curso, () => [wa, a.cor]);
+    bracos.push(a);
+  });
+  const armE = ARMS.find(a => a.id === 'escandalos');
+  const QE = armE ? armE.Q : 0, Qcima = ARMS.filter(a => a !== armE).reduce((s, a) => s + a.Q, 0);
+  RIO.pinta(tronco, (i, y) => {
+    const pares = ARMS.map(a => [a.cor, a === armE ? a.Q * suave((y - yJ3 + 2) / 18) : a.Q]);
+    const Q = Qcima + QE * suave((y - yJ3 + 2) / 18);
+    return [larg(Q) * (1 + 0.9 * suave((y - (F.y - R - 50)) / 50)), RIO.mistura(pares)];
+  });
+  const corFoz = RIO.mistura(ARMS.map(a => [a.cor, a.Q]));
+
+  /* rotas: nascente → grupo → braço → rio principal → foto; o dinheiro que sai dele, ao contrário */
+  tribs.forEach(t => {
+    const a = t.a, g = t.g, iT = a === armE ? iJ3 : 0;
+    if (t.it.sai) t.rota = RIO.rota([RIO.inverte(a.curso), 0, a.curso.n - 1], [RIO.inverte(g.curso), 0, g.curso.n - 1], [RIO.inverte(t.curso), 0, t.curso.n - 1]);
+    else t.rota = RIO.rota([t.curso, 0, t.curso.n - 1], [g.curso, 0, g.curso.n - 1], [a.curso, 0, a.curso.n - 1], [tronco, iT, tronco.n - 1]);
+  });
+
+  const leito = $('#b-leito'), agua = $('#b-agua');
+  const dpr = RIO.nitidez(W, H);
+  [leito, agua].forEach(cv => { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.width = W + 'px'; cv.style.height = H + 'px'; });
+  B = { W, H, dpr, mob, R, F, tribs, grupos, bracos, tronco, corFoz, leito, agua, destaque: null, ctl: null, solta: () => {} };
+  pintaBacia();
+  B.ctl = RIO.correnteza(agua, {
+    W, H, dpr, vel: mob ? 40 : 54, raio: mob ? 2.2 : 2.7, semente: 5,
+    cursos: tribs.map(t => ({ curso: t.curso, grupo: t.a.id })).concat(grupos.map(g => ({ curso: g.curso, grupo: g.a.id })), bracos.map(a => ({ curso: a.curso, grupo: a.id })), [{ curso: tronco, grupo: 'tronco' }]),
+    rotas: tribs.map(t => ({ rota: t.rota, cor: t.cor, fila: t.it.fila, leve: !t.it.fila.length, semFoz: !!t.it.sai,
+      taxa: t.it.fila.length ? Math.min(2, t.it.fila.length / BCIC) : 1 / 16, id: t.it.id, grupo: t.a.id })),
+    fontes: tribs.map(t => ({ x: t.src.x, y: t.src.y, cor: t.cor, id: t.it.id, grupo: t.a.id })),
+    foz: { x: F.x, y: F.y, r: R, cor: corFoz },
+    janela: () => { const r = palco.getBoundingClientRect(); return [-r.top - 40, window.innerHeight - r.top + 40]; },
+    intro: !reduzido && !bacia.feita,
+    aoChegar: () => { const d = $('#b-disco'); if (d) d.classList.add('pulso'); },
+    aoGota: aroPulsa('#b-disco'), aroFixo: OG
+  });
+  bacia.feita = true;
+  marcaBacia();
+  B.solta = RIO.observa(palco, B.ctl);
+}
+function pintaBacia(){
+  if (!B) return;
+  const ctx = B.leito.getContext('2d');
+  ctx.setTransform(B.dpr, 0, 0, B.dpr, 0, 0);
+  ctx.clearRect(0, 0, B.W, B.H);
+  const d = B.destaque, f = id => d ? (id === d ? 0 : 0.8) : 0;
+  const lista = B.tribs.map(t => ({ curso: t.curso, fosco: f(t.a.id) }))
+    .concat(B.grupos.map(g => ({ curso: g.curso, fosco: f(g.a.id) })), B.bracos.map(a => ({ curso: a.curso, fosco: f(a.id) })), [{ curso: B.tronco, fosco: d ? 0.3 : 0 }]);
+  RIO.leito(ctx, lista, { fundo: FUNDO, foz: { x: B.F.x, y: B.F.y, r: B.R, cor: B.corFoz, fosco: 0 } });
+  const rp = B.mob ? 2.1 : 2.6;
+  B.tribs.forEach(t => {
+    ctx.globalAlpha = 1 - f(t.a.id) * 0.85;
+    ctx.beginPath(); ctx.arc(t.src.x, t.src.y, rp, 0, TAU);
+    if (t.it.sai){ ctx.strokeStyle = RIO.css(t.cor); ctx.lineWidth = 1.3; ctx.stroke(); } else { ctx.fillStyle = RIO.css(t.cor); ctx.fill(); }
+  });
+  ctx.globalAlpha = 1;
+  if (reduzido){
+    RIO.setas(ctx, B.tronco, 'rgba(232,255,236,.5)', B.mob ? 70 : 100);
+    B.tribs.filter(t => t.it.sai).forEach(t => RIO.setas(ctx, RIO.inverte(t.curso), 'rgba(232,255,236,.6)', 18));
+  }
+  ARMS.forEach(a => a.el.classList.toggle('dim', !!d && a.id !== d));
+  marcaBacia();
+}
+function marcaBacia(){ if (B && B.ctl){ const d = B.destaque; B.ctl.marca(x => !d || x.grupo === d ? 1 : (x.grupo === 'tronco' ? 0.5 : 0.12)); } }
+function realcaBacia(id){ if (B && B.destaque !== id){ B.destaque = id; pintaBacia(); } }
+
+/* =====================================================================
+   O RIO DOS TRECHOS: um rio só, que nasce no alto do trecho 1, recebe um afluente
+   de cada coisa citada (nome, fluxo, faixa de escândalos) e termina na foto, no trecho 3.
+   As curvas só descem. No celular ele corre pela margem direita e, antes da foz,
+   atravessa até a foto; no desktop tem uma faixa própria à direita do texto.
+   ===================================================================== */
+const curso = $('#curso');
+const CCIC = 16;
+let C = null;
+function rioTrechos(){
+  const W = Math.round(curso.clientWidth); if (!W) return;
+  if (C){ C.solta(); C = null; }
+  const H = Math.round(curso.offsetHeight);
+  const desk = window.innerWidth >= 900;
+  const bx = curso.getBoundingClientRect();
+  const rel = el => { const r = el.getBoundingClientRect(); return { x: r.left - bx.left + r.width / 2, y: r.top - bx.top + r.height / 2, w: r.width, h: r.height, l: r.left - bx.left, r: r.right - bx.left, t: r.top - bx.top }; };
+  const disco = rel($('#c-disco')), R = disco.w / 2;
+  const colR = rel($('#quem .col')).r;
+  const laneX = desk ? (colR + W) / 2 : W - 27;
+  const amp = desk ? clamp((W - colR) / 2 - 90, 20, 90) : 8;
+  const lam = desk ? 620 : 280;
+  const y0 = rel($('#quem')).t + (desk ? 70 : 40);
+  const xLane = y => laneX + amp * Math.sin(TAU * (y - y0) / lam + 0.7) * suave((y - y0) / 120);
+
+  /* afluentes: um por linha citada */
+  const drop = desk ? 44 : 20;
+  const linhas = $$('#curso [data-trib]').map(li => { const p = rel(li.querySelector('.pt')); return { li, id: li.dataset.trib, p, yj: p.y + drop }; });
+  const ultJ = linhas.reduce((s, l) => Math.max(s, l.yj), y0);
+  const yS = clamp(Math.max(ultJ + 18, disco.y - (desk ? 260 : 190)), y0 + 40, disco.y - R - 40);
+  const mainX = y => y <= yS ? xLane(y) : lerp(xLane(y), disco.x, suave((y - yS) / (disco.y - yS)));
+  const ptsM = []; for (let y = y0; y < disco.y; y += 3) ptsM.push([mainX(y), y]); ptsM.push([disco.x, disco.y]);
+  const main = RIO.curso(ptsM);
+
+  const vazao = n => 1 + Math.sqrt(n) / 3;
+  const itemDe = id => id.startsWith('p-') ? NOMES.find(n => n.id === id) : id.startsWith('f-') ? FLUX.find(f => f.id === id) : null;
+  const tribs = [];
+  linhas.forEach(L => {
+    let rotas;             /* [{cor, fila, id}] : uma faixa de escândalos leva um rio de gotas por caso */
+    if (L.id.startsWith('x-')) rotas = ESC.filter(x => x.faixa === L.id.slice(2)).map(x => ({ cor: RGB[x.nivel], fila: x.fila, id: x.id, q: vazao(x.fila.length) }));
+    else { const it = itemDe(L.id); if (!it) return; rotas = [{ cor: RGB[it.nivel], fila: it.fila, id: it.id, q: vazao(it.fila.length), sai: !!it.sai }]; }
+    const q = rotas.reduce((s, r) => s + r.q, 0), cor = RIO.mistura(rotas.map(r => [r.cor, r.q]));
+    const xj = mainX(L.yj), a = [L.p.x + 4, L.p.y], b = [xj, L.yj], d = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    const c = RIO.curso(RIO.meandro(a, b, { amp: desk ? Math.min(12, d * 0.09) : Math.min(2.2, d * 0.07), ondas: Math.max(1, Math.round(d / (desk ? 80 : 40))), fase: hash(L.id) * Math.PI, ta: [1, 0.08], tb: [desk ? 0.3 : 0.15, 1] }));
+    tribs.push({ L, c, q, cor, rotas, sai: rotas.length === 1 && rotas[0].sai });
+  });
+  const Qtot = 1 + tribs.reduce((s, t) => s + t.q, 0);
+  const wMin = desk ? 1.3 : 1.0, wMax = desk ? 24 : 12;
+  const kW = (wMax - wMin) / Math.sqrt(Qtot);
+  const larg = Q => wMin + kW * Math.sqrt(Math.max(0, Q));
+  tribs.forEach(t => { const wq = larg(t.q); RIO.pinta(t.c, (i, y, s) => [wMin + (wq - wMin) * Math.pow(s, 0.6), t.cor]); });
+  RIO.pinta(main, (i, y) => {
+    const pares = [[AGUA, 1]].concat(tribs.map(t => [t.cor, t.q * suave((y - t.L.yj + 2) / 14)]));
+    const Q = pares.reduce((s, p) => s + p[1], 0);
+    return [larg(Q) * (1 + 0.8 * suave((y - (disco.y - R - 50)) / 50)), RIO.mistura(pares)];
+  });
+  const corFoz = RIO.mistura(tribs.map(t => [t.cor, t.q]));
+
+  const leito = $('#c-leito'), agua = $('#c-agua');
+  const dpr = RIO.nitidez(W, H);
+  [leito, agua].forEach(cv => { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.width = W + 'px'; cv.style.height = H + 'px'; });
+  const ctx = leito.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  RIO.leito(ctx, tribs.map(t => ({ curso: t.c })).concat([{ curso: main }]), { fundo: FUNDO, foz: { x: disco.x, y: disco.y, r: R, cor: corFoz } });
+  ctx.fillStyle = RIO.css(AGUA); ctx.beginPath(); ctx.arc(main.x[0], main.y[0], 2.6, 0, TAU); ctx.fill();
+  if (reduzido){
+    RIO.setas(ctx, main, 'rgba(232,255,236,.5)', desk ? 120 : 90);
+    tribs.filter(t => t.sai).forEach(t => RIO.setas(ctx, RIO.inverte(t.c), 'rgba(232,255,236,.6)', 18));
+  }
+
+  const rotas = [{ rota: main, cor: AGUA, fila: [], leve: true, taxa: 1 / 5, id: 'nascente' }];
+  tribs.forEach(t => {
+    const iJ = RIO.primeiro(main.y, t.L.yj);
+    t.rotas.forEach(r => {
+      const rota = t.sai ? RIO.rota([RIO.inverte(t.c), 0, t.c.n - 1]) : RIO.rota([t.c, 0, t.c.n - 1], [main, iJ, main.n - 1]);
+      rotas.push({ rota, cor: r.cor, fila: r.fila, leve: !r.fila.length, semFoz: !!t.sai,
+        taxa: r.fila.length ? Math.min(0.45, r.fila.length / CCIC) : 1 / 18, id: t.L.id, grupo: t.L.id });
+    });
+  });
+  C = { solta: () => {} };
+  C.ctl = RIO.correnteza(agua, {
+    W, H, dpr, vel: desk ? 62 : 48, raio: desk ? 2.7 : 2.3, semente: 9,
+    cursos: tribs.map(t => ({ curso: t.c, id: t.L.id, grupo: t.L.id })).concat([{ curso: main, grupo: 'principal' }]),
+    rotas,
+    fontes: tribs.map(t => ({ x: t.L.p.x + 4, y: t.L.p.y, cor: t.cor, id: t.L.id, grupo: t.L.id })).concat([{ x: main.x[0], y: main.y[0], cor: AGUA, id: 'nascente' }]),
+    foz: { x: disco.x, y: disco.y, r: R, cor: corFoz },
+    janela: () => { const r = curso.getBoundingClientRect(); return [-r.top - 40, window.innerHeight - r.top + 40]; },
+    aoGota: aroPulsa('#c-disco')
+  });
+  C.solta = RIO.observa(curso, C.ctl);
+  C.W = W; C.H = H;
+  /* passar o dedo ou o mouse numa linha acende o afluente dela */
+  linhas.forEach(L => {
+    if (L.li.dataset.liga) return; L.li.dataset.liga = '1';
+    const on = () => C && C.ctl.marca(x => x.id === L.id || x.grupo === L.id || x.grupo === 'principal' ? 1 : 0.25);
+    const off = () => C && C.ctl.marca(() => 1);
+    L.li.addEventListener('mouseenter', on); L.li.addEventListener('mouseleave', off);
+  });
+}
+
+/* ---------- o cabeçalho acompanha o trecho da abertura: 01, 02 e 03 marcam 1, 2 e 3; no topo, 0 ---------- */
+if (!OG){
+  const TRS = [['#quem', 1], ['#dinheiro', 2], ['#foz', 3]].map(p => [$(p[0]), p[1]]).filter(p => p[0]);
+  let rT = 0;
+  const marcaTrecho = () => {
+    rT = 0;
+    const lim = window.innerHeight * 0.45;
+    let t = 0;
+    TRS.forEach(p => { if (p[0].getBoundingClientRect().top <= lim) t = p[1]; });
+    if (document.body.getAttribute('data-trecho') !== String(t)){
+      document.body.setAttribute('data-trecho', String(t));
+      if (window.BDNav && BDNav.atualiza) BDNav.atualiza();
+    }
+  };
+  window.addEventListener('scroll', () => { if (!rT) rT = requestAnimationFrame(marcaTrecho); }, { passive: true });
+  window.addEventListener('pageshow', marcaTrecho);
+  marcaTrecho();
+}
+
+/* ---------- o link acompanha o trecho (para mandar o ponto certo) ---------- */
+if (!OG && 'IntersectionObserver' in window && history.replaceState){
+  const secoes = $$('#quem, #dinheiro, #foz, #semana, #teste, #adiante, #nascente');
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (!e.isIntersecting) return;
+      const id = e.target.id, alvo = id === 'nascente' ? location.pathname + location.search : '#' + id;
+      if ((id === 'nascente' && !location.hash) || location.hash === '#' + id) return;
+      try { history.replaceState(null, '', alvo); } catch (_){} });
+  }, { rootMargin: '-45% 0px -54% 0px' });
+  /* só depois que a pessoa rola: ao abrir a página o link não muda sozinho */
+  const liga = () => { window.removeEventListener('scroll', liga); secoes.forEach(s => io.observe(s)); };
+  window.addEventListener('scroll', liga, { passive: true });
+}
+
+/* ---------- arranque e novo layout (só com mudança de largura: no celular a barra muda a altura) ---------- */
+function tudo(){ bacia(); if (!OG) rioTrechos(); }
+tudo();
+let largura = window.innerWidth, altura = window.innerHeight, rt = 0;
+window.addEventListener('resize', () => {
+  clearTimeout(rt);
+  rt = setTimeout(() => {
+    const mudouL = window.innerWidth !== largura, mudouA = Math.abs(window.innerHeight - altura) > 140;
+    largura = window.innerWidth; altura = window.innerHeight;
+    if (mudouL || mudouA) bacia();
+    if (mudouL && !OG) rioTrechos();
+  }, 180);
+});
+/* se a altura dos trechos mudar (fonte, foto, quebra de linha), o rio refaz o caminho */
+if ('ResizeObserver' in window){
+  let ro = 0;
+  new ResizeObserver(() => { if (!C || Math.abs(curso.offsetHeight - C.H) < 3 && Math.abs(curso.clientWidth - C.W) < 2) return; clearTimeout(ro); ro = setTimeout(rioTrechos, 150); }).observe(curso);
+}
+window.addEventListener('pageshow', e => { if (e.persisted) tudo(); });
+window.__abertura = { bacia: () => B, trechos: () => C, NOMES, FLUX, ESC, CASOS, SEMANA, VITRINE };
+})();
+</script>
 </body>
 </html>

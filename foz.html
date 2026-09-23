@@ -5,8 +5,26 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>A Foz — todos os escândalos levam ao Flávio · BolsoDrive</title>
 <meta name="description" content="Os escândalos que chegam a Flávio Bolsonaro — por ele mesmo, pelo gabinete, pela família e pelo entorno — com o caminho de cada um, elo por elo, e a fonte de cada elo.">
+
+<!-- Preview de link (WhatsApp, Telegram, X, Facebook). Se o endereço do site mudar, troque og:url e og:image. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
+<meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/foz.html">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BOLSODRIVE: Um rio de escândalos">
+<meta name="twitter:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
+<meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 <link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=10">
+<link rel="stylesheet" href="assets/header.css?v=11">
 <style>
 .wrap{max-width:760px}
 .kicker.trecho{margin:0 0 4px; color:var(--cinza); font-weight:400}
@@ -74,9 +92,15 @@ h2.sec2::before{content:"// "; color:var(--cinza2)}
 .ressalva{font-size:13px; color:var(--cinza); border-left:2px solid var(--cinza2); padding:2px 0 2px 10px; margin:0 0 14px}
 .ressalva b{color:var(--tinta)}
 .metodo{font-size:13px; color:var(--cinza); border-top:1px solid var(--linha); margin-top:28px; padding-top:14px}
-.fim-rio{margin-top:22px; font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--cinza)}
-.fim-rio p{margin:0}
-.fim-rio .acoes{margin-top:10px}
+.fim-rio{margin:6px 0 0; text-align:center}
+.fim-rio .fr-t{margin:0; font-size:22px; font-weight:700; color:var(--tinta)}
+.fim-rio .acoes{justify-content:center; margin-top:12px}
+.fim-rio .fr-links{display:flex; flex-direction:column; align-items:center; margin-top:14px}
+.fim-rio .fr-links a{display:inline-flex; align-items:center; min-height:44px; padding:0 6px; font-size:16px; font-weight:600; color:var(--amber); text-decoration:none}
+.fim-rio .fr-links a:hover{text-decoration:underline; text-underline-offset:3px}
+.fim-rio .fr-links a.fr-volta{font-family:var(--mono); font-size:13px; font-weight:400; letter-spacing:.06em; color:var(--cinza)}
+/* o "depois da foz" do cabeçalho (assets/nav.js) repetiria o link do quiz logo abaixo deste bloco */
+body[data-trecho="3"] .nv-segue{display:none}
 
 /* ficha do afluente */
 .folha{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; z-index:60}
@@ -99,26 +123,13 @@ h2.sec2::before{content:"// "; color:var(--cinza2)}
 .cam .stt{display:block; font-family:var(--mono); font-size:11px; color:var(--cinza)}
 .cam .ft{font-family:var(--mono); font-size:11px}
 .cam li.fim::before{background:var(--amber); border-color:var(--amber)}
+.cam .roda{display:inline-flex; align-items:center; min-height:36px; margin-right:12px; font-family:var(--mono); font-size:12px; color:var(--amber); text-decoration:none}
+.cam .roda:hover{text-decoration:underline; text-underline-offset:3px}
 </style>
 </head>
-<body>
+<body data-trecho="3">
 
-<header class="site-header">
-  <div class="hrow">
-    <div class="brand"><a class="mark" href="index.html">BOLSODRIVE</a><span class="tag">um rio de escândalos</span></div>
-    <nav class="tabs">
-      <a class="tab hot" href="index.html#recente">Recentemente</a>
-      <a class="tab" href="index.html#arquivo">Arquivo</a>
-      <a class="tab" href="index.html#rede">Close Friends</a>
-      <a class="tab active" href="foz.html">A Foz</a>
-      <a class="tab" href="siga-o-dinheiro.html">Siga o dinheiro</a>
-      <a class="tab" href="quiz.html">Quiz</a>
-      <a class="tab" href="index.html#cronologia">Cronologia</a>
-      <a class="tab" href="index.html#noticias">Notícias</a>
-      <a class="tab" href="index.html#chat">FlávioGPT</a>
-    </nav>
-  </div>
-</header>
+<header class="site-header" data-nav></header>
 
 <div class="wrap">
   <div class="kicker trecho">Trecho final · a foz</div>
@@ -140,17 +151,28 @@ h2.sec2::before{content:"// "; color:var(--cinza2)}
   <div class="faixas" id="faixas"></div>
 
   <h2 class="sec2">O rio, trecho por trecho</h2>
-  <p class="sub">Do mais distante ao mais perto. Toque num rio para ver o caminho até ele, elo por elo, com o status de cada pessoa e a fonte.</p>
+  <p class="sub">Do mais distante ao mais perto. Toque num rio para ver o caminho até ele, elo por elo, com o status de cada nome e a fonte.</p>
   <div class="rio" id="rio"><svg id="rio-svg"></svg><div class="trechos" id="trechos"></div></div>
 
-  <p class="metodo">Um rio não é uma acusação: é o caminho documentado de um escândalo até Flávio Bolsonaro, com a situação jurídica de cada pessoa no caminho. Quando ele não é investigado num caso, o rio diz — e diz por onde o caso chega a ele. Cada elo tem fonte. <a href="index.html#arquivo">Ver o arquivo completo →</a></p>
-  <div class="fim-rio"><p>// aqui o rio termina</p><div class="acoes"><button type="button" id="zap-pag">Mandar no WhatsApp</button></div></div>
+  <div class="fim-rio" id="fim-rio">
+    <p class="fr-t">O rio termina nele.</p>
+    <div class="acoes"><button type="button" id="zap-pag">Mandar no WhatsApp</button></div>
+    <nav class="fr-links" aria-label="Depois da foz">
+      <a href="quiz.html" id="fr-quiz">Teste o que viu: o quiz →</a>
+      <a href="drive.html#arquivo" id="fr-arq">Todos os registros →</a>
+      <a href="index.html" class="fr-volta">voltar à nascente ↑</a>
+    </nav>
+  </div>
+
+  <p class="metodo">Um rio não é uma acusação: é o caminho documentado de um escândalo até Flávio Bolsonaro, com a situação jurídica de cada nome no caminho. Quando ele não é investigado num caso, o rio diz — e diz por onde o caso chega a ele. Cada elo tem fonte.</p>
 </div>
 
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
-<script src="data/dados.js?v=set2026j"></script>
-<script src="data/foz.js?v=3"></script>
+<script src="data/dados.js?v=set2026l"></script>
+<script src="data/foz.js?v=4"></script>
+<script src="assets/quiz-basico.js?v=1" defer></script>
+<script src="assets/quiz-perguntas.js?v=2" defer></script>
 <script>
 /* =====================================================================
    RIO: motor de água do BolsoDrive. Canvas 2D, sem dependências.
@@ -583,8 +605,8 @@ const TAU = RIO.TAU, suave = RIO.suave, lerp = RIO.lerp;
 
 /* ---------- vocabulário ---------- */
 const FAIXAS = {
-  entorno:  { nome:'O entorno',  desc:'por amigos, aliados e financiadores', curto:'pelo entorno' },
-  familia:  { nome:'A família',  desc:'pelo pai e pelos irmãos',             curto:'pela família' },
+  entorno:  { nome:'O entorno',  desc:'por aliados, indicados e outras ligações registradas', curto:'pelo entorno' },
+  familia:  { nome:'A família',  desc:'pelo pai, pelos irmãos e por outros parentes', curto:'pela família' },
   gabinete: { nome:'O gabinete', desc:'por quem trabalhou para ele',          curto:'pelo gabinete' },
   direto:   { nome:'Ele mesmo',  desc:'o que ele fez, disse ou em que é investigado', curto:'com ele no centro' },
 };
@@ -595,6 +617,7 @@ const NOME_COR = '#d8efdd';      /* nomes em cor neutra: a cor fica só na água
 const FUNDO = [5, 8, 5];
 const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const temaNome = {}; ((window.DOSSIE || {}).temas || []).forEach(t => { temaNome[t.id] = t.nome; });
+const NO = {}; (((window.DOSSIE || {}).grafo || {}).nodes || []).forEach(n => { NO[n.id] = n; });   /* nomes da teia (drive.html#rede) */
 const PESO = { preso_ou_condenado_na_cadeia:2, investigado_na_cadeia:1, sem_processo_na_cadeia:0 };
 const hash = s => { let h = 2166136261; for (let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967296; };
 
@@ -749,7 +772,7 @@ function bacia(){
   const yM = yUlt + (mob ? 190 : 185);           /* a foz */
   const H = Math.round(yM + R + (mob ? 74 : 80));
   /* nitidez com teto: DPR até 1,75 e no máximo ~5 Mpx por canvas */
-  const dpr = Math.max(1, Math.min(1.75, window.devicePixelRatio || 1, Math.sqrt(5e6 / (W * H))));
+  const dpr = Math.max(1, Math.min(1.75, window.devicePixelRatio || 1, Math.sqrt(4.98e6 / (W * H))));
 
   /* 2. nomes e nascentes */
   bandas.forEach(b => {
@@ -1051,11 +1074,16 @@ function url(){ return location.origin + location.pathname; }
 function abre(id){
   const e = TODOS.find(z => z.id === id); if (!e) return;
   const c = e.cadeia || [];
-  const passos = c.map(l =>
+  /* "ver na teia": cada nome da cadeia que também está na teia (de_id/para_id), uma vez só */
+  const vistos = new Set(['flavio']);
+  const roda = l => [l.de_id, l.para_id].filter(id => id && NO[id] && !vistos.has(id) && vistos.add(id))
+    .map(id => '<a class="roda" href="drive.html?p=' + encodeURIComponent(id) + '#rede">ver ' + esc(NO[id].nome) + ' na teia →</a>').join('');
+  const passos = c.map(l => { const r = roda(l); return (
     '<li class="' + statusCls(l.status_de) + '"><span class="de">' + esc(l.de) + '</span> → ' + esc(l.para) +
     '<span class="rel">' + esc(l.relacao) + '</span>' +
     (l.status_de ? '<span class="stt">' + esc(l.status_de) + '</span>' : '') +
-    (l.fonte && l.fonte.url ? '<a class="ft" href="' + esc(l.fonte.url) + '" target="_blank" rel="noopener">' + esc(l.fonte.veiculo || 'fonte') + (l.fonte.data ? ' · ' + esc(l.fonte.data) : '') + '</a>' : '') + '</li>').join('') +
+    (l.fonte && l.fonte.url ? '<a class="ft" href="' + esc(l.fonte.url) + '" target="_blank" rel="noopener">' + esc(l.fonte.veiculo || 'fonte') + (l.fonte.data ? ' · ' + esc(l.fonte.data) : '') + '</a>' : '') +
+    (r ? '<span class="stt">' + r + '</span>' : '') + '</li>'); }).join('') +
     '<li class="fim"><span class="de">Flávio Bolsonaro</span><span class="rel">' + esc(e.status_flavio) + '</span></li>';
   const fontes = (e.fontes || []).map(f => '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo) + (f.data ? ' (' + esc(f.data) + ')' : '') + '</a>').join(' · ');
   $('#folha-cx').innerHTML =
@@ -1069,7 +1097,7 @@ function abre(id){
     (fontes ? '<p class="fonte">Fontes: ' + fontes + '</p>' : '') +
     (e.ressalva ? '<p class="ressalva"><b>Ressalva.</b> ' + esc(e.ressalva) + '</p>' : '') +
     '<div class="acoes"><button type="button" id="zap">Mandar no WhatsApp</button>' +
-    (e.registros ? '<a class="sec" href="index.html?q=' + encodeURIComponent(e.q || e.busca || e.rotulo) + '#arquivo">' + e.registros + ' registros no arquivo</a>' : '') + '</div>';
+    (e.registros ? '<a class="sec" href="drive.html?q=' + encodeURIComponent(e.q || e.busca || e.rotulo) + '#arquivo">' + e.registros + ' registros no arquivo</a>' : '') + '</div>';
   $('#folha').classList.add('on');
   try { history.replaceState(null, '', '#' + id); } catch(_){}
   $('#fx').addEventListener('click', fecha);
@@ -1116,11 +1144,24 @@ function poeFoto(box){   /* a foto cobre as iniciais; se não carregar, ficam as
   }
 })();
 
+/* ---------- depois da foz: os números saem dos dados ---------- */
+if ((D.itens || []).length) $('#fr-arq').textContent = 'Todos os ' + D.itens.length + ' registros →';
+document.addEventListener('DOMContentLoaded', () => {     /* as perguntas do quiz chegam com defer */
+  const nq = (window.__QUIZ_BASICO || []).length + (window.__NOVAS_PERGUNTAS || []).length;
+  if (nq) $('#fr-quiz').textContent = 'Teste o que viu: quiz, ' + nq + ' perguntas →';
+});
+
 /* ---------- arranque ---------- */
 cabecalho(); bacia(); rio();
-const h0 = decodeURIComponent((location.hash || '').slice(1));
-const h = TODOS.some(e => e.id === h0) ? h0 : ((FOZ.redireciona || {})[h0] || '');   /* rio fundido a outro continua abrindo */
-if (h && TODOS.some(e => e.id === h)) setTimeout(() => { irPara(h); abre(h); }, 300);
+function doHash(){
+  const h0 = decodeURIComponent((location.hash || '').slice(1));
+  const h = TODOS.some(e => e.id === h0) ? h0 : ((FOZ.redireciona || {})[h0] || '');   /* rio fundido a outro continua abrindo */
+  return TODOS.some(e => e.id === h) ? h : '';
+}
+const h = doHash();
+if (h) setTimeout(() => { irPara(h); abre(h); }, 300);
+/* link foz.html#<id> clicado com a Foz já aberta (a ficha usa replaceState, então isto não é voltar/avançar) */
+window.addEventListener('hashchange', () => { const k = doHash(); if (k){ irPara(k); abre(k); } });
 /* só refaz com mudança de largura: no celular a barra de endereço muda a altura ao rolar */
 let rt, larguraAnt = $('#bacia').clientWidth;
 window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => {
@@ -1128,10 +1169,6 @@ window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() =
 }, 150); });
 })();
 </script>
-<script>/* aba ativa visível sem cortar a primeira da faixa; --hdr = altura real do cabeçalho */
-(function(){var h=document.querySelector('.site-header');if(h)document.documentElement.style.setProperty('--hdr',h.offsetHeight+'px');
-var t=document.querySelector('.site-header .tabs'),a=t&&t.querySelector('.tab.active');if(!a||t.scrollWidth<=t.clientWidth+1)return;
-var b=t.getBoundingClientRect().left-t.scrollLeft,p=function(e){return e.getBoundingClientRect().left-b;},f=p(a)+a.offsetWidth,u=t.clientWidth-40,x=0,l=t.querySelectorAll('.tab');
-if(f>u)for(var i=0;i<l.length;i++){var s=Math.max(0,p(l[i])-6);if(f-s<=u||l[i]===a){x=s;break;}}t.scrollLeft=x;})();</script>
+<script src="assets/nav.js?v=2"></script>
 </body>
 </html>

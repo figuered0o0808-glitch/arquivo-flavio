@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BOLSODRIVE: Um rio de escândalos · Flávio Bolsonaro</title>
+<meta name="description" content="BOLSODRIVE: um rio de escândalos. O registro público sobre o senador e candidato à Presidência Flávio Bolsonaro: cada fato com fonte clicável e status jurídico.">
+
+<!-- Preview de link (WhatsApp, Telegram, X, Facebook). Se o endereço do site mudar, troque og:url e og:image. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
+<meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BOLSODRIVE: Um rio de escândalos">
+<meta name="twitter:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
+<meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
+
+<link rel="stylesheet" href="assets/app.css?v=set2026k">
+<link rel="stylesheet" href="assets/header.css?v=11">
+<style>
+/* ligação com a Foz: por quais rios um nome passa (assets/app.js, fozHTML) */
+.foz-liga{margin:12px 0 0; padding:10px 12px; border:1px solid var(--line); border-left:2px solid var(--amber); border-radius:var(--radius)}
+.foz-liga .fl-k{font-size:12px; color:var(--muted); margin:0 0 4px; line-height:1.4}
+.foz-liga a{display:flex; align-items:center; min-height:40px; font-size:14px; font-weight:600; color:var(--amber); text-decoration:none; border-top:1px solid var(--line)}
+.foz-liga .fl-k + a{border-top:0}
+.foz-liga > a:first-child{border-top:0}
+.foz-liga a:hover{text-decoration:underline; text-underline-offset:3px}
+.sheet .block .foz-liga{margin:0}
+</style>
+</head>
+<body data-trecho="m">
+
+<header class="site-header" data-nav></header>
+
+<main class="wrap">
+
+  <!-- RECENTEMENTE -->
+  <section id="view-recente" class="view active">
+    <div class="view-head">
+      <h1>Recentemente</h1>
+      <p class="tese"><b>Flávio Bolsonaro quer ser presidente.</b> Isto é o que saiu sobre ele nos últimos dias — os fatos do arquivo, com fonte e status, e as manchetes do dia. <span id="rec-quando" class="rec-quando"></span></p>
+    </div>
+    <div id="rec-lista" class="recente"></div>
+    <p class="rec-mais"><button class="backlink" data-go="cronologia">ver a cronologia completa →</button> <button class="backlink" data-go="arquivo">ver as pastas do arquivo →</button></p>
+  </section>
+
+  <!-- ARQUIVO -->
+  <section id="view-arquivo" class="view">
+    <div class="view-head">
+      <h1>Arquivo</h1>
+      <p class="tese"><b>Flávio Bolsonaro quer ser presidente.</b> Este arquivo mostra, com fonte em cada linha, o que ele fez com o mandato, com o dinheiro público e com quem andou. Os números abaixo resumem o caso; cada um abre a pasta que o prova.</p>
+    </div>
+    <div class="toolbar">
+      <label class="search">🔎 <input id="busca" placeholder="Buscar no arquivo…" autocomplete="off"></label>
+    </div>
+    <div id="arquivo-grid" class="grid"></div>
+    <div id="arquivo-itens" style="display:none"></div>
+  </section>
+
+  <!-- REDE -->
+  <section id="view-rede" class="view">
+    <div class="view-head">
+      <h1>Close Friends</h1>
+      <p>Quem anda com ele — e o que a Justiça diz de cada um. Toque num nome para ver os vínculos e a situação penal. Arraste para mover e pince para dar zoom; no celular, toque antes em “mover o mapa”. O anel vermelho marca quem foi preso ou condenado.</p>
+    </div>
+    <div class="toolbar">
+      <label class="search"><input id="rede-search" placeholder="buscar nome na rede…" autocomplete="off"></label>
+      <a class="backlink" href="close-friends.html">◎ ver em órbita</a>
+    </div>
+    <div class="rede-wrap">
+      <div class="canvas-box">
+        <canvas id="grafo"></canvas>
+        <button id="grafo-fit" title="Centralizar / ajustar">⤢ ajustar</button>
+        <button id="grafo-mover" type="button" aria-pressed="false">mover o mapa</button>
+        <div class="legenda" id="legenda"></div>
+      </div>
+      <aside id="rede-painel" class="rede-painel"><div class="ph">Carregando…</div></aside>
+    </div>
+  </section>
+
+  <!-- CRONOLOGIA -->
+  <section id="view-cronologia" class="view">
+    <div class="view-head">
+      <h1>A Cronologia</h1>
+      <p>Vinte anos de casos, um atrás do outro: da rachadinha na Alerj ao banqueiro preso do filme sobre o pai. Alterne para "faixas" para ver a vida de cada caso.</p>
+    </div>
+    <div class="cron-toggle">
+      <button class="cron-tab active" data-cron="log">log</button>
+      <button class="cron-tab" data-cron="faixas">faixas por caso</button>
+    </div>
+    <div id="timeline" class="timeline"></div>
+    <div id="swimlanes" class="swimlanes" style="display:none"></div>
+  </section>
+
+  <!-- NOTÍCIAS -->
+  <section id="view-noticias" class="view">
+    <div class="view-head">
+      <h1>Notícias</h1>
+      <p>As polêmicas mais recentes sobre o senador. Ao abrir a aba, o site tenta puxar o Google Notícias ao vivo; se o feed estiver fora do ar, mostra a última leva salva.</p>
+    </div>
+    <div class="news-bar">
+      <span id="news-status" class="news-status">…</span>
+      <button id="news-refresh" class="backlink">↻ atualizar</button>
+    </div>
+    <div class="news-sec">google notícias</div>
+    <div id="news-list" class="news-list"></div>
+    <div class="news-sec">do arquivo · fontes mais recentes</div>
+    <div id="news-arquivo" class="news-list"></div>
+  </section>
+
+  <!-- ESPECIALISTA -->
+  <section id="view-chat" class="view">
+    <div class="view-head">
+      <h1>FlávioGPT</h1>
+      <p>Pergunte o que quiser sobre ele. As respostas saem só do arquivo — com status e fonte — e linkam o registro de origem.</p>
+    </div>
+    <div class="chat-shell">
+      <div class="chat-disc">Responde só com base no arquivo. Não fala em nome do senador nem inventa fatos.</div>
+      <div id="chat-msgs" class="chat-msgs"></div>
+      <form id="chat-form" class="chat-form">
+        <input id="chat-inp" placeholder="Ex.: como ficou o caso da rachadinha?" autocomplete="off">
+        <button type="submit" aria-label="Perguntar">↑</button>
+      </form>
+      <div id="chat-chips" class="chat-chips"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <button id="link-metodo">// método &amp; transparência</button>
+    <span class="foot-dim">conteúdo de registro público, com fonte e status jurídico em cada registro</span>
+  </footer>
+
+</main>
+
+<div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
+
+<script src="data/dados.js?v=set2026l"></script>
+<script src="data/foz.js?v=4"></script>
+<script src="assets/app.js?v=set2026p"></script>
+<script src="assets/nav.js?v=2"></script>
+</body>
+</html>

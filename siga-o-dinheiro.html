@@ -6,7 +6,7 @@
 <title>Siga o dinheiro — BolsoDrive</title>
 <meta name="description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
 <link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=10">
+<link rel="stylesheet" href="assets/header.css?v=11">
 <style>
 /* Siga o dinheiro — só o que esta página acrescenta à base.
    Uma tela por fluxo: origem à esquerda, destino à direita, a linha cresce,
@@ -59,28 +59,18 @@
 .assina b{color:var(--tinta)}
 
 .vazio{padding:20px 0}
+/* ligação com a Foz: só nos fluxos que têm .foz nos dados */
+.foz-liga{margin:0 0 12px; font-size:15px}
+.foz-liga a{display:inline-flex; align-items:center; min-height:44px; font-weight:700; color:var(--amber); text-decoration:none}
+.foz-liga a:hover{text-decoration:underline; text-underline-offset:3px}
+.fecho .foz-fim{display:block; margin:0 auto 4px; color:var(--amber)}
 .rodape{margin:28px 0 0; text-align:center; font-size:17px; font-weight:700}
 .rodape a{color:var(--tinta); text-decoration:underline; text-underline-offset:3px; display:inline-block; padding:10px 4px}
 </style>
 </head>
-<body>
+<body data-trecho="2">
 
-<header class="site-header">
-  <div class="hrow">
-    <div class="brand"><a class="mark" href="index.html">BOLSODRIVE</a><span class="tag">um rio de escândalos</span></div>
-    <nav class="tabs">
-      <a class="tab hot" href="index.html#recente">Recentemente</a>
-      <a class="tab" href="index.html#arquivo">Arquivo</a>
-      <a class="tab" href="index.html#rede">Close Friends</a>
-      <a class="tab" href="foz.html">A Foz</a>
-      <a class="tab active" href="siga-o-dinheiro.html">Siga o dinheiro</a>
-      <a class="tab" href="quiz.html">Quiz</a>
-      <a class="tab" href="index.html#cronologia">Cronologia</a>
-      <a class="tab" href="index.html#noticias">Notícias</a>
-      <a class="tab" href="index.html#chat">FlávioGPT</a>
-    </nav>
-  </div>
-</header>
+<header class="site-header" data-nav></header>
 
 <main class="wrap">
   <h1 class="sec">Siga o dinheiro</h1>
@@ -106,6 +96,7 @@
       <p class="fonte" id="fonte"></p>
       <p class="fonte" id="fonte2" hidden></p>
       <p class="ressalva" id="ressalva"></p>
+      <p class="foz-liga" id="foz-liga" hidden><a id="foz-a" href="foz.html"></a></p>
 
       <div class="acoes"><button type="button" class="sec" id="zap">Mandar no WhatsApp</button></div>
       <div class="acoes nav">
@@ -116,21 +107,23 @@
 
     <div class="fecho" id="fecho" hidden>
       <p class="frase">Todos os valores são os citados nas fontes.</p>
-      <a class="grande" href="index.html">Ver os 294 registros →</a>
+      <a class="grande foz-fim" href="foz.html" id="foz-fim">A Foz: os escândalos que chegam a ele →</a>
+      <a class="grande" href="drive.html#arquivo" data-registros>Ver o arquivo completo →</a>
       <div class="acoes"><button type="button" class="sec" id="rever">← Rever do início</button></div>
     </div>
 
-    <p class="ressalva vazio" id="vazio" hidden>Não há fluxos para mostrar. <a href="index.html">Ver os 294 registros →</a></p>
+    <p class="ressalva vazio" id="vazio" hidden>Não há fluxos para mostrar. <a href="drive.html#arquivo" data-registros>Ver o arquivo completo →</a></p>
 
     <div class="assina"><span><b>BolsoDrive</b> · siga o dinheiro</span><span id="assina-n"></span></div>
   </section>
 
-  <p class="rodape"><a href="index.html">Ver os 294 registros →</a></p>
+  <p class="rodape"><a href="drive.html#arquivo" data-registros>Ver o arquivo completo →</a></p>
 </main>
 
-<noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="index.html">Ver os 294 registros →</a></p></noscript>
+<noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="drive.html#arquivo">Ver o arquivo completo →</a></p></noscript>
 
-<script src="data/dados.js?v=set2026j"></script>
+<script src="data/dados.js?v=set2026l"></script>
+<script src="data/foz.js?v=4"></script>
 <script>
 (function(){
 'use strict';
@@ -142,12 +135,34 @@ var brutos = Array.isArray(FD.fluxos) ? FD.fluxos : [];
 var FLUXOS = brutos.filter(function(f){ return f && typeof f.valor === 'string'; });
 var N = FLUXOS.length;
 
+/* "Ver os N registros": o número sai do arquivo, não do texto */
+if (Array.isArray(D.itens) && D.itens.length){
+  Array.prototype.forEach.call(document.querySelectorAll('[data-registros]'), function(a){ a.textContent = 'Ver os ' + D.itens.length + ' registros →'; });
+}
+
 function limpa(s){ return String(s || ''); }
 
-/* Status e ressalva vêm do próprio dado (fluxoDinheiro.fluxos[i].status / .ressalva). */
+/* A Foz (data/foz.js): o fluxo com .foz aponta para o escândalo em que aquele dinheiro chega.
+   Um id que não existe mais segue FOZ.redireciona; sem destino, não há link. */
+var FZ = window.FOZ || {};
+var ESC = {}; (FZ.escandalos || []).forEach(function(e){ ESC[e.id] = e; });
+function fozDe(id){
+  if (!id) return null;
+  if (ESC[id]) return ESC[id];
+  var r = (FZ.redireciona || {})[id];
+  return r && ESC[r] ? ESC[r] : null;
+}
+if ((FZ.escandalos || []).length){
+  document.getElementById('foz-fim').textContent = 'A Foz: ' + FZ.escandalos.length + ' escândalos que chegam a ele →';
+}
+
+/* Status, ressalva e defesa vêm do próprio dado (fluxoDinheiro.fluxos[i].status / .ressalva / .defesa).
+   A defesa só entra na ressalva quando ela ainda não traz a versão de quem é citado. */
 var PADRAO = { chip:'Fato noticiado', classe:'nenhum', ressalva:'' };
 function statusDe(f){
-  return { chip: f.status || PADRAO.chip, classe: '', ressalva: f.ressalva || '' };
+  var r = f.ressalva || '', d = f.defesa || '';
+  if (d && r.indexOf(d.replace(/\.$/, '')) < 0 && !/\b(diz|afirma|nega)\b|improcedente/i.test(r)) r = r ? r + ' ' + d : d;
+  return { chip: f.status || PADRAO.chip, classe: '', ressalva: r };
 }
 
 /* "R$ 2,08 mi" → prefixo "R$ ", número 2,08, sufixo " mi". O prefixo guarda "~" e "até". */
@@ -165,7 +180,8 @@ var el = {
   valor:$('valor'), pre:$('pre'), num:$('num'), suf:$('suf'), fluxo:$('fluxo'), seta:$('seta'),
   linha:$('linha'), ponta:$('ponta'), de:$('de'), para:$('para'), obs:$('obs'), chip:$('chip'),
   fonte:$('fonte'), fonte2:$('fonte2'), ressalva:$('ressalva'), zap:$('zap'), ant:$('ant'),
-  prox:$('prox'), rever:$('rever'), assinaN:$('assina-n'), legenda:$('legenda')
+  prox:$('prox'), rever:$('rever'), assinaN:$('assina-n'), legenda:$('legenda'),
+  fozLiga:$('foz-liga'), fozA:$('foz-a')
 };
 
 var reduz = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -233,6 +249,9 @@ function mostrar(i){
   linkFonte(el.fonte, 'Fonte', f.fonte || {});
   if (s.extra){ linkFonte(el.fonte2, 'Status', s.extra); el.fonte2.hidden = false; } else { el.fonte2.hidden = true; }
   el.ressalva.textContent = s.ressalva; el.ressalva.hidden = !s.ressalva;
+  var fz = fozDe(f.foz);
+  el.fozLiga.hidden = !fz;
+  if (fz){ el.fozA.href = 'foz.html#' + encodeURIComponent(fz.id); el.fozA.textContent = 'Onde este dinheiro chega: ' + (fz.rotulo || fz.nome) + ' →'; }
   el.ant.disabled = (i === 0);
   el.prox.textContent = (i === N - 1) ? 'Concluir →' : 'Próximo fluxo →';
   el.assinaN.textContent = (i + 1) + '/' + N;
@@ -248,6 +267,7 @@ function mensagem(i){
   var f = FLUXOS[i], s = statusDe(f);
   return limpa(f.de) + ' → ' + limpa(f.para) + ': ' + f.valor + ' (' + limpa(f.obs) + ').\n' +
     'Status: ' + s.chip + '.\n' +
+    (f.defesa && !/\b(diz|afirma|nega)\b|improcedente/i.test(f.obs || '') ? limpa(f.defesa) + '\n' : '') +
     'Fonte: ' + (f.fonte && f.fonte.veiculo || '') + (f.fonte && f.fonte.url ? ' — ' + f.fonte.url : '') +
     '\n\nBolsoDrive · Siga o dinheiro, fluxo ' + (i + 1) + ' de ' + N + ': ' + base() + '#' + (i + 1);
 }
@@ -299,10 +319,6 @@ window.addEventListener('resize', function(){ if (atual < N) medir(); });
 window.addEventListener('hashchange', function(){ var i = deHash(); if (i !== atual) mostrar(i); });
 })();
 </script>
-<script>/* aba ativa visível sem cortar a primeira da faixa; --hdr = altura real do cabeçalho */
-(function(){var h=document.querySelector('.site-header');if(h)document.documentElement.style.setProperty('--hdr',h.offsetHeight+'px');
-var t=document.querySelector('.site-header .tabs'),a=t&&t.querySelector('.tab.active');if(!a||t.scrollWidth<=t.clientWidth+1)return;
-var b=t.getBoundingClientRect().left-t.scrollLeft,p=function(e){return e.getBoundingClientRect().left-b;},f=p(a)+a.offsetWidth,u=t.clientWidth-40,x=0,l=t.querySelectorAll('.tab');
-if(f>u)for(var i=0;i<l.length;i++){var s=Math.max(0,p(l[i])-6);if(f-s<=u||l[i]===a){x=s;break;}}t.scrollLeft=x;})();</script>
+<script src="assets/nav.js?v=2"></script>
 </body>
 </html>

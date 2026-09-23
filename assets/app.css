@@ -282,12 +282,6 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .rec-it.news .rt{color:var(--muted);font-size:14px}
 .rec-it.news .rk{color:var(--dim)}
 .rec-mais{margin:16px 0 0;display:flex;gap:10px;flex-wrap:wrap}
-/* aba chamativa: borda vermelha e contador */
-.site-header .tab.hot{border-color:var(--red);color:var(--red-b)}
-.site-header .tab.hot.active{background:var(--red);border-color:var(--red);color:#fff}
-.site-header .tab.hot b{display:inline-block;min-width:18px;margin-left:6px;padding:1px 5px;border-radius:999px;background:var(--red);color:#fff;font-size:11px;text-align:center;vertical-align:1px}
-.site-header .tab.hot.active b{background:#fff;color:var(--red)}
-.site-header .tab.hot b:empty{display:none}
 @media (max-width:600px){
   .rec-it{grid-template-columns:1fr;gap:3px}
   .rec-it .rk{padding-top:0}

@@ -3130,7 +3130,7 @@ window.DOSSIE = {
    "tema": "juridico",
    "data": "2026-09-11",
    "status": "fato",
-   "titulo": "Em ofício a Fux, Gilmar acusa 'prévio ajuste' com Mendonça no afastamento da cúpula da PF",
+   "titulo": "Em ofício a Fux, Gilmar acusa 'prévio ajuste' com Mendonça no afastamento da cúpula da PF (não é Flávio)",
    "resumo": "Em ofício de 11/9 ao presidente da 2ª Turma, Luiz Fux, divulgado pelo Metrópoles em 17/9, o ministro Gilmar Mendes afirmou ter havido 'prévio ajuste — não comunicado a parcela dos demais colegas integrantes do colegiado' entre Fux e André Mendonça na sessão virtual de 8/9, na qual Fux (10h04) e Nunes Marques (10h06) votaram quatro e seis minutos após seu pedido de vista (10h). Gilmar sustenta que 'a Turma não é composta por seu presidente e mais um ou dois ministros. É colegiado de cinco membros'. Gilmar já havia formalizado proposta de emenda regimental para 'impedir que policiais e militares atuem nos gabinetes, exceto na segurança'. O afastamento de Andrei Rodrigues fora revertido por Dino em 9/9; a matéria não registra resposta formal de Fux ou Mendonça.",
    "observacao": "Data do fato = ofício de 11/9; divulgação em 17/9. Cortada a afirmação de que Gilmar 'defende que o tema vá ao Plenário' (não consta). Item de contexto da briga no STF; Flávio não é parte.",
    "pessoas": [],
@@ -8497,7 +8497,7 @@ window.DOSSIE = {
     "nome": "Flávio Bolsonaro",
     "papel": "Senador (PL-RJ); à época da rachadinha, deputado estadual na Alerj",
     "grupo": "politico",
-    "status": "Foi investigado e denunciado pelo MP-RJ em 2020 no caso das 'rachadinhas' (peculato, lavagem, organização criminosa), mas a denúncia foi rejeitada e as provas anuladas pelo STJ/STF; em fev/2025 Gilmar Mendes negou recursos do MP — não foi condenado nem preso.",
+    "status": "Foi investigado e denunciado pelo MP-RJ em 2020 no caso das rachadinhas (peculato, lavagem, organização criminosa). As provas foram anuladas pelo STJ e pelo STF, a denúncia foi arquivada em 2022 e, em fev/2025, Gilmar Mendes negou os recursos do MP. Nunca foi condenado nem preso.",
     "situacao": [
      "denunciado",
      "investigado"
@@ -9116,7 +9116,7 @@ window.DOSSIE = {
    {
     "id": "thiago-miranda",
     "nome": "Thiago Miranda",
-    "papel": "Publicitário",
+    "papel": "Publicitário; intermediou o contato de Flávio com Vorcaro, segundo a Agência Pública",
     "grupo": "operadores",
     "status": "Confirmou a transferência de cerca de R$ 62 mi para o Dark Horse; citado nas investigações sobre o financiamento.",
     "situacao": [
@@ -11242,8 +11242,8 @@ window.DOSSIE = {
    {
     "de": "queiroz",
     "para": "flavio",
-    "rotulo": "operador financeiro do esquema; arrecadava devoluções de salário e repassava recursos",
-    "status": "denuncia",
+    "rotulo": "segundo o MP-RJ, operador financeiro do esquema; denúncia arquivada em 2022, sem condenação",
+    "status": "arquivado",
     "fontes": [
      {
       "veiculo": "ConJur",
@@ -11434,8 +11434,8 @@ window.DOSSIE = {
    {
     "de": "raimunda",
     "para": "flavio",
-    "rotulo": "assessora (CCDAL-5) no gabinete da Alerj (2016-2018); citada como assessora-fantasma",
-    "status": "denuncia",
+    "rotulo": "assessora (CCDAL-5) no gabinete da Alerj (2016-2018), citada pelo MP-RJ como assessora-fantasma; denúncia arquivada em 2022",
+    "status": "arquivado",
     "fontes": [
      {
       "veiculo": "O Tempo",
@@ -11458,8 +11458,8 @@ window.DOSSIE = {
    {
     "de": "danielle",
     "para": "flavio",
-    "rotulo": "assessora (CCDAL-5) na Alerj (desde ~2010 a 2018); teria devolvido a Queiroz, segundo MP-RJ",
-    "status": "denuncia",
+    "rotulo": "assessora (CCDAL-5) na Alerj (de ~2010 a 2018); teria devolvido salário a Queiroz, segundo o MP-RJ; denúncia arquivada em 2022",
+    "status": "arquivado",
     "fontes": [
      {
       "veiculo": "Sul21",
@@ -11502,8 +11502,8 @@ window.DOSSIE = {
    {
     "de": "flavio",
     "para": "vorcaro",
-    "rotulo": "teria pedido a Vorcaro R$ 134 mi para o filme 'Dark Horse' sobre Jair; ~R$ 61 mi liberados (áudios revelados pela Intercept)",
-    "status": "denuncia",
+    "rotulo": "teria pedido a Vorcaro R$ 131 mi, segundo a PF, para o filme 'Dark Horse' sobre Jair; ~R$ 61 mi liberados (áudios revelados pela Intercept)",
+    "status": "investigacao",
     "fontes": [
      {
       "veiculo": "Agência Brasil",
@@ -11614,8 +11614,8 @@ window.DOSSIE = {
    {
     "de": "raimunda",
     "para": "queiroz",
-    "rotulo": "Repasses de R$ 203 mil no esquema de rachadinha",
-    "status": "denuncia",
+    "rotulo": "repasses de R$ 203 mil no esquema, segundo o MP-RJ; denúncia arquivada em 2022",
+    "status": "arquivado",
     "fontes": [
      {
       "veiculo": "Blog do BG",
@@ -11702,8 +11702,8 @@ window.DOSSIE = {
    {
     "de": "flavio",
     "para": "bolsotini-chocolates-e-cafe",
-    "rotulo": "sócio (50%); conta movimentou R$ 3 mi em espécie",
-    "status": "investigacao",
+    "rotulo": "sócio da loja; o MP-RJ apontou depósitos em espécie como lavagem; denúncia arquivada em 2022",
+    "status": "arquivado",
     "fontes": [
      {
       "veiculo": "Brasil de Fato",
@@ -11775,7 +11775,7 @@ window.DOSSIE = {
     "de": "vorcaro",
     "para": "goup-entertainment",
     "rotulo": "teria financiado ~R$ 61 mi em seis transferências (2025)",
-    "status": "denuncia",
+    "status": "investigacao",
     "fontes": [
      {
       "veiculo": "Metrópoles",
@@ -11791,7 +11791,7 @@ window.DOSSIE = {
     "de": "vorcaro",
     "para": "ciro-nogueira",
     "rotulo": "apontado pela PF como destinatário de pagamentos do Master ('Emenda Master')",
-    "status": "denuncia",
+    "status": "investigacao",
     "fontes": [
      {
       "veiculo": "Revista Fórum",
@@ -14305,22 +14305,22 @@ window.DOSSIE = {
    {
     "de": "flavio",
     "para": "luiza_paes",
-    "rotulo": "ex-assessora de Flávio na Alerj; devolveu salário (rachadinha)",
-    "status": "denuncia",
+    "rotulo": "ex-assessora de Flávio na Alerj; devolveu salário, segundo o MP-RJ; denúncia arquivada em 2022",
+    "status": "arquivado",
     "fontes": []
    },
    {
     "de": "flavio",
     "para": "nathalia-queiroz",
-    "rotulo": "lotada no gabinete de Flávio (Alerj), apontada como fantasma",
-    "status": "denuncia",
+    "rotulo": "lotada no gabinete de Flávio (Alerj), apontada pelo MP-RJ como fantasma; denúncia arquivada em 2022",
+    "status": "arquivado",
     "fontes": []
    },
    {
     "de": "flavio",
     "para": "evelyn-queiroz",
-    "rotulo": "lotada no gabinete de Flávio (Alerj), apontada como fantasma",
-    "status": "denuncia",
+    "rotulo": "lotada no gabinete de Flávio (Alerj), apontada pelo MP-RJ como fantasma; denúncia arquivada em 2022",
+    "status": "arquivado",
     "fontes": []
    },
    {
@@ -15098,6 +15098,7 @@ window.DOSSIE = {
     "obs": "financiamento em 2021, em 360 parcelas; imóvel de R$ 5,97 mi. Aprovado sob Paulo Henrique Costa, preso em 2026 no caso Master",
     "tema": "mansao",
     "status": "FATO NOTICIADO",
+    "defesa": "Ação popular julgada improcedente em 01/07/2025: o juiz entendeu que o empréstimo seguiu a 'prática comercial regular' do banco.",
     "ressalva": "Imóvel de R$ 5,97 mi, com R$ 2,87 mi de entrada e 360 parcelas. A operação passou pela diretoria do BRB presidida por Paulo Henrique Costa, preso preventivamente em abril de 2026 no caso Master.",
     "fonte": {
      "veiculo": "Metrópoles",
@@ -15112,6 +15113,7 @@ window.DOSSIE = {
     "obs": "7 repasses em 2025, descritos em delação homologada pelo STF em 9/9/2026. Flávio é investigado; nega irregularidade",
     "tema": "master",
     "status": "INVESTIGAÇÃO EM CURSO · SEM CONDENAÇÃO",
+    "defesa": "Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.",
     "ressalva": "Inquérito autorizado pelo ministro André Mendonça em 22/07/2026; Flávio é investigado. A delação homologada em 09/09/2026 descreve 7 repasses em 2025, a pedido de Vorcaro, somando US$ 12,3 milhões (cerca de R$ 63 milhões). Sem denúncia aceita nem condenação. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.",
     "fonte": {
      "veiculo": "Brasil de Fato",
@@ -15160,11 +15162,12 @@ window.DOSSIE = {
    },
    {
     "de": "BRB (Banco de Brasília)",
-    "para": "Mansão usada como QG da campanha",
+    "para": "Mansão de José Vicente Santini, coordenador da campanha, usada como QG",
     "valor": "R$ 10,5 mi",
     "obs": "imóvel de R$ 14,5 mi em nome de um coordenador da campanha; um deputado pediu apuração à PF em 02/07/2026. O coordenador diz que está tudo declarado",
     "tema": "mansao",
     "status": "PEDIDO DE APURAÇÃO À PF",
+    "defesa": "Santini diz que está tudo declarado.",
     "ressalva": "Imóvel registrado em nome do advogado José Vicente Santini, coordenador da campanha: R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo BRB. Santini diz que a renda vem do escritório e de uma empresa de segurança e que está tudo declarado.",
     "fonte": {
      "veiculo": "Metrópoles",
