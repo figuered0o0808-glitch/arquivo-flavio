@@ -9,7 +9,7 @@
   const nodeById = Object.fromEntries((D.grafo?.nodes||[]).map(n=>[n.id,n]));
 
   function badge(st){
-    const s = D.status[st] || {rotulo:st,cor:'#94a3b8'};
+    const s = D.status[st] || {rotulo:st,cor:'var(--muted)'};
     return `<span class="badge" style="color:${s.cor}">${esc(s.rotulo)}</span>`;
   }
   // selo de procedência (tier da fonte)
@@ -60,16 +60,45 @@
   }
 
   /* ---------------- Router ---------------- */
-  function showView(name){
-    $$('.view').forEach(v=>v.classList.toggle('active', v.id==='view-'+name));
+  const VIEWS=['recente','arquivo','rede','cronologia','noticias','chat'];
+  // Regra: nenhum id de elemento pode ter o nome de uma view. Se tiver, o navegador
+  // rola até ele ao abrir index.html#<view> (era a "faixa preta" do #recente).
+  try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; }catch(e){}
+  // Faixa de abas no celular: rola até a aba ativa sem cortar a primeira visível.
+  // Encosta a faixa no começo de uma aba (nunca no meio) e deixa a ativa inteira
+  // antes do degradê da borda direita.
+  function mostraAbaAtiva(){
+    const t=$('.site-header .tabs'), a=t&&t.querySelector('.tab.active');
+    if(!t || !a || t.scrollWidth<=t.clientWidth+1) return;
+    const base=t.getBoundingClientRect().left - t.scrollLeft;
+    const pos=el=> el.getBoundingClientRect().left - base;
+    const fimA=pos(a)+a.offsetWidth, util=t.clientWidth-40;
+    let x=0;
+    if(fimA>util){ for(const tb of $$('.tab',t)){ const s=Math.max(0,pos(tb)-6); if(fimA-s<=util || tb===a){ x=s; break; } } }
+    t.scrollLeft=x;
+  }
+  // hist==='push': troca pedida pela pessoa (aba, link, cartão) → vira entrada no
+  // histórico, e o "voltar" do Android volta à view anterior em vez de sair do site.
+  // Sem hist: só mostra (abertura da página, voltar/avançar); a URL não é reescrita.
+  function showView(name, hist){
+    const alvo=$('#view-'+name); if(!alvo) return false;
+    const mudou=!alvo.classList.contains('active');
+    if(hist==='push' && mudou && location.hash!=='#'+name){
+      try{
+        history.replaceState(Object.assign({}, history.state, {y:window.scrollY}), '');
+        history.pushState({view:name, y:0}, '', '#'+name);
+      }catch(e){}
+    }
+    $$('.view').forEach(v=>v.classList.toggle('active', v===alvo));
     $$('.tab').forEach(t=>t.classList.toggle('active', t.dataset.view===name));
-    const at=$('.site-header .tab.active'); if(at&&at.scrollIntoView) at.scrollIntoView({inline:'center',block:'nearest'});
+    mostraAbaAtiva();
     if(name==='rede') Grafo.ensure();
     if(name==='noticias') Noticias.ensure();
     if(name==='recente') renderRecente();
-    if(location.hash !== '#'+name) history.replaceState(null,'','#'+name);
+    if(mudou) window.scrollTo(0,0);
+    return mudou;
   }
-  $$('.tab[data-view]').forEach(t=> t.addEventListener('click', ()=>showView(t.dataset.view)));
+  $$('.tab[data-view]').forEach(t=> t.addEventListener('click', ()=>showView(t.dataset.view,'push')));
 
   /* ---------------- Arquivo ---------------- */
   const arqGrid = $('#arquivo-grid');
@@ -117,7 +146,7 @@
     }).join('');
     $$('.folder', arqGrid).forEach(f=> f.addEventListener('click', ()=>abrirTema(f.dataset.tema)));
     $$('.placar-band .pl', arqGrid).forEach(b=> b.addEventListener('click', ()=>{
-      const d=b.dataset.dest||''; if(d==='rede'){ showView('rede'); Grafo.focus('flavio'); window.scrollTo(0,0); }
+      const d=b.dataset.dest||''; if(d==='rede'){ showView('rede','push'); Grafo.focus('flavio'); }
       else if(d.startsWith('tema:')){ abrirTema(d.slice(5)); window.scrollTo(0,0); }
     }));
   }
@@ -158,7 +187,7 @@
       abrirDetalhe(c.dataset.item);
     }));
     $$('.pchip', root).forEach(p=> p.addEventListener('click', e=>{
-      e.stopPropagation(); showView('rede'); Grafo.focus(p.dataset.pessoa);
+      e.stopPropagation(); showView('rede','push'); Grafo.focus(p.dataset.pessoa);
     }));
   }
 
@@ -195,7 +224,7 @@
         <div class="block"><div class="lbl">Fontes ${i.lastro?'· '+lastroBadge(i.lastro):''}</div><div class="src">${fontesHTML(i.fontes)}</div></div>
       </div>`;
     $('#fechar').addEventListener('click', fechar);
-    $$('.pchip', sheet).forEach(p=>p.addEventListener('click', ()=>{fechar();showView('rede');Grafo.focus(p.dataset.pessoa);}));
+    $$('.pchip', sheet).forEach(p=>p.addEventListener('click', ()=>{fechar();showView('rede','push');Grafo.focus(p.dataset.pessoa);}));
     overlay.classList.add('open');
   }
 
@@ -237,7 +266,7 @@
         ${its.length?`<div class="block"><div class="lbl">No arquivo (${its.length})</div><div class="vlist">${lista}</div></div>`:''}
       </div>`;
     $('#fechar').addEventListener('click', fechar);
-    $$('.vrow[data-item]', sheet).forEach(r=> r.addEventListener('click', ()=>{ fechar(); showView('arquivo'); abrirDetalhe(r.dataset.item); }));
+    $$('.vrow[data-item]', sheet).forEach(r=> r.addEventListener('click', ()=>{ fechar(); showView('arquivo','push'); abrirDetalhe(r.dataset.item); }));
     $$('.vrow[data-node]', sheet).forEach(r=> r.addEventListener('click', ()=> abrirFicha(r.dataset.node)));
     overlay.classList.add('open');
   }
@@ -488,11 +517,23 @@
     }
     function select(id){ filterSet=null; filterCat=null; sel=id; alpha=Math.max(alpha,.4); painelPessoa(id); }
 
+    // No toque, o mapa começa "solto": um dedo rola a página por cima dele e o toque
+    // simples ainda abre a pessoa. "mover o mapa" liga arrastar e pinçar (touch-action:none
+    // só nesse modo, via .movendo em app.css); tocar de novo devolve a rolagem à página.
+    let movendo=false;
+    const toque = e => e.pointerType==='touch' || e.pointerType==='pen';
+    function setMovendo(v){
+      movendo=!!v; const box=canvas.parentElement, b=$('#grafo-mover');
+      if(box) box.classList.toggle('movendo', movendo);
+      if(b){ b.setAttribute('aria-pressed', movendo?'true':'false'); b.textContent = movendo ? 'rolar a página' : 'mover o mapa'; }
+    }
     function bind(){
       // Pointer Events cobrem mouse e toque; dois dedos = pinça (zoom).
       const pts = new Map(); let pinch=null;
       const pos = e => { const r=canvas.getBoundingClientRect(); return {mx:e.clientX-r.left, my:e.clientY-r.top}; };
       canvas.addEventListener('pointerdown', e=>{
+        // modo solto no toque: sem captura, para o navegador poder rolar a página
+        if(toque(e) && !movendo){ const {mx,my}=pos(e); downPos={mx,my}; last={mx,my}; moved=0; drag=null; panning=false; return; }
         canvas.setPointerCapture(e.pointerId); pts.set(e.pointerId, pos(e));
         if(pts.size===2){ const [a,b]=[...pts.values()]; pinch={d:Math.hypot(a.mx-b.mx,a.my-b.my), s:cam.s, cx:(a.mx+b.mx)/2, cy:(a.my+b.my)/2}; drag=null; panning=false; return; }
         const {mx,my}=pos(e); const n=nodeAt(mx,my); downPos={mx,my}; moved=0; last={mx,my};
@@ -500,6 +541,7 @@
       });
       canvas.addEventListener('pointermove', e=>{
         const {mx,my}=pos(e);
+        if(toque(e) && !movendo){ if(last){ moved+=Math.abs(mx-last.mx)+Math.abs(my-last.my); last={mx,my}; } return; }
         if(pts.has(e.pointerId)) pts.set(e.pointerId,{mx,my});
         if(pinch && pts.size>=2){
           const [a,b]=[...pts.values()]; const d=Math.hypot(a.mx-b.mx,a.my-b.my);
@@ -514,6 +556,8 @@
       });
       const fim = e=>{
         pts.delete(e.pointerId);
+        // pointercancel = o navegador assumiu o gesto (rolagem): não é toque num nó
+        if(e.type==='pointercancel'){ if(pts.size<2) pinch=null; drag=null; panning=false; downPos=null; return; }
         if(pinch){ if(pts.size<2){ pinch=null; drag=null; panning=false; downPos=null; } return; }
         if(downPos && moved<6){ const {mx,my}=pos(e); const n=nodeAt(mx,my);
           if(n) select(n.id); else if(mx>=0&&my>=0&&mx<=W&&my<=H){ showOverview(); } }
@@ -524,8 +568,13 @@
         const f=e.deltaY<0?1.12:0.89; const ns=Math.max(0.25, Math.min(3, cam.s*f));
         cam.tx = mx - (mx-cam.tx)*(ns/cam.s); cam.ty = my - (my-cam.ty)*(ns/cam.s); cam.s=ns; }, {passive:false});
       const fitBtn = $('#grafo-fit'); if(fitBtn) fitBtn.addEventListener('click', ()=>{ showOverview(); fitView(); });
+      const movBtn = $('#grafo-mover'); if(movBtn) movBtn.addEventListener('click', ()=> setMovendo(!movendo));
       const sb = $('#rede-search'); if(sb) sb.addEventListener('input', ()=> doSearch(sb.value));
-      window.addEventListener('resize', ()=>{ if(started){ resize(); fitView(); } });
+      // No celular, o resize dispara quando a barra de endereço some ou volta (só a altura
+      // muda): aí não se recentraliza, para não desfazer o zoom e o arraste da pessoa.
+      let lw=window.innerWidth;
+      window.addEventListener('resize', ()=>{ if(!started) return; resize();
+        if(window.innerWidth!==lw){ lw=window.innerWidth; fitView(); } });
     }
 
     function renderLegenda(){
@@ -586,7 +635,7 @@
       </div>`;
     });
     const el = $('#timeline'); el.innerHTML = html;
-    $$('.tl-log[data-item]', el).forEach(r=> r.addEventListener('click', ()=>{ showView('arquivo'); abrirDetalhe(r.dataset.item); }));
+    $$('.tl-log[data-item]', el).forEach(r=> r.addEventListener('click', ()=>{ showView('arquivo','push'); abrirDetalhe(r.dataset.item); }));
   }
   let swimDone=false;
   function renderSwimlanes(){
@@ -604,7 +653,7 @@
         }).join('');
         return `<div class="sl-lane"><div class="sl-name" style="color:${t.cor}">${esc(t.nome)}</div><div class="sl-track">${dots}</div></div>`;
       }).join('');
-    $$('.sl-dot', el).forEach(d=> d.addEventListener('click', ()=>{ showView('arquivo'); abrirDetalhe(d.dataset.item); }));
+    $$('.sl-dot', el).forEach(d=> d.addEventListener('click', ()=>{ showView('arquivo','push'); abrirDetalhe(d.dataset.item); }));
     swimDone=true;
   }
 
@@ -641,7 +690,7 @@
     return `Respondo a partir do arquivo documentado. Tente temas como: ${D.temas.map(t=>t.nome).join(', ')} — ou nomes (ex.: Queiroz).`;
   }
   function perguntar(q){ addMsg('user', esc(q)); setTimeout(()=>{ const m=document.createElement('div'); m.className='msg'; m.innerHTML=`<div class="av bot">F</div><div class="bubble">${responder(q)}</div>`; chatMsgs.appendChild(m);
-    $$('[data-open]', m).forEach(a=>a.addEventListener('click', e=>{e.preventDefault();showView('arquivo');abrirDetalhe(a.dataset.open);}));
+    $$('[data-open]', m).forEach(a=>a.addEventListener('click', e=>{e.preventDefault();showView('arquivo','push');abrirDetalhe(a.dataset.open);}));
     m.scrollIntoView({behavior:'smooth',block:'nearest'}); }, 200); }
   $('#chat-form').addEventListener('submit', e=>{ e.preventDefault(); const v=$('#chat-inp').value.trim(); if(!v)return; $('#chat-inp').value=''; perguntar(v); });
   $('#chat-chips').innerHTML = D.temas.map(t=>`<button class="c" data-q="${esc(t.nome)}">${t.icone} ${esc(t.nome)}</button>`).join('') + `<button class="c" data-q="Quem é Fabrício Queiroz?">Quem é Queiroz?</button>`;
@@ -748,7 +797,7 @@
     return ev;
   }
   function renderRecente(){
-    const el = $('#recente'); if(!el) return;
+    const el = $('#rec-lista'); if(!el) return;
     const ev = recentes(); const fatos = ev.filter(e=>e.tipo==='fato').length;
     const cap = D.noticiasCaptura ? fmtDia(D.noticiasCaptura) : '';
     $('#rec-quando') && ($('#rec-quando').textContent = cap ? `Atualizado em ${cap}.` : '');
@@ -768,9 +817,9 @@
       const nf = lista.filter(e=>e.tipo==='fato').length, nn = lista.length-nf;
       return `<div class="rec-day"><h3>${fmtDia(k)}<span>${nf?`${nf} ${nf===1?'fato':'fatos'}`:''}${nf&&nn?' · ':''}${nn?`${nn} ${nn===1?'manchete':'manchetes'}`:''}</span></h3>${rows}</div>`;
     }).join('');
-    $$('.rec-it[data-item]', el).forEach(r=> r.addEventListener('click', ()=>{ showView('arquivo'); abrirDetalhe(r.dataset.item); }));
+    $$('.rec-it[data-item]', el).forEach(r=> r.addEventListener('click', ()=>{ showView('arquivo','push'); abrirDetalhe(r.dataset.item); }));
   }
-  $$('.rec-mais [data-go]').forEach(b=> b.addEventListener('click', ()=>{ showView(b.dataset.go); window.scrollTo(0,0); }));
+  $$('.rec-mais [data-go]').forEach(b=> b.addEventListener('click', ()=> showView(b.dataset.go,'push')));
 
   /* ---------------- init ---------------- */
   function medeHeader(){ const h=$('.site-header'); if(h) document.documentElement.style.setProperty('--hdr', h.offsetHeight+'px'); }
@@ -794,10 +843,20 @@
     // index.html?q=termo#arquivo abre o Arquivo com a busca preenchida (links vindos da Foz)
     const q0 = new URLSearchParams(location.search).get('q');
     if(q0 && busca){ busca.value = q0; setTimeout(()=> busca.dispatchEvent(new Event('input')), 0); }
-    const VIEWS=['recente','arquivo','rede','cronologia','noticias','chat'];
+    // lê o hash sem reescrever a URL (index.html, index.html#arquivo e ?q=a|b#arquivo seguem como vieram)
     const h = (location.hash||'#recente').slice(1);
     showView(VIEWS.includes(h)?h:'recente');
-    window.addEventListener('hashchange', ()=>{ const k=(location.hash||'#recente').slice(1); if(VIEWS.includes(k)) showView(k); });
+    // voltar/avançar (popstate) e hash digitado ou clicado (hashchange): mostra a view e
+    // devolve a rolagem guardada naquela entrada do histórico
+    const sync = ()=>{
+      const k=(location.hash||'#recente').slice(1); if(!VIEWS.includes(k)) return;
+      if(overlay.classList.contains('open')) fechar();
+      showView(k);
+      const y = history.state && typeof history.state.y==='number' ? history.state.y : null;
+      if(y!=null) window.scrollTo(0,y);
+    };
+    window.addEventListener('popstate', sync);
+    window.addEventListener('hashchange', sync);
   }
   init();
 })();

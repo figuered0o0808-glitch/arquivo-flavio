@@ -15102,7 +15102,8 @@ window.DOSSIE = {
     "fonte": {
      "veiculo": "Metrópoles",
      "url": "https://www.metropoles.com/colunas/grande-angular/paulo-henrique-era-presidente-do-brb-quando-banco-financiou-mansao-de-flavio"
-    }
+    },
+    "foz": "brb-mansao"
    },
    {
     "de": "Operador, a pedido de Daniel Vorcaro",
@@ -15115,7 +15116,8 @@ window.DOSSIE = {
     "fonte": {
      "veiculo": "Brasil de Fato",
      "url": "https://www.brasildefato.com.br/2026/09/09/mendonca-aceita-delacao-de-empresario-que-enviou-r-60-milhoes-a-fundo-ligado-a-eduardo-bolsonaro/"
-    }
+    },
+    "foz": "master"
    },
    {
     "de": "PL (partido)",

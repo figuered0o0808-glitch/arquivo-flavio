@@ -22,7 +22,8 @@ window.FOZ = {
       "veiculo": "BBC News Brasil",
       "url": "https://www.bbc.com/portuguese/brasil-55325486",
       "data": "2020-12-15"
-     }
+     },
+     "de_id": "alexandre-ramagem"
     },
     {
      "de": "Jair Bolsonaro",
@@ -33,7 +34,8 @@ window.FOZ = {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/politica/pf-conclui-abin-paralela-e-indicia-bolsonaro-ramagem-e-carlos/",
       "data": "2025-06-17"
-     }
+     },
+     "de_id": "jair"
     },
     {
      "de": "Auditores da Receita Federal responsáveis pelo RIF que originou o caso da rachadinha (não nomeados na fonte)",
@@ -55,7 +57,8 @@ window.FOZ = {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/politica/pf-conclui-abin-paralela-e-indicia-bolsonaro-ramagem-e-carlos/",
       "data": "2025-06-17"
-     }
+     },
+     "de_id": "carlos-bolsonaro"
     }
    ],
    "fontes": [
@@ -156,7 +159,8 @@ window.FOZ = {
       "veiculo": "Poder360",
       "url": "https://www.poder360.com.br/poder-justica/defesa-de-vorcaro-pede-revogacao-da-prisao-do-ex-banqueiro/",
       "data": "2026-09-18"
-     }
+     },
+     "para_id": "vorcaro"
     },
     {
      "de": "Daniel Vorcaro",
@@ -167,7 +171,8 @@ window.FOZ = {
       "veiculo": "Times Brasil / CNBC",
       "url": "https://timesbrasil.com.br/brasil/politica/relatorio-pf-linha-tempo-flavio-bolsonaro-vorcaro/",
       "data": "2026-09-12"
-     }
+     },
+     "de_id": "vorcaro"
     }
    ],
    "fontes": [
@@ -299,7 +304,8 @@ window.FOZ = {
       "veiculo": "Agência Pública",
       "url": "https://apublica.org/nota/pandemia-quem-sao-os-investigados-no-inquerito-da-cpi-da-covid/",
       "data": "2025-09-18"
-     }
+     },
+     "de_id": "jair"
     }
    ],
    "fontes": [
@@ -414,7 +420,8 @@ window.FOZ = {
       "veiculo": "revista piauí",
       "url": "https://piaui.uol.com.br/web/pec-praias-flavio-bolsonaro-amigo-angra-dos-reis/",
       "data": "2024-08-06"
-     }
+     },
+     "de_id": "renato-araujo"
     },
     {
      "de": "Valle Sul (construtora de Angra dos Reis)",
@@ -549,7 +556,8 @@ window.FOZ = {
       "veiculo": "ConJur",
       "url": "https://www.conjur.com.br/2020-nov-04/mp-denuncia-flavio-bolsonaro-esquema-rachadinha-alerj/",
       "data": "2020-11-04"
-     }
+     },
+     "para_id": "queiroz"
     },
     {
      "de": "Fabrício Queiroz",
@@ -560,7 +568,8 @@ window.FOZ = {
       "veiculo": "Poder360",
       "url": "https://www.poder360.com.br/justica/fabricio-queiroz-ex-assessor-de-flavio-bolsonaro-e-preso/",
       "data": "2020-06-18"
-     }
+     },
+     "de_id": "queiroz"
     }
    ],
    "fontes": [
@@ -643,7 +652,8 @@ window.FOZ = {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/nacional/investigacao-sobre-suspeita-de-vazamento-da-pf-a-flavio-bolsonaro-e-prorrogada/",
       "data": "2021-07-06"
-     }
+     },
+     "de_id": "paulo-marinho"
     },
     {
      "de": "Flávio Bolsonaro",
@@ -886,7 +896,8 @@ window.FOZ = {
       "veiculo": "Estado de Minas",
       "url": "https://www.em.com.br/nacional/2026/09/7506650-quem-e-robson-calixto-o-miliciano-que-cobrou-emenda-de-flavio-bolsonaro.html",
       "data": "2026-09-23"
-     }
+     },
+     "para_id": "robson-calixto-fonseca"
     },
     {
      "de": "Robson Calixto Fonseca ('Peixe')",
@@ -897,7 +908,8 @@ window.FOZ = {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/politica/assessora-de-flavio-negociou-emenda-com-condenado-em-caso-marielle/",
       "data": "2026-09-22"
-     }
+     },
+     "de_id": "robson-calixto-fonseca"
     },
     {
      "de": "Maria de Fátima Bezerra Castro",
@@ -1224,7 +1236,8 @@ window.FOZ = {
       "veiculo": "Folha de S.Paulo",
       "url": "https://www1.folha.uol.com.br/poder/2018/12/ex-assessor-de-flavio-bolsonaro-recebia-da-alerj-mesmo-fora-do-brasil.shtml",
       "data": "2018-12-12"
-     }
+     },
+     "para_id": "queiroz"
     }
    ],
    "fontes": [
@@ -1288,7 +1301,8 @@ window.FOZ = {
       "veiculo": "BBC News Brasil (via Terra)",
       "url": "https://www.terra.com.br/noticias/brasil/o-que-se-sabe-e-o-que-falta-saber-sobre-o-caso-de-adriano-da-nobrega-miliciano-do-rio-morto-na-bahia,274d017df9949fee1d4d4034251f576614ioxv2c.html",
       "data": "2020-02-19"
-     }
+     },
+     "para_id": "adriano"
     },
     {
      "de": "Adriano Magalhães da Nóbrega",
@@ -1299,7 +1313,9 @@ window.FOZ = {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/politica/miliciano-repassou-mais-de-r-200-mil-a-queiroz-em-rachadinha-diz-denuncia/",
       "data": "2020-11-23"
-     }
+     },
+     "de_id": "adriano",
+     "para_id": "danielle"
     },
     {
      "de": "Danielle Mendonça da Costa da Nóbrega",
@@ -1310,7 +1326,8 @@ window.FOZ = {
       "veiculo": "BBC News Brasil (via Terra)",
       "url": "https://www.terra.com.br/noticias/brasil/o-que-se-sabe-e-o-que-falta-saber-sobre-o-caso-de-adriano-da-nobrega-miliciano-do-rio-morto-na-bahia,274d017df9949fee1d4d4034251f576614ioxv2c.html",
       "data": "2020-02-19"
-     }
+     },
+     "de_id": "danielle"
     }
    ],
    "fontes": [
@@ -1356,7 +1373,8 @@ window.FOZ = {
       "veiculo": "Metrópoles",
       "url": "https://www.metropoles.com/brasil/ex-assessora-de-flavio-e-denunciada-por-suspeita-de-lavar-dinheiro",
       "data": "2026-03-19"
-     }
+     },
+     "para_id": "raimunda"
     },
     {
      "de": "Raimunda Veras Magalhães",
@@ -1367,7 +1385,8 @@ window.FOZ = {
       "veiculo": "Folhapress (via Acessa)",
       "url": "https://www.acessa.com/politica/2026/03/315937-ex-assessora-de-flavio-bolsonaro-e-denunciada-sob-acusacao-de-lavar-dinheiro-de-filho-miliciano.html",
       "data": "2026-03-19"
-     }
+     },
+     "de_id": "raimunda"
     }
    ],
    "fontes": [
@@ -1573,7 +1592,8 @@ window.FOZ = {
       "veiculo": "MPF / PGR",
       "url": "https://www.mpf.mp.br/o-mpf/unidades/procuradoria-geral-da-republica-pgr/noticias/stf-condena-eduardo-bolsonaro-a-quatro-anos-e-dois-meses-de-prisao-pelo-crime-de-coacao-no-curso-do-processo",
       "data": "2026-06-16"
-     }
+     },
+     "para_id": "eduardo"
     },
     {
      "de": "Eduardo Bolsonaro",
@@ -1584,7 +1604,8 @@ window.FOZ = {
       "veiculo": "Diário do Grande ABC (Estadão Conteúdo)",
       "url": "https://www.dgabc.com.br/Noticia/4245364/bolsonaro-liga-recuo-de-trump-no-tarifaco-a-anistia-que-o-beneficiaria",
       "data": "2025-07-14"
-     }
+     },
+     "de_id": "eduardo"
     }
    ],
    "fontes": [
@@ -1629,7 +1650,8 @@ window.FOZ = {
       "veiculo": "Conjur",
       "url": "https://conjur.com.br/2025-nov-25/1a-turma-do-supremo-confirma-condenacao-definitiva-de-bolsonaro/",
       "data": "2025-11-25"
-     }
+     },
+     "para_id": "jair"
     },
     {
      "de": "Jair Bolsonaro",
@@ -1640,7 +1662,8 @@ window.FOZ = {
       "veiculo": "Estado de Minas",
       "url": "https://www.em.com.br/politica/2026/09/7498425-condenacao-de-bolsonaro-completa-um-ano-com-stf-em-crise.html",
       "data": "2026-09-11"
-     }
+     },
+     "de_id": "jair"
     }
    ],
    "fontes": [
@@ -1691,7 +1714,8 @@ window.FOZ = {
       "veiculo": "Correio Braziliense",
       "url": "https://www.correiobraziliense.com.br/politica/2026/03/7379518-caso-das-joias-moraes-trava-arquivamento-e-ordena-que-pgr-analise-provas-de-celulares-de-wassef.html",
       "data": "2026-03-19"
-     }
+     },
+     "para_id": "wassef"
     },
     {
      "de": "Frederick Wassef",
@@ -1702,7 +1726,8 @@ window.FOZ = {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/politica/queiroz-foi-preso-em-imovel-de-frederick-wassef-advogado-de-flavio-bolsonaro/",
       "data": "2020-06-18"
-     }
+     },
+     "de_id": "wassef"
     }
    ],
    "fontes": [
@@ -1765,7 +1790,8 @@ window.FOZ = {
       "veiculo": "InfoMoney",
       "url": "https://www.infomoney.com.br/politica/justica-do-rio-torna-ex-chefe-de-gabinete-de-carlos-bolsonaro-reu-por-rachadinha/",
       "data": "2026-06-19"
-     }
+     },
+     "para_id": "jorge-luiz-fernandes"
     },
     {
      "de": "Jorge Luiz Fernandes",
@@ -1776,7 +1802,9 @@ window.FOZ = {
       "veiculo": "Poder360",
       "url": "https://www.poder360.com.br/poder-justica/mp-rj-reabre-investigacao-contra-carlos-bolsonaro-por-rachadinha/",
       "data": "2026-02-25"
-     }
+     },
+     "de_id": "jorge-luiz-fernandes",
+     "para_id": "carlos-bolsonaro"
     },
     {
      "de": "Carlos Bolsonaro",
@@ -1787,7 +1815,8 @@ window.FOZ = {
       "veiculo": "Jornal de Brasília",
       "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/compras-suspeitas-de-imoveis-de-bolsonaro-coincidem-com-acesso-a-cofre-de-carlos/",
       "data": "2024-09"
-     }
+     },
+     "de_id": "carlos-bolsonaro"
     }
    ],
    "fontes": [
@@ -1854,7 +1883,8 @@ window.FOZ = {
       "veiculo": "g1",
       "url": "https://g1.globo.com/rj/rio-de-janeiro/noticia/2021/07/05/audios-de-ex-cunhada-indicam-participacao-de-jair-bolsonaro-em-esquema-de-rachadinha-diz-uol.ghtml",
       "data": "2021-07-05"
-     }
+     },
+     "para_id": "jair"
     },
     {
      "de": "PGR e Procuradoria da República no DF",
@@ -1865,7 +1895,8 @@ window.FOZ = {
       "veiculo": "Metrópoles",
       "url": "https://www.metropoles.com/brasil/politica-brasil/pgr-apura-audios-de-ex-cunhada-que-envolvem-bolsonaro-com-rachadinha",
       "data": "2021-08-24"
-     }
+     },
+     "para_id": "jair"
     },
     {
      "de": "Quebra de sigilos do caso Flávio",
@@ -2021,7 +2052,8 @@ window.FOZ = {
       "veiculo": "CartaCapital",
       "url": "https://www.cartacapital.com.br/politica/bolsonaro-diz-se-arrepender-de-ter-autorizado-queiroz-a-depositar-cheques-na-conta-de-michelle/",
       "data": "2022-08-11"
-     }
+     },
+     "para_id": "queiroz"
     },
     {
      "de": "Fabrício Queiroz",
@@ -2032,7 +2064,8 @@ window.FOZ = {
       "veiculo": "Congresso em Foco",
       "url": "https://www.congressoemfoco.com.br/artigo/56528/pgr-investigacao-89-mil-michelle-bolsonaro",
       "data": "2021-05"
-     }
+     },
+     "de_id": "queiroz"
     }
    ],
    "fontes": [
@@ -2084,7 +2117,8 @@ window.FOZ = {
       "veiculo": "Metrópoles",
       "url": "https://www.metropoles.com/colunas/manoela-alcantara/gonet-rejeita-proposta-de-delacao-de-ex-presidente-do-brb",
       "data": "2026-06-25"
-     }
+     },
+     "para_id": "paulo_henrique"
     },
     {
      "de": "Paulo Henrique Costa",
@@ -2095,7 +2129,8 @@ window.FOZ = {
       "veiculo": "Metrópoles",
       "url": "https://www.metropoles.com/colunas/grande-angular/paulo-henrique-era-presidente-quando-brb-deu-polemico-financiamento-de-r-59-milhoes-a-flavio-bolsonaro",
       "data": "2026-04-16"
-     }
+     },
+     "de_id": "paulo_henrique"
     }
    ],
    "fontes": [
@@ -2146,7 +2181,8 @@ window.FOZ = {
       "veiculo": "Notícias ao Minuto (a partir de O Globo)",
       "url": "https://www.noticiasaominuto.com.br/politica/850505/flavio-bolsonaro-homenageou-milicianos-alvos-de-operacao",
       "data": "2019-01-22"
-     }
+     },
+     "de_id": "ronald-paulo-alves-pereira"
     },
     {
      "de": "Edson Raimundo dos Santos",
@@ -2397,7 +2433,8 @@ window.FOZ = {
       "veiculo": "Jornal de Brasília",
       "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/pf-faz-buscas-em-indicado-ao-senado-por-flavio-bolsonaro-em-investigacao-sobre-lavagem-em-postos-no-rj/",
       "data": "2026-07-07"
-     }
+     },
+     "para_id": "marcio-canella"
     },
     {
      "de": "Márcio Canella",
@@ -2408,7 +2445,8 @@ window.FOZ = {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/blogs/jussara-soares/politica/aliado-de-flavio-no-rio-e-alvo-da-pf-e-abre-nova-crise-na-pre-campanha/",
       "data": "2026-07-07"
-     }
+     },
+     "de_id": "marcio-canella"
     }
    ],
    "fontes": [
@@ -2575,7 +2613,8 @@ window.FOZ = {
       "veiculo": "Agência Brasil",
       "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-05/mesada-e-viagens-internacionais-veja-o-que-pf-diz-sobre-ciro-nogueira",
       "data": "2026-05-07"
-     }
+     },
+     "para_id": "ciro-nogueira"
     },
     {
      "de": "Ciro Nogueira",
@@ -2586,7 +2625,8 @@ window.FOZ = {
       "veiculo": "Correio Braziliense",
       "url": "https://www.correiobraziliense.com.br/politica/2026/05/7415714-flavio-bolsonaro-descarta-ciro-nogueira-como-vice-apos-acao-da-pf.html",
       "data": "2026-05-08"
-     }
+     },
+     "de_id": "ciro-nogueira"
     }
    ],
    "fontes": [
@@ -2722,7 +2762,8 @@ window.FOZ = {
       "veiculo": "Agência Brasil",
       "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2026-09/mario-frias-e-produtora-de-dark-horse-sao-alvos-de-operacao-da-pf",
       "data": "2026-09-10"
-     }
+     },
+     "para_id": "mario-frias"
     },
     {
      "de": "Mário Frias",
@@ -2733,7 +2774,8 @@ window.FOZ = {
       "veiculo": "Poder360",
       "url": "https://www.poder360.com.br/poder-justica/pgr-suspeita-que-flavio-atuou-no-senado-em-defesa-de-vorcaro/",
       "data": "2026-09-11"
-     }
+     },
+     "de_id": "mario-frias"
     }
    ],
    "fontes": [
@@ -2794,7 +2836,8 @@ window.FOZ = {
       "veiculo": "BBC News Brasil",
       "url": "https://www.bbc.com/portuguese/articles/cqj8z4zydy5o",
       "data": "2026-03-24"
-     }
+     },
+     "para_id": "claudio-castro"
     },
     {
      "de": "Cláudio Castro",
@@ -2805,7 +2848,8 @@ window.FOZ = {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/blogs/jussara-soares/eleicoes/fora-do-palanque-castro-acerta-salario-de-r-38-mil-como-articulador-do-pl/",
       "data": "2026-06-01"
-     }
+     },
+     "de_id": "claudio-castro"
     }
    ],
    "fontes": [
@@ -2848,7 +2892,8 @@ window.FOZ = {
       "veiculo": "Poder360",
       "url": "https://www.poder360.com.br/poder-justica/pf-investiga-advogado-amigo-de-flavio-em-operacao-sobre-o-inss/",
       "data": "2026-08-04"
-     }
+     },
+     "para_id": "willer-tomaz"
     },
     {
      "de": "Willer Tomaz",
@@ -2859,7 +2904,8 @@ window.FOZ = {
       "veiculo": "Poder360",
       "url": "https://www.poder360.com.br/poder-congresso/foto-mostra-flavio-bolsonaro-em-safari-com-investigados-do-inss/",
       "data": "2026-09-21"
-     }
+     },
+     "de_id": "willer-tomaz"
     }
    ],
    "fontes": [
@@ -2997,7 +3043,8 @@ window.FOZ = {
       "veiculo": "Metrópoles",
       "url": "https://www.metropoles.com/brasil/candidato-investigado-participa-de-barqueata-com-flavio-bolsonaro-em-angra",
       "data": "2026-08-30"
-     }
+     },
+     "para_id": "renato-araujo"
     },
     {
      "de": "Renato Araújo",
@@ -3008,7 +3055,8 @@ window.FOZ = {
       "veiculo": "Agência Pública",
       "url": "https://apublica.org/2026/09/o-amigo-do-flavio-bolsonaro-em-angra-dos-reis/",
       "data": "2026-09-09"
-     }
+     },
+     "de_id": "renato-araujo"
     }
    ],
    "fontes": [
@@ -3059,7 +3107,8 @@ window.FOZ = {
       "veiculo": "Correio Braziliense",
       "url": "https://www.correiobraziliense.com.br/politica/2026/08/7480581-claudio-castro-volta-a-mira-da-pf-em-operacao-contra-esquema-da-refit.html",
       "data": "2026-08-15"
-     }
+     },
+     "para_id": "claudio-castro"
     },
     {
      "de": "Cláudio Castro",
@@ -3070,7 +3119,8 @@ window.FOZ = {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/politica/flavio-definira-com-bolsonaro-substituto-de-castro-ao-senado-pelo-rj/",
       "data": "2026-05-29"
-     }
+     },
+     "de_id": "claudio-castro"
     }
    ],
    "fontes": [

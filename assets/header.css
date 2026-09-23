@@ -25,6 +25,15 @@
   overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; width:calc(100% + 32px);
 }
 .site-header .tabs::-webkit-scrollbar{display:none}
+/* celular: a faixa rola de lado. O degradê na borda direita avisa que tem mais aba;
+   o espaçador final deixa a última aba sair de baixo do degradê no fim da rolagem. */
+@media (max-width:899px){
+  .site-header .tabs{
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);
+            mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);
+  }
+  .site-header .tabs::after{content:""; flex:0 0 28px}
+}
 .site-header .tab{
   flex:none; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   font-size:12px; font-weight:700; letter-spacing:.02em; white-space:nowrap; text-transform:uppercase;

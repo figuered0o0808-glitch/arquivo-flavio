@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Siga o dinheiro — BolsoDrive</title>
 <meta name="description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
-<link rel="stylesheet" href="assets/base.css?v=3">
-<link rel="stylesheet" href="assets/header.css?v=9">
+<link rel="stylesheet" href="assets/base.css?v=4">
+<link rel="stylesheet" href="assets/header.css?v=10">
 <style>
 /* Siga o dinheiro — só o que esta página acrescenta à base.
    Uma tela por fluxo: origem à esquerda, destino à direita, a linha cresce,
@@ -130,7 +130,7 @@
 
 <noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="index.html">Ver os 294 registros →</a></p></noscript>
 
-<script src="data/dados.js?v=set2026i"></script>
+<script src="data/dados.js?v=set2026j"></script>
 <script>
 (function(){
 'use strict';
@@ -299,6 +299,10 @@ window.addEventListener('resize', function(){ if (atual < N) medir(); });
 window.addEventListener('hashchange', function(){ var i = deHash(); if (i !== atual) mostrar(i); });
 })();
 </script>
-<script>(function(){var a=document.querySelector('.site-header .tab.active');if(a&&a.scrollIntoView)a.scrollIntoView({inline:'center',block:'nearest'});})();</script>
+<script>/* aba ativa visível sem cortar a primeira da faixa; --hdr = altura real do cabeçalho */
+(function(){var h=document.querySelector('.site-header');if(h)document.documentElement.style.setProperty('--hdr',h.offsetHeight+'px');
+var t=document.querySelector('.site-header .tabs'),a=t&&t.querySelector('.tab.active');if(!a||t.scrollWidth<=t.clientWidth+1)return;
+var b=t.getBoundingClientRect().left-t.scrollLeft,p=function(e){return e.getBoundingClientRect().left-b;},f=p(a)+a.offsetWidth,u=t.clientWidth-40,x=0,l=t.querySelectorAll('.tab');
+if(f>u)for(var i=0;i<l.length;i++){var s=Math.max(0,p(l[i])-6);if(f-s<=u||l[i]===a){x=s;break;}}t.scrollLeft=x;})();</script>
 </body>
 </html>

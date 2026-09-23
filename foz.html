@@ -5,31 +5,45 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>A Foz — todos os escândalos levam ao Flávio · BolsoDrive</title>
 <meta name="description" content="Os escândalos que chegam a Flávio Bolsonaro — por ele mesmo, pelo gabinete, pela família e pelo entorno — com o caminho de cada um, elo por elo, e a fonte de cada elo.">
-<link rel="stylesheet" href="assets/base.css?v=3">
-<link rel="stylesheet" href="assets/header.css?v=9">
+<link rel="stylesheet" href="assets/base.css?v=4">
+<link rel="stylesheet" href="assets/header.css?v=10">
 <style>
 .wrap{max-width:760px}
+.kicker.trecho{margin:0 0 4px; color:var(--cinza); font-weight:400}
 .tese{font-size:17px; line-height:1.5; margin:0 0 12px}
 .tese b{color:var(--amber)}
-.faixas{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:0 0 14px}
+.faixas{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:0 0 26px}
 .faixas button{display:flex; flex-direction:column; align-items:flex-start; gap:2px; padding:9px 10px; border:1px solid var(--linha); border-radius:4px; background:var(--leve); color:var(--tinta); cursor:pointer; font:inherit; text-align:left; min-height:44px}
 .faixas button b{font-family:var(--mono); font-size:22px; color:var(--amber); line-height:1}
-.faixas button span{font-size:12px; color:var(--cinza); line-height:1.25}
+.faixas button span{font-size:13px; color:var(--cinza); line-height:1.25}
 .faixas button.on{border-color:var(--amber)}
 @media (max-width:520px){ .faixas{grid-template-columns:repeat(2,1fr)} }
 
-/* bacia */
-.bacia{position:relative; margin:0 0 6px; border:1px solid var(--linha); border-radius:4px; background:#050805; overflow:hidden}
-.bacia svg{display:block; width:100%; height:auto}
-.bacia .st{fill:none; stroke-linecap:round; stroke-linejoin:round; cursor:pointer; transition:opacity .2s}
-.bacia .rot{font-family:var(--sans); font-weight:600; cursor:pointer}
-.bacia .banda{font-family:var(--mono); font-size:10px; letter-spacing:.1em; fill:#ffb02e; font-weight:700}
-.bacia .foz-nome{font-family:var(--mono); font-size:12px; font-weight:700; fill:var(--amber); letter-spacing:.06em}
-.bacia .dim{opacity:.12}
-.bacia .acoes-b{position:absolute; right:8px; top:8px; display:flex; gap:6px}
-.bacia .acoes-b button{font-family:var(--mono); font-size:11px; padding:6px 9px; border:1px solid var(--linha); border-radius:3px; background:rgba(5,8,5,.85); color:var(--amber); cursor:pointer}
-.legenda{font-family:var(--mono); font-size:11px; color:var(--cinza); display:flex; gap:14px; flex-wrap:wrap; margin:6px 0 22px}
-.legenda i{display:inline-block; width:18px; height:4px; border-radius:2px; vertical-align:2px; margin-right:6px}
+/* bacia: o rio de verdade (canvas) com nomes em HTML por cima */
+.bacia{position:relative; margin:0 0 8px; border:1px solid var(--linha); border-radius:4px; background:#050805; overflow:hidden; min-height:200px}
+.bacia canvas{position:absolute; left:0; top:0; display:block}
+.bacia .rotulos{position:absolute; left:0; top:0; right:0; bottom:0}
+.bacia .rt{position:absolute; display:flex; align-items:center; margin:0; border:0; border-radius:3px; background:transparent; cursor:pointer; font-family:var(--sans); font-weight:600; text-align:left; -webkit-tap-highlight-color:transparent; transition:opacity .2s}
+.bacia .rt.d{justify-content:flex-end; text-align:right}
+.bacia .rt span{white-space:nowrap; text-shadow:0 0 4px #050805, 0 0 8px #050805; transition:opacity .2s}
+.bacia .rt:hover span, .bacia .rt:active span{text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px}
+.bacia .rt:focus-visible{outline:2px solid var(--amber); outline-offset:-2px}
+.bacia .rt.dim span{opacity:.3}
+.bacia .bh{position:absolute; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.1em; color:var(--amber); white-space:nowrap; pointer-events:none}
+.bacia .bh i{font-style:normal; color:var(--cinza2)}
+.bacia .foz-b{position:absolute; border-radius:50%; overflow:hidden; border:2px solid var(--amber); transition:border-color .18s; background:#050805; display:flex; align-items:center; justify-content:center; font:800 22px var(--sans); color:var(--cinza); pointer-events:none}
+.bacia .foz-b img{position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover; display:block}
+.bacia .foz-n{position:absolute; transform:translateX(-50%); text-align:center; white-space:nowrap; pointer-events:none}
+.bacia .foz-n b{display:block; font-family:var(--mono); font-size:13px; color:var(--amber); letter-spacing:.06em}
+.bacia .foz-n span{display:block; font-size:13px; color:var(--cinza); margin-top:2px}
+.bacia .foz-b.pulso{animation:pulso 1.4s ease-out 1}
+@keyframes pulso{0%{box-shadow:0 0 0 0 rgba(255,176,46,.7)} 100%{box-shadow:0 0 0 22px rgba(255,176,46,0)}}
+@media (max-width:639px){ .bacia{margin:0 -16px 8px; border-radius:0; border-left:0; border-right:0} }
+@media (min-width:1000px){ .bacia{width:min(1100px, calc(100vw - 64px)); margin-left:calc(50% - min(550px, 50vw - 32px))} }
+.legenda{font-family:var(--mono); font-size:12px; color:var(--cinza); display:flex; gap:6px 16px; flex-wrap:wrap; margin:8px 0 8px}
+.legenda i{display:inline-block; width:18px; height:4px; border-radius:2px; vertical-align:3px; margin-right:6px}
+.legenda i.pt{width:6px; height:6px; border-radius:50%; background:#fff4dc; box-shadow:0 0 5px 1px var(--amber); margin:0 12px 0 6px; vertical-align:1px}
+.cap{font-size:15px; color:var(--cinza); margin:0 0 14px}
 
 /* rio para rolar */
 h2.sec2{font-family:var(--mono); font-size:15px; color:var(--amber); letter-spacing:2px; text-transform:uppercase; margin:10px 0 4px}
@@ -60,13 +74,16 @@ h2.sec2::before{content:"// "; color:var(--cinza2)}
 .ressalva{font-size:13px; color:var(--cinza); border-left:2px solid var(--cinza2); padding:2px 0 2px 10px; margin:0 0 14px}
 .ressalva b{color:var(--tinta)}
 .metodo{font-size:13px; color:var(--cinza); border-top:1px solid var(--linha); margin-top:28px; padding-top:14px}
+.fim-rio{margin-top:22px; font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--cinza)}
+.fim-rio p{margin:0}
+.fim-rio .acoes{margin-top:10px}
 
 /* ficha do afluente */
 .folha{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; z-index:60}
 .folha.on{display:block}
 .folha .cx{position:absolute; left:0; right:0; bottom:0; max-height:86vh; overflow:auto; background:#0a100a; border-top:1px solid var(--linha); padding:16px 16px 30px; border-radius:14px 14px 0 0}
 @media (min-width:760px){ .folha .cx{left:50%; transform:translateX(-50%); width:720px; border:1px solid var(--linha)} }
-.folha .fx{position:sticky; top:0; float:right; background:none; border:1px solid var(--linha); color:var(--tinta); border-radius:3px; padding:4px 10px; cursor:pointer; font-family:var(--mono)}
+.folha .fx{position:sticky; top:0; float:right; background:#0a100a; border:1px solid var(--linha); color:var(--tinta); border-radius:3px; padding:0 12px; min-height:44px; cursor:pointer; font-family:var(--mono)}
 .folha h3{font-size:21px; margin:4px 0 2px; line-height:1.2}
 .folha .op{font-family:var(--mono); font-size:12px; color:var(--cinza); margin:0 0 10px}
 .folha .res{font-size:15px; margin:0 0 12px}
@@ -104,28 +121,455 @@ h2.sec2::before{content:"// "; color:var(--cinza2)}
 </header>
 
 <div class="wrap">
+  <div class="kicker trecho">Trecho final · a foz</div>
   <h1 class="sec">Todos os escândalos levam ao Flávio</h1>
   <p class="tese" id="tese"></p>
-  <div class="faixas" id="faixas"></div>
 
-  <div class="bacia" id="bacia"><svg id="bacia-svg"></svg></div>
+  <div class="bacia" id="bacia" role="group" aria-label="A bacia: cada escândalo é uma nascente, e todos os rios descem até Flávio Bolsonaro">
+    <canvas id="bacia-leito" aria-hidden="true"></canvas>
+    <canvas id="bacia-agua" aria-hidden="true"></canvas>
+    <div class="rotulos" id="bacia-rot"></div>
+  </div>
   <div class="legenda">
     <span><i style="background:#ff5c5c"></i>há alguém preso ou condenado no caminho</span>
     <span><i style="background:#ffb02e"></i>há alguém investigado ou denunciado</span>
     <span><i style="background:#5c8a63"></i>sem processo no caminho</span>
+    <span><i class="pt"></i>cada gota é um registro do arquivo sobre o caso</span>
   </div>
+  <p class="cap">Cada nome é uma nascente. Os afluentes se juntam em quatro rios, que engrossam a cada encontro e descem até a foz. Toque num nome para ver o caminho, elo por elo.</p>
+  <div class="faixas" id="faixas"></div>
 
   <h2 class="sec2">O rio, trecho por trecho</h2>
   <p class="sub">Do mais distante ao mais perto. Toque num rio para ver o caminho até ele, elo por elo, com o status de cada pessoa e a fonte.</p>
   <div class="rio" id="rio"><svg id="rio-svg"></svg><div class="trechos" id="trechos"></div></div>
 
   <p class="metodo">Um rio não é uma acusação: é o caminho documentado de um escândalo até Flávio Bolsonaro, com a situação jurídica de cada pessoa no caminho. Quando ele não é investigado num caso, o rio diz — e diz por onde o caso chega a ele. Cada elo tem fonte. <a href="index.html#arquivo">Ver o arquivo completo →</a></p>
+  <div class="fim-rio"><p>// aqui o rio termina</p><div class="acoes"><button type="button" id="zap-pag">Mandar no WhatsApp</button></div></div>
 </div>
 
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
-<script src="data/dados.js?v=set2026i"></script>
-<script src="data/foz.js?v=2"></script>
+<script src="data/dados.js?v=set2026j"></script>
+<script src="data/foz.js?v=3"></script>
+<script>
+/* =====================================================================
+   RIO: motor de água do BolsoDrive. Canvas 2D, sem dependências.
+   A abertura e a Foz usam este mesmo motor: é o mesmo rio.
+
+   Conceitos
+     curso  caminho reamostrado a cada RIO.PASSO px, com largura e cor por ponto:
+            { x[], y[], s[] (comprimento acumulado), nx[], ny[] (normal),
+              w[] (largura), c[] (cor [r,g,b]), n (pontos), L (comprimento) }
+     rota   cursos emendados, da nascente até a foz; é por onde a gota corre.
+     gota   partícula luminosa que desce uma rota, na cor da sua nascente.
+
+   Geometria
+     RIO.curso(pts)                 [[x,y],...] -> curso reamostrado, com normais
+     RIO.bezier(p0,p1,p2,p3,n)      pontos de uma cúbica
+     RIO.meandro(a, b, op)          afluente sinuoso de a=[x,y] até b=[x,y]
+                                    op: { amp, ondas (meias voltas), fase, ta:[dx,dy] saída, tb:[dx,dy] chegada }
+     RIO.pinta(curso, fn)           fn(i, y, t) -> [largura, cor]; t = fração do comprimento
+     RIO.rota([curso,i0,i1], ...)   emenda trechos numa rota contínua
+     RIO.primeiro(arr, v)           primeiro índice com arr[i] >= v (arr crescente)
+
+   Desenho parado (uma vez por layout, numa camada própria)
+     RIO.leito(ctx, lista, op)      lista [{curso, fosco 0..1}]: halo, corpo e reflexo, com
+                                    as cores já misturadas ao fundo (sem blur por quadro)
+                                    op: { fundo:[r,g,b], foz:{x,y,r,cor,fosco} }
+     RIO.traco(ctx, rota, cor, lw)  realce de uma rota inteira (nascente -> foz)
+     RIO.setas(ctx, curso, cor, d)  setas de sentido a cada d px (versão parada)
+
+   Movimento
+     RIO.correnteza(canvas, cena)   -> { liga(), desliga(), quadro(), marca(fn), medir(n) }; fica também em canvas.rio
+        cena: { W, H, dpr, vel (px/s), raio,
+                cursos:[{curso, id, grupo}]   traços da correnteza (mais lentos junto à margem)
+                rotas:[{rota, cor, taxa, fila, leve, id, grupo}]   gotas da nascente até a foz:
+                      taxa = gotas por segundo; cada gota leva o próximo item da fila (em ordem);
+                      leve = gotejamento discreto (sem registros), que não acende a foz
+                fontes:[{x, y, cor, id, grupo}]         nascentes que pulsam
+                foz:{x, y, r, cor}                      ondulação na foz
+                janela() -> [topo, base] visível em px do canvas (só isso é desenhado)
+                intro (onda de luz de cima para baixo na primeira vez), aoChegar() quando ela chega à foz,
+                aoGota(cor, item) quando uma gota (não esmaecida) chega à foz: o aro pulsa na cor dela }
+        marca(fn): fn({id, grupo}) -> opacidade de cada rota, traço e nascente
+        surto(id, n): solta de uma vez, mais depressa, até n itens da fila daquele rio
+     RIO.observa(el, ctl)           liga só com el na tela e a aba visível; devolve desliga()
+     RIO.gota(cor, raio, dpr)       sprite pré-renderizado (o brilho custa um drawImage)
+
+   Cores
+     RIO.mix(a, b, t), RIO.mistura([[cor,peso],...]) (as águas se misturam), RIO.css(cor, alfa)
+     RIO.reduzido: prefers-reduced-motion. Nesse caso liga() desenha um quadro parado.
+   ===================================================================== */
+window.RIO = (function(){
+'use strict';
+const PASSO = 3, TAU = Math.PI * 2;
+const reduzido = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const lerp = (a, b, t) => a + (b - a) * t;
+const suave = t => t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t);
+const mix = (a, b, t) => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
+const css = (c, a) => (a == null ? 'rgb(' : 'rgba(') + Math.round(c[0]) + ',' + Math.round(c[1]) + ',' + Math.round(c[2]) + (a == null ? ')' : ',' + a + ')');
+function mistura(pares){
+  let r = 0, g = 0, b = 0, p = 0;
+  pares.forEach(x => { const w = x[1]; if (w > 0){ r += x[0][0] * w; g += x[0][1] * w; b += x[0][2] * w; p += w; } });
+  return p ? [r / p, g / p, b / p] : [128, 128, 128];
+}
+function semente(n){
+  let a = (n >>> 0) || 1;
+  return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+const unit = v => { const l = Math.hypot(v[0], v[1]) || 1; return [v[0] / l, v[1] / l]; };
+
+function curso(pts){
+  const n = pts.length, cum = [0];
+  for (let i = 1; i < n; i++) cum.push(cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+  const L = cum[n - 1] || 0, m = Math.max(2, Math.ceil(L / PASSO) + 1);
+  const x = [], y = [], s = [];
+  let j = 0;
+  for (let k = 0; k < m; k++){
+    const d = L * k / (m - 1);
+    while (j < n - 2 && cum[j + 1] < d) j++;
+    const seg = cum[j + 1] - cum[j], t = seg > 0 ? (d - cum[j]) / seg : 0;
+    x.push(lerp(pts[j][0], pts[Math.min(n - 1, j + 1)][0], t));
+    y.push(lerp(pts[j][1], pts[Math.min(n - 1, j + 1)][1], t));
+    s.push(d);
+  }
+  const nx = [], ny = [];
+  for (let k = 0; k < m; k++){
+    const a = Math.max(0, k - 1), b = Math.min(m - 1, k + 1);
+    const u = unit([x[b] - x[a], y[b] - y[a]]);
+    nx.push(-u[1]); ny.push(u[0]);
+  }
+  return { x, y, s, nx, ny, w: new Array(m).fill(1), c: new Array(m).fill([200, 200, 200]), n: m, L };
+}
+function bezier(p0, p1, p2, p3, n){
+  const out = [];
+  for (let i = 0; i <= n; i++){
+    const t = i / n, u = 1 - t;
+    out.push([u * u * u * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t * t * t * p3[0],
+              u * u * u * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t * t * t * p3[1]]);
+  }
+  return out;
+}
+function meandro(a, b, op){
+  op = op || {};
+  const d = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+  const ta = unit(op.ta || [b[0] - a[0], b[1] - a[1]]), tb = unit(op.tb || [b[0] - a[0], b[1] - a[1]]);
+  const k = d * (op.tensao || 0.42);
+  const base = bezier(a, [a[0] + ta[0] * k, a[1] + ta[1] * k], [b[0] - tb[0] * k, b[1] - tb[1] * k], b, Math.max(24, Math.ceil(d / 2)));
+  const amp = op.amp || 0, ondas = op.ondas || 2, fase = op.fase || 0, n = base.length - 1;
+  if (!amp) return base;
+  return base.map((p, i) => {
+    const t = i / n, i0 = Math.max(0, i - 1), i1 = Math.min(n, i + 1);
+    const tg = unit([base[i1][0] - base[i0][0], base[i1][1] - base[i0][1]]);
+    const o = amp * Math.sin(Math.PI * t) * Math.sin(Math.PI * ondas * t + fase);
+    return [p[0] - tg[1] * o, p[1] + tg[0] * o];
+  });
+}
+function pinta(c, fn){
+  for (let i = 0; i < c.n; i++){ const r = fn(i, c.y[i], c.L ? c.s[i] / c.L : 0); c.w[i] = r[0]; c.c[i] = r[1]; }
+  return c;
+}
+function rota(){
+  const r = { x: [], y: [], nx: [], ny: [], w: [], c: [], s: [] };
+  for (let a = 0; a < arguments.length; a++){
+    const [c, i0, i1] = arguments[a];
+    for (let i = i0; i <= i1; i++){
+      const k = r.x.length;
+      if (k && Math.hypot(c.x[i] - r.x[k - 1], c.y[i] - r.y[k - 1]) < 0.5) continue;
+      r.x.push(c.x[i]); r.y.push(c.y[i]); r.nx.push(c.nx[i]); r.ny.push(c.ny[i]); r.w.push(c.w[i]); r.c.push(c.c[i]);
+    }
+  }
+  let acc = 0; r.s.push(0);
+  for (let i = 1; i < r.x.length; i++){ acc += Math.hypot(r.x[i] - r.x[i - 1], r.y[i] - r.y[i - 1]); r.s.push(acc); }
+  r.L = acc; r.n = r.x.length;
+  return r;
+}
+function primeiro(arr, v){
+  let lo = 0, hi = arr.length - 1;
+  if (arr[hi] < v) return hi;
+  while (lo < hi){ const m = (lo + hi) >> 1; if (arr[m] >= v) hi = m; else lo = m + 1; }
+  return lo;
+}
+
+/* ---- leito: três passes (halo, corpo, reflexo), segmentos agrupados por largura e cor ---- */
+function leito(ctx, lista, op){
+  const F = op.fundo || [5, 8, 5];
+  const passes = [
+    { lw: w => w * 2 + 7, cor: (c, f) => mix(F, c, 0.13 * (1 - f)) },
+    { lw: w => w, cor: (c, f) => mix(F, c, 0.58 * (1 - 0.9 * f)) },
+    { lw: w => Math.max(0.6, w * 0.24), cor: (c, f) => mix(mix(F, c, 0.95 * (1 - 0.9 * f)), [255, 255, 255], 0.12 * (1 - f)), desvio: 0.2, corta: true },
+  ];
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  const foz = op.foz;
+  passes.forEach((P, pi) => {
+    lista.forEach(item => {
+      const c = item.curso, f = item.fosco || 0;
+      let fim = c.n - 1;
+      if (P.corta) fim = Math.max(1, fim - Math.ceil((c.w[fim] * 0.7 + 3) / PASSO));
+      const dv = P.desvio || 0;
+      let chave = null;
+      for (let i = 0; i < fim; i++){
+        const lw = Math.round(P.lw((c.w[i] + c.w[i + 1]) / 2) * 4) / 4;
+        const cs = css(P.cor(c.c[i], f));
+        const k = lw + cs;
+        if (k !== chave){
+          if (chave !== null) ctx.stroke();
+          ctx.beginPath(); ctx.lineWidth = lw; ctx.strokeStyle = cs;
+          ctx.moveTo(c.x[i] + c.nx[i] * c.w[i] * dv, c.y[i] + c.ny[i] * c.w[i] * dv);
+          chave = k;
+        }
+        ctx.lineTo(c.x[i + 1] + c.nx[i + 1] * c.w[i + 1] * dv, c.y[i + 1] + c.ny[i + 1] * c.w[i + 1] * dv);
+      }
+      if (chave !== null) ctx.stroke();
+    });
+    if (foz){
+      const f = foz.fosco || 0;
+      ctx.beginPath();
+      if (pi === 0){ ctx.fillStyle = css(mix(F, foz.cor, 0.13 * (1 - f))); ctx.arc(foz.x, foz.y, foz.r + 24, 0, TAU); ctx.fill(); }
+      if (pi === 1){ ctx.fillStyle = css(mix(F, foz.cor, 0.5 * (1 - 0.8 * f))); ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.fill(); }
+      if (pi === 2){ ctx.strokeStyle = css(mix(F, foz.cor, 0.9 * (1 - 0.8 * f))); ctx.lineWidth = 1.2; ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.stroke(); }
+    }
+  });
+}
+function traco(ctx, r, cor, lw){
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  [[lw * 4, 0.2], [lw, 0.95]].forEach(p => {
+    ctx.beginPath(); ctx.moveTo(r.x[0], r.y[0]);
+    for (let i = 1; i < r.n; i++) ctx.lineTo(r.x[i], r.y[i]);
+    ctx.strokeStyle = css(cor, p[1]); ctx.lineWidth = p[0]; ctx.stroke();
+  });
+}
+function setas(ctx, c, cor, cada){
+  ctx.strokeStyle = cor; ctx.lineWidth = 1.4; ctx.lineCap = 'round';
+  for (let s = cada / 2; s < c.L - cada / 3; s += cada){
+    const i = primeiro(c.s, s), tx = c.ny[i], ty = -c.nx[i], x = c.x[i], y = c.y[i];
+    ctx.beginPath();
+    ctx.moveTo(x - tx * 3 + c.nx[i] * 4, y - ty * 3 + c.ny[i] * 4);
+    ctx.lineTo(x + tx * 2, y + ty * 2);
+    ctx.lineTo(x - tx * 3 - c.nx[i] * 4, y - ty * 3 - c.ny[i] * 4);
+    ctx.stroke();
+  }
+}
+function gota(cor, raio, dpr){
+  const R = raio * 2.4, S = Math.max(4, Math.ceil(R * 2 * dpr));
+  const cv = document.createElement('canvas'); cv.width = cv.height = S;
+  const g = cv.getContext('2d'), m = S / 2;
+  const grd = g.createRadialGradient(m, m, 0, m, m, m);
+  const claro = mix(cor, [255, 255, 255], 0.55);
+  grd.addColorStop(0, css(claro, 1)); grd.addColorStop(0.2, css(claro, 0.95));
+  grd.addColorStop(0.34, css(cor, 0.55)); grd.addColorStop(0.62, css(cor, 0.13)); grd.addColorStop(1, css(cor, 0));
+  g.fillStyle = grd; g.fillRect(0, 0, S, S);
+  return { img: cv, r: R };
+}
+
+/* ---- correnteza: o que se mexe a cada quadro ---- */
+function correnteza(cv, cena){
+  const ctx = cv.getContext('2d');
+  const W = cena.W, H = cena.H, dpr = cena.dpr || 1;
+  const rnd = semente(cena.semente || 11);
+  const vel = cena.vel || 55;
+  const sprites = {};
+  const sprite = (cor, k) => { const c = cor.join(',') + '/' + k; return sprites[c] || (sprites[c] = gota(cor, (cena.raio || 2.6) * k, dpr)); };
+  /* esp: distância (px) entre duas gotas seguidas = velocidade / gotas por segundo */
+  const rotas = (cena.rotas || []).map(r => Object.assign({}, r, { esp: vel / Math.max(0.01, r.taxa || 0.05), alfa: 1,
+    sp: sprite(r.cor, r.leve ? 0.62 : 1), fila: r.fila || [], idx: 0, acc: 0 }));
+  const fontes = (cena.fontes || []).map(f => Object.assign({}, f, { alfa: 1 }));
+  const F = cena.foz ? Object.assign({ alfa: 1 }, cena.foz) : null;
+
+  /* traços da correnteza: tracejado que anda no sentido do fluxo; junto à margem anda mais devagar */
+  const tracos = [];
+  (cena.cursos || []).forEach(item => {
+    const c = item.curso; let wm = 0, y0 = Infinity, y1 = -Infinity;
+    for (let i = 0; i < c.n; i++){ if (c.w[i] > wm) wm = c.w[i]; if (c.y[i] < y0) y0 = c.y[i]; if (c.y[i] > y1) y1 = c.y[i]; }
+    const linha = f => { const p = new Path2D(); for (let i = 0; i < c.n; i++){ const o = f * c.w[i]; const x = c.x[i] + c.nx[i] * o, y = c.y[i] + c.ny[i] * o; if (i) p.lineTo(x, y); else p.moveTo(x, y); } return p; };
+    const base = { id: item.id, grupo: item.grupo, y0: y0 - 12, y1: y1 + 12, alfa: 1 };
+    if (wm < 5) tracos.push(Object.assign({ path: linha(0), dash: [2, 12], lw: 0.9, fase: rnd() * 14, vf: 1 }, base));
+    else if (wm < 11){
+      tracos.push(Object.assign({ path: linha(-0.1), dash: [3, 15], lw: 1.1, fase: rnd() * 18, vf: 1 }, base));
+      tracos.push(Object.assign({ path: linha(0.24), dash: [2, 21], lw: 0.9, fase: rnd() * 23, vf: 0.85 }, base));
+    } else [-0.3, 0, 0.27].forEach((f, j) => tracos.push(Object.assign({ path: linha(f), dash: [4 + j, 17 + j * 4], lw: 1.2, fase: rnd() * 25, vf: 1 - Math.abs(f) * 0.6 }, base)));
+  });
+
+  /* gotas: cada uma leva um item da fila do seu rio, na ordem (a mais adiantada é a mais antiga).
+     Já em regime (espalhadas pela rota) para o rio nascer correndo. */
+  const gotas = [];
+  const poe = g => { const r = rotas[g.ri].rota; while (g.i < r.n - 2 && r.s[g.i + 1] < g.s) g.i++; };
+  function nova(ri, s, item, rapido){
+    const r = rotas[ri];
+    if (item === undefined) item = r.fila.length ? r.fila[r.idx++ % r.fila.length] : null;
+    const g = { ri, s, i: 0, u: (rnd() * 2 - 1) * 0.6, v: (0.92 + rnd() * 0.16) * (rapido || 1), viva: true, item, extra: !!rapido };
+    poe(g); gotas.push(g);
+  }
+  rotas.forEach((r, ri) => {
+    const off = r.esp * rnd(), ss = [];
+    for (let s = off; s < r.rota.L; s += r.esp) ss.push(s);
+    ss.reverse().forEach(s => nova(ri, s));
+    r.acc = off;                                   /* distância andada desde a última gota solta */
+  });
+
+  /* a foz: o aro acende com o que chega e solta um pulso na cor da gota */
+  const aro = { brilho: 0, cor: F ? F.cor : [255, 176, 46], pulsos: [], ult: -9 };
+  function chega(g){
+    const r = rotas[g.ri];
+    if (r.leve || r.alfa < 0.9 || !F) return;
+    aro.brilho = Math.min(1, aro.brilho + 0.14); aro.cor = r.cor;
+    if (t - aro.ult > 0.22){ aro.ult = t; aro.pulsos.push({ t0: t, cor: r.cor }); if (cena.aoGota) cena.aoGota(r.cor, g.item); }
+  }
+
+  function atualiza(dt){
+    let morta = false;
+    for (const g of gotas){
+      g.s += vel * g.v * dt;
+      if (g.s >= rotas[g.ri].rota.L){ g.viva = false; morta = true; chega(g); } else if (g.s > 0) poe(g);
+    }
+    rotas.forEach((r, ri) => { r.acc += vel * dt; while (r.acc >= r.esp){ r.acc -= r.esp; nova(ri, r.acc); } });
+    if (morta){ let j = 0; for (const g of gotas) if (g.viva) gotas[j++] = g; gotas.length = j; }
+    aro.brilho *= Math.exp(-dt / 0.5);
+    if (aro.pulsos.length) aro.pulsos = aro.pulsos.filter(p => t - p.t0 < 0.9);
+  }
+
+  /* abertura: uma onda de luz desce das nascentes até a foz uma vez (nada fica escondido
+     se ela não terminar: o leito e as gotas já estão lá) */
+  const DUR = 3;
+  let t = 0, tIntro = 0, prev = [0, H], revelado = !cena.intro, chegou = !cena.intro;
+  const frente = () => revelado ? null : (H + 160) * (1 - Math.pow(1 - Math.min(1, tIntro / DUR), 2)) - 80;
+
+  function desenha(tudo){
+    let a = 0, b = H;
+    if (!tudo && cena.janela){ const j = cena.janela(); a = Math.max(0, j[0]); b = Math.min(H, j[1]); }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const c0 = Math.max(0, Math.min(a, prev[0])), c1 = Math.min(H, Math.max(b, prev[1]));
+    if (c1 > c0) ctx.clearRect(0, c0, W, c1 - c0);
+    prev = [a, b];
+    const fr = frente();
+    if (fr !== null){
+      if (!chegou && F && fr >= F.y){ chegou = true; if (cena.aoChegar) cena.aoChegar(); }
+      if (tIntro >= DUR) revelado = true;
+    }
+    const bb = b;
+    if (bb <= a) return;
+    ctx.save();
+    ctx.beginPath(); ctx.rect(0, a, W, bb - a); ctx.clip();
+
+    ctx.lineCap = 'butt'; ctx.strokeStyle = 'rgba(232,255,236,.26)';
+    for (const tr of tracos){
+      if (tr.y1 < a || tr.y0 > bb || tr.alfa < 0.03) continue;
+      ctx.globalAlpha = tr.alfa; ctx.lineWidth = tr.lw; ctx.setLineDash(tr.dash);
+      ctx.lineDashOffset = -(t * vel * tr.vf + tr.fase);
+      ctx.stroke(tr.path);
+    }
+    ctx.setLineDash([]);
+
+    ctx.lineWidth = 1;
+    fontes.forEach((f, k) => {
+      if (f.y < a - 14 || f.y > bb + 14) return;
+      const ph = (t / 3.2 + k * 0.173) % 1;
+      ctx.globalAlpha = 0.6 * (1 - ph) * f.alfa; ctx.strokeStyle = css(f.cor);
+      ctx.beginPath(); ctx.arc(f.x, f.y, 2.6 + ph * 7.5, 0, TAU); ctx.stroke();
+    });
+
+    const fimR = F ? F.r * 0.9 : 20;
+    for (const g of gotas){
+      const r = rotas[g.ri], ro = r.rota, i = g.i, s0 = ro.s[i], s1 = ro.s[i + 1];
+      const f = s1 > s0 ? Math.min(1, Math.max(0, (g.s - s0) / (s1 - s0))) : 0;
+      const o = g.u * ro.w[i] * 0.5;
+      const x = ro.x[i] + (ro.x[i + 1] - ro.x[i]) * f + ro.nx[i] * o;
+      const y = ro.y[i] + (ro.y[i + 1] - ro.y[i]) * f + ro.ny[i] * o;
+      if (y < a - 10 || y > bb + 10) continue;
+      let al = r.alfa * Math.min(1, g.s / 16) * Math.min(1, (ro.L - g.s) / fimR) * (r.leve ? 0.5 : 1);
+      if (fr !== null && y > fr + 40) al *= 0.4;          /* abaixo da onda, as gotas ainda estão fracas */
+      if (al <= 0.02) continue;
+      ctx.globalAlpha = al;
+      ctx.drawImage(r.sp.img, x - r.sp.r, y - r.sp.r, r.sp.r * 2, r.sp.r * 2);
+      if (fr !== null){
+        const k = Math.exp(-Math.pow((y - fr) / 60, 2));
+        if (k > 0.05){ const q = r.sp.r * (1 + 1.4 * k); ctx.globalAlpha = al * k * 0.8; ctx.drawImage(r.sp.img, x - q, y - q, q * 2, q * 2); }
+      }
+    }
+
+    if (F && F.y + F.r * 2.3 > a && F.y - F.r * 2.3 < bb){
+      ctx.strokeStyle = css(mix(F.cor, [255, 255, 255], 0.35)); ctx.lineWidth = 1.3;
+      for (let k = 0; k < 3; k++){
+        const ph = (t / 4.2 + k / 3) % 1, rr = F.r + 11 + ph * F.r * 1.05;
+        ctx.globalAlpha = 0.42 * Math.pow(1 - ph, 1.5) * F.alfa;
+        ctx.beginPath();
+        for (let j = 0; j <= 56; j++){
+          const th = j / 56 * TAU, r2 = rr + 1.5 * Math.sin(th * 5 + t * 1.6 + k * 2.1);
+          const x = F.x + Math.cos(th) * r2, y = F.y + Math.sin(th) * r2;
+          if (j) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+        }
+        ctx.stroke();
+      }
+      if (aro.brilho > 0.02){
+        ctx.strokeStyle = css(aro.cor);
+        ctx.globalAlpha = aro.brilho * 0.35; ctx.lineWidth = 9; ctx.beginPath(); ctx.arc(F.x, F.y, F.r + 4, 0, TAU); ctx.stroke();
+        ctx.globalAlpha = Math.min(1, aro.brilho * 1.2); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(F.x, F.y, F.r + 2, 0, TAU); ctx.stroke();
+      }
+      for (const p of aro.pulsos){
+        const k = (t - p.t0) / 0.9;
+        ctx.globalAlpha = (1 - k) * 0.7; ctx.strokeStyle = css(p.cor); ctx.lineWidth = 2.2 * (1 - k) + 0.4;
+        ctx.beginPath(); ctx.arc(F.x, F.y, F.r + 3 + k * 24, 0, TAU); ctx.stroke();
+      }
+    }
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+
+  let raf = 0, ult = 0, ativo = false, media = 1 / 60, lento = 0, leve = false, lentos = 0;
+  function alivia(){
+    leve = true;
+    rotas.forEach(r => { r.esp *= 2; });
+    let j = 0; gotas.forEach((g, k) => { if (k % 2 === 0 || g.extra) gotas[j++] = g; else g.viva = false; }); gotas.length = j;
+  }
+  function medir(n){   /* custo por quadro em ms (n quadros seguidos, síncronos) */
+    const t0 = performance.now();
+    for (let k = 0; k < n; k++){ t += 1 / 60; if (!revelado) tIntro += 1 / 60; atualiza(1 / 60); desenha(false); }
+    const ms = (performance.now() - t0) / n;
+    return { ms: Math.round(ms * 100) / 100, gotas: gotas.length, tracos: tracos.length };
+  }
+  function passo(ts){
+    raf = 0; if (!ativo) return;
+    const real = ult ? (ts - ult) / 1000 : 1 / 60, dt = Math.min(0.1, real); ult = ts;
+    /* aparelho lento: se os quadros passam de ~24 ms por 2 s seguidos, metade das gotas */
+    if (!leve && real < 0.5){ media = media * 0.95 + real * 0.05; if (media > 0.024){ if ((lento += real) > 2) alivia(); } else lento = 0; }
+    t += dt;
+    if (!revelado){ tIntro += real; if (real > 0.15 && ++lentos >= 2) tIntro = DUR; }   /* relógio real; aparelho lento pula a revelação */
+    atualiza(dt); desenha(false);
+    raf = requestAnimationFrame(passo);
+  }
+  return cv.rio = {
+    medir,
+    liga(){ if (reduzido){ desenha(true); return; } if (ativo) return; ativo = true; ult = 0; raf = requestAnimationFrame(passo); },
+    desliga(){ ativo = false; if (raf) cancelAnimationFrame(raf); raf = 0; },
+    quadro(){ desenha(true); },
+    marca(fn){
+      rotas.forEach(r => { r.alfa = fn(r); }); tracos.forEach(tr => { tr.alfa = fn(tr); }); fontes.forEach(f => { f.alfa = fn(f); });
+      if (!ativo) desenha(true);
+    },
+    surto(id, n){
+      if (reduzido) return;
+      const ri = rotas.findIndex(r => r.id === id); if (ri < 0) return;
+      const r = rotas[ri], k = Math.min(n || 40, r.fila.length);
+      /* entram em fila logo atrás da nascente (s negativo = ainda não saiu) e descem mais depressa */
+      for (let j = 0; j < k; j++) nova(ri, -j * 9, r.fila[j], 2.2);
+    },
+    get ativo(){ return ativo; },
+    get gotas(){ return gotas.length; }
+  };
+}
+
+function observa(el, ctl){
+  let visivel = false;
+  const decide = () => { if (visivel && !document.hidden) ctl.liga(); else ctl.desliga(); };
+  const io = ('IntersectionObserver' in window) ? new IntersectionObserver(es => { visivel = es[es.length - 1].isIntersecting; decide(); }, { rootMargin: '60px 0px' }) : null;
+  document.addEventListener('visibilitychange', decide);
+  if (io) io.observe(el); else { visivel = true; decide(); }
+  return () => { if (io) io.disconnect(); document.removeEventListener('visibilitychange', decide); ctl.desliga(); };
+}
+
+return { PASSO, TAU, reduzido, lerp, suave, mix, css, mistura, semente, curso, bezier, meandro, pinta, rota, primeiro, leito, traco, setas, gota, correnteza, observa };
+})();
+</script>
 <script>
 (function(){
 'use strict';
@@ -134,7 +578,8 @@ const FOZ = window.FOZ || { escandalos: [] };
 const $ = s => document.querySelector(s);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const NS = 'http://www.w3.org/2000/svg';
-const reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduzido = RIO.reduzido;
+const TAU = RIO.TAU, suave = RIO.suave, lerp = RIO.lerp;
 
 /* ---------- vocabulário ---------- */
 const FAIXAS = {
@@ -143,24 +588,37 @@ const FAIXAS = {
   gabinete: { nome:'O gabinete', desc:'por quem trabalhou para ele',          curto:'pelo gabinete' },
   direto:   { nome:'Ele mesmo',  desc:'o que ele fez, disse ou em que é investigado', curto:'com ele no centro' },
 };
-const ORDEM_RIO = ['entorno','familia','gabinete','direto'];      /* de cima (longe) para baixo (perto) */
-const ORDEM_BACIA = ['entorno','familia','direto','gabinete'];    /* da esquerda para a direita */
+const ORDEM_RIO = ['entorno','familia','gabinete','direto'];      /* do mais longe (nascente) ao mais perto (foz) */
 const COR = { preso_ou_condenado_na_cadeia:'#ff5c5c', investigado_na_cadeia:'#ffb02e', sem_processo_na_cadeia:'#5c8a63' };
-const CLS = { preso_ou_condenado_na_cadeia:'grave', investigado_na_cadeia:'medio', sem_processo_na_cadeia:'' };
+const RGB = { preso_ou_condenado_na_cadeia:[255,92,92], investigado_na_cadeia:[255,176,46], sem_processo_na_cadeia:[92,138,99] };
+const NOME_COR = '#d8efdd';      /* nomes em cor neutra: a cor fica só na água e nas nascentes */
+const FUNDO = [5, 8, 5];
 const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const temaNome = {}; ((window.DOSSIE || {}).temas || []).forEach(t => { temaNome[t.id] = t.nome; });
 const PESO = { preso_ou_condenado_na_cadeia:2, investigado_na_cadeia:1, sem_processo_na_cadeia:0 };
+const hash = s => { let h = 2166136261; for (let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967296; };
 
 /* ---------- dados ---------- */
+/* registros: o que a busca do caso acha no arquivo (é o número que o link do arquivo mostra).
+   fila: os mesmos registros, do mais antigo ao mais recente, sem os que o próprio arquivo marca
+   "(não é Flávio)"; cada gota que desce o rio do caso é um deles. */
+const CICLO = 10;           /* em quantos segundos cada rio solta a sua fila inteira: vazão proporcional aos registros */
 const TODOS = (FOZ.escandalos || []).map(e => {
-  let n = 0;
+  let n = 0; const fila = [];
   if (e.busca){
     const qs = norm(e.busca).split('|').map(t => t.trim()).filter(Boolean);
-    n = (D.itens || []).filter(i => { const t = norm(i.titulo + ' ' + (i.resumo || '') + ' ' + (temaNome[i.tema] || '')); return qs.some(x => t.includes(x)); }).length;
+    (D.itens || []).forEach((i, k) => {
+      const t = norm(i.titulo + ' ' + (i.resumo || '') + ' ' + (temaNome[i.tema] || ''));
+      if (!qs.some(x => t.includes(x))) return;
+      n++;
+      if (String(i.titulo || '').indexOf('(não é Flávio)') < 0) fila.push(k);
+    });
+    fila.sort((a, b) => String(D.itens[a].data || '').localeCompare(String(D.itens[b].data || '')) || a - b);
   }
-  return Object.assign({}, e, { registros: n });
+  return Object.assign({}, e, { registros: n, fila });
 });
 let filtro = null;          /* null = todas as faixas */
+const faixaDe = id => { const e = TODOS.find(z => z.id === id); return e ? e.faixa : null; };
 
 function viaDe(e){
   const c = e.cadeia || [];
@@ -185,120 +643,320 @@ function cabecalho(){
   $('#tese').innerHTML = '<b>' + TODOS.length + ' escândalos. Todos chegam a ele.</b> Em ' + graves +
     ' deles há alguém preso ou condenado no caminho. Cada rio mostra por onde o caso chega: por ele mesmo, pelo gabinete, pela família ou pelo entorno.';
   $('#faixas').innerHTML = ['direto','gabinete','familia','entorno'].map(f =>
-    '<button type="button" data-f="' + f + '"' + (filtro === f ? ' class="on"' : '') + '><b>' + por(f) + '</b><span>' + esc(FAIXAS[f].nome) + ' — ' + esc(FAIXAS[f].desc) + '</span></button>').join('');
-  document.querySelectorAll('#faixas button').forEach(b => b.addEventListener('click', () => { filtro = filtro === b.dataset.f ? null : b.dataset.f; tudo(); }));
+    '<button type="button" data-f="' + f + '"' + (filtro === f ? ' class="on"' : '') + ' aria-pressed="' + (filtro === f) + '"><b>' + por(f) + '</b><span>' + esc(FAIXAS[f].nome) + ' — ' + esc(FAIXAS[f].desc) + '</span></button>').join('');
+  document.querySelectorAll('#faixas button').forEach(b => b.addEventListener('click', () => {
+    filtro = filtro === b.dataset.f ? null : b.dataset.f;
+    cabecalho(); pintaLeito(); rio();
+  }));
 }
 
-/* ---------- a bacia: tudo numa tela ----------
-   Funil de duas margens: nomes na horizontal, alinhados às margens; cada rio
-   atravessa até o leito central, que engrossa para baixo e fecha na foz.
-   Os primeiros rios ficam no meio do leito e os seguintes por fora, para que
-   nenhum atravesse outro. */
 const medidor = document.createElement('canvas').getContext('2d');
-function largTexto(t, px, peso){ medidor.font = (peso || 600) + ' ' + px + 'px system-ui, -apple-system, Roboto, sans-serif'; return medidor.measureText(t).width; }
 function el(tag, at){ const x = document.createElementNS(NS, tag); for (const k in at) x.setAttribute(k, at[k]); return x; }
-function cabe(t, px, max){ if (largTexto(t, px) <= max) return t; while (t.length > 3 && largTexto(t + '…', px) > max) t = t.slice(0, -1); return t + '…'; }
+
+/* ---------- a bacia: rio de verdade ----------
+   26 nascentes (os escândalos) nas duas margens. Cada afluente serpenteia até o rio
+   da sua faixa, que engrossa a cada encontro. O entorno e a família se juntam e formam
+   o rio principal; o gabinete e, por último, ele mesmo chegam pelos lados; o rio
+   principal faz a última curva e deságua na foto. Largura = raiz da vazão acumulada
+   (vazão de uma nascente = 1 + raiz dos registros no arquivo / 3). A cor do leito é a
+   média das águas que já chegaram; cada gota mantém a cor da sua nascente. */
+let B = null, introFeita = false;
 
 function bacia(){
-  const svg = $('#bacia-svg'); svg.innerHTML = '';
-  const W = Math.round($('#bacia').clientWidth);
-  const estreita = W < 600;
-  if (!TODOS.length) return;
-  const M = estreita ? 8 : 10, px = estreita ? 11.5 : 13, rowH = estreita ? 18 : 20, hdrH = estreita ? 22 : 24, topo = 16;
-  const Tc = Math.round(Math.min(W * (estreita ? 0.16 : 0.16), 120));
-  const maxTxt = W / 2 - Tc / 2 - M - 16;
-  /* faixas nas duas margens, equilibrando o número de linhas e mantendo a ordem de distância */
-  const lados = { e: [], d: [] }, conta = { e: 0, d: 0 };
-  ORDEM_RIO.forEach(f => {
-    const itens = ordena(TODOS.filter(e => e.faixa === f)).reverse();
-    if (!itens.length) return;
-    const lado = conta.e <= conta.d ? 'e' : 'd';
-    lados[lado].push({ f, itens }); conta[lado] += itens.length + 1.2;
-  });
-  const wAll = larguras(TODOS, Tc);
-  const wOf = {}; TODOS.forEach((e, k) => wOf[e.id] = wAll[k]);
-
-  const linhas = [];      /* {lado, e, y} */
-  const cabecalhos = [];  /* {lado, f, n, y} */
-  let yMax = 0;
-  ['e','d'].forEach(l => {
-    let y = topo;
-    lados[l].forEach(g => {
-      cabecalhos.push({ lado: l, f: g.f, n: g.itens.length, y: y + hdrH * 0.62 }); y += hdrH;
-      g.itens.forEach(e => { linhas.push({ lado: l, e, y: y + rowH / 2 }); y += rowH; });
-      y += 6;
-    });
-    yMax = Math.max(yMax, y);
-  });
-  const yEnd = yMax + 10, yFoz = yEnd + 74, H = Math.round(yFoz + 66);
-  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  const box = $('#bacia');
+  const W = Math.round(box.clientWidth);
+  if (!W || !TODOS.length) return;
+  if (B){ B.solta(); B = null; }
+  const mob = W < 640;
+  const M = mob ? 10 : 22;
+  const px = mob ? 14 : 15;
+  const lh = Math.round(px * 1.2);
+  const toque = !(window.matchMedia && window.matchMedia('(pointer: fine)').matches);
+  const rowH = (mob || toque) ? 44 : 32, hdrH = mob ? 28 : 30, topo = mob ? 12 : 22, gapB = mob ? 18 : 22;
+  const Lmax = mob ? Math.round(Math.min(122, W * 0.31)) : Math.round(Math.min(230, W * 0.21));
   const cx = W / 2;
-  const acum = { e: 0, d: 0 };
-  const camadaSt = el('g', {}), camadaTx = el('g', {});
-  linhas.sort((a, b) => a.y - b.y).forEach(r => {
-    const e = r.e, w = wOf[e.id];
-    const x = r.lado === 'e' ? cx - acum.e - w / 2 : cx + acum.d + w / 2;
-    acum[r.lado] += w;
-    /* o nome pode ir até perto do próprio rio: os rios já desenhados estão todos mais ao centro */
-    const livre = Math.max(maxTxt, Math.abs(x - (r.lado === 'e' ? M : W - M)) - w / 2 - 26);
-    const nome = cabe(e.rotulo || e.nome, px, livre);
-    const tw = largTexto(nome, px);
-    const xs = r.lado === 'e' ? M + tw + 6 + w / 2 : W - M - tw - 6 - w / 2;   /* a ponta arredondada não encosta no nome */
-    const xf = cx + (x - cx) * 0.22;
-    const d = 'M' + xs.toFixed(1) + ',' + r.y.toFixed(1) +
-      ' C' + (x + (xs - x) * 0.45).toFixed(1) + ',' + r.y.toFixed(1) + ' ' + x.toFixed(1) + ',' + (r.y + 4).toFixed(1) + ' ' + x.toFixed(1) + ',' + (r.y + 18).toFixed(1) +
-      ' L' + x.toFixed(1) + ',' + yEnd.toFixed(1) +
-      ' C' + x.toFixed(1) + ',' + (yEnd + 44).toFixed(1) + ' ' + xf.toFixed(1) + ',' + (yFoz - 50).toFixed(1) + ' ' + xf.toFixed(1) + ',' + (yFoz - 26).toFixed(1);
-    camadaSt.appendChild(el('path', { d, class: 'st', stroke: COR[e.gravidade], 'stroke-width': w.toFixed(2), 'stroke-opacity': 0.9, 'data-id': e.id }));
-    const t = el('text', { x: r.lado === 'e' ? M : W - M, y: r.y.toFixed(1), class: 'rot', 'text-anchor': r.lado === 'e' ? 'start' : 'end', 'dominant-baseline': 'middle',
-      fill: e.gravidade === 'sem_processo_na_cadeia' ? '#9bb8a0' : COR[e.gravidade], 'data-id': e.id, 'font-size': px });
-    t.textContent = nome;
-    camadaTx.appendChild(t);
-  });
-  cabecalhos.forEach(c => {
-    const t = el('text', { x: c.lado === 'e' ? M : W - M, y: c.y.toFixed(1), class: 'banda', 'text-anchor': c.lado === 'e' ? 'start' : 'end' });
-    t.textContent = '// ' + FAIXAS[c.f].nome.toUpperCase() + ' · ' + c.n;
-    camadaTx.appendChild(t);
-  });
-  svg.appendChild(camadaSt); svg.appendChild(camadaTx);
+  const sobre = mob;
+  const dJ = sobre ? 9 : 14, drop = mob ? 40 : 50, minSep = mob ? 56 : 66;
+  const wMin = mob ? 1.1 : 1.3, wMax = mob ? 19 : 28;
+  const R = mob ? 34 : 44;
+  const familia = getComputedStyle(document.body).fontFamily;
+  const mede = (t, p) => { medidor.font = '600 ' + (p || px) + 'px ' + familia; return medidor.measureText(t).width; };
+  const vazao = e => 1 + Math.sqrt(e.registros) / 3;
+  const Qtot = TODOS.reduce((a, e) => a + vazao(e), 0);
+  const kW = (wMax - wMin) / Math.sqrt(Qtot);
+  const larg = Q => wMin + kW * Math.sqrt(Math.max(0, Q));
 
-  /* a foz */
-  const F = { x: cx, y: yFoz };
-  const defs = el('defs', {}); const cp = el('clipPath', { id: 'cpfoz' }); cp.appendChild(el('circle', { cx: F.x, cy: F.y, r: 25 })); defs.appendChild(cp); svg.insertBefore(defs, svg.firstChild);
-  svg.appendChild(el('circle', { cx: F.x, cy: F.y, r: 28, fill: '#050805', stroke: '#ffb02e', 'stroke-width': 3 }));
-  const img = el('image', { x: F.x - 25, y: F.y - 25, width: 50, height: 50, 'clip-path': 'url(#cpfoz)', preserveAspectRatio: 'xMidYMid slice', id: 'foz-img-b' });
-  if (fotoFlavio) img.setAttribute('href', fotoFlavio);
-  svg.appendChild(img);
-  const tn = el('text', { x: F.x, y: F.y + 46, class: 'foz-nome', 'text-anchor': 'middle' }); tn.textContent = 'FLÁVIO BOLSONARO'; svg.appendChild(tn);
-
-  if (!reduzido){
-    svg.querySelectorAll('path.st').forEach((p, k) => {
-      const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
-      p.getBoundingClientRect();
-      p.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.3,.6,.3,1) ' + (k * 0.04).toFixed(2) + 's';
-      requestAnimationFrame(() => requestAnimationFrame(() => { p.style.strokeDashoffset = 0; }));
-    });
+  function quebra(t){
+    if (mede(t) <= Lmax) return [t];
+    if (mob){
+      const p = t.split(' '); let best = null;
+      for (let i = 1; i < p.length; i++){
+        const a = p.slice(0, i).join(' '), b = p.slice(i).join(' '), m = Math.max(mede(a), mede(b));
+        if (!best || m < best.m) best = { l: [a, b], m };
+      }
+      if (best && best.m <= Lmax) return best.l;
+    }
+    return [corta(t, Lmax)];
   }
-  svg.querySelectorAll('[data-id]').forEach(x => {
-    x.addEventListener('click', () => irPara(x.dataset.id));
-    x.addEventListener('mouseenter', () => realca(x.dataset.id));
-    x.addEventListener('mouseleave', () => realca(null));
+  function corta(t, max, p){
+    if (mede(t, p) <= max) return t;
+    let s = t; while (s.length > 3 && mede(s + '…', p) > max) s = s.slice(0, -1);
+    return s + '…';
+  }
+
+  /* 1. as quatro faixas nas duas margens, na ordem de distância: o entorno e a família
+        nascem no alto e formam o rio principal; as seguintes chegam cada uma abaixo da
+        anterior (ele mesmo por último). Testa as duas margens para a 3ª faixa e fica
+        com a bacia mais baixa. */
+  const bandas = ORDEM_RIO.map(f => ({ f, itens: ordena(TODOS.filter(e => e.faixa === f)).reverse() })).filter(b => b.itens.length);
+  const offDe = k => k < 2 ? (mob ? 24 : W * 0.16) : (mob ? 30 : W * 0.2);   /* distância do rio da faixa ao centro */
+  /* celular: o nome fica em 14 px; se não couber numa linha até o rio da faixa, quebra em duas
+     e aquela linha da bacia fica mais alta (o alvo de toque cresce junto) */
+  function partes(t, max){
+    if (mede(t) <= max) return [t];
+    const p = t.split(' '); let best = null;
+    for (let i = 1; i < p.length; i++){
+      const a = p.slice(0, i).join(' '), b = p.slice(i).join(' '), m = Math.max(mede(a), mede(b));
+      if (!best || m < best.m) best = { l: [a, b], m };
+    }
+    return best ? best.l.map(x => corta(x, max)) : [corta(t, max)];
+  }
+  bandas.forEach((b, k) => {
+    if (sobre){ const cabeW = cx - offDe(k) - M - 6; b.ls = b.itens.map(e => partes(e.rotulo || e.nome, cabeW)); }
+    b.hs = b.itens.map((e, i) => rowH + (sobre ? (b.ls[i].length - 1) * lh : 0));
   });
-  aplicaFiltroBacia();
+  function arranja(l2){
+    const colY = { e: topo, d: topo }, pos = [];
+    let Jant = 0;
+    bandas.forEach((b, k) => {
+      const lado = k === 0 ? 'e' : k === 1 ? 'd' : k === 2 ? l2 : k === 3 ? (l2 === 'e' ? 'd' : 'e') : (colY.e <= colY.d ? 'e' : 'd');
+      const alt = b.hs.reduce((a, h) => a + h, 0);
+      let ini = colY[lado] + hdrH;
+      if (k >= 2) ini = Math.max(ini, Jant + minSep - drop - alt);   /* cada faixa chega abaixo da anterior */
+      const p = { k, lado, dir: lado === 'e' ? 1 : -1, hdrY: ini - hdrH, ini, fim: ini + alt, J: ini + alt + drop };
+      colY[lado] = p.fim + gapB;
+      if (k === 1){ p.J = pos[0].J = Math.max(pos[0].fim, p.fim) + drop; }
+      pos.push(p); Jant = p.J;
+    });
+    return pos;
+  }
+  const opcoes = [arranja('e'), arranja('d')];
+  const altura = pos => Math.max.apply(null, pos.map(p => p.J));
+  const melhor = altura(opcoes[0]) <= altura(opcoes[1]) ? opcoes[0] : opcoes[1];
+  bandas.forEach((b, k) => Object.assign(b, melhor[k]));
+  const yC1 = bandas[0].J;                       /* onde nasce o rio principal */
+  const yUlt = Math.max.apply(null, bandas.map(b => b.J));
+  const yM = yUlt + (mob ? 190 : 185);           /* a foz */
+  const H = Math.round(yM + R + (mob ? 74 : 80));
+  /* nitidez com teto: DPR até 1,75 e no máximo ~5 Mpx por canvas */
+  const dpr = Math.max(1, Math.min(1.75, window.devicePixelRatio || 1, Math.sqrt(5e6 / (W * H))));
+
+  /* 2. nomes e nascentes */
+  bandas.forEach(b => {
+    /* celular: o nome fica sobre o próprio afluente, que nasce na margem e corre por baixo dele
+       (sobra largura para a água); tela larga: o nome vem antes da nascente */
+    let topoL = b.ini;
+    b.linhas = b.itens.map((e, i) => {
+      const h = b.hs[i], top = topoL, y = top + h / 2; topoL += h;
+      if (sobre) return { e, y, top, h, sy: top + h - 13, ty: top + 15, ls: b.ls[i], px, sx: b.lado === 'e' ? M + 2 : W - M - 2 };
+      const ls = quebra(e.rotulo || e.nome), tw = Math.max.apply(null, ls.map(mede));
+      return { e, y, top, h, sy: y, ty: y, ls, tw, sx: b.lado === 'e' ? M + tw + 7 : W - M - tw - 7 };
+    });
+    const off = offDe(b.k);
+    const minT = mob ? 22 : 50;
+    const sxs = b.linhas.map(L => L.sx);
+    if (sobre) b.xb = cx - b.dir * off;
+    else b.xb = b.lado === 'e' ? Math.max(cx - off, Math.max.apply(null, sxs) + minT) : Math.min(cx + off, Math.min.apply(null, sxs) - minT);
+    b.a = mob ? 2.5 : 8; b.lam = mob ? 120 : 180; b.fase = b.k * 1.9 + 0.4;
+    b.Q = b.linhas.reduce((a, L) => a + vazao(L.e), 0);
+    b.wMax = larg(b.Q);
+    b.y0 = b.linhas[0].sy + dJ;
+    b.cor = RIO.mistura(b.linhas.map(L => [RGB[L.e.gravidade], vazao(L.e)]));
+  });
+  const bx = (b, y) => b.xb + b.a * Math.sin(TAU * (y - b.y0) / b.lam + b.fase);
+
+  /* 3. rio principal: x(y) da nascença até a foz, desviando dos rios que correm ao lado */
+  const nM = Math.max(3, Math.ceil((yM - yC1) / 2) + 1);
+  const mx = [], lo = [], hi = [];
+  const Amid = mob ? 22 : 46, Alow = mob ? Math.min(W * 0.15, 60) : Math.min(W * 0.1, 110), lamM = mob ? 280 : 360;
+  /* a última curva: depois do último encontro o rio se desvia para o lado oposto e volta ao centro na foz */
+  const ultima = bandas[bandas.length - 1], ladoCurva = ultima.lado === 'd' ? -1 : 1;
+  const c0 = yUlt + 6, c1 = yM - R - 26;
+  const meia = larg(Qtot) / 2;
+  for (let i = 0; i < nM; i++){
+    const y = yC1 + (yM - yC1) * i / (nM - 1);
+    const A = lerp(Amid, Alow, suave((y - yUlt) / 70));
+    const env = suave((y - yC1) / 80) * suave((yM - R - 20 - y) / 110);
+    const meio = cx + A * env * Math.sin(TAU * (y - yC1) / lamM + 0.9);
+    const curva = cx + ladoCurva * Alow * Math.sin(Math.PI * Math.max(0, Math.min(1, (y - c0) / (c1 - c0))));
+    mx.push(lerp(meio, curva, suave((y - yUlt) / 50)));
+    let l = M + 40, h = W - M - 40;
+    bandas.forEach(b => {
+      if (b.k < 2 || y < b.ini - 8 || y > b.fim + 10) return;
+      const folga = b.a + b.wMax / 2 + meia + (mob ? 5 : 14);
+      if (b.lado === 'e') l = Math.max(l, b.xb + folga); else h = Math.min(h, b.xb - folga);
+    });
+    lo.push(l); hi.push(h);
+  }
+  const aperta = () => { for (let i = 0; i < nM; i++) mx[i] = lo[i] > hi[i] ? (lo[i] + hi[i]) / 2 : Math.min(hi[i], Math.max(lo[i], mx[i])); };
+  aperta();
+  for (let p = 0; p < 3; p++){
+    const cp = mx.slice(), r = 14;
+    for (let i = 0; i < nM; i++){ let s = 0, n = 0; for (let j = Math.max(0, i - r); j <= Math.min(nM - 1, i + r); j++){ s += cp[j]; n++; } mx[i] = s / n; }
+    aperta();
+  }
+  for (let i = 0; i < nM; i++) mx[i] = lerp(cx, mx[i], Math.min(suave(i / 20), suave((nM - 1 - i) / 20)));
+  const mainX = y => { const f = (y - yC1) / (yM - yC1) * (nM - 1), i = Math.max(0, Math.min(nM - 2, Math.floor(f))); return lerp(mx[i], mx[i + 1], Math.max(0, Math.min(1, f - i))); };
+  const ptsM = []; for (let y = yC1; y < yM; y += 3) ptsM.push([mainX(y), y]); ptsM.push([cx, yM]);
+  const main = RIO.curso(ptsM);
+  RIO.pinta(main, (i, y) => {
+    const pares = bandas.map(b => [b.cor, b.Q * (b.k < 2 ? 1 : suave((y - b.J + 2) / 18))]);
+    const Q = pares.reduce((a, p) => a + p[1], 0);
+    return [larg(Q) * (1 + 0.9 * suave((y - (yM - R - 56)) / 56)), RIO.mistura(pares)];
+  });
+  const corFoz = RIO.mistura(bandas.map(b => [b.cor, b.Q]));
+
+  /* 4. rios das faixas: descem pela margem e fazem a curva até o principal */
+  bandas.forEach(b => {
+    const pts = [];
+    for (let y = b.y0; y < b.fim; y += 3) pts.push([bx(b, y), y]);
+    const x1 = bx(b, b.fim), xJ = mainX(b.J), sg = x1 > xJ ? 1 : -1;
+    pts.push([x1, b.fim]);
+    const curva = RIO.bezier([x1, b.fim], [x1, b.fim + (b.J - b.fim) * 0.5], [xJ + sg * Math.min(10, Math.abs(x1 - xJ) * 0.35), b.J - (b.J - b.fim) * 0.42], [xJ, b.J], 24);
+    b.curso = RIO.curso(pts.concat(curva.slice(1)));
+    const jun = b.linhas.map((L, j) => ({ y: L.sy + dJ, q: vazao(L.e), cor: RGB[L.e.gravidade], j }));
+    RIO.pinta(b.curso, (i, y) => {
+      const pares = jun.map(J => [J.cor, J.q * (J.j === 0 ? 1 : suave((y - J.y + 3) / 14))]);
+      return [larg(pares.reduce((a, p) => a + p[1], 0)), RIO.mistura(pares)];
+    });
+  });
+
+  /* 5. afluentes: da nascente, serpenteando, até o rio da faixa */
+  const tribs = [];
+  bandas.forEach(b => b.linhas.forEach(L => {
+    const yj = L.sy + dJ, xj = bx(b, yj), d = Math.hypot(xj - L.sx, yj - L.sy);
+    const pts = RIO.meandro([L.sx, L.sy], [xj, yj], {
+      amp: Math.min((rowH - 12) / 2, sobre ? 3.6 : 11, d * 0.12), ondas: Math.max(1, Math.round(d / (sobre ? 34 : 55))),
+      fase: hash(L.e.id) * Math.PI, ta: [b.dir, 0.12], tb: [b.dir * 0.5, 1]
+    });
+    const c = RIO.curso(pts), q = vazao(L.e), wq = larg(q), cor = RGB[L.e.gravidade];
+    RIO.pinta(c, (i, y, t) => [wMin + (wq - wMin) * Math.pow(t, 0.6), cor]);
+    const rota = RIO.rota([c, 0, c.n - 1], [b.curso, RIO.primeiro(b.curso.y, yj), b.curso.n - 1], [main, RIO.primeiro(main.y, b.J), main.n - 1]);
+    tribs.push({ e: L.e, b, sx: L.sx, sy: L.sy, curso: c, rota, cor });
+  }));
+
+  /* 6. DOM: camadas, nomes, foz */
+  const leito = $('#bacia-leito'), agua = $('#bacia-agua');
+  box.style.height = H + 'px';
+  [leito, agua].forEach(cv => { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.width = W + 'px'; cv.style.height = H + 'px'; });
+  let html = '';
+  bandas.forEach(b => {
+    html += '<div class="bh" style="' + (b.lado === 'e' ? 'left' : 'right') + ':' + M + 'px;top:' + b.hdrY + 'px;line-height:' + hdrH + 'px"><i>// </i>' + esc(FAIXAS[b.f].nome.toUpperCase()) + ' · ' + b.itens.length + '</div>';
+    b.linhas.forEach(L => {
+      const m0 = Math.max(0, M - 8);
+      const left = b.lado === 'e' ? m0 : Math.round(b.xb + 4);
+      const width = b.lado === 'e' ? Math.round(b.xb - 4 - m0) : Math.round(W - m0 - left);
+      const rot = L.e.rotulo || L.e.nome;
+      const nomeA = (rot === L.e.nome ? rot : rot + ', ' + L.e.nome) + '. Ver o caminho até ele.';
+      html += '<button type="button" class="rt ' + b.lado + '" data-id="' + esc(L.e.id) + '" aria-label="' + esc(nomeA) + '" style="left:' + left + 'px;top:' + Math.round(L.top) + 'px;width:' + width + 'px;height:' + L.h + 'px;' +
+        (b.lado === 'e' ? 'padding:0 0 0 ' + (M - m0) + 'px;' : 'padding:0 ' + (M - m0) + 'px 0 0;') +
+        (sobre ? 'align-items:flex-start;padding-top:' + Math.round(L.ty - lh / 2 - L.top) + 'px;' : '') +
+        'font-size:' + (L.px || px) + 'px;line-height:' + lh + 'px;color:' + NOME_COR + '"><span>' + L.ls.map(esc).join('<br>') + '</span></button>';
+    });
+  });
+  html += '<div class="foz-b" id="foz-b" style="left:' + (cx - R) + 'px;top:' + (yM - R) + 'px;width:' + (2 * R) + 'px;height:' + (2 * R) + 'px">' + '<span>FB</span></div>' +
+          '<div class="foz-n" style="left:' + cx + 'px;top:' + (yM + R + 14) + 'px"><b>FLÁVIO BOLSONARO</b><span>candidato à Presidência</span></div>';
+  $('#bacia-rot').innerHTML = html;
+  poeFoto(document.getElementById('foz-b'));
+  document.querySelectorAll('#bacia-rot .rt').forEach(x => {
+    x.addEventListener('click', () => toca(x.dataset.id));
+    const entra = () => { if (!$('#folha').classList.contains('on')) realca(x.dataset.id); };
+    const sai = () => { if (!$('#folha').classList.contains('on')) realca(null); };
+    x.addEventListener('mouseenter', entra); x.addEventListener('focus', entra);
+    x.addEventListener('mouseleave', sai); x.addEventListener('blur', sai);
+  });
+
+  const intro = !introFeita && !reduzido;
+  introFeita = true;
+
+
+  B = { W, H, dpr, mob, R, cx, yM, bandas, tribs, main, leito, agua, corFoz, destaque: null, ctl: null, solta: () => {} };
+  pintaLeito();
+  B.ctl = RIO.correnteza(agua, {
+    W, H, dpr, vel: mob ? 48 : 60, raio: mob ? 2.4 : 2.8, semente: 7,
+    cursos: tribs.map(t => ({ curso: t.curso, id: t.e.id, grupo: t.e.faixa }))
+      .concat(bandas.map(b => ({ curso: b.curso, grupo: b.f })))
+      .concat([{ curso: main, grupo: 'principal' }]),
+    /* uma gota por registro, na ordem das datas; sem registros, um gotejar lento e discreto */
+    rotas: tribs.map(t => ({ rota: t.rota, cor: t.cor, fila: t.e.fila, leve: !t.e.fila.length,
+      taxa: t.e.fila.length ? t.e.fila.length / CICLO : 1 / 16, id: t.e.id, grupo: t.e.faixa })),
+    fontes: tribs.map(t => ({ x: t.sx, y: t.sy, cor: t.cor, id: t.e.id, grupo: t.e.faixa })),
+    foz: { x: cx, y: yM, r: R, cor: corFoz },
+    janela: () => { const r = box.getBoundingClientRect(); return [-r.top - 40, window.innerHeight - r.top + 40]; },
+    intro,
+    aoChegar: () => { const f = document.getElementById('foz-b'); if (f) f.classList.add('pulso'); },
+    aoGota: cor => aroPulsa(cor)
+  });
+  marca();
+  B.solta = RIO.observa(box, B.ctl);
 }
-function aplicaFiltroBacia(){
-  document.querySelectorAll('#bacia-svg [data-id]').forEach(x => {
+
+/* realce e filtro: repinta a camada parada e ajusta a opacidade das gotas */
+function pintaLeito(){
+  if (!B) return;
+  const ctx = B.leito.getContext('2d');
+  ctx.setTransform(B.dpr, 0, 0, B.dpr, 0, 0);
+  ctx.clearRect(0, 0, B.W, B.H);
+  const d = B.destaque, fd = d ? faixaDe(d) : null;
+  const fT = e => d ? (e.id === d ? 0 : 1) : (filtro && e.faixa !== filtro ? 0.8 : 0);
+  const fB = b => d ? (b.f === fd ? 0.3 : 1) : (filtro && b.f !== filtro ? 0.8 : 0);
+  const fM = d ? 0.35 : 0;
+  const lista = B.tribs.map(t => ({ curso: t.curso, fosco: fT(t.e) }))
+    .concat(B.bandas.map(b => ({ curso: b.curso, fosco: fB(b) })))
+    .concat([{ curso: B.main, fosco: fM }]);
+  RIO.leito(ctx, lista, { fundo: FUNDO, foz: { x: B.cx, y: B.yM, r: B.R, cor: B.corFoz, fosco: fM } });
+  B.tribs.forEach(t => {
+    ctx.globalAlpha = 1 - fT(t.e) * 0.85; ctx.fillStyle = RIO.css(t.cor);
+    ctx.beginPath(); ctx.arc(t.sx, t.sy, B.mob ? 2.3 : 2.7, 0, TAU); ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  if (d){ const t = B.tribs.find(z => z.e.id === d); if (t) RIO.traco(ctx, t.rota, t.cor, B.mob ? 1.8 : 2.2); }
+  if (reduzido) RIO.setas(ctx, B.main, 'rgba(232,255,236,.5)', B.mob ? 90 : 110);
+  document.querySelectorAll('#bacia-rot .rt').forEach(x => {
     const e = TODOS.find(z => z.id === x.dataset.id);
-    x.classList.toggle('dim', !!filtro && e && e.faixa !== filtro);
+    x.classList.toggle('dim', !!(d ? x.dataset.id !== d : (filtro && e && e.faixa !== filtro)));
+  });
+  marca();
+}
+function marca(){
+  if (!B || !B.ctl) return;
+  const d = B.destaque, fd = d ? faixaDe(d) : null;
+  B.ctl.marca(x => {
+    if (d){ if (x.id === d) return 1; if (x.id == null) return (x.grupo === 'principal' || x.grupo === fd) ? 0.45 : 0.1; return 0.1; }
+    if (filtro) return (x.grupo === filtro || x.grupo === 'principal') ? 1 : 0.14;
+    return 1;
   });
 }
 function realca(id){
-  document.querySelectorAll('#bacia-svg [data-id]').forEach(x => {
-    const e = TODOS.find(z => z.id === x.dataset.id);
-    const fora = (filtro && e && e.faixa !== filtro) || (id && x.dataset.id !== id);
-    x.classList.toggle('dim', !!fora);
-  });
+  if (B && B.destaque !== id){ B.destaque = id; pintaLeito(); }
   document.querySelectorAll('#rio-svg .lane').forEach(x => x.classList.toggle('dim', !!id && x.dataset.id !== id));
+}
+/* tocar num caso na bacia: o rio dele acende, os outros esmaecem, sai um surto de gotas
+   (os registros dele) e a ficha sobe logo depois */
+let tocaT = 0;
+function toca(id){
+  clearTimeout(tocaT);
+  realca(id);
+  if (reduzido){ abre(id); return; }
+  if (B && B.ctl) B.ctl.surto(id, 40);
+  tocaT = setTimeout(() => abre(id), 400);
+}
+/* o aro da foto pulsa na cor da gota que chega */
+let aroT = 0;
+function aroPulsa(cor){
+  const f = document.getElementById('foz-b'); if (!f) return;
+  f.style.borderColor = RIO.css(cor);
+  clearTimeout(aroT); aroT = setTimeout(() => { f.style.borderColor = ''; }, 260);
 }
 
 /* ---------- o rio para rolar ---------- */
@@ -376,7 +1034,7 @@ function rio(){
 /* ---------- ficha do afluente ---------- */
 function irPara(id){
   const b = document.getElementById('afl-' + id);
-  if (!b){ filtro = null; tudo(); return irPara(id); }
+  if (!b){ filtro = null; cabecalho(); pintaLeito(); rio(); return irPara(id); }
   b.scrollIntoView({ behavior: reduzido ? 'auto' : 'smooth', block: 'center' });
   b.classList.add('flash'); setTimeout(() => b.classList.remove('flash'), 1600);
   const p = document.querySelector('#rio-svg .lane[data-id="' + id + '"]'); if (p) p.classList.add('on');
@@ -421,17 +1079,27 @@ function abre(id){
 function fecha(){ $('#folha').classList.remove('on'); realca(null); try { history.replaceState(null, '', location.pathname); } catch(_){} }
 $('#folha').addEventListener('click', ev => { if (ev.target === $('#folha')) fecha(); });
 document.addEventListener('keydown', ev => { if (ev.key === 'Escape') fecha(); });
-async function compartilha(e){
-  const cam = (e.cadeia || []).map(l => l.de).concat(['Flávio Bolsonaro']).join(' → ');
-  const f = (e.fontes || [])[0];
-  const txt = e.nome + ': ' + e.status_flavio + '\nO caminho: ' + cam + '.' + (f ? '\nFonte: ' + f.veiculo + ' — ' + f.url : '') +
-              '\n\nTodos os escândalos que levam a Flávio Bolsonaro, com fonte: ' + url() + '#' + e.id;
+async function manda(txt){
   if (navigator.share){ try { await navigator.share({ text: txt }); return; } catch(err){ if (err && err.name === 'AbortError') return; } }
   window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
 }
+function compartilha(e){
+  const cam = (e.cadeia || []).map(l => l.de).concat(['Flávio Bolsonaro']).join(' → ');
+  const f = (e.fontes || [])[0];
+  manda(e.nome + ': ' + e.status_flavio + '\nO caminho: ' + cam + '.' + (f ? '\nFonte: ' + f.veiculo + ' — ' + f.url : '') +
+        '\n\nTodos os escândalos que levam a Flávio Bolsonaro, com fonte: ' + url() + '#' + e.id);
+}
+$('#zap-pag').addEventListener('click', () => {
+  const graves = TODOS.filter(e => e.gravidade === 'preso_ou_condenado_na_cadeia').length;
+  manda(TODOS.length + ' escândalos chegam a Flávio Bolsonaro. Em ' + graves + ' deles há alguém preso ou condenado no caminho. O caminho de cada um, elo por elo, com fonte: ' + url());
+});
 
 /* ---------- foto da foz (Wikipédia, licença livre) ---------- */
 let fotoFlavio = null;
+function poeFoto(box){   /* a foto cobre as iniciais; se não carregar, ficam as iniciais */
+  if (!box || !fotoFlavio || box.querySelector('img')) return;
+  const im = new Image(); im.alt = ''; im.addEventListener('error', () => im.remove()); im.src = fotoFlavio; box.appendChild(im);
+}
 (async function(){
   let cache = {}; try { cache = JSON.parse(localStorage.getItem('af_fotos_v1')) || {}; } catch(_){}
   fotoFlavio = cache['Flávio Bolsonaro'] || null;
@@ -443,20 +1111,27 @@ let fotoFlavio = null;
     } catch(_){}
   }
   if (fotoFlavio){
-    const i = document.getElementById('foz-img-b'); if (i) i.setAttribute('href', fotoFlavio);
+    poeFoto(document.getElementById('foz-b'));
     const f = document.querySelector('#foz-rio .disco'); if (f) f.innerHTML = '<img alt="" src="' + esc(fotoFlavio) + '">';
   }
 })();
 
 /* ---------- arranque ---------- */
-function tudo(){ cabecalho(); bacia(); rio(); }
-tudo();
+cabecalho(); bacia(); rio();
 const h0 = decodeURIComponent((location.hash || '').slice(1));
 const h = TODOS.some(e => e.id === h0) ? h0 : ((FOZ.redireciona || {})[h0] || '');   /* rio fundido a outro continua abrindo */
 if (h && TODOS.some(e => e.id === h)) setTimeout(() => { irPara(h); abre(h); }, 300);
-let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { bacia(); rio(); }, 150); });
+/* só refaz com mudança de largura: no celular a barra de endereço muda a altura ao rolar */
+let rt, larguraAnt = $('#bacia').clientWidth;
+window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => {
+  const w = $('#bacia').clientWidth; if (w === larguraAnt) return; larguraAnt = w; bacia(); rio();
+}, 150); });
 })();
 </script>
-<script>(function(){var a=document.querySelector('.site-header .tab.active');if(a&&a.scrollIntoView)a.scrollIntoView({inline:'center',block:'nearest'});})();</script>
+<script>/* aba ativa visível sem cortar a primeira da faixa; --hdr = altura real do cabeçalho */
+(function(){var h=document.querySelector('.site-header');if(h)document.documentElement.style.setProperty('--hdr',h.offsetHeight+'px');
+var t=document.querySelector('.site-header .tabs'),a=t&&t.querySelector('.tab.active');if(!a||t.scrollWidth<=t.clientWidth+1)return;
+var b=t.getBoundingClientRect().left-t.scrollLeft,p=function(e){return e.getBoundingClientRect().left-b;},f=p(a)+a.offsetWidth,u=t.clientWidth-40,x=0,l=t.querySelectorAll('.tab');
+if(f>u)for(var i=0;i<l.length;i++){var s=Math.max(0,p(l[i])-6);if(f-s<=u||l[i]===a){x=s;break;}}t.scrollLeft=x;})();</script>
 </body>
 </html>

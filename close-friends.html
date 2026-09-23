@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Close Friends — BolsoDrive</title>
 <meta name="description" content="As ligações diretas de Flávio Bolsonaro, uma pessoa por vez, com a situação de cada uma e a fonte de cada vínculo.">
-<link rel="stylesheet" href="assets/base.css?v=3">
-<link rel="stylesheet" href="assets/header.css?v=9">
+<link rel="stylesheet" href="assets/base.css?v=4">
+<link rel="stylesheet" href="assets/header.css?v=10">
 <style>
 /* busca */
 .busca{display:flex; gap:8px; margin:0 0 10px}
-.busca input{flex:1; font:inherit; font-size:15px; padding:10px 12px; border:1.5px solid var(--linha); border-radius:2px; background:var(--leve); color:var(--tinta); min-width:0}
+.busca input{flex:1; font:inherit; font-size:16px; padding:10px 12px; border:1.5px solid var(--linha); border-radius:2px; background:var(--leve); color:var(--tinta); min-width:0}
 .busca input:focus{outline:none; border-color:var(--tinta)}
 
 /* caminho percorrido */
@@ -75,9 +75,9 @@ div.sat.some{opacity:0; pointer-events:none}
 .dica{color:var(--cinza); font-size:14px; margin:6px 0 0}
 
 /* lista "mais" */
-.folha{position:fixed; inset:0; background:rgba(22,19,15,.45); display:none; z-index:20}
+.folha{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; z-index:60}
 .folha.on{display:block}
-.folha .cx{position:absolute; left:0; right:0; bottom:0; max-height:78vh; overflow:auto; background:var(--papel); padding:14px 16px 30px; border-radius:14px 14px 0 0}
+.folha .cx{position:absolute; left:0; right:0; bottom:0; max-height:78vh; overflow:auto; overscroll-behavior:contain; border-top:1px solid var(--linha); background:var(--papel); padding:14px 16px 30px; border-radius:14px 14px 0 0}
 .folha h3{margin:0 0 8px; font-size:15px}
 .folha .it{display:flex; gap:10px; align-items:center; padding:9px 0; border-bottom:1px solid var(--linha); cursor:pointer}
 .folha .it .d{width:36px; height:36px; border-radius:50%; background:var(--leve); flex:none; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--cinza); overflow:hidden; border:2px dotted var(--cinza2)}
@@ -140,7 +140,7 @@ div.sat.some{opacity:0; pointer-events:none}
 
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
-<script src="data/dados.js?v=set2026i"></script>
+<script src="data/dados.js?v=set2026j"></script>
 <script>
 (function(){
   const D = window.DOSSIE;
@@ -428,9 +428,14 @@ div.sat.some{opacity:0; pointer-events:none}
   if (h && N[h]) { caminho = h === 'flavio' ? ['flavio'] : ['flavio', h]; centro = h; }
   render();
   fotos();
-  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(render, 120); });
+  // só redesenha quando a largura muda: no celular, a barra de endereço some/volta e dispara resize só de altura
+  let rt, lw = window.innerWidth; window.addEventListener('resize', () => { if (window.innerWidth === lw) return; lw = window.innerWidth; clearTimeout(rt); rt = setTimeout(render, 120); });
 })();
 </script>
-<script>(function(){var a=document.querySelector('.site-header .tab.active');if(a&&a.scrollIntoView)a.scrollIntoView({inline:'center',block:'nearest'});})();</script>
+<script>/* aba ativa visível sem cortar a primeira da faixa; --hdr = altura real do cabeçalho */
+(function(){var h=document.querySelector('.site-header');if(h)document.documentElement.style.setProperty('--hdr',h.offsetHeight+'px');
+var t=document.querySelector('.site-header .tabs'),a=t&&t.querySelector('.tab.active');if(!a||t.scrollWidth<=t.clientWidth+1)return;
+var b=t.getBoundingClientRect().left-t.scrollLeft,p=function(e){return e.getBoundingClientRect().left-b;},f=p(a)+a.offsetWidth,u=t.clientWidth-40,x=0,l=t.querySelectorAll('.tab');
+if(f>u)for(var i=0;i<l.length;i++){var s=Math.max(0,p(l[i])-6);if(f-s<=u||l[i]===a){x=s;break;}}t.scrollLeft=x;})();</script>
 </body>
 </html>
