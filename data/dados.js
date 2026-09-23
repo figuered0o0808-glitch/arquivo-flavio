@@ -5,7 +5,7 @@ window.DOSSIE = {
   "revisar": true,
   "atualizadoEm": "2026-09",
   "titulo": "BolsoDrive",
-  "subtitulo": "o que o registro público diz sobre o candidato",
+  "subtitulo": "um rio de escândalos",
   "aviso": "Compilação jornalística de fatos de interesse público, com fonte e status jurídico. Fontes em conferência."
  },
  "status": {
