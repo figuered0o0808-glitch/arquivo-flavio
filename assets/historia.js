@@ -1,35 +1,28 @@
 /* =====================================================================
-   assets/historia.js · A HISTÓRIA ROLÁVEL da abertura (index.html, trecho 03).
+   assets/historia.js · A HISTÓRIA ROLÁVEL da abertura (index.html).
    O palco (canvas) fica preso na tela enquanto a página rola; a rolagem é a linha do
    tempo, nos dois sentidos, como arrastar a barra de um vídeo. Tudo o que aparece é
    função da posição de rolagem: s = scrollY + cabeçalho - topo da seção.
 
    Cenas
      abertura  "40 escândalos chegam a ele. Alguns, de perto:" com o rio completo
-     capítulo  um escândalo por vez. Abre com o número do caso (e.numero): o valor gigante conta
-               de 0 até o valor com a rolagem, com o texto de quem afirma logo abaixo e a fonte.
-               Depois o afluente dele acende e cresce a partir do rio,
-               o resto esmaece; os elos da cadeia acendem um a um (de → para, relação
-               curta e o status literal de cada nome); depois "ELE NESTE CASO" com o
-               status_flavio literal (inclui a versão dele), a fonte principal, a porta
-               foz.html#<id> e "enviar ↗"; por fim encolhe de volta ao rio
+     capítulo  um escândalo por vez: o número do caso (conta com a rolagem, com quem afirma e a
+               fonte), o título, os elos acendendo um a um (o nome e a situação em poucas
+               palavras), a situação dele só quando ele tem situação formal no caso (investigado,
+               denunciado, réu), a porta foz.html#<id> e "enviar ↗" (data-share=<id>)
      fim       os 40 escoam juntos; o rio sai do palco e desce até a foto (#curso-f)
 
-   Texto: só o que existe em window.FOZ (resumo encurtado em frases inteiras, cadeia,
-   status_flavio, ressalva, fontes). Nada é digitado à mão sobre os casos.
+   Texto: só o que existe em window.FOZ, encurtado. Não se ressalta o que ele não é:
+   basta não dizer que é.
 
-   Movimento: um único requestAnimationFrame (quadro), que lê scrollY e offsets guardados
-   no layout (nada de layout por quadro; listeners passivos). Canvas 2D sem blur, DPR pelo
-   RIO.nitidez (≤ 1,75 e ≤ 5 Mpx), pausa fora da tela e com a aba oculta. Com
-   prefers-reduced-motion: quadros parados (os elos entram por degraus, sem crescer), sem
-   gotas, e o "assistir" salta de cena em cena a cada ~7 s.
+   Movimento: um único requestAnimationFrame (window.BDQuadro, de assets/roteiro.js), que lê
+   scrollY e offsets guardados no layout; canvas 2D sem blur; pausa fora da tela e com a aba
+   oculta. Com prefers-reduced-motion: quadros parados, sem gotas.
 
-   Assistir: botão fixo (#h-ctl) que rola a página em ritmo de vídeo (T abaixo: ~8 a 10 s
-   por capítulo em 1×, com 2×), para quando a pessoa toca, rola ou usa o teclado, para no
-   fim da história e tem "pular história ↓".
+   Assistir: quem rola a página sozinha é assets/roteiro.js; daqui sai o ritmo (T, por fase)
+   em window.__historia.roteiro().
 
-   Link de capítulo: index.html#cap-<id> abre a página já naquele capítulo (no quadro do
-   "ELE NESTE CASO").
+   Link de capítulo: index.html#cap-<id> abre a página já naquele capítulo.
    ===================================================================== */
 (function(){
 'use strict';
@@ -54,33 +47,22 @@ const TODOS = FOZ.escandalos || [];
 if (!TODOS.length) return;
 const EH_ELE = n => /^Flávio Bolsonaro$/.test(String(n || '').trim());
 
-/* ---------- texto (literal, só encurtado em frases inteiras) ---------- */
+/* ---------- texto (literal, encurtado) ---------- */
 const frases = t => String(t || '').split(/\.\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/).map((s, i, a) => (i < a.length - 1 ? s + '.' : s));
-/* as primeiras frases que cabem em max caracteres (ao menos uma) */
-const resumoCurto = (t, max) => { const f = frases(t); let o = f[0] || ''; for (let i = 1; i < f.length && o.length + 1 + f[i].length <= max; i++) o += ' ' + f[i]; return o; };
-/* relação curta: a primeira frase; se longa, até o último ";" que cabe; se ainda longa, cortada numa palavra com "…" */
+const fimP = t => /[.!?…]$/.test(t) ? t : t + '.';
+/* relação curta: a primeira frase; se longa, até o último ";" ou "," que cabe; se ainda longa, cortada numa palavra com "…" */
 const relCurta = (t, max) => {
   let o = (frases(t)[0] || '').trim();
   if (o.length > max){ const k = o.lastIndexOf(';', max); if (k > 30) o = o.slice(0, k); }
+  if (o.length > max){ const k = o.lastIndexOf(',', max); if (k > 34) o = o.slice(0, k); }
   if (o.length > max) o = o.slice(0, max).replace(/[\s,;:(]+\S*$/, '') + '…';
+  o = o.replace(/\s+(?:ou|e|mas|nem|que|de|do|da|dos|das|com|para|a|o)$/i, '');   /* sem conjunção pendurada no corte */
   return o.replace(/[.;,]$/, '');
 };
-/* o status dele encurtado para telas baixas: a primeira frase, a seguinte quando diz o desfecho e a primeira da versão dele */
-const statusCurto = t => {
-  const f = frases(t); let o = f[0] || '';
-  if (f[1] && /anulad|arquivad|condenad|improcedente|nega|r[ée]u|den[úu]ncia|indicia|apura|alvo/i.test(f[1])) o += ' ' + f[1];
-  const d = f.slice(1).find(s => /\bneg[ao]u?\b|afirma|diz que|diz ser|sempre negou|admite/i.test(s));
-  if (d && !o.includes(d)) o += ' ' + d;
-  return o.replace(/\.?$/, '.');
-};
-/* o status mínimo (telas muito baixas): a primeira frase e a da versão dele */
-const statusMini = t => {
-  const f = frases(t), d = f.slice(1).find(s => /\bneg[ao]u?\b|afirma|diz que|diz ser|sempre negou|admite/i.test(s));
-  return ((f[0] || '') + (d ? ' ' + d : '')).replace(/\.?$/, '.');
-};
-/* a ressalva sem as frases que já estão no status dele (a ressalva às vezes repete a situação dele) */
-const semEle = t => String(t).toLowerCase().replace(/^ele\s+/, '').replace(/[.\s]+$/, '');
-const ressalvaSem = e => frases(e.ressalva).filter(f => !String(e.status_flavio || '').toLowerCase().includes(semEle(f))).join(' ') || e.ressalva;
+/* o que ele não é não se ressalta: basta não dizer que é. Tira do texto do número, se ainda houver,
+   as orações do tipo "ele não é investigado", "não consta entre os indiciados", "nenhuma fonte diz…" */
+const RESSALVA = /(?:^|[;,.]\s*)(?:e\s+)?(?:(?:ele|flávio)\s+)?(?:n[ãa]o\s+(?:é|está|foi|consta|há|o\s+\S+)|nenhuma fonte|as fontes n[ãa]o|sem (?:indiciamento|processo|investigação))[^;.]*/gi;
+const semRessalva = t => String(t || '').replace(RESSALVA, '').replace(/\s*[;,]\s*$/, '').trim();
 /* nome no palco: sem o parêntese quando longo */
 const nomeCurto = n => { n = String(n || '').trim(); if (n.length > 26) n = n.replace(/\s*\([^)]*\)\s*$/, ''); return n.length > 34 ? n.slice(0, 33).replace(/\s+\S*$/, '') + '…' : n; };
 /* situação de um nome da cadeia pelo texto literal do status: vermelho só para preso ou condenado.
@@ -111,12 +93,12 @@ const RX_NUM = new RegExp('^(R\\$\\s?)?(\\d{1,3}(?:\\.\\d{3})+|\\d+)(?:,(\\d+))?
 function numeroDe(e){
   const n = e.numero; if (!n || !n.valor || !n.texto) return null;
   const valor = String(n.valor).trim(), m = RX_NUM.exec(valor);
-  const fonte = n.fonte && n.fonte.url ? n.fonte : null;
-  if (!m) return { valor, texto: String(n.texto).trim(), fonte, conta: false, grande: valor, unid: '' };
+  const fonte = n.fonte && n.fonte.url ? n.fonte : null, tinta = n.cor === 'tinta';
+  if (!m) return { valor, texto: String(n.texto).trim(), fonte, tinta, conta: false, grande: valor, unid: '' };
   const pre = m[1] ? 'R$ ' : '', dec = m[3] ? m[3].length : 0, mil = /\./.test(m[2]);
   const alvo = parseFloat(m[2].replace(/\./g, '') + (m[3] ? '.' + m[3] : ''));
   const esc_ = m[4] ? ' ' + m[4] : '';
-  return { valor, texto: String(n.texto).trim(), fonte, conta: true, pre, alvo, dec, mil, esc: esc_,
+  return { valor, texto: String(n.texto).trim(), fonte, tinta, conta: true, pre, alvo, dec, mil, esc: esc_,
     grande: pre + m[2] + (m[3] ? ',' + m[3] : '') + esc_, unid: m[5] ? m[5].trim() : '' };
 }
 /* formato pt-BR: ponto no milhar (quando o valor dos dados tem), vírgula decimal */
@@ -244,97 +226,125 @@ const ano = e => parseInt((String(e.periodo || '').match(/\d{4}/) || ['9999'])[0
 ESCOLHA.sort((a, b) => (b.mari ? 1 : 0) - (a.mari ? 1 : 0) || FAIXAS.indexOf(a.e.faixa) - FAIXAS.indexOf(b.e.faixa) || ano(a.e) - ano(b.e));
 if (!ESCOLHA.length) return;
 
-/* o resumo do capítulo: frases inteiras do resumo e, quando o trecho curto fala de uma acusação,
-   o desfecho jurídico nunca fica de fora. Nos casos "por ele mesmo", a situação dele (frases literais
-   do status); nos outros, se o trecho curto cita um nome da cadeia cuja prisão ou denúncia foi
-   anulada ou arquivada, entra a frase do resumo que diz isso. */
-const DESFECHO = /anulou|anulad|arquivou|arquivad|absolvid|revogou|revogad/i;
-function resumoCap(e, nos){
-  const direto = e.faixa === 'direto';
-  const curto = resumoCurto(e.resumo, direto ? 230 : 300);
-  if (direto) return curto + ' ' + statusCurto(e.status_flavio);
-  const fora = frases(e.resumo).filter(f => !curto.includes(f));
-  const citado = (e.cadeia || []).some(l => DESFECHO.test(l.status_de || '') && curto.includes(nomeSelo(l.de).split(' ')[0]));
-  const desf = citado && fora.find(f => DESFECHO.test(f));
-  return desf ? curto + ' ' + desf : curto;
+/* a frase do capítulo: o texto do número; sem número, a frase curta (data/foz-curto.js) ou a primeira frase do resumo */
+const fraseCap = e => e.numero && e.numero.texto ? '' : (((window.FOZ_CURTO || {})[e.id] || {}).frase || relCurta(e.resumo, 170));
+/* a situação dele, em uma linha, só quando ele tem situação formal no caso (investigado, denunciado, réu, condenado):
+   a primeira frase do status, sem o nome do inquérito, e o desfecho em poucas palavras ("denúncia anulada") */
+const FORMAL = /^(Investigad|Denunciad|R[ée]u\b|Condenad)/i;
+function statusSeco(e){
+  const st = String(e.status_flavio || '').trim();
+  if (!FORMAL.test(st)) return '';
+  /* a primeira frase: o começo (sem o nome do inquérito) e, das orações seguintes, só as que dizem a situação */
+  const pr = (frases(st)[0] || '').replace(/[.;]\s*$/, '').split(/,\s+/);
+  let o = [pr[0].replace(/\s+no inquérito d[aoe]s?\s+[^,.;]+/i, '')].concat(pr.slice(1).filter(x => /sem den|sem ser r|anulad|arquivad|condenad|\br[ée]u\b|denunciad/i.test(x))).join(', ');
+  o = o.replace(/,?\s*(?:e\s+)?sem ser r[ée]u/i, '');   /* o desfecho curto: "sem denúncia" basta */
+  const resto = frases(st).slice(1).join(' ');
+  if (!/anulad|arquivad/i.test(o)){
+    if (/anulad/i.test(resto)) o += '; denúncia anulada';
+    else if (/arquivad/i.test(resto)) o += '; denúncia arquivada';
+  }
+  return fimP(o.charAt(0).toLowerCase() + o.slice(1));
+}
+/* a situação de um nome da cadeia em poucas palavras (a mesma regra de cor de statusCls) */
+function limpaNeg(s){ return String(s || '').toLowerCase().replace(/(?:^|[^\wÀ-ú])(n[ãa]o|nunca|sem|nenhum|ningu[ée]m)\s+(\S+\s+){0,2}?(pres[oa]s?|condena\S*|condenad\S*|indiciad\S*|indiciamento\S*|investigad\S*|denunciad\S*|den[úu]ncia\S*|r[ée]u|processad\S*)\b/g, ' '); }
+function sitCurta(txt, cls){
+  const s = limpaNeg(txt);
+  if (cls === 'caso') return /julgad|condenad|tr[âa]nsito/.test(s) ? 'caso julgado' : (/arquivad/.test(s) ? 'caso arquivado' : 'em investigação');
+  if (cls === 'grave'){
+    if (/\bcondenad/.test(s)){ const m = s.match(/\d+ anos(?: e \d+ meses)?/g); return 'condenado' + (m && m.length === 1 ? ', ' + m[0] : ''); }
+    return /foragid/.test(s) ? 'foragido' : 'preso';
+  }
+  if (cls === 'medio'){
+    if (/\bpres[oa]\b/.test(s)) return /anul/.test(s) ? 'prisão anulada' : 'solto';
+    if (/arquiv\S* a investiga|investiga\S* arquivad|arquivou a apura/.test(s)) return 'investigação arquivada';
+    if (/\br[ée]u\b/.test(s)) return 'réu';
+    if (/denunciad/.test(s)) return 'denunciado';
+    if (/\bindiciad[oa]s? pel|foi indiciad|^indiciad/.test(s)) return 'indiciado';
+    return 'investigado';
+  }
+  if (/v[ií]tima/.test(s)) return 'vítima';
+  if (/arquivad/.test(s)) return /den[úu]ncia/.test(s) ? 'denúncia arquivada' : 'caso arquivado';
+  return 'sem processo';
 }
 const CAPS = ESCOLHA.map((x, k) => {
   const e = x.e, nivel = GRAV[e.gravidade] || 'leve';
   const fonte = (e.fontes || []).find(f => f && f.url) || null;
   return { k, e, id: e.id, nivel, cor: RGB[nivel], nos: x.nos, nome: e.nome || e.rotulo, rotulo: e.rotulo || e.nome,
-    resumo: resumoCap(e, x.nos), fonte, num: numeroDe(e), mari: x.mari || null,
+    frase: fraseCap(e), ele: statusSeco(e), fonte, num: numeroDe(e), mari: x.mari || null,
     nElo: x.mari ? x.mari.passos.length : (e.cadeia || []).length };
 });
 const NCAP = CAPS.length;
 
 /* ---------- ritmo: comprimento de cada fase (em u, fração da altura da cena) e tempo no "assistir" (s, em 1×) ---------- */
-const U = { intro: 2.4, num: 2.4, entra: 2.2, elo: 1.1, ele: 2.4, sai: 0.9, fim: 2.6 };
-const T = { intro: 3.2, num: 4.2, entra: 1.8, elo: 1.2, ele: 3.2, sai: 0.7, fim: 3.0 };
+const U = { intro: 2.2, num: 2.4, entra: 1.8, elo: 1.1, ele: 2.0, sai: 0.8, fim: 2.2 };
+const T = { intro: 3.0, num: 3.6, entra: 1.3, elo: 1.2, ele: 2.2, sai: 0.6, fim: 2.6 };
 const CONTA = 0.55;                /* a contagem ocupa os primeiros 55% da fase do número; o resto é para ler */
-const PASSO_REDUZIDO = 7;          /* s entre um salto e outro, com prefers-reduced-motion */
 
 /* =====================================================================
-   DOM: as legendas (uma por cena), os rótulos do palco e os botões
+   DOM: as legendas (uma por cena) e os rótulos do palco
    ===================================================================== */
 const cena = $('#h-cena'), palco = $('#h-palco'), cv = $('#h-cv'), rot = $('#h-rot'), leg = $('#h-leg'), barra = $('#h-barra');
-const ctl = $('#h-ctl'), btPlay = $('#h-play'), btVel = $('#h-vel'), btPula = $('#h-pula');
 const hdrEl = $('.site-header');
 const nFoz = TODOS.length;
 const legCor = '<p class="h-leg-cor" aria-label="Legenda das cores"><span><i style="background:' + HEX.grave + '"></i>preso ou condenado</span>' +
-  '<span><i style="background:' + HEX.medio + '"></i>investigado ou denunciado</span><span><i style="background:' + HEX.leve + '"></i>sem processo</span><span><i style="box-sizing:border-box; border:2px solid ' + HEX.caso + '"></i>o caso, na nascente</span>' +
-  '<span class="nd">a cor é de cada nome da cadeia, não dele</span></p>';
-/* o texto do número já diz a situação dele? ("ele não é investigado", "as fontes não o apontam como investigado", "sem indiciamento", "não há processo") */
-const DELE = /\b(ele|flávio)\b[^;.]*(investigad|denunciad|indiciad|alvo|parte|citado|r[ée]u|condenad)|n[ãa]o o \S+ como (investigad|denunciad|indiciad|alvo|r[ée]u)|sem indiciamento|sem processo|sem investigação|n[ãa]o h[áa] (investigação|processo)/i;
-/* o bloco do número: valor gigante (conta com a rolagem), o texto de quem afirma logo abaixo, a situação dele e a fonte */
+  '<span><i style="background:' + HEX.medio + '"></i>investigado</span><span><i style="background:' + HEX.leve + '"></i>sem processo</span></p>';
+const fonteLink = (f, pre) => f && f.url ? '<p class="nf">' + (pre || '') + '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'fonte') + ' ↗</a></p>' : '';
+/* o bloco do número: valor gigante (conta com a rolagem), a frase com quem afirma e a fonte */
+/* quando o capítulo fecha com "ele neste caso", o desfecho não se repete no fim do número */
+const DESFECHO_FIM = /[;,.]\s*(?:investigado no STF, sem denúncia|denúncia anulada|sem denúncia)\.?\s*$/i;
 const blocoNum = c => {
   const n = c.num; if (!n) return '';
   const g = n.conta ? '<span class="n1">' + esc(n.pre + fmtNum(n.alvo, n.dec, n.mil)) + '</span><span class="n2">' + esc(n.esc) + '</span>' : '<span class="n1">' + esc(n.valor) + '</span>';
   return '<div class="cap-num' + (n.conta ? ' conta' : ' cheio') + '">' +
-    '<p class="nv"><span class="so-leitor">' + esc(n.valor) + '</span><span class="ng" aria-hidden="true">' + g + '</span></p>' +
-    '<p class="nt">' + (n.unid ? '<b aria-hidden="true">' + esc(n.unid) + '</b> ' : '') + esc(n.texto) + (/[.!?…]$/.test(n.texto) ? '' : '.') + '</p>' +
-    (DELE.test(n.texto) || !c.e.status_flavio ? '' : '<p class="nt nst">Flávio neste caso: ' + esc(frases(c.e.status_flavio)[0]) + '</p>') +
-    (n.fonte ? '<p class="nf">' + (c.mari ? 'Penas: ' : 'Fonte: ') + '<a href="' + esc(n.fonte.url) + '" target="_blank" rel="noopener">' + esc(n.fonte.veiculo || 'fonte') + (dataBR(n.fonte.data) ? ', ' + dataBR(n.fonte.data) : '') + ' ↗</a></p>' : '') +
-    '</div>';
+    '<p class="nv"' + (n.tinta ? ' style="color:var(--tinta)"' : '') + '><span class="so-leitor">' + esc(n.valor) + '</span><span class="ng" aria-hidden="true">' + g + '</span></p>' +
+    '<p class="nt">' + (n.unid ? '<b aria-hidden="true">' + esc(n.unid) + '</b> ' : '') + esc(fimP(c.ele ? semRessalva(n.texto).replace(DESFECHO_FIM, '') : semRessalva(n.texto))) + '</p>' +
+    fonteLink(n.fonte) + '</div>';
 };
-/* os elos na legenda (no caso Marielle, os passos dos dois caminhos até ele, na ordem em que acendem) */
+/* os elos na legenda: quem → para quem e a situação de quem está na origem, em poucas palavras
+   (no caso Marielle, os passos dos dois caminhos até ele, na ordem em que acendem) */
+/* o nome no elo, curto e sem "…": o apelido quando é um apelido ("Robson Calixto, o Peixe", "Careca do INSS"),
+   senão o nome até a segunda palavra que conta ("Major Ronald", "Maria de Fátima"); ele, "Flávio" */
+const PARTICULA = /^(d[aoe]s?|e)$/i;
+const nomeElo = n => {
+  if (EH_ELE(n)) return 'Flávio';
+  const a = apelido(n);
+  if (a && /^[A-ZÁÉÍÓÚ]/.test(a)) return /\s/.test(a) ? a : nomeCena(n);
+  const b = semPar(n); if (b.length <= 22) return b;
+  const w = b.split(/\s+/), o = []; let k = 0;
+  for (const x of w){ o.push(x); if (!PARTICULA.test(x) && ++k >= 2) break; }
+  return o.join(' ');
+};
 const eloHtml = (c, l, i) => {
   const cls = (c.nos.find(no => no.elo === i) || {}).cls || statusCls(l.status_de);
-  /* o selo é a situação de quem está na ORIGEM do elo: vem com o nome dele, para nunca parecer a de quem está no fim da seta */
+  const sc = l.status_de ? sitCurta(l.status_de, cls) : '';
   return '<li class="elo ' + cls + '" data-i="' + i + '"><i class="pt" aria-hidden="true"></i>' +
-    '<span class="dp">' + esc(l.de) + ' <i>→</i> ' + esc(l.para) + '</span>' +
-    '<span class="rel">' + esc(relCurta(l.relacao, 150)) + '</span>' +
-    (l.status_de ? '<span class="selo"><b>' + (cls === 'caso' ? 'o caso' : esc(nomeSelo(l.de))) + ':</b> ' + esc(l.status_de) + '</span>' : '') + '</li>';
+    /* o selo vem colado ao nome de quem está na origem, para nunca parecer a situação de quem está no fim da seta */
+    /* "sem processo" não se diz: basta não dizer que é */
+    '<span class="dp">' + esc(nomeElo(l.de)) + (sc && sc !== 'sem processo' ? ' <span class="sit">(' + esc(sc) + ')</span>' : '') +
+      ' <i>→</i> ' + esc(nomeElo(l.para)) + '</span>' +
+    '<span class="rel">' + esc(relCurta(l.relacao, 72)) + '</span></li>';
 };
 
 let html = '<article class="cap cap-intro" data-f="intro" aria-label="A história">' +
-  '<p class="cap-k">03 · a história</p>' +
   '<h3 class="cap-n"><span class="g">' + nFoz + '</span> escândalos chegam a ele. Alguns, de perto:</h3>' +
-  '<p class="cap-res cap-aviso">Estar no rio não é ser acusado. Cada elo tem fonte.</p>' +
   '<ol class="cap-lista">' + CAPS.map(c => '<li><a href="#cap-' + esc(c.id) + '" data-cap="' + c.k + '"><b>' + (c.k + 1) + '</b>' + esc(c.rotulo) + '</a></li>').join('') + '</ol>' +
   legCor + '</article>';
 CAPS.forEach(c => {
   const e = c.e;
   html += '<article class="cap" data-f="' + (c.num ? 'num' : 'entra') + '" id="h-cap-' + esc(c.id) + '" aria-labelledby="h-n-' + esc(c.id) + '">' +
-    '<p class="cap-k">capítulo <b>' + (c.k + 1) + '</b> de ' + NCAP + ' · ' + esc(CURTO[e.faixa] || '') + '<span class="kr"> · ' + esc(c.rotulo) + '</span></p>' +
+    '<p class="cap-k"><b>' + (c.k + 1) + '</b>/' + NCAP + ' · ' + esc(CURTO[e.faixa] || '') + '<span class="kr"> · ' + esc(c.rotulo) + '</span></p>' +
     blocoNum(c) +
     '<h3 class="cap-n" id="h-n-' + esc(c.id) + '">' + esc(c.nome) + '</h3>' +
-    (c.mari ? '<p class="cap-nst">Ele não é investigado no caso Marielle.</p>' : '') +
-    '<p class="cap-res">' + esc(c.resumo) + '</p>' +
+    (c.frase ? '<div class="cap-res"><p>' + esc(fimP(c.frase)) + '</p>' + fonteLink(c.fonte) + '</div>' : '') +
     '<ol class="cap-elos">' + (c.mari ? c.mari.passos : (e.cadeia || [])).map((l, i) => eloHtml(c, l, i)).join('') + '</ol>' +
-    '<div class="cap-ele"><span class="k">ELE NESTE CASO</span>' +
-      '<p class="st" data-longo="' + esc(e.status_flavio) + '" data-curto="' + esc(statusCurto(e.status_flavio)) + '" data-mini="' + esc(statusMini(e.status_flavio)) + '">' + esc(e.status_flavio) + '</p>' +
-      /* a ressalva: no caso Marielle, inteira sempre (homenagem 14 anos antes; nenhuma fonte diz que ele sabia quem era Peixe) */
-      (e.ressalva ? (r => '<p class="ress" data-longo="' + esc(r) + '" data-curto="' + esc(c.mari ? r : 'Ressalva: ' + (frases(ressalvaSem(e))[0] || '')) + '">' + esc(r) + '</p>')('Ressalva: ' + (c.mari ? ressalvaSem(e) : resumoCurto(ressalvaSem(e), 200))) : '') +
-      (c.fonte ? '<p class="ft">' + (c.mari && c.num && c.num.fonte && c.num.fonte.url === c.fonte.url ? 'Penas: ' : 'Fonte: ') + '<a href="' + esc(c.fonte.url) + '" target="_blank" rel="noopener">' + esc(c.fonte.veiculo || 'fonte') + (dataBR(c.fonte.data) ? ', ' + dataBR(c.fonte.data) : '') + ' ↗</a></p>' : '') +
-      '<div class="cap-acoes"><a class="porta" href="foz.html#' + esc(c.id) + '">o caminho completo →</a>' +
-      '<button type="button" class="enviar" data-cap="' + c.k + '" aria-label="Enviar este capítulo: ' + esc(c.rotulo) + '">enviar ↗</button></div>' +
-    '</div></article>';
+    (c.ele ? '<p class="cap-ele"><b>ele neste caso:</b> ' + esc(c.ele) + '</p>' : '') +
+    '<div class="cap-acoes"><a class="porta" href="foz.html#' + esc(c.id) + '">o caminho completo →</a>' +
+      '<button type="button" class="enviar" data-share="' + esc(c.id) + '" aria-label="Enviar: ' + esc(c.rotulo) + '">enviar ↗</button></div>' +
+    '</article>';
 });
 html += '<article class="cap cap-fim" data-f="fim" aria-label="O fim da história">' +
-  '<p class="cap-k">03 · a foz</p>' +
   '<h3 class="cap-n">Tudo deságua nele.</h3>' +
-  '<p class="cap-res">Os ' + nFoz + ' escândalos descem juntos até ele: pelo entorno, pela família, pelo gabinete ou por ele mesmo. <b>Estar no rio não é ser acusado.</b> Cada elo tem fonte.</p>' +
-  '<div class="cap-acoes"><a class="porta" href="foz.html">A Foz, caso a caso →</a><button type="button" class="porta sec" data-rever>↺ rever a história</button></div>' +
+  '<div class="cap-acoes"><a class="porta" href="foz.html">Os ' + nFoz + ', caso a caso →</a><button type="button" class="porta sec" data-rever>↺ rever</button></div>' +
   '</article>';
 leg.innerHTML = html;
 const ARTS = $$('.cap', leg);        /* 0 = abertura, 1..N = capítulos, N+1 = fim */
@@ -347,7 +357,6 @@ const larg = t => { regua.textContent = t; return regua.getBoundingClientRect().
 const ANC = CAPS.map(c => { const a = doc.createElement('span'); a.id = 'cap-' + c.id; a.className = 'h-ancora'; a.style.cssText = 'position:absolute;left:0;width:1px;height:1px'; sec.appendChild(a); return a; });
 
 sec.hidden = false;
-const abreH = $('#h-abre'); if (abreH) abreH.hidden = false;
 
 /* =====================================================================
    Layout: cenas, comprimentos, palco (rio completo + árvore de cada capítulo)
@@ -446,13 +455,13 @@ function penaCurta(p){
   const t = String(p || '').split(/[,;]\s*/);
   return [t[0]].concat(t.slice(1).filter(x => /absolvid|n[ãa]o pel[ao]/i.test(x))).join('; ');
 }
-/* os rótulos da cena. No celular, se as penas inteiras fazem um rótulo cobrir outro (ou descer até os botões),
+/* os rótulos da cena. No celular, se as penas inteiras fazem um rótulo cobrir outro (ou descer abaixo do palco),
    primeiro a coluna da esquerda, depois a do meio, passam à pena curta */
-function rotMarielle(c, desk, Ws){
+function rotMarielle(c, desk, Ws, Hd){
   const tira = () => { c.rot.forEach(el => el.remove()); c.links.forEach(lk => lk.el && lk.el.remove()); };
   rotMarielle0(c, desk, Ws, 0);
   if (desk) return;
-  const piso = ctl && ctl.offsetParent ? ctl.getBoundingClientRect().top - rot.getBoundingClientRect().top - 4 : Infinity;
+  const piso = Hd - 4;
   const apertado = () => {
     const esq = c.arv.filter(no => no.esq).sort((a, b) => a.top - b.top);
     return esq.some((no, i) => i && esq[i - 1].bot > no.top - 1) ||
@@ -685,7 +694,7 @@ function monta(){
   /* ---------- rótulos do palco (HTML): os nomes da árvore e "ele" em J ---------- */
   rot.textContent = '';
   CAPS.forEach(c => {
-    if (c.mari) rotMarielle(c, desk, Ws);
+    if (c.mari) rotMarielle(c, desk, Ws, Hd);
     else c.rot = c.arv.map(no => {
       const el = doc.createElement('span'); el.className = 'h-no'; el.textContent = nomeCurto(no.nome);
       const left = no.x + 9, mw = Math.max(90, Math.min(desk ? 230 : 150, (desk ? c.trib.J.x - 10 : c.trib.J.x + 10) - left, Ws - 8 - left));
@@ -708,20 +717,14 @@ function monta(){
   G.vel = vel;
   if (!reduzido){ for (let k = 0; k < 14 * 20; k++) passaGotas(1 / 20, 1); }      /* já em regime */
 
-  L = { W, desk, hdr, cenaH, palcoH, u, C, Y0, Ws, Hs, Hd, dpr, main, tribs, ovT: ovT.cv, ovM: ovM.cv, ctx: cv.getContext('2d'), xIn, wSai,
-    fimAbre: fimAbre(),
-    yDes: (function(){ const d = $('#desagua'); return d ? d.getBoundingClientRect().top + window.scrollY - hdr - 6 : Y0 + C.total + cenaH; })() };
+  L = { W, desk, hdr, cenaH, palcoH, u, C, Y0, Ws, Hs, Hd, dpr, main, tribs, ovT: ovT.cv, ovM: ovM.cv, ctx: cv.getContext('2d'), xIn, wSai };
   keyframes();
   compacta();
   estado = null; legKey = '';
   agenda();
+  doc.dispatchEvent(new CustomEvent('historia:layout'));
 }
 
-/* o botão aparece quando a primeira tela vai saindo */
-function fimAbre(){ const a = $('#nascente'); return a ? a.getBoundingClientRect().bottom + window.scrollY - window.innerHeight * 0.5 : 400; }
-
-/* legendas que não cabem na altura: fonte menor; depois, sem a ressalva e com o status dele encurtado (frases literais);
-   por último (telas baixas, como 375 × 553), sem o sobretítulo e com os espaços mais curtos */
 /* o tamanho do número: o maior que cabe na largura, numa linha ou em duas (número / escala);
    a quebra é decidida aqui, uma vez por layout, para a contagem não mudar de linha no meio */
 function ajustaNum(c){
@@ -741,13 +744,12 @@ function ajustaNum(c){
   c.nv.style.setProperty('--fs', Math.floor(0.96 * (quebra ? f2 : f1)) + 'px');
 }
 let L0 = { desk: false };
+/* legendas que não cabem na altura: letra menor; depois, sem a relação do elo atual; por último, sem o sobretítulo */
 function compacta(){
   L0 = { desk: window.innerWidth >= 900 };
   ARTS.forEach((a, ia) => {
-    const altura = leg.clientHeight - a.offsetTop - (window.innerWidth >= 900 ? 44 : 8);   /* no desktop, livre da barra de progresso */
-    a.classList.remove('aperta', 'aperta2', 'aperta3', 'aperta4', 'aperta5');
-    const st = $('.cap-ele .st', a); if (st) st.textContent = st.dataset.longo;
-    const rs = $('.cap-ele .ress', a); if (rs) rs.textContent = rs.dataset.longo;
+    const altura = leg.clientHeight - a.offsetTop - (L0.desk ? 44 : 8);   /* no desktop, livre da barra de progresso */
+    a.classList.remove('aperta', 'aperta2', 'aperta3');
     const f0 = a.dataset.f, vis = a.style.visibility;
     a.style.visibility = 'hidden'; a.classList.add('medindo');
     const cap = CAPS[ia - 1];
@@ -756,7 +758,7 @@ function compacta(){
     const els = $$('.elo', a);
     const mede = () => fases.some(f => {
       a.dataset.f = f;
-      if (f !== 'elo'){                                  /* no "ELE NESTE CASO" os elos ficam acesos (no desktop, a lista aparece) */
+      if (f !== 'elo'){
         els.forEach(x => x.classList.toggle('on', f === 'ele'));
         const h = a.scrollHeight; els.forEach(x => x.classList.remove('on'));
         return h > altura;
@@ -765,19 +767,12 @@ function compacta(){
       els.forEach(x => x.classList.remove('on', 'atual'));
       return alto;
     });
-    /* o status dele só encurta se a própria fase "ele" não couber (as fases entra/elo não dependem dele) */
-    const medeEle = () => { a.dataset.f = 'ele'; els.forEach(x => x.classList.add('on')); const h = a.scrollHeight; els.forEach(x => x.classList.remove('on')); return h > altura; };
-    /* no aperto a ressalva não some: fica a primeira frase dela */
-    if (mede()){ a.classList.add('aperta'); if (mede()){ a.classList.add('aperta2'); if (rs) rs.textContent = rs.dataset.curto; if (st && medeEle()) st.textContent = st.dataset.curto; if (mede()){ a.classList.add('aperta3'); if (mede()){ a.classList.add('aperta4');
-      /* ainda não cabe: primeiro sai o título do caso no "ELE NESTE CASO" (o status segue inteiro);
-         só se nem assim couber o status fica na 1ª frase e na versão dele */
-      if (mede()){ a.classList.add('aperta5'); if (st && medeEle()) st.textContent = st.dataset.mini; } } } } }
-    /* a fase do número: o maior tamanho que cabe (o texto de quem afirma e a fonte vêm sempre junto) */
+    if (mede()){ a.classList.add('aperta'); if (mede()){ a.classList.add('aperta2'); if (mede()) a.classList.add('aperta3'); } }
+    /* a fase do número: o maior tamanho que cabe (a frase de quem afirma e a fonte vêm sempre junto) */
     if (cap && cap.num){
       a.dataset.f = 'num'; cap.nv.style.setProperty('--nk', '1'); ajustaNum(cap);
       a.classList.remove('naperta');
       const cabe = () => { for (const nk of [1, 0.88, 0.77, 0.67, 0.58, 0.5, 0.42]){ cap.nv.style.setProperty('--nk', String(nk)); if (a.scrollHeight <= altura) return true; } return false; };
-      /* não coube nem com o número menor: o texto de quem afirma fica em letra menor (nada sai) */
       if (!cabe()){ a.classList.add('naperta'); cabe(); }
     }
     a.dataset.f = f0; a.style.visibility = vis; a.classList.remove('medindo');
@@ -953,52 +948,52 @@ function desenha(E, dt){
 }
 
 /* =====================================================================
-   O quadro: um só requestAnimationFrame para a história e o "assistir"
+   O quadro: o requestAnimationFrame único da página (window.BDQuadro, de assets/roteiro.js);
+   sem ele, um próprio
    ===================================================================== */
-let raf = 0, ult = 0, visivel = false, interagiu = false, barraP = -1;
-function agenda(){ if (!raf) raf = requestAnimationFrame(quadro); }
-function quadro(ts){
-  raf = 0;
-  const dt = ult ? Math.min(0.1, (ts - ult) / 1000) : 1 / 60; ult = ts;
-  if (!L) return;
-  if (AP.on) passoAP(dt);
+let visivel = false, interagiu = false, barraP = -1;
+function quadro(dt){
+  if (!L || !visivel || doc.hidden) return false;
   const s = sAgora();
-  controles(s);
-  if (visivel && !doc.hidden){
-    const E = estadoDe(s);
-    aplicaLegenda(E);
-    numero(E);
-    const mudou = !estado || estado.i !== E.i || Math.abs(estado.l - E.l) > 0.5;
-    if (!reduzido || mudou) desenha(E, dt);
-    estado = E;
-    const p = Math.round(clamp(s / L.C.total, 0, 1) * 500) / 500;
-    if (p !== barraP){ barraP = p; barra.style.transform = 'scaleX(' + p + ')'; barra.parentNode.style.opacity = p >= 1 || p <= 0 ? 0 : 1; }
-  }
-  if (AP.on || (visivel && !reduzido && !doc.hidden)) raf = requestAnimationFrame(quadro); else ult = 0;
+  const E = estadoDe(s);
+  aplicaLegenda(E);
+  numero(E);
+  const mudou = !estado || estado.i !== E.i || Math.abs(estado.l - E.l) > 0.5;
+  if (!reduzido || mudou) desenha(E, dt);
+  estado = E;
+  const p = Math.round(clamp(s / L.C.total, 0, 1) * 500) / 500;
+  if (p !== barraP){ barraP = p; barra.style.transform = 'scaleX(' + p + ')'; barra.parentNode.style.opacity = p >= 1 || p <= 0 ? 0 : 1; }
+  return !reduzido;
 }
-window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(quadro); }, { passive: true });
+const agenda = window.BDQuadro ? () => window.BDQuadro.agenda() : (function(){
+  let raf = 0, ult = 0;
+  const tick = ts => { raf = 0; const dt = ult ? Math.min(0.1, (ts - ult) / 1000) : 1 / 60; ult = ts; if (quadro(dt)) raf = requestAnimationFrame(tick); else ult = 0; };
+  const ag = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  window.addEventListener('scroll', ag, { passive: true });
+  doc.addEventListener('visibilitychange', () => { if (!doc.hidden) ag(); });
+  return ag;
+})();
+if (window.BDQuadro) window.BDQuadro.add(quadro);
 if ('IntersectionObserver' in window){
   new IntersectionObserver(es => { visivel = es[es.length - 1].isIntersecting; if (visivel) agenda(); }, { rootMargin: '80px 0px' }).observe(sec);
 } else visivel = true;
-doc.addEventListener('visibilitychange', () => { if (!doc.hidden) agenda(); });
 
 /* =====================================================================
-   ASSISTIR: a página rola sozinha em ritmo de vídeo
+   O ritmo, para o roteiro da página (assets/roteiro.js): (s, t) em cada fronteira de fase,
+   com o tempo T de cada fase em 1×
    ===================================================================== */
-const AP = { on: false, vel: 1, fase: '', y: 0, set: 0, alvo: 0, t0: 0, acc: 0, pausado: false, fim: false, estilo: '' };
 let KS = [], KT = [];
 function keyframes(){
-  /* (s, t) em cada fronteira de fase: a rolagem anda linear dentro de cada fase, no tempo T da fase */
   KS = [0]; KT = [0]; let t = 0;
   L.C.lista.forEach(o => {
-    if (o.tipo === 'cap') o.fases.forEach(f => { t += f.t; KS.push(o.a + f.b); KT.push(t); });
+    if (o.tipo === 'cap') o.fases.forEach(f => {
+      /* o "ele neste caso" fica mais na tela quando existe */
+      t += f.f === 'ele' && o.c.ele ? f.t + 1 : f.t; KS.push(o.a + f.b); KT.push(t); });
     else { t += o.t; KS.push(o.b); KT.push(t); }
   });
 }
-function tDe(s){ if (s <= 0) return 0; for (let i = 1; i < KS.length; i++) if (s <= KS[i]) return lerp(KT[i - 1], KT[i], (s - KS[i - 1]) / Math.max(1, KS[i] - KS[i - 1])); return KT[KT.length - 1]; }
-function sDe(t){ if (t <= 0) return 0; for (let i = 1; i < KT.length; i++) if (t <= KT[i]) return lerp(KS[i - 1], KS[i], (t - KT[i - 1]) / Math.max(1e-6, KT[i] - KT[i - 1])); return KS[KS.length - 1]; }
 const yDe = s => L.Y0 - L.hdr + s;
-/* com movimento reduzido: as paradas (a abertura, o "ELE NESTE CASO" de cada capítulo, o fim) */
+/* com movimento reduzido: as paradas (a abertura, o número e o fecho de cada capítulo, o fim) */
 function paradas(){
   const l = [];
   L.C.lista.forEach(o => {
@@ -1008,104 +1003,17 @@ function paradas(){
   });
   return l;
 }
-function semSuave(on){
-  if (on){ if (!AP.estilo) AP.estilo = raiz.style.scrollBehavior || 'x'; raiz.style.scrollBehavior = 'auto'; }
-  else if (AP.estilo){ raiz.style.scrollBehavior = AP.estilo === 'x' ? '' : AP.estilo; AP.estilo = ''; }
-}
-function toca(doInicio){
-  if (!L) return;
-  interagiu = true;
-  const s = sAgora();
-  AP.on = true; AP.pausado = false; AP.fim = false; AP.acc = 0;
-  if (doInicio || s < -20 || s >= L.C.total - 4){
-    AP.alvo = yDe(0); AP.fase = 'indo'; AP.t0 = performance.now();
-    if (Math.abs(window.scrollY - AP.alvo) > 2) window.scrollTo({ top: AP.alvo, behavior: reduzido ? 'auto' : 'smooth' });
-  } else { AP.fase = 'tocando'; AP.y = window.scrollY; AP.set = Math.round(AP.y); semSuave(true); }
-  rotulos(); agenda();
-}
-function para(motivo){
-  if (!AP.on) return;
-  AP.on = false; AP.fase = ''; semSuave(false);
-  AP.pausado = motivo !== 'fim' && motivo !== 'pulou'; AP.fim = motivo === 'fim';
-  rotulos();
-}
-function passoAP(dt){
-  if (AP.fase === 'indo'){
-    if (Math.abs(window.scrollY - AP.alvo) < 3 || performance.now() - AP.t0 > 2200){ AP.fase = 'tocando'; AP.y = window.scrollY; AP.set = Math.round(AP.y); semSuave(true); }
-    return;
-  }
-  /* rolou por fora (barra de rolagem, âncora): para */
-  if (Math.abs(window.scrollY - AP.set) > 60){ para('rolou'); return; }
-  const s = AP.y + L.hdr - L.Y0;
-  if (reduzido){
-    AP.acc += dt * AP.vel;
-    if (AP.acc < PASSO_REDUZIDO) return;
-    AP.acc = 0;
-    const prox = paradas().find(p => p > s + 8);
-    if (prox == null){ para('fim'); return; }
-    AP.y = yDe(prox);
-  } else {
-    const t = tDe(s) + dt * AP.vel, fimT = KT[KT.length - 1];
-    AP.y = yDe(sDe(Math.min(t, fimT)));
-    if (t >= fimT){ window.scrollTo(0, AP.y); AP.set = Math.round(window.scrollY); para('fim'); return; }
-  }
-  window.scrollTo(0, AP.y);
-  AP.set = Math.round(window.scrollY);
-}
-/* a pessoa toca, rola ou usa o teclado: para (os botões do próprio controle não contam) */
-['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(tipo => window.addEventListener(tipo, e => {
-  if (!AP.on) return;
-  if (e.target && e.target.closest && e.target.closest('#h-ctl')) return;
-  if (tipo === 'keydown' && /^(Shift|Control|Alt|Meta|CapsLock)$/.test(e.key)) return;
-  para('pessoa');
-}, { passive: true, capture: true }));
-
-/* ---------- os botões ---------- */
-let modo = '';
-function rotulos(){
-  const ic = $('.ic', btPlay), tx = $('.tx', btPlay);
-  let a, b, lab;
-  if (AP.on){ a = '❚❚'; b = 'pausar'; lab = 'Pausar a história'; }
-  else if (AP.fim && modo === 'dentro'){ a = '↺'; b = 'rever'; lab = 'Rever a história do começo'; }
-  else if (AP.pausado){ a = '▶'; b = 'continuar'; lab = 'Continuar a história: a página rola sozinha'; }
-  else { a = '▶'; b = 'assistir'; lab = 'Assistir a história: a página rola sozinha, caso a caso'; }
-  if (ic.textContent !== a) ic.textContent = a;
-  if (tx.textContent !== b) tx.textContent = b;
-  btPlay.setAttribute('aria-label', lab);
-  ctl.classList.toggle('ativo', AP.on || AP.pausado);
-  btVel.textContent = AP.vel + '×';
-  btVel.setAttribute('aria-label', 'Velocidade ' + AP.vel + '×; tocar para ' + (AP.vel === 1 ? 2 : 1) + '×');
-}
-function controles(s){
-  let m;
-  if (window.scrollY < L.fimAbre && !AP.on) m = '';
-  else if (s < -0.35 * L.cenaH) m = 'fora';
-  else if (s <= L.C.total + 0.15 * L.cenaH || AP.on) m = 'dentro';
-  else m = '';
-  if (m === modo) return;
-  modo = m;
-  ctl.hidden = !m;
-  ctl.classList.toggle('fora', m === 'fora');
-  ctl.classList.toggle('dentro', m === 'dentro');
-  rotulos();
-}
-btPlay.addEventListener('click', () => { if (AP.on) para('pessoa'); else toca(AP.fim && modo === 'dentro'); });
-btVel.addEventListener('click', () => { AP.vel = AP.vel === 1 ? 2 : 1; rotulos(); });
-btPula.addEventListener('click', () => {
-  para('pulou'); AP.pausado = false; rotulos();
-  window.scrollTo({ top: L.yDes, behavior: reduzido ? 'auto' : 'smooth' });
-});
-const btAbre = $('#h-assistir'); if (btAbre) btAbre.addEventListener('click', () => toca(true));
+function semSuave(on){ raiz.classList.toggle('rolando', on); }
 leg.addEventListener('click', e => {
-  const t = e.target.closest && e.target.closest('a[data-cap], button');
+  const t = e.target.closest && e.target.closest('a[data-cap], [data-rever]');
   if (!t) return;
-  if (t.matches('a[data-cap]')){ e.preventDefault(); para('pessoa'); vaiCap(+t.dataset.cap, reduzido ? 'auto' : 'smooth'); }
-  else if (t.hasAttribute('data-rever')){ toca(true); }
-  else if (t.classList.contains('enviar')) envia(CAPS[+t.dataset.cap]);
+  if (t.matches('a[data-cap]')){ e.preventDefault(); if (window.BDRoteiro) window.BDRoteiro.pausa(); vaiCap(+t.dataset.cap, reduzido ? 'auto' : 'smooth'); }
+  else if (window.BDRoteiro) window.BDRoteiro.tocaHistoria();
+  else window.scrollTo({ top: yDe(0), behavior: reduzido ? 'auto' : 'smooth' });
 });
 window.addEventListener('scroll', function liga(){ interagiu = true; window.removeEventListener('scroll', liga); }, { passive: true, once: true });
 
-/* ---------- ir a um capítulo (link #cap-<id>) ---------- */
+/* ---------- ir a um capítulo (link #cap-<id>): no fecho do capítulo ---------- */
 function vaiCap(k, comport){
   const o = L.C.lista.find(x => x.tipo === 'cap' && x.c.k === k); if (!o) return;
   const f = o.fases.find(x => x.f === 'ele');
@@ -1114,37 +1022,6 @@ function vaiCap(k, comport){
   else window.scrollTo({ top: y, behavior: comport });
 }
 function capDoHash(){ const m = /^#cap-(.+)$/.exec(decodeURIComponent(location.hash || '')); return m ? CAPS.findIndex(c => c.id === m[1]) : -1; }
-
-/* caso Marielle, texto do envio (a mesma regra do destaque em index.html): o número com o texto dele; se ele termina em
-   "ele não é investigado no caso Marielle", emenda o resto da 1ª frase do status ("e o relatório final da PF sobre o crime
-   (2024) não menciona a família Bolsonaro"); da ressalva, a versão dele sobre a homenagem (a data já está no número) e a
-   frase de que Peixe não foi condenado pela execução */
-function envioMarielle(e, nt){
-  const fimP = t => /[.!?…]$/.test(t) ? t : t + '.';
-  const m = /^(N[ãa]o é investigado[^,]*), e (o relatório final[^.]*\.)/.exec(frases(e.status_flavio)[0] || '');
-  let t = String(nt).replace(/\.$/, ''); const extra = [];
-  if (m && t.toLowerCase().endsWith(m[1].toLowerCase())) t += ', e ' + m[2]; else { t = fimP(t); if (m) extra.push('O' + m[2].slice(1)); }
-  frases(e.ressalva || '').forEach(f => {
-    if (/^A homenagem/.test(f)) extra.push(/anos antes do crime/.test(t) && f.includes(';') ? (g => g.charAt(0).toUpperCase() + g.slice(1))(f.split(';').slice(1).join(';').trim()) : f);
-    else if (/^Peixe (?:não )?foi condenado/.test(f)) extra.push(f);
-  });
-  return t + (extra.length ? ' ' + extra.map(fimP).join(' ') : '');
-}
-/* ---------- enviar um capítulo: navigator.share, com wa.me de reserva ---------- */
-async function envia(c){
-  if (!c) return;
-  const url = location.origin + location.pathname + '#cap-' + c.id;
-  const n = c.num, fim = t => /[.!?…]$/.test(t) ? t : t + '.';
-  /* começa dizendo de quem se fala; o número vem com o texto de quem afirma. Quando o texto do número já diz a
-     situação dele ("Ele não é investigado no caso"), ela não se repete; senão, vem o status literal */
-  const nt = n ? fim(n.valor.replace(/^(\d+) de (\d+)$/, '$1 ' + (/^\S+as\b/i.test(n.texto) ? 'das' : 'dos') + ' $2') + ' ' + n.texto) : '';   /* "2 dos 5 condenados", "27 das 33 candidatas" */
-  /* no caso Marielle o envio vai com o relatório final da PF, a versão dele sobre a homenagem e que Peixe não foi condenado pela execução */
-  const corpo = c.mari && nt ? envioMarielle(c.e, nt) : nt;
-  const txt = 'Flávio Bolsonaro · ' + fim(c.rotulo) + ' ' + (corpo ? corpo + ' ' : '') +
-    (n && DELE.test(n.texto) ? '' : 'Ele neste caso: ' + fim(c.e.status_flavio) + ' ') + 'Estar no rio não é ser acusado.';
-  if (navigator.share){ try { await navigator.share({ title: 'BOLSODRIVE: Um rio de escândalos', text: txt, url }); return; } catch (err){ if (err && err.name === 'AbortError') return; } }
-  window.open('https://wa.me/?text=' + encodeURIComponent(txt + ' ' + url), '_blank', 'noopener');
-}
 
 /* =====================================================================
    Arranque e novo layout
@@ -1167,10 +1044,13 @@ doc.addEventListener('rio:saida', () => { clearTimeout(rt); rt = setTimeout(refa
 /* offsets guardados: se a página acima mudar de altura (fonte, foto, quebra de linha), refaz */
 if ('ResizeObserver' in window){
   let h0 = doc.body.scrollHeight, ro = 0;
-  new ResizeObserver(() => { const h = doc.body.scrollHeight; if (Math.abs(h - h0) < 4) return; h0 = h; clearTimeout(ro); ro = setTimeout(() => { if (L){ const y = sec.getBoundingClientRect().top + window.scrollY; if (Math.abs(y - L.Y0) > 2){ L.Y0 = y; const d = $('#desagua'); if (d) L.yDes = d.getBoundingClientRect().top + window.scrollY - L.hdr - 6; L.fimAbre = fimAbre(); agenda(); } } }, 120); }).observe(doc.body);
+  new ResizeObserver(() => { const h = doc.body.scrollHeight; if (Math.abs(h - h0) < 4) return; h0 = h; clearTimeout(ro); ro = setTimeout(() => { if (L){ const y = sec.getBoundingClientRect().top + window.scrollY; if (Math.abs(y - L.Y0) > 2){ L.Y0 = y; agenda(); doc.dispatchEvent(new CustomEvent('historia:layout')); } } }, 120); }).observe(doc.body);
 }
 window.addEventListener('pageshow', e => { if (e.persisted){ monta(); } });
 window.__historia = { caps: () => CAPS.map(c => c.id), criterio: () => CAND.map(x => ({ id: x.e.id, faixa: x.e.faixa, nota: Math.round(x.nota * 100) / 100 })),
   layout: () => L && { total: L.C.total, Y0: L.Y0, hdr: L.hdr, cenaH: L.cenaH, palcoH: L.palcoH, u: L.u, cenas: L.C.lista.map(o => ({ tipo: o.tipo, id: o.c && o.c.id, a: o.a, b: o.b, fases: o.fases && o.fases.map(f => ({ f: f.f, a: o.a + f.a, b: o.a + f.b })) })) },
-  yDe: s => yDe(s), tempo: () => KT[KT.length - 1], ap: () => ({ on: AP.on, fase: AP.fase, vel: AP.vel, pausado: AP.pausado, fim: AP.fim }), toca, para, medir: n => { const E = estadoDe(sAgora()), t0 = performance.now(); for (let k = 0; k < n; k++) desenha(E, 1 / 60); return Math.round((performance.now() - t0) / n * 100) / 100 + ' ms/quadro, ' + G.gotas.length + ' gotas'; }, estado: () => estado && { i: estado.i, l: estado.l, legenda: legKey } };
+  yDe: s => yDe(s), tempo: () => KT[KT.length - 1],
+  /* para o roteiro: as fronteiras de fase em (y, t), os começos de capítulo (para "pular") e as paradas (movimento reduzido) */
+  roteiro: () => L ? { keys: KS.map((s, i) => ({ y: yDe(s), t: KT[i] })), marcas: L.C.lista.filter(o => o.tipo !== 'intro').map(o => yDe(o.a)), paradas: paradas().map(yDe) } : null,
+  medir: n => { const E = estadoDe(sAgora()), t0 = performance.now(); for (let k = 0; k < n; k++) desenha(E, 1 / 60); return Math.round((performance.now() - t0) / n * 100) / 100 + ' ms/quadro, ' + G.gotas.length + ' gotas'; }, estado: () => estado && { i: estado.i, l: estado.l, legenda: legKey } };
 })();

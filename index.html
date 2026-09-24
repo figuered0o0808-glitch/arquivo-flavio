@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="BOLSODRIVE: Um rio de escândalos">
-<meta property="og:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
+<meta property="og:description" content="Os escândalos que chegam a Flávio Bolsonaro, elo por elo, com a situação jurídica de cada nome e a fonte.">
 <meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/">
 <meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
 <meta property="og:image:type" content="image/png">
@@ -24,7 +24,7 @@
 <meta property="og:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BOLSODRIVE: Um rio de escândalos">
-<meta name="twitter:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
+<meta name="twitter:description" content="Os escândalos que chegam a Flávio Bolsonaro, elo por elo, com a situação jurídica de cada nome e a fonte.">
 <meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
 <meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 
@@ -35,26 +35,21 @@
 <style>
 /* ===== A abertura: a nascente do rio =====
    Primeira tela: a bacia (o site inteiro visto de cima, tudo descendo até a foto dele).
-   Rolando: três trechos atravessados por um rio só, que termina na foto dele; depois, as margens.
-   A água é canvas (assets/rio.js, o mesmo motor da Foz); texto, foto e portas são HTML. */
+   Rolando: o caso Marielle, os trechos 01 e 02, a história (assets/historia.js) e a foto dele; depois, as margens.
+   "Siga o rio" faz a página descer sozinha (assets/roteiro.js). Pouco texto: um título, um número, uma frase. */
 html{scroll-padding-top:calc(var(--hdr,57px) + 6px)}
 @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+html.rolando{scroll-behavior:auto!important}
 body{overflow-x:hidden}
 .so-leitor{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 
 /* ---------- primeira tela ---------- */
 .abre{display:flex; flex-direction:column; min-height:min(calc(100vh - var(--hdr,57px)), 960px)}
 @supports (height:100svh){ .abre{min-height:min(calc(100svh - var(--hdr,57px)), 960px)} }
-.abre-txt{padding:10px 16px 0}
+.abre-txt{padding:12px 16px 0}
 .quem{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin:0 0 3px}
 .abre h1.sec{font-size:clamp(18px,5.3vw,30px); letter-spacing:1px; margin:0; line-height:1.2}
-.tese{font-size:clamp(22px,6.4vw,44px); font-weight:800; line-height:1.05; letter-spacing:-.015em; margin:3px 0 6px}
-.lead{font-size:15px; line-height:1.42; margin:0 0 6px; max-width:34em}
-.semana-l{display:inline-flex; align-items:center; gap:8px; min-height:36px; font-family:var(--mono); font-size:12px; color:var(--cinza); text-decoration:none; margin:0 0 2px}
-.semana-l b{color:var(--amber); font-size:15px}
-.semana-l:hover{color:var(--tinta)}
-@media (max-width:899px) and (max-height:760px){ .lead{display:none} }
-@media (max-width:899px) and (max-height:700px){ .semana-l{display:none} }
+.tese{font-size:clamp(24px,7vw,48px); font-weight:800; line-height:1.05; letter-spacing:-.015em; margin:4px 0 6px}
 
 .palco{position:relative; height:340px; overflow:hidden; background:var(--papel)}
 .palco canvas{position:absolute; left:0; top:0; display:block}
@@ -71,125 +66,103 @@ body{overflow-x:hidden}
 /* a foz: a foto dele */
 .foto{position:absolute; left:0; top:0; z-index:2; display:block; border-radius:50%; text-decoration:none}
 .disco{display:flex; align-items:center; justify-content:center; width:var(--fd,56px); height:var(--fd,56px); border-radius:50%; overflow:hidden;
-  border:2px solid var(--amber); background:#0e160e; font-family:var(--mono); font-weight:700; font-size:14px; color:var(--cinza); transition:border-color .18s}
+  border:2px solid var(--tinta); background:#0e160e; font-family:var(--mono); font-weight:700; font-size:14px; color:var(--cinza)}   /* o anel é dele: sempre neutro */
 .disco img{width:100%; height:100%; object-fit:cover; display:block}
 .disco.pulso{animation:pulso 1.4s ease-out 1}
-@keyframes pulso{0%{box-shadow:0 0 0 0 rgba(255,176,46,.7)} 100%{box-shadow:0 0 0 22px rgba(255,176,46,0)}}
-.foto:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
-.foto-n{position:absolute; left:0; top:0; z-index:2; transform:translateX(-50%); font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--amber); white-space:nowrap; pointer-events:none}
+@keyframes pulso{0%{box-shadow:0 0 0 0 rgba(216,239,221,.6)} 100%{box-shadow:0 0 0 22px rgba(216,239,221,0)}}
+.foto:focus-visible{outline:2px solid var(--tinta); outline-offset:3px}
+.foto-n{position:absolute; left:0; top:0; z-index:2; transform:translateX(-50%); font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--tinta); white-space:nowrap; pointer-events:none}
 
-.abre-pe{padding:4px 16px 12px}
-.leg{display:flex; flex-wrap:wrap; gap:1px 12px; font-family:var(--mono); font-size:11px; color:var(--cinza); margin:0 0 3px; line-height:1.5}
+.abre-pe{padding:4px 16px 10px}
+/* a legenda das cores: três chaves, uma linha */
+.leg{display:flex; flex-wrap:wrap; gap:0 12px; font-family:var(--mono); font-size:11px; color:var(--cinza); margin:0 0 10px; line-height:1.5}
 .leg i{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; vertical-align:0}
-.leg i.gt{width:6px; height:6px; background:#fff4dc; box-shadow:0 0 5px 1px var(--amber); vertical-align:1px}
-.leg-nota{font-size:13px; line-height:1.38; color:var(--cinza); margin:0 0 8px; max-width:36em}
-.leg-nota b{color:var(--tinta); font-weight:600}
 .acoes-abre{display:flex; gap:8px}
 .bt{flex:1 1 0; display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:10px 12px; font-size:16px; font-weight:700;
   border-radius:3px; text-decoration:none; cursor:pointer; border:1.5px solid var(--amber); background:var(--amber); color:#120c00; font-family:var(--sans); line-height:1.15; text-align:center}
 .bt.sec{background:transparent; color:var(--tinta); border-color:var(--cinza2); font-weight:600}
 .bt.sec:hover{border-color:var(--tinta)}
-.bt:focus-visible, .porta:focus-visible, .enviar:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.bt:focus-visible, .porta:focus-visible, .enviar:focus-visible, .rola:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+/* "ou role você mesmo": discreto; desce sem ligar a animação */
+.rola{display:inline-flex; align-items:center; min-height:40px; font-size:13.5px; color:var(--cinza); text-decoration:underline; text-decoration-color:var(--cinza2); text-underline-offset:3px}
+.rola:hover{color:var(--tinta)}
 
 @media (min-width:900px){
   .abre{display:grid; grid-template-columns:minmax(300px,370px) minmax(0,1fr); grid-template-rows:auto 1fr; grid-template-areas:"txt palco" "pe palco";
     column-gap:36px; max-width:1320px; margin:0 auto; padding:18px 24px 8px; min-height:0}
-  .abre-txt{grid-area:txt; padding:28px 0 0}
-  .abre-pe{grid-area:pe; padding:18px 0 0; align-self:start}
+  .abre-txt{grid-area:txt; padding:36px 0 0}
+  .abre-pe{grid-area:pe; padding:22px 0 0; align-self:start}
   .palco{grid-area:palco}
-  .lead{font-size:17px; margin-bottom:10px}
-  .leg-nota{font-size:14px}
   .acoes-abre{flex-direction:column; align-items:stretch; max-width:300px}
+  .rola{margin-top:4px}
 }
 
-/* ---------- os trechos: o mesmo rio atravessa, até a foto ---------- */
-.curso{position:relative; max-width:1180px; margin:0 auto}
-.curso > canvas{position:absolute; left:0; top:0; pointer-events:none; z-index:0; display:block}
-.trecho{position:relative; z-index:1; padding:52px 56px 36px 16px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
-.col{max-width:540px}
+/* ---------- blocos comuns: título curto, número grande, uma frase ---------- */
 h2.k{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 4px; font-family:var(--mono); font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); font-weight:700}
 h2.k span::before{content:"// "; color:var(--cinza2)}
-.enviar{flex:none; min-height:44px; padding:0 11px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--cinza); background:transparent; border:1px solid var(--linha); border-radius:3px; cursor:pointer; text-transform:none}
+.enviar{flex:none; min-height:44px; min-width:44px; padding:0 12px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--cinza); background:transparent; border:1px solid var(--linha); border-radius:3px; cursor:pointer; text-transform:none}
 .enviar:hover{color:var(--tinta); border-color:rgba(125,245,154,.4)}
-.num{font-size:clamp(64px,19vw,120px); font-weight:800; line-height:.95; letter-spacing:-.03em; font-variant-numeric:tabular-nums; margin:6px 0 10px}
+.col{max-width:540px; container-type:inline-size}
+.num{font-size:clamp(56px,17vw,104px); font-weight:800; line-height:.95; letter-spacing:-.03em; font-variant-numeric:tabular-nums; margin:8px 0 8px}
 /* os números fortes: maiores, em âmbar; o tamanho sai da parte mais longa (--nc caracteres) para caber na coluna */
-.col{container-type:inline-size}
-.num.forte{color:var(--amber); margin:10px 0 8px; line-height:.92;
-  font-size:min(24vw, 150px, calc((100vw - 72px) / (var(--nc, 4) * .6)))}
+.num.forte{color:var(--amber); margin:12px 0 8px; line-height:.92; font-size:min(24vw, 150px, calc((100vw - 76px) / (var(--nc, 4) * .6)))}
 @supports (width:1cqi){ .num.forte{font-size:min(24vw, 150px, calc(100cqi / (var(--nc, 4) * .6)))} }
-.num.forte .np{display:inline-block; white-space:nowrap}
-.num.forte + .fr{margin-bottom:4px}
-.num-q{margin:0 0 14px; font-family:var(--mono); font-size:12px; line-height:1.5; color:var(--cinza); max-width:44em}
-.num-q a, .num-k a{color:var(--azul)}
-.num-k{margin:4px 0 0; font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase}
-.fr + .num.forte, .num-q + .num.forte, .nota + .num.forte{margin-top:26px}
-.fr{font-size:clamp(18px,4.8vw,22px); line-height:1.35; margin:0 0 10px}
+.num .np{display:inline-block; white-space:nowrap}
+.fr{font-size:clamp(18px,4.8vw,22px); line-height:1.35; margin:0 0 6px; max-width:30em}
 .fr b{color:var(--amber)}
-.nota{font-size:14px; line-height:1.45; color:var(--cinza); margin:0 0 10px}
-.nota b{color:var(--tinta); font-weight:600}
-.nota a{color:var(--azul)}
-.linhas{list-style:none; margin:16px 0 14px; padding:0}
-.linha{position:relative; padding:10px 22px 10px 0; border-top:1px solid rgba(125,245,154,.11); font-size:15px; line-height:1.38}
+.nf{margin:0 0 4px; font-family:var(--mono); font-size:12px; color:var(--cinza)}
+.nf a{color:var(--cinza); text-decoration-color:var(--cinza2); text-underline-offset:3px}
+.nf a:hover{color:var(--azul)}
+.linhas{list-style:none; margin:22px 0 18px; padding:0}
+.linha{position:relative; padding:9px 22px 9px 0; border-top:1px solid rgba(125,245,154,.11); font-size:15.5px; line-height:1.35}
 .linha:last-child{border-bottom:1px solid rgba(125,245,154,.11)}
-.linha .pt{position:absolute; right:2px; top:17px; width:8px; height:8px; border-radius:50%}
+.linha .pt{position:absolute; right:2px; top:15px; width:8px; height:8px; border-radius:50%}
 .linha .pt.sai{background:transparent!important; border:2px solid currentColor; width:9px; height:9px}
 .linha .nm{font-weight:700}
-.linha .pp{display:block; font-size:13.5px; color:var(--cinza); line-height:1.35}
-.linha .st{display:block; font-family:var(--mono); font-size:11.5px; color:var(--cinza); letter-spacing:.02em; margin-top:2px}
+.linha .st{font-family:var(--mono); font-size:12px; color:var(--cinza); white-space:nowrap}
 .linha .v{font-family:var(--mono); font-weight:700; color:var(--amber); margin-right:6px; white-space:nowrap}
-.linha .dir{font-family:var(--mono); font-size:11px; color:var(--cinza); border:1px solid var(--cinza2); border-radius:2px; padding:0 4px; margin-left:4px; white-space:nowrap}
-.linha .n{font-family:var(--mono); font-weight:700; color:var(--amber); font-size:18px; margin-right:6px; font-variant-numeric:tabular-nums}
-.linha a{color:var(--azul)}
 .porta{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 16px; background:var(--amber); color:#120c00; font-weight:700; font-size:15px;
-  line-height:1.2; text-decoration:none; border-radius:3px; border:1.5px solid var(--amber)}
+  line-height:1.2; text-decoration:none; border-radius:3px; border:1.5px solid var(--amber); cursor:pointer; font-family:var(--sans)}
 .porta.sec{background:transparent; color:var(--tinta); border-color:var(--cinza2)}
-.portas{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 0}
+.portas{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0}
+[data-seq]{transition:opacity .25s linear}
+
+/* ---------- o caso Marielle, logo depois da primeira tela ---------- */
+.dest{max-width:1180px; margin:0 auto; padding:48px 16px 16px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
+.dest-in{max-width:620px}
+.dest .fr{margin-bottom:14px}
+.dest-l{list-style:none; margin:0 0 10px; padding:0}
+.dest-l li{padding:11px 0; border-top:1px solid rgba(125,245,154,.11); font-size:16.5px; line-height:1.4}
+.dest-l li:last-child{border-bottom:1px solid rgba(125,245,154,.11)}
+.dest-l b{display:block; font-size:18px}
+.sit{display:inline-block; font-family:var(--mono); font-size:12px; color:var(--cinza); letter-spacing:.02em}
+.dest-l .sit{display:block; margin-top:3px}
+.dest-l .sit i{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px}
+
+/* ---------- os trechos: o mesmo rio atravessa ---------- */
+.curso{position:relative; max-width:1180px; margin:0 auto}
+.curso > canvas{position:absolute; left:0; top:0; pointer-events:none; z-index:0; display:block}
+.trecho{position:relative; z-index:1; padding:56px 60px 40px 16px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
 /* a foz */
-.foz-fim{position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; padding-top:150px}
+.foz-fim{position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; padding-top:132px}
 .foz-fim .disco{--fd:88px; border-width:3px; font-size:24px}
-.foz-fim b{display:block; font-family:var(--mono); font-size:14px; color:var(--amber); letter-spacing:.06em; margin-top:10px}
+.foz-fim b{display:block; font-family:var(--mono); font-size:14px; color:var(--tinta); letter-spacing:.06em; margin-top:10px}
 .foz-fim span{display:block; font-size:13px; color:var(--cinza); margin-top:2px}
-.sit{margin-top:22px}
-.sit .fr{font-size:clamp(17px,4.5vw,20px)}
-.caso{padding:10px 0; border-top:1px solid rgba(125,245,154,.11); font-size:15px; line-height:1.42}
+.sit-ele{margin-top:30px}
+.sit-ele .num.forte{color:var(--tinta)}   /* a situação dele: nunca em âmbar */
+.caso{padding:10px 0; border-top:1px solid rgba(125,245,154,.11); font-size:15.5px; line-height:1.4}
+.caso:last-child{border-bottom:1px solid rgba(125,245,154,.11)}
 .caso a{color:var(--tinta); font-weight:700; text-decoration:none; border-bottom:1px solid var(--cinza2)}
 .caso a:hover{border-bottom-color:var(--amber)}
-.caso .inc{display:block; font-family:var(--mono); font-size:11.5px; color:var(--cinza); margin-top:2px}
-.fim-rio{font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--cinza); margin:26px 0 0}
-@media (min-width:900px){
-  .trecho{padding:84px 24px 48px}
-  .foz-grade{display:grid; grid-template-columns:minmax(0,540px) minmax(0,1fr); column-gap:40px; align-items:start}
-  .foz-grade .sit{grid-column:1; grid-row:1; margin-top:0}
-  .foz-grade .foz-fim{grid-column:2; grid-row:1; padding-top:36px}
-}
-
+.caso .sit{display:block; margin-top:2px}
 .trecho.desagua{padding-top:8px}
-.desagua .foz-fim{padding-top:132px}
-.h-dica{align-self:center; font-size:13px; color:var(--cinza)}
-@media (min-width:900px){ .desagua .foz-grade .foz-fim{padding-top:120px} .desagua .foz-grade .sit{padding-top:40px} }
-
-/* ---------- destaque logo depois da primeira tela: o caso Marielle ----------
-   Forte e sóbrio: o número em âmbar dentro da frase, as duas ligações em uma linha cada, a situação dele em negrito. */
-.dest{max-width:1180px; margin:0 auto; padding:30px 16px 6px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
-.dest-in{max-width:620px; border-top:1px solid var(--linha); border-bottom:1px solid var(--linha); padding:16px 0 18px}
-.dest h2.k{margin-bottom:10px}
-.dest-t{margin:0 0 12px; font-size:clamp(22px,6.2vw,34px); font-weight:800; line-height:1.14; letter-spacing:-.01em}
-.dest-t b{color:var(--amber); font-weight:800; white-space:nowrap}
-.dest-l{list-style:none; margin:0 0 12px; padding:0}
-.dest-l li{position:relative; padding:9px 0 9px 16px; border-top:1px solid rgba(125,245,154,.11); font-size:15.5px; line-height:1.42}
-.dest-l li:last-child{border-bottom:1px solid rgba(125,245,154,.11)}
-.dest-l li::before{content:""; position:absolute; left:0; top:19px; width:8px; height:2px; background:var(--cinza)}
-.dest-s{margin:0 0 6px; font-size:17px; line-height:1.4; font-weight:700}
-.dest .num-q{margin:6px 0 0}
-.dest-l .lf{display:block; margin-top:3px; font-family:var(--mono); font-size:12px; line-height:1.45; color:var(--cinza)}
-.dest-l .lf a{color:var(--azul)}
-.dest .portas{margin-top:12px}
-.dest .portas .enviar{min-height:44px}
+.ancora{display:block; height:0; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
 @media (min-width:900px){
-  .dest{padding:56px 24px 10px}
-  .dest-in{padding:22px 0 24px}
-  .dest-l li{font-size:16.5px}
-  .dest-s{font-size:18px}
+  .trecho{padding:88px 24px 52px}
+  .dest{padding:72px 24px 24px}
+  .foz-grade{display:grid; grid-template-columns:minmax(0,540px) minmax(0,1fr); column-gap:40px; align-items:start}
+  .foz-grade .sit-ele{grid-column:1; grid-row:1; margin-top:0; padding-top:40px}
+  .foz-grade .foz-fim{grid-column:2; grid-row:1; padding-top:120px}
 }
 
 /* ---------- a história rolável (assets/historia.js) ----------
@@ -215,205 +188,159 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .h-no.h-lk{max-width:none; padding:1px 5px; font-size:10.5px; color:var(--tinta); background:rgba(7,10,7,.9); border:1px solid rgba(232,255,236,.22); white-space:nowrap}
 @media (max-width:380px){ .h-no.h-mx, .h-no.h-lk{font-size:10px; padding-right:5px} }
 @media (min-width:900px){ .h-no.h-mx, .h-no.h-lk{font-size:11.5px} }
-.h-leg{position:absolute; left:0; right:0; top:var(--palcoH,58%); bottom:0; padding:12px 46px 10px 16px; overflow:hidden}
-.h-barra{position:absolute; left:16px; right:46px; bottom:0; height:2px; background:rgba(125,245,154,.12)}
+.h-leg{position:absolute; left:0; right:0; top:var(--palcoH,58%); bottom:0; padding:12px 56px 10px 16px; overflow:hidden}
+.h-barra{position:absolute; left:16px; right:56px; bottom:0; height:2px; background:rgba(125,245,154,.12)}
 .h-barra i{position:absolute; inset:0; background:var(--amber); transform-origin:0 0; transform:scaleX(0)}
 
-.cap{position:absolute; left:16px; right:42px; top:12px; visibility:hidden; opacity:0}
+.cap{position:absolute; left:16px; right:56px; top:14px; visibility:hidden; opacity:0}
 .cap.on{visibility:visible; opacity:1}
-.cap-k{margin:0 0 3px; font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza)}
+.cap-k{margin:0 0 4px; font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza)}
 .cap-k b{color:var(--amber); font-weight:700}
-.cap-n{margin:0 0 6px; font-size:23px; line-height:1.14; font-weight:800; letter-spacing:-.01em}
+.cap-k .kr{display:none}
+.cap-n{margin:0 0 8px; font-size:23px; line-height:1.14; font-weight:800; letter-spacing:-.01em}
 .cap-n .g{color:var(--amber)}
-.cap-res{margin:0 0 8px; font-size:15px; line-height:1.42}
-.cap-elos{list-style:none; margin:4px 0 0; padding:0}
-.elo{display:none; position:relative; padding:0 0 7px 16px}
+.cap-res p{margin:0 0 4px; font-size:16px; line-height:1.4}
+.cap-elos{list-style:none; margin:6px 0 0; padding:0}
+.elo{display:none; position:relative; padding:0 0 8px 16px}
 .elo .pt{position:absolute; left:0; top:5px; width:9px; height:9px; border-radius:50%; box-sizing:border-box; border:2px solid var(--cinza2); background:#0a100a}
 .elo.grave .pt{border-color:var(--carimbo)} .elo.medio .pt{border-color:var(--amber)} .elo.leve .pt{border-color:#5c8a63}
-.elo .dp{display:block; font-size:14px; line-height:1.32; font-weight:700}
+.elo .dp{font-size:14.5px; line-height:1.32; font-weight:700}
 .elo .dp i{font-style:normal; font-weight:400; color:var(--cinza)}
-.elo .rel{display:none; font-size:13.5px; line-height:1.38; color:var(--tinta); margin:2px 0 0}
-.elo .selo{display:none; font-family:var(--mono); font-size:11.5px; line-height:1.4; color:var(--cinza); margin:3px 0 0}
-.elo .selo b{color:var(--tinta); font-weight:700}
+.elo .sit{margin-left:2px; font-size:11.5px; font-weight:400}
+.elo .rel{display:none; font-size:13.5px; line-height:1.36; color:var(--cinza); margin:2px 0 0}
 .elo.on{display:block}
-.elo.atual .rel, .elo.atual .selo{display:block}
-.cap-ele{display:none; border:1px solid var(--tinta); border-radius:4px; padding:9px 11px 10px; margin:4px 0 0}
-.cap-ele .k{display:block; margin:0 0 3px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--tinta)}
-.cap-nst{margin:2px 0 6px; font-size:13px; font-weight:600; color:var(--tinta)}
-.cap[data-f="num"] .cap-nst{display:none}
-.cap-ele .st{margin:0; font-size:14.5px; line-height:1.42}
-.cap-ele .ress{margin:6px 0 0; font-size:12.5px; line-height:1.4; color:var(--cinza)}
-.cap-ele .ft{margin:6px 0 0; font-family:var(--mono); font-size:11.5px; color:var(--cinza)}
-.cap-ele .ft a{color:var(--azul)}
-.cap-acoes{display:flex; flex-wrap:wrap; gap:8px; margin:9px 0 0}
+.elo.atual .rel{display:block}
+.cap-ele{display:none; margin:8px 0 0; padding:8px 11px; border-left:2px solid var(--tinta); font-size:15px; line-height:1.38}
+.cap-ele b{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700}
+.cap-acoes{display:none; flex-wrap:wrap; gap:8px; margin:12px 0 0}
 .cap-acoes .porta{min-height:44px; padding:8px 13px; font-size:14.5px}
+/* as fases: número · entra (título e frase) · elo (os elos acendem) · ele/sai (o fecho: elos, a situação dele se houver, as portas) */
 .cap[data-f="entra"] .cap-elos{display:none}
-.cap[data-f="ele"] .cap-res, .cap[data-f="sai"] .cap-res, .cap[data-f="elo"] .cap-res,
-.cap[data-f="ele"] .cap-elos, .cap[data-f="sai"] .cap-elos{display:none}
+.cap[data-f="elo"] .cap-res{display:none}
+.cap[data-f="ele"] .cap-res, .cap[data-f="sai"] .cap-res{display:none}
 .cap[data-f="ele"] .cap-ele, .cap[data-f="sai"] .cap-ele{display:block}
-.cap.aperta .cap-n{font-size:20px} .cap.aperta .cap-res, .cap.aperta .cap-ele .st{font-size:13.5px; line-height:1.36}
-.cap.aperta .elo .rel{font-size:12.5px} .cap.aperta .elo .selo{font-size:11px}
-/* no aperto a legenda das cores fica inteira (as três chaves e "a cor é de cada nome"), só menor; sai a chave da nascente */
-.cap.aperta2 .h-leg-cor{font-size:10px; gap:0 8px; line-height:1.45; margin-top:6px}
-.cap.aperta2 .h-leg-cor i{width:7px; height:7px; margin-right:4px}
-.cap.aperta2 .h-leg-cor span:nth-child(4){display:none}
-.cap.aperta2 .elo:not(.atual) .dp{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.cap.aperta2 .cap-ele{padding:8px 9px 9px}
-.cap.aperta2 .cap-acoes .porta{font-size:13.5px; padding:8px 10px}
-.cap.aperta2 .cap-acoes .enviar{padding:0 9px}
+.cap[data-f="ele"] .cap-acoes, .cap[data-f="sai"] .cap-acoes, .cap-fim .cap-acoes{display:flex}
+.cap[data-f="ele"] .elo .rel, .cap[data-f="sai"] .elo .rel{display:none}
+.cap-num{display:none; margin:2px 0 0}
+.cap[data-f="num"] .cap-num{display:block}
+.cap[data-f="num"] .cap-k .kr{display:inline; color:var(--tinta)}
+.cap[data-f="num"] .cap-n, .cap[data-f="num"] .cap-res, .cap[data-f="num"] .cap-elos, .cap[data-f="num"] .cap-ele{display:none}
+.cap-num .nv{margin:6px 0 10px; font-size:calc(var(--fs,64px) * var(--nk,1)); line-height:.98; font-weight:800; letter-spacing:-.03em; color:var(--amber); font-variant-numeric:tabular-nums}
+.cap-num .ng{display:inline-block; white-space:nowrap}
+.cap-num .nv.quebra .n2{display:block}
+.cap-num .nt{margin:0 0 6px; font-size:16.5px; line-height:1.4}
+.cap-num .nt b{font-weight:800}
+.cap .nf{margin-top:4px}
+.h-regua{position:absolute; left:0; top:0; visibility:hidden; pointer-events:none; white-space:nowrap; font-size:100px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+/* o que não coube: letra menor; depois, sem a relação do elo atual; por último, sem o sobretítulo */
+.cap.aperta .cap-n{font-size:20px} .cap.aperta .elo .dp{font-size:13.5px} .cap.aperta .cap-ele{font-size:14px}
+.cap.aperta .elo{padding-bottom:5px}
+.cap.aperta2 .elo .rel{display:none}
 .cap.aperta3 .cap-k{display:none}
-.cap.aperta3 .cap-n{font-size:18px; margin-bottom:4px}
-.cap.aperta3 .elo{padding-bottom:4px}
-.cap.aperta3 .cap-ele{padding:7px 9px 8px}
-.cap.aperta3 .cap-ele .st{font-size:13px; line-height:1.34}
-.cap.aperta3 .cap-ele .ft{margin-top:3px}
-.cap.aperta3 .cap-acoes{margin-top:6px}
-/* desktop baixo (ex.: 1280 × 600): o status só do elo atual; no fim, sem o resumo nos elos e sem a lista no "ELE NESTE CASO" */
-.cap.aperta2 .elo:not(.atual) .selo{display:none}
-.cap.aperta3[data-f="elo"] .cap-res, .cap.aperta3[data-f="ele"] .cap-elos, .cap.aperta3[data-f="sai"] .cap-elos{display:none}
+.cap.aperta3[data-f="num"] .cap-k{display:block}
+.cap.naperta .cap-num .nt{font-size:14.5px; line-height:1.34}
+.cap.naperta .cap-num .nv{margin:2px 0 6px}
 /* a abertura e o fim da história */
-.cap-lista{list-style:none; margin:4px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.cap-lista{list-style:none; margin:10px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px}
 .cap-lista a{display:flex; align-items:center; gap:7px; min-height:44px; padding:4px 8px; border:1px solid var(--linha); border-radius:3px;
   font-size:13.5px; line-height:1.2; color:var(--tinta); text-decoration:none; background:rgba(7,10,7,.6)}
 .cap-lista a b{font-family:var(--mono); font-size:12px; color:var(--amber)}
 .cap-lista a:hover{border-color:var(--amber)}
 .cap-lista a:focus-visible, .cap .porta:focus-visible, .cap .enviar:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
-.h-leg-cor{display:flex; flex-wrap:wrap; gap:0 12px; margin:8px 0 0; font-family:var(--mono); font-size:11px; color:var(--cinza); line-height:1.6}
+.h-leg-cor{display:flex; flex-wrap:wrap; gap:0 10px; margin:10px 0 0; font-family:var(--mono); font-size:10.5px; color:var(--cinza); line-height:1.6}
+.h-leg-cor span{white-space:nowrap}
 .h-leg-cor i{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px}
 .cap-fim .cap-n{font-size:30px}
-.h-leg-cor .nd{color:var(--tinta)}
-.cap-aviso{font-weight:600}
-/* o número do capítulo: o maior elemento da tela na fase "num"; o texto de quem afirma vem sempre junto */
-.h-regua{position:absolute; left:0; top:0; visibility:hidden; pointer-events:none; white-space:nowrap; font-size:100px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
-.cap-num{display:none; margin:2px 0 0}
-.cap-k .kr{display:none}
-.cap[data-f="num"] .cap-num{display:block}
-.cap[data-f="num"] .cap-k .kr{display:inline; color:var(--tinta)}
-.cap[data-f="num"] .cap-n, .cap[data-f="num"] .cap-res, .cap[data-f="num"] .cap-elos, .cap[data-f="num"] .cap-ele{display:none}
-.cap-num .nv{margin:6px 0 8px; font-size:calc(var(--fs,64px) * var(--nk,1)); line-height:.98; font-weight:800; letter-spacing:-.03em; color:var(--amber); font-variant-numeric:tabular-nums}
-.cap-num .ng{display:inline-block; white-space:nowrap}
-.cap-num .nv.quebra .n2{display:block}
-.cap-num .nt{margin:0; font-size:16px; line-height:1.42}
-.cap-num .nt b{font-weight:800}
-.cap-num .nt.nst{margin-top:6px; font-size:14px; line-height:1.4; color:var(--tinta); font-weight:600}
-.cap-num .nf{margin:7px 0 0; font-family:var(--mono); font-size:11.5px; color:var(--cinza)}
-.cap-num .nf a{color:var(--azul)}
-.cap.aperta3[data-f="num"] .cap-k{display:block}
-/* telas muito baixas (ex.: 360 × 640): letra menor, sem tirar nada (a ressalva fica, na 1ª frase) */
-.cap.aperta4 .cap-n{font-size:16.5px; margin-bottom:3px}
-.cap.aperta4 .cap-ele{padding:6px 8px 7px}
-.cap.aperta4 .cap-ele .k{margin-bottom:1px}
-.cap.aperta4 .cap-ele .st{font-size:12.5px; line-height:1.3}
-.cap.aperta4 .cap-ele .ress{font-size:11.5px; line-height:1.3; margin-top:4px}
-.cap.aperta4 .cap-ele .ft{font-size:11px}
-.cap.aperta4 .cap-acoes{margin-top:5px}
-.cap.aperta4 .elo .rel{font-size:12px; line-height:1.3}
-.cap.aperta4 .elo .selo{font-size:10.5px; line-height:1.3}
-/* o último aperto: sem o título no "ELE NESTE CASO" (o sobretítulo já saiu; o caso está no nome da porta e no link) */
-.cap.aperta5[data-f="ele"] .cap-n, .cap.aperta5[data-f="sai"] .cap-n{display:none}
-.cap.aperta5 .cap-ele{padding:5px 8px 6px}
-.cap.aperta5 .cap-ele .st{font-size:12px; line-height:1.28}
-.cap.aperta5 .cap-ele .ress{font-size:10.5px; line-height:1.26; margin-top:3px}
-.cap.aperta5 .cap-ele .ft{margin-top:2px; font-size:10.5px}
-.cap.aperta5 .cap-acoes{margin-top:4px}
-/* a fase do número que não coube: o texto de quem afirma em letra menor */
-.cap.naperta .cap-num .nt{font-size:14px; line-height:1.34}
-.cap.naperta .cap-num .nt.nst{font-size:13px}
-.cap.naperta .cap-num .nv{margin:2px 0 5px}
-.cap.naperta .cap-num .nf{margin-top:4px; font-size:11px}
-.cap-intro.aperta3 .cap-lista{gap:4px}
-.cap-intro.aperta3 .cap-lista a{min-height:38px}
-.cap-intro.aperta4 .cap-res{font-size:13px}
-.cap-intro.aperta4 .cap-lista a{min-height:36px; padding:2px 7px; font-size:12px}
-.cap-intro.aperta4 .h-leg-cor{margin-top:4px}
+.cap-intro.aperta .cap-lista a{min-height:38px; font-size:12.5px}
 @media (prefers-reduced-motion:no-preference){
   .cap.on{animation:h-entra .35s ease-out}
   .elo.on, .cap-ele{animation:h-entra .35s ease-out}
   @keyframes h-entra{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
 }
 @media (max-height:700px) and (max-width:899px){
-  .cap-n{font-size:20px} .cap-res{font-size:14px; line-height:1.36}
+  .cap-n{font-size:20px}
   .cap-lista a{min-height:40px; font-size:12.5px}
 }
 @media (min-width:900px){
   .h-palco{left:460px}
   .h-leg{top:0; right:auto; width:420px; padding:0 0 0 24px}
   .h-barra{left:24px; right:auto; width:410px; bottom:28px}
-  .cap{left:24px; right:0; top:clamp(24px, 11vh, 110px)}
-  .cap-n{font-size:34px; margin-bottom:10px}
-  .cap-res{font-size:16.5px}
-  .cap[data-f="elo"] .cap-res{display:block; color:var(--cinza); font-size:15px}
-  .cap[data-f="ele"] .cap-elos, .cap[data-f="sai"] .cap-elos{display:block}
-  .cap[data-f="ele"] .elo .rel, .cap[data-f="sai"] .elo .rel{display:none}
-  .elo.on .selo{display:block}
-  .cap[data-f="ele"] .elo .selo, .cap[data-f="sai"] .elo .selo{display:none}
-  .elo .dp{font-size:15px}
-  .cap-ele .st{font-size:15.5px}
+  .cap{left:24px; right:0; top:clamp(24px, 12vh, 120px)}
+  .cap-n{font-size:34px; margin-bottom:12px}
+  .cap-res p{font-size:17px}
+  .cap[data-f="elo"] .cap-res{display:block}
+  .cap[data-f="elo"] .cap-res p{color:var(--cinza); font-size:15px}
+  .elo .dp{font-size:15.5px}
+  .cap-ele{font-size:16px}
   .cap-fim .cap-n{font-size:44px}
   .cap-num .nv{margin:10px 0 14px}
-  .cap-num .nt{font-size:18px; line-height:1.45}
-  .cap-num .nf{font-size:12.5px; margin-top:10px}
+  .cap-num .nt{font-size:19px; line-height:1.42}
 }
 
-/* assistir: botão fixo e discreto. Antes da história, no celular, cabe na faixa do rio (à direita, sem cobrir o texto);
-   dentro da história, fica no pé do palco; no desktop, no canto inferior direito */
-.h-ctl{position:fixed; right:2px; bottom:calc(14px + env(safe-area-inset-bottom, 0px)); z-index:45; display:flex; gap:6px; align-items:center}
+/* ---------- o controle do "assistir" (assets/roteiro.js): vale para a página toda ----------
+   Parado: só "▶ assistir", depois da primeira tela. Tocando ou pausado: ❚❚/▶ · 1× · ↓ · ■.
+   Celular: uma coluna estreita na faixa do rio, à direita (o texto deixa a faixa livre). Desktop: em linha, no canto. */
+.h-ctl{position:fixed; right:4px; bottom:calc(12px + env(safe-area-inset-bottom, 0px)); z-index:45; display:flex; flex-direction:column-reverse; gap:6px; align-items:center}
 .h-ctl[hidden]{display:none}
-.h-ctl button{min-height:44px; min-width:44px; padding:0 12px; font-family:var(--mono); font-size:12.5px; font-weight:700; letter-spacing:.03em; color:var(--tinta);
-  background:rgba(7,10,7,.92); border:1px solid rgba(125,245,154,.35); border-radius:22px; cursor:pointer; white-space:nowrap}
+.h-ctl button{display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:44px; min-width:44px; padding:0; font-family:var(--mono); font-size:12.5px; font-weight:700; letter-spacing:.03em;
+  color:var(--tinta); background:rgba(7,10,7,.92); border:1px solid rgba(125,245,154,.35); border-radius:22px; cursor:pointer; white-space:nowrap}
 .h-ctl button:hover{border-color:var(--amber)}
 .h-ctl button:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
-.h-ctl .h-play{display:inline-flex; align-items:center; gap:6px; color:var(--amber); border-color:rgba(255,176,46,.6)}
 .h-ctl .ic{font-size:13px; line-height:1}
-.h-ctl .h-vel, .h-ctl .h-pula{display:none}
-.h-ctl.fora .h-play{flex-direction:column; justify-content:center; gap:3px; width:54px; min-width:0; height:58px; padding:0; border-radius:27px; font-size:9.5px; letter-spacing:0}
-.h-ctl.dentro{right:auto; left:10px; bottom:auto; top:calc(var(--hdr,57px) + var(--palcoH,300px) - 52px)}
-.h-ctl.dentro .h-pula, .h-ctl.dentro.ativo .h-vel{display:inline-block}
-.h-ctl.dentro .h-pula{color:var(--cinza); font-weight:400}
+.h-ctl .tx{display:none}
+.h-ctl .h-play{color:var(--amber); border-color:rgba(255,176,46,.6); width:46px; height:46px}
+.h-ctl .h-vel, .h-ctl .h-pula, .h-ctl .h-para{display:none; width:44px}
+.h-ctl.ativo .h-vel, .h-ctl.ativo .h-pula, .h-ctl.ativo .h-para{display:inline-flex}
+.h-ctl.no-fim .h-vel, .h-ctl.no-fim .h-pula{display:none}
+.h-ctl .h-pula, .h-ctl .h-para{color:var(--cinza); font-weight:400}
+.h-ctl:not(.ativo) .h-play{flex-direction:column; gap:2px; width:50px; height:50px; border-radius:25px}
+.h-ctl:not(.ativo) .h-play .tx{display:block; font-size:9.5px; letter-spacing:0}
 @media (min-width:900px){
-  .h-ctl, .h-ctl.dentro{left:auto; top:auto; right:20px; bottom:20px}
-  .h-ctl.fora .h-play{flex-direction:row; width:auto; height:auto; min-height:44px; padding:0 14px; border-radius:22px; font-size:12.5px; gap:6px}
+  .h-ctl{right:20px; bottom:20px; flex-direction:row}
+  .h-ctl button, .h-ctl .h-play, .h-ctl .h-vel, .h-ctl .h-pula, .h-ctl .h-para, .h-ctl:not(.ativo) .h-play{width:auto; height:auto; min-height:44px; padding:0 14px; flex-direction:row; border-radius:22px}
+  .h-ctl .tx, .h-ctl:not(.ativo) .h-play .tx{display:inline; font-size:12.5px}
 }
 
 /* ---------- as margens, depois da foz (sem rio) ---------- */
-.margem{max-width:1180px; margin:0 auto; padding:52px 16px 20px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
+.margem{max-width:1180px; margin:0 auto; padding:56px 16px 24px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
 .margem + .margem{border-top:1px solid var(--linha)}
 .margem h2.k{max-width:720px}
 .bloco{max-width:720px}
-.recentes{list-style:none; margin:14px 0; padding:0}
+.recentes{list-style:none; margin:16px 0; padding:0}
 .recentes li{padding:10px 0 10px 18px; border-top:1px solid rgba(125,245,154,.11); font-size:15px; line-height:1.4; position:relative}
 .recentes li i{position:absolute; left:0; top:17px; width:8px; height:8px; border-radius:50%}
 .recentes .d{font-family:var(--mono); font-size:12px; color:var(--cinza); margin-right:6px}
-.recentes .st{font-family:var(--mono); font-size:11px; color:var(--cinza); white-space:nowrap}
 .opcoes{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:14px 0 10px; max-width:420px}
 .opcoes button{min-height:56px; font-family:var(--mono); font-size:22px; font-weight:700; color:var(--tinta); background:var(--leve); border:1.5px solid var(--linha); border-radius:4px; cursor:pointer}
 .opcoes button:hover{border-color:var(--amber)}
 .opcoes button.certa{background:var(--amber); color:#120c00; border-color:var(--amber)}
 .opcoes button.errada{opacity:.45}
-.resp{font-size:15px; line-height:1.45; margin:4px 0 10px}
+.resp{font-size:15.5px; line-height:1.45; margin:4px 0 10px; min-height:1.45em}
 .resp b{color:var(--amber)}
-.indice{display:grid; grid-template-columns:1fr; gap:0; margin:14px 0 8px; padding:0; list-style:none}
-.indice a{display:flex; flex-direction:column; gap:2px; min-height:44px; padding:11px 0; border-top:1px solid var(--linha); text-decoration:none; color:var(--tinta)}
-.indice a b{font-family:var(--mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--azul)}
-.indice a b::after{content:" →"}
-.indice a span{font-size:14.5px; color:var(--cinza); line-height:1.4}
-.indice a:hover b{color:var(--amber)}
-.rodape{max-width:1180px; margin:0 auto; padding:18px 16px 48px; font-size:14px; line-height:1.45; color:var(--cinza)}
+.indice{display:flex; flex-wrap:wrap; gap:6px 18px; margin:16px 0 8px; padding:0; list-style:none}
+.indice a{display:inline-flex; align-items:center; min-height:44px; font-family:var(--mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--azul); text-decoration:none}
+.indice a::after{content:" →"; white-space:pre}
+.indice a:hover{color:var(--amber)}
+.rodape{max-width:1180px; margin:0 auto; padding:18px 16px 48px; font-size:13.5px; line-height:1.45; color:var(--cinza)}
+@media (max-width:380px){ .leg{font-size:10.5px; gap:0 10px} }
+@media (max-width:899px){
+  /* a faixa da direita fica livre para o controle do "assistir" */
+  .dest, .margem, .rodape{padding-right:60px}
+  .nv-segue{margin:36px 60px 0 16px}
+}
 @media (min-width:900px){
-  .margem{display:grid; grid-template-columns:minmax(0,540px) minmax(0,1fr); column-gap:56px; padding:72px 24px 28px}
+  .margem{display:grid; grid-template-columns:minmax(0,540px) minmax(0,1fr); column-gap:56px; padding:80px 24px 32px}
   .margem h2.k{grid-column:1}
   .margem .bloco{grid-column:1}
   .margem .lado{grid-column:2; align-self:start; padding-top:8px}
-  .indice{grid-template-columns:1fr 1fr; column-gap:28px}
   .rodape{padding:18px 24px 56px}
   .nv-segue{max-width:1180px; margin-left:auto; margin-right:auto; padding:0 24px}
 }
-@media (max-width:899px){ .nv-segue{margin:36px 16px 0} }
 
 /* ---------- modo imagem de prévia (index.html?og=1): só a abertura, em 1200×630, para gerar og-rio.png ----------
    A classe só entra com ?og=1 na URL; quem visita o site não vê este modo. */
 html.og, html.og body{overflow:hidden}
-html.og .site-header, html.og .nv-mapa, html.og .nv-segue, html.og .abre-pe, html.og .lead, html.og .semana-l,
+html.og .site-header, html.og .nv-mapa, html.og .nv-segue, html.og .abre-pe, html.og #marielle,
 html.og #curso, html.og #historia, html.og #curso-f, html.og .h-ctl, html.og .margem, html.og .rodape{display:none!important}
 html.og .abre{display:grid; grid-template-columns:440px minmax(0,1fr); grid-template-areas:"txt palco"; align-items:center;
   column-gap:20px; max-width:none; width:1200px; height:630px; min-height:0; margin:0; padding:0 32px 0 60px; overflow:hidden}
@@ -433,14 +360,12 @@ html.og .og-marca{display:block}
 <header class="site-header" data-nav></header>
 
 <main>
-<section class="abre" id="nascente" aria-labelledby="h-abre">
+<section class="abre" id="nascente" aria-labelledby="h-abre" data-rot="pausa:1.6" data-rot-al="0">
   <div class="abre-txt">
     <p class="quem">Flávio Bolsonaro · candidato à Presidência</p>
     <h1 class="sec" id="h-abre">Um rio de escândalos</h1>
     <p class="tese">Tudo deságua nele.</p>
-    <p class="og-marca" aria-hidden="true"><b>BOLSODRIVE</b> · cada fato com fonte e status jurídico<br>Estar no rio não é ser acusado.</p>
-    <p class="lead">Os nomes em volta dele, o dinheiro e os escândalos do registro público. Cada fato com fonte e status jurídico.</p>
-    <a class="semana-l" id="semana-l" href="#semana" hidden></a>
+    <p class="og-marca" aria-hidden="true"><b>BOLSODRIVE</b> · cada fato com fonte</p>
   </div>
 
   <div class="palco" id="palco" role="img" aria-label="A bacia: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro.">
@@ -455,19 +380,18 @@ html.og .og-marca{display:block}
   <div class="abre-pe">
     <p class="leg" aria-label="Legenda das cores">
       <span><i style="background:#ff5c5c"></i>preso ou condenado</span>
-      <span><i style="background:#ffb02e"></i>investigado ou denunciado</span>
+      <span><i style="background:#ffb02e"></i>investigado</span>
       <span><i style="background:#5c8a63"></i>sem processo</span>
-      <span><i class="gt"></i>gota = um fato</span>
     </p>
-    <p class="leg-nota">A cor é a situação de cada nome ou caso, <b>não a dele</b>. Cada gota que desce é um fato do arquivo. <b>Estar no rio não é ser acusado.</b></p>
     <div class="acoes-abre">
-      <a class="bt" href="#quem">Siga o rio ↓</a>
-      <button type="button" class="bt sec" id="zap">Mandar no WhatsApp</button>
+      <a class="bt" id="siga" href="#marielle">Siga o rio ↓</a>
+      <button type="button" class="bt sec" data-share="abertura">Mandar no WhatsApp</button>
     </div>
+    <a class="rola" href="#marielle">ou role você mesmo</a>
   </div>
 </section>
 
-<!-- destaque: o caso Marielle (calculado de window.FOZ, id marielle-ifop; some se o dado faltar) -->
+<!-- o caso Marielle (calculado de window.FOZ, id marielle-ifop; some se o dado faltar) -->
 <section class="dest" id="marielle" aria-labelledby="h-mar" hidden>
   <div class="dest-in" id="mar-c"></div>
 </section>
@@ -478,31 +402,24 @@ html.og .og-marca{display:block}
 
   <section class="trecho" id="quem" aria-labelledby="h-quem">
     <div class="col">
-      <h2 class="k" id="h-quem"><span>01 · Quem anda com ele</span><button type="button" class="enviar" data-t="quem" aria-label="Enviar o trecho Quem anda com ele">enviar ↗</button></h2>
+      <h2 class="k" id="h-quem"><span>01 · Quem anda com ele</span><button type="button" class="enviar" data-share="quem-anda" aria-label="Enviar: quem anda com ele">enviar ↗</button></h2>
       <div id="quem-c"></div>
-      <div class="portas"><a class="porta" href="drive.html#rede">Ver a teia de nomes →</a></div>
+      <div class="portas"><a class="porta" href="drive.html#rede">A teia de nomes →</a></div>
     </div>
   </section>
 
   <section class="trecho" id="dinheiro" aria-labelledby="h-din">
     <div class="col">
-      <h2 class="k" id="h-din"><span>02 · O dinheiro</span><button type="button" class="enviar" data-t="dinheiro" aria-label="Enviar o trecho O dinheiro">enviar ↗</button></h2>
+      <h2 class="k" id="h-din"><span>02 · O dinheiro</span><button type="button" class="enviar" data-share="dinheiro" aria-label="Enviar: o dinheiro">enviar ↗</button></h2>
       <div id="din-c"></div>
       <div class="portas"><a class="porta" href="siga-o-dinheiro.html">Siga o dinheiro →</a></div>
-    </div>
-  </section>
-
-  <section class="trecho" id="foz" aria-labelledby="h-foz">
-    <div class="col">
-      <h2 class="k" id="h-foz"><span>03 · Os escândalos · a foz</span><button type="button" class="enviar" data-t="foz" aria-label="Enviar o trecho A foz">enviar ↗</button></h2>
-      <div id="foz-c"></div>
-      <div class="portas" id="h-abre" hidden><button type="button" class="porta" id="h-assistir">▶ assistir a história</button><span class="h-dica">ou role: a página conta, caso a caso</span></div>
     </div>
   </section>
 </div>
 
 <!-- A HISTÓRIA ROLÁVEL (assets/historia.js): o palco fica preso na tela e a rolagem é a linha do tempo -->
-<section class="hist" id="historia" aria-label="A história: alguns escândalos, de perto" hidden>
+<span class="ancora" id="foz" aria-hidden="true"></span>
+<section class="hist" id="historia" aria-label="A história: alguns escândalos, de perto" data-rot="historia" hidden>
   <div class="h-cena" id="h-cena">
     <div class="h-palco" id="h-palco" aria-hidden="true">
       <canvas id="h-cv"></canvas>
@@ -516,63 +433,67 @@ html.og .og-marca{display:block}
 <div class="curso" id="curso-f">
   <canvas id="f-leito" aria-hidden="true"></canvas>
   <canvas id="f-agua" aria-hidden="true"></canvas>
-  <section class="trecho desagua" id="desagua" aria-label="A foz: Flávio Bolsonaro e os casos em que ele mesmo é ou foi investigado">
+  <section class="trecho desagua" id="desagua" aria-label="A foz: Flávio Bolsonaro">
     <div class="foz-grade">
-      <div class="foz-fim">
+      <div class="foz-fim" data-rot="pausa:1.6" data-rot-al="0.1" data-rot-marca>
         <span class="disco" id="c-disco">FB</span>
         <b>FLÁVIO BOLSONARO</b><span id="foz-cargo">candidato à Presidência</span>
       </div>
-      <div class="sit col" id="sit"></div>
+      <div class="sit-ele col" id="sit"></div>
     </div>
     <div class="col">
       <div class="portas"><a class="porta" href="foz.html">A Foz, caso a caso →</a></div>
-      <p class="fim-rio">// aqui o rio termina. Nas margens:</p>
     </div>
   </section>
 </div>
 
 <section class="margem" id="semana" aria-labelledby="h-sem">
-  <h2 class="k" id="h-sem"><span>Margem · a semana mais recente</span><button type="button" class="enviar" data-t="semana" aria-label="Enviar: a semana mais recente">enviar ↗</button></h2>
+  <h2 class="k" id="h-sem"><span>A semana</span><button type="button" class="enviar" data-share="semana" aria-label="Enviar: a semana">enviar ↗</button></h2>
   <div class="bloco" id="sem-c"></div>
-  <div class="lado"><ul class="recentes" id="sem-l"></ul><div class="portas"><a class="porta" href="drive.html#recente">Recentemente →</a></div></div>
+  <div class="lado"><ul class="recentes" id="sem-l" data-rot="leitura"></ul><div class="portas"><a class="porta sec" href="drive.html#recente">Recentemente →</a></div></div>
 </section>
 
 <section class="margem" id="teste" aria-labelledby="h-teste">
-  <h2 class="k" id="h-teste"><span>Margem · teste você</span><button type="button" class="enviar" data-t="teste" aria-label="Enviar a pergunta">enviar ↗</button></h2>
-  <div class="bloco" id="teste-c"></div>
-  <div class="lado"><div class="resp" id="resp" aria-live="polite"></div><div class="portas"><a class="porta" href="quiz.html">Quiz completo →</a></div></div>
+  <h2 class="k" id="h-teste"><span>Teste você</span><button type="button" class="enviar" data-share="quiz" aria-label="Enviar o teste">enviar ↗</button></h2>
+  <div class="bloco" id="teste-c" data-rot="pausa:3" data-rot-marca></div>
+  <div class="lado"><div class="resp" id="resp" aria-live="polite"></div><div class="portas"><a class="porta sec" href="quiz.html">Quiz completo →</a></div></div>
 </section>
 
 <section class="margem" id="adiante" aria-labelledby="h-adi">
-  <h2 class="k" id="h-adi"><span>Mande o rio adiante</span></h2>
-  <div class="bloco">
-    <p class="fr">Cada trecho tem o próprio link. Quem recebe entra no rio pelo mesmo ponto.</p>
-    <div class="portas"><button type="button" class="porta" id="zap2">Mandar no WhatsApp</button></div>
+  <h2 class="k" id="h-adi"><span>Mande adiante</span></h2>
+  <div class="bloco" data-rot="pausa:2" data-rot-marca>
+    <div class="portas"><button type="button" class="porta" data-share="abertura">Mandar no WhatsApp</button></div>
   </div>
   <div class="lado"><ul class="indice" id="indice" aria-label="As margens do rio"></ul></div>
 </section>
 </main>
 
-<footer class="rodape" id="rodape">Compilação jornalística de fatos de interesse público, com fonte e status jurídico. Estar no rio não é ser acusado.</footer>
+<footer class="rodape" id="rodape">Compilação jornalística de fatos de interesse público. Cada fato tem fonte e a situação jurídica de cada nome.</footer>
 
-<!-- assistir: a página rola sozinha pela história (assets/historia.js) -->
-<div class="h-ctl" id="h-ctl" hidden>
+<!-- assistir: a página desce sozinha, do começo ao "mande adiante" (assets/roteiro.js) -->
+<div class="h-ctl" id="h-ctl" role="group" aria-label="Assistir" hidden>
   <button type="button" class="h-play" id="h-play"><span class="ic" aria-hidden="true">▶</span><span class="tx">assistir</span></button>
   <button type="button" class="h-vel" id="h-vel" aria-label="Velocidade 1×; tocar para 2×">1×</button>
-  <button type="button" class="h-pula" id="h-pula">pular história ↓</button>
+  <button type="button" class="h-pula" id="h-pula" aria-label="Pular para o próximo trecho"><span class="ic" aria-hidden="true">↓</span><span class="tx">pular</span></button>
+  <button type="button" class="h-para" id="h-para" aria-label="Parar a animação"><span class="ic" aria-hidden="true">■</span><span class="tx">parar</span></button>
 </div>
 
-<script src="data/dados.js?v=set2026n"></script>
-<script src="data/foz.js?v=7"></script>
-<script src="assets/rio.js?v=4"></script>
+<script src="data/dados.js?v=set2026q"></script>
+<script src="data/foz.js?v=11"></script>
+<script src="assets/rio.js?v=6"></script>
 <script src="assets/nav.js?v=3"></script>
-<script src="assets/historia.js?v=9" defer></script>
+<script src="assets/roteiro.js?v=1" defer></script>
+<script src="data/foz-curto.js?v=4"></script>
+<script src="assets/historia.js?v=13" defer></script>
+<script src="data/topicos.js?v=3" defer></script>
+<script src="assets/compartilhar.js?v=1" defer></script>
 <script>
 /* =====================================================================
    A abertura. Todo número sai de window.DOSSIE e window.FOZ; nada é digitado à mão.
-   Regras de texto: status jurídico literal; itens "(não é Flávio)" ficam fora das
-   contagens e das gotas; o grafo tem entidades, por isso "nomes"; nada de Lula nem PT
-   na vitrine; declarações de terceiros não entram na vitrine.
+   Texto enxuto: em cada bloco um título curto, o número grande e uma frase.
+   Não se ressalta o que ele não é (basta não dizer que é); acusação sempre com quem afirma;
+   a situação dele só onde ela existe formalmente. Nada de Lula nem PT na vitrine.
+   Os botões de enviar levam o tópico da tela (data-share, ligados por assets/compartilhar.js).
    ===================================================================== */
 (function(){
 'use strict';
@@ -588,7 +509,6 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const OG = document.documentElement.classList.contains('og');   /* modo imagem de prévia (?og=1) */
 const fmtN = n => Number(n).toLocaleString('pt-BR');
 const dm = k => String(k).slice(8, 10) + '/' + String(k).slice(5, 7);
-const plural = (n, um, varios) => fmtN(n) + ' ' + (n === 1 ? um : varios);
 const RGB = { grave: [255, 92, 92], medio: [255, 176, 46], leve: [92, 138, 99] };
 const HEX = { grave: '#ff5c5c', medio: '#ffb02e', leve: '#5c8a63' };
 const AGUA = [125, 245, 154], FUNDO = [7, 10, 7];
@@ -598,6 +518,29 @@ const ITENS = D.itens || [];
 const temaNome = {}; (D.temas || []).forEach(t => { temaNome[t.id] = t.nome; });
 const porData = (a, b) => String(ITENS[a].data || '').localeCompare(String(ITENS[b].data || '')) || a - b;
 const sobreEle = i => !NAOE.test(i.titulo || '');
+const fimP = t => /[.!?…]$/.test(t) ? t : t + '.';
+const cap1 = t => t.charAt(0).toUpperCase() + t.slice(1);
+const frases = t => String(t || '').split(/\.\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/).map((s, i, a) => (i < a.length - 1 ? s + '.' : s));
+/* o que ele não é não se ressalta (basta não dizer que é): tira do texto, se ainda houver, "ele não é investigado" e afins */
+const RESSALVA = /(?:^|[;,.]\s*)(?:e\s+)?(?:(?:ele|flávio)\s+)?(?:n[ãa]o\s+(?:é|está|foi|consta|há|o\s+\S+)|nenhuma fonte|as fontes n[ãa]o|sem (?:indiciamento|processo|investigação))[^;.]*/gi;
+const semRessalva = t => String(t || '').replace(RESSALVA, '').replace(/\s*[;,]\s*$/, '').trim();
+
+/* a situação de um nome pelo texto literal (a mesma regra de assets/historia.js): vermelho só para prisão ou condenação válidas */
+function limpaNeg(s){ return String(s || '').toLowerCase().replace(/(?:^|[^\wÀ-ú])(n[ãa]o|nunca|sem|nenhum|ningu[ée]m)\s+(\S+\s+){0,2}?(pres[oa]s?|condena\S*|condenad\S*|indiciad\S*|indiciamento\S*|investigad\S*|denunciad\S*|den[úu]ncia\S*|r[ée]u|processad\S*)\b/g, ' '); }
+function statusCls(t){
+  const s = limpaNeg(t);
+  const desfeito = /\banul(ou|ad[oa]s?)\b|revogou a (ordem de )?pris|pris[ãa]o (foi )?revogad|\bsolt[oa]s?\b|\barquivad[oa]s?\b/.test(s);
+  if (/\bcondenad[oa]s?\b/.test(s) && !/condena\S*\s+(foi\s+)?anulad/.test(s)) return 'grave';
+  if (/\bpres[oa]s?\b/.test(s)) return desfeito ? (/\barquivad/.test(s) ? 'leve' : 'medio') : 'grave';
+  if (/(investigad|denunciad|\br[ée]u\b|\balvo\b|indiciad|processad)/.test(s)) return /\barquivad/.test(s) && !/(investigad|\br[ée]u\b|indiciad|processad)/.test(s) ? 'leve' : 'medio';
+  return 'leve';
+}
+function sitCurta(t){
+  const s = limpaNeg(t), c = statusCls(t);
+  if (c === 'grave'){ if (/\bcondenad/.test(s)){ const m = s.match(/\d+ anos(?: e \d+ meses)?/g); return 'condenado' + (m && m.length === 1 ? ', ' + m[0] : ''); } return 'preso'; }
+  if (c === 'medio') return /\bpres[oa]\b/.test(s) ? (/anul/.test(s) ? 'prisão anulada' : 'solto') : /\br[ée]u\b/.test(s) ? 'réu' : /denunciad/.test(s) ? 'denunciado' : 'investigado';
+  return /arquivad/.test(s) ? 'caso arquivado' : 'sem processo';
+}
 
 /* ---------- os nomes: quem tem ligação direta com ele no grafo ---------- */
 const G = D.grafo || { nodes: [], edges: [] };
@@ -605,12 +548,25 @@ const NO = {}; (G.nodes || []).forEach(n => { NO[n.id] = n; });
 const vizinhos = new Set();
 (G.edges || []).forEach(e => { if (e.de === 'flavio') vizinhos.add(e.para); if (e.para === 'flavio') vizinhos.add(e.de); });
 vizinhos.delete('flavio');
-const nivelSit = s => { s = s || []; if (s.includes('preso') || s.includes('condenado')) return 'grave'; if (s.includes('investigado') || s.includes('denunciado')) return 'medio'; return 'leve'; };
-const SUBST = [['condenado', 'condenação'], ['preso', 'prisão'], ['denunciado', 'denúncia'], ['investigado', 'investigação']];
-const situacaoTxt = s => { const l = SUBST.filter(p => (s || []).includes(p[0])).map(p => p[1]); return l.length ? l.join(' · ') : 'sem processo conhecido'; };
+/* prisão anulada (a ordem de prisão caiu, segundo a cadeia da Foz): não é vermelho */
+const PRISAO_ANULADA = /anul\S*\s+(?:a\s+)?(?:ordem de\s+)?pris|pris[ãa]o\s+(?:foi\s+)?anulad/i;
+const anulada = new Set();
+(FZ.escandalos || []).forEach(e => (e.cadeia || []).forEach(l => { if (l.de_id && PRISAO_ANULADA.test(l.status_de || '')) anulada.add(l.de_id); }));
+function situacao(id, s){
+  s = s || [];
+  const cond = s.includes('condenado'), preso = s.includes('preso') && !anulada.has(id);
+  const w = [];
+  if (cond) w.push('condenado');
+  if (preso) w.push('preso');
+  if (!cond && !preso){
+    if (anulada.has(id) && s.includes('preso')) w.push('prisão anulada');
+    if (s.includes('denunciado')) w.push('denunciado'); else if (s.includes('investigado')) w.push('investigado');
+  }
+  return { nivel: cond || preso ? 'grave' : (w.length ? 'medio' : 'leve'), txt: w.length ? w.join(' · ') : 'sem processo' };
+}
 const filaPessoa = id => ITENS.map((i, k) => k).filter(k => (ITENS[k].pessoas || []).includes(id) && sobreEle(ITENS[k])).sort(porData);
-const NOMES = [...vizinhos].map(id => NO[id]).filter(Boolean).map(n => ({
-  id: 'p-' + n.id, no: n, nome: n.nome, grupo: n.grupo || 'outro', nivel: nivelSit(n.situacao), fila: filaPessoa(n.id) }));
+const NOMES = [...vizinhos].map(id => NO[id]).filter(Boolean).map(n => { const si = situacao(n.id, n.situacao); return {
+  id: 'p-' + n.id, no: n, nome: n.nome, grupo: n.grupo || 'outro', nivel: si.nivel, sit: si.txt, fila: filaPessoa(n.id) }; });
 const nNome = { grave: 0, medio: 0, leve: 0 }; NOMES.forEach(n => { nNome[n.nivel]++; });
 
 /* ---------- os escândalos (window.FOZ): registros achados como na Foz ---------- */
@@ -628,40 +584,27 @@ const ESC = (FZ.escandalos || []).map(e => {
   return { id: 'e-' + e.id, e, nome: e.rotulo || e.nome, faixa: e.faixa, grupo: e.faixa, nivel: GRAV[e.gravidade] || 'leve', fila };
 });
 const escPorId = {}; ESC.forEach(x => { escPorId[x.e.id] = x; });
-const FAIXAS = [
-  { f: 'entorno', curto: 'pelo entorno', desc: 'aliados, indicados e outras ligações registradas' },
-  { f: 'familia', curto: 'pela família', desc: 'o pai, os irmãos e outros parentes' },
-  { f: 'gabinete', curto: 'pelo gabinete', desc: 'quem trabalhou para ele' },
-  { f: 'direto', curto: 'por ele mesmo', desc: 'o que ele fez ou disse, ou em que é investigado' },
-];
-const nEscGrave = ESC.filter(x => x.nivel === 'grave').length;
 const fl = NO.flavio || {};
-const elePresoOuCondenado = (fl.situacao || []).some(s => s === 'preso' || s === 'condenado');
 
-/* casos em que ele mesmo é ou foi investigado, denunciado, réu ou condenado (texto literal do status).
+/* casos em que ele mesmo é ou foi investigado, denunciado, réu ou condenado.
    Um caso cuja denúncia é a de outro caso da lista entra junto com ele: a mesma denúncia não conta duas vezes. */
 const FORMAL = /^(Investigad|Denunciad|R[ée]u\b|Condenad)/i;
 const formais = ESC.filter(x => x.faixa === 'direto' && FORMAL.test(String(x.e.status_flavio || '').trim()));
 const CASOS = [];
-formais.forEach(x => {
-  const m = String(x.e.status_flavio).match(/den[úu]ncia d[aoe]s? ([A-Za-zÀ-ú]+)/i);
-  const mae = m && formais.find(y => y !== x && norm(y.nome + ' ' + y.e.id).includes(norm(m[1])));
-  if (!mae) CASOS.push({ x, junto: [] });
-});
-formais.forEach(x => {
-  const m = String(x.e.status_flavio).match(/den[úu]ncia d[aoe]s? ([A-Za-zÀ-ú]+)/i);
-  const mae = m && CASOS.find(c => c.x !== x && norm(c.x.nome + ' ' + c.x.e.id).includes(norm(m[1])));
-  if (mae) mae.junto.push(x);
-});
-const frases = t => String(t || '').split(/\.\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/).map((s, i, a) => (i < a.length - 1 ? s + '.' : s));
-/* a primeira frase do status, a seguinte quando diz o desfecho, e a primeira frase da versão dele (ou do que o favorece) que houver */
-const statusCurto = t => {
-  const f = frases(t); let o = f[0] || '';
-  if (f[1] && /anulad|arquivad|condenad|improcedente|nega|r[ée]u|den[úu]ncia|indicia|apura|alvo/i.test(f[1])) o += ' ' + f[1];
-  const d = f.slice(1).find(s => /\bneg[ao]u?\b|afirma|diz que|diz ser|sempre negou|foi só por/i.test(s));
-  if (d && !o.includes(d)) o += ' ' + d;
-  return o.replace(/\.?$/, '.');
-};
+const maeDe = (x, lista) => { const m = String(x.e.status_flavio).match(/den[úu]ncia d[aoe]s? ([A-Za-zÀ-ú]+)/i); return m && lista.find(y => (y.x || y) !== x && norm((y.x || y).nome + ' ' + (y.x || y).e.id).includes(norm(m[1]))); };
+formais.forEach(x => { if (!maeDe(x, formais)) CASOS.push({ x, junto: [] }); });
+formais.forEach(x => { const c = maeDe(x, CASOS); if (c) c.junto.push(x); });
+/* a situação dele, em uma linha: a primeira frase do status, sem o nome do inquérito, e o desfecho em poucas palavras */
+function statusSeco(st){
+  st = String(st || '').trim();
+  /* a primeira frase: o começo (sem o nome do inquérito) e, das orações seguintes, só as que dizem a situação */
+  const pr = (frases(st)[0] || '').replace(/[.;]\s*$/, '').split(/,\s+/);
+  let o = [pr[0].replace(/\s+no inquérito d[aoe]s?\s+[^,.;]+/i, '')].concat(pr.slice(1).filter(x => /sem den|sem ser r|anulad|arquivad|condenad|\br[ée]u\b|denunciad/i.test(x))).join(', ');
+  o = o.replace(/,?\s*(?:e\s+)?sem ser r[ée]u/i, '');   /* o desfecho curto: "sem denúncia" basta */
+  const resto = frases(st).slice(1).join(' ');
+  if (!/anulad|arquivad/i.test(o)){ if (/anulad/i.test(resto)) o += '; denúncia anulada'; else if (/arquivad/i.test(resto)) o += '; denúncia arquivada'; }
+  return fimP(o.charAt(0).toLowerCase() + o.slice(1));
+}
 
 /* ---------- o dinheiro ---------- */
 /* âmbar só para investigação, denúncia ou inquérito; um pedido de apuração ainda não é investigação */
@@ -673,7 +616,9 @@ const FLUX = (((D.fluxoDinheiro || {}).fluxos) || []).filter(f => f && typeof f.
   else fila = ITENS.map((i, j) => j).filter(j => ITENS[j].tema === f.tema && /financeiro|patrimonio/.test(ITENS[j].tipo || '') && sobreEle(ITENS[j])).sort(porData);
   return { id: 'f-' + k, k, f, nome: f.valor, sai: saiDele(f), grupo: saiDele(f) ? 'sai' : 'chega', nivel: nivelFluxo(f.status), fila, foz: f.foz && escPorId[f.foz] ? escPorId[f.foz] : null };
 });
-const nSai = FLUX.filter(x => x.sai).length;
+/* o status do fluxo em poucas palavras */
+const stFluxo = s => { s = String(s || ''); return /PEDIDO DE APURA/i.test(s) ? 'pedido de apuração' : /INVESTIGA/i.test(s) ? 'em investigação' : /DEN[ÚU]NCIA/i.test(s) ? 'denúncia' :
+  /PRESTA[ÇC][ÃA]O DE CONTAS/i.test(s) ? 'prestação de contas' : /OR[ÇC]AMENTO/i.test(s) ? 'Orçamento da União' : /FATO/i.test(s) ? 'fato noticiado' : s.split('·')[0].trim().toLowerCase(); };
 /* patrimônio declarado ao TSE (o ponto marcado como aproximado fica de fora) */
 const PT = (((D.patrimonioTSE || {}).pontos) || []).filter(p => p && p.valor && !/aproximad/i.test(p.obs || '')).sort((a, b) => a.ano - b.ano);
 const p0 = PT.filter(p => /senador/i.test(p.cargo || ''))[0] || PT[0], p1 = PT[PT.length - 1];
@@ -692,7 +637,6 @@ const VITRINE = SEMANA.filter(i => i.status !== 'declaracao' && i.tipo !== 'decl
   .sort((a, b) => (PRIO[a.status] ?? 5) - (PRIO[b.status] ?? 5) || String(b.data).localeCompare(String(a.data))).slice(0, 4)
   .sort((a, b) => String(b.data).localeCompare(String(a.data)));
 const nivelItem = s => s === 'condenacao' ? 'grave' : (/^(investigacao|denuncia|processo)$/.test(s) ? 'medio' : 'leve');
-const rotuloStatus = s => ((D.status || {})[s] || {}).rotulo || '';
 
 /* ---------- a pergunta de um toque (placar e Senado) ---------- */
 const PL = (D.placar || []).filter(p => p.destino === 'tema:senado' && /^\d+$/.test(String(p.numero).trim()))[0];
@@ -705,228 +649,106 @@ const SEN = D.senadoStats || {};
    ===================================================================== */
 const cargo = String(fl.papel || '').split(';')[0].trim();
 if (cargo) $('#foz-cargo').textContent = cargo + ', candidato à Presidência';
-if (SEMANA.length){ const l = $('#semana-l'); l.hidden = false; l.innerHTML = '<b>' + fmtN(SEMANA.length) + '</b> fatos sobre ele de ' + dm(kMin) + ' a ' + dm(kMax) + ' →'; }
 
-const TXT = {
-  geral: () => 'BOLSODRIVE: um rio de escândalos. O registro público sobre Flávio Bolsonaro, candidato à Presidência: ' + plural(NOMES.length, 'nome', 'nomes') +
-    ' em volta dele, ' + plural(FLUX.length, 'fluxo', 'fluxos') + ' de dinheiro e ' + ESC.length + ' escândalos, cada fato com fonte e status jurídico.',
-  quem: () => 'Dos ' + NOMES.length + ' nomes ligados diretamente a Flávio Bolsonaro no registro público, ' + nNome.grave + (nNome.grave === 1 ? ' esteve preso ou foi condenado.' : ' estiveram presos ou foram condenados.') + ' Estar no rio não é ser acusado; a situação de cada um tem fonte.',
-  dinheiro: () => razao ? 'O patrimônio que Flávio Bolsonaro declarou à Justiça Eleitoral foi de ' + fmtMi(p0.valor) + ' em ' + p0.ano + ' para ' + fmtMi(p1.valor) + ' em ' + p1.ano + ': ' + razao.toFixed(1).replace('.', ',') + ' vezes, em valores nominais.' : TXT.geral(),
-  foz: () => ESC.length + ' escândalos chegam a Flávio Bolsonaro: por ele mesmo, pelo gabinete, pela família ou pelo entorno. ' +
-    (CASOS.length ? 'Em ' + CASOS.length + (CASOS.length === 1 ? ' caso' : ' casos') + ' ele mesmo é ou foi investigado ou denunciado' + (elePresoOuCondenado ? '. ' : '; não foi preso nem condenado em nenhum. ') : '') +
-    'Estar no rio não é ser acusado. Cada elo tem fonte.',
-  semana: () => fmtN(SEMANA.length) + ' fatos sobre Flávio Bolsonaro, de ' + dm(kMin) + ' a ' + dm(kMax) + ', estão no arquivo do BOLSODRIVE, todos com fonte.',
-  teste: () => (quizAnos ? 'Em ' + quizAnos + ' anos de Senado, quantos' : 'Quantos') + ' projetos de lei de autoria de Flávio Bolsonaro viraram lei? Responda:'
-};
-
-/* ---------- os números fortes: grandes, em âmbar, com quem afirma logo abaixo ----------
+/* ---------- os números fortes: grandes, em âmbar; o número conta com a rolagem (data-conta, assets/roteiro.js) ----------
    O valor quebra entre o número e a escala ("R$ 364" / "milhões"); o tamanho sai da parte mais longa. */
 const ESCALA = /^(.*\d)\s+(mil|milhão|milhões|bilhão|bilhões)$/;
-const forte = v => {
+const forte = (v, pausa) => {
   v = String(v); const m = ESCALA.exec(v), partes = m ? [m[1], m[2]] : [v];
   const nc = Math.max(...partes.map(x => x.length));
-  return '<p class="num forte" style="--nc:' + nc + '"><span class="so-leitor">' + esc(v) + '</span>' +
-    partes.map(x => '<span class="np" aria-hidden="true">' + esc(x) + '</span>').join(' ') + '</p>';
+  return '<p class="num forte" style="--nc:' + nc + '" data-rot="pausa:' + (pausa || 2.2) + '"><span class="so-leitor">' + esc(v) + '</span>' +
+    partes.map((x, i) => '<span class="np" aria-hidden="true"' + (i === 0 ? ' data-conta' : '') + '>' + esc(x) + '</span>').join(' ') + '</p>';
 };
-const fonteA = f => f && f.url ? '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'fonte') + '</a>' : esc((f && f.veiculo) || '');
-const dataBR = d => /^\d{4}-\d\d-\d\d/.test(d || '') ? d.slice(8, 10) + '/' + d.slice(5, 7) + '/' + d.slice(0, 4) : (/^\d{4}-\d\d$/.test(d || '') ? d.slice(5, 7) + '/' + d.slice(0, 4) : '');
-/* as emendas dele (fluxo do Orçamento): total do período e a fatia da educação, como "R$ x de cada R$ 100" */
-const EMD = FLUX.map(x => x.f).find(f => /emendas/i.test(f.de || '') && /R\$\s*[\d,]+\s*mi$/.test(f.valor) && /para educa/i.test(f.obs || ''));
-const emd = (() => {
-  if (!EMD) return null;
-  const tot = EMD.valor.replace(/\s*mi$/, ' milhões');
-  const pct = parseFloat((String(EMD.obs).match(/([\d,]+)%\s*para educa/i) || [])[1].replace(',', '.'));
-  const per = String(EMD.obs).match(/(\d{4})\s*[–-]\s*(\d{4})/);
-  const it = ITENS.find(i => (i.fontes || []).some(f => EMD.fonte && f.url === EMD.fonte.url) && /emendas/i.test(i.titulo || ''));
-  return { tot, cada: isFinite(pct) ? 'R$ ' + pct.toFixed(2).replace('.', ',') : '', per,
-    corr: /corrigid[oa]s pela infla/i.test((EMD.ressalva || '') + ' ' + (it ? it.resumo : '')),
-    siga: it && /Siga Brasil/.test(it.resumo || ''), semAcusacao: it && /n[ãa]o h[áa] .{0,40}acusa[çc][ãa]o de irregularidade/i.test(it.observacao || '') };
-})();
+const fonteA = f => f && f.url ? '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'fonte') + ' ↗</a>' : esc((f && f.veiculo) || '');
 
-/* trecho 1 */
-const TOP = NOMES.slice().sort((a, b) => b.fila.length - a.fila.length || a.nome.localeCompare(b.nome)).slice(0, 8);
-/* o papel: a primeira parte e, se houver, a parte que liga o nome a Flávio (que é o motivo de ele estar na lista) */
-const papelCurto = p => {
-  const ps = String(p || '').split(/;\s*/).map(s => s.trim()).filter(Boolean);
-  const liga = ps.slice(1).find(s => /Flávio/.test(s));
-  const o = (ps[0] || '') + (liga ? '; ' + liga : '');
-  return o.length > 110 ? o.slice(0, 108).replace(/[\s,]+\S*$/, '') + '…' : o;
-};
-$('#quem-c').innerHTML =
-  forte(nNome.grave) +
-  '<p class="fr">dos <b>' + NOMES.length + ' nomes</b> ligados diretamente a ele no arquivo ' + (nNome.grave === 1 ? 'esteve preso ou foi condenado.' : 'estiveram presos ou foram condenados.') + '</p>' +
-  '<p class="num-q">Segundo as fontes reunidas no arquivo: a situação de cada nome tem fonte.</p>' +
-  '<p class="nota">Outros ' + nNome.medio + ' foram investigados ou denunciados, sem prisão nem condenação. ' + nNome.leve + ' não têm processo conhecido. Entre os nomes há pessoas, empresas e instituições. <b>Estar no rio não é ser acusado.</b></p>' +
-  '<p class="nota">Os ' + TOP.length + ' com mais registros no arquivo. Cada afluente leva os fatos de um nome:</p>' +
-  '<ul class="linhas">' + TOP.map(n => '<li class="linha" data-trib="' + esc(n.id) + '"><span class="nm">' + esc(n.nome) + '</span>' +
-    (n.no.papel ? '<span class="pp">' + esc(papelCurto(n.no.papel)) + '</span>' : '') +
-    '<span class="st">' + esc(situacaoTxt(n.no.situacao)) + ' · ' + plural(n.fila.length, 'registro', 'registros') + '</span>' +
-    '<i class="pt" style="background:' + HEX[n.nivel] + '"></i></li>').join('') + '</ul>';
-
-/* trecho 2 */
-/* a casa do Lago Sul dentro do total de 2026 (obs do ponto do TSE), com o financiamento do BRB (fluxo com foz brb-mansao) */
-const mCasa = String((p1 && p1.obs) || '').match(/^R\$ ([\d,]+) mi só na casa do Lago Sul$/);
-const brbCasa = FLUX.some(x => x.f.foz === 'brb-mansao' && /BRB/.test(x.f.de || ''));
-const casaLago = mCasa ? ' Desse total, R$ ' + mCasa[1] + ' milhões são a casa do Lago Sul' + (brbCasa ? ', comprada com financiamento do BRB' : '') + '.' : '';
-$('#din-c').innerHTML =
-  (razao ? forte(razao.toFixed(1).replace('.', ',') + '×') +
-    '<p class="fr">é quanto cresceu o patrimônio que ele declarou à Justiça Eleitoral: de <b>' + fmtMi(p0.valor) + '</b> em ' + p0.ano + ' para <b>' + fmtMi(p1.valor) + '</b> em ' + p1.ano + '.</p>' +
-    '<p class="num-q">Segundo as declarações de bens ao TSE (' + fonteA(Object.assign({ veiculo: 'TSE' }, fontePT)) + '). Valores nominais, sem correção pela inflação.</p>' +
-    (casaLago ? '<p class="nota">' + casaLago.trim() + '</p>' : '') : '') +
-  (emd ? forte(emd.tot) +
-    '<p class="fr">em emendas parlamentares indicadas por ele' + (emd.per ? ' de ' + emd.per[1] + ' a ' + emd.per[2] : '') + (emd.corr ? ', em valores corrigidos pela inflação' : '') + '.</p>' +
-    (emd.cada ? forte(emd.cada) + '<p class="fr">de cada <b>R$ 100</b> dessas emendas foram para a educação.</p>' : '') +
-    '<p class="num-q">Segundo levantamento do ' + fonteA(EMD.fonte) + (emd.siga ? ' com dados do Siga Brasil' : '') + '.' +
-      (emd.semAcusacao ? ' São emendas regulares do mandato: não há acusação de irregularidade.' : '') + '</p>' : '') +
-  '<p class="nota">' + plural(FLUX.length, 'fluxo', 'fluxos') + ' de dinheiro com fonte, de onde vem e para onde vai.' +
-    (nSai ? ' Em ' + nSai + ', marcados com <span class="dir">sai</span>, o dinheiro sai da campanha ou vai para onde ele indicou: ali a água corre para fora.' : '') + '</p>' +
-  '<ul class="linhas">' + FLUX.map(x => '<li class="linha" data-trib="' + x.id + '"><span class="v">' + esc(x.f.valor) + '</span>' + esc(x.f.de) + ' → ' + esc(x.f.para) +
-    (x.sai ? ' <span class="dir">sai</span>' : '') +
-    '<span class="st">' + esc(x.f.status || '') + (x.f.defesa ? ' · ' + esc(x.f.defesa) : '') + (x.foz ? ' · deságua em <a href="foz.html#' + esc(x.foz.e.id) + '">' + esc(x.foz.nome) + '</a>' : '') + '</span>' +
-    '<i class="pt' + (x.sai ? ' sai' : '') + '" style="' + (x.sai ? 'color:' : 'background:') + HEX[x.nivel] + '"></i></li>').join('') + '</ul>';
-
-/* trecho 3 */
-const porFaixa = f => ESC.filter(x => x.faixa === f);
-$('#foz-c').innerHTML =
-  '<p class="num">' + ESC.length + '</p>' +
-  '<p class="fr">escândalos chegam até ele. Cada um desce por um caminho: pelo entorno, pela família, pelo gabinete ou por ele mesmo.</p>' +
-  '<ul class="linhas">' + FAIXAS.filter(F => porFaixa(F.f).length).map(F => {
-    const l = porFaixa(F.f), g = l.filter(x => x.nivel === 'grave').length;
-    const cor = RIO.css(RIO.mistura(l.map(x => [RGB[x.nivel], 1 + Math.sqrt(x.fila.length) / 3])));
-    return '<li class="linha" data-trib="x-' + F.f + '"><span class="n">' + l.length + '</span><span class="nm">' + esc(F.curto) + '</span>' +
-      '<span class="pp">' + esc(F.desc) + '</span><span class="st">' + (g ? g + ' com alguém preso ou condenado no caminho' : 'ninguém preso ou condenado no caminho') + '</span>' +
-      '<i class="pt" style="background:' + cor + '"></i></li>'; }).join('') + '</ul>' +
-  '<p class="nota">Em ' + nEscGrave + ' dos ' + ESC.length + ' há alguém preso ou condenado no caminho' + (elePresoOuCondenado ? '.' : '; <b>ele mesmo não foi preso nem condenado</b>.') + ' Estar no rio não é ser acusado.</p>';
-/* no fim, o número do caso Master (o mais recente em que ele é investigado), com quem afirma */
-const nMaster = escPorId.master && escPorId.master.e.numero;
-const fimNum = nMaster && nMaster.valor && nMaster.texto ?
-  '<p class="num-k"><a href="foz.html#master">' + esc(escPorId.master.nome) + '</a></p>' + forte(nMaster.valor) +
-  '<p class="fr">' + esc(nMaster.texto) + (/[.!?]$/.test(nMaster.texto) ? '' : '.') + '</p>' +
-  (nMaster.fonte ? '<p class="num-q">Fonte: ' + fonteA(nMaster.fonte) + (dataBR(nMaster.fonte.data) ? ', ' + dataBR(nMaster.fonte.data) : '') + '.</p>' : '') : '';
-$('#sit').innerHTML = fimNum + (CASOS.length ?
-  '<p class="fr">Em <b>' + CASOS.length + (CASOS.length === 1 ? ' caso' : ' casos') + '</b>, ele mesmo é ou foi investigado ou denunciado. A situação em cada um, como está no registro:</p>' +
-  CASOS.map(c => '<div class="caso"><a href="foz.html#' + esc(c.x.e.id) + '">' + esc(c.x.e.nome || c.x.nome) + '</a>. ' + esc(statusCurto(c.x.e.status_flavio)) +
-    (c.junto.length ? '<span class="inc">inclui ' + c.junto.map(j => esc(j.nome)).join(', ') + ': a mesma denúncia</span>' : '') + '</div>').join('') : '');
-
-/* caso Marielle, texto do envio: o número com o texto dele; se ele termina em "ele não é investigado no caso Marielle",
-   emenda o resto da 1ª frase do status ("e o relatório final da PF sobre o crime (2024) não menciona a família Bolsonaro");
-   da ressalva, a versão dele sobre a homenagem (a data já está no número) e a frase de que Peixe não foi condenado pela execução */
-function envioMarielle(e, nt){
-  const fimP = t => /[.!?…]$/.test(t) ? t : t + '.';
-  const m = /^(N[ãa]o é investigado[^,]*), e (o relatório final[^.]*\.)/.exec(frases(e.status_flavio)[0] || '');
-  let t = String(nt).replace(/\.$/, ''); const extra = [];
-  if (m && t.toLowerCase().endsWith(m[1].toLowerCase())) t += ', e ' + m[2]; else { t = fimP(t); if (m) extra.push('O' + m[2].slice(1)); }
-  frases(e.ressalva || '').forEach(f => {
-    if (/^A homenagem/.test(f)) extra.push(/anos antes do crime/.test(t) && f.includes(';') ? (g => g.charAt(0).toUpperCase() + g.slice(1))(f.split(';').slice(1).join(';').trim()) : f);
-    else if (/^Peixe (?:não )?foi condenado/.test(f)) extra.push(f);
-  });
-  return t + (extra.length ? ' ' + extra.map(fimP).join(' ') : '');
-}
-/* destaque: o caso Marielle. Tudo sai do registro marielle-ifop da Foz (número, resumo, cadeia, status e ressalva) */
+/* ---------- o caso Marielle: o número, a frase e as duas ligações, uma por linha ----------
+   Tudo sai do registro marielle-ifop da Foz: "2 de 5" + "condenados no caso Marielle têm ligação com ele:
+   o major Ronald, homenageado por ele em 2004, e o Peixe, que tratou … ao Ifop, segundo a PF".
+   A situação de cada um vem do elo da cadeia que sai dele. */
 (function(){
   const x = escPorId['marielle-ifop'], e = x && x.e, n = e && e.numero, box = $('#mar-c');
-  if (!box || !n || !n.valor || !n.texto || !e.status_flavio) return;
-  const res = String(e.resumo || ''), cad = e.cadeia || [];
-  const cap1 = t => t.charAt(0).toUpperCase() + t.slice(1);
-  const fimP = t => /[.!?…]$/.test(t) ? t : t + '.';
-  /* a frase: "2 dos 5 condenados pelo STF no caso do assassinato de Marielle Franco e Anderson Gomes têm ligação documentada com ele."
-     (nunca "condenados pelo assassinato": Rivaldo foi absolvido do homicídio e Peixe não foi condenado pela execução) */
-  const mN = /^(\d+) de (\d+)$/.exec(String(n.valor).trim());
-  const mQ = /^(condenados pelo STF)\b/.exec(n.texto), mL = /(têm ligação documentada com ele)/.exec(n.texto);
-  const mV = /assassinato d[ao] (?:vereadora )?([A-ZÁÉÍÓÚ][^,.:]*?) e d[oa] (?:motorista )?([A-ZÁÉÍÓÚ][^,.:]*?)(?=[:,.])/.exec(res);
-  const titulo = mN && mQ && mL && mV ?
-    '<b>' + esc(mN[1] + ' dos ' + mN[2]) + '</b> ' + esc(mQ[1] + ' no caso do assassinato de ' + mV[1] + ' e ' + mV[2] + ' ' + mL[1]) + '.' :
-    '<b>' + esc(n.valor) + '</b> ' + esc(String(n.texto).split(':')[0]) + '.';
-  /* as duas ligações: as partes da frase do resumo "…têm ligação documentada com Flávio: A; B." */
-  const mD = /ligação documentada com [^:]{1,30}:\s*([^]*?)\.(?:\s|$)/.exec(res);
-  const antes = (cad.map(l => l.relacao || '').join(' ').match(/(\d+ anos antes do crime)/) || [])[1];
-  const ligas = mD ? mD[1].split(/;\s*/).map(t => t.trim()).filter(Boolean).map(t => {
-    const a = t.match(/\b(?:19|20)\d\d\b/);
-    /* a homenagem vem com a distância até o crime, quando a cadeia a registra no mesmo ano */
-    const comAntes = antes && a && !t.includes(antes) && cad.some(l => (l.relacao || '').includes(a[0]) && (l.relacao || '').includes(antes)) ? ', ' + antes : '';
-    return fimP(cap1(t) + comAntes);
-  }) : [];
-  /* a fonte de cada ligação, ao lado dela: o elo da cadeia que sai do nome citado (Ronald → a homenagem; Peixe → a emenda)
-     e as fontes do caso cujo trecho traz o valor citado (R$ 199.999,79). A Agência Brasil do número fica só para as penas. */
-  const nomesDe = l => String(l.de || '').replace(/[()'"‘’]/g, ' ').split(/\s+/).filter(w => w.length > 3 && !/^(Major|Caso)$/i.test(w));
-  const fontesLig = t => {
-    const l = cad.find(x => x.de_id && x.fonte && x.fonte.url && nomesDe(x).some(w => t.includes(w)));
-    const v = (t.match(/R\$ [\d.]+,\d\d/) || [])[0];
-    const fs = (l ? [l.fonte] : []).concat(v ? (e.fontes || []).filter(f => f.url && String(f.trecho || '').includes(v)) : []);
-    return fs.filter((f, i) => fs.findIndex(g => g.url === f.url) === i).map(f => fonteA(f) + (dataBR(f.data) ? ', ' + dataBR(f.data) : ''));
-  };
-  if (!ligas.length) return;
-  const f0 = frases(e.status_flavio)[0] || '';
-  const sit = /^N[ãa]o é /.test(f0) ? 'Ele n' + f0.slice(1) : f0;
-  /* a ressalva sobre Peixe: ninguém afirma que ele sabia quem era; e Peixe não foi condenado pela execução */
-  const peixe = frases(e.ressalva || '').filter(t => /^(Nenhuma fonte|Peixe (?:não )?foi condenado)/.test(t)).join(' ');
-  box.innerHTML = '<h2 class="k" id="h-mar"><span>' + esc(e.rotulo || e.nome) + '</span></h2>' +
-    '<p class="dest-t">' + titulo + '</p>' +
-    '<ul class="dest-l">' + ligas.map(t => { const fl = fontesLig(t); return '<li>' + esc(t) + (fl.length ? '<span class="lf">Fonte: ' + fl.join(' · ') + '.</span>' : '') + '</li>'; }).join('') + '</ul>' +
-    '<p class="dest-s">' + esc(fimP(sit)) + '</p>' +
-    (peixe ? '<p class="nota">' + esc(peixe) + ' <b>Estar no rio não é ser acusado.</b></p>' : '<p class="nota"><b>Estar no rio não é ser acusado.</b></p>') +
-    (n.fonte && n.fonte.url ? '<p class="num-q">Penas: ' + fonteA(n.fonte) + (dataBR(n.fonte.data) ? ', ' + dataBR(n.fonte.data) : '') + '.</p>' : '') +
-    '<div class="portas"><a class="porta" id="mar-cap" href="#cap-marielle-ifop">ver o capítulo →</a>' +
-    '<button type="button" class="enviar" data-t="marielle" data-id="cap-marielle-ifop" aria-label="Enviar o destaque do caso Marielle">enviar ↗</button></div>';
+  if (!box || !n || !n.valor || !n.texto) return;
+  const cad = e.cadeia || [];
+  const txt = semRessalva(n.texto), dp = txt.indexOf(':');
+  const frase = dp > 0 ? txt.slice(0, dp) : txt, resto = dp > 0 ? txt.slice(dp + 1).trim() : '';
+  const ligas = String(resto || '').split(/,\s+e\s+(?=(?:o|a)\s)/).map(t => {
+    const m = /^(?:o|a)\s+([^,]+),\s*(?:que,?\s+)?(.+)$/.exec(t.trim());
+    if (!m) return null;
+    const nome = cap1(m[1].trim()), chave = nome.split(/\s+/).filter(w => w.length > 3 && !/^major$/i.test(w));
+    const l = cad.find(y => y.de_id && chave.some(w => String(y.de).includes(w)));
+    return { nome, rel: m[2].trim().replace(/[.;]$/, ''), sit: l ? sitCurta(l.status_de) : '', cls: l ? statusCls(l.status_de) : 'leve' };
+  }).filter(Boolean);
+  box.innerHTML = '<h2 class="k" id="h-mar"><span>' + esc(e.rotulo || e.nome) + '</span><button type="button" class="enviar" data-share="marielle" aria-label="Enviar: caso Marielle">enviar ↗</button></h2>' +
+    forte(n.valor, 2.4) +
+    '<p class="fr" data-seq>' + esc(fimP(ligas.length ? frase : n.texto)) + '</p>' +
+    (ligas.length ? '<ul class="dest-l">' + ligas.map(l => '<li data-seq data-rot="pausa:2" data-rot-al="0.3"><b>' + esc(l.nome) + '</b>' + esc(fimP(l.rel)) +
+      (l.sit && l.sit !== 'sem processo' ? '<span class="sit"><i style="background:' + HEX[l.cls] + '"></i>' + esc(l.sit) + '</span>' : '') + '</li>').join('') + '</ul>' : '') +
+    (n.fonte && n.fonte.url ? '<p class="nf">' + fonteA(n.fonte) + '</p>' : '') +
+    '<div class="portas"><a class="porta" id="mar-cap" href="#cap-marielle-ifop">ver o capítulo →</a></div>';
   /* sem a história (sem o capítulo), a porta leva à Foz */
   $('#mar-cap').addEventListener('click', ev => { if (!document.getElementById('cap-marielle-ifop')){ ev.preventDefault(); location.href = 'foz.html#marielle-ifop'; } });
-  const nt = String(n.valor).replace(/^(\d+) de (\d+)$/, '$1 dos $2') + ' ' + n.texto;
-  /* o envio circula sozinho: vai com o relatório final da PF, a versão dele sobre a homenagem e o que Peixe não foi condenado */
-  TXT.marielle = () => 'Flávio Bolsonaro · ' + fimP(e.rotulo || e.nome) + ' ' + envioMarielle(e, nt) + ' Estar no rio não é ser acusado.';
   $('#marielle').hidden = false;
 })();
 
+/* trecho 01: quantos dos nomes foram presos ou condenados e os que mais aparecem no arquivo, um por linha */
+const TOP = NOMES.slice().sort((a, b) => b.fila.length - a.fila.length || a.nome.localeCompare(b.nome)).slice(0, 8);
+$('#quem-c').innerHTML =
+  forte(nNome.grave) +
+  '<p class="fr" data-seq>dos <b>' + NOMES.length + ' nomes</b> em volta dele foram presos ou condenados.</p>' +
+  '<ul class="linhas" data-rot="leitura">' + TOP.map(n => '<li class="linha" data-trib="' + esc(n.id) + '" data-seq><span class="nm">' + esc(n.nome) + '</span> ' +
+    '<span class="st">' + (n.sit === 'sem processo' ? '' : esc(n.sit)) + '</span><i class="pt" style="background:' + HEX[n.nivel] + '"></i></li>').join('') + '</ul>';
+
+/* trecho 02: o patrimônio declarado e os fluxos de dinheiro, um por linha */
+const curtoPara = t => String(t || '').split(/,\s/)[0];
+$('#din-c').innerHTML =
+  (razao ? forte(razao.toFixed(1).replace('.', ',') + '×') +
+    '<p class="fr" data-seq>cresceu o patrimônio que ele declarou ao TSE: de <b>' + fmtMi(p0.valor) + '</b> em ' + p0.ano + ' para <b>' + fmtMi(p1.valor) + '</b> em ' + p1.ano + '.</p>' +
+    '<p class="nf">' + fonteA(Object.assign({}, fontePT, { veiculo: 'TSE' })) + ' · valores nominais</p>' : '') +
+  '<ul class="linhas" data-rot="leitura">' + FLUX.map(x => '<li class="linha" data-trib="' + x.id + '" data-seq><span class="v">' + esc(x.f.valor) + '</span>' + esc(x.f.de) + ' → ' + esc(curtoPara(x.f.para)) +
+    ' <span class="st">' + esc(stFluxo(x.f.status)) + '</span>' +
+    '<i class="pt' + (x.sai ? ' sai' : '') + '" style="' + (x.sai ? 'color:' : 'background:') + HEX[x.nivel] + '"></i></li>').join('') + '</ul>';
+
+/* a foz: os casos em que ele mesmo tem situação formal (investigado, denunciado), a situação em uma linha */
+$('#sit').innerHTML = CASOS.length ?
+  forte(CASOS.length, 1.8) + '<p class="fr" data-seq>' + (CASOS.length === 1 ? 'caso em que ele mesmo é ou foi investigado ou denunciado:' : 'casos em que ele mesmo é ou foi investigado ou denunciado:') + '</p>' +
+  '<div data-rot="leitura">' + CASOS.map(c => '<div class="caso" data-seq><a href="foz.html#' + esc(c.x.e.id) + '">' + esc(c.x.e.rotulo || c.x.nome) + '</a>' +
+    (c.junto.length ? ' <span class="sit">(inclui ' + c.junto.map(j => esc(j.e.rotulo || j.nome)).join(', ') + ')</span>' : '') +
+    '<span class="sit">' + esc(statusSeco(c.x.e.status_flavio)) + '</span></div>').join('') + '</div>' : '';
+
 /* margem: a semana */
 $('#sem-c').innerHTML = SEMANA.length ?
-  '<p class="num">' + fmtN(SEMANA.length) + '</p><p class="fr">fatos sobre ele, datados de ' + dm(kMin) + ' a ' + dm(kMax) + ', a semana mais recente do arquivo.</p>' +
-  '<p class="nota">Aqui, alguns deles. O resto, com as manchetes do dia, está em Recentemente.</p>' : '';
-$('#sem-l').innerHTML = VITRINE.map(i => '<li><i style="background:' + HEX[nivelItem(i.status)] + '"></i><span class="d">' + dm(i.data) + '</span>' + esc(i.titulo) +
-  (rotuloStatus(i.status) ? ' <span class="st">[' + esc(rotuloStatus(i.status)) + ']</span>' : '') + '</li>').join('');
-/* a versão dele no caso Master, quando a vitrine traz o caso (texto do status dele na Foz) */
-const fm = escPorId.master;
-if (fm && VITRINE.some(i => i.tema === 'master')){
-  const versao = frases(fm.e.status_flavio).slice(1).join(' ');
-  if (versao) $('#sem-l').insertAdjacentHTML('afterend', '<p class="nota">A versão dele no caso Master: ' + esc(versao) + '</p>');
-}
+  '<p class="num" data-rot="pausa:1.8"><span data-conta>' + fmtN(SEMANA.length) + '</span></p><p class="fr">fatos sobre ele de ' + dm(kMin) + ' a ' + dm(kMax) + '.</p>' : '';
+$('#sem-l').innerHTML = VITRINE.map(i => '<li data-seq><i style="background:' + HEX[nivelItem(i.status)] + '"></i><span class="d">' + dm(i.data) + '</span>' + esc(i.titulo) + '</li>').join('');
+if (!SEMANA.length) $('#semana').hidden = true;
 
 /* margem: teste você */
 if (quizN != null){
   const ops = [0, quizN, quizN + 5, quizN + 14].filter((v, i, a) => a.indexOf(v) === i).sort((a, b) => a - b);
-  $('#teste-c').innerHTML = '<p class="fr"><b>' + (quizAnos ? 'Em ' + quizAnos + ' anos de Senado' : 'No Senado') + '</b>, quantos projetos de lei de autoria dele viraram lei?</p>' +
+  $('#teste-c').innerHTML = '<p class="fr"><b>' + (quizAnos ? 'Em ' + quizAnos + ' anos de Senado' : 'No Senado') + '</b>, quantos projetos de lei dele viraram lei?</p>' +
     '<div class="opcoes" role="group" aria-label="Respostas">' + ops.map(v => '<button type="button" data-v="' + v + '">' + v + '</button>').join('') + '</div>';
   $$('#teste-c .opcoes button').forEach(b => b.addEventListener('click', () => {
     const v = +b.dataset.v;
     $$('#teste-c .opcoes button').forEach(o => { o.classList.toggle('certa', +o.dataset.v === quizN); o.classList.toggle('errada', +o.dataset.v !== quizN); o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
-    const outros = ((SEN.itens) || []).filter(x => !/aprovad/i.test(x.label)).map(x => esc(x.label) + ': ' + esc(x.valor)).join(' · ');
-    $('#resp').innerHTML = (v === quizN ? 'Isso. ' : 'Não. ') + '<b>' + quizN + '</b> ' + esc(PL.rotulo) + '.' + (outros ? ' No mesmo período: ' + outros + '.' : '') +
-      (SEN.fonte && SEN.fonte.url ? ' Fonte: <a href="' + esc(SEN.fonte.url) + '" target="_blank" rel="noopener">' + esc(SEN.fonte.veiculo || 'Senado') + '</a>.' : '');
+    $('#resp').innerHTML = (v === quizN ? 'Isso: ' : 'Não: ') + '<b>' + quizN + '</b>.' +
+      (SEN.fonte && SEN.fonte.url ? ' <span class="nf">' + fonteA({ url: SEN.fonte.url, veiculo: SEN.fonte.veiculo || 'Senado' }) + '</span>' : '');
   }));
 } else { $('#teste').hidden = true; }
 
-/* margem: o índice das margens */
-const anos = (D.timeline || []).map(t => parseInt(String(t.data || '').slice(0, 4), 10)).filter(Boolean);
-const MARG = [
-  ['drive.html#recente', 'Recentemente', kMax ? 'O que entrou no arquivo por último. Fato mais recente: ' + dm(kMax) + '.' : 'O que entrou no arquivo por último.'],
-  ['drive.html#arquivo', 'Arquivo', plural(ITENS.length, 'registro', 'registros') + ' em ' + (D.temas || []).length + ' pastas, com busca.'],
-  ['drive.html#cronologia', 'Cronologia', plural((D.timeline || []).length, 'marco', 'marcos') + (anos.length ? ', de ' + Math.min(...anos) + ' a ' + Math.max(...anos) : '') + '.'],
-  ['drive.html#noticias', 'Notícias', 'As manchetes do dia, com link para a fonte.'],
-  ['drive.html#chat', 'FlávioGPT', 'Pergunte ao arquivo. A resposta vem com status e fonte.'],
-  ['quiz.html', 'Quiz', 'Perguntas sobre o que está no arquivo, com a fonte na resposta.'],
-  ['close-friends.html', 'A rede em órbita', 'Os nomes em volta dele, em órbita.'],
-];
-$('#indice').innerHTML = MARG.map(m => '<li><a href="' + m[0] + '"><b>' + esc(m[1]) + '</b><span>' + esc(m[2]) + '</span></a></li>').join('');
-if ((D.meta || {}).aviso) $('#rodape').textContent = D.meta.aviso + ' Estar no rio não é ser acusado.';
+/* margem: as outras páginas */
+const MARG = [['drive.html#recente', 'Recentemente'], ['drive.html#arquivo', 'Arquivo'], ['drive.html#cronologia', 'Cronologia'], ['drive.html#noticias', 'Notícias'],
+  ['drive.html#chat', 'FlávioGPT'], ['quiz.html', 'Quiz'], ['close-friends.html', 'A rede em órbita']];
+$('#indice').innerHTML = MARG.map(m => '<li><a href="' + m[0] + '">' + esc(m[1]) + '</a></li>').join('');
+if (/confer[êe]ncia/i.test((D.meta || {}).aviso || '')) $('#rodape').textContent += ' Fontes em conferência.';
 
-/* ---------- compartilhar: navigator.share, com wa.me de reserva ---------- */
-const base = () => location.origin + location.pathname;
-async function manda(txt, id){
-  const url = base() + (id ? '#' + id : '');
-  if (navigator.share){ try { await navigator.share({ title: 'BOLSODRIVE: Um rio de escândalos', text: txt, url }); return; } catch (err){ if (err && err.name === 'AbortError') return; } }
-  window.open('https://wa.me/?text=' + encodeURIComponent(txt + ' ' + url), '_blank', 'noopener');
-}
-$('#zap').addEventListener('click', () => manda(TXT.geral(), ''));
-$('#zap2').addEventListener('click', () => manda(TXT.geral(), ''));
-$$('.enviar').forEach(b => b.addEventListener('click', () => manda((TXT[b.dataset.t] || TXT.geral)(), b.dataset.id || b.dataset.t)));
+/* ---------- enviar: cada botão leva o tópico da tela (data-share → assets/compartilhar.js).
+   Sem aquele script, a página ao menos manda o próprio link. ---------- */
+document.addEventListener('click', e => {
+  const b = e.target.closest && e.target.closest('[data-share]');
+  if (!b || window.BDShare) return;
+  const url = location.origin + location.pathname, t = document.title;
+  if (navigator.share){ navigator.share({ title: t, url }).catch(() => {}); return; }
+  window.open('https://wa.me/?text=' + encodeURIComponent(t + ' ' + url), '_blank', 'noopener');
+});
 
 /* ---------- foto da foz (Wikipédia, licença livre; o mesmo cache da Foz) ---------- */
 let fotoUrl = null;
@@ -947,12 +769,8 @@ function poeFoto(){
   poeFoto();
 })();
 
-/* o aro da foto pulsa na cor da gota que chega */
-function aroPulsa(sel){
-  if (OG) return () => {};   /* na imagem de prévia o aro não muda de cor */
-  let t = 0;
-  return cor => { const f = $(sel); if (!f) return; f.style.borderColor = RIO.css(cor); clearTimeout(t); t = setTimeout(() => { f.style.borderColor = ''; }, 260); };
-}
+/* o aro em volta dele: sempre neutro, nunca na cor da gota (a cor seria lida como situação dele) */
+const ARO = [216, 239, 221];
 
 /* =====================================================================
    A BACIA (primeira tela): três braços descem até a foto.
@@ -966,7 +784,7 @@ const ARMS = [
   { id: 'nomes', itens: NOMES, nm: 'nomes', sb: 'em volta dele', href: '#quem', setor: [138, 302],
     ordem: ['familia', 'operadores', 'milicia', 'financeiro', 'juridico', 'aliado', 'politico', 'outro'] },
   { id: 'dinheiro', itens: FLUX, nm: FLUX.length === 1 ? 'fluxo' : 'fluxos', sb: 'de dinheiro', href: '#dinheiro', setor: [232, 398], ordem: ['chega', 'sai'] },
-  { id: 'escandalos', itens: ESC, nm: 'escândalos', sb: 'chegam a ele', href: '#foz', setor: [-82, 84], ordem: ['entorno', 'familia', 'gabinete', 'direto'] },
+  { id: 'escandalos', itens: ESC, nm: 'escândalos', sb: 'chegam a ele', href: '#historia', setor: [-82, 84], ordem: ['entorno', 'familia', 'gabinete', 'direto'] },
 ].filter(a => a.itens.length);
 const palco = $('#palco'), bRot = $('#b-rot');
 ARMS.forEach(a => {
@@ -1136,11 +954,11 @@ function bacia(){
     rotas: tribs.map(t => ({ rota: t.rota, cor: t.cor, fila: t.it.fila, leve: !t.it.fila.length, semFoz: !!t.it.sai,
       taxa: t.it.fila.length ? Math.min(2, t.it.fila.length / BCIC) : 1 / 16, id: t.it.id, grupo: t.a.id })),
     fontes: tribs.map(t => ({ x: t.src.x, y: t.src.y, cor: t.cor, id: t.it.id, grupo: t.a.id })),
-    foz: { x: F.x, y: F.y, r: R, cor: corFoz },
+    foz: { x: F.x, y: F.y, r: R, cor: corFoz, aro: ARO },
     janela: () => { const r = palco.getBoundingClientRect(); return [-r.top - 40, window.innerHeight - r.top + 40]; },
     intro: !reduzido && !bacia.feita,
     aoChegar: () => { const d = $('#b-disco'); if (d) d.classList.add('pulso'); },
-    aoGota: aroPulsa('#b-disco'), aroFixo: OG
+    aroFixo: true
   });
   bacia.feita = true;
   marcaBacia();
@@ -1154,7 +972,7 @@ function pintaBacia(){
   const d = B.destaque, f = id => d ? (id === d ? 0 : 0.8) : 0;
   const lista = B.tribs.map(t => ({ curso: t.curso, fosco: f(t.a.id) }))
     .concat(B.grupos.map(g => ({ curso: g.curso, fosco: f(g.a.id) })), B.bracos.map(a => ({ curso: a.curso, fosco: f(a.id) })), [{ curso: B.tronco, fosco: d ? 0.3 : 0 }]);
-  RIO.leito(ctx, lista, { fundo: FUNDO, foz: { x: B.F.x, y: B.F.y, r: B.R, cor: B.corFoz, fosco: 0 } });
+  RIO.leito(ctx, lista, { fundo: FUNDO, foz: { x: B.F.x, y: B.F.y, r: B.R, cor: B.corFoz, aro: ARO, fosco: 0 } });
   const rp = B.mob ? 2.1 : 2.6;
   B.tribs.forEach(t => {
     ctx.globalAlpha = 1 - f(t.a.id) * 0.85;
@@ -1174,7 +992,7 @@ function realcaBacia(id){ if (B && B.destaque !== id){ B.destaque = id; pintaBac
 
 /* =====================================================================
    O RIO DOS TRECHOS: um rio só, que nasce no alto do trecho 1, recebe um afluente
-   de cada coisa citada (nome, fluxo, faixa de escândalos) e sai pelo pé do trecho 3
+   de cada coisa citada (nome, fluxo) e sai pelo pé do trecho 2
    para dentro da história rolável (assets/historia.js), onde os escândalos crescem um
    a um. Depois da história, o mesmo rio (#curso-f) desce até a foto dele.
    As curvas só descem. No celular ele corre pela margem direita; no desktop tem uma
@@ -1196,7 +1014,7 @@ function rioTrechos(){
   const amp = desk ? clamp((W - colR) / 2 - 90, 20, 90) : 8;
   const lam = desk ? 620 : 280;
   const y0 = rel($('#quem')).t + (desk ? 70 : 40);
-  /* perto do pé do trecho 3 a curva se endireita: o rio sai exatamente na faixa (laneX) */
+  /* perto do pé do último trecho a curva se endireita: o rio sai exatamente na faixa (laneX) */
   const xLane = y => laneX + amp * Math.sin(TAU * (y - y0) / lam + 0.7) * suave((y - y0) / 120) * (1 - suave((y - (H - 240)) / 200));
 
   /* afluentes: um por linha citada */
@@ -1297,30 +1115,30 @@ function rioFoz(){
   const ctx = leito.getContext('2d');
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   const corFoz = S.corEsc;
-  RIO.leito(ctx, [{ curso: c }], { fundo: FUNDO, foz: { x: disco.x, y: disco.y, r: R, cor: corFoz } });
+  RIO.leito(ctx, [{ curso: c }], { fundo: FUNDO, foz: { x: disco.x, y: disco.y, r: R, cor: corFoz, aro: ARO } });
   if (reduzido) RIO.setas(ctx, c, 'rgba(232,255,236,.5)', desk ? 120 : 90);
   CF = { solta: () => {} };
   CF.ctl = RIO.correnteza(agua, {
     W, H, dpr, vel: desk ? 62 : 48, raio: desk ? 2.7 : 2.3, semente: 13,
     cursos: [{ curso: c, grupo: 'principal' }],
     rotas: ESC.map(x => ({ rota: c, cor: RGB[x.nivel], fila: x.fila, leve: !x.fila.length, taxa: x.fila.length ? Math.min(0.3, x.fila.length / 30) : 1 / 24, id: x.id })),
-    foz: { x: disco.x, y: disco.y, r: R, cor: corFoz },
+    foz: { x: disco.x, y: disco.y, r: R, cor: corFoz, aro: ARO },
     janela: () => { const q = cursoF.getBoundingClientRect(); return [-q.top - 40, window.innerHeight - q.top + 40]; },
-    aoGota: aroPulsa('#c-disco')
+    aroFixo: true
   });
   CF.solta = RIO.observa(cursoF, CF.ctl);
   CF.W = W; CF.H = H;
 }
 
-/* ---------- o cabeçalho acompanha o trecho da abertura: 01, 02 e 03 marcam 1, 2 e 3; no topo, 0 ---------- */
+/* ---------- o cabeçalho acompanha o trecho da abertura: 01, 02 e a história marcam 1, 2 e 3; no topo, 0 ---------- */
 if (!OG){
-  const TRS = [['#quem', 1], ['#dinheiro', 2], ['#foz', 3]].map(p => [$(p[0]), p[1]]).filter(p => p[0]);
+  const TRS = [['#quem', 1], ['#dinheiro', 2], ['#historia', 3]].map(p => [$(p[0]), p[1]]).filter(p => p[0]);
   let rT = 0;
   const marcaTrecho = () => {
     rT = 0;
     const lim = window.innerHeight * 0.45;
     let t = 0;
-    TRS.forEach(p => { if (p[0].getBoundingClientRect().top <= lim) t = p[1]; });
+    TRS.forEach(p => { if (!p[0].hidden && p[0].getBoundingClientRect().top <= lim) t = p[1]; });
     if (document.body.getAttribute('data-trecho') !== String(t)){
       document.body.setAttribute('data-trecho', String(t));
       if (window.BDNav && BDNav.atualiza) BDNav.atualiza();
@@ -1333,7 +1151,7 @@ if (!OG){
 
 /* ---------- o link acompanha o trecho (para mandar o ponto certo) ---------- */
 if (!OG && 'IntersectionObserver' in window && history.replaceState){
-  const secoes = $$('#marielle, #quem, #dinheiro, #foz, #desagua, #semana, #teste, #adiante, #nascente');
+  const secoes = $$('#marielle, #quem, #dinheiro, #desagua, #semana, #teste, #adiante, #nascente');
   const io = new IntersectionObserver(es => {
     es.forEach(e => { if (!e.isIntersecting) return;
       const id = e.target.id, alvo = id === 'nascente' ? location.pathname + location.search : '#' + id;

@@ -11,7 +11,7 @@
 <meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="BOLSODRIVE: Um rio de escândalos">
-<meta property="og:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
+<meta property="og:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte.">
 <meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/">
 <meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
 <meta property="og:image:type" content="image/png">
@@ -20,7 +20,7 @@
 <meta property="og:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BOLSODRIVE: Um rio de escândalos">
-<meta name="twitter:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte. Estar no rio não é ser acusado.">
+<meta name="twitter:description" content="Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, elo por elo, a situação jurídica de cada nome e a fonte.">
 <meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
 <meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 
@@ -49,6 +49,10 @@
 .rede-painel .cm-f a{color:#86b3ff}
 .rede-painel .cm-foz{display:inline-flex; align-items:center; min-height:40px; font-size:14px; font-weight:600; color:var(--amber); text-decoration:none}
 .rede-painel .cm-foz:hover{text-decoration:underline; text-underline-offset:3px}
+.rede-painel .cm-a{display:flex; flex-wrap:wrap; align-items:center; gap:4px 14px; margin:0 0 6px}
+.cm-env{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 16px; border:1.5px solid var(--amber); border-radius:2px; background:var(--amber); color:#120c00; font:700 15px var(--sans, system-ui); cursor:pointer}
+.caminho-nota .cn-a{display:flex; flex-wrap:wrap; align-items:center; gap:4px 14px; margin-top:6px}
+.rec-vermais{margin:4px 0 0}
 .caminho-nota{display:none}
 @media (max-width:860px){
   .caminho-nota:not([hidden]){display:block; margin:-6px 0 12px; padding:9px 11px; border:1px solid var(--line); border-left:2px solid #d8efdd; border-radius:var(--radius); font-size:14px; line-height:1.45; color:var(--text)}
@@ -66,7 +70,7 @@
   <section id="view-recente" class="view active">
     <div class="view-head">
       <h1>Recentemente</h1>
-      <p class="tese"><b>Flávio Bolsonaro quer ser presidente.</b> Isto é o que saiu sobre ele nos últimos dias — os fatos do arquivo, com fonte e status, e as manchetes do dia. <span id="rec-quando" class="rec-quando"></span></p>
+      <p class="tese">O que saiu sobre ele nos últimos dias. <span id="rec-quando" class="rec-quando"></span></p>
     </div>
     <div id="rec-lista" class="recente"></div>
     <p class="rec-mais"><button class="backlink" data-go="cronologia">ver a cronologia completa →</button> <button class="backlink" data-go="arquivo">ver as pastas do arquivo →</button></p>
@@ -76,7 +80,7 @@
   <section id="view-arquivo" class="view">
     <div class="view-head">
       <h1>Arquivo</h1>
-      <p class="tese"><b>Flávio Bolsonaro quer ser presidente.</b> Este arquivo mostra, com fonte em cada linha, o que ele fez com o mandato, com o dinheiro público e com quem andou. Os números abaixo resumem o caso; cada um abre a pasta que o prova.</p>
+      <p class="tese">Tudo o que o site mostra, com fonte em cada linha.</p>
     </div>
     <div class="toolbar">
       <label class="search">🔎 <input id="busca" placeholder="Buscar no arquivo…" autocomplete="off"></label>
@@ -89,7 +93,7 @@
   <section id="view-rede" class="view">
     <div class="view-head">
       <h1>Close Friends</h1>
-      <p>Quem anda com ele — e o que a Justiça diz de cada um. Toque num nome para ver os vínculos e a situação penal. Arraste para mover e pince para dar zoom; no celular, toque antes em “mover o mapa”. O anel vermelho marca quem foi preso ou condenado.</p>
+      <p>Quem anda com ele. Anel vermelho: preso ou condenado.</p>
     </div>
     <div class="toolbar">
       <label class="search"><input id="rede-search" placeholder="buscar nome na rede…" autocomplete="off"></label>
@@ -112,7 +116,7 @@
   <section id="view-cronologia" class="view">
     <div class="view-head">
       <h1>A Cronologia</h1>
-      <p>Vinte anos de casos, um atrás do outro: da rachadinha na Alerj ao banqueiro preso do filme sobre o pai. Alterne para "faixas" para ver a vida de cada caso.</p>
+      <p>Vinte anos de casos, um atrás do outro.</p>
     </div>
     <div class="cron-toggle">
       <button class="cron-tab active" data-cron="log">log</button>
@@ -126,7 +130,7 @@
   <section id="view-noticias" class="view">
     <div class="view-head">
       <h1>Notícias</h1>
-      <p>As polêmicas mais recentes sobre o senador. Ao abrir a aba, o site tenta puxar o Google Notícias ao vivo; se o feed estiver fora do ar, mostra a última leva salva.</p>
+      <p>As manchetes mais recentes sobre ele.</p>
     </div>
     <div class="news-bar">
       <span id="news-status" class="news-status">…</span>
@@ -142,10 +146,9 @@
   <section id="view-chat" class="view">
     <div class="view-head">
       <h1>FlávioGPT</h1>
-      <p>Pergunte o que quiser sobre ele. As respostas saem só do arquivo — com status e fonte — e linkam o registro de origem.</p>
+      <p>Pergunte. As respostas saem só do arquivo, com fonte.</p>
     </div>
     <div class="chat-shell">
-      <div class="chat-disc">Responde só com base no arquivo. Não fala em nome do senador nem inventa fatos.</div>
       <div id="chat-msgs" class="chat-msgs"></div>
       <form id="chat-form" class="chat-form">
         <input id="chat-inp" placeholder="Ex.: como ficou o caso da rachadinha?" autocomplete="off">
@@ -157,16 +160,18 @@
 
   <footer class="site-footer">
     <button id="link-metodo">// método &amp; transparência</button>
-    <span class="foot-dim">conteúdo de registro público, com fonte e status jurídico em cada registro</span>
+    <span class="foot-dim">Cada fato tem fonte e a situação jurídica de cada nome.</span>
   </footer>
 
 </main>
 
 <div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
 
-<script src="data/dados.js?v=set2026n"></script>
-<script src="data/foz.js?v=7"></script>
-<script src="assets/app.js?v=set2026s"></script>
+<script src="data/dados.js?v=set2026q"></script>
+<script src="data/foz.js?v=11"></script>
+<script src="data/topicos.js?v=3"></script>
+<script src="assets/compartilhar.js?v=1" defer></script>
+<script src="assets/app.js?v=set2026v"></script>
 <script src="assets/nav.js?v=3"></script>
 </body>
 </html>

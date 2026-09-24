@@ -48,7 +48,7 @@
                       leve = gotejamento discreto (sem registros), que não acende a foz;
                       semFoz = a rota não termina na foz (a gota some no fim sem acender o aro)
                 fontes:[{x, y, cor, id, grupo}]         nascentes que pulsam
-                foz:{x, y, r, cor}                      ondulação na foz
+                foz:{x, y, r, cor, aro}                 ondulação na foz (aro: cor fixa do anel; o anel é dele, então é sempre neutro)
                 janela() -> [topo, base] visível em px do canvas (só isso é desenhado)
                 intro (onda de luz de cima para baixo na primeira vez), aoChegar() quando ela chega à foz,
                 aoGota(cor, item) quando uma gota (não esmaecida) chega à foz: o aro pulsa na cor dela
@@ -194,9 +194,10 @@ function leito(ctx, lista, op){
     if (foz){
       const f = foz.fosco || 0;
       ctx.beginPath();
-      if (pi === 0){ ctx.fillStyle = css(mix(F, foz.cor, 0.13 * (1 - f))); ctx.arc(foz.x, foz.y, foz.r + 24, 0, TAU); ctx.fill(); }
-      if (pi === 1){ ctx.fillStyle = css(mix(F, foz.cor, 0.5 * (1 - 0.8 * f))); ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.fill(); }
-      if (pi === 2){ ctx.strokeStyle = css(mix(F, foz.cor, 0.9 * (1 - 0.8 * f))); ctx.lineWidth = 1.2; ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.stroke(); }
+      /* com aro fixo, o halo em volta da foto também é neutro: a cor da água para antes dele */
+      if (pi === 0){ ctx.fillStyle = css(mix(F, foz.aro || foz.cor, (foz.aro ? 0.06 : 0.13) * (1 - f))); ctx.arc(foz.x, foz.y, foz.r + 24, 0, TAU); ctx.fill(); }
+      if (pi === 1){ ctx.fillStyle = css(mix(F, foz.aro || foz.cor, (foz.aro ? 0.16 : 0.5) * (1 - 0.8 * f))); ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.fill(); }
+      if (pi === 2){ ctx.strokeStyle = css(mix(F, foz.aro || foz.cor, 0.9 * (1 - 0.8 * f))); ctx.lineWidth = 1.2; ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.stroke(); }
     }
   });
 }
@@ -308,12 +309,13 @@ function correnteza(cv, cena){
   });
 
   /* a foz: o aro acende com o que chega e solta um pulso na cor da gota */
-  const aro = { brilho: 0, cor: F ? F.cor : [255, 176, 46], pulsos: [], ult: -9 };
+  const fixo = !!(cena.aroFixo || (F && F.aro));     /* aro fixo: nunca na cor da gota (a cor seria lida como situação dele) */
+  const aro = { brilho: 0, cor: F ? (F.aro || F.cor) : [216, 239, 221], pulsos: [], ult: -9 };
   function chega(g){
     const r = rotas[g.ri];
     if (r.leve || r.semFoz || r.alfa < 0.9 || !F) return;
-    aro.brilho = Math.min(1, aro.brilho + 0.14); if (!cena.aroFixo) aro.cor = r.cor;
-    if (t - aro.ult > 0.22){ aro.ult = t; aro.pulsos.push({ t0: t, cor: cena.aroFixo ? aro.cor : r.cor }); if (cena.aoGota && !cena.aroFixo) cena.aoGota(r.cor, g.item); }
+    aro.brilho = Math.min(1, aro.brilho + 0.14); if (!fixo) aro.cor = r.cor;
+    if (t - aro.ult > 0.22){ aro.ult = t; aro.pulsos.push({ t0: t, cor: fixo ? aro.cor : r.cor }); if (cena.aoGota && !fixo) cena.aoGota(r.cor, g.item); }
   }
 
   function atualiza(dt){
@@ -388,7 +390,7 @@ function correnteza(cv, cena){
     }
 
     if (F && F.y + F.r * 2.3 > a && F.y - F.r * 2.3 < bb){
-      ctx.strokeStyle = css(mix(F.cor, [255, 255, 255], 0.35)); ctx.lineWidth = 1.3;
+      ctx.strokeStyle = css(mix(F.aro || F.cor, [255, 255, 255], 0.35)); ctx.lineWidth = 1.3;
       for (let k = 0; k < 3; k++){
         const ph = (t / 4.2 + k / 3) % 1, rr = F.r + 11 + ph * F.r * 1.05;
         ctx.globalAlpha = 0.42 * Math.pow(1 - ph, 1.5) * F.alfa;

@@ -32,7 +32,7 @@ const F = {
 const BASICO = [
   { tipo:'faixa', min:0, max:1000000, passo:1, inicio:500000, fmt:fmtBRL, dif: d => fmtBRL(Math.round(d * 100) / 100),
     extremos:['R$ 0','R$ 1 milhão'],
-    pergunta:'Até 26/08/2026, na prestação de contas parcial ao TSE, quanto pessoas físicas tinham doado à campanha presidencial dele?',
+    pergunta:'Até 26/08/2026, quanto pessoas físicas tinham doado à campanha presidencial dele?',
     valor:6.01, acerta: v => v <= 10000,
     numero:'R$ 6,01',
     resposta:'Na prestação de contas parcial ao TSE consultada em 26/08/2026, pessoas físicas tinham doado <b>R$ 6,01</b> à campanha presidencial de Flávio Bolsonaro. O PL, partido dele, repassou <b>R$ 42 milhões</b>.',
@@ -40,6 +40,7 @@ const BASICO = [
     chip:'FATO · PRESTAÇÃO DE CONTAS AO TSE',
     fontes:[F.poder_doacoes],
     curto:'Doações de pessoas físicas até 26/08', gab:'R$ 6,01',
+    breve:'De pessoas físicas; o PL deu R$ 42 milhões.',
     zap:'Até 26/08/2026, pessoas físicas tinham doado R$ 6,01 à campanha presidencial de Flávio Bolsonaro; o PL, partido dele, repassou R$ 42 milhões. Prestação de contas parcial ao TSE.' },
 
   { tipo:'multi',
@@ -50,6 +51,7 @@ const BASICO = [
     chip:'FATO · DADOS ABERTOS DO SENADO',
     fontes:[F.bdf, F.senado],
     curto:'Projetos de autoria dele que viraram lei', gab:'1',
+    breve:'virou lei em 7 anos de Senado.',
     zap:'Em 7 anos de Senado, 1 projeto de autoria de Flávio Bolsonaro virou lei. Dados oficiais do Senado (cód. 5894, apurados em 09/09/2026): 188 relatorias, 1.142 votações, 1 projeto de autoria aprovado.' },
 
   { tipo:'faixa', min:0, max:500, passo:5, inicio:250, fmt:fmtPct, dif: d => Number(d).toLocaleString('pt-BR') + (d === 1 ? ' ponto percentual' : ' pontos percentuais'),
@@ -62,6 +64,7 @@ const BASICO = [
     fontes:[F.poder_patrimonio],
     ressalva:'A declaração usa valor de aquisição. O maior item é uma casa no Lago Sul, de R$ 6,2 milhões.',
     curto:'Alta do patrimônio acima da inflação', gab:'211%',
+    breve:'De R$ 1,74 milhão (2018) a R$ 8,19 milhões (2026), declarados por ele ao TSE.',
     zap:'O patrimônio que Flávio Bolsonaro declarou ao TSE foi de R$ 1,74 milhão (2018) a R$ 8,19 milhões (2026): 4,7 vezes, cerca de 211% de alta real descontado o IPCA.' },
 
   { tipo:'multi',
@@ -72,6 +75,7 @@ const BASICO = [
     chip:'FATO · ORÇAMENTO DA UNIÃO',
     fontes:[F.jbr],
     curto:'Emendas para educação, de cada R$ 100', gab:'R$ 0,80',
+    breve:'De cada R$ 100 em emendas dele, para educação.',
     zap:'De cada R$ 100 em emendas indicadas por Flávio Bolsonaro nos orçamentos 2020–2026, R$ 0,80 foi para educação. Saúde ficou com 50,8%; defesa, 21,8%; segurança pública, 19,4%; ciência e agricultura, nada.' },
 
   { tipo:'multi',
@@ -82,6 +86,7 @@ const BASICO = [
     chip:'FATO · VOTAÇÕES NOMINAIS DO SENADO',
     fontes:[F.em],
     curto:'Ausência em votações nominais (2026)', gab:'43%',
+    breve:'Das votações de 2026 sem voto dele; a média no Senado é 20%.',
     zap:'Flávio Bolsonaro não registrou voto em 43% das 49 deliberações nominais do Senado analisadas em 2026 (até 16/06). A média entre os 81 senadores é 20%; ele é o 5º em ausências.' },
 
   { tipo:'multi',
@@ -94,21 +99,19 @@ const BASICO = [
     chip:'FATO · ALERJ (2003 E 2005) · JORNAL NACIONAL, 28/08/2026',
     fontes:[F.itatiaia],
     curto:'Medalha Tiradentes na Alerj', gab:'Adriano da Nóbrega',
+    breve:'A Adriano da Nóbrega, apontado como chefe do Escritório do Crime.',
     zap:'Flávio Bolsonaro concedeu na Alerj a Medalha Tiradentes (2005) e uma moção de louvor (2003) a Adriano da Nóbrega, ex-capitão do Bope apontado como chefe do "Escritório do Crime", condenado por homicídio em 2014. Em 28/08/2026, no Jornal Nacional, disse que ele era um "policial exemplar" à época.' },
 
   { tipo:'multi',
-    pergunta:'Ele foi condenado no caso da rachadinha da Alerj?',
-    opcoes:['Sim, em 2022',
-            'Sim, mas recorreu',
-            'Não: a denúncia foi anulada e o mérito nunca foi julgado',
-            'O caso ainda está em julgamento'], certa:2,
-    numero:'NUNCA CONDENADO',
-    resposta:'A denúncia do MP-RJ (2020) foi <b>anulada</b>: o STJ anulou as provas em 2021, o STF reconheceu o foro privilegiado, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025. Ele <b>nunca foi condenado</b> e o mérito <b>nunca foi julgado</b>.',
-    chip:'DENÚNCIA ANULADA · NUNCA CONDENADO',
+    pergunta:'Quantas pessoas o MP-RJ denunciou na rachadinha da Alerj, em 2020?',
+    opcoes:['3','9','17','40'], certa:2,
+    numero:'17 denunciados',
+    resposta:'Em 2020, o MP-RJ denunciou <b>17 pessoas</b> na rachadinha da Alerj, ele entre elas. A denúncia foi <b>anulada</b>: o STJ anulou as provas em 2021, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025.',
+    chip:'DENÚNCIA ANULADA',
     fontes:[F.carta],
-    ressalva:'Se alguém disser que ele foi condenado por rachadinha, está errado. A pergunta está aqui para que o status do caso fique claro.',
-    curto:'Rachadinha da Alerj', gab:'Nunca condenado',
-    zap:'Sobre a rachadinha da Alerj: a denúncia foi anulada e Flávio Bolsonaro nunca foi condenado. O STJ anulou as provas em 2021, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025. O mérito nunca foi julgado.' },
+    curto:'Denunciados na rachadinha da Alerj', gab:'17',
+    breve:'Ele entre eles; denúncia anulada.',
+    zap:'Em 2020, o MP-RJ denunciou 17 pessoas na rachadinha da Alerj, Flávio Bolsonaro entre elas. A denúncia foi anulada: o STJ anulou as provas em 2021 e o caso foi arquivado em 2022.' },
 
   { tipo:'multi',
     pergunta:'Quanto custou a mansão usada como QG da pré-campanha dele, em nome de um coordenador da campanha?',
@@ -118,6 +121,7 @@ const BASICO = [
     chip:'FATO · PEDIDO DE APURAÇÃO À PF EM 02/07/2026',
     fontes:[F.metropoles],
     curto:'Mansão usada como QG da pré-campanha', gab:'R$ 14,5 milhões',
+    breve:'Em nome de um coordenador da campanha; o BRB financiou R$ 10,5 milhões.',
     zap:'A mansão de R$ 14,5 milhões usada como QG da pré-campanha de Flávio Bolsonaro está em nome do advogado José Vicente Santini, coordenador da campanha: R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo BRB. Em 02/07/2026 um deputado pediu à PF que apurasse a origem dos recursos; Santini diz que "está tudo declarado".' }
 ];
 return BASICO;

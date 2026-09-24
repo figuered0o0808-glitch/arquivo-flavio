@@ -75,7 +75,13 @@ div.sat.some{opacity:0; pointer-events:none}
 .vinculo .rot{font-family:var(--mono); font-size:11px; color:var(--cinza); letter-spacing:.06em; margin-bottom:4px}
 .vinculo p{margin:0 0 6px; font-size:15px}
 .ficha .sit{font-size:14px; color:var(--cinza); margin:0 0 12px}
+.ficha .sit.ele{color:var(--tinta); padding-left:10px; border-left:2px solid var(--tinta)}
+.sit-m{border:0; background:none; padding:6px 2px; color:var(--amber); font:600 13px var(--sans); cursor:pointer}
 .dica{color:var(--cinza); font-size:14px; margin:6px 0 0}
+.cab{display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 12px}
+.cab .sub{margin:0}
+.cab[hidden]{display:none}
+.env{flex:none; display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px; border:1.5px solid var(--amber); border-radius:2px; background:var(--amber); color:#120c00; font:700 15px var(--sans); cursor:pointer}
 
 /* lista "mais" */
 .folha{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; z-index:60}
@@ -96,7 +102,7 @@ div.sat.some{opacity:0; pointer-events:none}
 
 <div class="wrap">
   <h1 class="sec">Close Friends</h1>
-  <p class="sub">As ligações diretas de cada pessoa, uma de cada vez. Toque em alguém para explorar a partir dela; os pontinhos mostram quem está atrás de cada um.</p>
+  <div class="cab"><p class="sub">Toque em alguém para seguir.</p><button type="button" class="env" data-share="quem-anda">enviar ↗</button></div>
 
   <div class="pilulas" id="trilhas">
     <button data-trilha="filme">O dinheiro do filme</button>
@@ -119,8 +125,8 @@ div.sat.some{opacity:0; pointer-events:none}
 
   <div class="legenda">
     <span><i class="g"></i>preso ou condenado</span>
-    <span><i class="m"></i>denunciado ou investigado</span>
-    <span><i class="n"></i>sem processo conhecido</span>
+    <span><i class="m"></i>investigado ou denunciado</span>
+    <span><i class="n"></i>sem processo</span>
   </div>
 
   <div class="ficha" id="ficha"></div>
@@ -128,7 +134,9 @@ div.sat.some{opacity:0; pointer-events:none}
 
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
-<script src="data/dados.js?v=set2026n"></script>
+<script src="data/dados.js?v=set2026q"></script>
+<script src="data/topicos.js?v=3"></script>
+<script src="assets/compartilhar.js?v=1" defer></script>
 <script>
 (function(){
   const D = window.DOSSIE;
@@ -154,6 +162,12 @@ div.sat.some{opacity:0; pointer-events:none}
     return 'nenhum';
   }
   const ROTULO = { grave:'PRESO OU CONDENADO', medio:'DENUNCIADO OU INVESTIGADO', nenhum:'SEM PROCESSO CONHECIDO' };
+  const SIT_FLAVIO = 'Rachadinha: denúncia anulada. Caso Master: investigado no STF, sem denúncia.';
+  /* a situação de cada um: a 1ª frase; o resto em "mais" */
+  function sitCurta(st, sf){
+    const fr = String(st).split(/(?<=\.)\s+(?=[A-ZÁÉÍÓÚ])/), resto = fr.slice(1).join(' ');
+    return '<p class="sit">' + esc(fr[0]) + (resto ? '<span class="sit-r" hidden> ' + esc(resto) + '</span> <button type="button" class="sit-m" onclick="this.previousElementSibling.hidden=false;this.remove()">mais</button>' : '') + sf + '</p>';
+  }
 
   function vizinhos(id){
     const seen = new Set(), out = [];
@@ -340,14 +354,15 @@ div.sat.some{opacity:0; pointer-events:none}
       ? ' <a href="' + esc(n.situacao_fontes[0].url) + '" target="_blank" rel="noopener">[fonte]</a>' : '';
     $('#ficha').innerHTML =
       '<p class="quem">' + esc(n.nome) + '</p>' +
-      '<p class="papel">' + esc(n.papel || '') + '</p>' +
-      '<div class="chip ' + s + '">' + ROTULO[s] + '</div>' +
+      '<p class="papel">' + esc(id === 'flavio' ? 'Senador (PL-RJ), candidato à Presidência' : (n.papel || '')) + '</p>' +
+      /* ele: uma linha seca, em cor neutra (nada dele em âmbar ou vermelho) */
+      (id === 'flavio' ? '<p class="sit ele">' + esc(SIT_FLAVIO) + '</p>' : '<div class="chip ' + s + '">' + ROTULO[s] + '</div>') +
       vinculo +
-      (n.status ? '<p class="sit">' + esc(n.status) + sf + '</p>' : '') +
+      (n.status && id !== 'flavio' ? sitCurta(n.status, sf) : '') +
       '<div class="acoes">' +
-        (its ? '<a class="sec" href="drive.html#arquivo" target="_blank" rel="noopener">' + its + (its === 1 ? ' registro' : ' registros') + ' no arquivo</a>' : '') +
+        (its ? '<a class="sec" href="drive.html#arquivo" target="_blank" rel="noopener">' + its + (its === 1 ? ' registro' : ' registros') + '</a>' : '') +
       '</div>' +
-      (!trilha && caminho.length === 1 ? '<p class="dica">Toque em alguém da órbita para ver como se liga a ele.</p>' : '');
+      '';
   }
 
   /* ---------- "+ N ligações" ---------- */
@@ -391,7 +406,7 @@ div.sat.some{opacity:0; pointer-events:none}
     ]}
   };
   function iniciaTrilha(k){
-    trilha = TRILHAS[k]; passo = 0; $('.sub').hidden = true;
+    trilha = TRILHAS[k]; passo = 0; $('.cab').hidden = true;
     document.querySelectorAll('#trilhas button').forEach(b => b.classList.toggle('on', b.dataset.trilha === k));
     caminho = []; sel = null; vaiPasso();
   }
@@ -405,11 +420,20 @@ div.sat.some{opacity:0; pointer-events:none}
     $('#sair').addEventListener('click', encerraTrilha);
   }
   function encerraTrilha(){
-    trilha = null; $('#narra').hidden = true; $('.sub').hidden = false;
+    trilha = null; $('#narra').hidden = true; $('.cab').hidden = false;
     document.querySelectorAll('#trilhas button').forEach(b => b.classList.remove('on'));
     ficha();
   }
   document.querySelectorAll('#trilhas button').forEach(b => b.addEventListener('click', () => iniciaTrilha(b.dataset.trilha)));
+
+  /* ---------- enviar: o tópico da página (assets/compartilhar.js); sem o módulo, o endereço ---------- */
+  document.querySelectorAll('[data-share]').forEach(b => b.addEventListener('click', ev => {
+    ev.preventDefault(); ev.stopImmediatePropagation();
+    if (window.BDShare && typeof window.BDShare.enviar === 'function'){ window.BDShare.enviar(b.dataset.share); return; }
+    const url = location.origin + location.pathname;
+    if (navigator.share){ navigator.share({ url }).catch(() => {}); return; }
+    window.open('https://wa.me/?text=' + encodeURIComponent(url), '_blank', 'noopener');
+  }));
 
   /* ---------- deep link e arranque ---------- */
   const h = location.hash.replace('#', '');

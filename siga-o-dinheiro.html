@@ -64,6 +64,12 @@
 .assina b{color:var(--tinta)}
 
 .vazio{padding:20px 0}
+.obs{font-size:17px; line-height:1.4; margin:0 0 6px}
+.acoes.envio{align-items:center; gap:6px 16px; margin-top:12px}
+.acoes .env{flex:0 0 auto; min-height:44px; padding:0 20px; font-weight:700}
+.foz-liga{margin:6px 0 0}
+.lm{display:inline-flex; align-items:center; min-height:44px; padding:0; margin:2px 0 0; border:0; background:none; color:var(--cinza); font:600 14px var(--sans); cursor:pointer}
+.mais{border-top:1px solid var(--linha); padding-top:10px; margin-bottom:6px}
 /* ligação com a Foz: só nos fluxos que têm .foz nos dados */
 .foz-liga{margin:0 0 12px; font-size:15px}
 .foz-liga a{display:inline-flex; align-items:center; min-height:44px; font-weight:700; color:var(--amber); text-decoration:none}
@@ -79,10 +85,10 @@
 
 <main class="wrap">
   <h1 class="sec">Siga o dinheiro</h1>
-  <p class="sub" id="sub">Fluxos de dinheiro do arquivo, um de cada vez, com fonte e status.</p>
+  <p class="sub" id="sub">Um fluxo de cada vez.</p>
 
   <section class="palco" id="palco" aria-label="Fluxo de dinheiro">
-    <div class="topo"><span id="ind" aria-live="polite"></span><span id="legenda">origem → destino</span></div>
+    <div class="topo"><span id="ind" aria-live="polite"></span><span id="legenda"></span></div>
 
     <div id="cartao" hidden>
       <p class="numero valor" id="valor" role="img"><span id="pre"></span><span id="num"></span><span id="suf"></span></p>
@@ -97,13 +103,15 @@
       </div>
 
       <p class="obs" id="obs"></p>
-      <div class="chip" id="chip"></div>
       <p class="fonte" id="fonte"></p>
-      <p class="fonte" id="fonte2" hidden></p>
-      <p class="ressalva" id="ressalva"></p>
+      <div class="acoes envio"><button type="button" class="env" id="zap" data-share="fluxo-1">enviar ↗</button></div>
       <p class="foz-liga" id="foz-liga" hidden><a id="foz-a" href="foz.html"></a></p>
-
-      <div class="acoes"><button type="button" class="sec" id="zap">Mandar no WhatsApp</button></div>
+      <button type="button" class="lm" id="lm" aria-expanded="false">ler mais ↓</button>
+      <div class="mais" id="mais" hidden>
+        <div class="chip" id="chip"></div>
+        <p class="fonte" id="fonte2" hidden></p>
+        <p class="ressalva" id="ressalva"></p>
+      </div>
       <div class="acoes nav">
         <button type="button" class="sec" id="ant">← Anterior</button>
         <button type="button" id="prox">Próximo fluxo →</button>
@@ -111,9 +119,9 @@
     </div>
 
     <div class="fecho" id="fecho" hidden>
-      <p class="frase">Todos os valores são os citados nas fontes.</p>
-      <a class="grande foz-fim" href="foz.html" id="foz-fim">A Foz: os escândalos que chegam a ele →</a>
-      <a class="grande" href="drive.html#arquivo" data-registros>Ver o arquivo completo →</a>
+      <div class="acoes"><button type="button" class="env" data-share="siga">enviar ↗</button></div>
+      <a class="grande foz-fim" href="foz.html" id="foz-fim">A Foz →</a>
+      <a class="grande" href="drive.html#arquivo" data-registros>O arquivo completo →</a>
       <div class="acoes"><button type="button" class="sec" id="rever">← Rever do início</button></div>
     </div>
 
@@ -122,13 +130,14 @@
     <div class="assina"><span><b>BolsoDrive</b> · siga o dinheiro</span><span id="assina-n"></span></div>
   </section>
 
-  <p class="rodape"><a href="drive.html#arquivo" data-registros>Ver o arquivo completo →</a></p>
 </main>
 
 <noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="drive.html#arquivo">Ver o arquivo completo →</a></p></noscript>
 
-<script src="data/dados.js?v=set2026n"></script>
-<script src="data/foz.js?v=7"></script>
+<script src="data/dados.js?v=set2026q"></script>
+<script src="data/foz.js?v=11"></script>
+<script src="data/topicos.js?v=3"></script>
+<script src="assets/compartilhar.js?v=1" defer></script>
 <script>
 (function(){
 'use strict';
@@ -193,8 +202,20 @@ var el = {
   linha:$('linha'), ponta:$('ponta'), de:$('de'), para:$('para'), obs:$('obs'), chip:$('chip'),
   fonte:$('fonte'), fonte2:$('fonte2'), ressalva:$('ressalva'), zap:$('zap'), ant:$('ant'),
   prox:$('prox'), rever:$('rever'), assinaN:$('assina-n'), legenda:$('legenda'),
-  fozLiga:$('foz-liga'), fozA:$('foz-a')
+  fozLiga:$('foz-liga'), fozA:$('foz-a'), lm:$('lm'), mais:$('mais')
 };
+/* uma linha por fluxo (chave: o valor em DOSSIE.fluxoDinheiro.fluxos); o texto longo fica em "ler mais".
+   Fluxo novo sem linha aqui mostra a 1ª frase de .obs. */
+var LINHA = {
+  'R$ 3,1 mi': 'Em 2021, aprovado pela diretoria de Paulo Henrique Costa, preso no caso Master.',
+  'R$ 69 mi': '7 repasses em 2025, segundo delação homologada pelo STF; ele é investigado, sem denúncia.',
+  'R$ 42 mi': 'Até 26/08/2026, pessoas físicas tinham doado R$ 6,01, segundo a prestação ao TSE.',
+  'R$ 300 mil': 'Doação registrada no TSE e confirmada pelo doador.',
+  'R$ 1,6 mi': 'Contrato declarado ao TSE com a agência de um ex-assessor de Tarcísio de Freitas.',
+  'R$ 10,5 mi': 'Imóvel de R$ 14,5 milhões usado como QG da campanha; Santini diz que está tudo declarado.',
+  'R$ 364 mi': 'Emendas de 2020 a 2026: 50,8% para saúde, 0,8% para educação.'
+};
+function linha(f){ return LINHA[f.valor] || (String(f.obs || '').split(/\.\s/)[0].replace(/\.$/, '') + '.'); }
 
 var reduz = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 var raf = 0, L = 89, prog = 0, atual = 0;
@@ -255,7 +276,7 @@ function mostrar(i){
   el.para.textContent = limpa(f.para);
   el.pre.textContent = pt.pre; el.suf.textContent = pt.suf;
   el.valor.setAttribute('aria-label', extenso(f.valor));
-  el.obs.textContent = limpa(f.obs);
+  el.obs.textContent = linha(f);
   el.chip.textContent = s.chip;
   el.chip.className = 'chip' + (s.classe ? ' ' + s.classe : '');
   linkFonte(el.fonte, 'Fonte', f.fonte || {});
@@ -263,7 +284,9 @@ function mostrar(i){
   el.ressalva.textContent = s.ressalva; el.ressalva.hidden = !s.ressalva;
   var fz = fozDe(f.foz);
   el.fozLiga.hidden = !fz;
-  if (fz){ el.fozA.href = 'foz.html#' + encodeURIComponent(fz.id); el.fozA.textContent = 'Onde este dinheiro chega: ' + (fz.rotulo || fz.nome) + ' →'; }
+  if (fz){ el.fozA.href = 'foz.html#' + encodeURIComponent(fz.id); el.fozA.textContent = 'Na Foz: ' + (fz.rotulo || fz.nome) + ' →'; }
+  el.zap.setAttribute('data-share', 'fluxo-' + (brutos.indexOf(f) + 1));
+  el.mais.hidden = true; el.lm.textContent = 'ler mais ↓'; el.lm.setAttribute('aria-expanded', 'false');
   el.ant.disabled = (i === 0);
   el.prox.textContent = (i === N - 1) ? 'Concluir →' : 'Próximo fluxo →';
   el.assinaN.textContent = (i + 1) + '/' + N;
@@ -273,23 +296,33 @@ function mostrar(i){
 
 function ir(d){ var i = atual + d; if (i < 0 || i > N) return; mostrar(i); window.scrollTo({top:0, behavior:reduz ? 'auto' : 'smooth'}); }
 
-/* Compartilhar: a frase, o status e a fonte vão dentro da mensagem; o endereço sai de location. */
+/* Enviar: o botão manda o tópico da tela (assets/compartilhar.js): "fluxo-<n>" em cada fluxo, "dinheiro" no fim.
+   Sem o módulo, manda o fluxo em uma linha e o endereço dele. */
 function base(){ return location.protocol === 'file:' ? location.href.split('#')[0] : location.origin + location.pathname; }
 function mensagem(i){
-  var f = FLUXOS[i], s = statusDe(f);
-  return 'Flávio Bolsonaro · Siga o dinheiro\n' + extenso(f.valor) + ': ' + limpa(f.de) + ' → ' + limpa(f.para) + ' (' + limpa(f.obs) + ').\n' +
-    'Status: ' + s.chip + '.\n' +
-    (f.defesa && !/\b(diz|afirma|nega)\b|improcedente/i.test(f.obs || '') ? limpa(f.defesa) + '\n' : '') +
-    'Fonte: ' + (f.fonte && f.fonte.veiculo || '') + (f.fonte && f.fonte.url ? ' — ' + f.fonte.url : '') +
-    '\n\nBolsoDrive · Siga o dinheiro, fluxo ' + (i + 1) + ' de ' + N + ': ' + base() + '#' + (i + 1);
+  var f = FLUXOS[i];
+  return extenso(f.valor) + ': ' + limpa(f.de) + ' → ' + limpa(f.para) + '. ' + linha(f) + '\n' + base() + '#' + (i + 1);
 }
+function envia(b, ev){
+  ev.preventDefault(); ev.stopImmediatePropagation();
+  var id = b.getAttribute('data-share');
+  if (window.BDShare && typeof window.BDShare.enviar === 'function'){ window.BDShare.enviar(id); return; }
+  var txt = atual < N ? mensagem(atual) : base();
+  if (navigator.share){ navigator.share({text:txt}).catch(function(){}); return; }
+  window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+}
+Array.prototype.forEach.call(document.querySelectorAll('[data-share]'), function(b){ b.addEventListener('click', function(ev){ envia(b, ev); }); });
+el.lm.addEventListener('click', function(){
+  var ab = el.mais.hidden; el.mais.hidden = !ab;
+  el.lm.textContent = ab ? 'ler menos ↑' : 'ler mais ↓'; el.lm.setAttribute('aria-expanded', String(ab));
+});
 
 /* Estado inicial */
 if (N === 0){
   el.cartao.hidden = true; el.fecho.hidden = true; el.vazio.hidden = false; el.ind.textContent = 'sem fluxos';
   return;
 }
-el.sub.textContent = N + ' fluxos, um de cada vez. ' + (FD.nota || '');
+el.sub.textContent = N + ' fluxos, um de cada vez.';
 
 function deHash(){
   var h = (location.hash || '').slice(1);
@@ -303,17 +336,6 @@ el.prox.addEventListener('click', function(){ ir(1); });
 el.ant.addEventListener('click', function(){ ir(-1); });
 el.rever.addEventListener('click', function(){ mostrar(0); window.scrollTo({top:0, behavior:reduz ? 'auto' : 'smooth'}); });
 el.fluxo.addEventListener('click', function(){ if (atual < N) animar(partes(extenso(FLUXOS[atual].valor))); });
-el.zap.addEventListener('click', function(){
-  var txt = mensagem(atual);
-  if (navigator.share){
-    navigator.share({text:txt}).catch(function(e){
-      if (e && e.name === 'AbortError') return;
-      window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
-    });
-    return;
-  }
-  window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
-});
 
 document.addEventListener('keydown', function(e){
   if (e.key === 'ArrowRight') ir(1);

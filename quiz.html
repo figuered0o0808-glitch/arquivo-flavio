@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Quiz — BolsoDrive</title>
-<meta name="description" content="Quanto você sabe sobre Flávio Bolsonaro? 22 perguntas sobre fatos com fonte e status jurídico. Sem cadastro, sem cronômetro.">
+<meta name="description" content="Quanto você sabe sobre Flávio Bolsonaro? 22 perguntas, cada resposta com fonte.">
 <link rel="stylesheet" href="assets/base.css?v=4">
 <link rel="stylesheet" href="assets/header.css?v=12">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
@@ -93,6 +93,15 @@ noscript p{padding:20px 16px}
 .volta-foz a{display:inline-flex; align-items:center; min-height:44px; font-size:17px; font-weight:700; color:var(--amber); text-decoration:none}
 .volta-foz a:hover{text-decoration:underline; text-underline-offset:3px}
 .bloco i{font-style:normal; font-family:var(--mono); font-size:11px; color:var(--cinza2); letter-spacing:.06em}
+/* versão enxuta: número, uma frase, fonte; o resto em "ler mais". Status dele em cor neutra. */
+.chip{border-color:var(--cinza2); color:var(--cinza)}
+.resposta .numero.menor{white-space:normal; font-size:clamp(26px,7.4vw,48px)}
+.resposta .breve{font-size:clamp(17px,4.6vw,20px); line-height:1.4; margin:0 0 8px}
+.acoes .env{flex:0 0 auto; min-height:44px; padding:0 20px; font-weight:700}
+.acoes .env.sec{border-color:var(--amber); color:var(--amber)}
+.lm{display:inline-flex; align-items:center; min-height:44px; padding:0; margin:6px 0 0; border:0; background:none; color:var(--cinza); font:600 14px var(--sans); cursor:pointer}
+.mais{border-top:1px solid var(--linha); padding-top:10px; margin-top:4px}
+.mais .frase{font-size:16px}
 </style>
 </head>
 <body data-trecho="m">
@@ -106,8 +115,10 @@ noscript p{padding:20px 16px}
 <div class="fim"><a href="drive.html#arquivo">Ver o arquivo completo →</a></div>
 
 
-<script src="assets/quiz-basico.js?v=1"></script>
-<script src="assets/quiz-perguntas.js?v=4"></script>
+<script src="assets/quiz-basico.js?v=5"></script>
+<script src="assets/quiz-perguntas.js?v=8"></script>
+<script src="data/topicos.js?v=3"></script>
+<script src="assets/compartilhar.js?v=1" defer></script>
 <script>
 (function(){
 'use strict';
@@ -133,8 +144,8 @@ const NOVAS = (window.__NOVAS_PERGUNTAS || []).map(q => {
 const BLOCOS = {
   tudo:     { nome: 'Tudo',        desc: 'todas as perguntas' },
   basico:   { nome: 'O básico',    desc: 'mandato, patrimônio, campanha' },
-  relacoes: { nome: 'As relações', desc: 'quem anda com ele e o que a Justiça diz de cada um' },
-  dinheiro: { nome: 'O dinheiro',  desc: 'mansões, banco, filme, investigações' },
+  relacoes: { nome: 'As relações', desc: 'quem anda com ele' },
+  dinheiro: { nome: 'O dinheiro',  desc: 'mansões, banco, filme' },
 };
 const TODAS = BASICO.concat(NOVAS);
 let bloco = 'tudo';
@@ -159,16 +170,29 @@ async function compartilhar(txt){
   }
   location.href = 'https://wa.me/?text=' + encodeURIComponent(txt);
 }
+/* Enviar: o botão manda o tópico da tela (assets/compartilhar.js): "q-<n>" na resposta
+   (n = posição da pergunta no quiz inteiro, 1..22) e "quiz" no resultado. Sem o módulo, um texto curto. */
+const idPergunta = p => 'q-' + (TODAS.indexOf(p) + 1);
 function textoFato(p){
-  const fontes = p.fontes.map(f => f.v + ' — ' + f.u).join('; ');
-  /* o texto de envio abre dizendo de quem se fala */
-  const z = /^Flávio Bolsonaro\b/.test(p.zap) ? p.zap : 'Flávio Bolsonaro · ' + p.zap;
-  return z + '\n' + (p.fontes.length > 1 ? 'Fontes: ' : 'Fonte: ') + fontes +
-         '\n\nQuiz com ' + N + ' perguntas, todas com fonte: ' + PAGINA();
+  return p.pergunta + '\n' + (p.numero ? p.numero + '. ' : '') + (p.breve || '') + '\n' + PAGINA();
 }
 function textoFinal(acertos){
-  const b = bloco === 'tudo' ? '' : ' (bloco "' + BLOCOS[bloco].nome + '")';
-  return 'Flávio Bolsonaro · quiz' + b + ': acertei ' + acertos + ' de ' + N + '. Todas as respostas têm fonte: ' + PAGINA();
+  return 'Acertei ' + acertos + ' de ' + N + ' no quiz sobre Flávio Bolsonaro: ' + PAGINA();
+}
+function ligaEnvio(root, txt){
+  root.querySelectorAll('[data-share]').forEach(b => b.addEventListener('click', ev => {
+    ev.preventDefault(); ev.stopImmediatePropagation();
+    if (window.BDShare && typeof window.BDShare.enviar === 'function'){ window.BDShare.enviar(b.dataset.share); return; }
+    compartilhar(txt());
+  }));
+}
+function ligaMais(root){
+  const lm = root.querySelector('.lm'), mais = root.querySelector('.mais');
+  if (!lm || !mais) return;
+  lm.addEventListener('click', () => {
+    const ab = mais.hidden; mais.hidden = !ab;
+    lm.textContent = ab ? (lm.dataset.menos || 'ler menos ↑') : (lm.dataset.mais || 'ler mais ↓'); lm.setAttribute('aria-expanded', String(ab));
+  });
 }
 const reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -187,22 +211,24 @@ function fontesHtml(p){
   ).join('');
 }
 function blocoResposta(p, k, certo, extra){
-  const ultima = k === N - 1;
+  const ultima = k === N - 1, f = p.fontes[0];
   return '<div class="cab"><div class="kicker">Resposta</div>' +
          '<span class="veredito">' + (certo ? '✓ VOCÊ ACERTOU' : '✗ VOCÊ ERROU') + '</span></div>' +
          (extra || '') +
          (p.numero ? '<p class="numero menor">' + esc(p.numero) + '</p>' : '') +
-         '<p class="frase">' + p.resposta + '</p>' +
-         '<div class="chip">' + esc(p.chip) + '</div>' +
-         fontesHtml(p) +
-         (p.ressalva ? '<p class="ressalva">' + esc(p.ressalva) + '</p>' : '') +
+         '<p class="breve">' + esc(p.breve || '') + '</p>' +
+         (f ? '<p class="fonte">' + esc(f.v) + ' · <a href="' + esc(f.u) + '" target="_blank" rel="noopener">ver a fonte</a></p>' : '') +
          '<div class="acoes"><button type="button" id="proxima">' + (ultima ? 'Ver o resultado →' : 'Próxima →') + '</button>' +
-         '<button type="button" class="sec" id="zap">Mandar no WhatsApp</button></div>';
+         '<button type="button" class="env sec" data-share="' + esc(idPergunta(p)) + '">enviar ↗</button></div>' +
+         '<button type="button" class="lm" aria-expanded="false">ler mais ↓</button>' +
+         '<div class="mais" hidden><p class="frase">' + p.resposta + '</p>' +
+         '<div class="chip">' + esc(p.chip) + '</div>' + fontesHtml(p) +
+         (p.ressalva ? '<p class="ressalva">' + esc(p.ressalva) + '</p>' : '') + '</div>';
 }
 function ligarResposta(p){
   document.getElementById('proxima').addEventListener('click', () => { i++; render(); });
-  document.getElementById('zap').addEventListener('click', () => compartilhar(textoFato(p)));
   const r = document.getElementById('resposta');
+  ligaEnvio(r, () => textoFato(p)); ligaMais(r);
   r.hidden = false;
   const b = r.getBoundingClientRect(), barra = (document.querySelector(".site-header")||{offsetHeight:44}).offsetHeight + 8;
   if (b.bottom > window.innerHeight){
@@ -216,8 +242,7 @@ function renderPergunta(k){
   const p = P[k];
   let html = progresso(k);
   if (k === 0){
-    html += '<h1 class="sec">Quanto você sabe sobre ele?</h1>' +
-            '<p class="sub">' + BLOCOS[bloco].nome + ' · ' + N + ' perguntas sobre fatos com fonte. Sem cadastro, sem cronômetro.</p>';
+    html += '<h1 class="sec">Quanto você sabe sobre ele?</h1>';
   }
   html += '<h2 class="pergunta" tabindex="-1">' + esc(p.pergunta) + '</h2>';
 
@@ -302,13 +327,12 @@ function renderFim(){
     '<div class="kicker">Resultado</div>' +
     '<p class="frase" style="margin-bottom:2px">Você acertou</p>' +
     '<p class="numero">' + acertos + ' de ' + N + '</p>' +
-    '<ol class="gabarito" aria-label="Gabarito">' + lista + '</ol>' +
-    '<div class="chip">' + N + ' RESPOSTAS · CADA UMA COM FONTE E STATUS</div>' +
-    '<p class="fonte">Fontes: ' + esc([...new Set(P.flatMap(p => p.fontes.map(f => f.v)))].join(', ')) + '.</p>' +
-    '<div class="acoes"><button type="button" id="zap-fim">Mandar no WhatsApp</button>' +
+    '<div class="acoes"><button type="button" class="env" data-share="quiz">enviar ↗</button>' +
     '<button type="button" class="sec" id="refazer">Refazer o quiz</button></div>' +
+    '<button type="button" class="lm" aria-expanded="false" data-mais="ver o gabarito ↓" data-menos="esconder o gabarito ↑">ver o gabarito ↓</button>' +
+    '<div class="mais" hidden><ol class="gabarito" aria-label="Gabarito">' + lista + '</ol></div>' +
     '<p class="volta-foz"><a href="foz.html">Voltar à foz →</a></p>';
-  document.getElementById('zap-fim').addEventListener('click', () => compartilhar(textoFinal(acertos)));
+  ligaEnvio(tela, () => textoFinal(acertos)); ligaMais(tela);
   document.getElementById('refazer').addEventListener('click', () => { i = -1; render(); });
   window.scrollTo(0, 0);
 }
@@ -317,9 +341,9 @@ function renderInicio(){
   const conta = b => b === 'tudo' ? TODAS.length : TODAS.filter(p => p.bloco === b).length;
   tela.innerHTML =
     '<h1 class="sec">Quanto você sabe sobre ele?</h1>' +
-    '<p class="sub">Perguntas sobre fatos com fonte e status jurídico. Sem cadastro, sem cronômetro. Escolha por onde começar:</p>' +
+    '<p class="sub">Escolha por onde começar.</p>' +
     '<div class="blocos">' + Object.keys(BLOCOS).filter(b => conta(b) > 0).map(b =>
-      '<button type="button" class="bloco" data-b="' + b + '"><b>' + esc(BLOCOS[b].nome) + '</b><span>' + esc(BLOCOS[b].desc) + '</span><i>' + conta(b) + ' perguntas</i></button>').join('') +
+      '<button type="button" class="bloco" data-b="' + b + '"><b>' + esc(BLOCOS[b].nome) + '</b><i>' + conta(b) + ' perguntas</i></button>').join('') +
     '</div>';
   tela.querySelectorAll('.bloco').forEach(b => b.addEventListener('click', () => escolhe(b.dataset.b)));
   window.scrollTo(0, 0);

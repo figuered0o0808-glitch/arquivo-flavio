@@ -8497,7 +8497,7 @@ window.DOSSIE = {
     "nome": "Flávio Bolsonaro",
     "papel": "Senador (PL-RJ); à época da rachadinha, deputado estadual na Alerj",
     "grupo": "politico",
-    "status": "Foi investigado e denunciado pelo MP-RJ em 2020 no caso das rachadinhas (peculato, lavagem, organização criminosa). As provas foram anuladas pelo STJ e pelo STF, a denúncia foi arquivada em 2022 e, em fev/2025, Gilmar Mendes negou os recursos do MP. Nunca foi condenado nem preso.",
+    "status": "Foi investigado e denunciado pelo MP-RJ em 2020 no caso das rachadinhas (peculato, lavagem, organização criminosa). As provas foram anuladas pelo STJ e pelo STF, a denúncia foi arquivada em 2022 e, em fev/2025, Gilmar Mendes negou os recursos do MP.",
     "situacao": [
      "denunciado",
      "investigado"
@@ -9271,7 +9271,7 @@ window.DOSSIE = {
    {
     "id": "erasmo-carlos-battistella",
     "nome": "Erasmo Carlos Battistella",
-    "papel": "Doador de Flávio: empresário gaúcho, fundador e CEO da Be8 (biocombustíveis, Passo Fundo/RS), integrante do Conselhão da Presidência e do conselho da Aprobio. Doou R$ 500 mil à campanha de Flávio e R$ 500 mil à de Lula no início de setembro/2026 (transferência eletrônica e Pix), tornando-se um dos dois maiores doadores pessoa física de Flávio e o maior de Lula até 09/09 (dados TSE/DivulgaCand). Versão da assessoria: doações como pessoa física, dentro dos limites da legislação eleitoral, com compromisso de 'governança, integridade e transparência'.",
+    "papel": "Doador de Flávio: empresário gaúcho, fundador e CEO da Be8 (biocombustíveis, Passo Fundo/RS), integrante do Conselhão da Presidência e do conselho da Aprobio. Doou R$ 500 mil à campanha de Flávio no início de setembro/2026 (transferência eletrônica e Pix), um dos dois maiores doadores pessoa física dele até 09/09 (dados TSE/DivulgaCand). Versão da assessoria: doações como pessoa física, dentro dos limites da legislação eleitoral, com compromisso de 'governança, integridade e transparência'.",
     "grupo": "financeiro",
     "status": "Doador pessoa física registrado no TSE; sem investigação conhecida"
    },
@@ -9390,7 +9390,7 @@ window.DOSSIE = {
    {
     "id": "walter-schlatter",
     "nome": "Walter Schlatter",
-    "papel": "maior doador pessoa física da campanha de Flávio Bolsonaro, com R$ 300 mil registrados na prestação de contas eleitoral. Prefeito de Chapadão do Sul (MS) pelo PP, produtor rural e empresário.",
+    "papel": "doador pessoa física da campanha de Flávio Bolsonaro, com R$ 300 mil registrados na prestação de contas eleitoral. Prefeito de Chapadão do Sul (MS) pelo PP, produtor rural e empresário.",
     "grupo": "financeiro",
     "status": "Sem processo conhecido. Confirmou pessoalmente a doação por telefone ao Portal Agência da Notícia em 6/9/2026."
    },
@@ -11994,7 +11994,7 @@ window.DOSSIE = {
    {
     "de": "erasmo-carlos-battistella",
     "para": "flavio",
-    "rotulo": "doou R$ 500 mil à campanha (início de set/2026; também doou R$ 500 mil a Lula)",
+    "rotulo": "doou R$ 500 mil à campanha (início de set/2026)",
     "status": "registrado no TSE",
     "fontes": [
      {
@@ -12326,7 +12326,7 @@ window.DOSSIE = {
    {
     "de": "walter-schlatter",
     "para": "flavio",
-    "rotulo": "doou R$ 300 mil à campanha, a maior doação de pessoa física",
+    "rotulo": "doou R$ 300 mil à campanha",
     "status": "Doação registrada na prestação de contas e confirmada por ele por telefone em 6/9/2026.",
     "fontes": [
      {
@@ -14130,7 +14130,7 @@ window.DOSSIE = {
    {
     "de": "flavio",
     "para": "robson-calixto-fonseca",
-    "rotulo": "uma assessora do gabinete dele tratou com Peixe a emenda ao Ifop (2023), segundo a PF; nenhuma fonte diz que Flávio sabia quem era Peixe",
+    "rotulo": "uma assessora do gabinete dele tratou com Peixe a emenda ao Ifop (2023), segundo a PF",
     "status": "PF identificou troca de mensagens entre Peixe e assessora de Flávio um mês antes do repasse ao Ifop.",
     "fontes": [
      {
@@ -15093,7 +15093,8 @@ window.DOSSIE = {
   {
    "numero": "STF",
    "rotulo": "investigado desde julho de 2026 pelo dinheiro de um banqueiro preso no filme sobre o pai",
-   "destino": "tema:master"
+   "destino": "tema:master",
+   "cor": "tinta"
   },
   {
    "numero": "R$ 6,01",
@@ -15125,9 +15126,9 @@ window.DOSSIE = {
     "valor": "R$ 69 mi",
     "obs": "7 repasses em 2025, descritos em delação homologada pelo STF em 9/9/2026. Flávio é investigado; nega irregularidade",
     "tema": "master",
-    "status": "INVESTIGAÇÃO EM CURSO · SEM CONDENAÇÃO",
+    "status": "INVESTIGADO NO STF · SEM DENÚNCIA",
     "defesa": "Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.",
-    "ressalva": "Inquérito autorizado pelo ministro André Mendonça em 22/07/2026; Flávio é investigado. A delação homologada em 09/09/2026 descreve 7 repasses em 2025, a pedido de Vorcaro, somando cerca de R$ 69 milhões pela cotação da época, segundo o relato do delator (A Crítica e Diário Carioca). Sem denúncia aceita nem condenação. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.",
+    "ressalva": "Inquérito autorizado pelo ministro André Mendonça em 22/07/2026; Flávio é investigado. A delação homologada em 09/09/2026 descreve 7 repasses em 2025, a pedido de Vorcaro, somando cerca de R$ 69 milhões pela cotação da época, segundo o relato do delator (A Crítica e Diário Carioca). Sem denúncia. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.",
     "fonte": {
      "veiculo": "A Crítica",
      "url": "https://acritica.net/justica/delator-eleva-a-us-12-3-milhoes-dinheiro-enviado-a-fundo-do-filme-sobre-bolsonaro/"
@@ -15141,7 +15142,7 @@ window.DOSSIE = {
     "obs": "contra R$ 6,01 de pessoas físicas na prestação parcial consultada em 26/08/2026",
     "tema": "eleicoes",
     "status": "FATO · PRESTAÇÃO DE CONTAS AO TSE",
-    "ressalva": "Prestação parcial. Em setembro de 2026 a maior doação de pessoa física registrada era de R$ 300 mil (Walter Schlatter); os valores do TSE podem divergir dos divulgados pela campanha.",
+    "ressalva": "Prestação parcial. Em 9/9/2026, as maiores doações de pessoa física registradas eram de R$ 500 mil (Erasmo Battistella e Fernando de Castro Marques), segundo a Agenda do Poder; os valores do TSE podem divergir dos divulgados pela campanha.",
     "fonte": {
      "veiculo": "Poder360",
      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-lidera-em-doacoes-a-candidatos-ao-planalto-lula-e-2o/"
@@ -15151,7 +15152,7 @@ window.DOSSIE = {
     "de": "Walter Schlatter",
     "para": "Campanha presidencial 2026",
     "valor": "R$ 300 mil",
-    "obs": "maior doação de pessoa física, confirmada pelo doador",
+    "obs": "doação de pessoa física, confirmada pelo doador",
     "tema": "eleicoes",
     "status": "FATO · PRESTAÇÃO DE CONTAS AO TSE",
     "ressalva": "Doação registrada na prestação de contas e confirmada pelo doador por telefone à reportagem.",

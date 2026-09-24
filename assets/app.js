@@ -4,6 +4,9 @@
   const $ = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
   const esc = s => (s==null?'':String(s)).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  // "(não é Flávio)" marca, nos dados, o fato que não é sobre ele (serve às contagens); na tela não aparece
+  const NAOE = /\s*\(não é Flávio\)\s*$/;
+  const tit = t => String(t==null?'':t).replace(NAOE,'');
   const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
   const temaById = Object.fromEntries(D.temas.map(t=>[t.id,t]));
   const nodeById = Object.fromEntries((D.grafo?.nodes||[]).map(n=>[n.id,n]));
@@ -26,6 +29,21 @@
       return 'Fontes: ' + fontes.map(f=>`${tierPip(f.tier)}<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.veiculo)}${f.data?` (${esc(f.data)})`:''}</a>`).join(' · ');
     }
     return '<span class="nofonte">⚠ sem fonte — adicionar antes de publicar</span>';
+  }
+  // enviar: o botão manda o tópico da tela (assets/compartilhar.js, data-share="<id>");
+  // sem o módulo carregado, manda a página atual
+  function ligaEnvio(root){
+    $$('[data-share]', root||document).forEach(b=>{
+      if(b.dataset.lig) return; b.dataset.lig='1';
+      b.addEventListener('click', ev=>{
+        ev.preventDefault(); ev.stopImmediatePropagation();
+        const id=b.dataset.share;
+        if(window.BDShare && typeof window.BDShare.enviar==='function'){ window.BDShare.enviar(id); return; }
+        const url=location.href;
+        if(navigator.share){ navigator.share({url}).catch(()=>{}); return; }
+        window.open('https://wa.me/?text='+encodeURIComponent(url),'_blank','noopener');
+      });
+    });
   }
   const itensDoTema = id => D.itens.filter(i=>i.tema===id);
   const itensDaPessoa = pid => D.itens.filter(i=>(i.pessoas||[]).includes(pid));
@@ -129,12 +147,15 @@
   function presosDiretos(){
     const g=D.grafo||{nodes:[],edges:[]}; const viz=new Set();
     g.edges.forEach(e=>{ if(e.de==='flavio') viz.add(e.para); if(e.para==='flavio') viz.add(e.de); });
-    return g.nodes.filter(n=>viz.has(n.id) && (n.situacao||[]).some(x=>x==='preso'||x==='condenado'));
+    // a mesma conta do index: prisão anulada (segundo a cadeia da Foz) não conta
+    const PA=/anul\S*\s+(?:a\s+)?(?:ordem de\s+)?pris|pris[ãa]o\s+(?:foi\s+)?anulad/i; const anul=new Set();
+    ((window.FOZ||{}).escandalos||[]).forEach(e=>(e.cadeia||[]).forEach(l=>{ if(l.de_id && PA.test(l.status_de||'')) anul.add(l.de_id); }));
+    return g.nodes.filter(n=>{ const s=n.situacao||[]; return viz.has(n.id) && (s.includes('condenado') || (s.includes('preso') && !anul.has(n.id))); });
   }
   function placarHTML(){
     const p = (D.placar||[]).slice(); const pd = presosDiretos();
     if(pd.length) p.push({numero:String(pd.length), rotulo:'pessoas ligadas diretamente a ele estiveram presas ou foram condenadas', destino:'rede'});
-    return `<div class="placar-band">${p.map(x=>`<button class="pl" data-dest="${esc(x.destino)}"><span class="pn">${esc(x.numero)}</span><span class="pr">${esc(x.rotulo)}</span></button>`).join('')}</div>`;
+    return `<div class="placar-band">${p.map(x=>`<button class="pl" data-dest="${esc(x.destino)}"><span class="pn"${x.cor==='tinta'?' style="color:var(--text)"':''}>${esc(x.numero)}</span><span class="pr">${esc(x.rotulo)}</span></button>`).join('')}</div>`;
   }
   function renderTemas(){
     arqItens.style.display='none'; arqGrid.style.display='grid';
@@ -145,7 +166,6 @@
         <div class="tab-c" style="background:${t.cor}"></div>
         <div class="emoji">${t.icone||'📁'}</div>
         <h3>${esc(t.nome)}</h3>
-        <p>${esc(t.descricao||'')}</p>
         <div class="count"><span>📄 ${its.length} ${its.length===1?'item':'itens'}</span>${mid?`<span>🎬 ${mid} mídia</span>`:''}</div>
       </div>`;
     }).join('');
@@ -164,7 +184,7 @@
     const thumb = fpid ? `<img class="card-foto" src="${esc(window.__fotoURL[fpid])}" alt="">` : '';
     return `<div class="card" data-item="${i.id}">${thumb}
       <div class="row">${badge(i.status)}<span class="tipo">${esc(i.tipo)}</span><span class="date">${esc(i.data||'')}</span>${i.lastro?lastroBadge(i.lastro):''}</div>
-      <h4>${esc(i.titulo)}</h4>
+      <h4>${esc(tit(i.titulo))}</h4>
       <div class="resumo">${esc(i.resumo||'')}</div>
       <div class="meta-row">${pessoas}</div>
       <div class="src" style="margin-top:8px">${fontesHTML(i.fontes)}</div>
@@ -216,7 +236,7 @@
     sheet.innerHTML = `
       <header>
         <div>${badge(i.status)} <span class="tipo">${esc(i.tipo)}</span> <span class="date">${esc(i.data||'')}</span>
-          <h2 style="margin-top:8px">${esc(i.titulo)}</h2>
+          <h2 style="margin-top:8px">${esc(tit(i.titulo))}</h2>
           <div style="color:#9aa1b0;font-size:13px;margin-top:2px">${t?esc(t.icone+' '+t.nome):''}</div>
         </div>
         <button class="close" id="fechar">×</button>
@@ -242,7 +262,7 @@
       return `<div class="vrow" data-node="${o}" style="cursor:pointer"><b>${esc(on?on.nome:o)}</b> — ${esc(e.rotulo||'')} ${e.status?badge(e.status):''}</div>`;
     }).join('');
     const its = itensDaPessoa(id);
-    const lista = its.map(i=>`<div class="vrow" data-item="${i.id}" style="cursor:pointer">${badge(i.status)} <b>${esc(i.titulo)}</b> <span class="date">${esc(i.data||'')}</span></div>`).join('');
+    const lista = its.map(i=>`<div class="vrow" data-item="${i.id}" style="cursor:pointer">${badge(i.status)} <b>${esc(tit(i.titulo))}</b> <span class="date">${esc(i.data||'')}</span></div>`).join('');
     const flags = (n.situacao||[]).map(s=>badge(s)).join(' ');
     const sf = (n.situacao_fontes&&n.situacao_fontes.length)?` <a href="${esc(n.situacao_fontes[0].url)}" target="_blank" rel="noopener">[fonte]</a>`:'';
     // Nem todo nome do mapa responde a processo — parte da rede é entorno político,
@@ -322,10 +342,9 @@
       arestas: [['flavio','ronald-paulo-alves-pereira'],['flavio','robson-calixto-fonseca'],['flavio','instituto-de-formacao-profissional-jose-ca'],['robson-calixto-fonseca','instituto-de-formacao-profissional-jose-ca'],['domingos-brazao','chiquinho-brazao'],['domingos-brazao','robson-calixto-fonseca'],['domingos-brazao','ronald-paulo-alves-pereira'],['domingos-brazao','rivaldo-barbosa']],
       // a fonte de cada ligação vem do elo da cadeia na Foz que sai desse nome; a do número (Agência Brasil) é a das penas
       fontesLig: [['ronald-paulo-alves-pereira','homenagem'],['robson-calixto-fonseca','emenda']],
-      frase: '2 dos 5 condenados pelo STF no caso do assassinato de Marielle Franco e Anderson Gomes têm ligação documentada com Flávio Bolsonaro: o major Ronald, homenageado na Alerj por indicação dele em 2004, 14 anos antes do crime, e Robson Calixto, o Peixe, que, segundo a PF, tratou com uma assessora do gabinete dele no Senado a emenda de R$ 199.999,79 ao Ifop.',
-      curta: '2 dos 5 condenados pelo STF no caso têm ligação documentada com Flávio Bolsonaro: o major Ronald e Robson Calixto, o Peixe. Ele não é investigado no caso Marielle.',
-      situacao: 'Não é investigado no caso Marielle, e o relatório final da PF sobre o crime (2024) não menciona a família Bolsonaro.',
-      ressalva: 'Nenhuma fonte afirma que ele sabia quem era Peixe. Peixe não foi condenado pela execução, e sim por integrar organização criminosa armada. Estar no rio não é ser acusado.'
+      frase: '2 dos 5 condenados no caso Marielle têm ligação documentada com ele: o major Ronald, homenageado por indicação dele na Alerj em 2004, e o Peixe, que tratou com uma assessora do gabinete dele uma emenda ao Ifop, segundo a PF.',
+      curta: '2 dos 5 condenados no caso Marielle têm ligação documentada com ele.',
+      share: 'marielle'
     }
   };
 
@@ -497,10 +516,9 @@
       const rows = SIT.map(c=>({...c, ids: nodes.filter(n=>sitMatch(n,c)).map(n=>n.id)}));
       const pd = presosDiretos().length;
       painel.innerHTML = `<h3 style="margin-bottom:2px">Situação penal da rede</h3>
-        <div class="papel">${total} nomes no mapa. <b style="color:var(--text)">${pd} pessoas ligadas diretamente a ele estiveram presas ou foram condenadas.</b> Toque numa linha para destacar.</div>
+        <div class="papel"><b style="color:var(--text)">${pd} ligados diretamente a ele</b> estiveram presos ou foram condenados.</div>
         <div class="stats">${rows.map(r=>`<button class="stat-row" data-cat="${r.key}">
-          <span class="se">${r.emoji}</span><span class="sl">${r.label}</span><span class="sn">${r.ids.length}</span></button>`).join('')}</div>
-        <div class="ph" style="margin-top:12px">As categorias podem se sobrepor (ex.: alguém denunciado e também investigado).</div>`;
+          <span class="se">${r.emoji}</span><span class="sl">${r.label}</span><span class="sn">${r.ids.length}</span></button>`).join('')}</div>`;
       $$('.stat-row', painel).forEach(b=> b.addEventListener('click', ()=>showCategory(b.dataset.cat)));
     }
     function showCategory(key){
@@ -542,7 +560,7 @@
         return `<div class="vrow" data-node="${o}" style="cursor:pointer"><b>${esc(on?on.nome:o)}</b> — ${esc(e.rotulo||'')} ${e.status?badge(e.status):''}<br>${fontesHTML(e.fontes)}</div>`;
       }).join('');
       const its = itensDaPessoa(id);
-      const lista = its.map(i=>`<div class="vrow" data-item="${i.id}" style="cursor:pointer"><b>${esc(i.titulo)}</b> ${badge(i.status)}</div>`).join('');
+      const lista = its.map(i=>`<div class="vrow" data-item="${i.id}" style="cursor:pointer"><b>${esc(tit(i.titulo))}</b> ${badge(i.status)}</div>`).join('');
       painel.innerHTML = `<button class="backlink" id="ov-back">← placar</button>
         <h3>${esc(n.nome)}</h3><div class="papel">${esc(n.papel||'')}${n.status?` · ${esc(n.status)}${sitFonte(n)}`:''}</div>
         <button class="backlink" id="ov-ficha" style="margin:10px 0 0">» ficha completa</button>
@@ -582,28 +600,26 @@
         }
       }
       const e = ((window.FOZ||{}).escandalos||[]).find(z=>z.id===C.foz) || {};
-      const st = String(e.status_flavio||C.situacao).split(/(?<=\.)\s+(?=[A-ZÁÉÍÓÚ])/)[0];
-      const stc = /^[A-ZÁÉÍÓÚ][a-zà-ú]/.test(st) ? st.charAt(0).toLowerCase()+st.slice(1) : st;
       const nf = e.numero && e.numero.fonte && /^https?:\/\//.test(e.numero.fonte.url||'') ? e.numero.fonte : null;
       const fl = (C.fontesLig||[]).map(([id,rot])=>{ const l=(e.cadeia||[]).find(x=>x.de_id===id && x.fonte && /^https?:\/\//.test(x.fonte.url||'')); return l ? {rot, f:l.fonte} : null; }).filter(Boolean);
       const fA = f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.veiculo||'fonte')} ↗</a>`;
       const rows = C.ids.filter(id=>id!=='flavio' && nodeById[id]).map(id=>{ const n=nodeById[id];
-        return `<div class="vrow" data-node="${esc(id)}" style="cursor:pointer"><b>${esc(n.nome)}</b><br><span style="color:#9aa1b0">${esc(n.status||'')}</span></div>`; }).join('');
+        return `<div class="vrow" data-node="${esc(id)}" style="cursor:pointer"><b>${esc(n.nome)}</b></div>`; }).join('');
       painel.innerHTML = `<button class="backlink" id="ov-back">← placar</button>
         <h3>${esc(C.titulo)}</h3>
         <p class="cm-t">${esc(C.frase)}</p>
-        <p class="cm-s">Flávio neste caso: ${esc(stc)}</p>
-        <p class="cm-r">${esc(C.ressalva)}</p>
-        ${nf||fl.length?`<p class="cm-f">${fl.length?'Fontes: ':'Fonte: '}${[nf?(fl.length?'penas, ':'')+fA(nf):''].concat(fl.map(x=>x.rot+', '+fA(x.f))).filter(Boolean).join(' · ')}</p>`:''}
-        <a class="cm-foz" href="foz.html#${esc(C.foz)}">o caminho elo por elo, na Foz →</a>
-        <div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase">Nomes do caso na teia (${ids.size-1})</div>${rows}</div>`;
+        <div class="cm-a">${C.share?`<button type="button" class="cm-env" data-share="${esc(C.share)}">enviar ↗</button>`:''}<a class="cm-foz" href="foz.html#${esc(C.foz)}">elo por elo, na Foz →</a></div>
+        ${nf||fl.length?`<p class="cm-f">${[nf?'penas, '+fA(nf):''].concat(fl.map(x=>x.rot+', '+fA(x.f))).filter(Boolean).join(' · ')}</p>`:''}
+        <div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase">Nomes do caso (${ids.size-1})</div>${rows}</div>`;
       $('#ov-back').addEventListener('click', ()=>{ showOverview(); fitView(); });
+      ligaEnvio(painel);
       $$('.vrow[data-node]', painel).forEach(r=> r.addEventListener('click', ()=>select(r.dataset.node)));
       // no celular o painel fica abaixo do mapa: uma nota curta acima dele, com a situação dele junto
       const nota=$('#caminho-nota');
       if(nota){
-        nota.innerHTML = `<b>${esc(C.titulo)}.</b> ${esc(C.curta)} <button type="button" class="cn-mais">frase completa e ressalvas ↓</button>`;
+        nota.innerHTML = `<b>${esc(C.titulo)}.</b> ${esc(C.curta)} <span class="cn-a">${C.share?`<button type="button" class="cm-env" data-share="${esc(C.share)}">enviar ↗</button>`:''}<button type="button" class="cn-mais">as ligações ↓</button></span>`;
         nota.hidden=false;
+        ligaEnvio(nota);
         nota.querySelector('.cn-mais').addEventListener('click', ()=> painel.scrollIntoView({behavior:'smooth', block:'start'}));
       }
     }
@@ -736,7 +752,7 @@
         <span class="tl-ts">${esc(e.data||'')}</span>
         <span class="tl-tag" style="color:${t?t.cor:'#888'}">[${esc(tag)}]</span>
         ${e.status?badge(e.status):''}
-        <span class="tl-tit">${esc(e.titulo)}</span>
+        <span class="tl-tit">${esc(tit(e.titulo))}</span>
         ${(e.fontes&&e.fontes.length&&e.fontes[0].url)?`<a class="tl-src" href="${esc(e.fontes[0].url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">» fonte</a>`:''}
       </div>`;
     });
@@ -755,7 +771,7 @@
         const dots = its.filter(i=>i.tema===t.id).map(i=>{
           const y=parseInt(String(i.data).slice(0,4)); const left=((y-minY)/span*100);
           const st=D.status[i.status]||{cor:'#888'};
-          return `<span class="sl-dot" style="left:${left}%;background:${st.cor};box-shadow:0 0 6px ${st.cor}" data-item="${esc(i.id)}" title="${esc((i.data||'')+' · '+i.titulo)}"></span>`;
+          return `<span class="sl-dot" style="left:${left}%;background:${st.cor};box-shadow:0 0 6px ${st.cor}" data-item="${esc(i.id)}" title="${esc((i.data||'')+' · '+tit(i.titulo))}"></span>`;
         }).join('');
         return `<div class="sl-lane"><div class="sl-name" style="color:${t.cor}">${esc(t.nome)}</div><div class="sl-track">${dots}</div></div>`;
       }).join('');
@@ -773,7 +789,7 @@
     chatMsgs.appendChild(m); m.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
   function answerItem(i){
-    return `<div class="ans-item">${badge(i.status)} <b>${esc(i.titulo)}</b><br><span style="color:#c6cad6">${esc(i.resumo||'')}</span><br><span class="src">${fontesHTML(i.fontes)}</span> <a href="#" data-open="${i.id}" style="color:#7db1ff">abrir no arquivo →</a></div>`;
+    return `<div class="ans-item">${badge(i.status)} <b>${esc(tit(i.titulo))}</b><br><span style="color:#c6cad6">${esc(i.resumo||'')}</span><br><span class="src">${fontesHTML(i.fontes)}</span> <a href="#" data-open="${i.id}" style="color:#7db1ff">abrir no arquivo →</a></div>`;
   }
   function responder(q){
     const nq = norm(q);
@@ -820,6 +836,7 @@
 
     function fmtData(s){ try{ const d=new Date(s); if(isNaN(d)) return ''; return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return ''; } }
     function render(){
+      itens = itens.filter(n=>!FORA(n.titulo||n.title));
       $list().innerHTML = itens.length ? itens.map(n=>`
         <a class="news-item" href="${esc(n.url||n.link||'#')}" target="_blank" rel="noopener">
           <div class="nt">${esc(n.titulo||n.title||'')}</div>
@@ -875,7 +892,7 @@
         const fp=(i.pessoas||[]).find(p=>window.__fotoURL&&window.__fotoURL[p]);
         const th=fp?`<img class="news-foto" src="${esc(window.__fotoURL[fp])}" alt="">`:'';
         return `<a class="news-item${th?' has-foto':''}" href="${esc(f.url)}" target="_blank" rel="noopener">${th}
-          <div class="nt">${esc(i.titulo)}</div>
+          <div class="nt">${esc(tit(i.titulo))}</div>
           <div class="nm">${esc(f.veiculo||'fonte')} · ${esc(i.data)} · ${esc(t?t.nome:(i.tema||''))}</div></a>`;
       }).join('');
     }
@@ -889,6 +906,8 @@
   })();
 
   /* ---------------- Recentemente ---------------- */
+  // manchete de terceiros que gira em torno de Lula ou do PT fica fora (o site não trata deles)
+  function FORA(t){ return /\bLula\b|\bPT\b|petista/i.test(String(t||'')); }
   const JANELA_DIAS = 14;
   function diaKey(d){ const m=String(d||'').match(/^(\d{4})-(\d{2})-(\d{2})/); return m?m[0]:null; }
   function fmtDia(k){ const [y,m,d]=k.split('-'); return `${d}/${m}/${y}`; }
@@ -896,8 +915,9 @@
     const hoje = new Date(); const lim = new Date(hoje.getTime()-JANELA_DIAS*864e5);
     const limK = lim.toISOString().slice(0,10);
     const ev = [];
-    (D.itens||[]).forEach(i=>{ const k=diaKey(i.data); if(k && k>=limK) ev.push({k, tipo:'fato', i}); });
-    (D.noticiasFallback||[]).forEach(n=>{ const k=diaKey(n.data); if(k && k>=limK) ev.push({k, tipo:'news', n}); });
+    // na vitrine, só o que é sobre ele e sem Lula/PT
+    (D.itens||[]).forEach(i=>{ if(FORA(i.titulo) || NAOE.test(i.titulo||'')) return; const k=diaKey(i.data); if(k && k>=limK) ev.push({k, tipo:'fato', i}); });
+    (D.noticiasFallback||[]).filter(n=>!FORA(n.titulo)).forEach(n=>{ const k=diaKey(n.data); if(k && k>=limK) ev.push({k, tipo:'news', n}); });
     // manchete que repete um fato do arquivo no mesmo dia não entra duas vezes
     ev.sort((a,b)=> b.k.localeCompare(a.k) || (a.tipo==='fato'?-1:1));
     return ev;
@@ -909,20 +929,25 @@
     $('#rec-quando') && ($('#rec-quando').textContent = cap ? `Atualizado em ${cap}.` : '');
     if(!ev.length){ el.innerHTML = '<div class="ph">Nada novo nos últimos dias.</div>'; return; }
     const dias = {}; ev.forEach(e=>{ (dias[e.k]=dias[e.k]||[]).push(e); });
-    el.innerHTML = Object.keys(dias).sort().reverse().map(k=>{
+    // os 5 dias mais recentes; os anteriores atrás de "dias anteriores"
+    const MAXDIAS = 5, ks = Object.keys(dias).sort().reverse();
+    el.innerHTML = ks.map((k,di)=>{
       const lista = dias[k];
       const rows = lista.map(e=>{
         if(e.tipo==='fato'){ const i=e.i, t=temaById[i.tema], f=(i.fontes||[])[0];
           return `<div class="rec-it" data-item="${i.id}"><span class="rk" style="color:${t?t.cor:'#888'}">[${esc((t?t.id:i.tema||'').toUpperCase())}]</span>
-            <span class="rt">${esc(i.titulo)}${badge(i.status)}</span>
-            <span class="rs">${f&&f.url?`fonte: <a href="${esc(f.url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(f.veiculo||'ver')}</a>`:''}</span></div>`; }
+            <span class="rt">${esc(tit(i.titulo))}${badge(i.status)}</span></div>`; }
         const x=e.n;
         return `<a class="rec-it news" href="${esc(x.url)}" target="_blank" rel="noopener"><span class="rk">[NOTÍCIA]</span><span class="rt">${esc(x.titulo)}</span><span class="rs">» ${esc(x.fonte||'')}</span></a>`;
-      }).join('');
+      });
+      // até 4 linhas por dia; o resto atrás de "mais"
+      const MAXD = 3, vis = rows.slice(0,MAXD).join(''), resto = rows.slice(MAXD);
       const nf = lista.filter(e=>e.tipo==='fato').length, nn = lista.length-nf;
-      return `<div class="rec-day"><h3>${fmtDia(k)}<span>${nf?`${nf} ${nf===1?'fato':'fatos'}`:''}${nf&&nn?' · ':''}${nn?`${nn} ${nn===1?'manchete':'manchetes'}`:''}</span></h3>${rows}</div>`;
-    }).join('');
+      return `<div class="rec-day"${di>=MAXDIAS?' hidden':''}><h3>${fmtDia(k)}<span>${nf?`${nf} ${nf===1?'fato':'fatos'}`:''}${nf&&nn?' · ':''}${nn?`${nn} ${nn===1?'manchete':'manchetes'}`:''}</span></h3>${vis}${resto.length?`<div class="rec-resto" hidden>${resto.join('')}</div><button type="button" class="backlink rec-vermais">mais ${resto.length} →</button>`:''}</div>`;
+    }).join('') + (ks.length>MAXDIAS?`<button type="button" class="backlink rec-dias">dias anteriores →</button>`:'');
+    const bd=$('.rec-dias', el); if(bd) bd.addEventListener('click', ()=>{ $$('.rec-day[hidden]', el).forEach(d=>d.hidden=false); bd.remove(); });
     $$('.rec-it[data-item]', el).forEach(r=> r.addEventListener('click', ()=>{ showView('arquivo','push'); abrirDetalhe(r.dataset.item); }));
+    $$('.rec-vermais', el).forEach(b=> b.addEventListener('click', ()=>{ const r=b.previousElementSibling; if(r) r.hidden=false; b.remove(); }));
   }
   $$('.rec-mais [data-go]').forEach(b=> b.addEventListener('click', ()=> showView(b.dataset.go,'push')));
 
@@ -940,7 +965,7 @@
       $('#swimlanes').style.display = faixas?'block':'none';
       if(faixas && !swimDone) renderSwimlanes();
     }));
-    addMsg('bot', `Olá. Sou o <b>FlávioGPT</b>. Respondo com base no acervo documentado do BolsoDrive — sempre com status e fonte. Sobre o que quer saber?`);
+    addMsg('bot', `Sobre o que quer saber?`);
     renderRecente();
     // drive.html?q=termo#arquivo abre o Arquivo com a busca preenchida (links vindos da Foz)
     const q0 = new URLSearchParams(location.search).get('q');
