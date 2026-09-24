@@ -300,7 +300,8 @@
   window.__abrirMetodo = abrirMetodo;
 
   /* ---------------- Rede (grafo force-directed em canvas) ---------------- */
-  const GRUPO_COR = { politico:'#e5484d', familia:'#fb7185', operadores:'#f59e0b', milicia:'#7c6cf0', juridico:'#60a5fa', financeiro:'#34d399', aliado:'#22d3ee', golpe:'#d946ef', politico_inst:'#22d3ee', outro:'#94a3b8', default:'#94a3b8' };
+  // o nó dele (grupo "politico") fica em cor neutra: nada dele em vermelho ou âmbar
+  const GRUPO_COR = { politico:'#d8efdd', familia:'#fb7185', operadores:'#f59e0b', milicia:'#7c6cf0', juridico:'#60a5fa', financeiro:'#34d399', aliado:'#22d3ee', golpe:'#d946ef', politico_inst:'#22d3ee', outro:'#94a3b8', default:'#94a3b8' };
   const GRUPO_LABEL = { politico:'Flávio', familia:'família', operadores:'operadores', milicia:'milícia', juridico:'advogado', financeiro:'financeiro', aliado:'aliados', golpe:'trama golpista', politico_inst:'instituições', outro:'outros' };
   const grupoCor = g => GRUPO_COR[g] || GRUPO_COR.default;
 
@@ -310,11 +311,30 @@
   const fotoImg = {};   // id -> Image carregada
   window.__fotoURL = fotoURL;
 
+  // caminhos de um caso na teia (drive.html?caminho=<chave>#rede). "foz" é o id do rio em data/foz.js.
+  // Caso Marielle: dos 5 condenados pelo STF, dois têm ligação documentada com ele (Ronald e Peixe).
+  const CAMINHOS = {
+    marielle: {
+      titulo: 'Caso Marielle · 2 de 5',
+      foz: 'marielle-ifop',
+      ids: ['flavio','ronald-paulo-alves-pereira','robson-calixto-fonseca','instituto-de-formacao-profissional-jose-ca','domingos-brazao','chiquinho-brazao','rivaldo-barbosa'],
+      // só as arestas documentadas acendem (entre os nomes do caso há outras, antigas, que não são do caso)
+      arestas: [['flavio','ronald-paulo-alves-pereira'],['flavio','robson-calixto-fonseca'],['flavio','instituto-de-formacao-profissional-jose-ca'],['robson-calixto-fonseca','instituto-de-formacao-profissional-jose-ca'],['domingos-brazao','chiquinho-brazao'],['domingos-brazao','robson-calixto-fonseca'],['domingos-brazao','ronald-paulo-alves-pereira'],['domingos-brazao','rivaldo-barbosa']],
+      // a fonte de cada ligação vem do elo da cadeia na Foz que sai desse nome; a do número (Agência Brasil) é a das penas
+      fontesLig: [['ronald-paulo-alves-pereira','homenagem'],['robson-calixto-fonseca','emenda']],
+      frase: '2 dos 5 condenados pelo STF no caso do assassinato de Marielle Franco e Anderson Gomes têm ligação documentada com Flávio Bolsonaro: o major Ronald, homenageado na Alerj por indicação dele em 2004, 14 anos antes do crime, e Robson Calixto, o Peixe, que, segundo a PF, tratou com uma assessora do gabinete dele no Senado a emenda de R$ 199.999,79 ao Ifop.',
+      curta: '2 dos 5 condenados pelo STF no caso têm ligação documentada com Flávio Bolsonaro: o major Ronald e Robson Calixto, o Peixe. Ele não é investigado no caso Marielle.',
+      situacao: 'Não é investigado no caso Marielle, e o relatório final da PF sobre o crime (2024) não menciona a família Bolsonaro.',
+      ressalva: 'Nenhuma fonte afirma que ele sabia quem era Peixe. Peixe não foi condenado pela execução, e sim por integrar organização criminosa armada. Estar no rio não é ser acusado.'
+    }
+  };
+
   const Grafo = (function(){
     const canvas = $('#grafo'); const painel = $('#rede-painel');
     let ctx, W=0, H=0, dpr=1, nodes=[], edges=[], adj={}, started=false, alpha=1, raf=null;
     let drag=null, panning=false, last=null, downPos=null, moved=0, sel=null, hover=null;
     let filterSet=null, filterCat=null;
+    let caminho=null;   // {chave, ids:Set}: um caso em destaque (drive.html?caminho=marielle#rede)
     let cam={tx:0, ty:0, s:1};
 
     // categorias de situação penal (placar clicável) — testadas sobre status normalizado (sem acento)
@@ -327,6 +347,7 @@
     // usa tags explícitas (n.situacao) quando houver; senão, regex no texto do status. Uma pessoa pode cair em várias.
     const sitMatch = (n,c) => Array.isArray(n.situacao) ? n.situacao.includes(c.key) : (()=>{const s=norm(n.status||''); return !!(s && c.re.test(s));})();
     function activeIds(){
+      if(caminho) return caminho.ids;
       if(sel){ const s=new Set([sel]); (adj[sel]||new Set()).forEach(x=>s.add(x)); return s; }
       if(filterSet) return filterSet;
       return null;
@@ -395,6 +416,14 @@
       const act = activeIds();
       edges.forEach(e=>{
         let on = false;
+        if(caminho){
+          // só as arestas entre nomes do caso, em cor neutra (a cor de situação fica no anel de cada nome)
+          const cm = caminho.arestas ? caminho.arestas.some(p => (p[0]===e.de && p[1]===e.para) || (p[1]===e.de && p[0]===e.para)) : (caminho.ids.has(e.de) && caminho.ids.has(e.para));
+          ctx.strokeStyle = cm ? 'rgba(216,239,221,.9)' : 'rgba(120,200,140,.04)';
+          ctx.lineWidth = cm ? 2 : 0.8;
+          ctx.beginPath(); ctx.moveTo(SX(e.a),SY(e.a)); ctx.lineTo(SX(e.b),SY(e.b)); ctx.stroke();
+          return;
+        }
         if(sel) on = (e.de===sel||e.para===sel);
         else if(filterSet) on = filterSet.has(e.de) && filterSet.has(e.para);
         if(hover && (e.de===hover.id||e.para===hover.id)) on = true;
@@ -409,9 +438,9 @@
       const ordem=[...nodes].sort((a,b)=>(b.id===sel)-(a.id===sel) || (b===hover)-(a===hover) || (b.id==='flavio')-(a.id==='flavio') || b.deg-a.deg);
       nodes.forEach(n=>{
         const near = act ? act.has(n.id) : true;
-        const ring = (n.id===sel) || (n===hover) || (filterSet && filterSet.has(n.id));
+        const ring = (n.id===sel) || (n===hover) || (filterSet && filterSet.has(n.id)) || (caminho && caminho.ids.has(n.id));
         const x=SX(n), y=SY(n), r=Math.max(4, n.r*cam.s);
-        ctx.globalAlpha = near?1:0.18;
+        ctx.globalAlpha = near?1:(caminho?0.1:0.18);
         if(ring){ ctx.shadowColor=grupoCor(n.grupo); ctx.shadowBlur=16; }
         const im=fotoImg[n.id];
         if(im && im.naturalWidth){
@@ -463,7 +492,7 @@
 
     // ---- placar (visão geral) ----
     function showOverview(){
-      sel=null; filterSet=null; filterCat=null;
+      sairCaminho(); sel=null; filterSet=null; filterCat=null;
       const total = nodes.length;
       const rows = SIT.map(c=>({...c, ids: nodes.filter(n=>sitMatch(n,c)).map(n=>n.id)}));
       const pd = presosDiretos().length;
@@ -476,7 +505,7 @@
     }
     function showCategory(key){
       const c = SIT.find(x=>x.key===key); if(!c){ showOverview(); return; }
-      sel=null; const membros = nodes.filter(n=>sitMatch(n,c));
+      sairCaminho(); sel=null; const membros = nodes.filter(n=>sitMatch(n,c));
       filterSet = new Set(membros.map(n=>n.id)); filterCat=key; alpha=Math.max(alpha,.3);
       painel.innerHTML = `<button class="backlink" id="ov-back">← placar</button>
         <h3 style="margin-bottom:2px">${c.emoji} ${esc(c.label)} <span style="color:#6c7280">(${membros.length})</span></h3>
@@ -486,7 +515,7 @@
       $$('.vrow[data-node]', painel).forEach(r=> r.addEventListener('click', ()=>select(r.dataset.node)));
     }
     function showGrupo(g){
-      sel=null; const membros = nodes.filter(n=>n.grupo===g);
+      sairCaminho(); sel=null; const membros = nodes.filter(n=>n.grupo===g);
       if(!membros.length) return;
       filterSet = new Set(membros.map(n=>n.id)); filterCat=null; alpha=Math.max(alpha,.3);
       painel.innerHTML = `<button class="backlink" id="ov-back">← placar</button>
@@ -499,7 +528,7 @@
       q = norm(q).trim();
       if(q.length<2){ showOverview(); return; }
       const m = nodes.filter(n=> norm(n.nome).includes(q));
-      sel=null; filterSet=new Set(m.map(n=>n.id)); filterCat=null; alpha=Math.max(alpha,.2);
+      sairCaminho(); sel=null; filterSet=new Set(m.map(n=>n.id)); filterCat=null; alpha=Math.max(alpha,.2);
       if(m.length===1){ const n=m[0]; cam.s=Math.max(cam.s,1.1); cam.tx=W/2-n.wx*cam.s; cam.ty=H/2-n.wy*cam.s; }
       painel.innerHTML = `<div class="papel">busca: "${esc(q)}" — ${m.length} resultado(s)</div>
         <div class="vlist">${m.map(n=>`<div class="vrow" data-node="${n.id}" style="cursor:pointer"><b>${esc(n.nome)}</b><br><span style="color:#9aa1b0">${esc(n.papel||'')}</span></div>`).join('')||'<div class="ph">nada encontrado</div>'}</div>`;
@@ -525,7 +554,59 @@
       $$('.vrow[data-item]', painel).forEach(r=> r.addEventListener('click', ()=>abrirDetalhe(r.dataset.item)));
       $$('.vrow[data-node]', painel).forEach(r=> r.addEventListener('click', ()=>select(r.dataset.node)));
     }
-    function select(id){ filterSet=null; filterCat=null; sel=id; alpha=Math.max(alpha,.4); painelPessoa(id); }
+    function select(id){ sairCaminho(); filterSet=null; filterCat=null; sel=id; alpha=Math.max(alpha,.4); painelPessoa(id); }
+    // ---- caminho de um caso: foca Flávio e acende só os nomes e arestas do caso ----
+    function sairCaminho(){
+      if(!caminho) return;
+      caminho=null;
+      const b=$('#caminho-marielle'); if(b) b.setAttribute('aria-pressed','false');
+      const nota=$('#caminho-nota'); if(nota) nota.hidden=true;
+      try{ const u=new URL(location.href); if(u.searchParams.has('caminho')){ u.searchParams.delete('caminho'); history.replaceState(history.state, '', u.pathname+u.search+u.hash); } }catch(e){}
+    }
+    function showCaminho(chave){
+      const C = CAMINHOS[chave]; if(!C) return;
+      const ids = new Set(C.ids.filter(id=>nodes.some(n=>n.id===id)));
+      sel=null; filterSet=null; filterCat=null; hover=null; segue=null;
+      caminho = {chave, ids, arestas: C.arestas}; alpha=Math.max(alpha,.2);
+      const b=$('#caminho-marielle'); if(b) b.setAttribute('aria-pressed','true');
+      try{ const u=new URL(location.href); u.searchParams.delete('p'); u.searchParams.set('caminho', chave); u.hash='rede'; history.replaceState(history.state, '', u.pathname+u.search+u.hash); }catch(e){}
+      // câmera: enquadra Flávio e os nomes do caso, com folga para os rótulos
+      if(W){
+        let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+        nodes.forEach(n=>{ if(ids.has(n.id)){ x0=Math.min(x0,n.wx-n.r); x1=Math.max(x1,n.wx+n.r); y0=Math.min(y0,n.wy-n.r); y1=Math.max(y1,n.wy+n.r+18); } });
+        if(x1>x0){
+          // no desktop a legenda ocupa o pé do mapa; no celular ela fica abaixo dele
+          const padX = W<600 ? 56 : 110, top = 50, base = W<600 ? 36 : 110;
+          cam.s = Math.max(0.3, Math.min(1.6, (W-2*padX)/(x1-x0||1), (H-top-base)/(y1-y0||1)));
+          cam.tx = W/2 - (x0+x1)/2*cam.s; cam.ty = top + (H-top-base)/2 - (y0+y1)/2*cam.s;
+        }
+      }
+      const e = ((window.FOZ||{}).escandalos||[]).find(z=>z.id===C.foz) || {};
+      const st = String(e.status_flavio||C.situacao).split(/(?<=\.)\s+(?=[A-ZÁÉÍÓÚ])/)[0];
+      const stc = /^[A-ZÁÉÍÓÚ][a-zà-ú]/.test(st) ? st.charAt(0).toLowerCase()+st.slice(1) : st;
+      const nf = e.numero && e.numero.fonte && /^https?:\/\//.test(e.numero.fonte.url||'') ? e.numero.fonte : null;
+      const fl = (C.fontesLig||[]).map(([id,rot])=>{ const l=(e.cadeia||[]).find(x=>x.de_id===id && x.fonte && /^https?:\/\//.test(x.fonte.url||'')); return l ? {rot, f:l.fonte} : null; }).filter(Boolean);
+      const fA = f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.veiculo||'fonte')} ↗</a>`;
+      const rows = C.ids.filter(id=>id!=='flavio' && nodeById[id]).map(id=>{ const n=nodeById[id];
+        return `<div class="vrow" data-node="${esc(id)}" style="cursor:pointer"><b>${esc(n.nome)}</b><br><span style="color:#9aa1b0">${esc(n.status||'')}</span></div>`; }).join('');
+      painel.innerHTML = `<button class="backlink" id="ov-back">← placar</button>
+        <h3>${esc(C.titulo)}</h3>
+        <p class="cm-t">${esc(C.frase)}</p>
+        <p class="cm-s">Flávio neste caso: ${esc(stc)}</p>
+        <p class="cm-r">${esc(C.ressalva)}</p>
+        ${nf||fl.length?`<p class="cm-f">${fl.length?'Fontes: ':'Fonte: '}${[nf?(fl.length?'penas, ':'')+fA(nf):''].concat(fl.map(x=>x.rot+', '+fA(x.f))).filter(Boolean).join(' · ')}</p>`:''}
+        <a class="cm-foz" href="foz.html#${esc(C.foz)}">o caminho elo por elo, na Foz →</a>
+        <div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase">Nomes do caso na teia (${ids.size-1})</div>${rows}</div>`;
+      $('#ov-back').addEventListener('click', ()=>{ showOverview(); fitView(); });
+      $$('.vrow[data-node]', painel).forEach(r=> r.addEventListener('click', ()=>select(r.dataset.node)));
+      // no celular o painel fica abaixo do mapa: uma nota curta acima dele, com a situação dele junto
+      const nota=$('#caminho-nota');
+      if(nota){
+        nota.innerHTML = `<b>${esc(C.titulo)}.</b> ${esc(C.curta)} <button type="button" class="cn-mais">frase completa e ressalvas ↓</button>`;
+        nota.hidden=false;
+        nota.querySelector('.cn-mais').addEventListener('click', ()=> painel.scrollIntoView({behavior:'smooth', block:'start'}));
+      }
+    }
     // centraliza um nome (drive.html?p=<id>#rede). O layout ainda assenta por um instante
     // depois da seleção; a câmera acompanha o nó por 2 s ou até a pessoa mexer no mapa.
     let segue=null, segueAte=0;
@@ -592,6 +673,7 @@
         cam.tx = mx - (mx-cam.tx)*(ns/cam.s); cam.ty = my - (my-cam.ty)*(ns/cam.s); cam.s=ns; }, {passive:false});
       const fitBtn = $('#grafo-fit'); if(fitBtn) fitBtn.addEventListener('click', ()=>{ showOverview(); fitView(); });
       const movBtn = $('#grafo-mover'); if(movBtn) movBtn.addEventListener('click', ()=> setMovendo(!movendo));
+      const camBtn = $('#caminho-marielle'); if(camBtn) camBtn.addEventListener('click', ()=>{ if(caminho && caminho.chave==='marielle'){ showOverview(); fitView(); } else showCaminho('marielle'); });
       const sb = $('#rede-search'); if(sb) sb.addEventListener('input', ()=> doSearch(sb.value));
       // No celular, o resize dispara quando a barra de endereço some ou volta (só a altura
       // muda): aí não se recentraliza, para não desfazer o zoom e o arraste da pessoa.
@@ -631,6 +713,7 @@
         showOverview(); renderLegenda(); loop(); carregarFotos();
       },
       focus(id, centrar){ this.ensure(); select(id); if(centrar) centra(id); },
+      caminho(chave){ this.ensure(); showCaminho(chave); },
       preloadFotos(){ try{ carregarFotos(); }catch(e){} }
     };
   })();
@@ -867,9 +950,13 @@
     const p0 = new URLSearchParams(location.search).get('p');
     const pessoa = p0 && nodeById[p0] ? p0 : null;
     const h = (location.hash||'').slice(1);
-    const v0 = VIEWS.includes(h) ? h : (pessoa ? 'rede' : 'recente');
+    // drive.html?caminho=marielle#rede abre a teia com o caminho do caso aceso
+    const c0 = new URLSearchParams(location.search).get('caminho');
+    const caminho0 = c0 && CAMINHOS[c0] ? c0 : null;
+    const v0 = VIEWS.includes(h) ? h : ((pessoa || caminho0) ? 'rede' : 'recente');
     showView(v0);
-    if(pessoa && v0==='rede') Grafo.focus(pessoa, true);
+    if(caminho0 && v0==='rede') Grafo.caminho(caminho0);
+    else if(pessoa && v0==='rede') Grafo.focus(pessoa, true);
     // voltar/avançar (popstate) e hash digitado ou clicado (hashchange): mostra a view e
     // devolve a rolagem guardada naquela entrada do histórico
     const sync = ()=>{

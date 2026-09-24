@@ -4079,7 +4079,7 @@ window.DOSSIE = {
    "data": "2026-05-13",
    "status": "denuncia",
    "titulo": "Áudios revelam negociação de ~R$ 134 mi entre Flávio e Vorcaro para filme sobre Jair",
-   "resumo": "O Intercept divulgou áudios, mensagens e comprovantes mostrando que Flávio Bolsonaro negociou ~US$ 24 mi (R$ 134 mi) com o ex-banqueiro Daniel Vorcaro, dono do Banco Master, para financiar o filme 'Dark Horse', cinebiografia de Jair Bolsonaro.",
+   "resumo": "O Intercept divulgou áudios, mensagens e comprovantes mostrando que Flávio Bolsonaro negociou cerca de R$ 134 milhões com o ex-banqueiro Daniel Vorcaro, dono do Banco Master, para financiar o filme 'Dark Horse', cinebiografia de Jair Bolsonaro.",
    "pessoas": [],
    "fontes": [
     {
@@ -4105,8 +4105,8 @@ window.DOSSIE = {
    "tema": "master",
    "data": "2026-05-13",
    "status": "denuncia",
-   "titulo": "Pelo menos R$ 61 mi (US$ 10,6 mi) já teriam sido transferidos em seis operações (2025)",
-   "resumo": "Documentos indicam que ao menos US$ 10,6 mi (~R$ 61 mi) foram pagos entre fevereiro e maio de 2025, em seis transferências bancárias, para o projeto. Os repasses teriam passado pela empresa 'Entre Investimentos e Participações'.",
+   "titulo": "Pelo menos R$ 61 mi já teriam sido transferidos em seis operações (2025)",
+   "resumo": "Documentos indicam que ao menos R$ 61 milhões foram pagos entre fevereiro e maio de 2025, em seis transferências bancárias, para o projeto. Os repasses teriam passado pela empresa 'Entre Investimentos e Participações'.",
    "pessoas": [],
    "fontes": [
     {
@@ -4132,8 +4132,8 @@ window.DOSSIE = {
    "tema": "master",
    "data": "2026-05-13",
    "status": "investigacao",
-   "titulo": "Suspeita de desvio: US$ 2 mi teriam ido a fundo nos EUA ligado a aliado de Eduardo Bolsonaro",
-   "resumo": "Investigadores apuram se parte dos recursos não foi para o filme, mas para bancar despesas do ex-deputado Eduardo Bolsonaro nos EUA. US$ 2 mi teriam ido ao fundo texano Havengate Development Fund LP, gerido por Paulo Calixto, advogado de Eduardo. A PF investiga se a produção foi 'fachada' para lavagem.",
+   "titulo": "Suspeita de desvio: cerca de R$ 11,6 mi teriam ido a fundo nos EUA ligado a aliado de Eduardo Bolsonaro",
+   "resumo": "Investigadores apuram se parte dos recursos não foi para o filme, mas para bancar despesas do ex-deputado Eduardo Bolsonaro nos EUA. Cerca de R$ 11,6 milhões (pela cotação do Banco Central de 13/02/2025, dia do repasse) teriam ido ao fundo texano Havengate Development Fund LP, gerido por Paulo Calixto, advogado de Eduardo. A PF investiga se a produção foi 'fachada' para lavagem.",
    "pessoas": [],
    "fontes": [
     {
@@ -4160,7 +4160,7 @@ window.DOSSIE = {
    "data": "2026-05-13",
    "status": "investigacao",
    "titulo": "Áudio revela Flávio negociando R$ 134 milhões com Vorcaro para filme sobre Jair",
-   "resumo": "Áudio e mensagens divulgados mostram que Flávio Bolsonaro negociou repasse de US$ 24 milhões (cerca de R$ 134 milhões) com o ex-dono do Banco Master, Daniel Vorcaro, para financiar o filme 'Dark Horse' sobre Jair Bolsonaro. Flávio admitiu o pedido: 'era um filho buscando patrocínio'.",
+   "resumo": "Áudio e mensagens divulgados mostram que Flávio Bolsonaro negociou repasse de cerca de R$ 134 milhões com o ex-dono do Banco Master, Daniel Vorcaro, para financiar o filme 'Dark Horse' sobre Jair Bolsonaro. Flávio admitiu o pedido: 'era um filho buscando patrocínio'.",
    "observacao": "Apuração jornalística; Flávio reconheceu a negociação após divulgação dos áudios.",
    "pessoas": [
     "flavio",
@@ -4191,8 +4191,8 @@ window.DOSSIE = {
    "tema": "master",
    "data": "2026-05-13",
    "status": "investigacao",
-   "titulo": "PF apura desembolso de US$ 10,6 milhões (R$ 61 mi) do Master ao filme entre fev e maio de 2025",
-   "resumo": "Documentos indicam que ao menos US$ 10,6 milhões (cerca de R$ 61 milhões) foram transferidos em seis operações bancárias entre fevereiro e maio de 2025 para o financiamento do filme 'Dark Horse'. A Polícia Federal investiga se os recursos foram à produção ou serviram para camuflar transferências.",
+   "titulo": "PF apura desembolso de R$ 61 milhões do Master ao filme entre fev e maio de 2025",
+   "resumo": "Documentos indicam que ao menos R$ 61 milhões foram transferidos em seis operações bancárias entre fevereiro e maio de 2025 para o financiamento do filme 'Dark Horse'. A Polícia Federal investiga se os recursos foram à produção ou serviram para camuflar transferências.",
    "observacao": "Linha de investigação aberta pela PF; valores em apuração.",
    "pessoas": [
     "flavio",
@@ -4221,7 +4221,7 @@ window.DOSSIE = {
    "data": "2026-05-13",
    "status": "investigacao",
    "titulo": "Caso Master/Vorcaro: Flávio cobrou repasses do banqueiro para filme sobre Jair",
-   "resumo": "Áudios e mensagens divulgados pelo Intercept mostram Flávio Bolsonaro negociando com o ex-banqueiro Daniel Vorcaro (Banco Master) cerca de US$ 24 milhões (R$ 134 mi) para o filme Dark Horse, sobre Jair. Cerca de US$ 10,6 mi (R$ 61 mi) foram pagos entre fevereiro e maio de 2025.",
+   "resumo": "Áudios e mensagens divulgados pelo Intercept mostram Flávio Bolsonaro negociando com o ex-banqueiro Daniel Vorcaro (Banco Master) cerca de R$ 134 milhões para o filme Dark Horse, sobre Jair. Cerca de R$ 61 milhões foram pagos entre fevereiro e maio de 2025.",
    "observacao": "Flávio confirmou ter pedido dinheiro a Vorcaro, dizendo ser 'um filho procurando patrocínio' para o filme, e nega irregularidade.",
    "pessoas": [
     "flavio",
@@ -4307,8 +4307,8 @@ window.DOSSIE = {
    "tema": "master",
    "data": "2026-05-24",
    "status": "investigacao",
-   "titulo": "Fundo Havengate, no Texas, recebeu US$ 2 mi de empresa ligada a Vorcaro; PF apura repasse a Eduardo",
-   "resumo": "A PF investiga se parte dos recursos do Master, repassados a pedido de Flávio, financiou Eduardo Bolsonaro nos EUA. O Havengate Development Fund, sediado no Texas, recebeu ao menos US$ 2 milhões; tem como agente legal Paulo Calixto, advogado de Eduardo. Flávio nega e diz que tudo foi para o filme.",
+   "titulo": "Fundo Havengate, no Texas, recebeu cerca de R$ 11,6 mi de empresa ligada a Vorcaro; PF apura repasse a Eduardo",
+   "resumo": "A PF investiga se parte dos recursos do Master, repassados a pedido de Flávio, financiou Eduardo Bolsonaro nos EUA. O Havengate Development Fund, sediado no Texas, recebeu pelo menos o equivalente a cerca de R$ 11,6 milhões (pela cotação do Banco Central de 13/02/2025, dia do repasse); tem como agente legal Paulo Calixto, advogado de Eduardo. Flávio nega e diz que tudo foi para o filme.",
    "observacao": "Investigação em curso; Flávio nega desvio ao irmão.",
    "pessoas": [
     "flavio",
@@ -4360,7 +4360,7 @@ window.DOSSIE = {
    "data": "2026-06-02",
    "status": "denuncia",
    "titulo": "Delação de Vorcaro cita repasses a Flávio (filme) e propina a Ciro Nogueira ('Emenda Master')",
-   "resumo": "Em nova proposta de delação, Vorcaro detalhou os repasses ao filme pedidos por Flávio (apuração indica R$ 124 mi negociados, ~R$ 60 mi efetivados) e citou pagamentos a Ciro Nogueira em troca da 'Emenda Master', que elevaria o limite de cobertura do FGC. Entregou documentos e gravações de reuniões com Flávio.",
+   "resumo": "Em nova proposta de delação, Vorcaro detalhou os repasses ao filme pedidos por Flávio (segundo a apuração citada pelo Correio Braziliense, R$ 124 mi negociados e pelo menos R$ 60 mi efetivados) e citou pagamentos a Ciro Nogueira em troca da 'Emenda Master', que elevaria o limite de cobertura do FGC. Entregou documentos e gravações de reuniões com Flávio.",
    "pessoas": [],
    "fontes": [
     {
@@ -4462,7 +4462,7 @@ window.DOSSIE = {
    "data": "2026-06-26",
    "status": "decisao_judicial",
    "titulo": "Fachin redistribui a André Mendonça, por prevenção, apuração sobre repasses do Banco Master ao filme 'Dark Horse'",
-   "resumo": "Em 26/06/2026 o presidente do STF, Edson Fachin, determinou a redistribuição ao ministro André Mendonça da notícia-crime apresentada pelo líder do PT na Câmara, Lindbergh Farias, sobre repasses do banqueiro Daniel Vorcaro (Banco Master) ao filme 'Dark Horse'. Fachin escreveu que 'as circunstâncias justificam a redistribuição destes autos, por parâmetro de prevenção, ao Ministro André Mendonça'. A peça de Lindbergh aponta ligação entre o financiamento do filme, as apurações sobre o Banco Master e a relação do senador Flávio Bolsonaro com Vorcaro, citando valores entre US$ 24 milhões e US$ 26,8 milhões. A decisão trata apenas de relatoria/competência e não analisou o mérito das acusações.",
+   "resumo": "Em 26/06/2026 o presidente do STF, Edson Fachin, determinou a redistribuição ao ministro André Mendonça da notícia-crime apresentada pelo líder do PT na Câmara, Lindbergh Farias, sobre repasses do banqueiro Daniel Vorcaro (Banco Master) ao filme 'Dark Horse'. Fachin escreveu que 'as circunstâncias justificam a redistribuição destes autos, por parâmetro de prevenção, ao Ministro André Mendonça'. A peça de Lindbergh aponta ligação entre o financiamento do filme, as apurações sobre o Banco Master e a relação do senador Flávio Bolsonaro com Vorcaro, citando valores de cerca de R$ 134 milhões a R$ 150 milhões (pela cotação média do Banco Central em 2025, ano das negociações). A decisão trata apenas de relatoria/competência e não analisou o mérito das acusações.",
    "observacao": "Decisão de competência interna. Cortei a afirmação de que a peça teria sido protocolada nos autos do inquérito de Moraes sobre a atuação de Eduardo Bolsonaro no exterior — a fonte não diz isso. Nesta data Flávio não foi formalmente incluído como investigado.",
    "pessoas": [
     "flavio",
@@ -4509,7 +4509,7 @@ window.DOSSIE = {
    "data": "2026-07-09",
    "status": "investigacao",
    "titulo": "10ª fase da Compliance Zero mira publicitário apontado como elo entre Flávio Bolsonaro e Vorcaro",
-   "resumo": "Em 9 de julho de 2026 a PF deflagrou a 10ª fase da Operação Compliance Zero, que apura suspeitas de fraudes financeiras ligadas ao Banco Master, com busca e apreensão contra o publicitário Thiago Miranda, autorizada pelo ministro André Mendonça. Nesta etapa os investigadores analisam possível ação coordenada em redes sociais para comprometer a credibilidade do Banco Central. Segundo mensagens obtidas pela investigação, Miranda foi o responsável pela aproximação entre Flávio Bolsonaro e Daniel Vorcaro; uma delas registra 'Confirmei com o Flávio Bolsonaro. Quarta dia 11 às 17:30 aqui na sua casa de Brasília'. Documentos citados indicam R$ 134 milhões comprometidos por Vorcaro, cerca de R$ 62 milhões efetivamente repassados e US$ 23,9 milhões previstos para a produção. Medidas cautelares não representam condenação e os investigados mantêm o direito de defesa.",
+   "resumo": "Em 9 de julho de 2026 a PF deflagrou a 10ª fase da Operação Compliance Zero, que apura suspeitas de fraudes financeiras ligadas ao Banco Master, com busca e apreensão contra o publicitário Thiago Miranda, autorizada pelo ministro André Mendonça. Nesta etapa os investigadores analisam possível ação coordenada em redes sociais para comprometer a credibilidade do Banco Central. Segundo mensagens obtidas pela investigação, Miranda foi o responsável pela aproximação entre Flávio Bolsonaro e Daniel Vorcaro; uma delas registra 'Confirmei com o Flávio Bolsonaro. Quarta dia 11 às 17:30 aqui na sua casa de Brasília'. Documentos citados indicam R$ 134 milhões comprometidos por Vorcaro e cerca de R$ 62 milhões efetivamente repassados. Medidas cautelares não representam condenação e os investigados mantêm o direito de defesa.",
    "observacao": "Flávio Bolsonaro não é alvo desta fase. Cortei do resumo original: número de mandados ('dois'), a atribuição da agência 'MiThi' a Miranda, a data de dezembro/2024 para o primeiro encontro e as menções a intimidação de jornalistas e monitoramento irregular — nenhum desses pontos aparece nas fontes verificadas.",
    "pessoas": [
     "thiago-miranda",
@@ -4700,8 +4700,8 @@ window.DOSSIE = {
    "data": "2026-09-01",
    "status": "investigacao",
    "titulo": "Relatório do Coaf revelado pela piauí aponta novos repasses de Vorcaro ao filme sobre Bolsonaro",
-   "resumo": "Reportagem da revista piauí, com base em relatório do Coaf, apontou repasses adicionais do ex-banqueiro Daniel Vorcaro ao filme \"Dark Horse\", sobre Jair Bolsonaro: um pagamento de US$ 1,6 milhão ao Havengate Development Fund em 16/09/2025, oito dias depois de Flávio cobrar parcelas atrasadas, e nova cobrança em 22/10/2025 feita pelo publicitário Thiago Miranda (\"Consegue liberar as parcelas do filme?\"), seguida de outro repasse de US$ 1,6 milhão. Com isso o total desembolsado chegaria a cerca de US$ 14 milhões (aproximadamente R$ 72 milhões). Os dados contradizem a versão dada por Flávio à GloboNews, de que o último pagamento do banqueiro teria ocorrido em maio de 2025. Procurada, a assessoria de Flávio respondeu \"Isso não é com a gente\", atribuindo o assunto à produtora do filme. Em 20/08/2026, Flávio já havia dito que o caso é \"página virada\", que \"já aconteceu\" e que viu a prestação de contas e \"estava tudo certinho\".",
-   "observacao": "Flávio não é investigado formalmente, denunciado nem réu neste caso segundo as fontes consultadas, e nega irregularidade. Cortadas por falta de lastro: a comparação com \"US$ 10,6 milhões antes reconhecidos\" e a afirmação de que a Polícia Federal apura se os recursos foram destinados ao filme. Eduardo Bolsonaro foi removido da lista de pessoas por não constar das fontes.",
+   "resumo": "Reportagem da revista piauí, com base em relatório do Coaf, apontou repasses adicionais do ex-banqueiro Daniel Vorcaro ao filme \"Dark Horse\", sobre Jair Bolsonaro: um pagamento de cerca de R$ 8,8 milhões (conversão pela cotação do Banco Central do dia) ao Havengate Development Fund em 16/09/2025, oito dias depois de Flávio cobrar parcelas atrasadas, e nova cobrança em 22/10/2025 feita pelo publicitário Thiago Miranda (\"Consegue liberar as parcelas do filme?\"); segundo Vorcaro, houve ainda outro repasse de mesmo valor, não confirmado nos documentos. Se ele tiver sido feito, o total desembolsado chegaria a aproximadamente R$ 72 milhões, segundo a piauí. Os dados contradizem a versão dada por Flávio à GloboNews, de que o último pagamento do banqueiro teria ocorrido em maio de 2025. Procurada, a assessoria de Flávio respondeu \"Isso não é com a gente\", atribuindo o assunto à produtora do filme. Em 20/08/2026, Flávio já havia dito que o caso é \"página virada\", que \"já aconteceu\" e que viu a prestação de contas e \"estava tudo certinho\".",
+   "observacao": "Flávio não é investigado formalmente, denunciado nem réu neste caso segundo as fontes consultadas, e nega irregularidade. Cortadas por falta de lastro: a comparação com os valores antes reconhecidos e a afirmação de que a Polícia Federal apura se os recursos foram destinados ao filme. Eduardo Bolsonaro foi removido da lista de pessoas por não constar das fontes.",
    "pessoas": [
     "flavio",
     "vorcaro",
@@ -4733,7 +4733,7 @@ window.DOSSIE = {
    "data": "2026-09-02",
    "status": "denuncia",
    "titulo": "PT protocola representação no Conselho de Ética e pede a cassação de Flávio Bolsonaro por caso Dark Horse",
-   "resumo": "Em 2 de setembro de 2026, o líder do PT no Senado, Camilo Santana (CE), protocolou representação no Conselho de Ética pedindo a perda do mandato de Flávio Bolsonaro por quebra de decoro parlamentar. O partido aponta contradições entre a versão do senador e os registros do Coaf sobre o financiamento do filme 'Dark Horse', cinebiografia de Jair Bolsonaro: segundo o Poder360, Daniel Vorcaro fez repasses ao projeto em valor superior ao admitido por Flávio, incluindo transferência de US$ 1,6 milhão em 16 de setembro de 2025 ao fundo Havengate. A representação cita ainda áudio de 8 de setembro de 2025 em que o senador cobra pagamentos do banqueiro e repasses de US$ 10,6 milhões (cerca de R$ 61 milhões) entre fevereiro e maio de 2025. Nenhum processo disciplinar foi instaurado: o Conselho de Ética está paralisado desde julho de 2024, com pelo menos 19 representações por quebra de decoro paradas. A assessoria do senador não respondeu a nenhuma das reportagens; em vídeo nas redes sociais em maio de 2026, Flávio confirmou o pedido de ajuda financeira a Vorcaro, mas negou irregularidades.",
+   "resumo": "Em 2 de setembro de 2026, o líder do PT no Senado, Camilo Santana (CE), protocolou representação no Conselho de Ética pedindo a perda do mandato de Flávio Bolsonaro por quebra de decoro parlamentar. O partido aponta contradições entre a versão do senador e os registros do Coaf sobre o financiamento do filme 'Dark Horse', cinebiografia de Jair Bolsonaro: segundo o Poder360, Daniel Vorcaro fez repasses ao projeto em valor superior ao admitido por Flávio, incluindo transferência de cerca de R$ 8,8 milhões (conversão pela cotação do Banco Central do dia) em 16 de setembro de 2025 ao fundo Havengate. A representação cita ainda áudio de 8 de setembro de 2025 em que o senador cobra pagamentos do banqueiro e repasses de cerca de R$ 61 milhões entre fevereiro e maio de 2025. Nenhum processo disciplinar foi instaurado: o Conselho de Ética está paralisado desde julho de 2024, com pelo menos 19 representações por quebra de decoro paradas. A assessoria do senador não respondeu a nenhuma das reportagens; em vídeo nas redes sociais em maio de 2026, Flávio confirmou o pedido de ajuda financeira a Vorcaro, mas negou irregularidades.",
    "observacao": "É representação partidária protocolada, NÃO denúncia do Ministério Público nem processo instaurado: o senador não é investigado formalmente por esse fato, nem indiciado, denunciado ou réu, e o Conselho de Ética não delibera desde julho de 2024. Retirada a afirmação de que Flávio teria dito 'em entrevista' que o último repasse foi em maio de 2025 — as fontes abertas registram apenas que os repasses superam o valor admitido por ele. A negativa de irregularidade é de maio de 2026, anterior à janela, incluída como contraditório porque a assessoria não respondeu às reportagens de setembro.",
    "pessoas": [
     "flavio",
@@ -4771,9 +4771,9 @@ window.DOSSIE = {
    "tema": "master",
    "data": "2026-09-02",
    "status": "investigacao",
-   "titulo": "Repasse de US$ 1,6 milhão ao Havengate em setembro de 2025 contradiz versão de Flávio sobre fim dos pagamentos",
-   "resumo": "Análise publicada pela Agência Pública em 2 de setembro de 2026, assinada por Thiago Domenici, retoma reportagem da revista piauí segundo a qual Daniel Vorcaro enviou mais US$ 1,6 milhão ao Havengate Development Fund em 16 de setembro de 2025, dois meses antes de sua prisão. O dado contraria a versão dada por Flávio Bolsonaro, que afirmou que 'o último pagamento que ele fez foi em maio de 2025' e que o fundo 'foi fechado, isolado'. O mesmo texto registra outros elementos do caso Master no período: contrato de R$ 131 milhões entre o escritório de Viviane Barci de Moraes e o banco, de R$ 3,6 milhões mensais por três anos, assinado em 23 de janeiro de 2024; e um encontro de duas horas entre o ministro André Mendonça e Vorcaro em 14 de março de 2025, em São Paulo, no Iter, instituto fundado pelo próprio ministro. Não há, até 09/09/2026, manifestação da defesa de Flávio reconciliando as datas.",
-   "observacao": "O texto da Agência Pública é assinado como análise e credita a revelação do repasse à revista piauí. A contradição é entre uma declaração pública do senador e documentos citados pela imprensa; não equivale, por si só, a imputação de crime. Ajustei o valor de 'US$ 1,66 milhão' para 'US$ 1,6 milhão', que é o número que consta da fonte. Retirei a atribuição da reportagem a Breno Pires, não confirmada na página.",
+   "titulo": "Repasse de cerca de R$ 8,8 milhões ao Havengate em setembro de 2025 contradiz versão de Flávio sobre fim dos pagamentos",
+   "resumo": "Análise publicada pela Agência Pública em 2 de setembro de 2026, assinada por Thiago Domenici, retoma reportagem da revista piauí segundo a qual Daniel Vorcaro enviou mais cerca de R$ 8,8 milhões (conversão pela cotação do Banco Central do dia) ao Havengate Development Fund em 16 de setembro de 2025, dois meses antes de sua prisão. O dado contraria a versão dada por Flávio Bolsonaro, que afirmou que 'o último pagamento que ele fez foi em maio de 2025' e que o fundo 'foi fechado, isolado'. O mesmo texto registra outros elementos do caso Master no período: contrato de R$ 131 milhões entre o escritório de Viviane Barci de Moraes e o banco, de R$ 3,6 milhões mensais por três anos, assinado em 23 de janeiro de 2024; e um encontro de duas horas entre o ministro André Mendonça e Vorcaro em 14 de março de 2025, em São Paulo, no Iter, instituto fundado pelo próprio ministro. Não há, até 09/09/2026, manifestação da defesa de Flávio reconciliando as datas.",
+   "observacao": "O texto da Agência Pública é assinado como análise e credita a revelação do repasse à revista piauí. A contradição é entre uma declaração pública do senador e documentos citados pela imprensa; não equivale, por si só, a imputação de crime. O valor em reais é a conversão, pela cotação de venda do Banco Central (PTAX) de 16/09/2025, do valor que consta da fonte. Retirei a atribuição da reportagem a Breno Pires, não confirmada na página.",
    "pessoas": [
     "vorcaro",
     "flavio"
@@ -4796,7 +4796,7 @@ window.DOSSIE = {
    "data": "2026-09-03",
    "status": "investigacao",
    "titulo": "PGR fecha delação com operador de repasses ao 'Dark Horse'; acordo vai a Mendonça e não está homologado",
-   "resumo": "Em 03/09/2026 a Procuradoria-Geral da República fechou acordo de colaboração premiada com o empresário Antonio Carlos Freixo Júnior, o 'Mineiro', dono da Entre Investimentos e Participações, apontado como operador de repasses ligados ao financiamento do filme 'Dark Horse'. O acordo foi enviado ao ministro André Mendonça, relator no STF, a quem cabe decidir se homologa a colaboração — ou seja, NÃO está homologado. As reportagens registram que 'as parcelas pagas por Vorcaro para a produção do Dark Horse foram negociadas pelo senador Flávio Bolsonaro' e que Flávio negociou com Vorcaro financiamento de US$ 24 milhões (cerca de R$ 134 milhões). As autoridades investigam o destino dos recursos e suspeitam que parte possa ter beneficiado Eduardo Bolsonaro. O senador afirmou ter buscado patrocínio privado para um filme sobre o próprio pai, sem dinheiro público.",
+   "resumo": "Em 03/09/2026 a Procuradoria-Geral da República fechou acordo de colaboração premiada com o empresário Antonio Carlos Freixo Júnior, o 'Mineiro', dono da Entre Investimentos e Participações, apontado como operador de repasses ligados ao financiamento do filme 'Dark Horse'. O acordo foi enviado ao ministro André Mendonça, relator no STF, a quem cabe decidir se homologa a colaboração — ou seja, NÃO está homologado. As reportagens registram que 'as parcelas pagas por Vorcaro para a produção do Dark Horse foram negociadas pelo senador Flávio Bolsonaro' e que Flávio negociou com Vorcaro financiamento de cerca de R$ 134 milhões. As autoridades investigam o destino dos recursos e suspeitam que parte possa ter beneficiado Eduardo Bolsonaro. O senador afirmou ter buscado patrocínio privado para um filme sobre o próprio pai, sem dinheiro público.",
    "observacao": "Delação ASSINADA não é prova nem acusação: falta homologação por Mendonça. Nenhuma das duas fontes afirma que Freixo tenha imputado crime a Flávio; a CNN registra explicitamente que não se alega que Flávio tenha recebido recursos indevidos, apenas que negociou os pagamentos.",
    "pessoas": [
     "antonio-carlos-freixo-junior-mineiro",
@@ -4828,9 +4828,9 @@ window.DOSSIE = {
    "tema": "master",
    "data": "2026-09-09",
    "status": "investigacao",
-   "titulo": "Mendonça homologa delação de 'Mineiro': US$ 12,3 mi em 7 remessas ao Havengate; pedido inicial seria de US$ 24 mi",
-   "resumo": "Em 9/9 o ministro André Mendonça homologou a colaboração premiada de Antonio Carlos Freixo Júnior ('Mineiro'), dono da Entre Investimentos, que a mando de Daniel Vorcaro fez os repasses ao fundo Havengate Development (EUA), ligado ao filme 'Dark Horse'. Segundo o delator, foram sete transferências em 2025 somando US$ 12,3 milhões ('média de US$ 1,76 milhão por operação'; cerca de R$ 69 milhões), 51,3% dos US$ 24 milhões prometidos; Vorcaro o procurou por WhatsApp entre o fim de 2024 e o início de 2025, e o restante não foi pago por causa da prisão do ex-banqueiro em nov/2025. Conversas do celular de Vorcaro atribuem a Flávio Bolsonaro o pedido dos US$ 24 milhões. Flávio sustenta que os recursos foram integralmente para o filme. Segundo o Poder360, a campanha avalia que 'a colaboração de Mineiro não trouxe, por enquanto, um elemento inteiramente novo que altere a avaliação já feita sobre as transferências' e que tudo passou 'pelo sistema bancário, com utilização do código Swift e sob supervisão do Coaf'.",
-   "observacao": "Delação homologada não equivale a prova; Flávio segue como investigado, não denunciado. Cortado 'mais de dez subscrições entre jan/2025 e jan/2026' (nenhuma fonte sustenta). Os US$ 24 mi correspondem aos R$ 134 mi do áudio já conhecido.",
+   "titulo": "Mendonça homologa delação de 'Mineiro': cerca de R$ 69 mi em 7 remessas ao Havengate; pedido inicial seria de R$ 134 mi",
+   "resumo": "Em 9/9 o ministro André Mendonça homologou a colaboração premiada de Antonio Carlos Freixo Júnior ('Mineiro'), dono da Entre Investimentos, que a mando de Daniel Vorcaro fez os repasses ao fundo Havengate Development (EUA), ligado ao filme 'Dark Horse'. Segundo o delator, foram sete transferências em 2025 somando cerca de R$ 69 milhões pela cotação da época, 51,3% do total prometido; Vorcaro o procurou por WhatsApp entre o fim de 2024 e o início de 2025, e o restante não foi pago por causa da prisão do ex-banqueiro em nov/2025. Conversas do celular de Vorcaro atribuem a Flávio Bolsonaro o pedido do valor total. Flávio sustenta que os recursos foram integralmente para o filme. Segundo o Poder360, a campanha avalia que 'a colaboração de Mineiro não trouxe, por enquanto, um elemento inteiramente novo que altere a avaliação já feita sobre as transferências' e que tudo passou 'pelo sistema bancário, com utilização do código Swift e sob supervisão do Coaf'.",
+   "observacao": "Delação homologada não equivale a prova; Flávio segue como investigado, não denunciado. Cortado 'mais de dez subscrições entre jan/2025 e jan/2026' (nenhuma fonte sustenta). O total prometido corresponde aos R$ 134 mi do áudio já conhecido.",
    "pessoas": [
     "flavio",
     "antonio-carlos-freixo-junior-mineiro",
@@ -4869,7 +4869,7 @@ window.DOSSIE = {
    "data": "2026-09-09",
    "status": "decisao_judicial",
    "titulo": "Mendonça homologa delação de operador que fez sete repasses ao fundo ligado ao filme sobre Bolsonaro",
-   "resumo": "O ministro André Mendonça, do STF, homologou em 9 de setembro de 2026 o acordo de colaboração premiada de Antonio Carlos Freixo Júnior, o 'Mineiro', operador do mercado financeiro, fechado com a PGR em 8 de agosto. Ele confirmou sete transferências ao Havengate Development Fund, nos Estados Unidos, somando US$ 12,3 milhões (cerca de R$ 63 milhões pela cotação da época), feitas em 2025 a pedido de Daniel Vorcaro. Segundo a delação, o dinheiro foi pedido pelo senador e candidato à Presidência Flávio Bolsonaro e se destinava ao filme 'Dark Horse'. O fundo é administrado pelo advogado de imigração Paulo Calixto, próximo do ex-deputado Eduardo Bolsonaro, que nega envolvimento: 'Não exerci qualquer posição de gestão ou emprego no fundo, apenas cedi meus direitos de imagem'. Flávio sustenta que os recursos foram destinados integralmente à produção do filme. A homologação valida o acordo como meio de prova; não implica juízo sobre a veracidade do relato nem sobre culpa de terceiros.",
+   "resumo": "O ministro André Mendonça, do STF, homologou em 9 de setembro de 2026 o acordo de colaboração premiada de Antonio Carlos Freixo Júnior, o 'Mineiro', operador do mercado financeiro, fechado com a PGR em 8 de agosto. Ele confirmou sete transferências ao Havengate Development Fund, nos Estados Unidos, somando cerca de R$ 69 milhões pela cotação da época, feitas em 2025 a pedido de Daniel Vorcaro. Segundo a delação, o dinheiro foi pedido pelo senador e candidato à Presidência Flávio Bolsonaro e se destinava ao filme 'Dark Horse'. O fundo é administrado pelo advogado de imigração Paulo Calixto, próximo do ex-deputado Eduardo Bolsonaro, que nega envolvimento: 'Não exerci qualquer posição de gestão ou emprego no fundo, apenas cedi meus direitos de imagem'. Flávio sustenta que os recursos foram destinados integralmente à produção do filme. A homologação valida o acordo como meio de prova; não implica juízo sobre a veracidade do relato nem sobre culpa de terceiros.",
    "observacao": "Relato de colaborador premiado, que por lei não basta isoladamente para condenação e precisa ser corroborado. Nem Flávio nem Eduardo Bolsonaro foram denunciados. Fundi aqui o item separado de 08/09 sobre o conteúdo da delação, por tratar do mesmo fato. As fontes divergem sobre o período dos repasses (Brasil de Fato: janeiro a setembro de 2025; Diário Carioca: fevereiro a setembro), por isso o resumo diz apenas '2025'. Cortei 'cerca de quatro meses de negociação' e a movimentação de R$ 1,3 bilhão entre 2020 e 2025, não confirmadas nas fontes verificadas.",
    "pessoas": [
     "antonio-carlos-freixo-junior-mineiro",
@@ -4910,7 +4910,7 @@ window.DOSSIE = {
    "data": "2026-09-10",
    "status": "investigacao",
    "titulo": "Operação Make Up: Dino autoriza 49 mandados contra Frias e produtora do Dark Horse; defesa de Flávio tentara tirar o caso de Dino",
-   "resumo": "Em 10/9 (quinta) a PF deflagrou a Operação Make Up, com 49 mandados de busca e apreensão (SP, RJ, CE e DF) autorizados por Flávio Dino, contra o deputado Mário Frias (PL-SP) e a produtora Karina Gama, ligada à GoUp, ao Instituto Conhecer Brasil e à Academia Nacional de Cultura, por suspeita de desvio de emendas parlamentares (peculato, falsidade documental, lavagem, organização criminosa e crimes licitatórios). Na decisão, assinada em 3/9, Dino viu 'fortes indícios de uma única organização criminosa, estruturada para captar, disseminar e ocultar recursos provenientes de verbas públicas', ligando a frente das emendas à dos dólares de Vorcaro apurada por Mendonça. Segundo o Painel Político, a defesa de Flávio apresentou quatro pedidos entre 13 e 29 de julho para transferir o procedimento de Dino a Mendonça, alegando 'manipulação das regras de competência, a fim de criar uma prevenção artificial'; todos foram rejeitados. Flávio não é alvo da operação. As assessorias de Frias e Karina Gama não responderam.",
+   "resumo": "Em 10/9 (quinta) a PF deflagrou a Operação Make Up, com 49 mandados de busca e apreensão (SP, RJ, CE e DF) autorizados por Flávio Dino, contra o deputado Mário Frias (PL-SP) e a produtora Karina Gama, ligada à GoUp, ao Instituto Conhecer Brasil e à Academia Nacional de Cultura, por suspeita de desvio de emendas parlamentares (peculato, falsidade documental, lavagem, organização criminosa e crimes licitatórios). Na decisão, assinada em 3/9, Dino viu 'fortes indícios de uma única organização criminosa, estruturada para captar, disseminar e ocultar recursos provenientes de verbas públicas', ligando a frente das emendas à do dinheiro de Vorcaro apurada por Mendonça. Segundo o Painel Político, a defesa de Flávio apresentou quatro pedidos entre 13 e 29 de julho para transferir o procedimento de Dino a Mendonça, alegando 'manipulação das regras de competência, a fim de criar uma prevenção artificial'; todos foram rejeitados. Flávio não é alvo da operação. As assessorias de Frias e Karina Gama não responderam.",
    "observacao": "Mundo Positivo e Painel Político são fontes secundárias; data de 10/9 (quinta) confirmada por Poder360 e Painel Político. Revista Fórum datou a operação em 9/9 — divergência não adotada. Data da decisão (3/9) vem só da Fórum.",
    "pessoas": [
     "flavio",
@@ -4948,7 +4948,7 @@ window.DOSSIE = {
    "data": "2026-09-11",
    "status": "investigacao",
    "titulo": "Sigilo levantado: Flávio é investigado desde julho por corrupção, lavagem e evasão; PF o aponta como 'interlocutor direto' de Vorcaro",
-   "resumo": "Na madrugada de 11/9, após determinação do presidente do STF, Edson Fachin, de envio em 24h dos procedimentos ligados à Pet 15.556/Operação Compliance Zero, André Mendonça levantou o sigilo de parte dos autos do caso Master, incluindo a Pet 16.369 (Dark Horse). Os documentos mostram que a PF pediu em 8/7 a abertura de apuração contra Flávio Bolsonaro, a PGR opinou favoravelmente em 21/7 ('indícios consistentes'), Mendonça autorizou em 22/7 e o inquérito foi instaurado em 23/7, por 'lavagem de dinheiro, evasão de divisas, corrupção e outros delitos correlatos' no repasse de cerca de R$ 61 milhões de Vorcaro ao filme. Relatório da PF, com base no celular de Vorcaro e em dados do Coaf, descreve o senador como 'interlocutor direto de Vorcaro para viabilizar aportes financeiros', com cobranças reiteradas: áudio de 8/9/2025 cobrando 'repasses atrasados' e citando risco de calote com Jim Caviezel, e ligação em 16/9/2025, dia da remessa de US$ 1,66 milhão da Entre Investimentos ao Havengate. Os autos trazem projeção de bilheteria de até R$ 358 milhões. A defesa diz que a captação 'teve caráter estritamente privado', que não houve dinheiro público, que Flávio não recebeu qualquer valor diretamente e que não ofereceu vantagens ao banqueiro; ele não nega a autenticidade dos áudios.",
+   "resumo": "Na madrugada de 11/9, após determinação do presidente do STF, Edson Fachin, de envio em 24h dos procedimentos ligados à Pet 15.556/Operação Compliance Zero, André Mendonça levantou o sigilo de parte dos autos do caso Master, incluindo a Pet 16.369 (Dark Horse). Os documentos mostram que a PF pediu em 8/7 a abertura de apuração contra Flávio Bolsonaro, a PGR opinou favoravelmente em 21/7 ('indícios consistentes'), Mendonça autorizou em 22/7 e o inquérito foi instaurado em 23/7, por 'lavagem de dinheiro, evasão de divisas, corrupção e outros delitos correlatos' no repasse de cerca de R$ 61 milhões de Vorcaro ao filme. Relatório da PF, com base no celular de Vorcaro e em dados do Coaf, descreve o senador como 'interlocutor direto de Vorcaro para viabilizar aportes financeiros', com cobranças reiteradas: áudio de 8/9/2025 cobrando 'repasses atrasados' e citando risco de calote com Jim Caviezel, e ligação em 16/9/2025, dia da remessa de cerca de R$ 8,8 milhões (conversão pela cotação do Banco Central do dia) da Entre Investimentos ao Havengate. Os autos trazem projeção de bilheteria de até R$ 358 milhões. A defesa diz que a captação 'teve caráter estritamente privado', que não houve dinheiro público, que Flávio não recebeu qualquer valor diretamente e que não ofereceu vantagens ao banqueiro; ele não nega a autenticidade dos áudios.",
    "observacao": "Status literal: INVESTIGADO (inquérito instaurado em julho; sigilo levantado em 11/9). Não há denúncia. ICL registrou, em versão anterior no mesmo dia, que o inquérito Dark Horse seguia sigiloso; Diário Carioca relata que Mendonça ampliou a abertura em 11/9 incluindo a Pet 16.369. ICL e Diário Carioca são fontes de menor porte.",
    "pessoas": [
     "flavio",
@@ -4986,8 +4986,8 @@ window.DOSSIE = {
    "tema": "master",
    "data": "2026-09-11",
    "status": "investigacao",
-   "titulo": "PF: ligação Flávio–Vorcaro em 16/9/2025 coincide com última remessa de US$ 1,66 mi ao fundo do 'Dark Horse'",
-   "resumo": "Relatório da PF, com sigilo levantado pelo relator André Mendonça em 11/9 (após determinação de publicidade do presidente Edson Fachin, segundo a Fórum), registra ligação de 42 segundos entre Flávio e Daniel Vorcaro em 16/9/2025, mesmo dia da última transferência de US$ 1.666.666,67 da Entre Investimentos ao Havengate Development Fund, fundo nos EUA ligado ao filme 'Dark Horse'. As remessas identificadas somam US$ 12,33 milhões de um total combinado de US$ 24 milhões em 14 parcelas; a PF aponta orientação de Eduardo (21/3/2025) sobre envio de recursos aos EUA e áudio de Flávio em 8/9/2025 cobrando parcelas atrasadas ('Imagina a gente dando calote num Jim Caviezel'). O parecer fala em 'indícios consistentes' de corrupção passiva e ativa, evasão de divisas e lavagem. Status: Flávio é investigado, não denunciado. Defesa: sustenta que se tratou de captação privada de patrocínio para a obra audiovisual, nega recebimento direto de valores e irregularidades ou uso de verba pública.",
+   "titulo": "PF: ligação Flávio–Vorcaro em 16/9/2025 coincide com última remessa, de cerca de R$ 8,8 mi, ao fundo do 'Dark Horse'",
+   "resumo": "Relatório da PF, com sigilo levantado pelo relator André Mendonça em 11/9 (após determinação de publicidade do presidente Edson Fachin, segundo a Fórum), registra ligação de 42 segundos entre Flávio e Daniel Vorcaro em 16/9/2025, mesmo dia da última transferência, de cerca de R$ 8,8 milhões (conversão pela cotação do Banco Central do dia), da Entre Investimentos ao Havengate Development Fund, fundo nos EUA ligado ao filme 'Dark Horse'. As remessas identificadas somam cerca de R$ 69 milhões pela cotação da época, pouco mais da metade do total combinado em 14 parcelas; a PF aponta orientação de Eduardo (21/3/2025) sobre envio de recursos aos EUA e áudio de Flávio em 8/9/2025 cobrando parcelas atrasadas ('Imagina a gente dando calote num Jim Caviezel'). O parecer fala em 'indícios consistentes' de corrupção passiva e ativa, evasão de divisas e lavagem. Status: Flávio é investigado, não denunciado. Defesa: sustenta que se tratou de captação privada de patrocínio para a obra audiovisual, nega recebimento direto de valores e irregularidades ou uso de verba pública.",
    "observacao": "A coincidência de datas não prova, por si, que Flávio ordenou o pagamento. Revista Fórum e Brasil de Fato têm linha editorial à esquerda; CNN, O Povo e GPS Brasília confirmam os dados centrais.",
    "pessoas": [
     "flavio",
@@ -5027,7 +5027,7 @@ window.DOSSIE = {
    "data": "2026-09-11",
    "status": "investigacao",
    "titulo": "Mendonça retira sigilo do inquérito Dark Horse; PF registra 'interlocução direta' e 'reiteradas cobranças' de Flávio a Vorcaro",
-   "resumo": "Em 11/9/2026, após pressão do presidente do STF, Edson Fachin, dos ministros Alexandre de Moraes e Cristiano Zanin e da PGR, André Mendonça levantou o sigilo de dezenas de peças ligadas ao caso Master (18 processos e 20 procedimentos, segundo o Brasil de Fato), entre elas o inquérito sobre o financiamento do filme Dark Horse, aberto em julho a pedido da PF e autorizado pelo próprio Mendonça. O relatório da PF registra 'interlocução direta' entre Flávio Bolsonaro e Daniel Vorcaro a partir de agosto de 2025 e 'reiteradas cobranças' do senador para liberação dos recursos, além de uma ligação entre os dois em 16/9/2025, dia da última remessa de US$ 1.666.666,67 ao Havengate. Parecer do PGR Paulo Gonet (21/7/2026) aponta 'indícios consistentes' de corrupção passiva e ativa, evasão de divisas e lavagem de capitais e afirma que Eduardo Bolsonaro 'orientou a gestão dos recursos em solo estrangeiro'. Flávio é investigado; não há denúncia. Defesa: no mesmo dia, em Manaus, Flávio disse 'abra o sigilo, tira o sigilo de tudo, mostra tudo para o povo' e que 'o ministro André Mendonça está certo'. Moraes, por sua vez, classificou o levantamento como 'seletivo e direcionado'.",
+   "resumo": "Em 11/9/2026, após pressão do presidente do STF, Edson Fachin, dos ministros Alexandre de Moraes e Cristiano Zanin e da PGR, André Mendonça levantou o sigilo de dezenas de peças ligadas ao caso Master (18 processos e 20 procedimentos, segundo o Brasil de Fato), entre elas o inquérito sobre o financiamento do filme Dark Horse, aberto em julho a pedido da PF e autorizado pelo próprio Mendonça. O relatório da PF registra 'interlocução direta' entre Flávio Bolsonaro e Daniel Vorcaro a partir de agosto de 2025 e 'reiteradas cobranças' do senador para liberação dos recursos, além de uma ligação entre os dois em 16/9/2025, dia da última remessa, de cerca de R$ 8,8 milhões (conversão pela cotação do Banco Central do dia), ao Havengate. Parecer do PGR Paulo Gonet (21/7/2026) aponta 'indícios consistentes' de corrupção passiva e ativa, evasão de divisas e lavagem de capitais e afirma que Eduardo Bolsonaro 'orientou a gestão dos recursos em solo estrangeiro'. Flávio é investigado; não há denúncia. Defesa: no mesmo dia, em Manaus, Flávio disse 'abra o sigilo, tira o sigilo de tudo, mostra tudo para o povo' e que 'o ministro André Mendonça está certo'. Moraes, por sua vez, classificou o levantamento como 'seletivo e direcionado'.",
    "observacao": "Brasil de Fato e Revista Fórum têm linha editorial à esquerda; Gazeta Brasil e Gazeta da Amazônia são portais de porte médio. Os trechos do relatório da PF coincidem entre os veículos. O relatório fala em 'interlocução direta', não em 'interlocutor direto'.",
    "pessoas": [
     "flavio",
@@ -5135,8 +5135,8 @@ window.DOSSIE = {
    "data": "2026-09-12",
    "status": "investigacao",
    "titulo": "PF detalha mensagens de Flávio a Vorcaro: pedido de R$ 131 mi, cobranças de atraso e fundo 'operacionalmente inerte' por 4 anos",
-   "resumo": "Com o sigilo levantado, a imprensa publicou em 12 e 13/9/2026 o conteúdo do relatório da PF: Flávio pediu R$ 131 milhões a Vorcaro para o filme, dos quais R$ 60 milhões teriam sido pagos (US$ 24 milhões em 14 parcelas, segundo a CNN; a primeira de US$ 2 milhões em fevereiro de 2025 e as demais de US$ 1,66 milhão, via Entre Investimentos para o fundo Havengate). Em áudio de 8/9/2025, Flávio diz que seria 'muito ruim' não pagar o ator Jim Caviezel e o diretor Cyrus Nowrasteh e que 'tá todo mundo tenso'; em 22/10/2025 afirma que o filme está 'no limite'; em 16/11/2025, véspera da prisão de Vorcaro, escreve 'Só preciso que me dê uma luz! Abs!'. A PF afirma que o Havengate, criado para fins imobiliários, ficou 'operacionalmente inerte por quase 4 anos' até a primeira remessa, contrariando a versão de Flávio à GloboNews (maio) de que era 'um fundo exclusivo criado para a realização do filme'. Status: investigado, sem denúncia. Defesa: em 12/9, no interior do RJ, Flávio disse 'Graças a Deus o sigilo foi afastado e tudo está aí às claras', 'não tem absolutamente nada de errado nesse filme' e 'Eu acho que o impacto é zero'; ao Poder360, Flávio e Eduardo não responderam.",
-   "observacao": "Os valores variam entre veículos (R$ 131 mi / R$ 134 mi pedidos; R$ 60 mi pagos; CNN fala em US$ 24 mi em 14 parcelas, O Povo e a delação de Mineiro em US$ 12,3 mi remetidos). A frase 'Irmão, estou e estarei contigo sempre' não foi localizada nas fontes abertas e foi retirada.",
+   "resumo": "Com o sigilo levantado, a imprensa publicou em 12 e 13/9/2026 o conteúdo do relatório da PF: Flávio pediu R$ 131 milhões a Vorcaro para o filme, dos quais R$ 60 milhões teriam sido pagos (em 14 parcelas combinadas, segundo a CNN: duas de cerca de R$ 11 milhões e as demais de cerca de R$ 9 milhões cada, pela cotação da época; a primeira remessa saiu em 13/02/2025, via Entre Investimentos para o fundo Havengate). Em áudio de 8/9/2025, Flávio diz que seria 'muito ruim' não pagar o ator Jim Caviezel e o diretor Cyrus Nowrasteh e que 'tá todo mundo tenso'; em 22/10/2025 afirma que o filme está 'no limite'; em 16/11/2025, véspera da prisão de Vorcaro, escreve 'Só preciso que me dê uma luz! Abs!'. A PF afirma que o Havengate, criado para fins imobiliários, ficou 'operacionalmente inerte por quase 4 anos' até a primeira remessa, contrariando a versão de Flávio à GloboNews (maio) de que era 'um fundo exclusivo criado para a realização do filme'. Status: investigado, sem denúncia. Defesa: em 12/9, no interior do RJ, Flávio disse 'Graças a Deus o sigilo foi afastado e tudo está aí às claras', 'não tem absolutamente nada de errado nesse filme' e 'Eu acho que o impacto é zero'; ao Poder360, Flávio e Eduardo não responderam.",
+   "observacao": "Os valores variam entre veículos (R$ 131 mi / R$ 134 mi pedidos; R$ 60 mi pagos, ou cerca de R$ 69 mi pela cotação da época; a CNN fala em 14 parcelas combinadas). A frase 'Irmão, estou e estarei contigo sempre' não foi localizada nas fontes abertas e foi retirada.",
    "pessoas": [
     "flavio",
     "vorcaro",
@@ -8168,7 +8168,7 @@ window.DOSSIE = {
    "data": "2026-05-13",
    "status": "investigacao",
    "titulo": "Banco Master/Vorcaro: Flávio negociou R$ 134 mi para filme sobre Jair (contexto clã)",
-   "resumo": "Áudios e mensagens divulgados pelo Intercept mostram Flávio Bolsonaro negociando com o ex-banqueiro Daniel Vorcaro (Banco Master, preso desde nov/2025) R$ 134 milhões para o filme 'Dark Horse' sobre Jair. Documentos indicam ~US$ 10,6 mi (R$ 61 mi) pagos entre fev e mai/2025. Flávio admitiu encontro com Vorcaro.",
+   "resumo": "Áudios e mensagens divulgados pelo Intercept mostram Flávio Bolsonaro negociando com o ex-banqueiro Daniel Vorcaro (Banco Master, preso desde nov/2025) R$ 134 milhões para o filme 'Dark Horse' sobre Jair. Documentos indicam cerca de R$ 61 milhões pagos entre fev e mai/2025. Flávio admitiu encontro com Vorcaro.",
    "observacao": "Item de Flávio, mas com forte dimensão de clã (filme sobre Jair; PF investiga se dinheiro do Master custeou Eduardo nos EUA). Filme financiado beneficia a figura de Jair.",
    "pessoas": [
     "flavio",
@@ -9098,7 +9098,7 @@ window.DOSSIE = {
     "nome": "Paulo Calixto",
     "papel": "Advogado de Eduardo Bolsonaro",
     "grupo": "operadores",
-    "status": "Advogado de Eduardo Bolsonaro nos EUA e administrador do fundo Havengate (Dallas), investigado pela Polícia Federal por suspeita de canalizar cerca de US$ 10,6 milhões do banqueiro Daniel Vorcaro (Banco Master) para bancar os Bolsonaro; sem prisão, condenação ou denúncia formal até junho/2026.",
+    "status": "Advogado de Eduardo Bolsonaro nos EUA e administrador do fundo Havengate (Dallas), investigado pela Polícia Federal por suspeita de canalizar cerca de R$ 61 milhões do banqueiro Daniel Vorcaro (Banco Master) para bancar os Bolsonaro; sem prisão, condenação ou denúncia formal até junho/2026.",
     "situacao": [
      "investigado"
     ],
@@ -9467,7 +9467,7 @@ window.DOSSIE = {
    },
    {
     "id": "ronald-paulo-alves-pereira",
-    "nome": "Ronald Paulo de Alves Pereira",
+    "nome": "Ronald Paulo Alves Pereira",
     "papel": "Major da PMERJ 'Major Ronald'/'Tartaruga', apontado como 2º chefe do Escritório do Crime e do mercado imobiliário ilegal da milícia",
     "grupo": "milicia",
     "status": "Condenado a 56 anos por dois homicídios qualificados e um homicídio tentado no caso Marielle.",
@@ -11093,9 +11093,9 @@ window.DOSSIE = {
    {
     "id": "instituto-de-formacao-profissional-jose-ca",
     "nome": "Instituto de Formação Profissional José Carlos Procópio (Ifop)",
-    "papel": "ONG de fachada na Taquara ligada à milícia dos Brazão, usada como destino de emendas parlamentares no esquema de desvio de verbas",
+    "papel": "ONG na Taquara que a PF aponta como ligada aos Brazão, destino de emendas apuradas na Operação Emendatio",
     "grupo": "financeiro",
-    "status": "Investigada pela PF por receber emenda de R$ 199 mil (incluindo recurso do senador Flávio Bolsonaro) num esquema coordenado por Robson Peixe.",
+    "status": "Investigado pela PF por receber emenda de R$ 199.999,79 (destinada por Flávio Bolsonaro) no esquema que a PF atribui a Robson Calixto, o Peixe.",
     "situacao": [
      "investigado"
     ],
@@ -11222,7 +11222,7 @@ window.DOSSIE = {
     "nome": "Precision Watches (Willow Grove, PA)",
     "papel": "Loja de relógios na Pensilvânia que comprou o Rolex de Mauro Cid e depois revendeu a peça recomprada por Wassef",
     "grupo": "financeiro",
-    "status": "Estabelecimento nos EUA por onde passou a revenda do Rolex saudita; recompra feita por Wassef por US$ 50 mil entrou na investigação da PF e do FBI.",
+    "status": "Estabelecimento nos EUA por onde passou a revenda do Rolex saudita; recompra feita por Wassef, por R$ 250 mil na cotação da época segundo o Metrópoles, entrou na investigação da PF e do FBI.",
     "situacao": [
      "investigado"
     ],
@@ -11234,6 +11234,10 @@ window.DOSSIE = {
      {
       "veiculo": "CNN Brasil",
       "url": "https://www.cnnbrasil.com.br/politica/cid-vendeu-rolex-e-wassef-o-recomprou-para-entregar-ao-tcu-diz-pf/"
+     },
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/sao-paulo/envolvido-na-recompra-de-rolex-por-r-250-mil-wassef-acumula-dividas"
      }
     ]
    }
@@ -12042,7 +12046,7 @@ window.DOSSIE = {
    {
     "de": "antonio-carlos-freixo-junior-mineiro",
     "para": "vorcaro",
-    "rotulo": "fez, a mando de Vorcaro, os 7 repasses (US$ 12,3 mi) ao fundo do filme sobre Jair; delator",
+    "rotulo": "fez, a mando de Vorcaro, os 7 repasses (cerca de R$ 69 mi) ao fundo do filme sobre Jair; delator",
     "status": "delação homologada pelo STF; Flávio nega irregularidade e diz que tudo foi para o filme",
     "fontes": [
      {
@@ -12052,6 +12056,14 @@ window.DOSSIE = {
      {
       "veiculo": "TMC",
       "url": "https://tmc.com.br/politica/freixo-junior-delacao-flavio-bolsonaro-havengate-stf/"
+     },
+     {
+      "veiculo": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/09/mendonca-aceita-delacao-de-empresario-que-enviou-r-60-milhoes-a-fundo-ligado-a-eduardo-bolsonaro/"
+     },
+     {
+      "veiculo": "A Crítica",
+      "url": "https://acritica.net/justica/delator-eleva-a-us-12-3-milhoes-dinheiro-enviado-a-fundo-do-filme-sobre-bolsonaro/"
      }
     ]
    },
@@ -14118,24 +14130,12 @@ window.DOSSIE = {
    {
     "de": "flavio",
     "para": "robson-calixto-fonseca",
-    "rotulo": "contato no esquema de emendas",
+    "rotulo": "uma assessora do gabinete dele tratou com Peixe a emenda ao Ifop (2023), segundo a PF; nenhuma fonte diz que Flávio sabia quem era Peixe",
     "status": "PF identificou troca de mensagens entre Peixe e assessora de Flávio um mês antes do repasse ao Ifop.",
     "fontes": [
      {
       "veiculo": "Revista Fórum",
       "url": "https://revistaforum.com.br/politica/flavio-bolsonaro-emenda-ong-milicia-brazao-marielle/"
-     }
-    ]
-   },
-   {
-    "de": "flavio",
-    "para": "domingos-brazao",
-    "rotulo": "financiamento a ONG da milícia (investigado)",
-    "status": "PF apura se emenda de Flávio beneficiou ONG do esquema comandado pelos irmãos Brazão.",
-    "fontes": [
-     {
-      "veiculo": "Brasil de Fato",
-      "url": "https://www.brasildefato.com.br/2026/05/20/pf-apura-emenda-de-flavio-bolsonaro-para-ong-suspeita-de-esquema-comandado-pelos-irmaos-brazao-condenados-pela-morte-de-marielle-franco/"
      }
     ]
    },
@@ -14263,11 +14263,15 @@ window.DOSSIE = {
     "de": "wassef",
     "para": "precision-watches-willow-grove-pa",
     "rotulo": "recomprou Rolex na loja",
-    "status": "Wassef pagou US$ 50 mil para recomprar na loja da Pensilvânia o Rolex saudita vendido por Mauro Cid.",
+    "status": "Wassef pagou R$ 250 mil, na cotação da época segundo o Metrópoles, para recomprar na loja da Pensilvânia o Rolex saudita vendido por Mauro Cid.",
     "fontes": [
      {
       "veiculo": "O Antagonista",
       "url": "https://oantagonista.com.br/brasil/wassef-recomprou-rolex-apos-caso-de-joias-chegar-no-tcu/"
+     },
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/sao-paulo/envolvido-na-recompra-de-rolex-por-r-250-mil-wassef-acumula-dividas"
      }
     ]
    },
@@ -14326,9 +14330,18 @@ window.DOSSIE = {
    {
     "de": "flavio",
     "para": "ronald-paulo-alves-pereira",
-    "rotulo": "Major da PMERJ 'Major Ronald'/'Tartaruga'",
+    "rotulo": "homenageado na Alerj por indicação dele em 2004 (moção honrosa), 14 anos antes do crime",
     "status": "fato",
-    "fontes": []
+    "fontes": [
+     {
+      "veiculo": "IstoÉ",
+      "url": "https://istoe.com.br/milicianos-presos-no-rio-foram-homenageados-por-flavio-bolsonaro-na-alerj"
+     },
+     {
+      "veiculo": "Notícias ao Minuto (a partir de O Globo)",
+      "url": "https://www.noticiasaominuto.com.br/politica/850505/flavio-bolsonaro-homenageou-milicianos-alvos-de-operacao"
+     }
+    ]
    },
    {
     "de": "jair",
@@ -15025,7 +15038,7 @@ window.DOSSIE = {
    "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNR0xmLUM1MzFfN294SzlhNjk2dEtBU1NHdnR2Y3ZjTEpjNFRIVmxPTDFmR3ZtOVpVM2NjeUFiMkZoc2w5RHVzWmRnNjdqaHF6MzNwVDFHUnlvNlNzUWxxSF9IRzQ2UGthdWxQWHdSVVlaUHlaQUVzZTNsUDJKWkFwdVoxQzRVbnNFZG1RTkZFcmN5WWlvZzF2UXhZbzBSVWRCeWNMUTZVNzRjRW5jQm5WQUVxWEJHcTlZcUwxbVBzZTBmWnY2ZjcycUJucDlaMnNvR2J3Zl9CLVRXTXo5UG9qY2IzMkpRaGhDOFVj?oc=5"
   },
   {
-   "titulo": "Mendonça homologa delação de operador que enviou US$ 12,3 mi ao fundo do filme",
+   "titulo": "Mendonça homologa delação de operador que relata ter enviado cerca de R$ 69 mi, pela cotação da época, ao fundo do filme",
    "fonte": "Brasil de Fato",
    "data": "2026-09",
    "url": "https://www.brasildefato.com.br/2026/09/09/mendonca-aceita-delacao-de-empresario-que-enviou-r-60-milhoes-a-fundo-ligado-a-eduardo-bolsonaro/"
@@ -15109,15 +15122,15 @@ window.DOSSIE = {
    {
     "de": "Operador, a pedido de Daniel Vorcaro",
     "para": "Fundo nos EUA ligado ao filme sobre Jair",
-    "valor": "US$ 12,3 mi",
+    "valor": "R$ 69 mi",
     "obs": "7 repasses em 2025, descritos em delação homologada pelo STF em 9/9/2026. Flávio é investigado; nega irregularidade",
     "tema": "master",
     "status": "INVESTIGAÇÃO EM CURSO · SEM CONDENAÇÃO",
     "defesa": "Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.",
-    "ressalva": "Inquérito autorizado pelo ministro André Mendonça em 22/07/2026; Flávio é investigado. A delação homologada em 09/09/2026 descreve 7 repasses em 2025, a pedido de Vorcaro, somando US$ 12,3 milhões (cerca de R$ 63 milhões). Sem denúncia aceita nem condenação. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.",
+    "ressalva": "Inquérito autorizado pelo ministro André Mendonça em 22/07/2026; Flávio é investigado. A delação homologada em 09/09/2026 descreve 7 repasses em 2025, a pedido de Vorcaro, somando cerca de R$ 69 milhões pela cotação da época, segundo o relato do delator (A Crítica e Diário Carioca). Sem denúncia aceita nem condenação. Flávio afirma que o dinheiro foi usado integralmente no filme e nega irregularidade.",
     "fonte": {
-     "veiculo": "Brasil de Fato",
-     "url": "https://www.brasildefato.com.br/2026/09/09/mendonca-aceita-delacao-de-empresario-que-enviou-r-60-milhoes-a-fundo-ligado-a-eduardo-bolsonaro/"
+     "veiculo": "A Crítica",
+     "url": "https://acritica.net/justica/delator-eleva-a-us-12-3-milhoes-dinheiro-enviado-a-fundo-do-filme-sobre-bolsonaro/"
     },
     "foz": "master"
    },

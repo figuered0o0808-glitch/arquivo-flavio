@@ -6,7 +6,10 @@
 <title>Siga o dinheiro — BolsoDrive</title>
 <meta name="description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
 <link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=11">
+<link rel="stylesheet" href="assets/header.css?v=12">
+<link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
+<link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
+<link rel="apple-touch-icon" href="assets/marca/icone-180.png">
 <style>
 /* Siga o dinheiro — só o que esta página acrescenta à base.
    Uma tela por fluxo: origem à esquerda, destino à direita, a linha cresce,
@@ -21,7 +24,9 @@
 }
 .topo b{color:var(--tinta); font-weight:700}
 
-.valor{text-align:center; margin:6px 0 10px}
+/* o valor abre a leitura: grande, em reais, por extenso (mi -> milhões) */
+.valor{text-align:center; margin:8px 0 14px; color:var(--amber); font-size:clamp(52px,17vw,112px); white-space:nowrap}
+.valor #pre, .valor #suf{font-size:.4em; font-weight:700; letter-spacing:0}
 
 .fluxo{display:grid; grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr); align-items:stretch; margin:0 0 12px; cursor:pointer; -webkit-tap-highlight-color:transparent}
 .caixa{
@@ -80,7 +85,7 @@
     <div class="topo"><span id="ind" aria-live="polite"></span><span id="legenda">origem → destino</span></div>
 
     <div id="cartao" hidden>
-      <p class="numero menor valor" id="valor" role="img"><span id="pre"></span><span id="num"></span><span id="suf"></span></p>
+      <p class="numero valor" id="valor" role="img"><span id="pre"></span><span id="num"></span><span id="suf"></span></p>
 
       <div class="fluxo" id="fluxo" title="Toque para repetir a animação">
         <div class="caixa"><span class="rot">de</span><span class="nome" id="de"></span></div>
@@ -122,8 +127,8 @@
 
 <noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="drive.html#arquivo">Ver o arquivo completo →</a></p></noscript>
 
-<script src="data/dados.js?v=set2026l"></script>
-<script src="data/foz.js?v=4"></script>
+<script src="data/dados.js?v=set2026n"></script>
+<script src="data/foz.js?v=7"></script>
 <script>
 (function(){
 'use strict';
@@ -173,6 +178,13 @@ function partes(valor){
   return {pre:m[1], num:m[2], suf:m[3], alvo:parseFloat(m[2].replace(',', '.')), dec:dec};
 }
 function fmt(v, dec){ return v.toFixed(dec).replace('.', ','); }
+/* "R$ 69 mi" -> "R$ 69 milhões"; "R$ 1,6 mi" -> "R$ 1,6 milhão". Sempre em reais. */
+function extenso(valor){
+  return String(valor).replace(/(\d+(?:,\d+)?)\s*(mi|bi)\b\.?/g, function(_, n, u){
+    var um = parseFloat(n.replace(',', '.')) < 2;
+    return n + ' ' + (u === 'mi' ? (um ? 'milhão' : 'milhões') : (um ? 'bilhão' : 'bilhões'));
+  });
+}
 
 var $ = function(id){ return document.getElementById(id); };
 var el = {
@@ -236,13 +248,13 @@ function mostrar(i){
     el.assinaN.textContent = 'fim';
     setHash('fim'); return;
   }
-  var f = FLUXOS[i], s = statusDe(f), pt = partes(f.valor);
+  var f = FLUXOS[i], s = statusDe(f), pt = partes(extenso(f.valor));
   el.fecho.hidden = true; el.cartao.hidden = false; el.legenda.hidden = false;
   el.ind.textContent = 'fluxo ' + (i + 1) + ' / ' + N;
   el.de.textContent = limpa(f.de);
   el.para.textContent = limpa(f.para);
   el.pre.textContent = pt.pre; el.suf.textContent = pt.suf;
-  el.valor.setAttribute('aria-label', f.valor);
+  el.valor.setAttribute('aria-label', extenso(f.valor));
   el.obs.textContent = limpa(f.obs);
   el.chip.textContent = s.chip;
   el.chip.className = 'chip' + (s.classe ? ' ' + s.classe : '');
@@ -265,7 +277,7 @@ function ir(d){ var i = atual + d; if (i < 0 || i > N) return; mostrar(i); windo
 function base(){ return location.protocol === 'file:' ? location.href.split('#')[0] : location.origin + location.pathname; }
 function mensagem(i){
   var f = FLUXOS[i], s = statusDe(f);
-  return limpa(f.de) + ' → ' + limpa(f.para) + ': ' + f.valor + ' (' + limpa(f.obs) + ').\n' +
+  return 'Flávio Bolsonaro · Siga o dinheiro\n' + extenso(f.valor) + ': ' + limpa(f.de) + ' → ' + limpa(f.para) + ' (' + limpa(f.obs) + ').\n' +
     'Status: ' + s.chip + '.\n' +
     (f.defesa && !/\b(diz|afirma|nega)\b|improcedente/i.test(f.obs || '') ? limpa(f.defesa) + '\n' : '') +
     'Fonte: ' + (f.fonte && f.fonte.veiculo || '') + (f.fonte && f.fonte.url ? ' — ' + f.fonte.url : '') +
@@ -290,7 +302,7 @@ mostrar(deHash());
 el.prox.addEventListener('click', function(){ ir(1); });
 el.ant.addEventListener('click', function(){ ir(-1); });
 el.rever.addEventListener('click', function(){ mostrar(0); window.scrollTo({top:0, behavior:reduz ? 'auto' : 'smooth'}); });
-el.fluxo.addEventListener('click', function(){ if (atual < N) animar(partes(FLUXOS[atual].valor)); });
+el.fluxo.addEventListener('click', function(){ if (atual < N) animar(partes(extenso(FLUXOS[atual].valor))); });
 el.zap.addEventListener('click', function(){
   var txt = mensagem(atual);
   if (navigator.share){
@@ -319,6 +331,6 @@ window.addEventListener('resize', function(){ if (atual < N) medir(); });
 window.addEventListener('hashchange', function(){ var i = deHash(); if (i !== atual) mostrar(i); });
 })();
 </script>
-<script src="assets/nav.js?v=2"></script>
+<script src="assets/nav.js?v=3"></script>
 </body>
 </html>

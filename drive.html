@@ -25,7 +25,10 @@
 <meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 
 <link rel="stylesheet" href="assets/app.css?v=set2026k">
-<link rel="stylesheet" href="assets/header.css?v=11">
+<link rel="stylesheet" href="assets/header.css?v=12">
+<link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
+<link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
+<link rel="apple-touch-icon" href="assets/marca/icone-180.png">
 <style>
 /* ligação com a Foz: por quais rios um nome passa (assets/app.js, fozHTML) */
 .foz-liga{margin:12px 0 0; padding:10px 12px; border:1px solid var(--line); border-left:2px solid var(--amber); border-radius:var(--radius)}
@@ -35,6 +38,22 @@
 .foz-liga > a:first-child{border-top:0}
 .foz-liga a:hover{text-decoration:underline; text-underline-offset:3px}
 .sheet .block .foz-liga{margin:0}
+/* caminho de um caso na teia (assets/app.js, showCaminho) */
+.toolbar .backlink{margin-bottom:0; min-height:40px}
+.caminho-btn{cursor:pointer; font-family:inherit}
+.caminho-btn[aria-pressed="true"]{border-color:#d8efdd; color:#d8efdd}
+.rede-painel .cm-t{margin:6px 0 10px; font-size:15px; line-height:1.45; color:var(--text)}
+.rede-painel .cm-s{margin:0 0 8px; font-size:13px; line-height:1.45; color:var(--text); padding-left:9px; border-left:2px solid #d8efdd}
+.rede-painel .cm-r{margin:0 0 8px; font-size:12px; line-height:1.45; color:var(--muted)}
+.rede-painel .cm-f{margin:0 0 4px; font-size:11px; color:var(--muted)}
+.rede-painel .cm-f a{color:#86b3ff}
+.rede-painel .cm-foz{display:inline-flex; align-items:center; min-height:40px; font-size:14px; font-weight:600; color:var(--amber); text-decoration:none}
+.rede-painel .cm-foz:hover{text-decoration:underline; text-underline-offset:3px}
+.caminho-nota{display:none}
+@media (max-width:860px){
+  .caminho-nota:not([hidden]){display:block; margin:-6px 0 12px; padding:9px 11px; border:1px solid var(--line); border-left:2px solid #d8efdd; border-radius:var(--radius); font-size:14px; line-height:1.45; color:var(--text)}
+  .caminho-nota .cn-mais{display:inline-flex; align-items:center; min-height:36px; padding:0; border:0; background:none; color:var(--amber); font:inherit; font-size:13px; cursor:pointer}
+}
 </style>
 </head>
 <body data-trecho="m">
@@ -74,8 +93,10 @@
     </div>
     <div class="toolbar">
       <label class="search"><input id="rede-search" placeholder="buscar nome na rede…" autocomplete="off"></label>
+      <button type="button" class="backlink caminho-btn" id="caminho-marielle" aria-pressed="false">caminho: caso Marielle</button>
       <a class="backlink" href="close-friends.html">◎ ver em órbita</a>
     </div>
+    <p class="caminho-nota" id="caminho-nota" hidden></p>
     <div class="rede-wrap">
       <div class="canvas-box">
         <canvas id="grafo"></canvas>
@@ -143,9 +164,9 @@
 
 <div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
 
-<script src="data/dados.js?v=set2026l"></script>
-<script src="data/foz.js?v=4"></script>
-<script src="assets/app.js?v=set2026p"></script>
-<script src="assets/nav.js?v=2"></script>
+<script src="data/dados.js?v=set2026n"></script>
+<script src="data/foz.js?v=7"></script>
+<script src="assets/app.js?v=set2026s"></script>
+<script src="assets/nav.js?v=3"></script>
 </body>
 </html>

@@ -2,8 +2,9 @@
    assets/rio.js · RIO: motor de água do BolsoDrive. Canvas 2D, sem dependências.
    Objeto global window.RIO. A abertura (index.html) usa este arquivo; o motor é
    o mesmo que roda na Foz (foz.html), copiado de lá sem mudar o desenho: é o mesmo rio.
-   Acréscimos em relação à cópia da Foz: RIO.inverte, RIO.nitidez e, nas rotas da
-   correnteza, a opção semFoz (água que sai e não acende a foz).
+   Acréscimos em relação à cópia da Foz: RIO.inverte, RIO.nitidez, RIO.parcial (a história
+   rolável da abertura, assets/historia.js) e, nas rotas da correnteza, a opção semFoz
+   (água que sai e não acende a foz).
 
    Regras de movimento do site
      requestAnimationFrame; canvas 2D sem blur (o brilho é um sprite pré-renderizado);
@@ -33,6 +34,9 @@
                                     as cores já misturadas ao fundo (sem blur por quadro)
                                     op: { fundo:[r,g,b], foz:{x,y,r,cor,fosco} }
      RIO.traco(ctx, rota, cor, lw)  realce de uma rota inteira (nascente -> foz)
+     RIO.parcial(ctx, curso, a, b, op)  o mesmo desenho do leito, só do trecho [a, b] do curso
+                                    (frações do comprimento), para água que cresce quadro a quadro
+                                    op: { fundo:[r,g,b], alfa 0..1, k (multiplica a largura) }
      RIO.setas(ctx, curso, cor, d)  setas de sentido a cada d px (versão parada)
 
    Movimento
@@ -195,6 +199,37 @@ function leito(ctx, lista, op){
       if (pi === 2){ ctx.strokeStyle = css(mix(F, foz.cor, 0.9 * (1 - 0.8 * f))); ctx.lineWidth = 1.2; ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.stroke(); }
     }
   });
+}
+/* ---- parcial: o leito de um pedaço do curso (a água que cresce, na história rolável) ---- */
+function parcial(ctx, c, a, b, op){
+  op = op || {};
+  const F = op.fundo || [5, 8, 5], al = op.alfa == null ? 1 : op.alfa, k = op.k || 1;
+  if (!c || c.n < 2 || b <= a || al <= 0.01) return;
+  const i0 = Math.min(c.n - 2, primeiro(c.s, Math.max(0, a) * c.L)), i1 = Math.max(i0 + 1, primeiro(c.s, Math.min(1, b) * c.L));
+  const passes = [
+    { lw: w => w * 2 + 7, cor: cc => mix(F, cc, 0.13) },
+    { lw: w => w, cor: cc => mix(F, cc, 0.58) },
+    { lw: w => Math.max(0.6, w * 0.24), cor: cc => mix(mix(F, cc, 0.95), [255, 255, 255], 0.12), desvio: 0.2 },
+  ];
+  ctx.save();
+  ctx.globalAlpha *= al; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  passes.forEach(P => {
+    const dv = P.desvio || 0;
+    let chave = null;
+    for (let i = i0; i < i1; i++){
+      const w = (c.w[i] + c.w[i + 1]) / 2 * k;
+      const lw = Math.round(P.lw(w) * 4) / 4, cs = css(P.cor(c.c[i])), ch = lw + cs;
+      if (ch !== chave){
+        if (chave !== null) ctx.stroke();
+        ctx.beginPath(); ctx.lineWidth = lw; ctx.strokeStyle = cs;
+        ctx.moveTo(c.x[i] + c.nx[i] * c.w[i] * k * dv, c.y[i] + c.ny[i] * c.w[i] * k * dv);
+        chave = ch;
+      }
+      ctx.lineTo(c.x[i + 1] + c.nx[i + 1] * c.w[i + 1] * k * dv, c.y[i + 1] + c.ny[i + 1] * c.w[i + 1] * k * dv);
+    }
+    if (chave !== null) ctx.stroke();
+  });
+  ctx.restore();
 }
 function traco(ctx, r, cor, lw){
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -432,5 +467,5 @@ function observa(el, ctl){
   return () => { if (io) io.disconnect(); document.removeEventListener('visibilitychange', decide); ctl.desliga(); };
 }
 
-return { PASSO, TAU, reduzido, lerp, suave, mix, css, mistura, semente, curso, bezier, meandro, pinta, rota, inverte, nitidez, primeiro, leito, traco, setas, gota, correnteza, observa };
+return { PASSO, TAU, reduzido, lerp, suave, mix, css, mistura, semente, curso, bezier, meandro, pinta, rota, inverte, nitidez, primeiro, leito, parcial, traco, setas, gota, correnteza, observa };
 })();

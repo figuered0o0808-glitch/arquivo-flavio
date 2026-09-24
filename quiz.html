@@ -6,7 +6,10 @@
 <title>Quiz — BolsoDrive</title>
 <meta name="description" content="Quanto você sabe sobre Flávio Bolsonaro? 22 perguntas sobre fatos com fonte e status jurídico. Sem cadastro, sem cronômetro.">
 <link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=11">
+<link rel="stylesheet" href="assets/header.css?v=12">
+<link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
+<link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
+<link rel="apple-touch-icon" href="assets/marca/icone-180.png">
 <style>
 /* ---- Quiz: uma pergunta por tela; resposta, fonte e status no mesmo
    enquadramento, para o print carregar a prova junto. ---------------- */
@@ -104,7 +107,7 @@ noscript p{padding:20px 16px}
 
 
 <script src="assets/quiz-basico.js?v=1"></script>
-<script src="assets/quiz-perguntas.js?v=2"></script>
+<script src="assets/quiz-perguntas.js?v=4"></script>
 <script>
 (function(){
 'use strict';
@@ -158,12 +161,14 @@ async function compartilhar(txt){
 }
 function textoFato(p){
   const fontes = p.fontes.map(f => f.v + ' — ' + f.u).join('; ');
-  return p.zap + '\n' + (p.fontes.length > 1 ? 'Fontes: ' : 'Fonte: ') + fontes +
+  /* o texto de envio abre dizendo de quem se fala */
+  const z = /^Flávio Bolsonaro\b/.test(p.zap) ? p.zap : 'Flávio Bolsonaro · ' + p.zap;
+  return z + '\n' + (p.fontes.length > 1 ? 'Fontes: ' : 'Fonte: ') + fontes +
          '\n\nQuiz com ' + N + ' perguntas, todas com fonte: ' + PAGINA();
 }
 function textoFinal(acertos){
   const b = bloco === 'tudo' ? '' : ' (bloco "' + BLOCOS[bloco].nome + '")';
-  return 'Acertei ' + acertos + ' de ' + N + ' no quiz sobre Flávio Bolsonaro' + b + '. Todas as respostas têm fonte: ' + PAGINA();
+  return 'Flávio Bolsonaro · quiz' + b + ': acertei ' + acertos + ' de ' + N + '. Todas as respostas têm fonte: ' + PAGINA();
 }
 const reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -324,6 +329,6 @@ const h0 = (location.hash || '').slice(1);
 if (BLOCOS[h0]) escolhe(h0); else render();
 })();
 </script>
-<script src="assets/nav.js?v=2"></script>
+<script src="assets/nav.js?v=3"></script>
 </body>
 </html>

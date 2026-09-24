@@ -256,26 +256,36 @@ window.__NOVAS_PERGUNTAS = [
   "tipo": "multi",
   "pergunta": "A delação homologada pelo STF em 09/09/2026 descreve quantas transferências efetivamente feitas ao fundo nos EUA ligado ao filme sobre o pai dele, e de quanto?",
   "opcoes": [
-   "3 transferências, US$ 2 milhões",
-   "7 transferências, US$ 12,3 milhões",
-   "14 transferências, US$ 24 milhões",
-   "1 transferência, US$ 1,6 milhão"
+   "3 transferências, cerca de R$ 11 milhões",
+   "7 transferências, cerca de R$ 69 milhões",
+   "14 transferências, cerca de R$ 131 milhões",
+   "1 transferência, cerca de R$ 9 milhões"
   ],
   "certa": 1,
-  "numero": "7 transferências · US$ 12,3 mi",
-  "resposta": "A colaboração de Antonio Carlos Freixo Júnior, o 'Mineiro', dono da Entre Investimentos, homologada pelo ministro André Mendonça em 09/09/2026, descreve <b>7 transferências em 2025, somando US$ 12,3 milhões</b> (cerca de R$ 60 milhões), feitas a pedido de Daniel Vorcaro ao fundo <b>Havengate Development Fund</b>, nos EUA: 51,3% dos US$ 24 milhões prometidos. O restante não foi pago por causa da prisão do banqueiro em novembro de 2025. Segundo o delator, o dinheiro foi <b>pedido por Flávio</b> e se destinava ao filme 'Dark Horse'. <b>Investigação em curso; sem denúncia nem condenação.</b>",
+  "numero": "7 transferências · R$ 69 mi",
+  "resposta": "Segundo A Crítica e o Diário Carioca, a colaboração de Antonio Carlos Freixo Júnior, o 'Mineiro', dono da Entre Investimentos, homologada pelo ministro André Mendonça em 09/09/2026, descreve <b>7 transferências em 2025, somando cerca de R$ 69 milhões</b>, feitas a pedido de Daniel Vorcaro ao fundo <b>Havengate Development Fund</b>, nos EUA: 51,3% do total prometido. O restante não foi pago por causa da prisão do banqueiro em novembro de 2025. Já o relatório da PF, com sigilo levantado em 11/09/2026, diz que <b>cerca de R$ 60 milhões</b> foram pagos. Segundo o delator, o dinheiro foi <b>pedido por Flávio</b> e se destinava ao filme 'Dark Horse'. Flávio é <b>investigado no STF; não há denúncia nem condenação</b>.",
   "ressalva": "A homologação valida o acordo como meio de prova; não implica juízo sobre a veracidade do relato nem sobre culpa de terceiros. Flávio sustenta que os recursos foram integralmente para o filme; a campanha avaliou que a delação 'não trouxe, por enquanto, um elemento inteiramente novo'.",
   "chip": "INVESTIGAÇÃO EM CURSO · SEM CONDENAÇÃO",
   "fontes": [
    {
+    "v": "A Crítica",
+    "d": "7 transferências, cerca de R$ 69 milhões; 10/09/2026",
+    "u": "https://acritica.net/justica/delator-eleva-a-us-12-3-milhoes-dinheiro-enviado-a-fundo-do-filme-sobre-bolsonaro/"
+   },
+   {
+    "v": "Diário Carioca",
+    "d": "a delação, 08/09/2026",
+    "u": "https://www.diariocarioca.com/2026/09/08/politica/corrupcao-investigacao/delator-confirma-transferencias-de-us-123-milhoes-feitas-por-vorcaro-ao-fundo-ligado-a-eduardo-bolsonaro"
+   },
+   {
+    "v": "CNN Brasil",
+    "d": "relatório da PF: cerca de R$ 60 milhões pagos; 12/09/2026",
+    "u": "https://www.cnnbrasil.com.br/politica/pf-mostra-conversas-de-flavio-com-vorcaro-sobre-recursos-para-dark-horse/"
+   },
+   {
     "v": "Brasil de Fato",
     "d": "homologação, 09/09/2026",
     "u": "https://www.brasildefato.com.br/2026/09/09/mendonca-aceita-delacao-de-empresario-que-enviou-r-60-milhoes-a-fundo-ligado-a-eduardo-bolsonaro/"
-   },
-   {
-    "v": "A Crítica",
-    "d": "10/09/2026",
-    "u": "https://acritica.net/justica/delator-eleva-a-us-12-3-milhoes-dinheiro-enviado-a-fundo-do-filme-sobre-bolsonaro/"
    },
    {
     "v": "Poder360",
@@ -284,8 +294,8 @@ window.__NOVAS_PERGUNTAS = [
    }
   ],
   "curto": "Transferências descritas na delação",
-  "gab": "7 · US$ 12,3 mi",
-  "zap": "A delação homologada pelo STF em 09/09/2026 descreve 7 transferências em 2025, somando US$ 12,3 milhões, feitas a pedido de Daniel Vorcaro a um fundo nos EUA ligado ao filme 'Dark Horse'; segundo o delator, o dinheiro foi pedido por Flávio Bolsonaro, que diz que tudo foi para o filme. Investigação em curso, sem denúncia nem condenação. Fontes: Brasil de Fato e Poder360 (09/09/2026).",
+  "gab": "7 · R$ 69 mi",
+  "zap": "Flávio Bolsonaro · delação do caso Dark Horse. Segundo A Crítica e o Diário Carioca, a delação homologada pelo STF em 09/09/2026 descreve 7 transferências em 2025, somando cerca de R$ 69 milhões, feitas a pedido de Daniel Vorcaro a um fundo nos EUA ligado ao filme 'Dark Horse'; o relatório da PF diz que cerca de R$ 60 milhões foram pagos. Segundo o delator, o dinheiro foi pedido por Flávio, que diz que tudo foi para o filme. Ele é investigado no STF, sem denúncia nem condenação.",
   "bloco": "dinheiro"
  },
  {
@@ -334,7 +344,7 @@ window.__NOVAS_PERGUNTAS = [
   "valor": 131000000,
   "tolerancia": 20000000,
   "numero": "R$ 131 milhões",
-  "resposta": "O relatório da PF, tornado público com o levantamento do sigilo em 11 e 12/09/2026, registra que ele <b>pediu R$ 131 milhões</b> a Daniel Vorcaro para o filme 'Dark Horse'; cerca de <b>R$ 60 milhões teriam sido pagos</b> (US$ 12,33 milhões de um total combinado de US$ 24 milhões em 14 parcelas), via Entre Investimentos para o fundo Havengate, nos EUA. A PF registra <b>cobranças reiteradas</b>: áudio de 08/09/2025 ('tá todo mundo tenso'), mensagem de 22/10/2025 (o filme está 'no limite') e, em 16/11/2025, véspera da prisão do banqueiro, 'Só preciso que me dê uma luz!'. O próprio Flávio confirmou, em maio de 2026, ter pedido patrocínio ao banqueiro: <b>'era um filho buscando patrocínio'</b>. Ele é <b>investigado no STF; não há denúncia nem condenação</b>.",
+  "resposta": "O relatório da PF, tornado público com o levantamento do sigilo em 11 e 12/09/2026, registra que ele <b>pediu R$ 131 milhões</b> a Daniel Vorcaro para o filme 'Dark Horse'; cerca de <b>R$ 60 milhões teriam sido pagos</b> (de um total combinado em 14 parcelas), via Entre Investimentos para o fundo Havengate, nos EUA. A PF registra <b>cobranças reiteradas</b>: áudio de 08/09/2025 ('tá todo mundo tenso'), mensagem de 22/10/2025 (o filme está 'no limite') e, em 16/11/2025, véspera da prisão do banqueiro, 'Só preciso que me dê uma luz!'. O próprio Flávio confirmou, em maio de 2026, ter pedido patrocínio ao banqueiro: <b>'era um filho buscando patrocínio'</b>. Ele é <b>investigado no STF; não há denúncia nem condenação</b>.",
   "ressalva": "Defesa: a captação 'teve caráter estritamente privado', sem dinheiro público, e ele não recebeu valores diretamente; em 12/09 disse que 'não tem absolutamente nada de errado nesse filme'. Ele não nega a autenticidade dos áudios. A PF também aponta que o fundo Havengate ficou 'operacionalmente inerte por quase 4 anos' antes da primeira remessa.",
   "chip": "REGISTRO DA PF · INVESTIGAÇÃO EM CURSO · SEM CONDENAÇÃO",
   "fontes": [
