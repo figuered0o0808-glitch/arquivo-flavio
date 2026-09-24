@@ -1,12 +1,17 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+<link rel="icon" href="data:,">
 <meta charset="utf-8">
 <title>BOLSODRIVE · cartão</title>
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=1200">
 <!-- O cartão de um tópico (1200×630), para a prévia de link e o envio com imagem.
-     cartao.html?id=<id> lê window.BD_TOPICOS[id].cartao = {k, nome, n, l} de data/topicos.js.
+     cartao.html?id=<id> lê window.BD_TOPICOS[id].cartao = {k, nome, n, l[, cor][, tipo]} de data/topicos.js.
+     tipo: sem tipo (ou "numero") = o número grande de sempre, numa linha; "texto" = frase em âmbar, até 2 linhas
+     (96 → 64 px); "hora" = mono, numa linha; "citacao" = fala em --tinta com as aspas em âmbar, até 3 linhas
+     (76 → 52 px); "fita" = o número e, embaixo, uma gota por unidade (o número inicial de n, até 20).
+     cor:"tinta" põe o destaque em --tinta (a situação dele, nunca em âmbar), em qualquer tipo.
      As imagens c/img/<id>.png saem daqui (bolso-os-fontes/gera_compartilhar.py). -->
 <style>
 :root{--papel:#070a07; --tinta:#d8efdd; --cinza:#86a58c; --cinza2:#4f6b51; --amber:#ffb02e; --agua:#7df59a;
@@ -19,6 +24,12 @@ html,body{margin:0; padding:0; background:var(--papel)}
 .nome{font-size:54px; font-weight:800; line-height:1.04; letter-spacing:-.015em; margin:0 0 6px}
 .num{font-size:168px; font-weight:800; line-height:1; letter-spacing:-.035em; color:var(--amber); white-space:nowrap; margin:0 0 10px}
 .l{font-size:31px; line-height:1.24; color:#b3cdb8; margin:0}
+/* variantes (cartao.tipo); sem tipo, ou "numero", o número de sempre */
+.num.t-texto{white-space:normal; line-height:1.02; letter-spacing:-.025em; text-wrap:balance; margin:0 0 16px}
+.num.t-hora{font-family:var(--mono); font-weight:700; letter-spacing:-.045em; word-spacing:-.32em}
+.num.t-cit{white-space:normal; color:var(--tinta); font-weight:700; line-height:1.1; letter-spacing:-.02em; text-wrap:balance; margin:0 0 18px}
+.num .aspa{color:var(--amber)}
+.fita{display:block; width:800px; height:34px; margin:-2px 0 14px; overflow:visible}
 svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
 </style>
 </head>
@@ -33,7 +44,7 @@ svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
   </div>
   <svg class="rio" id="rio" viewBox="0 0 330 630" aria-hidden="true"></svg>
 </div>
-<script src="data/topicos.js?v=3"></script>
+<script src="data/topicos.js?v=5"></script>
 <script>
 (function(){
 'use strict';
@@ -44,9 +55,37 @@ const c = t.cartao || {};
 const $ = s => document.getElementById(s);
 $('k').textContent = c.k || 'Flávio Bolsonaro';
 $('nome').textContent = c.nome || '';
-$('num').textContent = c.n || '';
+const TIPO = ({texto:1, hora:1, citacao:1, fita:1})[c.tipo] ? c.tipo : '';   /* "numero" e desconhecidos: o de sempre */
+document.documentElement.dataset.tipo = TIPO;
+if (TIPO === 'citacao'){
+  /* a fala em --tinta; só as aspas em âmbar (a de abertura fica pendurada à esquerda) */
+  const m = String(c.n || '').match(/^([“"«‘]*)([\s\S]*?)([”"»’]*)$/), num = $('num');
+  num.classList.add('t-cit');
+  if (m[1]){ const a = document.createElement('span'); a.className = 'aspa ab'; a.textContent = m[1]; num.appendChild(a); }
+  num.appendChild(document.createTextNode(m[2]));
+  if (m[3]){ const a = document.createElement('span'); a.className = 'aspa'; a.textContent = m[3]; num.appendChild(a); }
+} else {
+  $('num').textContent = c.n || '';
+  /* na frase que quebra linha, o número não se separa da unidade ("2,8 mil", "R$ 60") */
+  if (TIPO === 'texto') $('num').textContent = String(c.n || '').replace(/(\d) (?=mil\b|milh|bilh)/g, '$1\u00a0').replace(/R\$ (?=\d)/g, 'R$\u00a0');
+  if (TIPO === 'texto') $('num').classList.add('t-texto');
+  if (TIPO === 'hora') $('num').classList.add('t-hora');
+}
+if (TIPO === 'fita'){
+  /* uma gota por unidade, espaçadas por igual (o desenho não diz data) */
+  const q = Math.min(20, parseInt(String(c.n || '').replace(/\D.*$/, ''), 10) || 0);
+  if (q > 0){
+    const NS0 = 'http://www.w3.org/2000/svg', f = document.createElementNS(NS0, 'svg');
+    f.setAttribute('class', 'fita'); f.setAttribute('viewBox', '0 0 800 34'); f.setAttribute('aria-hidden', 'true');
+    const passo = q > 1 ? Math.min(96, 760 / (q - 1)) : 0;
+    let g = '<line x1="0" y1="17" x2="' + (passo * (q - 1) + 40).toFixed(1) + '" y2="17" stroke="#4f6b51" stroke-width="2"/>';
+    for (let i = 0; i < q; i++) g += '<circle cx="' + (20 + passo * i).toFixed(1) + '" cy="17" r="11" fill="#7df59a" fill-opacity=".92"/>';
+    f.innerHTML = g;
+    $('num').after(f);
+  }
+}
 if (c.cor === 'tinta') $('num').style.color = 'var(--tinta)';   /* a situação dele: nunca em âmbar */
-$('l').textContent = c.l || '';
+$('l').textContent = String(c.l || '').replace(/(\d) (?=mil\b|milh|bilh)/g, '$1\u00a0').replace(/R\$ (?=\d)/g, 'R$\u00a0');   /* "R$ 52 bilhões" não se parte no fim da linha */
 document.title = (c.nome || 'BOLSODRIVE') + ' · cartão';
 
 /* o afluente: desce do alto até o ponto (ele); a forma varia um pouco por tópico */
@@ -83,6 +122,7 @@ const L = guia.getTotalLength();
 
 /* ajuste: o número cabe numa linha; o bloco cabe na altura */
 function ajusta(){
+  if (TIPO === 'texto' || TIPO === 'citacao') return ajustaFrase();
   const txt = $('txt'), num = $('num'), l = $('l'), nome = $('nome');
   let fs = 168; num.style.fontSize = fs + 'px';
   while (num.scrollWidth > 800 && fs > 70){ fs -= 4; num.style.fontSize = fs + 'px'; }
@@ -92,6 +132,27 @@ function ajusta(){
   while (!cabe() && ls > 25){ ls -= 1; l.style.fontSize = ls + 'px'; }
   while (!cabe() && ns > 48){ ns -= 2; nome.style.fontSize = ns + 'px'; }
   txt.style.top = Math.round(136 + Math.max(0, 444 - txt.offsetHeight) / 2) + 'px';   /* centrado no espaço abaixo do logo */
+  document.documentElement.dataset.pronto = '1';
+}
+/* texto e citação: a frase quebra linha (até 2 ou 3) e a fonte desce até caber; nunca corta */
+function ajustaFrase(){
+  const txt = $('txt'), num = $('num'), l = $('l'), nome = $('nome');
+  const cit = TIPO === 'citacao', max = cit ? 3 : 2, ini = cit ? 76 : 96, min = cit ? 52 : 64, piso = cit ? 40 : 48;
+  let fs = ini, ls = 31, ns = 54;
+  const ab = num.querySelector('.aspa.ab');
+  if (ab){ num.style.fontSize = '100px'; ab.style.marginLeft = (-ab.getBoundingClientRect().width / 100).toFixed(3) + 'em'; }
+  const poe = v => { fs = v; num.style.fontSize = v + 'px'; };
+  const linhas = () => Math.round(num.offsetHeight / parseFloat(getComputedStyle(num).lineHeight));
+  const larga = () => num.scrollWidth > 800;
+  const cabe = () => txt.offsetHeight <= 444;
+  poe(ini);
+  while ((linhas() > max || larga()) && fs > min) poe(fs - 2);
+  while (!cabe() && fs > min) poe(fs - 2);
+  while (!cabe() && ls > 25){ ls -= 1; l.style.fontSize = ls + 'px'; }
+  while (!cabe() && ns > 48){ ns -= 2; nome.style.fontSize = ns + 'px'; }
+  while ((!cabe() || linhas() > max || larga()) && fs > piso) poe(fs - 2);   /* último recurso: menor, mas inteiro */
+  txt.style.top = Math.round(136 + Math.max(0, 444 - txt.offsetHeight) / 2) + 'px';
+  document.documentElement.dataset.linhas = String(linhas());
   document.documentElement.dataset.pronto = '1';
 }
 (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(ajusta);

@@ -4,7 +4,9 @@
    o mesmo que roda na Foz (foz.html), copiado de lá sem mudar o desenho: é o mesmo rio.
    Acréscimos em relação à cópia da Foz: RIO.inverte, RIO.nitidez, RIO.parcial (a história
    rolável da abertura, assets/historia.js) e, nas rotas da correnteza, a opção semFoz
-   (água que sai e não acende a foz).
+   (água que sai e não acende a foz). Depois: o leito em cinco passes (margens discretas,
+   canal e reflexo), a largura orgânica (RIO.organico) e as linhas da correnteza reaproveitáveis
+   (RIO.tracos), para a água da página, a da história e a da foz serem um curso só.
 
    Regras de movimento do site
      requestAnimationFrame; canvas 2D sem blur (o brilho é um sprite pré-renderizado);
@@ -30,9 +32,14 @@
      RIO.nitidez(W, H)              DPR do canvas W x H: até 1,75 e no máximo ~5 Mpx
 
    Desenho parado (uma vez por layout, numa camada própria)
-     RIO.leito(ctx, lista, op)      lista [{curso, fosco 0..1}]: halo, corpo e reflexo, com
-                                    as cores já misturadas ao fundo (sem blur por quadro)
+     RIO.leito(ctx, lista, op)      lista [{curso, fosco 0..1, aberto}]: margem larga e fraca, margem,
+                                    corpo, canal e reflexo (PASSES), com as cores já misturadas ao
+                                    fundo (sem blur por quadro); aberto = a ponta final é emenda com
+                                    outro canvas (o reflexo não para antes dela)
                                     op: { fundo:[r,g,b], foz:{x,y,r,cor,fosco} }
+     RIO.organico(curso, op)        largura que alarga e estreita devagar; op.jan(y, s) = 0 nas emendas
+     RIO.tracos(curso, rnd, base)   as linhas tracejadas da correnteza de um curso (Path2D)
+     RIO.pintaTracos(ctx, l, t, vel, a, b, alfa)  desenha essas linhas no instante t (entre y = a e b)
      RIO.traco(ctx, rota, cor, lw)  realce de uma rota inteira (nascente -> foz)
      RIO.parcial(ctx, curso, a, b, op)  o mesmo desenho do leito, só do trecho [a, b] do curso
                                     (frações do comprimento), para água que cresce quadro a quadro
@@ -41,7 +48,8 @@
 
    Movimento
      RIO.correnteza(canvas, cena)   -> { liga(), desliga(), quadro(), marca(fn), surto(id,n), medir(n) }; fica também em canvas.rio
-        cena: { W, H, dpr, vel (px/s), raio,
+        cena: { W, H, dpr, vel (px/s), raio, ox (o canvas começa ox px à direita da origem dos cursos: um canvas
+                estreito, só na faixa do rio, cabe nos 5 Mpx com mais nitidez),
                 cursos:[{curso, id, grupo}]   traços da correnteza (mais lentos junto à margem)
                 rotas:[{rota, cor, taxa, fila, leve, semFoz, id, grupo}]   gotas da nascente até a foz:
                       taxa = gotas por segundo; cada gota leva o próximo item da fila (em ordem);
@@ -160,44 +168,58 @@ function primeiro(arr, v){
   return lo;
 }
 
-/* ---- leito: três passes (halo, corpo, reflexo), segmentos agrupados por largura e cor ---- */
+/* ---- o desenho da água, de fora para dentro: margem larga e fraca, margem, corpo, canal e reflexo.
+   As cores já vêm misturadas ao fundo (opacas): onde dois traços se cruzam nada se acumula.
+   a = quanto da cor da água entra na mistura; o fosco (0..1) apaga a margem inteira e o resto em 90%.
+   min: o passe só entra onde a água tem pelo menos essa largura (o canal não existe num fio d'água). ---- */
+const BRANCO = [255, 255, 255];
+const PASSES = [
+  { lw: w => w * 1.5 + 9, a: 0.055, margem: true },
+  { lw: w => w * 1.1 + 3.5, a: 0.15, margem: true },
+  { lw: w => w, a: 0.5 },
+  { lw: w => w * 0.5, a: 0.64, min: 3.2 },
+  { lw: w => Math.max(0.6, w * 0.17), a: 0.95, branco: 0.16, desvio: 0.22, corta: true },
+];
+const corPasse = (P, F, c, f) => { const m = mix(F, c, P.a * (1 - (P.margem ? 1 : 0.9) * f)); return P.branco ? mix(m, BRANCO, P.branco * (1 - f)) : m; };
+/* um passe de um trecho [i0, i1] do curso: segmentos agrupados por largura (de 1/4 em 1/4 px) e cor */
+function passe(ctx, P, c, i0, i1, F, f, k){
+  const dv = P.desvio || 0;
+  let chave = null;
+  for (let i = i0; i < i1; i++){
+    const w = (c.w[i] + c.w[i + 1]) / 2 * k;
+    if (P.min && w < P.min){ if (chave !== null){ ctx.stroke(); chave = null; } continue; }
+    const lw = Math.round(P.lw(w) * 4) / 4, cs = css(corPasse(P, F, c.c[i], f)), ch = lw + cs;
+    if (ch !== chave){
+      if (chave !== null) ctx.stroke();
+      ctx.beginPath(); ctx.lineWidth = lw; ctx.strokeStyle = cs;
+      ctx.moveTo(c.x[i] + c.nx[i] * c.w[i] * k * dv, c.y[i] + c.ny[i] * c.w[i] * k * dv);
+      chave = ch;
+    }
+    ctx.lineTo(c.x[i + 1] + c.nx[i + 1] * c.w[i + 1] * k * dv, c.y[i + 1] + c.ny[i + 1] * c.w[i + 1] * k * dv);
+  }
+  if (chave !== null) ctx.stroke();
+}
+/* ---- leito: os passes de todos os cursos, um passe por vez (a margem de um nunca cobre o corpo de outro).
+   item.aberto = true: a ponta final é uma emenda com o canvas seguinte (o reflexo vai até o fim) ---- */
 function leito(ctx, lista, op){
   const F = op.fundo || [5, 8, 5];
-  const passes = [
-    { lw: w => w * 2 + 7, cor: (c, f) => mix(F, c, 0.13 * (1 - f)) },
-    { lw: w => w, cor: (c, f) => mix(F, c, 0.58 * (1 - 0.9 * f)) },
-    { lw: w => Math.max(0.6, w * 0.24), cor: (c, f) => mix(mix(F, c, 0.95 * (1 - 0.9 * f)), [255, 255, 255], 0.12 * (1 - f)), desvio: 0.2, corta: true },
-  ];
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
   const foz = op.foz;
-  passes.forEach((P, pi) => {
+  PASSES.forEach((P, pi) => {
     lista.forEach(item => {
-      const c = item.curso, f = item.fosco || 0;
+      const c = item.curso;
       let fim = c.n - 1;
-      if (P.corta) fim = Math.max(1, fim - Math.ceil((c.w[fim] * 0.7 + 3) / PASSO));
-      const dv = P.desvio || 0;
-      let chave = null;
-      for (let i = 0; i < fim; i++){
-        const lw = Math.round(P.lw((c.w[i] + c.w[i + 1]) / 2) * 4) / 4;
-        const cs = css(P.cor(c.c[i], f));
-        const k = lw + cs;
-        if (k !== chave){
-          if (chave !== null) ctx.stroke();
-          ctx.beginPath(); ctx.lineWidth = lw; ctx.strokeStyle = cs;
-          ctx.moveTo(c.x[i] + c.nx[i] * c.w[i] * dv, c.y[i] + c.ny[i] * c.w[i] * dv);
-          chave = k;
-        }
-        ctx.lineTo(c.x[i + 1] + c.nx[i + 1] * c.w[i + 1] * dv, c.y[i + 1] + c.ny[i + 1] * c.w[i + 1] * dv);
-      }
-      if (chave !== null) ctx.stroke();
+      if (P.corta && !item.aberto) fim = Math.max(1, fim - Math.ceil((c.w[fim] * 0.7 + 3) / PASSO));
+      passe(ctx, P, c, 0, fim, F, item.fosco || 0, 1);
     });
     if (foz){
-      const f = foz.fosco || 0;
+      const f = foz.fosco || 0, cf = foz.aro || foz.cor;
       ctx.beginPath();
       /* com aro fixo, o halo em volta da foto também é neutro: a cor da água para antes dele */
-      if (pi === 0){ ctx.fillStyle = css(mix(F, foz.aro || foz.cor, (foz.aro ? 0.06 : 0.13) * (1 - f))); ctx.arc(foz.x, foz.y, foz.r + 24, 0, TAU); ctx.fill(); }
-      if (pi === 1){ ctx.fillStyle = css(mix(F, foz.aro || foz.cor, (foz.aro ? 0.16 : 0.5) * (1 - 0.8 * f))); ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.fill(); }
-      if (pi === 2){ ctx.strokeStyle = css(mix(F, foz.aro || foz.cor, 0.9 * (1 - 0.8 * f))); ctx.lineWidth = 1.2; ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.stroke(); }
+      if (pi === 0){ ctx.fillStyle = css(mix(F, cf, (foz.aro ? 0.05 : 0.1) * (1 - f))); ctx.arc(foz.x, foz.y, foz.r + 26, 0, TAU); ctx.fill(); }
+      if (pi === 1){ ctx.fillStyle = css(mix(F, cf, (foz.aro ? 0.1 : 0.2) * (1 - f))); ctx.arc(foz.x, foz.y, foz.r + 15, 0, TAU); ctx.fill(); }
+      if (pi === 2){ ctx.fillStyle = css(mix(F, cf, (foz.aro ? 0.16 : 0.5) * (1 - 0.8 * f))); ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.fill(); }
+      if (pi === 4){ ctx.strokeStyle = css(mix(F, cf, 0.9 * (1 - 0.8 * f))); ctx.lineWidth = 1.2; ctx.arc(foz.x, foz.y, foz.r + 10, 0, TAU); ctx.stroke(); }
     }
   });
 }
@@ -207,30 +229,49 @@ function parcial(ctx, c, a, b, op){
   const F = op.fundo || [5, 8, 5], al = op.alfa == null ? 1 : op.alfa, k = op.k || 1;
   if (!c || c.n < 2 || b <= a || al <= 0.01) return;
   const i0 = Math.min(c.n - 2, primeiro(c.s, Math.max(0, a) * c.L)), i1 = Math.max(i0 + 1, primeiro(c.s, Math.min(1, b) * c.L));
-  const passes = [
-    { lw: w => w * 2 + 7, cor: cc => mix(F, cc, 0.13) },
-    { lw: w => w, cor: cc => mix(F, cc, 0.58) },
-    { lw: w => Math.max(0.6, w * 0.24), cor: cc => mix(mix(F, cc, 0.95), [255, 255, 255], 0.12), desvio: 0.2 },
-  ];
   ctx.save();
   ctx.globalAlpha *= al; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-  passes.forEach(P => {
-    const dv = P.desvio || 0;
-    let chave = null;
-    for (let i = i0; i < i1; i++){
-      const w = (c.w[i] + c.w[i + 1]) / 2 * k;
-      const lw = Math.round(P.lw(w) * 4) / 4, cs = css(P.cor(c.c[i])), ch = lw + cs;
-      if (ch !== chave){
-        if (chave !== null) ctx.stroke();
-        ctx.beginPath(); ctx.lineWidth = lw; ctx.strokeStyle = cs;
-        ctx.moveTo(c.x[i] + c.nx[i] * c.w[i] * k * dv, c.y[i] + c.ny[i] * c.w[i] * k * dv);
-        chave = ch;
-      }
-      ctx.lineTo(c.x[i + 1] + c.nx[i + 1] * c.w[i + 1] * k * dv, c.y[i + 1] + c.ny[i + 1] * c.w[i + 1] * k * dv);
-    }
-    if (chave !== null) ctx.stroke();
-  });
+  PASSES.forEach(P => passe(ctx, P, c, i0, i1, F, 0, k));
   ctx.restore();
+}
+/* ---- largura orgânica: a água alarga e estreita devagar (duas ondas longas, fora de fase).
+   op: { amp (fração da largura), onda (período da onda maior, px), semente, jan(y, s) -> 0..1 (0 = sem mudança: as emendas) } ---- */
+function organico(c, op){
+  op = op || {};
+  const amp = op.amp == null ? 0.08 : op.amp, r = semente(op.semente || 3), f1 = r() * TAU, f2 = r() * TAU;
+  const l1 = (op.onda || 260) / TAU, l2 = l1 * 0.43;
+  for (let i = 0; i < c.n; i++){
+    const s = c.s[i], j = op.jan ? op.jan(c.y[i], s) : 1;
+    if (j > 0) c.w[i] *= 1 + amp * j * (0.65 * Math.sin(s / l1 + f1) + 0.35 * Math.sin(s / l2 + f2));
+  }
+  return c;
+}
+/* ---- a correnteza desenhada: linhas tracejadas que andam no sentido do fluxo, mais lentas e fracas
+   junto à margem; o número de linhas acompanha a largura da água ---- */
+function tracos(c, rnd, base){
+  rnd = rnd || Math.random;
+  let wm = 0, y0 = Infinity, y1 = -Infinity;
+  for (let i = 0; i < c.n; i++){ if (c.w[i] > wm) wm = c.w[i]; if (c.y[i] < y0) y0 = c.y[i]; if (c.y[i] > y1) y1 = c.y[i]; }
+  const linha = f => { const p = new Path2D(); for (let i = 0; i < c.n; i++){ const o = f * c.w[i]; const x = c.x[i] + c.nx[i] * o, y = c.y[i] + c.ny[i] * o; if (i) p.lineTo(x, y); else p.moveTo(x, y); } return p; };
+  const b = Object.assign({ y0: y0 - 12, y1: y1 + 12, alfa: 1 }, base || {});
+  const out = [];
+  if (wm < 5) out.push(Object.assign({ path: linha(0), dash: [2, 12], lw: 0.9, fase: rnd() * 14, vf: 1, al: 0.24 }, b));
+  else if (wm < 11){
+    out.push(Object.assign({ path: linha(-0.1), dash: [3, 15], lw: 1.1, fase: rnd() * 18, vf: 1, al: 0.26 }, b));
+    out.push(Object.assign({ path: linha(0.26), dash: [2, 21], lw: 0.9, fase: rnd() * 23, vf: 0.82, al: 0.17 }, b));
+  } else [[-0.3, 0.16], [-0.04, 0.28], [0.28, 0.16]].forEach((q, j) => out.push(Object.assign({ path: linha(q[0]), dash: [4 + j, 17 + j * 5], lw: j === 1 ? 1.3 : 1.1, fase: rnd() * 25, vf: 1 - Math.abs(q[0]) * 0.7, al: q[1] }, b)));
+  return out;
+}
+function pintaTracos(ctx, lista, t, vel, a, b, alfa){
+  ctx.lineCap = 'butt'; ctx.strokeStyle = 'rgb(232,255,236)';
+  const g0 = ctx.globalAlpha;
+  for (const tr of lista){
+    if (tr.y1 < a || tr.y0 > b || tr.alfa < 0.03) continue;
+    ctx.globalAlpha = g0 * tr.alfa * tr.al * (alfa == null ? 1 : alfa); ctx.lineWidth = tr.lw; ctx.setLineDash(tr.dash);
+    ctx.lineDashOffset = -(t * vel * tr.vf + tr.fase);
+    ctx.stroke(tr.path);
+  }
+  ctx.setLineDash([]); ctx.globalAlpha = g0;
 }
 function traco(ctx, r, cor, lw){
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -278,18 +319,8 @@ function correnteza(cv, cena){
   const F = cena.foz ? Object.assign({ alfa: 1 }, cena.foz) : null;
 
   /* traços da correnteza: tracejado que anda no sentido do fluxo; junto à margem anda mais devagar */
-  const tracos = [];
-  (cena.cursos || []).forEach(item => {
-    const c = item.curso; let wm = 0, y0 = Infinity, y1 = -Infinity;
-    for (let i = 0; i < c.n; i++){ if (c.w[i] > wm) wm = c.w[i]; if (c.y[i] < y0) y0 = c.y[i]; if (c.y[i] > y1) y1 = c.y[i]; }
-    const linha = f => { const p = new Path2D(); for (let i = 0; i < c.n; i++){ const o = f * c.w[i]; const x = c.x[i] + c.nx[i] * o, y = c.y[i] + c.ny[i] * o; if (i) p.lineTo(x, y); else p.moveTo(x, y); } return p; };
-    const base = { id: item.id, grupo: item.grupo, y0: y0 - 12, y1: y1 + 12, alfa: 1 };
-    if (wm < 5) tracos.push(Object.assign({ path: linha(0), dash: [2, 12], lw: 0.9, fase: rnd() * 14, vf: 1 }, base));
-    else if (wm < 11){
-      tracos.push(Object.assign({ path: linha(-0.1), dash: [3, 15], lw: 1.1, fase: rnd() * 18, vf: 1 }, base));
-      tracos.push(Object.assign({ path: linha(0.24), dash: [2, 21], lw: 0.9, fase: rnd() * 23, vf: 0.85 }, base));
-    } else [-0.3, 0, 0.27].forEach((f, j) => tracos.push(Object.assign({ path: linha(f), dash: [4 + j, 17 + j * 4], lw: 1.2, fase: rnd() * 25, vf: 1 - Math.abs(f) * 0.6 }, base)));
-  });
+  const tr_ = [];
+  (cena.cursos || []).forEach(item => { tracos(item.curso, rnd, { id: item.id, grupo: item.grupo }).forEach(x => tr_.push(x)); });
 
   /* gotas: cada uma leva um item da fila do seu rio, na ordem (a mais adiantada é a mais antiga).
      Já em regime (espalhadas pela rota) para o rio nascer correndo. */
@@ -339,7 +370,7 @@ function correnteza(cv, cena){
   function desenha(tudo){
     let a = 0, b = H;
     if (!tudo && cena.janela){ const j = cena.janela(); a = Math.max(0, j[0]); b = Math.min(H, j[1]); }
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.setTransform(dpr, 0, 0, dpr, -(cena.ox || 0) * dpr, 0);
     const c0 = Math.max(0, Math.min(a, prev[0])), c1 = Math.min(H, Math.max(b, prev[1]));
     if (c1 > c0) ctx.clearRect(0, c0, W, c1 - c0);
     prev = [a, b];
@@ -353,14 +384,8 @@ function correnteza(cv, cena){
     ctx.save();
     ctx.beginPath(); ctx.rect(0, a, W, bb - a); ctx.clip();
 
-    ctx.lineCap = 'butt'; ctx.strokeStyle = 'rgba(232,255,236,.26)';
-    for (const tr of tracos){
-      if (tr.y1 < a || tr.y0 > bb || tr.alfa < 0.03) continue;
-      ctx.globalAlpha = tr.alfa; ctx.lineWidth = tr.lw; ctx.setLineDash(tr.dash);
-      ctx.lineDashOffset = -(t * vel * tr.vf + tr.fase);
-      ctx.stroke(tr.path);
-    }
-    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+    pintaTracos(ctx, tr_, t, vel, a, bb);
 
     ctx.lineWidth = 1;
     fontes.forEach((f, k) => {
@@ -427,7 +452,7 @@ function correnteza(cv, cena){
     const t0 = performance.now();
     for (let k = 0; k < n; k++){ t += 1 / 60; if (!revelado) tIntro += 1 / 60; atualiza(1 / 60); desenha(false); }
     const ms = (performance.now() - t0) / n;
-    return { ms: Math.round(ms * 100) / 100, gotas: gotas.length, tracos: tracos.length };
+    return { ms: Math.round(ms * 100) / 100, gotas: gotas.length, tracos: tr_.length };
   }
   function passo(ts){
     raf = 0; if (!ativo) return;
@@ -445,7 +470,7 @@ function correnteza(cv, cena){
     desliga(){ ativo = false; if (raf) cancelAnimationFrame(raf); raf = 0; },
     quadro(){ desenha(true); },
     marca(fn){
-      rotas.forEach(r => { r.alfa = fn(r); }); tracos.forEach(tr => { tr.alfa = fn(tr); }); fontes.forEach(f => { f.alfa = fn(f); });
+      rotas.forEach(r => { r.alfa = fn(r); }); tr_.forEach(tr => { tr.alfa = fn(tr); }); fontes.forEach(f => { f.alfa = fn(f); });
       if (!ativo) desenha(true);
     },
     surto(id, n){
@@ -469,5 +494,5 @@ function observa(el, ctl){
   return () => { if (io) io.disconnect(); document.removeEventListener('visibilitychange', decide); ctl.desliga(); };
 }
 
-return { PASSO, TAU, reduzido, lerp, suave, mix, css, mistura, semente, curso, bezier, meandro, pinta, rota, inverte, nitidez, primeiro, leito, parcial, traco, setas, gota, correnteza, observa };
+return { PASSO, TAU, reduzido, lerp, suave, mix, css, mistura, semente, curso, bezier, meandro, pinta, rota, inverte, nitidez, primeiro, leito, parcial, organico, tracos, pintaTracos, traco, setas, gota, correnteza, observa };
 })();

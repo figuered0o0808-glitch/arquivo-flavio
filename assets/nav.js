@@ -2,6 +2,8 @@
    Monta o cabeçalho, o mapa do rio e o link "siga o rio" de todas as páginas.
    Contrato de cada página:
      <body data-trecho="N">  0 nascente · 1 quem anda com ele · 2 o dinheiro · 3 a foz · "m" margem
+     <body data-trecho="3" data-afluente="Dark Horse">  um afluente do trecho (TRECHOS[n].afluentes): aparece
+       dentro do trecho no mapa (↳), no "você está aqui" e no menu do desktop; o "siga o rio" volta ao trecho
      (na abertura, index.html, data-trecho acompanha os trechos 01/02/03 da própria página e volta a 0 no topo)
      <header class="site-header" data-nav></header>
      <link rel="stylesheet" href="assets/header.css">  e, no fim do body,  <script src="assets/nav.js"></script>
@@ -33,7 +35,8 @@
     {nome:'A Foz', href:'foz.html',
      desc:function(){ var z = F();
        if (!z || !z.escandalos) return 'os escândalos que chegam a ele';
-       return z.escandalos.length + ' escândalos que chegam a ele'; }}
+       return z.escandalos.length + ' escândalos que chegam a ele'; },
+     afluentes:[{id:'dark-horse', nome:'Dark Horse', href:'dark-horse.html', desc:'o dinheiro do filme, mês a mês', volta:'foz.html#master'}]}
   ];
   var MARGENS = [
     {id:'recente',    nome:'Recentemente',     href:'drive.html#recente'},
@@ -53,6 +56,15 @@
     if (t === '0' || t === '1' || t === '2' || t === '3') return +t;
     return -1; // margem
   }
+  /* o afluente desta página (body data-afluente="Dark Horse"), dentro do trecho atual */
+  function afluenteAtual(t){
+    var a = body.getAttribute('data-afluente'), l = t >= 0 && TRECHOS[t].afluentes || [], p = pagina();
+    for (var i = 0; i < l.length; i++){
+      if (a ? (a.toLowerCase() === l[i].nome.toLowerCase() || a === l[i].id) : p === l[i].href) return l[i];
+    }
+    return null;
+  }
+  function descDe(x){ return typeof x.desc === 'function' ? x.desc() : (x.desc || ''); }
   function margemAtual(){
     var p = pagina();
     if (p === 'quiz.html') return 'quiz';
@@ -122,6 +134,7 @@
       '<div class="nv-topo">' + marca() +
         '<button type="button" class="nv-fecha" id="nv-fecha">fechar</button></div>' +
       '<div class="nv-sec nv-sec-rio"><p class="nv-k">o rio, da nascente à foz</p><ol class="nv-lista" id="nv-lista"></ol></div>' +
+      '<div class="nv-sec nv-sec-afl"><p class="nv-k">afluente da foz</p><div class="nv-margens" id="nv-afl-m"></div></div>' +
       '<div class="nv-sec"><p class="nv-k">nas margens</p><div class="nv-margens" id="nv-margens"></div></div>' +
       '<p class="nv-nota">Estar no rio não é ser acusado. Cada registro traz fonte e status jurídico.</p>' +
     '</div>';
@@ -156,9 +169,9 @@
   var tAtual = -2;
   function atualiza(){
     var t = trechoAtual(), m = t < 0 ? margemAtual() : '', ult;
-    var naAbertura = pagina() === 'index.html';
-    /* na abertura os trechos 1 a 3 são o resumo: a página de cada trecho ainda não foi vista */
-    var atual = function(i){ return i === t ? (naAbertura && t > 0 ? ' aria-current="location"' : ' aria-current="page"') : ''; };
+    var naAbertura = pagina() === 'index.html', afl = afluenteAtual(t);
+    /* na abertura os trechos 1 a 3 são o resumo: a página de cada trecho ainda não foi vista; no afluente, a página é o afluente */
+    var atual = function(i){ return i === t && !afl ? (naAbertura && t > 0 ? ' aria-current="location"' : ' aria-current="page"') : ''; };
     tAtual = t;
     if (t >= 0 && !(naAbertura && t > 0)) gravarUltimo(t);
     ult = t >= 0 ? t : lerUltimo();
@@ -166,22 +179,36 @@
     body.classList.toggle('nv-na-margem', t < 0);
 
     /* trecho atual (celular) */
-    el('nv-aqui').innerHTML = t >= 0
+    el('nv-aqui').innerHTML = afl
+      ? '<small>trecho ' + t + '<span class="nv-lg nv-afl-lg"> · afluente</span></small><b>↳ ' + esc(afl.nome) + '</b>'
+      : t >= 0
       ? '<small>trecho ' + t + '<span class="nv-lg"> de ' + (TRECHOS.length - 1) + '</span><span class="nv-ct">/' + (TRECHOS.length - 1) + '</span></small><b>' + esc(TRECHOS[t].nome) + '</b>'
       : '<small>margem<span class="nv-lg"> do rio</span></small><b>' + esc(mg ? mg.nome : 'fora do rio') + '</b>';
 
     /* os 4 trechos em linha (desktop) */
     el('nv-trechos').innerHTML = TRECHOS.map(function(x, i){
+      if (afl && i === t) return '<a href="' + x.href + '" class="nv-pai"><span class="nv-n">' + i + '</span>' + esc(x.nome) + '</a>' +
+        '<a href="' + afl.href + '" class="nv-afl-t" aria-current="page"><span class="nv-n">↳</span>' + esc(afl.nome) + '</a>';
       return '<a href="' + x.href + '"' + atual(i) + '><span class="nv-n">' + i + '</span>' + esc(x.nome) + '</a>';
     }).join('');
+    el('nv-trechos').classList.toggle('com-afl', !!afl);
     el('nv-bt-d').textContent = mg ? 'margem: ' + mg.nome : 'margens';
     bt.classList.toggle('nv-bt-margem', !!mg);
 
     /* mapa */
     el('nv-lista').innerHTML = TRECHOS.map(function(x, i){
       var c = t < 0 ? (i === ult ? 'volta' : '') : (i < t ? 'ok' : (i === t ? 'agora' : ''));
+      var sub = (x.afluentes || []).map(function(a){
+        return '<li><a href="' + a.href + '"' + (a === afl ? ' aria-current="page"' : '') + '>↳ <b>' + esc(a.nome) + '</b>' +
+          '<span class="nv-d">' + esc(descDe(a)) + '</span></a></li>';
+      }).join('');
       return '<li class="' + c + '"><a href="' + x.href + '"' + atual(i) + '>' +
-        '<span class="nv-n">' + i + '</span><b>' + esc(x.nome) + '</b><span class="nv-d">' + esc(x.desc()) + '</span></a></li>';
+        '<span class="nv-n">' + i + '</span><b>' + esc(x.nome) + '</b><span class="nv-d">' + esc(x.desc()) + '</span></a>' +
+        (sub ? '<ul class="nv-afl">' + sub + '</ul>' : '') + '</li>';
+    }).join('');
+    /* desktop: o mapa da lista fica escondido; o afluente entra no menu */
+    el('nv-afl-m').innerHTML = TRECHOS.reduce(function(l, x){ return l.concat(x.afluentes || []); }, []).map(function(a){
+      return '<a href="' + a.href + '"' + (a === afl ? ' aria-current="page"' : '') + '><span>↳ ' + esc(a.nome) + '</span></a>';
     }).join('');
     var rc = contaRecentes();
     el('nv-margens').innerHTML = MARGENS.map(function(x){
@@ -191,6 +218,7 @@
 
     /* linha do curso */
     curso.classList.toggle('margem', t < 0);
+    curso.classList.toggle('afl', !!afl);
     Array.prototype.forEach.call(estacoes, function(p, i){
       p.className = t < 0 ? (i === ult ? 'volta' : '') : (i < t ? 'ok' : (i === t ? 'agora' : ''));
     });
@@ -198,7 +226,8 @@
 
     /* siga o rio / voltar ao rio */
     var alvo, k, dsc;
-    if (naAbertura && t >= 0){ alvo = TRECHOS[1]; segue.innerHTML = linkSegue(alvo.href, 'comece a descida completa →', '1 · ' + alvo.nome, alvo.desc()); }
+    if (afl){ segue.innerHTML = linkSegue(afl.volta || TRECHOS[t].href, 'volte à foz →', t + ' · ' + TRECHOS[t].nome, TRECHOS[t].desc()); }
+    else if (naAbertura && t >= 0){ alvo = TRECHOS[1]; segue.innerHTML = linkSegue(alvo.href, 'comece a descida completa →', '1 · ' + alvo.nome, alvo.desc()); }
     else if (t >= 0 && t < TRECHOS.length - 1){ alvo = TRECHOS[t + 1]; k = 'siga o rio →'; dsc = alvo.desc(); segue.innerHTML = linkSegue(alvo.href, k, (t + 1) + ' · ' + alvo.nome, dsc); }
     else if (t === TRECHOS.length - 1){ segue.innerHTML = linkSegue('quiz.html', 'depois da foz →', 'Quiz', 'teste o que viu, com fonte em cada resposta'); }
     else { alvo = TRECHOS[ult]; segue.innerHTML = linkSegue(alvo.href, 'voltar ao rio →', ult + ' · ' + alvo.nome, alvo.desc()); }

@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
 <meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 <link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=12">
+<link rel="stylesheet" href="assets/header.css?v=14">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
@@ -139,6 +139,7 @@ body[data-trecho="3"] .nv-segue{display:none}
 .nb-n .v .fant{visibility:hidden}
 .nb-t{margin:10px 0 4px; font-size:16px; line-height:1.45; color:var(--tinta); max-width:36em}
 .nb-s{margin:0 0 6px; font-size:14px; line-height:1.45; color:var(--tinta); max-width:36em; padding-left:10px; border-left:2px solid var(--tinta)}
+.nb-n.frase{font-size:clamp(30px,8.8vw,50px); line-height:1.04; letter-spacing:-.015em; text-wrap:balance; overflow-wrap:normal; hyphens:none; max-width:12em}
 .nb-f{margin:0; font-family:var(--mono); font-size:12px; color:var(--cinza)}
 .nb-f a{display:inline-block; padding:10px 0; margin:-6px 0 -10px; color:var(--azul)}
 .afl .an{display:block; margin:6px 0 8px}
@@ -173,6 +174,7 @@ body[data-trecho="3"] .nv-segue{display:none}
 .afl .an b{display:block; font-size:27px; font-weight:800; line-height:1.05; letter-spacing:-.01em; color:var(--amber); font-variant-numeric:tabular-nums}
 .afl .an b .p, .afl .an b .u{font-size:.58em; font-weight:700; letter-spacing:0}
 .afl .an .t{display:block; font-size:14px; line-height:1.4; color:var(--tinta); margin-top:3px}
+.afl .an b.frase{font-size:23px; line-height:1.1; letter-spacing:-.005em; text-wrap:balance}
 
 /* versão enxuta: título, número, uma frase; o resto atrás de "ler mais" */
 .legenda{font-family:var(--sans); font-size:12px; gap:4px 12px; margin:8px 0 4px}
@@ -186,6 +188,7 @@ body[data-trecho="3"] .nv-segue{display:none}
 .acoes .env, .env{display:inline-flex; align-items:center; justify-content:center; min-height:44px; min-width:44px; font-size:15px; font-weight:700; padding:0 18px; border-radius:2px; border:1.5px solid var(--amber); background:var(--amber); color:#120c00; cursor:pointer; font-family:var(--sans)}
 .dq{padding:14px 16px 10px}
 .dq .dq-n{margin:0; color:var(--amber); font-weight:800; font-size:clamp(44px,13vw,72px); line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.dq .dq-n.frase{margin:2px 0 8px; font-size:clamp(30px,8.8vw,46px); line-height:1.04; letter-spacing:-.015em; text-wrap:balance; overflow-wrap:normal; hyphens:none; max-width:12em}
 .dq h2{margin:0 0 6px; font-size:20px}
 .dq .dq-t{margin:0 0 6px; font-size:16px}
 .dq .dq-a{gap:4px 16px}
@@ -253,13 +256,13 @@ body[data-trecho="3"] .nv-segue{display:none}
 
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
-<script src="data/dados.js?v=set2026q"></script>
-<script src="data/foz.js?v=11"></script>
+<script src="data/dados.js?v=set2026s"></script>
+<script src="data/foz.js?v=14"></script>
 <script src="data/foz-curto.js?v=4"></script>
-<script src="data/topicos.js?v=3"></script>
-<script src="assets/compartilhar.js?v=1" defer></script>
+<script src="data/topicos.js?v=5"></script>
+<script src="assets/compartilhar.js?v=2" defer></script>
 <script src="assets/quiz-basico.js?v=5" defer></script>
-<script src="assets/quiz-perguntas.js?v=8" defer></script>
+<script src="assets/quiz-perguntas.js?v=11" defer></script>
 <script>
 /* =====================================================================
    RIO: motor de água do BolsoDrive. Canvas 2D, sem dependências.
@@ -720,16 +723,22 @@ const MARIELLE_LIGA = [
   { id:'robson-calixto-fonseca', rot:'emenda', quem:'Robson Calixto, o Peixe', pena:'condenado a 9 anos por organização criminosa armada',
     liga:'Tratou com uma assessora do gabinete dele a emenda de R$ 199.999,79 ao Ifop, segundo a PF.' }
 ];
-/* versão curta de cada caso (data/foz-curto.js): a frase sob o número e, só se houver, a situação formal dele */
+/* a frase sob o destaque: o texto do próprio destaque (data/foz.js, numero.texto), escrito para completar
+   o valor; quando a ficha já tem a linha "ELE", sem repetir o desfecho no fim. Sem destaque, a versão
+   curta (data/foz-curto.js) ou o último elo. A situação formal dele, só se houver, vem da versão curta. */
 const CURTO = window.FOZ_CURTO || {};
+const DESFECHO_FIM = /[;,.]\s*(?:investigado no STF, sem denúncia|denúncia anulada|sem denúncia)\.?\s*$/i;
+const eleDe = e => (CURTO[e.id] || {}).ele || '';
 function fraseDe(e){
+  const n = numeroDe(e);
+  if (n){ const t = String(n.texto).trim(); return fimPonto(eleDe(e) ? t.replace(DESFECHO_FIM, '') : t).replace(/R\$ (?=\d)/g, 'R$\u00a0'); }
   const c = CURTO[e.id];
   if (c && c.frase) return c.frase;
-  const n = numeroDe(e);
-  if (n) return fimPonto(String(n.texto).split(';')[0]);
   return fimPonto(viaDe(e));
 }
-const eleDe = e => (CURTO[e.id] || {}).ele || '';
+const ehFrase = n => !!n && n.tipo === 'frase';
+/* o caso com afluente próprio: link secundário na ficha, depois de "enviar" */
+const AFLUENTE = { master: ['dark-horse.html', 'o afluente, mês a mês →'], 'coacao-eduardo': ['dark-horse.html#dh-tarifa', 'as datas, lado a lado →'] };
 /* o botão de enviar manda o tópico da tela (assets/compartilhar.js); sem ele, um texto curto do caso */
 function envia(id, ev){
   if (ev){ ev.preventDefault(); ev.stopImmediatePropagation(); }
@@ -847,12 +856,13 @@ function destaque(){
   const n = numeroDe(e);
   box.innerHTML =
     '<h2 id="dq-h">' + esc(e.rotulo || 'Caso Marielle') + '</h2>' +
-    '<p class="dq-n">' + numHtml(n ? n.valor : '2 de 5') + '</p>' +
+    '<p class="dq-n' + (ehFrase(n) ? ' frase' : '') + '">' + (ehFrase(n) ? esc(n.valor) : numHtml(n ? n.valor : '2 de 5')) + '</p>' +
     '<p class="dq-t">' + esc(fraseDe(e)) + '</p>' +
     '<div class="dq-a"><a href="#' + MARIELLE + '" id="dq-abre">as duas ligações →</a>' +
     '<a class="teia" href="drive.html?caminho=marielle#rede">na teia →</a>' +
     '<button type="button" class="env" data-share="marielle">enviar ↗</button></div>';
   box.hidden = false;
+  cabeFrase(box.querySelector('.dq-n.frase'));
   ligaEnvio(box);
   /* abre a ficha no lugar, sem rolar até o cartão lá embaixo */
   $('#dq-abre').addEventListener('click', ev => { ev.preventDefault(); toca(MARIELLE); });
@@ -1199,7 +1209,7 @@ function rio(){
       const ele = eleDe(e);
       html += '<button type="button" class="afl" id="afl-' + esc(e.id) + '" data-id="' + esc(e.id) + '">' +
         '<span class="n">' + esc(e.rotulo || e.nome) + '</span>' +
-        (numeroDe(e) ? '<span class="an"><b>' + numHtml(e.numero.valor) + '</b><span class="t">' + esc(fraseDe(e)) + '</span></span>' : '<span class="via">' + esc(fraseDe(e)) + '</span>') +
+        (numeroDe(e) ? '<span class="an"><b' + (e.numero.cor === 'tinta' ? ' style="color:var(--tinta)"' : '') + (ehFrase(e.numero) ? ' class="frase">' + esc(e.numero.valor) : '>' + numHtml(e.numero.valor)) + '</b><span class="t">' + esc(fraseDe(e)) + '</span></span>' : '<span class="via">' + esc(fraseDe(e)) + '</span>') +
         /* a situação dele só quando é formal; cor neutra (a cor da gravidade é de quem está no caminho) */
         (ele ? '<span class="sf">' + esc(ele.replace(/\.$/, '')) + '</span>' : '') +
         '</button>';
@@ -1309,8 +1319,11 @@ function abre(id){
   const nasc = l => !l.de_id && !c.some(x => String(x.para).trim() === String(l.de).trim());
   /* a cadeia enxuta: quem → quem e a situação em poucas palavras; relação, fonte e teia em "ler mais" */
   const passos = c.map(l => {
-    const st = curtoSt(l.status_de), stl = String(l.status_de || '').trim().replace(/\.$/, '');
-    return '<li class="' + (/^Flávio Bolsonaro$/.test(String(l.de).trim()) || nasc(l) ? '' : statusCls(l.status_de)) + '"><span class="de">' + esc(l.de) + '</span> → ' + esc(l.para) +
+    /* "sem processo" não se diz, de ninguém (como na história): basta não dizer que é */
+    const dele = /^Flávio Bolsonaro$/.test(String(l.de).trim());
+    const sd = String(l.status_de || '').split(/;\s*/).filter(x => !/^sem processo\b/i.test(x.trim())).join('; ');
+    const st = curtoSt(sd), stl = String(sd || '').trim().replace(/\.$/, '');
+    return '<li class="' + (dele || nasc(l) ? '' : statusCls(l.status_de)) + '"><span class="de">' + esc(l.de) + '</span> → ' + esc(l.para) +
       (st ? '<span class="stt' + (stl && stl !== st ? ' cu' : '') + '">' + esc(st) + '</span>' : '') +
       (stl && stl !== st ? '<span class="stt mx">' + esc(stl) + '</span>' : '') +
       '<span class="rel">' + esc(l.relacao) + '</span>' +
@@ -1326,7 +1339,8 @@ function abre(id){
     '<h3>' + esc(e.rotulo || e.nome) + '</h3>' +
     blocoNumero(e) +
     '<div class="acoes"><button type="button" class="env" data-share="' + esc(e.id) + '">enviar ↗</button>' +
-    (e.registros ? '<a class="sec" href="drive.html?q=' + encodeURIComponent(e.q || e.busca || e.rotulo) + '#arquivo">' + e.registros + ' registros</a>' : '') +
+    (AFLUENTE[e.id] ? '<a class="sec afl-dh" href="' + esc(AFLUENTE[e.id][0]) + '">' + esc(AFLUENTE[e.id][1]) + '</a>' : '') +
+    (e.registros ? '<a class="sec" href="drive.html?q=' + encodeURIComponent(e.q || e.busca || e.rotulo) + '#arquivo">' + e.registros + (e.registros === 1 ? ' registro' : ' registros') + '</a>' : '') +
     (mari ? '<a class="sec" href="drive.html?caminho=marielle#rede">na teia</a>' : '') + '</div>' +
     (mari ? ligacoesMarielle(e) + '<div class="cam-mari">' + cadeia + '</div>' : cadeia) +
     '<button type="button" class="lm" id="lm" aria-expanded="false">ler mais ↓</button>' +
@@ -1347,7 +1361,19 @@ function abre(id){
   });
   ligaEnvio($('#folha-cx'));
   realca(id);
+  cabeFrase($('#folha-cx .nb-n.frase'));
   conta(document.getElementById('nb-conta'));
+}
+/* destaque-frase em no máximo 2 linhas e sem palavra saindo da caixa: se não couber, a letra desce de 2 em 2px */
+function cabeFrase(el){
+  if (!el) return;
+  el.style.fontSize = '';
+  const cs = getComputedStyle(el);
+  let fs = parseFloat(cs.fontSize);
+  const lh = (parseFloat(cs.lineHeight) || fs * 1.04) / fs;
+  for (let k = 0; k < 14 && fs > 22 && (el.getBoundingClientRect().height > fs * lh * 2.3 || el.scrollWidth > el.clientWidth + 1); k++){
+    fs -= 2; el.style.fontSize = fs + 'px';
+  }
 }
 function ligacoesMarielle(e){
   const elo = id => (e.cadeia || []).find(l => l.de_id === id && l.fonte && l.fonte.url);
@@ -1363,8 +1389,10 @@ function blocoNumero(e){
   if (!n) return '<div class="nb"><p class="nb-t">' + esc(fraseDe(e)) + '</p>' + linhaEle + '</div>';
   const f = n.fonte || {}, ok = /^https?:\/\//.test(f.url || '');
   const rot = esc(f.veiculo || 'fonte') + (f.data ? ', ' + esc(dataBR(f.data)) : '');
-  /* número que é a situação dele (ele entre os investigados): na cor do texto, nunca em âmbar */
-  return '<div class="nb"><p class="nb-n"' + (n.cor === 'tinta' ? ' style="color:var(--tinta)"' : '') + '>' + numHtml(n.valor, 'nb-conta') + '</p>' +
+  /* número que é a situação dele (ele entre os investigados): na cor do texto, nunca em âmbar.
+     Destaque-frase: sem contagem, letra de manchete menor, até 2 linhas (cabeFrase) */
+  return '<div class="nb"><p class="nb-n' + (ehFrase(n) ? ' frase' : '') + '"' + (n.cor === 'tinta' ? ' style="color:var(--tinta)"' : '') + '>' +
+    (ehFrase(n) ? esc(n.valor) : numHtml(n.valor, 'nb-conta')) + '</p>' +
     '<p class="nb-t">' + esc(fraseDe(e)) + '</p>' + linhaEle +
     (f.veiculo || ok ? '<p class="nb-f">' + (ok ? '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + rot + ' ↗</a>' : rot) + '</p>' : '') + '</div>';
 }
@@ -1420,6 +1448,6 @@ window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() =
 }, 150); });
 })();
 </script>
-<script src="assets/nav.js?v=3"></script>
+<script src="assets/nav.js?v=5"></script>
 </body>
 </html>

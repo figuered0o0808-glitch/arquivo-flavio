@@ -1,6 +1,6 @@
 /* BolsoDrive — tópicos de compartilhamento. Gerado por bolso-os-fontes/gera_compartilhar.py; não editar à mão.
    Cada tópico: titulo, texto (WhatsApp), url (c/<id>.html, com prévia própria), img (cartão 1200×630),
-   destino (onde a página c/<id>.html leva) e cartao {k, nome, n, l} (usado por cartao.html). */
+   destino (onde a página c/<id>.html leva) e cartao {k, nome, n, l, cor?, tipo?} (usado por cartao.html). */
 window.BD_TOPICOS = {
  "abertura": {
   "titulo": "Flávio Bolsonaro · Um rio de escândalos",
@@ -17,15 +17,16 @@ window.BD_TOPICOS = {
  },
  "marielle": {
   "titulo": "Flávio Bolsonaro · Caso Marielle",
-  "texto": "Flávio Bolsonaro · Caso Marielle: 2 dos 5 condenados no caso Marielle têm ligação com ele: o major Ronald, homenageado por indicação dele na Alerj em 2004, e Peixe, que tratou emenda de R$ 199.999,79 com uma assessora dele, segundo a PF.",
+  "texto": "Flávio Bolsonaro · Caso Marielle: uma assessora dele negociou com o Peixe, hoje condenado no caso Marielle, a emenda de R$ 199.999,79 que ele mandou ao Ifop, ligado aos irmãos Brazão, segundo a PF.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/marielle.html",
-  "img": "c/img/marielle.png?v=bcf4df00",
+  "img": "c/img/marielle.png?v=4cf657c8",
   "destino": "index.html#marielle",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Caso Marielle",
-   "n": "2 de 5",
-   "l": "condenados pelo STF no caso Marielle têm ligação documentada com ele, segundo a Agência Brasil e a PF"
+   "n": "Emenda negociada",
+   "l": "por uma assessora dele com o Peixe, hoje condenado no caso Marielle: R$ 199.999,79 ao Ifop, ligado aos Brazão, diz a PF",
+   "tipo": "texto"
   }
  },
  "quem-anda": {
@@ -82,15 +83,16 @@ window.BD_TOPICOS = {
  },
  "abin-defesa-rachadinha": {
   "titulo": "Flávio Bolsonaro · Abin paralela",
-  "texto": "Flávio Bolsonaro · Abin paralela: 2 relatórios sem timbre, com orientações à defesa dele no caso Alerj, chegaram a ele por WhatsApp, segundo a revista Época.",
+  "texto": "Flávio Bolsonaro · Abin paralela: a estrutura da Abin foi usada para monitorar os auditores da Receita que originaram o caso da rachadinha dele, segundo a PF. Denúncia anulada.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/abin-defesa-rachadinha.html",
-  "img": "c/img/abin-defesa-rachadinha.png?v=0ff198b0",
+  "img": "c/img/abin-defesa-rachadinha.png?v=e3a80ab0",
   "destino": "index.html#cap-abin-defesa-rachadinha",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Abin paralela",
-   "n": "2 relatórios",
-   "l": "com orientações à defesa dele chegaram a ele por WhatsApp, segundo a revista Época"
+   "n": "Auditores vigiados",
+   "l": "pela estrutura da Abin: eram os da Receita que originaram o caso da rachadinha dele, segundo a PF",
+   "tipo": "texto"
   }
  },
  "master": {
@@ -108,263 +110,277 @@ window.BD_TOPICOS = {
  },
  "cota-senado-viagens": {
   "titulo": "Flávio Bolsonaro · Cota do Senado",
-  "texto": "Flávio Bolsonaro · Cota do Senado: R$ 13,6 mil pagos pelo Senado em passagens para ele e um assessor irem a um evento de pré-campanha com o mercado financeiro, segundo o Metrópoles.",
+  "texto": "Flávio Bolsonaro · Cota do Senado: ele visitou Daniel Vorcaro em 29/11/2025, um dia depois de o banqueiro sair da prisão; o Senado reembolsou as passagens dele, segundo o Correio da Manhã.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/cota-senado-viagens.html",
-  "img": "c/img/cota-senado-viagens.png?v=7b967fc4",
+  "img": "c/img/cota-senado-viagens.png?v=d2bbcd5e",
   "destino": "foz.html#cota-senado-viagens",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Cota do Senado",
-   "n": "R$ 13,6 mil",
-   "l": "do Senado em passagens dele e de um assessor para um evento de pré-campanha, segundo o Metrópoles"
+   "n": "Visita a Vorcaro",
+   "l": "em 29/11/2025, um dia depois de o banqueiro sair da prisão; o Senado reembolsou as passagens (Correio da Manhã)",
+   "tipo": "texto"
   }
  },
  "inquerito-cpi-covid": {
   "titulo": "Flávio Bolsonaro · Inquérito da CPI da Covid",
-  "texto": "Flávio Bolsonaro · Inquérito da CPI da Covid: 24 investigados no inquérito da CPI da Covid aberto no STF em 2025, ele entre eles, segundo a Agência Pública. Sem denúncia.",
+  "texto": "Flávio Bolsonaro · Inquérito da CPI da Covid: investigado no inquérito da CPI da Covid aberto no STF em 2025, com o pai e os irmãos Eduardo e Carlos, segundo a Agência Pública. Sem denúncia.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/inquerito-cpi-covid.html",
-  "img": "c/img/inquerito-cpi-covid.png?v=63fcc783",
+  "img": "c/img/inquerito-cpi-covid.png?v=7b334eac",
   "destino": "foz.html#inquerito-cpi-covid",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Inquérito da CPI da Covid",
-   "n": "24 investigados",
-   "l": "no inquérito da CPI da Covid no STF, ele entre eles, segundo a Agência Pública. Sem denúncia",
-   "cor": "tinta"
+   "n": "Investigado",
+   "l": "no inquérito da CPI da Covid no STF, com o pai e os irmãos Eduardo e Carlos, segundo a Agência Pública. Sem denúncia",
+   "cor": "tinta",
+   "tipo": "texto"
   }
  },
  "loja-chocolates": {
   "titulo": "Flávio Bolsonaro · Loja de chocolates",
   "texto": "Flávio Bolsonaro · Loja de chocolates: 1.512 depósitos em dinheiro vivo, de 2015 a 2018, na loja de chocolates de que ele era sócio, segundo o MP-RJ. Denúncia anulada.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/loja-chocolates.html",
-  "img": "c/img/loja-chocolates.png?v=e5fa194c",
+  "img": "c/img/loja-chocolates.png?v=25e8cbc6",
   "destino": "foz.html#loja-chocolates",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Loja de chocolates",
    "n": "1.512 depósitos",
-   "l": "em dinheiro vivo na loja de chocolates de que ele era sócio, segundo o MP-RJ. Denúncia anulada"
+   "l": "em dinheiro vivo na loja de chocolates de que ele era sócio, de 2015 a 2018, segundo o MP-RJ. Denúncia anulada"
   }
  },
  "pec-praias-relatoria": {
   "titulo": "Flávio Bolsonaro · PEC das Praias",
-  "texto": "Flávio Bolsonaro · PEC das Praias: R$ 8,3 milhões em emendas Pix dele para Resende; um mês depois, a prefeitura contratou a construtora da obra do amigo dele em Angra, segundo a piauí.",
+  "texto": "Flávio Bolsonaro · PEC das Praias: 31 mansões do condomínio de um amigo dele em Angra dos Reis, em terreno de marinha, seriam beneficiadas pela PEC das Praias, que ele relatou no Senado, segundo a piauí.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/pec-praias-relatoria.html",
-  "img": "c/img/pec-praias-relatoria.png?v=771f3a9b",
+  "img": "c/img/pec-praias-relatoria.png?v=59f946ad",
   "destino": "foz.html#pec-praias-relatoria",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "PEC das Praias",
-   "n": "R$ 8,3 milhões",
-   "l": "em emendas dele para Resende, que depois contratou a construtora da obra do amigo dele em Angra, segundo a piauí"
+   "n": "31 mansões",
+   "l": "do condomínio de um amigo dele em Angra seriam beneficiadas pela PEC das Praias, que ele relatou, segundo a piauí"
   }
  },
  "psl-rj-2018": {
   "titulo": "Flávio Bolsonaro · PSL-RJ em 2018",
-  "texto": "Flávio Bolsonaro · PSL-RJ em 2018: 27 das 33 candidatas do PSL-RJ, que ele presidia, pagaram R$ 750 a cada uma de duas firmas ligadas a uma assessora e ao advogado eleitoral dele, segundo o UOL.",
+  "texto": "Flávio Bolsonaro · PSL-RJ em 2018: R$ 49 mil da cota feminina do PSL-RJ, que ele presidia em 2018, foram para firmas ligadas a uma assessora e ao advogado eleitoral dele, segundo o UOL.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/psl-rj-2018.html",
-  "img": "c/img/psl-rj-2018.png?v=2ef01b31",
+  "img": "c/img/psl-rj-2018.png?v=4a16eabc",
   "destino": "foz.html#psl-rj-2018",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "PSL-RJ em 2018",
-   "n": "27 de 33",
-   "l": "candidatas do partido que ele presidia pagaram firmas ligadas a uma assessora e ao advogado dele, segundo o UOL"
+   "n": "Cota feminina",
+   "l": "do PSL-RJ, que ele presidia: R$ 49 mil foram a firmas ligadas a uma assessora e ao advogado dele, segundo o UOL",
+   "tipo": "texto"
   }
  },
  "rachadinha-alerj": {
   "titulo": "Flávio Bolsonaro · Rachadinha na Alerj",
-  "texto": "Flávio Bolsonaro · Rachadinha na Alerj: R$ 2,7 milhões em dinheiro vivo do esquema que ele teria usado, segundo a denúncia do MP-RJ. Denúncia anulada.",
+  "texto": "Flávio Bolsonaro · Rachadinha na Alerj: R$ 2,7 milhões em dinheiro vivo que ele teria usado no esquema da rachadinha na Alerj, segundo a denúncia do MP-RJ. Denúncia anulada.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/rachadinha-alerj.html",
-  "img": "c/img/rachadinha-alerj.png?v=f9784327",
+  "img": "c/img/rachadinha-alerj.png?v=59ffb371",
   "destino": "index.html#cap-rachadinha-alerj",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Rachadinha na Alerj",
    "n": "R$ 2,7 milhões",
-   "l": "em dinheiro vivo do esquema que ele teria usado, segundo o MP-RJ. Denúncia anulada"
+   "l": "em dinheiro vivo que ele teria usado no esquema, segundo o MP-RJ. Denúncia anulada"
   }
  },
  "vazamento-furna-da-onca": {
   "titulo": "Flávio Bolsonaro · Furna da Onça",
-  "texto": "Flávio Bolsonaro · Furna da Onça: Paulo Marinho, suplente dele, disse ao MPF que ele foi avisado antes da Operação Furna da Onça, em 2018, de que Queiroz aparecia na investigação. Sem denúncia.",
+  "texto": "Flávio Bolsonaro · Furna da Onça: Paulo Marinho, suplente dele, disse ao MPF que ele foi avisado antes, por intermédio de um delegado da PF, de que Queiroz aparecia na investigação da Operação Furna da Onça, em 2018.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/vazamento-furna-da-onca.html",
-  "img": "c/img/vazamento-furna-da-onca.png?v=8e22dd7f",
+  "img": "c/img/vazamento-furna-da-onca.png?v=1e3d40a9",
   "destino": "foz.html#vazamento-furna-da-onca",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Furna da Onça",
-   "n": "Paulo Marinho",
-   "l": "suplente dele, disse ao MPF que ele foi avisado antes da operação de 2018 de que Queiroz aparecia na investigação. Sem denúncia"
+   "n": "Aviso antecipado",
+   "l": "a ele, por um delegado da PF, de que Queiroz aparecia na Furna da Onça, segundo o suplente dele, Paulo Marinho",
+   "tipo": "texto"
   }
  },
  "cargo-camara-durante-faculdade": {
   "titulo": "Flávio Bolsonaro · Cargo aos 19 anos",
-  "texto": "Flávio Bolsonaro · Cargo aos 19 anos: R$ 4.712 por mês rendia, em 2001, o cargo de 40 horas semanais em Brasília que ele ocupou aos 19 anos, enquanto fazia faculdade no Rio, segundo a BBC News Brasil.",
+  "texto": "Flávio Bolsonaro · Cargo aos 19 anos: 40 horas semanais em Brasília: a jornada do cargo na Câmara que ele ocupou aos 19 anos, no mesmo período em que fazia faculdade e estágio no Rio, segundo a BBC News Brasil.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/cargo-camara-durante-faculdade.html",
-  "img": "c/img/cargo-camara-durante-faculdade.png?v=418bf739",
+  "img": "c/img/cargo-camara-durante-faculdade.png?v=bedb27da",
   "destino": "foz.html#cargo-camara-durante-faculdade",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Cargo aos 19 anos",
-   "n": "R$ 4.712 por mês",
-   "l": "rendia, em 2001, o cargo de 40 horas em Brasília que ele ocupou estudando no Rio, segundo a BBC"
+   "n": "40 horas semanais",
+   "l": "em Brasília, no cargo na Câmara que ele ocupou aos 19 anos, com faculdade e estágio no Rio, segundo a BBC"
   }
  },
  "defesa-milicias-alerj-2007-2008": {
   "titulo": "Flávio Bolsonaro · Falas sobre milícias",
-  "texto": "Flávio Bolsonaro · Falas sobre milícias: R$ 20 a R$ 40 é o que ele disse na Alerj, em 2007, que gostaria de pagar para não ter o carro furtado, ao definir a milícia como 'um conjunto de policiais', segundo a taquigrafia.",
+  "texto": "Flávio Bolsonaro · Falas sobre milícias: 'humilhava policiais', disse ele sobre a atuação da juíza Patrícia Acioli, depois de ela ser assassinada por PMs em 2011, segundo a Veja.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/defesa-milicias-alerj-2007-2008.html",
-  "img": "c/img/defesa-milicias-alerj-2007-2008.png?v=c156d1c5",
+  "img": "c/img/defesa-milicias-alerj-2007-2008.png?v=6850e035",
   "destino": "foz.html#defesa-milicias-alerj-2007-2008",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Falas sobre milícias",
-   "n": "R$ 20 a R$ 40",
-   "l": "é o que ele disse na Alerj, em 2007, que pagaria para não ter o carro furtado, segundo a taquigrafia"
+   "n": "“Humilhava policiais”",
+   "l": "disse ele sobre a juíza Patrícia Acioli, depois de ela ser assassinada por PMs em 2011, segundo a Veja",
+   "tipo": "texto"
   }
  },
  "marielle-ifop": {
   "titulo": "Flávio Bolsonaro · Caso Marielle",
-  "texto": "Flávio Bolsonaro · Caso Marielle: 2 dos 5 condenados no caso Marielle têm ligação com ele: o major Ronald, homenageado por indicação dele na Alerj em 2004, e Peixe, que tratou emenda de R$ 199.999,79 com uma assessora dele, segundo a PF.",
+  "texto": "Flávio Bolsonaro · Caso Marielle: uma assessora dele negociou com o Peixe, hoje condenado no caso Marielle, a emenda de R$ 199.999,79 que ele mandou ao Ifop, ligado aos irmãos Brazão, segundo a PF.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/marielle-ifop.html",
-  "img": "c/img/marielle-ifop.png?v=bcf4df00",
+  "img": "c/img/marielle-ifop.png?v=4cf657c8",
   "destino": "index.html#cap-marielle-ifop",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Caso Marielle",
-   "n": "2 de 5",
-   "l": "condenados pelo STF no caso Marielle têm ligação documentada com ele, segundo a Agência Brasil e a PF"
+   "n": "Emenda negociada",
+   "l": "por uma assessora dele com o Peixe, hoje condenado no caso Marielle: R$ 199.999,79 ao Ifop, ligado aos Brazão, diz a PF",
+   "tipo": "texto"
   }
  },
  "inss-contador": {
   "titulo": "Flávio Bolsonaro · Fraude no INSS",
-  "texto": "Flávio Bolsonaro · Fraude no INSS: 16 empresas ligadas ao 'Careca do INSS' estavam registradas no mesmo endereço da empresa de que ele é sócio, segundo o Estado de Minas.",
+  "texto": "Flávio Bolsonaro · Fraude no INSS: ao menos 16 empresas ligadas ao 'Careca do INSS', hoje preso, estavam registradas na mesma sala da empresa de que ele é sócio, segundo o Estado de Minas.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/inss-contador.html",
-  "img": "c/img/inss-contador.png?v=670129af",
+  "img": "c/img/inss-contador.png?v=61575c5f",
   "destino": "index.html#cap-inss-contador",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Fraude no INSS",
-   "n": "16 empresas",
-   "l": "ligadas ao 'Careca do INSS' no mesmo endereço da empresa de que ele é sócio, segundo o Estado de Minas"
+   "n": "Mesma sala",
+   "l": "da empresa de que ele é sócio: ao menos 16 empresas ligadas ao 'Careca do INSS', hoje preso, segundo o Estado de Minas",
+   "tipo": "texto"
   }
  },
  "quarto-elemento": {
   "titulo": "Flávio Bolsonaro · Operação Quarto Elemento",
-  "texto": "Flávio Bolsonaro · Operação Quarto Elemento: 46 mandados de prisão na fase da operação que prendeu dois PMs irmãos de uma assessora dele, segundo o Estadão.",
+  "texto": "Flávio Bolsonaro · Operação Quarto Elemento: dois PMs presos em 2018 na Operação Quarto Elemento são irmãos de uma assessora dele; davam segurança em eventos da campanha, disseram integrantes dela ao Estadão. Ele nega.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/quarto-elemento.html",
-  "img": "c/img/quarto-elemento.png?v=bdacfca1",
+  "img": "c/img/quarto-elemento.png?v=146e6b03",
   "destino": "foz.html#quarto-elemento",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Quarto Elemento",
-   "n": "46 mandados de prisão",
-   "l": "na operação que prendeu dois PMs irmãos de uma assessora dele, segundo o Estadão"
+   "n": "PMs presos",
+   "l": "em 2018 na Quarto Elemento são irmãos de uma assessora dele; faziam segurança em eventos da campanha, disseram integrantes dela ao Estadão",
+   "tipo": "texto"
   }
  },
  "servulo-assessor-em-portugal": {
   "titulo": "Flávio Bolsonaro · Assessor em Portugal",
-  "texto": "Flávio Bolsonaro · Assessor em Portugal: 248 dias em Portugal, em oito viagens, enquanto recebia como assessor do gabinete dele na Alerj, segundo o Jornal Nacional, citado pela Folha. Denúncia anulada.",
+  "texto": "Flávio Bolsonaro · Assessor em Portugal: 248 dias em oito viagens a Portugal, recebendo como assessor do gabinete dele na Alerj, segundo o Jornal Nacional. Os dois foram denunciados na rachadinha; denúncia anulada.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/servulo-assessor-em-portugal.html",
-  "img": "c/img/servulo-assessor-em-portugal.png?v=39590a71",
+  "img": "c/img/servulo-assessor-em-portugal.png?v=ae8d3195",
   "destino": "foz.html#servulo-assessor-em-portugal",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Assessor em Portugal",
    "n": "248 dias",
-   "l": "fora do país enquanto recebia como assessor do gabinete dele, segundo o Jornal Nacional. Denúncia anulada"
+   "l": "fora do país, em oito viagens a Portugal, recebendo como assessor do gabinete dele na Alerj, segundo o Jornal Nacional"
   }
  },
  "assessor-ex-caixa": {
   "titulo": "Flávio Bolsonaro · Assessor ex-Caixa",
   "texto": "Flávio Bolsonaro · Assessor ex-Caixa: R$ 20,7 mil por mês, por quase um ano, no gabinete dele, a um ex-vice-presidente da Caixa que fez acordo no caso de assédio, segundo a Folha.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/assessor-ex-caixa.html",
-  "img": "c/img/assessor-ex-caixa.png?v=59dbda67",
+  "img": "c/img/assessor-ex-caixa.png?v=7f837c08",
   "destino": "foz.html#assessor-ex-caixa",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Assessor ex-Caixa",
    "n": "R$ 20,7 mil por mês",
-   "l": "no gabinete dele a um ex-vice da Caixa que fez acordo no caso de assédio, segundo a Folha"
+   "l": "de salário no gabinete dele, por quase um ano, a um ex-vice da Caixa que fez acordo no caso de assédio, segundo a Folha"
   }
  },
  "escritorio-do-crime": {
   "titulo": "Flávio Bolsonaro · Escritório do Crime",
-  "texto": "Flávio Bolsonaro · Escritório do Crime: R$ 203 mil repassados a Queiroz a partir dos cargos da ex-mulher e da mãe de Adriano da Nóbrega no gabinete dele, segundo a denúncia do MP-RJ. Denúncia anulada.",
+  "texto": "Flávio Bolsonaro · Escritório do Crime: ele deu a Medalha Tiradentes, em 2005, a Adriano da Nóbrega, então preso, depois apontado como chefe do Escritório do Crime, segundo o Poder360.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/escritorio-do-crime.html",
-  "img": "c/img/escritorio-do-crime.png?v=54a1d1d5",
+  "img": "c/img/escritorio-do-crime.png?v=12ba9080",
   "destino": "foz.html#escritorio-do-crime",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Escritório do Crime",
-   "n": "R$ 203 mil",
-   "l": "repassados a Queiroz pelos cargos da família de Adriano da Nóbrega no gabinete dele, segundo o MP-RJ. Denúncia anulada"
+   "n": "Medalha Tiradentes",
+   "l": "dada por ele em 2005 a Adriano da Nóbrega, então preso, depois apontado chefe do Escritório do Crime, segundo o Poder360",
+   "tipo": "texto"
   }
  },
  "jogo-do-bicho": {
   "titulo": "Flávio Bolsonaro · Jogo do bicho",
-  "texto": "Flávio Bolsonaro · Jogo do bicho: R$ 8,5 milhões movimentados por quatro empresas da rede de lavagem do jogo do bicho, segundo a denúncia do MP-RJ contra uma ex-assessora dele e outras 18 pessoas.",
+  "texto": "Flávio Bolsonaro · Jogo do bicho: a mãe de Adriano da Nóbrega, ex-assessora dele na Alerj, foi denunciada pelo MP-RJ, com outras 18 pessoas, por lavagem de dinheiro do jogo do bicho, segundo o Metrópoles.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/jogo-do-bicho.html",
-  "img": "c/img/jogo-do-bicho.png?v=69bfddc4",
+  "img": "c/img/jogo-do-bicho.png?v=56458027",
   "destino": "foz.html#jogo-do-bicho",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Jogo do bicho",
-   "n": "R$ 8,5 milhões",
-   "l": "na rede de lavagem do bicho, segundo a denúncia do MP-RJ contra uma ex-assessora dele"
+   "n": "Mãe de Adriano",
+   "l": "da Nóbrega, ex-assessora dele na Alerj, foi denunciada pelo MP-RJ por lavagem de dinheiro do jogo do bicho, segundo o Metrópoles",
+   "tipo": "texto"
   }
  },
  "leo-indio-8jan": {
   "titulo": "Flávio Bolsonaro · Léo Índio no 8 de janeiro",
-  "texto": "Flávio Bolsonaro · Léo Índio no 8 de janeiro: o primo Léo Índio, que trabalhou 6 anos no gabinete dele na Alerj, é réu no STF, acusado pela PGR de participar do 8 de janeiro, e está foragido.",
+  "texto": "Flávio Bolsonaro · Léo Índio no 8 de janeiro: o primo Léo Índio, que trabalhou no gabinete dele na Alerj, é réu no STF pelo 8 de janeiro, teve a prisão decretada e está foragido, segundo o Metrópoles.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/leo-indio-8jan.html",
-  "img": "c/img/leo-indio-8jan.png?v=855da47a",
+  "img": "c/img/leo-indio-8jan.png?v=1245495e",
   "destino": "foz.html#leo-indio-8jan",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Léo Índio",
-   "n": "6 anos",
-   "l": "no gabinete dele: o primo Léo Índio, hoje réu no STF pelo 8 de janeiro e foragido"
+   "n": "Primo foragido",
+   "l": "Léo Índio, que trabalhou no gabinete dele na Alerj, é réu no STF pelo 8/1 e teve a prisão decretada, segundo o Metrópoles",
+   "tipo": "texto"
   }
  },
  "gabinete-do-odio-contas-falsas": {
   "titulo": "Flávio Bolsonaro · Contas falsas",
-  "texto": "Flávio Bolsonaro · Contas falsas: 45 acessos, a partir do Senado, a um perfil falso que a PF ligou ao IP de um assessor dele, segundo relatório da PF citado pela Folha de Pernambuco.",
+  "texto": "Flávio Bolsonaro · Contas falsas: perfis falsos que a PF ligou ao IP de um assessor dele; um deles foi acessado 45 vezes a partir do Senado, segundo relatório da PF citado pela Folha de Pernambuco.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/gabinete-do-odio-contas-falsas.html",
-  "img": "c/img/gabinete-do-odio-contas-falsas.png?v=8d98409b",
+  "img": "c/img/gabinete-do-odio-contas-falsas.png?v=e264cf15",
   "destino": "foz.html#gabinete-do-odio-contas-falsas",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Contas falsas",
-   "n": "45 acessos",
-   "l": "a partir do Senado a um perfil falso que a PF ligou ao IP de um assessor dele"
+   "n": "Perfis falsos",
+   "l": "que a PF ligou ao IP de um assessor dele; um deles foi acessado 45 vezes a partir do Senado",
+   "tipo": "texto"
   }
  },
  "coacao-eduardo": {
   "titulo": "Flávio Bolsonaro · Coação no STF",
-  "texto": "Flávio Bolsonaro · Coação no STF: 4 anos e 2 meses de prisão, em regime semiaberto: a pena do irmão Eduardo por coação no curso do processo, mantida pelo STF em 18/09/2026, segundo a Conjur.",
+  "texto": "Flávio Bolsonaro · Coação no STF: ele e o irmão Eduardo defenderam o perdão ao pai como forma de reverter o tarifaço dos EUA, segundo o Estadão. Eduardo foi condenado pelo STF por coação no curso do processo.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/coacao-eduardo.html",
-  "img": "c/img/coacao-eduardo.png?v=e9b9629e",
+  "img": "c/img/coacao-eduardo.png?v=71a29ff4",
   "destino": "foz.html#coacao-eduardo",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Coação no STF",
-   "n": "4 anos e 2 meses",
-   "l": "de prisão para o irmão Eduardo por coação no curso do processo, pena mantida pelo STF"
+   "n": "Tarifaço",
+   "l": "dos EUA: ele e Eduardo defenderam o perdão ao pai como forma de revertê-lo, segundo o Estadão. Eduardo foi condenado por coação",
+   "tipo": "texto"
   }
  },
  "trama-golpista": {
   "titulo": "Flávio Bolsonaro · Trama golpista",
-  "texto": "Flávio Bolsonaro · Trama golpista: 27 anos e 3 meses de prisão: a pena definitiva do pai, Jair, na ação da trama golpista, segundo a Conjur. Ele diz que vai buscar anistia.",
+  "texto": "Flávio Bolsonaro · Trama golpista: ele diz que, se eleito, vai buscar ainda na transição a anistia ao pai, condenado a 27 anos e 3 meses na trama golpista, segundo a InfoMoney.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/trama-golpista.html",
-  "img": "c/img/trama-golpista.png?v=b820bd9b",
+  "img": "c/img/trama-golpista.png?v=f94df65b",
   "destino": "index.html#cap-trama-golpista",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Trama golpista",
-   "n": "27 anos e 3 meses",
-   "l": "de prisão: a pena definitiva do pai dele na trama golpista, segundo a Conjur"
+   "n": "Anistia ao pai",
+   "l": "condenado a 27 anos e 3 meses na trama golpista: ele diz que vai buscá-la ainda na transição, se eleito (InfoMoney)",
+   "tipo": "texto"
   }
  },
  "joias-sauditas": {
@@ -382,28 +398,29 @@ window.BD_TOPICOS = {
  },
  "rachadinha-carlos": {
   "titulo": "Flávio Bolsonaro · Os cofres da família",
-  "texto": "Flávio Bolsonaro · Os cofres da família: 153 acessos dele e do irmão Carlos, em 12 anos, a dois cofres no Banco do Brasil, segundo o MP-RJ; um deles na véspera de ele comprar dois imóveis.",
+  "texto": "Flávio Bolsonaro · Os cofres da família: em 26/11/2012, um dia antes de comprar dois imóveis, ele acessou um dos cofres que usava com o irmão Carlos no Banco do Brasil, segundo relatório do MP-RJ.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/rachadinha-carlos.html",
-  "img": "c/img/rachadinha-carlos.png?v=1fae8409",
+  "img": "c/img/rachadinha-carlos.png?v=e6615a9d",
   "destino": "foz.html#rachadinha-carlos",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Os cofres da família",
-   "n": "153 acessos",
-   "l": "dele e do irmão Carlos a dois cofres no Banco do Brasil, em 12 anos, segundo o MP-RJ"
+   "n": "Um dia antes",
+   "l": "de comprar dois imóveis, em 2012, ele acessou um dos cofres que usava com o irmão Carlos, segundo o MP-RJ",
+   "tipo": "texto"
   }
  },
  "cla-valle-gabinetes": {
   "titulo": "Flávio Bolsonaro · Gabinetes da família",
-  "texto": "Flávio Bolsonaro · Gabinetes da família: 102 dos 286 assessores nomeados nos gabinetes de Jair, Flávio, Carlos e Eduardo desde 1991 tinham parentesco entre si, segundo levantamento do Globo.",
+  "texto": "Flávio Bolsonaro · Gabinetes da família: 90% do salário da Câmara eram devolvidos, diz em áudio Andrea Valle, ex-cunhada de Jair, segundo o UOL. Ela também foi lotada no gabinete dele na Alerj.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/cla-valle-gabinetes.html",
-  "img": "c/img/cla-valle-gabinetes.png?v=0e1dddf5",
+  "img": "c/img/cla-valle-gabinetes.png?v=f59d9a38",
   "destino": "foz.html#cla-valle-gabinetes",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Gabinetes da família",
-   "n": "102 assessores",
-   "l": "dos 286 nomeados nos gabinetes de Jair e dos filhos desde 1991 eram parentes entre si, segundo O Globo"
+   "n": "90% do salário",
+   "l": "da Câmara eram devolvidos, diz Andrea Valle em áudio, segundo o UOL; ela também foi lotada no gabinete dele"
   }
  },
  "imoveis-dinheiro-vivo": {
@@ -421,28 +438,29 @@ window.BD_TOPICOS = {
  },
  "cheques-michelle": {
   "titulo": "Flávio Bolsonaro · Cheques a Michelle",
-  "texto": "Flávio Bolsonaro · Cheques a Michelle: R$ 89 mil em 27 cheques de Queiroz, ex-assessor dele, e da mulher, depositados na conta de Michelle Bolsonaro, segundo o Congresso em Foco.",
+  "texto": "Flávio Bolsonaro · Cheques a Michelle: Queiroz, ex-assessor dele, e a mulher, Márcia Aguiar, depositaram R$ 89 mil em 27 cheques na conta de Michelle Bolsonaro (Congresso em Foco). A quebra de sigilo foi anulada.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/cheques-michelle.html",
-  "img": "c/img/cheques-michelle.png?v=215374e4",
+  "img": "c/img/cheques-michelle.png?v=35cab7ef",
   "destino": "foz.html#cheques-michelle",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Cheques a Michelle",
-   "n": "R$ 89 mil",
-   "l": "em 27 cheques de Queiroz, ex-assessor dele, e da mulher para Michelle Bolsonaro, segundo o Congresso em Foco"
+   "n": "Fabrício Queiroz",
+   "l": "ex-assessor dele, e a mulher, Márcia Aguiar, depositaram R$ 89 mil em 27 cheques na conta de Michelle Bolsonaro. Quebra de sigilo anulada",
+   "tipo": "texto"
   }
  },
  "brb-mansao": {
   "titulo": "Flávio Bolsonaro · A mansão e o BRB",
-  "texto": "Flávio Bolsonaro · A mansão e o BRB: R$ 3,1 milhões do BRB para a mansão dele no Lago Sul, segundo o Metrópoles. O banco era presidido por Paulo Henrique Costa, preso em 2026 no caso Master. Empréstimo julgado regular.",
+  "texto": "Flávio Bolsonaro · A mansão e o BRB: R$ 3,1 milhões financiados pelo BRB para a mansão dele, segundo o Metrópoles. O banco era presidido por Paulo Henrique Costa, preso em 2026 no caso Master. Empréstimo julgado regular.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/brb-mansao.html",
-  "img": "c/img/brb-mansao.png?v=4af608a0",
+  "img": "c/img/brb-mansao.png?v=7b3d614e",
   "destino": "foz.html#brb-mansao",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "A mansão e o BRB",
    "n": "R$ 3,1 milhões",
-   "l": "do BRB para a mansão dele, sob o presidente do banco depois preso no caso Master. Empréstimo julgado regular"
+   "l": "financiados pelo BRB para a mansão dele em 2021, na gestão de Paulo Henrique Costa, preso em 2026 no caso Master"
   }
  },
  "mocoes-pms-reus-condenados": {
@@ -460,145 +478,155 @@ window.BD_TOPICOS = {
  },
  "cv-governo-rj": {
   "titulo": "Flávio Bolsonaro · CV e a secretaria",
-  "texto": "Flávio Bolsonaro · CV e a secretaria: um líder do Comando Vermelho tratava de nomeações na secretaria do RJ chefiada por Gutemberg Fonseca, indicado dele, segundo mensagens interceptadas pela PF.",
+  "texto": "Flávio Bolsonaro · CV e a secretaria: um líder do Comando Vermelho tratava de nomeações na secretaria do RJ chefiada por Gutemberg Fonseca, indicado dele, em mensagens interceptadas pela PF.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/cv-governo-rj.html",
-  "img": "c/img/cv-governo-rj.png?v=7ae1ca7e",
+  "img": "c/img/cv-governo-rj.png?v=82d662fb",
   "destino": "index.html#cap-cv-governo-rj",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "CV e a secretaria",
    "n": "Comando Vermelho",
-   "l": "um líder tratava de nomeações na secretaria do RJ chefiada por um indicado dele, segundo a PF"
+   "l": "um líder da facção tratava de nomeações na secretaria do RJ chefiada por indicado dele, em mensagens interceptadas pela PF",
+   "tipo": "texto"
   }
  },
  "unha-e-carne": {
   "titulo": "Flávio Bolsonaro · Unha e Carne",
-  "texto": "Flávio Bolsonaro · Unha e Carne: R$ 7,6 bilhões movimentados em seis anos pela rede de postos investigada, segundo o Coaf. Um dos alvos foi Márcio Canella, que ele indicou ao Senado.",
+  "texto": "Flávio Bolsonaro · Unha e Carne: Márcio Canella, que ele indicou ao Senado com a mãe dele, Rogéria Bolsonaro, como suplente, foi preso em flagrante com um fuzil no carro em 07/07/2026, segundo a CNN Brasil.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/unha-e-carne.html",
-  "img": "c/img/unha-e-carne.png?v=f0453c1e",
+  "img": "c/img/unha-e-carne.png?v=f2d2b060",
   "destino": "foz.html#unha-e-carne",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Unha e Carne",
-   "n": "R$ 7,6 bilhões",
-   "l": "na rede de postos investigada, segundo o Coaf; um dos alvos foi Márcio Canella, que ele indicou ao Senado"
+   "n": "Fuzil no carro",
+   "l": "levou à prisão em flagrante Márcio Canella, que ele indicou ao Senado com a mãe dele como suplente, segundo a CNN",
+   "tipo": "texto"
   }
  },
  "covaxin": {
   "titulo": "Flávio Bolsonaro · Covaxin",
-  "texto": "Flávio Bolsonaro · Covaxin: R$ 1,6 bilhão reservado pela Saúde para a Covaxin da Precisa, cujo sócio ele levou a uma reunião no BNDES sobre outra empresa, segundo o Estado de Minas.",
+  "texto": "Flávio Bolsonaro · Covaxin: em 2020, ele levou a uma reunião no BNDES o sócio da Precisa, que vendia a Covaxin ao governo, para tratar de outra empresa, segundo o Estado de Minas.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/covaxin.html",
-  "img": "c/img/covaxin.png?v=03df96f1",
+  "img": "c/img/covaxin.png?v=c91a6165",
   "destino": "foz.html#covaxin",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Covaxin",
-   "n": "R$ 1,6 bilhão",
-   "l": "para a Covaxin da Precisa, cujo sócio ele levou a uma reunião no BNDES, segundo o Estado de Minas"
+   "n": "Reunião no BNDES",
+   "l": "com o sócio da Precisa, que vendia a Covaxin ao governo: ele o levou em 2020 para tratar de outra empresa, segundo o Estado de Minas",
+   "tipo": "texto"
   }
  },
  "emenda-master": {
   "titulo": "Flávio Bolsonaro · Emenda Master",
-  "texto": "Flávio Bolsonaro · Emenda Master: até R$ 500 mil por mês seriam pagos por Daniel Vorcaro ao senador Ciro Nogueira, segundo a PF. Ciro declarou voto nele.",
+  "texto": "Flávio Bolsonaro · Emenda Master: o senador Ciro Nogueira, que declarou voto nele, receberia de Daniel Vorcaro até R$ 500 mil por mês, segundo a PF.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/emenda-master.html",
-  "img": "c/img/emenda-master.png?v=5e2a7dcd",
+  "img": "c/img/emenda-master.png?v=97219c21",
   "destino": "foz.html#emenda-master",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Emenda Master",
-   "n": "até R$ 500 mil por mês",
-   "l": "que Daniel Vorcaro pagaria ao senador Ciro Nogueira, que declarou voto nele, segundo a PF"
+   "n": "Ciro Nogueira",
+   "l": "senador que declarou voto nele, receberia de Daniel Vorcaro até R$ 500 mil por mês, segundo a PF",
+   "tipo": "texto"
   }
  },
  "valdemar-emendas-pl": {
   "titulo": "Flávio Bolsonaro · Emendas de Valdemar",
-  "texto": "Flávio Bolsonaro · Emendas de Valdemar: R$ 119 milhões em bens de Valdemar Costa Neto, presidente do PL, partido dele, bloqueados pelo STF no caso das emendas, segundo a Agência Brasil.",
+  "texto": "Flávio Bolsonaro · Emendas de Valdemar: Valdemar Costa Neto, presidente do PL, partido dele, teve R$ 119 milhões em bens bloqueados pelo STF no caso das emendas, segundo a Agência Brasil.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/valdemar-emendas-pl.html",
-  "img": "c/img/valdemar-emendas-pl.png?v=346746b3",
+  "img": "c/img/valdemar-emendas-pl.png?v=82231522",
   "destino": "foz.html#valdemar-emendas-pl",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Emendas de Valdemar",
-   "n": "R$ 119 milhões",
-   "l": "em bens de Valdemar Costa Neto, presidente do partido dele, bloqueados pelo STF, segundo a Agência Brasil"
+   "n": "Valdemar Costa Neto",
+   "l": "presidente do partido dele, teve R$ 119 milhões em bens bloqueados pelo STF no caso das emendas, segundo a Agência Brasil",
+   "tipo": "texto"
   }
  },
  "make-up": {
   "titulo": "Flávio Bolsonaro · Operação Make Up",
-  "texto": "Flávio Bolsonaro · Operação Make Up: 49 mandados de busca da PF contra o deputado Mário Frias e a produtora do filme sobre o pai dele, segundo a Agência Brasil.",
+  "texto": "Flávio Bolsonaro · Operação Make Up: desvio de emendas é a suspeita da PF contra o deputado Mário Frias, roteirista do filme sobre o pai dele, e a produtora, alvos de 49 mandados de busca, segundo a Agência Brasil.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/make-up.html",
-  "img": "c/img/make-up.png?v=ac3e9293",
+  "img": "c/img/make-up.png?v=676e5eca",
   "destino": "foz.html#make-up",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Operação Make Up",
-   "n": "49 mandados",
-   "l": "de busca da PF contra Mário Frias e a produtora do filme sobre o pai dele, segundo a Agência Brasil"
+   "n": "Desvio de emendas",
+   "l": "é a suspeita da PF contra Mário Frias, roteirista do filme sobre o pai dele, e a produtora, segundo a Agência Brasil",
+   "tipo": "texto"
   }
  },
  "ceperj-castro": {
   "titulo": "Flávio Bolsonaro · Folha secreta da Ceperj",
-  "texto": "Flávio Bolsonaro · Folha secreta da Ceperj: R$ 240 milhões em saques em espécie no caso da Ceperj, segundo a Folha. O caso tornou inelegível Cláudio Castro, até maio na chapa dele ao Senado.",
+  "texto": "Flávio Bolsonaro · Folha secreta da Ceperj: Cláudio Castro, até maio na chapa dele ao Senado, está inelegível até 2030 no caso da Ceperj, com R$ 240 milhões em saques em espécie, segundo a Folha.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/ceperj-castro.html",
-  "img": "c/img/ceperj-castro.png?v=99b5b6e0",
+  "img": "c/img/ceperj-castro.png?v=a7579084",
   "destino": "foz.html#ceperj-castro",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Ceperj",
-   "n": "R$ 240 milhões",
-   "l": "em saques em espécie no caso que tornou inelegível Cláudio Castro, até maio na chapa dele, segundo a Folha"
+   "n": "Castro inelegível",
+   "l": "até 2030 no caso Ceperj, com R$ 240 milhões em saques em espécie, segundo a Folha; estava na chapa dele ao Senado até maio",
+   "tipo": "texto"
   }
  },
  "inss-willer": {
   "titulo": "Flávio Bolsonaro · INSS: Willer Tomaz",
-  "texto": "Flávio Bolsonaro · INSS: Willer Tomaz: 5 viagens internacionais dele com o advogado Willer Tomaz, alvo da PF no caso do INSS, no 1º semestre de 2025, segundo registros da PF citados pelo Poder360.",
+  "texto": "Flávio Bolsonaro · INSS: Willer Tomaz: um safári na África do Sul com o amigo Willer Tomaz, alvo da PF no caso do INSS: uma de ao menos cinco viagens dele com Tomaz em 2025, segundo a PF, citada pelo Poder360.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/inss-willer.html",
-  "img": "c/img/inss-willer.png?v=ba28dc90",
+  "img": "c/img/inss-willer.png?v=c1d7ab68",
   "destino": "foz.html#inss-willer",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "INSS: Willer Tomaz",
-   "n": "5 viagens",
-   "l": "internacionais dele com o advogado Willer Tomaz, alvo da PF no caso do INSS, segundo registros da PF"
+   "n": "Safári",
+   "l": "na África do Sul com o amigo Willer Tomaz, alvo da PF no caso do INSS: uma de ao menos cinco viagens, segundo a PF",
+   "tipo": "texto"
   }
  },
  "hospitais-federais-rj": {
   "titulo": "Flávio Bolsonaro · Hospitais federais",
-  "texto": "Flávio Bolsonaro · Hospitais federais: quase R$ 100 milhões em contratos sem licitação no Hospital Federal de Bonsucesso, de 2019 a 2021, segundo o TCU. O Globo chama o hospital de 'feudo político' dele.",
+  "texto": "Flávio Bolsonaro · Hospitais federais: o Hospital Federal de Bonsucesso, que O Globo chama de 'feudo político' dele, teve quase R$ 100 milhões em contratos sem licitação de 2019 a 2021, segundo o TCU.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/hospitais-federais-rj.html",
-  "img": "c/img/hospitais-federais-rj.png?v=83eed145",
+  "img": "c/img/hospitais-federais-rj.png?v=edebcf02",
   "destino": "foz.html#hospitais-federais-rj",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Hospitais federais",
-   "n": "quase R$ 100 milhões",
-   "l": "em contratos sem licitação num hospital que O Globo chama de 'feudo político' dele, segundo o TCU"
+   "n": "Hospital de Bonsucesso",
+   "l": "que O Globo chama de 'feudo político' dele: quase R$ 100 milhões em contratos sem licitação de 2019 a 2021, segundo o TCU",
+   "tipo": "texto"
   }
  },
  "sarasvati": {
   "titulo": "Flávio Bolsonaro · Obras em escolas",
-  "texto": "Flávio Bolsonaro · Obras em escolas: R$ 16 milhões do Estado para reformar 15 escolas, pagos à construtora fundada por Renato Araújo, aliado dele no PL, segundo a Agência Pública.",
+  "texto": "Flávio Bolsonaro · Obras em escolas: R$ 16 milhões do Estado por obras em 15 escolas, pagos à construtora fundada por Renato Araújo, aliado dele no PL, alvo de busca por suspeita de fraude, segundo a Agência Pública.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/sarasvati.html",
-  "img": "c/img/sarasvati.png?v=39aa6805",
+  "img": "c/img/sarasvati.png?v=1b5e0648",
   "destino": "foz.html#sarasvati",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Obras em escolas",
    "n": "R$ 16 milhões",
-   "l": "do Estado para reformar 15 escolas, pagos à construtora de um aliado dele no PL, segundo a Agência Pública"
+   "l": "por obras em 15 escolas, pagos à construtora de um aliado dele, alvo de busca por suspeita de fraude, segundo a Pública"
   }
  },
  "sem-refino": {
   "titulo": "Flávio Bolsonaro · Refit",
-  "texto": "Flávio Bolsonaro · Refit: R$ 52 bilhões em ativos do grupo Refit bloqueados na operação que teve como alvo Cláudio Castro, então pré-candidato ao Senado na chapa dele, segundo a Agência Brasil.",
+  "texto": "Flávio Bolsonaro · Refit: Cláudio Castro, então pré-candidato ao Senado na chapa dele, foi alvo de busca na operação da PF contra o grupo Refit, que bloqueou R$ 52 bilhões em bens, segundo a Agência Brasil.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/sem-refino.html",
-  "img": "c/img/sem-refino.png?v=599aed52",
+  "img": "c/img/sem-refino.png?v=dd74d062",
   "destino": "foz.html#sem-refino",
   "cartao": {
    "k": "Flávio Bolsonaro",
    "nome": "Refit / Sem Refino",
-   "n": "R$ 52 bilhões",
-   "l": "em ativos da Refit bloqueados na operação que teve como alvo Cláudio Castro, então na chapa dele, segundo a Agência Brasil"
+   "n": "Cláudio Castro",
+   "l": "então na chapa dele ao Senado, foi alvo de busca na operação da PF contra o grupo Refit, que bloqueou R$ 52 bilhões, segundo a Agência Brasil",
+   "tipo": "texto"
   }
  },
  "siga": {
@@ -616,7 +644,7 @@ window.BD_TOPICOS = {
  },
  "fluxo-1": {
   "titulo": "Flávio Bolsonaro · Siga o dinheiro: BRB → a mansão dele",
-  "texto": "Flávio Bolsonaro · Siga o dinheiro: R$ 3,1 milhões do BRB financiaram a mansão dele no Lago Sul, segundo o Metrópoles. O banco era presidido por Paulo Henrique Costa, preso em 2026 no caso Master. Empréstimo julgado regular.",
+  "texto": "Flávio Bolsonaro · Siga o dinheiro: R$ 3,1 milhões do BRB financiaram a mansão dele no Lago Sul, segundo o Metrópoles. O banco era presidido por Paulo Henrique Costa, preso no caso Master. Empréstimo julgado regular.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/fluxo-1.html",
   "img": "c/img/fluxo-1.png?v=124c2533",
   "destino": "siga-o-dinheiro.html#1",
@@ -629,15 +657,15 @@ window.BD_TOPICOS = {
  },
  "fluxo-2": {
   "titulo": "Flávio Bolsonaro · Siga o dinheiro: Vorcaro → o filme",
-  "texto": "Flávio Bolsonaro · Siga o dinheiro: cerca de R$ 69 milhões em 7 repasses, a pedido de Daniel Vorcaro, a um fundo nos EUA ligado ao filme sobre o pai dele, segundo a delação homologada pelo STF. Investigado no STF, sem denúncia.",
+  "texto": "Flávio Bolsonaro · Siga o dinheiro: R$ 60 milhões pagos em 7 remessas, a pedido de Daniel Vorcaro, a um fundo nos EUA ligado ao filme sobre o pai dele, segundo a PF. Investigado no STF, sem denúncia.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/fluxo-2.html",
-  "img": "c/img/fluxo-2.png?v=15a91a12",
+  "img": "c/img/fluxo-2.png?v=fa3db95a",
   "destino": "siga-o-dinheiro.html#2",
   "cartao": {
    "k": "Flávio Bolsonaro · siga o dinheiro",
    "nome": "Vorcaro → o filme",
-   "n": "R$ 69 milhões",
-   "l": "enviados a pedido de Daniel Vorcaro a um fundo ligado ao filme sobre o pai dele, segundo a delação. Investigado no STF, sem denúncia"
+   "n": "R$ 60 milhões",
+   "l": "pagos em 7 remessas a um fundo ligado ao filme sobre o pai dele, segundo a PF. Investigado no STF, sem denúncia"
   }
  },
  "fluxo-3": {
@@ -905,15 +933,15 @@ window.BD_TOPICOS = {
  },
  "q-16": {
   "titulo": "Flávio Bolsonaro · Quiz: A delação",
-  "texto": "Flávio Bolsonaro · Quiz: quantas transferências a delação descreve? 7, em 2025, somando cerca de R$ 69 milhões, a pedido de Daniel Vorcaro, a um fundo ligado ao filme sobre o pai dele. Investigado no STF, sem denúncia.",
+  "texto": "Flávio Bolsonaro · Quiz: quantas transferências a delação descreve? 7, a pedido de Daniel Vorcaro, a um fundo ligado ao filme sobre o pai dele; R$ 60 milhões pagos, segundo a PF. Investigado no STF, sem denúncia.",
   "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/q-16.html",
-  "img": "c/img/q-16.png?v=cf2260c7",
+  "img": "c/img/q-16.png?v=3c0a76c5",
   "destino": "quiz.html",
   "cartao": {
    "k": "Flávio Bolsonaro · quiz",
    "nome": "A delação",
    "n": "7 transferências",
-   "l": "somando cerca de R$ 69 milhões a um fundo ligado ao filme sobre o pai dele, segundo a delação. Investigado no STF, sem denúncia"
+   "l": "em 2025, a um fundo ligado ao filme sobre o pai dele; R$ 60 milhões pagos, segundo a PF. Investigado no STF, sem denúncia"
   }
  },
  "q-17": {
@@ -992,6 +1020,230 @@ window.BD_TOPICOS = {
    "nome": "O vídeo apagado",
    "n": "vídeo de IA",
    "l": "apagado por ordem do TSE: mostrava ele algemado pela PF diante do Banco Master"
+  }
+ },
+ "dark-horse": {
+  "titulo": "Flávio Bolsonaro · Dark Horse",
+  "texto": "Flávio Bolsonaro · Dark Horse: R$ 131 milhões pedidos por ele a Daniel Vorcaro para um filme sobre o pai, segundo a PF; R$ 60 milhões teriam sido pagos. Investigado no STF, sem denúncia. O dinheiro, mês a mês.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dark-horse.html",
+  "img": "c/img/dark-horse.png?v=bb29210a",
+  "destino": "dark-horse.html",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "Dark Horse",
+   "n": "R$ 131 milhões",
+   "l": "pedidos por ele a Daniel Vorcaro para um filme sobre o pai, segundo a PF; R$ 60 milhões pagos. Investigado no STF, sem denúncia",
+   "tipo": "numero"
+  }
+ },
+ "dh-texas": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: O fundo no Texas",
+  "texto": "Flávio Bolsonaro · Dark Horse: o fundo no Texas que recebeu a 1ª remessa do filme, cerca de R$ 11,6 milhões, estava parado havia quase 4 anos, segundo a PF. Um dos gestores é o advogado de imigração de Eduardo (BBC).",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-texas.html",
+  "img": "c/img/dh-texas.png?v=23a0532e",
+  "destino": "dark-horse.html#dh-texas",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "O fundo no Texas",
+   "n": "parado havia quase 4 anos",
+   "l": "o fundo que recebeu a 1ª remessa do filme, segundo a PF. Um dos gestores é o advogado de imigração de Eduardo (BBC)",
+   "tipo": "texto"
+  }
+ },
+ "dh-18-marco": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: 18 de março de 2025",
+  "texto": "Flávio Bolsonaro · Dark Horse: 18/03/2025, 9h34: 'Flavio B e Eduardo querem marcar uma agenda com vc. Filme.', mensagem de Thiago Miranda a Daniel Vorcaro, segundo a PF. 11h37: Eduardo anuncia que vai ficar nos EUA.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-18-marco.html",
+  "img": "c/img/dh-18-marco.png?v=f32c04ac",
+  "destino": "dark-horse.html#dh-18-marco",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "18 de março de 2025",
+   "n": "9h34 · 11h37",
+   "l": "9h34: 'Flavio B e Eduardo querem marcar uma agenda com vc. Filme.', de Miranda a Vorcaro (PF). 11h37: Eduardo anuncia que fica nos EUA",
+   "tipo": "hora"
+  }
+ },
+ "dh-print": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: O print",
+  "texto": "Flávio Bolsonaro · Dark Horse: 'O ideal seria haver os recursos já nos EUA': print atribuído a Eduardo, repassado a Vorcaro em 21/03/2025, segundo a PF, que aponta Eduardo como possível beneficiário de parte do dinheiro.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-print.html",
+  "img": "c/img/dh-print.png?v=53d4cf3a",
+  "destino": "dark-horse.html#dh-print",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "O print",
+   "n": "“O ideal seria haver os recursos já nos EUA.”",
+   "l": "print atribuído a Eduardo e repassado a Vorcaro em 21/03/2025, segundo a PF",
+   "tipo": "citacao"
+  }
+ },
+ "dh-tarifa": {
+  "titulo": "Flávio Bolsonaro · EUA: O tarifaço",
+  "texto": "Flávio Bolsonaro · EUA: 50% de tarifa dos EUA ao Brasil em 09/07/2025, em carta que cita o julgamento de Jair. Eduardo: a carta 'apenas confirma o sucesso' do que vinham apresentando ao governo americano.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-tarifa.html",
+  "img": "c/img/dh-tarifa.png?v=9caf319e",
+  "destino": "dark-horse.html#dh-tarifa",
+  "cartao": {
+   "k": "Flávio Bolsonaro · EUA",
+   "nome": "O tarifaço",
+   "n": "50%",
+   "l": "de tarifa dos EUA ao Brasil em 09/07/2025, citando o julgamento de Jair. Eduardo: a carta 'apenas confirma o sucesso'",
+   "tipo": "numero"
+  }
+ },
+ "dh-cobranca": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: O áudio",
+  "texto": "Flávio Bolsonaro · Dark Horse: 'Eu fico sem graça de ficar te cobrando', disse ele a Daniel Vorcaro em áudio de 08/09/2025, com parcelas do filme sobre o pai atrasadas. 'Imagina a gente dando calote no Jim Caviezel.'",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-cobranca.html",
+  "img": "c/img/dh-cobranca.png?v=febf4d99",
+  "destino": "dark-horse.html#dh-cobranca",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "O áudio",
+   "n": "“Eu fico sem graça de ficar te cobrando.”",
+   "l": "ele a Daniel Vorcaro, em 08/09/2025, com parcelas do filme sobre o pai atrasadas",
+   "tipo": "citacao"
+  }
+ },
+ "dh-42s": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: 16 de setembro de 2025",
+  "texto": "Flávio Bolsonaro · Dark Horse: 42 segundos de ligação entre ele e Daniel Vorcaro em 16/09/2025, dia da última remessa ao fundo do filme, segundo a PF. Em 2026, ele disse que a última tinha sido em maio de 2025.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-42s.html",
+  "img": "c/img/dh-42s.png?v=2042d152",
+  "destino": "dark-horse.html#dh-42s",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "16 de setembro de 2025",
+   "n": "42 segundos",
+   "l": "de ligação entre ele e Vorcaro no dia da última remessa ao fundo do filme, segundo a PF. Em 2026, ele disse que a última foi em maio de 2025",
+   "tipo": "numero"
+  }
+ },
+ "dh-luz": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: A véspera",
+  "texto": "Flávio Bolsonaro · Dark Horse: 'Só preciso que me dê uma luz!', escreveu ele a Daniel Vorcaro em 16/11/2025, segundo a PF. Antes: 'Irmão, estou e estarei contigo sempre'. No dia seguinte, o banqueiro foi preso.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-luz.html",
+  "img": "c/img/dh-luz.png?v=29c982af",
+  "destino": "dark-horse.html#dh-luz",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "A véspera",
+   "n": "“Só preciso que me dê uma luz!”",
+   "l": "ele a Vorcaro em 16/11/2025, segundo a PF. No dia seguinte, o banqueiro foi preso",
+   "tipo": "citacao"
+  }
+ },
+ "dh-transicao": {
+  "titulo": "Flávio Bolsonaro · EUA: A carta de Rubio",
+  "texto": "Flávio Bolsonaro · EUA: em carta a ele, o secretário de Estado dos EUA, Marco Rubio, agradece a 'oferta generosa de colocar uma equipe de transição à nossa disposição caso o senhor seja eleito' (23/06/2026).",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-transicao.html",
+  "img": "c/img/dh-transicao.png?v=e51aa488",
+  "destino": "dark-horse.html#dh-transicao",
+  "cartao": {
+   "k": "Flávio Bolsonaro · EUA",
+   "nome": "A carta de Rubio",
+   "n": "“equipe de transição”",
+   "l": "Marco Rubio, secretário de Estado dos EUA, agradece a ele a 'oferta generosa' de pôr uma 'à nossa disposição' (23/06/2026)",
+   "tipo": "citacao"
+  }
+ },
+ "dh-hoje": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: Hoje",
+  "texto": "Flávio Bolsonaro · Dark Horse: para a PF, ele foi 'interlocutor direto de Vorcaro para viabilizar aportes financeiros' ao filme sobre o pai. Investigado no STF desde julho de 2026, sem denúncia. O filme segue sem data.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-hoje.html",
+  "img": "c/img/dh-hoje.png?v=4f1eade6",
+  "destino": "dark-horse.html#dh-hoje",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "Hoje",
+   "n": "“interlocutor direto”",
+   "l": "de Vorcaro 'para viabilizar aportes financeiros' ao filme, segundo a PF. Ele é investigado no STF desde julho de 2026, sem denúncia",
+   "tipo": "citacao"
+  }
+ },
+ "dh-2025": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: 2025, mês a mês",
+  "texto": "Flávio Bolsonaro · Dark Horse: 7 remessas ao fundo do filme no Texas, de fevereiro a setembro de 2025, segundo a delação: 7 das 14 parcelas combinadas, segundo a PF. O calendário mês a mês, cada fato com fonte.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-2025.html",
+  "img": "c/img/dh-2025.png?v=84a49ac6",
+  "destino": "dark-horse.html#dh-lista",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "2025, mês a mês",
+   "n": "7 remessas",
+   "l": "das 14 parcelas combinadas, ao fundo no Texas, de fevereiro a setembro de 2025, segundo a PF e a delação",
+   "tipo": "numero"
+  }
+ },
+ "dh-custa": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: Quanto é isso",
+  "texto": "Flávio Bolsonaro · Dark Horse: O Agente Secreto, indicado ao Oscar, custou R$ 28 milhões (CNN). Cabe mais de 2 vezes nos R$ 60 milhões que teriam sido pagos por Vorcaro para o filme sobre o pai dele, segundo a PF.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-custa.html",
+  "img": "c/img/dh-custa.png?v=2ca6d7c5",
+  "destino": "dark-horse.html#dh-custa",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "Quanto é isso",
+   "n": "mais de 2",
+   "l": "filmes do tamanho de O Agente Secreto, indicado ao Oscar, cabem nos R$ 60 milhões que teriam sido pagos, segundo a PF",
+   "tipo": "numero"
+  }
+ },
+ "dh-custa-oscar": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: Quanto é isso",
+  "texto": "Flávio Bolsonaro · Dark Horse: os R$ 131 milhões que ele pediu a Vorcaro para o filme sobre o pai, segundo a PF, superam o orçamento de cada um de 15 dos últimos 20 vencedores do Oscar de melhor filme (Estado de Minas).",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-custa-oscar.html",
+  "img": "c/img/dh-custa-oscar.png?v=ff9784b0",
+  "destino": "dark-horse.html#dh-custa-oscar-15-20",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "Quanto é isso",
+   "n": "15 vencedores do Oscar",
+   "l": "de melhor filme, entre os últimos 20, custaram menos que os R$ 131 milhões que ele pediu, segundo a PF (orçamentos: Estado de Minas)",
+   "tipo": "texto"
+  }
+ },
+ "dh-custa-ubs": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: Quanto é isso",
+  "texto": "Flávio Bolsonaro · Dark Horse: os R$ 60 milhões que teriam sido pagos por Vorcaro para o filme sobre o pai dele, segundo a PF, equivalem a 25 unidades básicas de saúde, pela média de um anúncio do Ministério da Saúde.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-custa-ubs.html",
+  "img": "c/img/dh-custa-ubs.png?v=d9910216",
+  "destino": "dark-horse.html#dh-custa-ubs",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "Quanto é isso",
+   "n": "25 postos de saúde",
+   "l": "unidades básicas, pela média de um anúncio do Ministério da Saúde, equivalem aos R$ 60 milhões que teriam sido pagos, segundo a PF",
+   "tipo": "texto"
+  }
+ },
+ "dh-custa-moradia": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: Quanto é isso",
+  "texto": "Flávio Bolsonaro · Dark Horse: os R$ 60 milhões que teriam sido pagos por Vorcaro para o filme sobre o pai dele, segundo a PF, equivalem a 332 moradias populares, pelo maior valor da tabela federal.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-custa-moradia.html",
+  "img": "c/img/dh-custa-moradia.png?v=e90568b3",
+  "destino": "dark-horse.html#dh-custa-moradia",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "Quanto é isso",
+   "n": "332 moradias",
+   "l": "populares, pelo maior valor da tabela federal, equivalem aos R$ 60 milhões que teriam sido pagos, segundo a PF",
+   "tipo": "texto"
+  }
+ },
+ "dh-custa-salario": {
+  "titulo": "Flávio Bolsonaro · Dark Horse: Quanto é isso",
+  "texto": "Flávio Bolsonaro · Dark Horse: quem ganha um salário mínimo levaria mais de 2,8 mil anos para juntar os R$ 60 milhões que teriam sido pagos por Vorcaro para o filme sobre o pai dele, segundo a PF.",
+  "url": "https://figuered0o0808-glitch.github.io/arquivo-flavio/c/dh-custa-salario.html",
+  "img": "c/img/dh-custa-salario.png?v=0f8efd6a",
+  "destino": "dark-horse.html#dh-custa-salario",
+  "cartao": {
+   "k": "Flávio Bolsonaro · Dark Horse",
+   "nome": "Quanto é isso",
+   "n": "mais de 2,8 mil anos",
+   "l": "de salário mínimo, com 13º e sem gastar nada, para juntar os R$ 60 milhões que teriam sido pagos, segundo a PF",
+   "tipo": "texto"
   }
  }
 };

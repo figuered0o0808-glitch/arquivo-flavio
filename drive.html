@@ -24,8 +24,8 @@
 <meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
 <meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 
-<link rel="stylesheet" href="assets/app.css?v=set2026k">
-<link rel="stylesheet" href="assets/header.css?v=12">
+<link rel="stylesheet" href="assets/app.css?v=teia3">
+<link rel="stylesheet" href="assets/header.css?v=14">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
@@ -103,10 +103,17 @@
     <p class="caminho-nota" id="caminho-nota" hidden></p>
     <div class="rede-wrap">
       <div class="canvas-box">
-        <canvas id="grafo"></canvas>
-        <button id="grafo-fit" title="Centralizar / ajustar">⤢ ajustar</button>
-        <button id="grafo-mover" type="button" aria-pressed="false">mover o mapa</button>
+        <canvas id="grafo" role="img" aria-label="Teia de nomes ligados a Flávio Bolsonaro"></canvas>
+        <div class="teia-ctl" role="group" aria-label="zoom do mapa">
+          <button type="button" id="grafo-mais" title="aproximar" aria-label="aproximar">+</button>
+          <button type="button" id="grafo-menos" title="afastar" aria-label="afastar">−</button>
+          <button type="button" id="grafo-fit" title="recentrar a teia inteira" aria-label="recentrar">⤢<span> recentrar</span></button>
+        </div>
+        <button type="button" id="grafo-cheia">⤢ abrir o mapa</button>
+        <button type="button" id="grafo-fechar">× fechar</button>
+        <p class="teia-dica" id="teia-dica" aria-hidden="true"></p>
         <div class="legenda" id="legenda"></div>
+        <div class="teia-cartao" id="teia-cartao" aria-live="polite" hidden></div>
       </div>
       <aside id="rede-painel" class="rede-painel"><div class="ph">Carregando…</div></aside>
     </div>
@@ -167,11 +174,11 @@
 
 <div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
 
-<script src="data/dados.js?v=set2026q"></script>
-<script src="data/foz.js?v=11"></script>
-<script src="data/topicos.js?v=3"></script>
-<script src="assets/compartilhar.js?v=1" defer></script>
-<script src="assets/app.js?v=set2026v"></script>
-<script src="assets/nav.js?v=3"></script>
+<script src="data/dados.js?v=set2026s"></script>
+<script src="data/foz.js?v=14"></script>
+<script src="data/topicos.js?v=5"></script>
+<script src="assets/compartilhar.js?v=2" defer></script>
+<script src="assets/app.js?v=teia4"></script>
+<script src="assets/nav.js?v=5"></script>
 </body>
 </html>

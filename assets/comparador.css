@@ -1,0 +1,107 @@
+/* BOLSODRIVE · Dark Horse · "Quanto é isso" (assets/comparador.js monta o conteúdo em section[data-comparador]).
+   Cor: âmbar só no número do resultado; água (verde) só nas gotas do dinheiro; o resto em --tinta e cinzas.
+   Celular: uma coluna, grade de 14 gotas por linha. ≥ 640 px: 22 por linha. ≥ 1024 px: grade à esquerda, botões e resultado à direita. */
+.cmp{
+  --c-tinta:var(--tinta,#d8efdd); --c-cinza:var(--cinza,#86a58c); --c-cinza2:var(--cinza2,#4f6b51); --c-amber:var(--amber,#ffb02e);
+  --c-papel:var(--papel,#070a07); --c-linha:var(--linha,rgba(116,255,150,.18)); --c-mono:var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);
+  box-sizing:border-box; max-width:1180px; margin:0 auto; padding:40px 60px 12px 16px; color:var(--c-tinta);
+  scroll-margin-top:calc(var(--hdr,57px) + 6px);
+}
+/* as mesmas margens das outras seções da página (.dh-sec): abaixo de 1024 px a faixa da direita fica livre para o "assistir" */
+.cmp-corpo{max-width:720px}
+.cmp *,.cmp *::before,.cmp *::after{box-sizing:border-box}
+.cmp p{margin:0}
+.cmp .cmp-defs{position:absolute; width:0; height:0; overflow:hidden}
+
+.cmp-h{margin:0 0 14px; font-family:var(--c-mono); font-size:13px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--c-tinta)}
+.cmp-h::before{content:"// "; color:var(--c-cinza2)}
+
+/* as duas bases */
+.cmp-bases{display:grid; grid-template-columns:1fr 1fr; max-width:420px; border:1.5px solid var(--c-cinza2); border-radius:6px; overflow:hidden}
+.cmp-pb{
+  display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:1px; min-height:56px; padding:7px 12px;
+  cursor:pointer; touch-action:manipulation; text-align:left; color:var(--c-cinza); background:transparent; border:0; border-radius:0;
+  font-family:var(--sans,system-ui,sans-serif); font-variant-numeric:tabular-nums;
+}
+.cmp-pb + .cmp-pb{border-left:1.5px solid var(--c-cinza2)}
+.cmp-pb small{font-family:var(--c-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase}
+.cmp-pb b{font-size:15px; font-weight:800; white-space:nowrap; color:var(--c-tinta)}
+.cmp-pb:hover{background:rgba(216,239,221,.05)}
+.cmp-pb[aria-pressed="true"]{background:var(--c-tinta); color:var(--c-papel)}
+.cmp-pb[aria-pressed="true"] b{color:var(--c-papel)}
+.cmp-quem{margin:6px 0 0 2px; font-family:var(--c-mono); font-size:11.5px; color:var(--c-cinza)}
+
+/* a grade: 131 gotas; 60 cheias (água), o resto só o leito. Faixas alternadas = um filme cada */
+.cmp-grade{display:grid; grid-template-columns:repeat(14,minmax(0,1fr)); margin:16px 0 8px}
+.cmp-grade i{display:block; position:relative; aspect-ratio:1; transition:background-color .3s ease}
+.cmp-grade i::after{content:""; position:absolute; inset:21%; border-radius:50%; box-shadow:inset 0 0 0 1.5px var(--c-cinza2); transition:opacity .3s ease}
+.cmp-grade i.c::after{box-shadow:none; background:radial-gradient(circle at 34% 30%, #f0fff3 0, #7df59a 44%, #2c8a4b 100%)}
+.cmp-grade i.fora::after{opacity:.28}
+.cmp-grade i.k1{background:rgba(216,239,221,.15)}
+.cmp-grade i.k2{background:rgba(216,239,221,.075)}
+.cmp-leg,.cmp-faixa{font-family:var(--c-mono); font-size:11.5px; line-height:1.45; color:var(--c-cinza)}
+.cmp-faixa{margin-top:2px; color:var(--c-tinta)}
+.cmp-faixa::before{content:""; display:inline-block; width:18px; height:10px; margin-right:7px; vertical-align:-1px; background:linear-gradient(90deg, rgba(216,239,221,.15) 50%, rgba(216,239,221,.075) 50%)}
+.cmp-nota{margin-top:14px; padding-top:10px; border-top:1px solid var(--c-linha); font-size:14px; line-height:1.4; color:var(--c-cinza)}
+.cmp-nota a,.cmp-base a{color:var(--c-cinza); text-decoration-color:var(--c-cinza2); text-underline-offset:3px; white-space:nowrap; display:inline-block; padding:6px 0; margin:-6px 0}
+.cmp-nota a:hover,.cmp-base a:hover{color:var(--azul,#7df59a)}
+
+/* os botões, por grupo */
+.cmp-grupos{margin:22px 0 0}
+.cmp-grupo{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 10px}
+.cmp-gk{flex-basis:100%; margin:2px 0 0; font-family:var(--c-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--c-cinza)}
+.cmp-it{
+  min-height:44px; padding:0 12px; border-radius:3px; cursor:pointer; touch-action:manipulation;
+  font:600 14px/1.2 var(--sans,system-ui,sans-serif); color:var(--c-cinza); background:transparent; border:1px solid var(--c-linha);
+}
+.cmp-it:hover{color:var(--c-tinta); border-color:rgba(125,245,154,.4)}
+.cmp-it[aria-pressed="true"]{color:var(--c-tinta); border-color:var(--c-tinta); background:rgba(216,239,221,.08)}
+.cmp-pb:focus-visible,.cmp-it:focus-visible,.cmp-env:focus-visible,.cmp a:focus-visible{outline:2px solid var(--c-amber); outline-offset:2px}
+.cmp-pb:focus-visible{outline-offset:-4px}
+
+/* o resultado */
+.cmp-res{margin:14px 0 0; padding:16px 0 0; border-top:1px solid var(--c-linha); scroll-margin-top:calc(var(--hdr,57px) + 8px)}
+.cmp-num{font-size:clamp(60px,19vw,104px); font-weight:800; line-height:.95; letter-spacing:-.03em; font-variant-numeric:tabular-nums; color:var(--c-amber); margin:0 0 8px}
+.cmp-q{font-size:.3em; font-weight:700; letter-spacing:0; margin-right:.12em; vertical-align:.14em}
+.cmp-frase{font-size:clamp(17px,4.6vw,20px); line-height:1.35; color:var(--c-cinza); max-width:32em}
+.cmp-frase b{font-weight:700; color:var(--c-tinta)}
+.cmp-extra{margin-top:6px; font-size:15px; color:var(--c-tinta)}
+
+/* pictogramas: até 120, em --tinta; o contorno é a fração que sobra */
+.cmp-pic{display:flex; flex-wrap:wrap; gap:4px; margin:16px 0 6px; color:var(--c-tinta); min-height:18px}
+.cmp-pic:empty{display:none}
+.cmp-pic .pi{display:block; width:18px; height:18px; fill:currentColor; opacity:.14; transition:opacity .22s ease; transition-delay:var(--d,0ms)}
+.cmp-pic .pi.o{color:var(--c-cinza)}
+.cmp-pic.on .pi{opacity:1}
+.cmp-pic.g1{gap:8px}
+.cmp-pic.g1 .pi{width:38px; height:38px}
+.cmp-pic.g2 .pi{width:24px; height:24px}
+.cmp-pic.g3{gap:3px}
+.cmp-pic.tr{gap:3px 5px}
+.cmp-pic.tr .pi{width:8px; height:20px}
+.cmp-escala{margin-top:8px; font-family:var(--c-mono); font-size:11.5px; color:var(--c-cinza)}
+.cmp-base{margin-top:14px; font-family:var(--c-mono); font-size:12px; line-height:1.5; color:var(--c-cinza)}
+.cmp-env{
+  margin-top:12px; min-height:44px; min-width:44px; padding:0 14px; cursor:pointer;
+  font-family:var(--c-mono); font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--c-cinza);
+  background:transparent; border:1px solid var(--c-linha); border-radius:3px;
+}
+.cmp-env:hover{color:var(--c-tinta); border-color:rgba(125,245,154,.4)}
+
+@media (min-width:640px){
+  .cmp-grade{grid-template-columns:repeat(22,minmax(0,1fr))}
+  .cmp-pic .pi{width:20px; height:20px}
+  .cmp-pic.g1 .pi{width:44px; height:44px}
+  .cmp-pic.g2 .pi{width:26px; height:26px}
+  .cmp-pic.tr .pi{width:9px; height:22px}
+}
+@media (min-width:1024px){
+  .cmp{padding:56px 24px 12px}
+  .cmp-corpo{max-width:none; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:56px; align-items:start}
+  .cmp-grupos{margin-top:0}
+  .cmp-num{font-size:112px}
+}
+@media (prefers-reduced-motion:reduce){
+  .cmp-grade i,.cmp-grade i::after,.cmp-pic .pi{transition:none!important}
+  .cmp-pic .pi{opacity:1}
+}

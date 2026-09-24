@@ -111,9 +111,18 @@ if (comArquivo){
   document.addEventListener('touchstart', cedo, { passive: true });
 }
 
-/* botão sem rótulo ganha "enviar ↗" e um nome acessível; com imagem, o cartão é baixado quando aparece */
+/* botão sem rótulo ganha "enviar ↗" e um nome acessível; com imagem, o cartão é baixado quando aparece.
+   Botão na tela mas escondido (a legenda de outro capítulo/momento, com aria-hidden) espera: baixa quando o
+   bloco dele deixa de estar escondido. Assim a página não baixa de uma vez os cartões de todos os momentos. */
+const espera = new Set();
+const escondido = el => !!(el.closest && el.closest('[aria-hidden="true"]'));
+const baixa = el => { cartao(el.getAttribute('data-share')); if (io) io.unobserve(el); espera.delete(el); };
 const io = comArquivo && 'IntersectionObserver' in window ?
-  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ cartao(e.target.getAttribute('data-share')); io.unobserve(e.target); } }), { rootMargin: '200px 0px' }) : null;
+  new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting){ espera.delete(e.target); return; }
+    if (escondido(e.target)) espera.add(e.target); else baixa(e.target);
+  }), { rootMargin: '200px 0px' }) : null;
+function revisa(){ if (espera.size) Array.from(espera).forEach(el => { if (!el.isConnected) espera.delete(el); else if (!escondido(el)) baixa(el); }); }
 function prepara(el){
   const id = el.getAttribute('data-share');
   if (el.__bdShare === id) return; el.__bdShare = id;
@@ -134,10 +143,16 @@ function liga(){
   document.head.appendChild(st);
   varre(document.body);
   if ('MutationObserver' in window){
-    new MutationObserver(ms => ms.forEach(m => {
-      m.addedNodes.forEach(n => { if (n.nodeType === 1) varre(n); });
-      if (m.type === 'attributes' && m.target.nodeType === 1 && m.target.hasAttribute('data-share')) prepara(m.target);
-    })).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-share'] });
+    new MutationObserver(ms => {
+      let mostrou = false;
+      ms.forEach(m => {
+        m.addedNodes.forEach(n => { if (n.nodeType === 1) varre(n); });
+        if (m.type !== 'attributes' || m.target.nodeType !== 1) return;
+        if (m.attributeName === 'aria-hidden') mostrou = true;
+        else if (m.target.hasAttribute('data-share')) prepara(m.target);
+      });
+      if (mostrou) revisa();
+    }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: io ? ['data-share', 'aria-hidden'] : ['data-share'] });
   }
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', liga); else liga();

@@ -100,6 +100,18 @@ html.nv-trava,html.nv-trava body{overflow:hidden}
 .nv-lista a .nv-d{display:block; font-size:14px; line-height:1.35; color:#86a58c; margin-top:3px}
 .nv-lista a[aria-current] b{color:#ffb02e}
 .nv-lista a:hover b{color:#ffb02e}
+/* afluente (↳): dentro do trecho, recuado, sem estação própria; a linha do rio para na foz */
+.nv-lista .nv-afl{position:relative; list-style:none; margin:0; padding:0 0 0 14px}
+.nv-lista .nv-afl::before{content:""; position:absolute; left:-19px; width:6px; top:0; bottom:0; background:#070a07}
+.nv-lista .nv-afl li::before{display:none}
+.nv-lista .nv-afl a{min-height:48px; padding:10px 0 10px 6px; font-size:13px; color:#86a58c}
+.nv-lista .nv-afl a b{font-size:13px; color:#d8efdd}
+.nv-lista .nv-afl a .nv-d{font-size:13px}
+.nv-lista .nv-afl a[aria-current] b,.nv-lista .nv-afl a:hover b{color:#ffb02e}
+.nv-sec-afl{display:none}
+/* a linha do curso no afluente: um ramo curto na estação da foz */
+.nv-curso.afl::after{content:""; position:absolute; right:15px; top:-6px; width:2px; height:10px; background:#7df59a; transform:rotate(-45deg); transform-origin:50% 100%; border-radius:1px}
+@media (max-width:419px){ .nv-aqui .nv-afl-lg{display:none} }
 
 .nv-margens{display:grid; grid-template-columns:1fr 1fr; gap:8px}
 .nv-margens a{
@@ -156,6 +168,10 @@ body.nv-na-margem .nv-segue .nv-k2{color:#86a58c}
   }
   .nv-mapa-in{padding:4px 14px 16px}
   .nv-topo,.nv-sec-rio{display:none}
+  .nv-sec-afl{display:block}
+  .nv-trechos a.nv-pai{color:#d8efdd; border-color:#ffb02e}
+  .nv-trechos a.nv-afl-t{margin-left:-2px}
+  .nv-trechos a.nv-afl-t .nv-n{margin-right:5px}
   .nv-mapa .nv-k{margin-top:12px}
   .nv-margens{grid-template-columns:1fr}
   .nv-margens a:last-child:nth-child(odd){grid-column:auto}
@@ -163,5 +179,11 @@ body.nv-na-margem .nv-segue .nv-k2{color:#86a58c}
   .nv-segue b{font-size:17px}
 }
 @media (min-width:900px) and (max-width:1099px){ .nv-row .nv-mark .nv-tag{display:none} }
+/* no afluente há um item a mais na linha: sem colchetes até caber folgado */
+@media (min-width:900px) and (max-width:1179px){
+  .nv-trechos.com-afl{gap:4px}
+  .nv-trechos.com-afl a{padding:0 7px}
+  .nv-trechos.com-afl a::before,.nv-trechos.com-afl a::after{content:none}
+}
 @media (min-width:1100px){ .nv-trechos a{font-size:12px; padding:0 10px} .nv-bt{font-size:12px} .nv-row .nv-mark .nv-logo{height:20px; width:204px} }
 @media (min-width:900px) and (pointer:coarse){ .nv-trechos a,.nv-bt{min-height:44px} }

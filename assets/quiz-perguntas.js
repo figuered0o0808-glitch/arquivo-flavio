@@ -260,22 +260,22 @@ window.__NOVAS_PERGUNTAS = [
  },
  {
   "tipo": "multi",
-  "pergunta": "A delação homologada pelo STF em 09/09/2026 descreve quantas transferências ao fundo do filme sobre o pai dele, e de quanto?",
+  "pergunta": "Quantas transferências ao fundo do filme sobre o pai dele a delação homologada em 09/09/2026 descreve, e quanto foi pago, segundo a PF?",
   "opcoes": [
    "3 transferências, cerca de R$ 11 milhões",
-   "7 transferências, cerca de R$ 69 milhões",
+   "7 transferências, cerca de R$ 60 milhões",
    "14 transferências, cerca de R$ 131 milhões",
    "1 transferência, cerca de R$ 9 milhões"
   ],
   "certa": 1,
-  "numero": "7 transferências · R$ 69 mi",
-  "resposta": "Segundo A Crítica e o Diário Carioca, a colaboração de Antonio Carlos Freixo Júnior, o 'Mineiro', dono da Entre Investimentos, homologada pelo ministro André Mendonça em 09/09/2026, descreve <b>7 transferências em 2025, somando cerca de R$ 69 milhões</b>, feitas a pedido de Daniel Vorcaro ao fundo <b>Havengate Development Fund</b>, nos EUA: 51,3% do total prometido. O restante não foi pago por causa da prisão do banqueiro em novembro de 2025. Já segundo o relatório da PF, com sigilo levantado em 11/09/2026, <b>R$ 60 milhões teriam sido pagos</b>. Segundo o delator, o dinheiro foi <b>pedido por Flávio</b> e se destinava ao filme 'Dark Horse'. Flávio é <b>investigado no STF, sem denúncia</b>.",
+  "numero": "7 transferências · R$ 60 mi",
+  "resposta": "Segundo A Crítica e o Diário Carioca, a colaboração de Antonio Carlos Freixo Júnior, o 'Mineiro', dono da Entre Investimentos, homologada pelo ministro André Mendonça em 09/09/2026, descreve <b>7 transferências em 2025</b>, feitas a pedido de Daniel Vorcaro ao fundo <b>Havengate Development Fund</b>, nos EUA. O restante não foi pago por causa da prisão do banqueiro em novembro de 2025. Segundo o relatório da PF, com sigilo levantado em 11/09/2026, <b>R$ 60 milhões teriam sido pagos</b>, de R$ 131 milhões pedidos. O pedido foi <b>de Flávio</b>, para o filme 'Dark Horse', segundo a PF; o delator diz não saber o destino final do dinheiro. Flávio é <b>investigado no STF, sem denúncia</b>.",
   "ressalva": "Flávio sustenta que os recursos foram integralmente para o filme; a campanha avaliou que a delação 'não trouxe, por enquanto, um elemento inteiramente novo'.",
   "chip": "INVESTIGADO NO STF · SEM DENÚNCIA",
   "fontes": [
    {
     "v": "A Crítica",
-    "d": "7 transferências, cerca de R$ 69 milhões; 10/09/2026",
+    "d": "7 transferências; 10/09/2026",
     "u": "https://acritica.net/justica/delator-eleva-a-us-12-3-milhoes-dinheiro-enviado-a-fundo-do-filme-sobre-bolsonaro/"
    },
    {
@@ -294,15 +294,20 @@ window.__NOVAS_PERGUNTAS = [
     "u": "https://www.brasildefato.com.br/2026/09/09/mendonca-aceita-delacao-de-empresario-que-enviou-r-60-milhoes-a-fundo-ligado-a-eduardo-bolsonaro/"
    },
    {
+    "v": "Times Brasil / CNBC",
+    "d": "o delator não sabe o destino final, 09/09/2026",
+    "u": "https://timesbrasil.com.br/brasil/mendonca-homologa-delacao-de-mineiro-operador-de-vorcaro-que-movimentou-us-123-milhoes-para-fundo-ligado-a-dark-horse/"
+   },
+   {
     "v": "Poder360",
     "d": "reação da campanha, 09/09/2026",
     "u": "https://www.poder360.com.br/poder-eleicoes-2026/caso-dark-horse-delacao-de-mineiro-nao-assusta-a-campanha-de-flavio/"
    }
   ],
   "curto": "Transferências descritas na delação",
-  "gab": "7 · R$ 69 mi",
-  "breve": "Em 2025, segundo a delação homologada pelo STF.",
-  "zap": "Flávio Bolsonaro · delação do caso Dark Horse. Segundo A Crítica e o Diário Carioca, a delação homologada pelo STF em 09/09/2026 descreve 7 transferências em 2025, somando cerca de R$ 69 milhões, feitas a pedido de Daniel Vorcaro a um fundo nos EUA ligado ao filme 'Dark Horse'; segundo a PF, R$ 60 milhões teriam sido pagos. Segundo o delator, o dinheiro foi pedido por Flávio, que diz que tudo foi para o filme. Ele é investigado no STF, sem denúncia.",
+  "gab": "7 · R$ 60 mi",
+  "breve": "7 em 2025, segundo a delação homologada pelo STF; R$ 60 milhões pagos, segundo a PF.",
+  "zap": "Flávio Bolsonaro · delação do caso Dark Horse. Segundo A Crítica e o Diário Carioca, a delação homologada pelo STF em 09/09/2026 descreve 7 transferências em 2025, feitas a pedido de Daniel Vorcaro a um fundo nos EUA ligado ao filme 'Dark Horse'; segundo a PF, R$ 60 milhões teriam sido pagos, e o pedido foi de Flávio, que diz que tudo foi para o filme; o delator diz não saber o destino final do dinheiro. Ele é investigado no STF, sem denúncia.",
   "bloco": "dinheiro"
  },
  {

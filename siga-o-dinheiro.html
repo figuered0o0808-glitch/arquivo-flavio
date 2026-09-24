@@ -6,7 +6,7 @@
 <title>Siga o dinheiro — BolsoDrive</title>
 <meta name="description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
 <link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=12">
+<link rel="stylesheet" href="assets/header.css?v=14">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
@@ -105,7 +105,7 @@
       <p class="obs" id="obs"></p>
       <p class="fonte" id="fonte"></p>
       <div class="acoes envio"><button type="button" class="env" id="zap" data-share="fluxo-1">enviar ↗</button></div>
-      <p class="foz-liga" id="foz-liga" hidden><a id="foz-a" href="foz.html"></a></p>
+      <p class="foz-liga" id="foz-liga" hidden><a id="foz-a" href="foz.html"></a><span id="foz-dh" hidden> · <a href="dark-horse.html">mês a mês →</a></span></p>
       <button type="button" class="lm" id="lm" aria-expanded="false">ler mais ↓</button>
       <div class="mais" id="mais" hidden>
         <div class="chip" id="chip"></div>
@@ -134,10 +134,10 @@
 
 <noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="drive.html#arquivo">Ver o arquivo completo →</a></p></noscript>
 
-<script src="data/dados.js?v=set2026q"></script>
-<script src="data/foz.js?v=11"></script>
-<script src="data/topicos.js?v=3"></script>
-<script src="assets/compartilhar.js?v=1" defer></script>
+<script src="data/dados.js?v=set2026s"></script>
+<script src="data/foz.js?v=14"></script>
+<script src="data/topicos.js?v=5"></script>
+<script src="assets/compartilhar.js?v=2" defer></script>
 <script>
 (function(){
 'use strict';
@@ -187,7 +187,7 @@ function partes(valor){
   return {pre:m[1], num:m[2], suf:m[3], alvo:parseFloat(m[2].replace(',', '.')), dec:dec};
 }
 function fmt(v, dec){ return v.toFixed(dec).replace('.', ','); }
-/* "R$ 69 mi" -> "R$ 69 milhões"; "R$ 1,6 mi" -> "R$ 1,6 milhão". Sempre em reais. */
+/* "R$ 60 mi" -> "R$ 60 milhões"; "R$ 1,6 mi" -> "R$ 1,6 milhão". Sempre em reais. */
 function extenso(valor){
   return String(valor).replace(/(\d+(?:,\d+)?)\s*(mi|bi)\b\.?/g, function(_, n, u){
     var um = parseFloat(n.replace(',', '.')) < 2;
@@ -208,7 +208,7 @@ var el = {
    Fluxo novo sem linha aqui mostra a 1ª frase de .obs. */
 var LINHA = {
   'R$ 3,1 mi': 'Em 2021, aprovado pela diretoria de Paulo Henrique Costa, preso no caso Master.',
-  'R$ 69 mi': '7 repasses em 2025, segundo delação homologada pelo STF; ele é investigado, sem denúncia.',
+  'R$ 60 mi': '7 remessas em 2025, segundo a PF; ele é investigado no STF, sem denúncia.',
   'R$ 42 mi': 'Até 26/08/2026, pessoas físicas tinham doado R$ 6,01, segundo a prestação ao TSE.',
   'R$ 300 mil': 'Doação registrada no TSE e confirmada pelo doador.',
   'R$ 1,6 mi': 'Contrato declarado ao TSE com a agência de um ex-assessor de Tarcísio de Freitas.',
@@ -285,6 +285,7 @@ function mostrar(i){
   var fz = fozDe(f.foz);
   el.fozLiga.hidden = !fz;
   if (fz){ el.fozA.href = 'foz.html#' + encodeURIComponent(fz.id); el.fozA.textContent = 'Na Foz: ' + (fz.rotulo || fz.nome) + ' →'; }
+  document.getElementById('foz-dh').hidden = !(fz && fz.id === 'master');   /* o afluente do filme, mês a mês (dark-horse.html) */
   el.zap.setAttribute('data-share', 'fluxo-' + (brutos.indexOf(f) + 1));
   el.mais.hidden = true; el.lm.textContent = 'ler mais ↓'; el.lm.setAttribute('aria-expanded', 'false');
   el.ant.disabled = (i === 0);
@@ -353,6 +354,6 @@ window.addEventListener('resize', function(){ if (atual < N) medir(); });
 window.addEventListener('hashchange', function(){ var i = deHash(); if (i !== atual) mostrar(i); });
 })();
 </script>
-<script src="assets/nav.js?v=3"></script>
+<script src="assets/nav.js?v=5"></script>
 </body>
 </html>

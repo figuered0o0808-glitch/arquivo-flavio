@@ -6,10 +6,10 @@
 
    Cenas
      abertura  "40 escândalos chegam a ele. Alguns, de perto:" com o rio completo
-     capítulo  um escândalo por vez: o número do caso (conta com a rolagem, com quem afirma e a
-               fonte), o título, os elos acendendo um a um (o nome e a situação em poucas
+     capítulo  um escândalo por vez: o número do caso (conta com a rolagem) ou a frase, com quem afirma e a
+               fonte; o título, os elos acendendo um a um (o nome e a situação em poucas
                palavras), a situação dele só quando ele tem situação formal no caso (investigado,
-               denunciado, réu), a porta foz.html#<id> e "enviar ↗" (data-share=<id>)
+               denunciado, réu), a porta foz.html#<id> (no Master, dark-horse.html) e "enviar ↗" (data-share=<id>)
      fim       os 40 escoam juntos; o rio sai do palco e desce até a foto (#curso-f)
 
    Texto: só o que existe em window.FOZ, encurtado. Não se ressalta o que ele não é:
@@ -87,14 +87,16 @@ const dataBR = d => /^\d{4}-\d\d-\d\d/.test(d || '') ? d.slice(8, 10) + '/' + d.
    Conta de 0 até o valor só quando o valor é UM número com escala e unidade ("R$ 131 milhões",
    "23 homenageados", "R$ 199.999,79"). Valores compostos ("27 de 33", "4 anos e 2 meses",
    "R$ 20 a R$ 40", "até R$ 500 mil por mês") entram cheios, com fade. No fim da contagem o texto
-   é o valor literal dos dados. */
+   é o valor literal dos dados.
+   Destaque-frase (numero.tipo = 'frase': "Emenda negociada", "Medalha Tiradentes"): sem contagem,
+   letra de manchete menor que a do número, em uma ou duas linhas quebradas entre palavras (ajustaNum). */
 const ESCALA = 'mil|milhão|milhões|bilhão|bilhões|trilhão|trilhões';
 const RX_NUM = new RegExp('^(R\\$\\s?)?(\\d{1,3}(?:\\.\\d{3})+|\\d+)(?:,(\\d+))?(?:\\s+(' + ESCALA + '))?(?:\\s+(\\D+))?$');
 function numeroDe(e){
   const n = e.numero; if (!n || !n.valor || !n.texto) return null;
-  const valor = String(n.valor).trim(), m = RX_NUM.exec(valor);
+  const valor = String(n.valor).trim(), m = n.tipo === 'frase' ? null : RX_NUM.exec(valor);
   const fonte = n.fonte && n.fonte.url ? n.fonte : null, tinta = n.cor === 'tinta';
-  if (!m) return { valor, texto: String(n.texto).trim(), fonte, tinta, conta: false, grande: valor, unid: '' };
+  if (!m) return { valor, texto: String(n.texto).trim(), fonte, tinta, conta: false, frase: n.tipo === 'frase', grande: valor, unid: '' };
   const pre = m[1] ? 'R$ ' : '', dec = m[3] ? m[3].length : 0, mil = /\./.test(m[2]);
   const alvo = parseFloat(m[2].replace(/\./g, '') + (m[3] ? '.' + m[3] : ''));
   const esc_ = m[4] ? ' ' + m[4] : '';
@@ -295,9 +297,9 @@ const DESFECHO_FIM = /[;,.]\s*(?:investigado no STF, sem denúncia|denúncia anu
 const blocoNum = c => {
   const n = c.num; if (!n) return '';
   const g = n.conta ? '<span class="n1">' + esc(n.pre + fmtNum(n.alvo, n.dec, n.mil)) + '</span><span class="n2">' + esc(n.esc) + '</span>' : '<span class="n1">' + esc(n.valor) + '</span>';
-  return '<div class="cap-num' + (n.conta ? ' conta' : ' cheio') + '">' +
+  return '<div class="cap-num' + (n.conta ? ' conta' : (n.frase ? ' cheio frase' : ' cheio')) + '">' +
     '<p class="nv"' + (n.tinta ? ' style="color:var(--tinta)"' : '') + '><span class="so-leitor">' + esc(n.valor) + '</span><span class="ng" aria-hidden="true">' + g + '</span></p>' +
-    '<p class="nt">' + (n.unid ? '<b aria-hidden="true">' + esc(n.unid) + '</b> ' : '') + esc(fimP(c.ele ? semRessalva(n.texto).replace(DESFECHO_FIM, '') : semRessalva(n.texto))) + '</p>' +
+    '<p class="nt">' + (n.unid ? '<b aria-hidden="true">' + esc(n.unid) + '</b> ' : '') + esc(fimP(c.ele ? semRessalva(n.texto).replace(DESFECHO_FIM, '') : semRessalva(n.texto)).replace(/R\$ (?=\d)/g, 'R$\u00a0')) + '</p>' +
     fonteLink(n.fonte) + '</div>';
 };
 /* os elos na legenda: quem → para quem e a situação de quem está na origem, em poucas palavras
@@ -331,14 +333,15 @@ let html = '<article class="cap cap-intro" data-f="intro" aria-label="A históri
   legCor + '</article>';
 CAPS.forEach(c => {
   const e = c.e;
-  html += '<article class="cap" data-f="' + (c.num ? 'num' : 'entra') + '" id="h-cap-' + esc(c.id) + '" aria-labelledby="h-n-' + esc(c.id) + '">' +
+  html += '<article class="cap" data-f="' + (c.num ? 'num' : 'entra') + '" id="h-cap-' + esc(c.id) + '" aria-labelledby="h-n-' + esc(c.id) + '" aria-hidden="true">' +
     '<p class="cap-k"><b>' + (c.k + 1) + '</b>/' + NCAP + ' · ' + esc(CURTO[e.faixa] || '') + '<span class="kr"> · ' + esc(c.rotulo) + '</span></p>' +
     blocoNum(c) +
     '<h3 class="cap-n" id="h-n-' + esc(c.id) + '">' + esc(c.nome) + '</h3>' +
     (c.frase ? '<div class="cap-res"><p>' + esc(fimP(c.frase)) + '</p>' + fonteLink(c.fonte) + '</div>' : '') +
     '<ol class="cap-elos">' + (c.mari ? c.mari.passos : (e.cadeia || [])).map((l, i) => eloHtml(c, l, i)).join('') + '</ol>' +
     (c.ele ? '<p class="cap-ele"><b>ele neste caso:</b> ' + esc(c.ele) + '</p>' : '') +
-    '<div class="cap-acoes"><a class="porta" href="foz.html#' + esc(c.id) + '">o caminho completo →</a>' +
+    /* o caso Master tem afluente próprio (dark-horse.html): a porta leva ao dinheiro do filme, mês a mês */
+    '<div class="cap-acoes">' + (c.id === 'master' ? '<a class="porta" href="dark-horse.html">o afluente, mês a mês →</a>' : '<a class="porta" href="foz.html#' + esc(c.id) + '">o caminho completo →</a>') +
       '<button type="button" class="enviar" data-share="' + esc(c.id) + '" aria-label="Enviar: ' + esc(c.rotulo) + '">enviar ↗</button></div>' +
     '</article>';
 });
@@ -362,7 +365,7 @@ sec.hidden = false;
    Layout: cenas, comprimentos, palco (rio completo + árvore de cada capítulo)
    ===================================================================== */
 let L = null;               /* tudo o que depende do tamanho */
-const G = { gotas: [], rotas: [] };
+const G = { gotas: [], rotas: [], t: 0 };
 
 function cenas(u){
   const lista = []; let s = 0;
@@ -594,10 +597,26 @@ function monta(){
   const S = window.__rioSaida || {};
   const xIn = clamp((S.x != null ? S.x : (desk ? W * 0.74 : W - 27)) - palco.offsetLeft, 20, Ws - 20);
   const m = desk ? 16 : 10;
-  const xMid = desk ? clamp(xIn + 0.08 * Ws, 0.52 * Ws, Ws - 130) : Math.round(0.69 * Ws);
-  const xMain = y => y >= Hd ? xIn : lerp(xIn, xMid, Math.pow(Math.sin(Math.PI * clamp(y / Hd, 0, 1)), 0.85)) +
-    (desk ? 7 : 3) * Math.sin(TAU * y / (desk ? 260 : 170)) * Math.sin(Math.PI * clamp(y / Hd, 0, 1));
-  const ptsM = []; for (let y = -4; y < Hs + 4; y += 3) ptsM.push([xMain(y), y]);
+  /* no celular largo (tablet), o desvio até o meio do palco tem teto: numa volta larga demais, a água
+     teria de dobrar em cotovelo para voltar à faixa antes do pé do palco */
+  const xMid = desk ? clamp(xIn + 0.08 * Ws, 0.52 * Ws, Ws - 130) : Math.max(Math.round(0.69 * Ws), xIn - 150);
+  /* o rio principal entra (vindo do trecho 02) e sai (para a descida até a foto) na vertical, na faixa da
+     página (xIn). No meio, a curva base (seno^0,85) leva a água ao meio do palco, onde chegam os capítulos
+     (52% a 80% da altura). A entrada (até ENT) e a saída (depois de SAI) são curvas de Hermite que partem
+     paradas da faixa e encontram a curva base com a mesma inclinação: a água vira devagar, sem cotovelo.
+     A água passa EMENDA px além do alto e do pé do palco (a ponta e o fim do reflexo ficam fora da tela). */
+  const ENT = 0.42, SAI = 0.66, EMENDA = 90;
+  const base = t => Math.pow(Math.sin(Math.PI * t), 0.85);
+  const dBase = t => 0.85 * Math.pow(Math.sin(Math.PI * t), -0.15) * Math.cos(Math.PI * t) * Math.PI;
+  const herm = (u, p0, m0, p1, m1) => (2 * u * u * u - 3 * u * u + 1) * p0 + (u * u * u - 2 * u * u + u) * m0 + (3 * u * u - 2 * u * u * u) * p1 + (u * u * u - u * u) * m1;
+  const gE = base(ENT), mE = dBase(ENT) * ENT, gS = base(SAI), mS = dBase(SAI) * (1 - SAI);
+  const forma = t => t < ENT ? herm(t / ENT, 0, 0, gE, mE) : t > SAI ? herm((t - SAI) / (1 - SAI), gS, mS, 0, 0) : base(t);
+  const xMain = y => {
+    if (y <= 0 || y >= Hd) return xIn;
+    const t = y / Hd;
+    return lerp(xIn, xMid, forma(t)) + (desk ? 7 : 3) * Math.sin(TAU * y / (desk ? 260 : 170)) * Math.sin(Math.PI * t) * suave(t / 0.3) * suave((1 - t) / 0.3);
+  };
+  const ptsM = []; for (let y = -EMENDA; y <= Hs + EMENDA; y += 3) ptsM.push([xMain(y), y]);
   const main = RIO.curso(ptsM);
 
   /* afluentes: os capítulos chegam na parte de baixo, pela esquerda (sobra lugar para a árvore); os outros se espalham */
@@ -632,18 +651,26 @@ function monta(){
     faz(e, yj, lado, false);
   });
   tribs.sort((a, b) => a.J.y - b.J.y);
-  /* o rio principal engrossa e muda de cor com o que chega */
-  const wTop = clamp((S.w || 10) * 0.85, 5, desk ? 20 : 13);
+  /* o rio principal entra com a largura e a cor com que sai do trecho 02 (a emenda não aparece),
+     engrossa aos poucos com o que chega (cada afluente, nos 30 px depois da junção) e muda de cor */
+  const w0 = S.w || (desk ? 20 : 12);
   const corIn = S.cor || AGUA;
   /* abaixo dos pontos de junção dos capítulos (onde está "FLÁVIO") a água é neutra: nada dele em âmbar ou vermelho.
-     A mistura dos afluentes clareia até a água neutra nos 60 px antes da primeira junção de capítulo. */
+     A mistura dos afluentes clareia até a água neutra nos 150 px antes da primeira junção de capítulo. */
   const yCap = Math.min(...CAPS.map(c => c.trib.J.y));
   RIO.pinta(main, (i, y) => {
-    const ch = tribs.filter(t => t.J.y < y + 1);
-    const mist = RIO.mistura([[corIn, 8]].concat(ch.map(t => [t.cor, 1])));
-    return [wTop * (0.8 + 0.45 * ch.length / tribs.length), RIO.mix(mist, AGUA, suave((y - (yCap - 60)) / 60))];
+    let n = 0; const pares = [[corIn, 8]];
+    tribs.forEach(t => { const k = suave((y - t.J.y + 2) / 30); if (k > 0){ n += k; pares.push([t.cor, k]); } });
+    return [w0 * (1 + 0.28 * n / tribs.length), RIO.mix(RIO.mistura(pares), AGUA, suave((y - (yCap - 150)) / 150))];
   });
-  const wSai = main.w[main.n - 1];
+  /* a largura varia devagar, menos perto das emendas */
+  RIO.organico(main, { amp: 0.08, onda: desk ? 300 : 220, semente: 17, jan: y => suave(y / 110) * (1 - suave((y - (Hs - 170)) / 130)) });
+  const iS = RIO.primeiro(main.y, Hs);
+  const wSai = main.w[iS];
+  /* a saída, para a descida até a foto (index.html, #curso-f): mesma faixa, mesma largura, mesma cor */
+  const saiAntes = window.__rioHist;
+  window.__rioHist = { x: xIn + palco.offsetLeft, w: wSai, cor: main.c[iS] };
+  const mudouSaida = !saiAntes || saiAntes.x !== window.__rioHist.x || Math.abs(saiAntes.w - wSai) > 0.25 || RIO.css(saiAntes.cor) !== RIO.css(main.c[iS]);
 
   /* ---------- a árvore de cada capítulo: os nomes em linhas, de cima (mais longe dele) para baixo, até J ---------- */
   CAPS.forEach(c => {
@@ -687,8 +714,10 @@ function monta(){
   const ovT = camada(), ovM = camada();
   RIO.leito(ovT.g, tribs.map(t => ({ curso: t.c })), { fundo: FUNDO });
   tribs.forEach(t => { ovT.g.fillStyle = RIO.css(t.cor); ovT.g.beginPath(); ovT.g.arc(t.src.x, t.src.y, desk ? 2.2 : 1.8, 0, TAU); ovT.g.fill(); });
-  RIO.leito(ovM.g, [{ curso: main }], { fundo: FUNDO });
+  RIO.leito(ovM.g, [{ curso: main, aberto: true }], { fundo: FUNDO });
   if (reduzido) RIO.setas(ovM.g, main, 'rgba(232,255,236,.5)', desk ? 110 : 80);
+  /* a correnteza do rio principal: as mesmas linhas tracejadas do resto da página */
+  const trM = RIO.tracos(main, RIO.semente(29));
   cv.width = Math.round(Ws * dpr); cv.height = Math.round(Hs * dpr); cv.style.width = Ws + 'px'; cv.style.height = Hs + 'px';
 
   /* ---------- rótulos do palco (HTML): os nomes da árvore e "ele" em J ---------- */
@@ -715,20 +744,22 @@ function monta(){
   G.rotas.push({ rota: main, sp: sprite(AGUA, 0.8), taxa: 0.5, alfa: 1, acc: 0, tipo: 'main' });
   CAPS.forEach(c => c.arv.forEach(no => { if (no.rota) G.rotas.push({ rota: no.rota, sp: sprite(RGB[no.cls], 1), taxa: 1.1, alfa: 0, acc: 0, tipo: 'arv', cap: c.k, no: no.eloG != null ? { elo: no.eloG } : no }); }));
   G.vel = vel;
-  if (!reduzido){ for (let k = 0; k < 14 * 20; k++) passaGotas(1 / 20, 1); }      /* já em regime */
+  for (let k = 0; k < 24 * 20; k++) passaGotas(1 / 20, 1);      /* já em regime (com movimento reduzido, ficam paradas onde estão, como no resto do rio) */
 
-  L = { W, desk, hdr, cenaH, palcoH, u, C, Y0, Ws, Hs, Hd, dpr, main, tribs, ovT: ovT.cv, ovM: ovM.cv, ctx: cv.getContext('2d'), xIn, wSai };
+  L = { W, desk, hdr, cenaH, palcoH, u, C, Y0, Ws, Hs, Hd, dpr, main, tribs, ovT: ovT.cv, ovM: ovM.cv, ctx: cv.getContext('2d'), xIn, wSai, trM };
   keyframes();
   compacta();
   estado = null; legKey = '';
   agenda();
   doc.dispatchEvent(new CustomEvent('historia:layout'));
+  if (mudouSaida) doc.dispatchEvent(new CustomEvent('rio:hist'));
 }
 
 /* o tamanho do número: o maior que cabe na largura, numa linha ou em duas (número / escala);
    a quebra é decidida aqui, uma vez por layout, para a contagem não mudar de linha no meio */
 function ajustaNum(c){
   const n = c.num, W = c.nv.clientWidth; if (!W) return;
+  if (n.frase) return ajustaFrase(c, W);
   const max = L0.desk ? 150 : 128;              /* o teto; a altura livre decide o resto (compacta) */
   let um, dois, a, b;
   if (n.conta){ a = n.pre + fmtNum(n.alvo, n.dec, n.mil); b = n.esc.trim(); um = larg(a + n.esc); dois = b ? Math.max(larg(a), larg(b)) : um; }
@@ -742,6 +773,21 @@ function ajustaNum(c){
   if (!n.conta) c.ng.innerHTML = quebra ? '<span class="n1">' + esc(a) + '</span><span class="n2"> ' + esc(b) + '</span>' : '<span class="n1">' + esc(n.valor) + '</span>';
   c.nv.classList.toggle('quebra', quebra);
   c.nv.style.setProperty('--fs', Math.floor(0.96 * (quebra ? f2 : f1)) + 'px');
+}
+/* o destaque-frase: letra de manchete com teto menor que o do número (46px no celular, 62px no desktop).
+   Uma linha quando cabe perto do teto; senão, duas, quebradas entre palavras no ponto que deixa as linhas
+   mais parecidas. Nunca corta palavra: a letra diminui até a linha mais longa caber. */
+function ajustaFrase(c, W){
+  const n = c.num, max = L0.desk ? 62 : 46, p = n.valor.split(/\s+/);
+  regua.classList.add('frase');
+  const f1 = 100 * W / larg(n.valor);
+  let dois = Infinity, a = '', b = '';
+  for (let i = 1; i < p.length; i++){ const x = p.slice(0, i).join(' '), y = p.slice(i).join(' '), w = Math.max(larg(x), larg(y)); if (w < dois){ dois = w; a = x; b = y; } }
+  regua.classList.remove('frase');
+  const quebra = !!b && f1 < 0.85 * max, fs = Math.min(max, quebra ? 100 * W / dois : f1);
+  c.ng.innerHTML = quebra ? '<span class="n1">' + esc(a) + '</span><span class="n2"> ' + esc(b) + '</span>' : '<span class="n1">' + esc(n.valor) + '</span>';
+  c.nv.classList.toggle('quebra', quebra);
+  c.nv.style.setProperty('--fs', Math.floor(0.97 * fs) + 'px');
 }
 let L0 = { desk: false };
 /* legendas que não cabem na altura: letra menor; depois, sem a relação do elo atual; por último, sem o sobretítulo */
@@ -868,10 +914,15 @@ function desenha(E, dt){
     k = 1 - ks;
     lit = F.filter(x => x.f === 'elo').map(x => E.l >= ele.a ? 1 : st((E.l - x.a) / (0.7 * (x.b - x.a))));
   }
+  /* as camadas paradas têm o mesmo tamanho em pixels do canvas: cópia pixel a pixel, sem reamostrar
+     (reamostrada, a água borra meio pixel e desalinha da água do trecho 02 e da descida até a foto) */
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  ctx.globalAlpha = aOv; ctx.drawImage(L.ovT, 0, 0);
+  ctx.globalAlpha = Math.max(aOv, 0.55); ctx.drawImage(L.ovM, 0, 0);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.clearRect(0, 0, L.Ws, L.Hs);
-  ctx.globalAlpha = aOv; ctx.drawImage(L.ovT, 0, 0, L.Ws, L.Hs);
-  ctx.globalAlpha = Math.max(aOv, 0.55); ctx.drawImage(L.ovM, 0, 0, L.Ws, L.Hs);
+  G.t += dt || 0;
+  RIO.pintaTracos(ctx, L.trM, G.t, G.vel, -20, L.Hs + 20, 1);
   ctx.globalAlpha = 1;
   /* os capítulos acesos na abertura; o do capítulo, aceso na cor da gravidade */
   if (hlTodos > 0.01) CAPS.forEach(c => { ctx.globalAlpha = hlTodos * 0.7; RIO.traco(ctx, c.trib.c, c.cor, L.desk ? 1.4 : 1.1); });
@@ -922,13 +973,14 @@ function desenha(E, dt){
   /* rótulos dos outros capítulos apagados */
   CAPS.forEach(c => { if (c === cap && k > 0.01) return; c.arv.forEach(no => { if (no.op !== 0){ no.op = 0; no.el.style.opacity = 0; } }); (c.links || []).forEach(lk => { if (lk.op !== 0){ lk.op = 0; lk.el.style.opacity = 0; } }); if (c.jOp !== 0){ c.jOp = 0; c.jEl.style.opacity = 0; } });
 
-  /* gotas */
-  if (!reduzido){
+  /* gotas; com movimento reduzido, paradas (o trecho 02 e a descida até a foto também mostram as gotas paradas:
+     sem elas aqui, a água mudaria de aspecto nas duas emendas) */
+  {
     G.rotas.forEach(r => {
       if (r.tipo === 'ov') r.alfa = aOv;                  /* as gotas do afluente têm a cor do caso: não realçam antes dos nomes */
       else if (r.tipo === 'arv') r.alfa = cap && r.cap === cap.k ? (lit[r.no.elo] >= 0.98 ? k : 0) : 0;
     });
-    passaGotas(dt, surto);
+    if (!reduzido) passaGotas(dt, surto);
     const vy0 = -10, vy1 = L.Hs + 10;
     for (const gt of G.gotas){
       const r = gt.r; if (r.alfa < 0.03) continue;

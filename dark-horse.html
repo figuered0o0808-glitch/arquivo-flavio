@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dark Horse: o dinheiro do filme, mês a mês · BOLSODRIVE</title>
+<meta name="description" content="R$ 131 milhões pedidos por Flávio Bolsonaro a Daniel Vorcaro para um filme sobre o pai, segundo a PF; R$ 60 milhões teriam sido pagos. Ele é investigado no STF, sem denúncia. O dinheiro mês a mês, cada fato com fonte.">
+<meta name="theme-color" content="#070a07">
+
+<!-- Preview de link (WhatsApp, Telegram, X, Facebook). O cartão é c/img/dark-horse.png (bolso-os-fontes/gera_compartilhar.py). -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Flávio Bolsonaro · Dark Horse">
+<meta property="og:description" content="R$ 131 milhões pedidos a Daniel Vorcaro para um filme sobre o pai, segundo a PF; R$ 60 milhões teriam sido pagos. Investigado no STF, sem denúncia. O dinheiro, mês a mês.">
+<meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/dark-horse.html">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/dark-horse.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dark Horse: R$ 131 milhões pedidos por Flávio Bolsonaro a Daniel Vorcaro para um filme sobre o pai, segundo a PF.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Flávio Bolsonaro · Dark Horse">
+<meta name="twitter:description" content="R$ 131 milhões pedidos a Daniel Vorcaro para um filme sobre o pai, segundo a PF; R$ 60 milhões teriam sido pagos. Investigado no STF, sem denúncia.">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/dark-horse.png">
+<meta name="twitter:image:alt" content="Dark Horse: R$ 131 milhões pedidos por Flávio Bolsonaro a Daniel Vorcaro para um filme sobre o pai, segundo a PF.">
+
+<link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
+<link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
+<link rel="apple-touch-icon" href="assets/marca/icone-180.png">
+<link rel="stylesheet" href="assets/base.css?v=4">
+<link rel="stylesheet" href="assets/header.css?v=14">
+<link rel="stylesheet" href="assets/comparador.css?v=2">
+<style>
+/* ===== Dark Horse: o afluente do caso Master (assets/darkhorse.js) =====
+   O palco fica preso na tela e a rolagem é o tempo: o rio vira calendário, de dez/2024 a hoje.
+   À esquerda do rio, o dinheiro (Brasil); à direita da fronteira, os EUA. Celular: palco no alto
+   (--palcoH) e o texto embaixo. Desktop (>= 1024px): texto numa coluna de 420px, palco à direita. */
+html{scroll-padding-top:calc(var(--hdr,57px) + 6px)}
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+html.rolando{scroll-behavior:auto!important}
+body{overflow-x:hidden}
+.so-leitor{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* botões e portas: os mesmos da abertura */
+.enviar{flex:none; min-height:44px; min-width:44px; padding:0 12px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--cinza); background:transparent; border:1px solid var(--linha); border-radius:3px; cursor:pointer; text-transform:none}
+.enviar:hover{color:var(--tinta); border-color:rgba(125,245,154,.4)}
+.porta{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 16px; background:var(--amber); color:#120c00; font-weight:700; font-size:15px;
+  line-height:1.2; text-decoration:none; border-radius:3px; border:1.5px solid var(--amber); cursor:pointer; font-family:var(--sans)}
+.porta.sec{background:transparent; color:var(--tinta); border-color:var(--cinza2)}
+.porta.sec:hover{border-color:var(--tinta)}
+.portas{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0}
+.porta:focus-visible, .enviar:focus-visible, .dh-leg a:focus-visible, .dh-sec a:focus-visible, .dh-sec summary:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.nf{margin:0; font-family:var(--mono); font-size:12px; color:var(--cinza)}
+.nf a{display:inline-flex; align-items:center; min-height:44px; color:var(--cinza); text-decoration-color:var(--cinza2); text-underline-offset:3px}
+.nf a:hover{color:var(--azul)}
+h2.k{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 4px; font-family:var(--mono); font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); font-weight:700}
+h2.k span::before{content:"// "; color:var(--cinza2)}
+
+/* ---------- a cena presa (o mesmo padrão de .h-cena/.h-palco/.h-leg da abertura) ---------- */
+.dh{position:relative; max-width:1320px; margin:0 auto}
+.h-cena{position:sticky; top:var(--hdr,57px); height:calc(100vh - var(--hdr,57px)); overflow:hidden}
+@supports (height:100svh){ .h-cena{height:calc(100svh - var(--hdr,57px))} }
+.h-palco{position:absolute; left:0; right:0; top:0; height:var(--palcoH,58%); overflow:hidden}
+.h-palco canvas{position:absolute; left:0; top:0; display:block}
+.h-palco::after{content:""; position:absolute; left:0; right:0; bottom:0; height:26px; background:linear-gradient(rgba(7,10,7,0), var(--papel)); pointer-events:none; z-index:3}
+.h-leg{position:absolute; left:0; right:0; top:var(--palcoH,58%); bottom:0; overflow:hidden; background:var(--papel)}
+.h-barra{position:absolute; left:16px; right:56px; bottom:0; height:2px; background:rgba(125,245,154,.12)}
+.h-barra i{position:absolute; inset:0; background:var(--amber); transform-origin:0 0; transform:scaleX(0)}
+.dh-ancora{position:absolute; left:0; width:1px; height:1px; pointer-events:none}
+
+/* o mostrador: Brasil à esquerda, EUA à direita; no meio o mês em leitura e as 7 remessas */
+.dh-most{position:absolute; left:0; right:0; top:0; z-index:4; display:flex; align-items:center; justify-content:space-between; height:40px; padding:0 12px 6px;
+  font-family:var(--mono); background:linear-gradient(var(--papel) 72%, rgba(7,10,7,0)); pointer-events:none}
+.dh-most .lado{font-size:11px; letter-spacing:.12em; color:var(--cinza)}
+.dh-most .meio{display:flex; align-items:center; gap:9px}
+.dh-most b{font-size:13px; font-weight:700; letter-spacing:.06em; color:var(--tinta); white-space:nowrap; font-variant-numeric:tabular-nums}
+.dh-mg{display:flex; gap:3px}
+.dh-mg i{display:block; width:6px; height:6px; border-radius:50%; box-sizing:border-box; border:1px solid var(--cinza2)}
+.dh-mg i.on{background:#7df59a; border-color:#7df59a; box-shadow:0 0 4px rgba(125,245,154,.65)}
+
+/* as etiquetas do rio (HTML sobre o canvas): um "mundo" que a câmera desloca inteiro */
+.dh-rot{position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:2}
+/* sob o mostrador a etiqueta some em degradê (sem linha cortada ao meio) */
+#dh-rot{-webkit-mask-image:linear-gradient(transparent 30px, #000 62px); mask-image:linear-gradient(transparent 30px, #000 62px)}
+.dh-mundo{position:absolute; left:0; top:0; width:100%; height:0; will-change:transform}
+.dh-e{position:absolute; left:0; top:0; font-size:12px; line-height:1.3; color:var(--tinta); opacity:0; overflow-wrap:break-word}
+.dh-e.din{text-align:right}
+.dh-e b{font-family:var(--mono); font-size:12px; font-weight:400; color:var(--cinza); letter-spacing:-.01em; margin-right:4px; white-space:nowrap}
+.dh-e.din b{margin-right:0; margin-left:0}
+.dh-e.lugar{font-family:var(--mono); letter-spacing:.05em; text-transform:uppercase; color:var(--tinta)}
+.dh-e.eixo, .dh-e.nota{font-family:var(--mono); color:var(--cinza)}
+.dh-e.eixo{white-space:nowrap; letter-spacing:-.03em}
+.dh-e.ponte{font-family:var(--mono); color:var(--tinta); white-space:nowrap; padding:0 4px; background:rgba(7,10,7,.9); border-radius:2px}
+.dh-e.geral{font-family:var(--mono); letter-spacing:.05em; text-transform:uppercase; color:var(--tinta); background:rgba(7,10,7,.8)}
+.dh-e.foco{font-weight:600}
+
+/* ---------- a legenda de cada momento ---------- */
+.dh-m{position:absolute; left:16px; right:56px; top:12px; visibility:hidden}
+.dh-m.on{visibility:visible}
+.dh-k{margin:0 0 6px; font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza)}
+.dh-h1{margin:0 0 4px; font-size:22px}
+.dh-grande{margin:2px 0 10px; font-weight:800; line-height:1.02; letter-spacing:-.02em; color:var(--tinta)}
+.dh-grande.numero{color:var(--amber); letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:.96}
+.dh-grande.numero .n2{display:block}
+.dh-grande.hora{color:var(--amber); font-family:var(--mono); font-weight:700; letter-spacing:-.02em; white-space:nowrap; font-variant-numeric:tabular-nums}
+.dh-grande.texto{letter-spacing:-.015em; line-height:1.04; text-wrap:balance}
+.dh-grande.citacao{font-weight:700; letter-spacing:-.01em; line-height:1.14; text-wrap:balance}
+.dh-grande .q{color:var(--cinza)}
+.dh-linhas p{margin:0 0 6px; font-size:15.5px; line-height:1.4}
+.dh-ele{margin:8px 0 0; padding:3px 0 3px 10px; border-left:2px solid var(--tinta); font-family:var(--mono); font-size:12.5px; line-height:1.45; color:var(--tinta)}
+.dh-dica{margin:6px 0 0; font-family:var(--mono); font-size:12px; color:var(--cinza)}
+.dh-acoes{display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; margin:4px 0 0}
+.dh-acoes .porta{min-height:44px; padding:8px 12px; font-size:14px}
+.dh-m[data-f="entra"] .dh-grande, .dh-m[data-f="entra"] .dh-fecha, .dh-m[data-f="grande"] .dh-fecha{visibility:hidden}
+.dh-m.aperta .dh-linhas p{font-size:14px; line-height:1.36; margin-bottom:4px}
+.dh-m.aperta .dh-k{margin-bottom:3px}
+.dh-m.aperta .dh-grande{margin-bottom:6px}
+.dh-m.aperta2 .dh-dica{display:none}
+.dh-m.aperta2 .dh-linhas p{font-size:13.5px; line-height:1.32; margin-bottom:3px}
+.dh-m.aperta2 .dh-ele{margin-top:4px; padding:1px 0 1px 8px; font-size:12px; line-height:1.35}
+.dh-m.aperta2 .dh-acoes{gap:4px 6px; margin-top:2px}
+.dh-m.aperta2 .dh-acoes .porta, .dh-m.aperta2 .dh-acoes .enviar{min-height:40px; padding:6px 10px; font-size:13px}
+.dh-m.aperta2 .nf a{min-height:40px}
+.dh-regua{position:absolute; left:0; top:0; visibility:hidden; pointer-events:none; white-space:nowrap; font-size:100px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.dh-regua.mono{font-family:var(--mono); font-weight:700; letter-spacing:-.02em}
+@media (prefers-reduced-motion:no-preference){
+  .dh-m.on{animation:dh-entra .3s ease-out}
+  @keyframes dh-entra{from{opacity:0; transform:translateY(5px)} to{opacity:1; transform:none}}
+}
+
+@media (min-width:1024px){
+  .h-palco{left:460px; height:100%}
+  .h-palco::after{display:none}
+  .h-leg{top:0; right:auto; width:436px; background:transparent}
+  .h-barra{left:24px; right:auto; width:410px; bottom:28px}
+  .dh-m{left:24px; right:0; top:clamp(28px, 13vh, 130px)}
+  .dh-e{font-size:13px}
+  .dh-e b{font-size:12.5px}
+  .dh-k{font-size:12px}
+  .dh-h1{font-size:24px}
+  .dh-linhas p{font-size:17px; line-height:1.45; margin-bottom:8px}
+  .dh-ele{font-size:13.5px}
+  .dh-most{padding:0 18px}
+}
+
+/* ---------- o "assistir" (assets/roteiro.js): o mesmo controle da abertura ---------- */
+.h-ctl{position:fixed; right:4px; bottom:calc(12px + env(safe-area-inset-bottom, 0px)); z-index:45; display:flex; flex-direction:column-reverse; gap:6px; align-items:center}
+.h-ctl[hidden]{display:none}
+.h-ctl button{display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:44px; min-width:44px; padding:0; font-family:var(--mono); font-size:12.5px; font-weight:700; letter-spacing:.03em;
+  color:var(--tinta); background:rgba(7,10,7,.92); border:1px solid rgba(125,245,154,.35); border-radius:22px; cursor:pointer; white-space:nowrap}
+.h-ctl button:hover{border-color:var(--amber)}
+.h-ctl button:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.h-ctl .ic{font-size:13px; line-height:1}
+.h-ctl .tx{display:none}
+.h-ctl .h-play{color:var(--amber); border-color:rgba(255,176,46,.6); width:46px; height:46px}
+.h-ctl .h-vel, .h-ctl .h-pula, .h-ctl .h-para{display:none; width:44px}
+.h-ctl.ativo .h-vel, .h-ctl.ativo .h-pula, .h-ctl.ativo .h-para{display:inline-flex}
+.h-ctl.no-fim .h-vel, .h-ctl.no-fim .h-pula{display:none}
+.h-ctl .h-pula, .h-ctl .h-para{color:var(--cinza); font-weight:400}
+.h-ctl:not(.ativo) .h-play{flex-direction:column; gap:2px; width:50px; height:50px; border-radius:25px}
+.h-ctl:not(.ativo) .h-play .tx{display:block; font-size:9.5px; letter-spacing:0}
+@media (min-width:1024px){
+  .h-ctl{right:20px; bottom:20px; flex-direction:row}
+  .h-ctl button, .h-ctl .h-play, .h-ctl .h-vel, .h-ctl .h-pula, .h-ctl .h-para, .h-ctl:not(.ativo) .h-play{width:auto; height:auto; min-height:44px; padding:0 14px; flex-direction:row; border-radius:22px}
+  .h-ctl .tx, .h-ctl:not(.ativo) .h-play .tx{display:inline; font-size:12.5px}
+}
+
+/* ---------- depois do palco: em fluxo normal ---------- */
+.dh-sec{max-width:1180px; margin:0 auto; padding:40px 16px 8px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
+.dh-sec + .dh-sec{padding-top:16px}
+.dh-lista details{max-width:760px; border-top:1px solid var(--linha); border-bottom:1px solid var(--linha)}
+.dh-lista summary{display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:52px; cursor:pointer; list-style:none}
+.dh-lista summary::-webkit-details-marker{display:none}
+.dh-lista summary h2.k{margin:0}
+.dh-lista summary::after{content:"+"; font-family:var(--mono); font-size:20px; color:var(--cinza); width:28px; text-align:center}
+.dh-lista details[open] summary::after{content:"−"}
+.dh-cal{list-style:none; margin:0 0 14px; padding:0}
+.dh-cal .ano{margin:18px 0 4px; font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--cinza)}
+.dh-cal li.it{position:relative; padding:10px 0 4px 18px; border-top:1px solid rgba(125,245,154,.1)}
+.dh-cal li.it::before{content:""; position:absolute; left:2px; top:17px; width:7px; height:7px; border-radius:50%; background:var(--cinza2)}
+.dh-cal li.it.eua::before{background:transparent; border:1.5px solid var(--cinza); width:6px; height:6px}
+.dh-cal li.it.grave::before{background:var(--carimbo); border:0; width:7px; height:7px}
+.dh-cal .qd{margin:0; font-family:var(--mono); font-size:12px; color:var(--cinza)}
+.dh-cal .qd span{letter-spacing:.06em; text-transform:uppercase; margin-left:6px}
+.dh-cal .tx{margin:2px 0 0; font-size:15px; line-height:1.42}
+.dh-cal .nf{display:flex; flex-wrap:wrap; gap:0 12px}
+.dh-lista .fim-l{display:flex; justify-content:flex-end; padding:0 0 12px}
+.dh-teia{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:0; max-width:760px}
+.dh-teia .tk{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin-right:2px}
+.dh-teia a{display:inline-flex; align-items:center; min-height:44px; padding:0 12px; border:1px solid var(--linha); border-radius:22px; color:var(--tinta); text-decoration:none; font-size:14px}
+.dh-teia a:hover{border-color:rgba(125,245,154,.45)}
+.dh-arq{margin:14px 0 0; font-size:14.5px}
+.dh-arq a{display:inline-flex; align-items:center; min-height:44px; color:var(--azul); text-underline-offset:3px}
+.dh-fim .portas{margin-top:18px}
+.rodape{max-width:1180px; margin:0 auto; padding:18px 16px 48px; font-size:13.5px; line-height:1.45; color:var(--cinza)}
+@media (max-width:1023px){
+  /* a faixa da direita fica livre para o controle do "assistir" */
+  .dh-sec, .rodape{padding-right:60px}
+  .nv-segue{margin:36px 60px 0 16px}
+}
+@media (min-width:1024px){
+  .dh-sec{padding:56px 24px 8px}
+  .rodape{padding:18px 24px 56px}
+  .nv-segue, .nv-segue.solto{max-width:1180px; margin:36px auto 0; padding:0 24px}
+  .nv-segue a{max-width:760px}
+}
+</style>
+</head>
+<body data-trecho="3" data-afluente="Dark Horse">
+
+<header class="site-header" data-nav></header>
+
+<main>
+<!-- O PALCO: o afluente do caso Master como calendário (assets/darkhorse.js). A rolagem é o tempo. -->
+<section class="dh" id="dh-rio" aria-label="Dark Horse: o dinheiro do filme, mês a mês" data-rot="historia" hidden>
+  <div class="h-cena" id="dh-cena">
+    <div class="h-palco" id="dh-palco">
+      <canvas id="dh-cv" aria-hidden="true"></canvas>
+      <div class="dh-rot" id="dh-rot" aria-hidden="true"><div class="dh-mundo" id="dh-mundo"></div></div>
+      <div class="dh-most" id="dh-most">
+        <span class="lado" aria-hidden="true">BRASIL</span>
+        <span class="meio"><b id="dh-mes">DEZ 2024</b><span class="dh-mg" id="dh-mg" role="img" aria-label="remessas até aqui: 0 de 7"></span></span>
+        <span class="lado" aria-hidden="true">EUA</span>
+      </div>
+    </div>
+    <div class="h-leg dh-leg" id="dh-leg"></div>
+    <div class="h-barra" aria-hidden="true"><i id="dh-barra"></i></div>
+  </div>
+</section>
+<noscript><p class="dh-sec">O calendário do rio precisa de JavaScript. O caso inteiro, em texto e com as fontes, está na <a href="foz.html#master">Foz</a>.</p></noscript>
+
+<!-- quanto é isso: o comparador (assets/comparador.js e assets/comparador.css) -->
+<section id="dh-custa" data-comparador></section>
+
+<!-- o calendário em texto, com as fontes (montado por assets/darkhorse.js a partir de data/darkhorse.js) -->
+<section class="dh-sec dh-lista" id="dh-lista" aria-label="O calendário em texto, com as fontes"></section>
+
+<section class="dh-sec dh-fim" id="dh-portas" aria-label="Na teia e no arquivo">
+  <p class="dh-teia" id="dh-teia"></p>
+  <p class="dh-arq"><a href="drive.html?q=Dark%20Horse#arquivo">registros no arquivo →</a></p>
+  <div class="portas"><a class="porta" href="foz.html#master">A Foz, caso a caso →</a><a class="porta sec" href="index.html#cap-master">O rio inteiro →</a></div>
+</section>
+</main>
+
+<footer class="rodape" id="rodape">Compilação jornalística de fatos de interesse público. Cada fato tem fonte e a situação jurídica de cada nome.</footer>
+
+<!-- assistir: a página desce sozinha pelo calendário (assets/roteiro.js) -->
+<div class="h-ctl" id="h-ctl" role="group" aria-label="Assistir" hidden>
+  <button type="button" class="h-play" id="h-play"><span class="ic" aria-hidden="true">▶</span><span class="tx">assistir</span></button>
+  <button type="button" class="h-vel" id="h-vel" aria-label="Velocidade 1×; tocar para 2×">1×</button>
+  <button type="button" class="h-pula" id="h-pula" aria-label="Pular para o próximo momento"><span class="ic" aria-hidden="true">↓</span><span class="tx">pular</span></button>
+  <button type="button" class="h-para" id="h-para" aria-label="Parar a animação"><span class="ic" aria-hidden="true">■</span><span class="tx">parar</span></button>
+</div>
+
+<script src="data/darkhorse.js?v=3"></script>
+<script src="assets/rio.js?v=8"></script>
+<script src="assets/nav.js?v=5"></script>
+<script src="assets/roteiro.js?v=1" defer></script>
+<script src="assets/darkhorse.js?v=5" defer></script>
+<script src="assets/comparador.js?v=4" defer></script>
+<script src="data/topicos.js?v=5" defer></script>
+<script src="assets/compartilhar.js?v=2" defer></script>
+</body>
+</html>

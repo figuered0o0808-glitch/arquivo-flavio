@@ -108,6 +108,8 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .num.forte{color:var(--amber); margin:12px 0 8px; line-height:.92; font-size:min(24vw, 150px, calc((100vw - 76px) / (var(--nc, 4) * .6)))}
 @supports (width:1cqi){ .num.forte{font-size:min(24vw, 150px, calc(100cqi / (var(--nc, 4) * .6)))} }
 .num .np{display:inline-block; white-space:nowrap}
+/* o destaque-frase (numero.tipo 'frase', ex.: o caso Marielle): manchete menor que o número, sem contagem, até 2 linhas equilibradas */
+.num.forte.frase{margin:12px 0 10px; line-height:1.04; letter-spacing:-.015em; font-size:clamp(34px, 10.5vw, 58px); text-wrap:balance; max-width:11em; overflow-wrap:normal; hyphens:none}
 .fr{font-size:clamp(18px,4.8vw,22px); line-height:1.35; margin:0 0 6px; max-width:30em}
 .fr b{color:var(--amber)}
 .nf{margin:0 0 4px; font-family:var(--mono); font-size:12px; color:var(--cinza)}
@@ -142,6 +144,7 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 /* ---------- os trechos: o mesmo rio atravessa ---------- */
 .curso{position:relative; max-width:1180px; margin:0 auto}
 .curso > canvas{position:absolute; left:0; top:0; pointer-events:none; z-index:0; display:block}
+.curso > .dest{position:relative; z-index:1}
 .trecho{position:relative; z-index:1; padding:56px 60px 40px 16px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
 /* a foz */
 .foz-fim{position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; padding-top:132px}
@@ -232,6 +235,9 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .cap-num .nt b{font-weight:800}
 .cap .nf{margin-top:4px}
 .h-regua{position:absolute; left:0; top:0; visibility:hidden; pointer-events:none; white-space:nowrap; font-size:100px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+/* o destaque-frase (numero.tipo 'frase'): manchete menor que o número (o tamanho e a quebra entre palavras saem de ajustaFrase) */
+.cap-num.frase .nv{margin:8px 0 12px; line-height:1.04; letter-spacing:-.015em}
+.h-regua.frase{letter-spacing:-.015em}
 /* o que não coube: letra menor; depois, sem a relação do elo atual; por último, sem o sobretítulo */
 .cap.aperta .cap-n{font-size:20px} .cap.aperta .elo .dp{font-size:13.5px} .cap.aperta .cap-ele{font-size:14px}
 .cap.aperta .elo{padding-bottom:5px}
@@ -274,6 +280,7 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
   .cap-ele{font-size:16px}
   .cap-fim .cap-n{font-size:44px}
   .cap-num .nv{margin:10px 0 14px}
+  .cap-num.frase .nv{margin:12px 0 16px}
   .cap-num .nt{font-size:19px; line-height:1.42}
 }
 
@@ -353,7 +360,7 @@ html.og .og-marca{display:block}
 .og-marca b{color:var(--tinta); font-weight:700}
 </style>
 <script>try { if (/[?&]og=1(&|$)/.test(location.search)) document.documentElement.classList.add('og'); } catch (e) {}</script>
-<link rel="stylesheet" href="assets/header.css?v=12">
+<link rel="stylesheet" href="assets/header.css?v=14">
 </head>
 <body data-trecho="0">
 
@@ -391,14 +398,15 @@ html.og .og-marca{display:block}
   </div>
 </section>
 
+<!-- o rio da página nasce aqui, logo abaixo da primeira tela, e atravessa o caso Marielle e os trechos 01 e 02 -->
+<div class="curso" id="curso">
+  <canvas id="c-leito" aria-hidden="true"></canvas>
+  <canvas id="c-agua" aria-hidden="true"></canvas>
+
 <!-- o caso Marielle (calculado de window.FOZ, id marielle-ifop; some se o dado faltar) -->
 <section class="dest" id="marielle" aria-labelledby="h-mar" hidden>
   <div class="dest-in" id="mar-c"></div>
 </section>
-
-<div class="curso" id="curso">
-  <canvas id="c-leito" aria-hidden="true"></canvas>
-  <canvas id="c-agua" aria-hidden="true"></canvas>
 
   <section class="trecho" id="quem" aria-labelledby="h-quem">
     <div class="col">
@@ -478,15 +486,15 @@ html.og .og-marca{display:block}
   <button type="button" class="h-para" id="h-para" aria-label="Parar a animação"><span class="ic" aria-hidden="true">■</span><span class="tx">parar</span></button>
 </div>
 
-<script src="data/dados.js?v=set2026q"></script>
-<script src="data/foz.js?v=11"></script>
-<script src="assets/rio.js?v=6"></script>
-<script src="assets/nav.js?v=3"></script>
+<script src="data/dados.js?v=set2026s"></script>
+<script src="data/foz.js?v=14"></script>
+<script src="assets/rio.js?v=8"></script>
+<script src="assets/nav.js?v=5"></script>
 <script src="assets/roteiro.js?v=1" defer></script>
 <script src="data/foz-curto.js?v=4"></script>
-<script src="assets/historia.js?v=13" defer></script>
-<script src="data/topicos.js?v=3" defer></script>
-<script src="assets/compartilhar.js?v=1" defer></script>
+<script src="assets/historia.js?v=18" defer></script>
+<script src="data/topicos.js?v=5" defer></script>
+<script src="assets/compartilhar.js?v=2" defer></script>
 <script>
 /* =====================================================================
    A abertura. Todo número sai de window.DOSSIE e window.FOZ; nada é digitado à mão.
@@ -661,17 +669,18 @@ const forte = (v, pausa) => {
 };
 const fonteA = f => f && f.url ? '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'fonte') + ' ↗</a>' : esc((f && f.veiculo) || '');
 
-/* ---------- o caso Marielle: o número, a frase e as duas ligações, uma por linha ----------
-   Tudo sai do registro marielle-ifop da Foz: "2 de 5" + "condenados no caso Marielle têm ligação com ele:
-   o major Ronald, homenageado por ele em 2004, e o Peixe, que tratou … ao Ifop, segundo a PF".
-   A situação de cada um vem do elo da cadeia que sai dele. */
+/* ---------- o caso Marielle: o destaque, a frase e (se o texto listar) as ligações, uma por linha ----------
+   Tudo sai do registro marielle-ifop da Foz. Destaque-frase (numero.tipo 'frase', "Emenda negociada"):
+   manchete sem contagem e o texto inteiro embaixo. Texto no formato "x: o A, que…, e o B, que…" vira
+   uma linha por nome, com a situação de cada um tirada do elo da cadeia que sai dele. */
+const forteFrase = (v, pausa) => '<p class="num forte frase" data-rot="pausa:' + (pausa || 2.2) + '">' + esc(v) + '</p>';
 (function(){
   const x = escPorId['marielle-ifop'], e = x && x.e, n = e && e.numero, box = $('#mar-c');
   if (!box || !n || !n.valor || !n.texto) return;
   const cad = e.cadeia || [];
   const txt = semRessalva(n.texto), dp = txt.indexOf(':');
   const frase = dp > 0 ? txt.slice(0, dp) : txt, resto = dp > 0 ? txt.slice(dp + 1).trim() : '';
-  const ligas = String(resto || '').split(/,\s+e\s+(?=(?:o|a)\s)/).map(t => {
+  const ligas = n.tipo === 'frase' ? [] : String(resto || '').split(/,\s+e\s+(?=(?:o|a)\s)/).map(t => {
     const m = /^(?:o|a)\s+([^,]+),\s*(?:que,?\s+)?(.+)$/.exec(t.trim());
     if (!m) return null;
     const nome = cap1(m[1].trim()), chave = nome.split(/\s+/).filter(w => w.length > 3 && !/^major$/i.test(w));
@@ -679,8 +688,8 @@ const fonteA = f => f && f.url ? '<a href="' + esc(f.url) + '" target="_blank" r
     return { nome, rel: m[2].trim().replace(/[.;]$/, ''), sit: l ? sitCurta(l.status_de) : '', cls: l ? statusCls(l.status_de) : 'leve' };
   }).filter(Boolean);
   box.innerHTML = '<h2 class="k" id="h-mar"><span>' + esc(e.rotulo || e.nome) + '</span><button type="button" class="enviar" data-share="marielle" aria-label="Enviar: caso Marielle">enviar ↗</button></h2>' +
-    forte(n.valor, 2.4) +
-    '<p class="fr" data-seq>' + esc(fimP(ligas.length ? frase : n.texto)) + '</p>' +
+    (n.tipo === 'frase' ? forteFrase(n.valor, 2.4) : forte(n.valor, 2.4)) +
+    '<p class="fr" data-seq>' + esc(fimP(ligas.length ? frase : txt).replace(/R\$ (?=\d)/g, 'R$\u00a0')) + '</p>' +
     (ligas.length ? '<ul class="dest-l">' + ligas.map(l => '<li data-seq data-rot="pausa:2" data-rot-al="0.3"><b>' + esc(l.nome) + '</b>' + esc(fimP(l.rel)) +
       (l.sit && l.sit !== 'sem processo' ? '<span class="sit"><i style="background:' + HEX[l.cls] + '"></i>' + esc(l.sit) + '</span>' : '') + '</li>').join('') + '</ul>' : '') +
     (n.fonte && n.fonte.url ? '<p class="nf">' + fonteA(n.fonte) + '</p>' : '') +
@@ -991,16 +1000,24 @@ function marcaBacia(){ if (B && B.ctl){ const d = B.destaque; B.ctl.marca(x => !
 function realcaBacia(id){ if (B && B.destaque !== id){ B.destaque = id; pintaBacia(); } }
 
 /* =====================================================================
-   O RIO DOS TRECHOS: um rio só, que nasce no alto do trecho 1, recebe um afluente
-   de cada coisa citada (nome, fluxo) e sai pelo pé do trecho 2
-   para dentro da história rolável (assets/historia.js), onde os escândalos crescem um
-   a um. Depois da história, o mesmo rio (#curso-f) desce até a foto dele.
-   As curvas só descem. No celular ele corre pela margem direita; no desktop tem uma
-   faixa própria à direita do texto. A saída (x, largura, cor) fica em window.__rioSaida,
-   que a história lê para o rio entrar no palco pelo mesmo ponto.
+   O RIO DA PÁGINA: um curso só, do alto do caso Marielle até a foto dele.
+   Três canvases emendados: #curso (caso Marielle, trechos 01 e 02), o palco da história
+   (assets/historia.js) e #curso-f (a descida até a foto). Em cada emenda a água passa na
+   mesma faixa (x), na vertical, com a mesma largura e a mesma cor; cada canvas desenha a água
+   EMENDA px além da própria borda (a ponta redonda, o fim do reflexo e as gotas que nascem ou
+   morrem ficam fora da tela) e cobre SOBRA px da seção vizinha (sem fresta de meio pixel).
+   A largura só cresce rumo à foz: cada afluente alarga a água aos poucos; por cima, uma
+   variação lenta (RIO.organico), que some perto das emendas.
+   Aqui nasce o rio e recebe um afluente de cada coisa citada (nome, fluxo); sai pelo pé do
+   trecho 02 para dentro da história, onde os escândalos crescem um a um; depois da história,
+   #curso-f desce até a foto. As curvas só descem. No celular ele corre pela margem direita;
+   no desktop tem uma faixa própria à direita do texto.
+   A saída (x, largura, cor) fica em window.__rioSaida, que a história lê para entrar pelo
+   mesmo ponto; a saída da história fica em window.__rioHist, de onde parte a descida final.
    ===================================================================== */
 const curso = $('#curso'), cursoF = $('#curso-f');
 const CCIC = 16;
+const EMENDA = 90, SOBRA = 3;
 let C = null, CF = null;
 function rioTrechos(){
   const W = Math.round(curso.clientWidth); if (!W) return;
@@ -1013,14 +1030,19 @@ function rioTrechos(){
   const laneX = desk ? Math.round((colR + W) / 2) : W - 27;
   const amp = desk ? clamp((W - colR) / 2 - 90, 20, 90) : 8;
   const lam = desk ? 620 : 280;
-  const y0 = rel($('#quem')).t + (desk ? 70 : 40);
-  /* perto do pé do último trecho a curva se endireita: o rio sai exatamente na faixa (laneX) */
-  const xLane = y => laneX + amp * Math.sin(TAU * (y - y0) / lam + 0.7) * suave((y - y0) / 120) * (1 - suave((y - (H - 240)) / 200));
+  /* a nascente: na altura do título do primeiro bloco (o caso Marielle; sem ele, o trecho 01). Mais alto, no
+     desktop ela aparecia no pé da primeira tela, logo abaixo da foto, como se a água saísse dele */
+  const cab = $$('#curso h2').find(h => h.offsetParent !== null);
+  const y0 = cab ? Math.round(rel(cab).y) : (desk ? 26 : 18);
+  /* nos últimos 40 px a água corre reta, na faixa (laneX): é a emenda com a história */
+  const yReto = H - 40;
+  const onda = y => 0.8 * Math.sin(TAU * (y - y0) / lam + 0.7) + 0.2 * Math.sin(TAU * (y - y0) / (lam * 0.46) + 2.1);
+  const xLane = y => laneX + amp * onda(y) * suave((y - y0) / 160) * (1 - suave((y - (yReto - 220)) / 220));
 
   /* afluentes: um por linha citada */
   const drop = desk ? 44 : 20;
   const linhas = $$('#curso [data-trib]').map(li => { const p = rel(li.querySelector('.pt')); return { li, id: li.dataset.trib, p, yj: p.y + drop }; });
-  const ptsM = []; for (let y = y0; y < H; y += 3) ptsM.push([xLane(y), y]); ptsM.push([laneX, H + 2]);
+  const ptsM = []; for (let y = y0; y <= H + EMENDA; y += 3) ptsM.push([xLane(y), y]);
   const main = RIO.curso(ptsM);
 
   const vazao = n => 1 + Math.sqrt(n) / 3;
@@ -1040,26 +1062,35 @@ function rioTrechos(){
   const kW = (wMax - wMin) / Math.sqrt(Qtot);
   const larg = Q => wMin + kW * Math.sqrt(Math.max(0, Q));
   tribs.forEach(t => { const wq = larg(t.q); RIO.pinta(t.c, (i, y, s) => [wMin + (wq - wMin) * Math.pow(s, 0.6), t.cor]); });
+  /* cada afluente alarga e tinge a água aos poucos, nos JUNTA px depois da junção; a nascente é um fio que engrossa */
+  const JUNTA = desk ? 56 : 42;
   RIO.pinta(main, (i, y) => {
-    const pares = [[AGUA, 1]].concat(tribs.map(t => [t.cor, t.q * suave((y - t.L.yj + 2) / 14)]));
+    const pares = [[AGUA, 1]].concat(tribs.map(t => [t.cor, t.q * suave((y - t.L.yj + 2) / JUNTA)]));
     const Q = pares.reduce((s, p) => s + p[1], 0);
-    return [larg(Q), RIO.mistura(pares)];
+    return [larg(Q) * lerp(0.35, 1, suave((y - y0) / 220)), RIO.mistura(pares)];
   });
-  const corSai = main.c[main.n - 1], wSai = main.w[main.n - 1];
+  RIO.organico(main, { amp: 0.1, onda: desk ? 340 : 250, semente: 21, jan: y => suave((y - y0) / 140) * (1 - suave((y - (yReto - 170)) / 150)) });
+  const iH = RIO.primeiro(main.y, H);
+  const corSai = main.c[iH], wSai = main.w[iH];
 
   const leito = $('#c-leito'), agua = $('#c-agua');
-  const dpr = RIO.nitidez(W, H);
-  [leito, agua].forEach(cv => { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.width = W + 'px'; cv.style.height = H + 'px'; });
+  const Hc = H + SOBRA;                       /* o canvas passa SOBRA px do pé da seção */
+  /* no desktop o canvas cobre só a faixa do rio (dos pontos das linhas até a borda direita): com a largura
+     toda ele passava dos 5 Mpx e perdia nitidez em tela retina */
+  const ox = desk && linhas.length ? Math.max(0, Math.floor(Math.min(...linhas.map(L => L.p.x)) - 24)) : 0;
+  const Wc = W - ox;
+  const dpr = RIO.nitidez(Wc, Hc);
+  [leito, agua].forEach(cv => { cv.width = Math.round(Wc * dpr); cv.height = Math.round(Hc * dpr); cv.style.width = Wc + 'px'; cv.style.height = Hc + 'px'; cv.style.left = ox + 'px'; });
   const ctx = leito.getContext('2d');
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  RIO.leito(ctx, tribs.map(t => ({ curso: t.c })).concat([{ curso: main }]), { fundo: FUNDO });
-  ctx.fillStyle = RIO.css(AGUA); ctx.beginPath(); ctx.arc(main.x[0], main.y[0], 2.6, 0, TAU); ctx.fill();
+  ctx.setTransform(dpr, 0, 0, dpr, -ox * dpr, 0);
+  RIO.leito(ctx, tribs.map(t => ({ curso: t.c })).concat([{ curso: main, aberto: true }]), { fundo: FUNDO });
+  ctx.fillStyle = RIO.css(AGUA); ctx.beginPath(); ctx.arc(main.x[0], main.y[0], desk ? 2.6 : 2.2, 0, TAU); ctx.fill();
   if (reduzido){
     RIO.setas(ctx, main, 'rgba(232,255,236,.5)', desk ? 120 : 90);
     tribs.filter(t => t.sai).forEach(t => RIO.setas(ctx, RIO.inverte(t.c), 'rgba(232,255,236,.6)', 18));
   }
 
-  /* as gotas descem e saem pelo pé do trecho (semFoz): a foz agora fica depois da história */
+  /* as gotas descem e saem pelo pé do trecho (semFoz), já fora da tela: a foz fica depois da história */
   const rotas = [{ rota: main, cor: AGUA, fila: [], leve: true, semFoz: true, taxa: 1 / 5, id: 'nascente' }];
   tribs.forEach(t => {
     const iJ = RIO.primeiro(main.y, t.L.yj);
@@ -1071,7 +1102,7 @@ function rioTrechos(){
   });
   C = { solta: () => {} };
   C.ctl = RIO.correnteza(agua, {
-    W, H, dpr, vel: desk ? 62 : 48, raio: desk ? 2.7 : 2.3, semente: 9,
+    W, H: Hc, dpr, ox, vel: desk ? 62 : 48, raio: desk ? 2.7 : 2.3, semente: 9,
     cursos: tribs.map(t => ({ curso: t.c, id: t.L.id, grupo: t.L.id })).concat([{ curso: main, grupo: 'principal' }]),
     rotas,
     fontes: tribs.map(t => ({ x: t.L.p.x + 4, y: t.L.p.y, cor: t.cor, id: t.L.id, grupo: t.L.id })).concat([{ x: main.x[0], y: main.y[0], cor: AGUA, id: 'nascente' }]),
@@ -1079,11 +1110,10 @@ function rioTrechos(){
   });
   C.solta = RIO.observa(curso, C.ctl);
   C.W = W; C.H = H;
-  /* a saída do rio, para a história (palco) e para o último trecho (#curso-f) */
-  const cores = ESC.map(x => [RGB[x.nivel], 1 + Math.sqrt(x.fila.length) / 3]);
+  /* a saída do rio, para a história (palco) e, sem a história, para a descida até a foto (#curso-f) */
   const antes = window.__rioSaida;
-  window.__rioSaida = { x: laneX, w: wSai, cor: corSai, corEsc: RIO.mistura(cores), W, desk };
-  if (!antes || antes.x !== laneX || antes.W !== W || Math.abs(antes.w - wSai) > 0.5) document.dispatchEvent(new CustomEvent('rio:saida'));
+  window.__rioSaida = { x: laneX, w: wSai, cor: corSai, W, desk };
+  if (!antes || antes.x !== laneX || antes.W !== W || Math.abs(antes.w - wSai) > 0.25 || RIO.css(antes.cor) !== RIO.css(corSai)) document.dispatchEvent(new CustomEvent('rio:saida'));
   /* passar o dedo ou o mouse numa linha acende o afluente dela */
   linhas.forEach(L => {
     if (L.li.dataset.liga) return; L.li.dataset.liga = '1';
@@ -1094,36 +1124,43 @@ function rioTrechos(){
   rioFoz();
 }
 
-/* o último trecho: depois da história, os 40 escândalos descem juntos até a foto dele */
+/* o último trecho: depois da história, a água (na largura e na cor com que sai dela) desce até a foto dele.
+   Perto dele a água é neutra, como no fim da história: nada dele em âmbar ou vermelho. As gotas são os 40
+   escândalos, cada um na sua cor. O canvas começa SOBRA px acima da seção (cobre a emenda). */
 function rioFoz(){
-  const S = window.__rioSaida; if (!S || !cursoF) return;
+  const hist = $('#historia');
+  const S = (hist && !hist.hidden && window.__rioHist) || window.__rioSaida; if (!S || !cursoF) return;
   const W = Math.round(cursoF.clientWidth); if (!W) return;
   if (CF){ CF.solta(); CF = null; }
-  const H = Math.round(cursoF.offsetHeight);
+  const H = Math.round(cursoF.offsetHeight), Hc = H + SOBRA;
   const desk = window.innerWidth >= 900;
   const bx = cursoF.getBoundingClientRect();
   const r = $('#c-disco').getBoundingClientRect();
-  const disco = { x: r.left - bx.left + r.width / 2, y: r.top - bx.top + r.height / 2 }, R = r.width / 2;
-  const x0 = S.x;
-  const pts = RIO.bezier([x0, -2], [x0, disco.y * 0.55], [disco.x, disco.y * 0.4], [disco.x, disco.y], Math.max(30, Math.round(disco.y / 4)));
+  const yE = SOBRA;                                   /* a emenda (o alto da seção), em coordenadas do canvas */
+  const disco = { x: r.left - bx.left + r.width / 2, y: r.top - bx.top + r.height / 2 + yE }, R = r.width / 2;
+  const x0 = S.x, dy = Math.max(40, disco.y - yE);
+  const pts = []; for (let y = yE - EMENDA; y < yE; y += 3) pts.push([x0, y]);
+  RIO.bezier([x0, yE], [x0, yE + dy * 0.55], [disco.x, yE + dy * 0.4], [disco.x, disco.y], Math.max(30, Math.round(dy / 4))).forEach(p => pts.push(p));
   const c = RIO.curso(pts);
-  const w0 = S.w * 1.15;
-  RIO.pinta(c, (i, y, t) => [w0 * (1 + 0.8 * suave((y - (disco.y - R - 50)) / 50)), RIO.mix(S.cor, S.corEsc, suave(t * 1.4))]);
+  /* engrossa rumo à foz e abre na boca, junto da foto */
+  const yBoca = disco.y - R - 56;
+  RIO.pinta(c, (i, y) => [S.w * (1 + 0.24 * suave((y - yE) / dy) + 0.4 * suave((y - yBoca) / 48)), RIO.mix(S.cor, AGUA, suave((y - yE) / 170))]);
+  RIO.organico(c, { amp: 0.08, onda: desk ? 300 : 230, semente: 33, jan: y => suave((y - yE - 30) / 110) * (1 - suave((y - (yBoca - 70)) / 60)) });
   const leito = $('#f-leito'), agua = $('#f-agua');
-  const dpr = RIO.nitidez(W, H);
-  [leito, agua].forEach(cv => { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.width = W + 'px'; cv.style.height = H + 'px'; });
+  const dpr = RIO.nitidez(W, Hc);
+  [leito, agua].forEach(cv => { cv.width = Math.round(W * dpr); cv.height = Math.round(Hc * dpr); cv.style.width = W + 'px'; cv.style.height = Hc + 'px'; cv.style.top = -yE + 'px'; });
   const ctx = leito.getContext('2d');
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  const corFoz = S.corEsc;
+  const corFoz = AGUA;
   RIO.leito(ctx, [{ curso: c }], { fundo: FUNDO, foz: { x: disco.x, y: disco.y, r: R, cor: corFoz, aro: ARO } });
   if (reduzido) RIO.setas(ctx, c, 'rgba(232,255,236,.5)', desk ? 120 : 90);
   CF = { solta: () => {} };
   CF.ctl = RIO.correnteza(agua, {
-    W, H, dpr, vel: desk ? 62 : 48, raio: desk ? 2.7 : 2.3, semente: 13,
+    W, H: Hc, dpr, vel: desk ? 62 : 48, raio: desk ? 2.7 : 2.3, semente: 13,
     cursos: [{ curso: c, grupo: 'principal' }],
     rotas: ESC.map(x => ({ rota: c, cor: RGB[x.nivel], fila: x.fila, leve: !x.fila.length, taxa: x.fila.length ? Math.min(0.3, x.fila.length / 30) : 1 / 24, id: x.id })),
     foz: { x: disco.x, y: disco.y, r: R, cor: corFoz, aro: ARO },
-    janela: () => { const q = cursoF.getBoundingClientRect(); return [-q.top - 40, window.innerHeight - q.top + 40]; },
+    janela: () => { const q = cursoF.getBoundingClientRect(); return [-q.top - 40 + yE, window.innerHeight - q.top + 40 + yE]; },
     aroFixo: true
   });
   CF.solta = RIO.observa(cursoF, CF.ctl);
@@ -1183,6 +1220,9 @@ if ('ResizeObserver' in window){
   let rf = 0;
   new ResizeObserver(() => { if (!CF || Math.abs(cursoF.offsetHeight - CF.H) < 3 && Math.abs(cursoF.clientWidth - CF.W) < 2) return; clearTimeout(rf); rf = setTimeout(rioFoz, 150); }).observe(cursoF);
 }
+/* a história mudou a saída dela (largura, cor, faixa): a descida até a foto parte dali */
+let rh = 0;
+document.addEventListener('rio:hist', () => { if (OG) return; clearTimeout(rh); rh = setTimeout(rioFoz, 40); });
 window.addEventListener('pageshow', e => { if (e.persisted) tudo(); });
 window.__abertura = { bacia: () => B, trechos: () => C, foz: () => CF, saida: () => window.__rioSaida, NOMES, FLUX, ESC, CASOS, SEMANA, VITRINE };
 })();
