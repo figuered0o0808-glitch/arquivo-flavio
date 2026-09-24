@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
 <meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
 <link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=14">
+<link rel="stylesheet" href="assets/header.css?v=15">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
@@ -256,8 +256,9 @@ body[data-trecho="3"] .nv-segue{display:none}
 
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
-<script src="data/dados.js?v=set2026s"></script>
+<script src="data/dados.js?v=set2026u"></script>
 <script src="data/foz.js?v=14"></script>
+<script src="data/zap-mapa.js?v=1"></script>
 <script src="data/foz-curto.js?v=4"></script>
 <script src="data/topicos.js?v=5"></script>
 <script src="assets/compartilhar.js?v=2" defer></script>
@@ -1340,6 +1341,7 @@ function abre(id){
     blocoNumero(e) +
     '<div class="acoes"><button type="button" class="env" data-share="' + esc(e.id) + '">enviar ↗</button>' +
     (AFLUENTE[e.id] ? '<a class="sec afl-dh" href="' + esc(AFLUENTE[e.id][0]) + '">' + esc(AFLUENTE[e.id][1]) + '</a>' : '') +
+    (((window.ZAP_MAPA || {}).foz || {})[e.id] ? '<a class="sec afl-dh" href="zap.html#' + esc(window.ZAP_MAPA.foz[e.id]) + '">a conversa no BolsoZap →</a>' : '') +
     (e.registros ? '<a class="sec" href="drive.html?q=' + encodeURIComponent(e.q || e.busca || e.rotulo) + '#arquivo">' + e.registros + (e.registros === 1 ? ' registro' : ' registros') + '</a>' : '') +
     (mari ? '<a class="sec" href="drive.html?caminho=marielle#rede">na teia</a>' : '') + '</div>' +
     (mari ? ligacoesMarielle(e) + '<div class="cam-mari">' + cadeia + '</div>' : cadeia) +
@@ -1448,6 +1450,6 @@ window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() =
 }, 150); });
 })();
 </script>
-<script src="assets/nav.js?v=5"></script>
+<script src="assets/nav.js?v=7"></script>
 </body>
 </html>

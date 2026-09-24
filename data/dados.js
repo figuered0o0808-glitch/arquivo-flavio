@@ -353,8 +353,8 @@ window.DOSSIE = {
    "tema": "rachadinha",
    "data": "2020-10-19",
    "status": "denuncia",
-   "titulo": "Flávio apontado como 'zero um', líder da organização criminosa",
-   "resumo": "Na denúncia, Flávio Bolsonaro foi apontado como líder da organização criminosa, referido como 'zero um'. Fabrício Queiroz, ex-assessor e amigo da família, foi descrito como operador financeiro do esquema, responsável por arrecadar as devoluções de salários dos servidores entre 2007 e 2018.",
+   "titulo": "Flávio apontado como líder da organização criminosa na denúncia do MP-RJ",
+   "resumo": "Na denúncia, Flávio Bolsonaro foi apontado como líder da organização criminosa. Fabrício Queiroz, ex-assessor e amigo da família, foi descrito como operador financeiro do esquema, responsável por arrecadar as devoluções de salários dos servidores entre 2007 e 2018.",
    "pessoas": [
     "flavio",
     "queiroz"
@@ -364,7 +364,7 @@ window.DOSSIE = {
      "veiculo": "Brasil de Fato",
      "url": "https://www.brasildefato.com.br/2026/04/13/da-rachadinha-a-doacao-de-campanha-do-master-relembre-escandalos-ligados-a-flavio-bolsonaro/",
      "data": "2026-04-13",
-     "trecho": "'Zero um' (Flávio) apontado como líder da organização criminosa e Queiroz como operador",
+     "trecho": "A arrecadação dos valores era feita por Fabrício Queiroz, amigo de longa data da família Bolsonaro e então assessor de Flávio",
      "tier": "referencia"
     },
     {
@@ -830,10 +830,10 @@ window.DOSSIE = {
    "id": "sobre-prisao-de-queiroz-flavio-diz-mais-uma-peca",
    "tipo": "declaracao",
    "tema": "queiroz",
-   "data": "2020-06",
+   "data": "2020-06-18",
    "status": "declaracao",
-   "titulo": "Sobre prisão de Queiroz, Flávio diz: 'mais uma peça foi movida no tabuleiro para atacar Bolsonaro'",
-   "resumo": "Ao comentar a prisão de Queiroz nas redes, Flávio relacionou o caso a uma tentativa de atacar o pai: 'Mais uma peça foi movida no tabuleiro para atacar Bolsonaro. Em 16 anos como deputado no Rio nunca houve uma vírgula contra mim. Bastou o presidente Bolsonaro ser eleito para tudo mudar! O jogo é pesado!'",
+   "titulo": "Sobre prisão de Queiroz, Flávio diz: 'mais uma peça foi movimentada no tabuleiro para atacar Bolsonaro'",
+   "resumo": "Ao comentar a prisão de Queiroz nas redes, Flávio relacionou o caso a uma tentativa de atacar o pai: 'Mais uma peça foi movimentada no tabuleiro para atacar Bolsonaro. Em 16 anos como deputado no Rio nunca houve uma vírgula contra mim. Bastou o Presidente Bolsonaro se eleger para mudar tudo! O jogo é bruto!'",
    "pessoas": [
     "flavio",
     "queiroz",
@@ -843,8 +843,8 @@ window.DOSSIE = {
     {
      "veiculo": "Gazeta do Povo",
      "url": "https://www.gazetadopovo.com.br/republica/ligacoes-de-queiroz-com-familia-bolsonaro-ex-assessor/",
-     "data": "2020",
-     "trecho": "Mais uma peça foi movida no tabuleiro para atacar Bolsonaro",
+     "data": "2020-06-18",
+     "trecho": "Mais uma peça foi movimentada no tabuleiro para atacar Bolsonaro",
      "tier": "referencia"
     }
    ],
@@ -976,7 +976,7 @@ window.DOSSIE = {
    "data": "2020-08",
    "status": "investigacao",
    "titulo": "Cheques de R$ 89 mil de Queiroz para Michelle Bolsonaro",
-   "resumo": "Investigações revelaram 27 cheques de Queiroz somando cerca de R$ 89 mil depositados na conta de Michelle Bolsonaro. Queiroz alegou devolução de empréstimos; Jair Bolsonaro disse depois que os cheques 'eram para ele'. Em 2022 a PGR rejeitou abrir investigação sobre o caso.",
+   "resumo": "Investigações revelaram 27 cheques de Queiroz e da mulher dele somando cerca de R$ 89 mil depositados na conta de Michelle Bolsonaro. Queiroz alegou devolução de empréstimos; Jair Bolsonaro disse depois: 'O dinheiro foi para mim, ponto final'. Em 2022 a PGR rejeitou abrir investigação sobre o caso.",
    "pessoas": [
     "queiroz",
     "michelle",
@@ -986,7 +986,7 @@ window.DOSSIE = {
     {
      "veiculo": "CartaCapital",
      "url": "https://www.cartacapital.com.br/politica/bolsonaro-diz-se-arrepender-de-ter-autorizado-queiroz-a-depositar-cheques-na-conta-de-michelle/",
-     "data": "2020",
+     "data": "2022-08-11",
      "trecho": "Queiroz depositou 27 cheques que somam R$ 89 mil na conta de Michelle Bolsonaro.",
      "tier": "referencia"
     },
@@ -1252,7 +1252,7 @@ window.DOSSIE = {
    "data": "2026-04-12",
    "status": "fato",
    "titulo": "Queiroz vira subsecretário de Segurança de Saquarema (2025)",
-   "resumo": "Após não se eleger, Queiroz foi nomeado subsecretário de Segurança e Ordem Pública de Saquarema (RJ), supervisionando a Guarda Municipal. A nomeação resultou de articulação do ex-prefeito Antonio Peres com Flávio Bolsonaro, evidenciando que segue politicamente protegido.",
+   "resumo": "Após não se eleger, Queiroz foi nomeado subsecretário de Segurança e Ordem Pública de Saquarema (RJ), supervisionando a Guarda Municipal. Segundo interlocutores ouvidos pelo jornal O Globo, a nomeação teria sido articulada pelo ex-prefeito Antonio Peres com Flávio Bolsonaro.",
    "pessoas": [
     "queiroz",
     "flavio",
@@ -3320,7 +3320,7 @@ window.DOSSIE = {
    "data": "2021-03-02",
    "status": "fato",
    "titulo": "Mansão custa quase 4 vezes o patrimônio declarado em 2018",
-   "resumo": "O preço da mansão de Brasília (R$ 6 milhões, sendo R$ 3,1 milhões financiados) equivale a cerca de 3,5 a 4 vezes o patrimônio total de R$ 1,74 milhão declarado por Flávio ao TSE em 2018, alimentando questionamentos sobre a compatibilidade entre a aquisição e a renda do senador.",
+   "resumo": "O preço da mansão de Brasília (R$ 6 milhões, sendo R$ 3,1 milhões financiados) equivale a mais de 3 vezes o patrimônio total de R$ 1,74 milhão declarado por Flávio ao TSE em 2018, alimentando questionamentos sobre a compatibilidade entre a aquisição e a renda do senador.",
    "pessoas": [],
    "fontes": [
     {
@@ -3994,10 +3994,10 @@ window.DOSSIE = {
    "id": "flavio-diz-que-doacao-ligada-a-vorcaro-foi-sem-c",
    "tipo": "declaracao",
    "tema": "master",
-   "data": "2026-03",
+   "data": "2026-03-24",
    "status": "declaracao",
-   "titulo": "Flávio diz que doação ligada a Vorcaro foi 'sem contato nem contrapartida'",
-   "resumo": "Questionado sobre a doação de R$ 3 milhões de Fabiano Zettel à campanha de Jair em 2022, Flávio Bolsonaro afirmou à CNN que ocorreu 'sem qualquer ligação, sem contrapartida, sem contato pessoal'. Disse que a equipe de compliance só verificava se doadores não tinham antecedentes criminais e atribuiu o caso a uma 'narrativa falsa'.",
+   "titulo": "Flávio diz que doação de cunhado de Vorcaro foi 'sem nenhuma contrapartida'",
+   "resumo": "Questionado sobre a doação de R$ 3 milhões de Fabiano Zettel à campanha de Jair em 2022, Flávio Bolsonaro afirmou à CNN que ocorreu 'sem nenhuma vinculação, sem nenhuma contrapartida, sem nenhum contato pessoal, inclusive'. Disse que a equipe de compliance só verificava se doadores não tinham antecedentes criminais e atribuiu o caso a uma 'narrativa falsa'.",
    "observacao": "Versão pública do senador, posterior questionada pela divulgação dos áudios com Vorcaro.",
    "pessoas": [
     "flavio",
@@ -4009,7 +4009,8 @@ window.DOSSIE = {
      "veiculo": "CNN Brasil",
      "url": "https://www.cnnbrasil.com.br/politica/a-cnn-flavio-diz-que-doacao-a-campanha-ligada-a-vorcaro-foi-sem-contato/",
      "trecho": "A doação à campanha ligada a Vorcaro foi 'sem contato'",
-     "tier": "referencia"
+     "tier": "referencia",
+     "data": "2026-03-24"
     }
    ],
    "lastro": "referencia"
@@ -4359,8 +4360,8 @@ window.DOSSIE = {
    "tema": "master",
    "data": "2026-06-02",
    "status": "investigacao",
-   "titulo": "Delação de Vorcaro cita repasses a Flávio (filme) e propina a Ciro Nogueira ('Emenda Master')",
-   "resumo": "Em nova proposta de delação, Vorcaro detalhou os repasses ao filme pedidos por Flávio (segundo a apuração citada pelo Correio Braziliense, R$ 124 mi negociados e pelo menos R$ 60 mi efetivados) e citou pagamentos a Ciro Nogueira em troca da 'Emenda Master', que elevaria o limite de cobertura do FGC. Entregou documentos e gravações de reuniões com Flávio.",
+   "titulo": "Proposta de delação de Vorcaro cita repasses ao filme sobre Jair e pagamentos a Ciro Nogueira ('Emenda Master')",
+   "resumo": "Em nova proposta de delação, segundo fontes ligadas ao caso ouvidas pelo Correio Braziliense, Vorcaro descreveu os repasses ao filme e confirmou os pedidos de dinheiro de Flávio (segundo a apuração citada pelo Correio Braziliense, R$ 124 mi negociados e pelo menos R$ 60 mi efetivados) e citou pagamentos a Ciro Nogueira em troca da 'Emenda Master', que elevaria o limite de cobertura do FGC.",
    "pessoas": [],
    "fontes": [
     {

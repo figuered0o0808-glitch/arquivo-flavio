@@ -143,6 +143,8 @@
     }).join('');
     return `<div class="moneyflow-card"><div class="pc-h">💰 Siga o dinheiro</div>${rows}<div class="pc-src">${esc(f.nota||'')}</div></div>`;
   }
+  // a conversa da pessoa no BolsoZap (data/zap-mapa.js), quando existe
+  function zapLink(id){ const c=((window.ZAP_MAPA||{}).grafo||{})[id]; return c?` <a class="backlink" href="zap.html#${esc(c)}">» a conversa no BolsoZap</a>`:''; }
   // presos ou condenados com ligação DIRETA a ele (não a rede inteira)
   function presosDiretos(){
     const g=D.grafo||{nodes:[],edges:[]}; const viz=new Set();
@@ -719,7 +721,7 @@
       const lista = its.map(i=>`<div class="vrow" data-item="${i.id}" style="cursor:pointer"><b>${esc(tit(i.titulo))}</b> ${badge(i.status)}</div>`).join('');
       painel.innerHTML = `<button class="backlink" id="ov-back">← placar</button>
         <h3>${esc(n.nome)}</h3><div class="papel">${esc(n.papel||'')}${n.status?` · ${esc(n.status)}${sitFonte(n)}`:''}</div>
-        <button class="backlink" id="ov-ficha" style="margin:10px 0 0">» ficha completa</button>
+        <button class="backlink" id="ov-ficha" style="margin:10px 0 0">» ficha completa</button>${zapLink(id)}
         ${fozHTML(id)}
         <div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase">Vínculos (${edges.filter(e=>e.de===id||e.para===id).length})</div>${viz||'<div class="ph">—</div>'}</div>
         ${its.length?`<div class="vlist"><div class="lbl" style="color:#6c7280;font-size:11px;text-transform:uppercase;margin-top:6px">No arquivo</div>${lista}</div>`:''}`;
@@ -798,7 +800,7 @@
         h = `<div class="tc-top"><b class="tc-nome">${esc(n.nome)}</b><button type="button" class="tc-x" aria-label="limpar seleção">×</button></div>
           ${n.papel?`<p class="tc-papel">${esc(n.papel)}</p>`:''}
           ${n.status?`<p class="tc-sit">${esc(n.status)}${sitFonte(n)}</p>`:''}
-          <div class="tc-a"><button type="button" class="tc-ficha">ficha completa</button><span class="tc-viz">${nv} ${nv===1?'vínculo aceso':'vínculos acesos'} no mapa</span></div>`;
+          <div class="tc-a"><button type="button" class="tc-ficha">ficha completa</button>${zapLink(sel)}<span class="tc-viz">${nv} ${nv===1?'vínculo aceso':'vínculos acesos'} no mapa</span></div>`;
       } else if(caminho){
         const C=CAMINHOS[caminho.chave]||{};
         h = `<div class="tc-top"><b class="tc-nome">${esc(C.titulo||'')}</b><button type="button" class="tc-x" aria-label="sair do caminho">×</button></div>

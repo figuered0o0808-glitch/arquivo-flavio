@@ -681,7 +681,7 @@ window.DARKHORSE = {
    "gotas": 0,
    "ponto": null,
    "rot": "22/09 · EUA sancionam a mulher de Moraes",
-   "lista": "Os EUA estendem a Lei Magnitsky à mulher de Moraes. Eduardo: “Cúmplices de Moraes sancionados.”",
+   "lista": "Os EUA estendem a Lei Magnitsky à mulher de Moraes.",
    "refs": [
     "magnitsky-mulher-moraes"
    ],

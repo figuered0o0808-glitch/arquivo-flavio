@@ -7,7 +7,8 @@
      (na abertura, index.html, data-trecho acompanha os trechos 01/02/03 da própria página e volta a 0 no topo)
      <header class="site-header" data-nav></header>
      <link rel="stylesheet" href="assets/header.css">  e, no fim do body,  <script src="assets/nav.js"></script>
-   Em drive.html, a troca de view muda data-trecho e chama window.BDNav.atualiza(). */
+   Em drive.html, a troca de view muda data-trecho e chama window.BDNav.atualiza().
+   BolsoZap (zap.html, data-trecho="m"): a 1ª margem do mapa; no desktop também um link direto na linha (.nv-zap). */
 (function(){
   'use strict';
   var doc = document, body = doc.body, raiz = doc.documentElement;
@@ -39,6 +40,7 @@
      afluentes:[{id:'dark-horse', nome:'Dark Horse', href:'dark-horse.html', desc:'o dinheiro do filme, mês a mês', volta:'foz.html#master'}]}
   ];
   var MARGENS = [
+    {id:'zap',        nome:'BolsoZap',         href:'zap.html'},
     {id:'recente',    nome:'Recentemente',     href:'drive.html#recente'},
     {id:'arquivo',    nome:'Arquivo',          href:'drive.html#arquivo'},
     {id:'cronologia', nome:'Cronologia',       href:'drive.html#cronologia'},
@@ -67,6 +69,7 @@
   function descDe(x){ return typeof x.desc === 'function' ? x.desc() : (x.desc || ''); }
   function margemAtual(){
     var p = pagina();
+    if (p === 'zap.html') return 'zap';
     if (p === 'quiz.html') return 'quiz';
     if (p === 'close-friends.html') return 'orbita';
     if (p === 'drive.html'){
@@ -121,6 +124,7 @@
       marca() +
       '<span class="nv-aqui" id="nv-aqui"></span>' +
       '<nav class="nv-trechos" id="nv-trechos" aria-label="Trechos do rio"></nav>' +
+      '<a class="nv-zap" id="nv-zap" href="zap.html">BolsoZap</a>' +     // desktop: a aba BolsoZap direto na linha (no celular, só no mapa)
       '<button type="button" class="nv-bt" id="nv-bt" aria-expanded="false" aria-controls="nv-mapa">' +
         '<span class="nv-bt-m">rio</span><span class="nv-bt-d" id="nv-bt-d">margens</span></button>' +
     '</div>' +
@@ -192,8 +196,11 @@
       return '<a href="' + x.href + '"' + atual(i) + '><span class="nv-n">' + i + '</span>' + esc(x.nome) + '</a>';
     }).join('');
     el('nv-trechos').classList.toggle('com-afl', !!afl);
-    el('nv-bt-d').textContent = mg ? 'margem: ' + mg.nome : 'margens';
-    bt.classList.toggle('nv-bt-margem', !!mg);
+    /* no BolsoZap o link da linha já marca onde a pessoa está: o botão fica "margens" */
+    var zapAqui = !!mg && mg.id === 'zap';
+    el('nv-bt-d').textContent = mg && !zapAqui ? 'margem: ' + mg.nome : 'margens';
+    bt.classList.toggle('nv-bt-margem', !!mg && !zapAqui);
+    if (zapAqui) el('nv-zap').setAttribute('aria-current', 'page'); else el('nv-zap').removeAttribute('aria-current');
 
     /* mapa */
     el('nv-lista').innerHTML = TRECHOS.map(function(x, i){
@@ -252,7 +259,27 @@
   window.addEventListener('scroll', function(){ if (!raf && tAtual >= 0 && tAtual < TRECHOS.length - 1) raf = requestAnimationFrame(progresso); }, {passive:true});
 
   /* --hdr: altura real do cabeçalho, para o scroll-padding-top e os títulos grudados */
-  function medir(){ raiz.style.setProperty('--hdr', hdr.offsetHeight + 'px'); }
+  function medir(){ cabeLinha(); raiz.style.setProperty('--hdr', hdr.offsetHeight + 'px'); }
+  /* desktop: se a linha não cabe (os trechos transbordariam por cima do logo), aperta os trechos; se ainda não couber,
+     tira o link BolsoZap da linha (ele segue no mapa). Mede a largura natural de cada item, não a da caixa. */
+  var linha = hdr.querySelector('.nv-row');
+  function excede(){
+    var cs = getComputedStyle(linha), gap = parseFloat(cs.columnGap) || 0, tr = el('nv-trechos'), gt = parseFloat(getComputedStyle(tr).columnGap) || 0;
+    var soma = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight), n = 0;
+    Array.prototype.forEach.call(linha.children, function(x){
+      if (getComputedStyle(x).display === 'none') return;
+      n++;
+      if (x !== tr){ soma += x.getBoundingClientRect().width; return; }
+      Array.prototype.forEach.call(tr.children, function(a, i){ soma += a.getBoundingClientRect().width + (i ? gt : 0); });
+    });
+    return soma + gap * Math.max(0, n - 1) > linha.clientWidth + 0.5;
+  }
+  function cabeLinha(){
+    linha.classList.remove('nv-aperta', 'nv-sem-zap');
+    if (!mqDesk.matches) return;
+    if (excede()) linha.classList.add('nv-aperta');
+    if (excede()) linha.classList.add('nv-sem-zap');
+  }
   window.addEventListener('resize', function(){ medir(); progresso(); });
 
   /* ---------- o mapa: tela cheia no celular, menu das margens no desktop ---------- */

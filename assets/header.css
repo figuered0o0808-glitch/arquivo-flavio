@@ -63,6 +63,8 @@
 
 /* os 4 trechos em linha: só no desktop */
 .nv-trechos{display:none}
+/* BolsoZap: link direto na linha, só no desktop (no celular fica no mapa); sem cor de destaque e sem colchetes (não é trecho) */
+.nv-zap{display:none}
 
 /* a linha do curso: 4 estações, da nascente à foz */
 .nv-curso{position:relative; height:8px; max-width:1180px; margin:0 auto}
@@ -156,6 +158,14 @@ body.nv-na-margem .nv-segue .nv-k2{color:#86a58c}
   .nv-trechos a:hover{color:#d8efdd; border-color:rgba(116,255,150,.32)}
   .nv-trechos a[aria-current]{background:#ffb02e; color:#120c00; border-color:#ffb02e}
   .nv-trechos a[aria-current] .nv-n{color:#6b4a00}
+  .nv-zap{
+    flex:none; display:flex; align-items:center; min-height:34px; padding:0 9px;
+    font-family:var(--nv-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; white-space:nowrap;
+    color:#86a58c; text-decoration:none!important; border:1px solid rgba(116,255,150,.18); border-radius:4px;
+  }
+  .nv-zap:hover{color:#d8efdd; border-color:rgba(116,255,150,.32)}
+  .nv-zap[aria-current]{color:#d8efdd; border-color:#ffb02e}
+  .nv-zap:focus-visible{outline:2px solid #ffb02e; outline-offset:2px}
   .nv-bt{min-height:34px; font-size:11px; max-width:230px; overflow:hidden; text-overflow:ellipsis}
   .nv-bt .nv-bt-m{display:none}
   .nv-bt .nv-bt-d{display:inline}
@@ -185,5 +195,11 @@ body.nv-na-margem .nv-segue .nv-k2{color:#86a58c}
   .nv-trechos.com-afl a{padding:0 7px}
   .nv-trechos.com-afl a::before,.nv-trechos.com-afl a::after{content:none}
 }
-@media (min-width:1100px){ .nv-trechos a{font-size:12px; padding:0 10px} .nv-bt{font-size:12px} .nv-row .nv-mark .nv-logo{height:20px; width:204px} }
-@media (min-width:900px) and (pointer:coarse){ .nv-trechos a,.nv-bt{min-height:44px} }
+/* a linha não cabe (nav.js mede; ex.: o botão "margem: A rede em órbita" a 900 px): primeiro os trechos sem colchetes,
+   depois, se ainda não couber, o link BolsoZap sai da linha (continua no mapa) */
+.nv-row.nv-aperta .nv-trechos{gap:4px}
+.nv-row.nv-aperta .nv-trechos a{padding:0 7px}
+.nv-row.nv-aperta .nv-trechos a::before,.nv-row.nv-aperta .nv-trechos a::after{content:none}
+.nv-row.nv-sem-zap .nv-zap{display:none}
+@media (min-width:1100px){ .nv-trechos a,.nv-zap{font-size:12px; padding:0 10px} .nv-bt{font-size:12px} .nv-row .nv-mark .nv-logo{height:20px; width:204px} }
+@media (min-width:900px) and (pointer:coarse){ .nv-trechos a,.nv-zap,.nv-bt{min-height:44px} }

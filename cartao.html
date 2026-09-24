@@ -12,6 +12,13 @@
      (96 → 64 px); "hora" = mono, numa linha; "citacao" = fala em --tinta com as aspas em âmbar, até 3 linhas
      (76 → 52 px); "fita" = o número e, embaixo, uma gota por unidade (o número inicial de n, até 20).
      cor:"tinta" põe o destaque em --tinta (a situação dele, nunca em âmbar), em qualquer tipo.
+     "zap" (BolsoZap, tópicos de data/topicos-zap.js): outro desenho. À esquerda (520 px) o logo, BOLSOZAP, o nome da
+     conversa, o gancho (n em âmbar só quando é número, l) e a situação em --tinta; à direita (600 px) um trecho de
+     conversa MARCADO, com cartao.zap = {av, t:"e"|"p", sit, sis:{t,d,ic}|null, msgs:[{de, cat, d, t|null, q|null}]}:
+     até 1 pílula e 2 balões em ordem de data, a fonte como remetente e a data em cada balão, marca d'água BOLSOZAP;
+     sob o nome no cabeçalho do painel, a linha "conversa montada pelo BolsoZap · cada mensagem tem fonte";
+     embaixo, a faixa "Montado com reportagens e documentos públicos". Sem moldura de celular, relógio, tiques,
+     "online", campo de digitar, foto, nem nome ou logo de app de mensagens.
      As imagens c/img/<id>.png saem daqui (bolso-os-fontes/gera_compartilhar.py). -->
 <style>
 :root{--papel:#070a07; --tinta:#d8efdd; --cinza:#86a58c; --cinza2:#4f6b51; --amber:#ffb02e; --agua:#7df59a;
@@ -31,6 +38,41 @@ html,body{margin:0; padding:0; background:var(--papel)}
 .num .aspa{color:var(--amber)}
 .fita{display:block; width:800px; height:34px; margin:-2px 0 14px; overflow:visible}
 svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
+/* ---- tipo "zap" (BolsoZap): nada acima muda; tudo abaixo só vale dentro de .c.zap ---- */
+.c.zap .txt,.c.zap svg.rio{display:none}
+.zc{position:absolute; left:64px; top:100px; width:456px}
+.zk{font-family:var(--mono); font-size:22px; font-weight:700; letter-spacing:.12em; color:var(--agua); margin:0 0 16px; white-space:nowrap}
+.zk small{font-size:15px; letter-spacing:.08em; color:var(--cinza)}
+.zn{font-size:56px; font-weight:800; line-height:1.04; letter-spacing:-.015em; margin:0 0 14px}
+.zg{font-size:64px; font-weight:800; line-height:1.02; letter-spacing:-.03em; color:var(--amber); white-space:nowrap; margin:0 0 6px}
+.zl{font-size:32px; line-height:1.22; color:#b3cdb8; margin:0; text-wrap:pretty}
+.zs{font-size:24px; line-height:1.3; color:var(--tinta); margin:20px 0 0; padding-top:14px; border-top:1px solid rgba(116,255,150,.2); text-wrap:pretty}
+.zp{position:absolute; left:560px; top:36px; width:600px; height:522px; border-radius:16px; overflow:hidden;
+  box-shadow:0 0 0 1px rgba(255,255,255,.07); background:#0b141a var(--zmarca) 0 0/300px 300px repeat;
+  --zmarca:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='.06' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M-10 70c40-18 80 18 120 0s80-18 120 0 60 12 80 4'/%3E%3Cpath d='M-10 84c40-18 80 18 120 0s80-18 120 0 60 12 80 4'/%3E%3Cpath d='M-10 222c40-18 80 18 120 0s80-18 120 0 60 12 80 4'/%3E%3C/g%3E%3Cg fill='%23fff' fill-opacity='.05' font-family='Arial,sans-serif' font-weight='700' font-size='19' letter-spacing='4'%3E%3Ctext x='24' y='142'%3EBOLSOZAP%3C/text%3E%3Ctext x='160' y='284'%3EBOLSOZAP%3C/text%3E%3C/g%3E%3C/svg%3E")}
+.zh{height:64px; box-sizing:border-box; background:#202c33; display:flex; align-items:center; gap:14px; padding:0 22px}
+.zav{flex:none; width:42px; height:42px; display:flex; align-items:center; justify-content:center; border-radius:50%;
+  background:#2a3942; color:#d1d7db; font-size:16px; font-weight:600; letter-spacing:.02em}
+.zav.e{border-radius:10px}
+.zhc{display:flex; flex-direction:column; min-width:0}
+.zhn{font-size:24px; font-weight:500; line-height:1.2; color:#e9edef; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.zhs{font-size:16px; line-height:1.25; color:#8696a0; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.zb{position:absolute; top:64px; left:0; right:0; bottom:0; box-sizing:border-box; padding:16px 26px 16px 34px;
+  display:flex; flex-direction:column; justify-content:center; gap:14px}
+.zsis{align-self:center; max-width:100%; box-sizing:border-box; margin:0; padding:7px 16px; border-radius:10px;
+  background:#182229; color:#9aa6ae; font-size:20px; font-weight:500; line-height:1.35; text-align:center; text-wrap:balance}
+.zsis svg,.zr svg{width:1em; height:1em; vertical-align:-.14em; margin-right:.35em; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round}
+.zm{align-self:flex-start; position:relative; max-width:100%; box-sizing:border-box; margin:0; padding:9px 16px 7px;
+  background:#202c33; color:#e9edef; border-radius:0 14px 14px 14px}
+.zm::before{content:""; position:absolute; left:-11px; top:0; width:12px; height:15px; background:#202c33; clip-path:polygon(0 0,100% 0,100% 100%)}
+.zde{font-size:22px; font-weight:600; line-height:1.25; margin:0 0 4px; color:#9fd8c4}
+.zde.inst{color:#c7b8f5}
+.zq{background:#1a252c; border-left:4px solid #8696a0; border-radius:6px; padding:7px 14px 9px; margin:6px 0 2px}
+.zqq{font-size:19px; line-height:1.3; color:#8696a0; margin:0 0 3px}
+.zqt,.zt{font-size:var(--zf,28px); line-height:1.28; margin:0; text-wrap:pretty}
+.zd{font-size:20px; line-height:1.2; color:#8696a0; text-align:right; margin:3px 0 0; font-variant-numeric:tabular-nums}
+.zr{position:absolute; left:0; right:0; bottom:0; height:44px; box-sizing:border-box; display:flex; align-items:center; padding:0 64px;
+  background:#0b120b; border-top:1px solid rgba(116,255,150,.18); font-size:17px; color:#86a58c; white-space:nowrap}
 </style>
 </head>
 <body>
@@ -45,6 +87,7 @@ svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
   <svg class="rio" id="rio" viewBox="0 0 330 630" aria-hidden="true"></svg>
 </div>
 <script src="data/topicos.js?v=5"></script>
+<script src="data/topicos-zap.js?v=4"></script>
 <script>
 (function(){
 'use strict';
@@ -53,6 +96,7 @@ const id = new URLSearchParams(location.search).get('id') || 'abertura';
 const t = T[id] || T.abertura || { cartao: { k: 'Flávio Bolsonaro', nome: 'Um rio de escândalos', n: '', l: '' } };
 const c = t.cartao || {};
 const $ = s => document.getElementById(s);
+if (c.tipo === 'zap') return zap();   /* o BolsoZap tem desenho próprio (fim do arquivo); os outros tipos seguem abaixo, intactos */
 $('k').textContent = c.k || 'Flávio Bolsonaro';
 $('nome').textContent = c.nome || '';
 const TIPO = ({texto:1, hora:1, citacao:1, fita:1})[c.tipo] ? c.tipo : '';   /* "numero" e desconhecidos: o de sempre */
@@ -156,6 +200,111 @@ function ajustaFrase(){
   document.documentElement.dataset.pronto = '1';
 }
 (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(ajusta);
+
+/* ---------- tipo "zap" (BolsoZap): um trecho de conversa MARCADO, que não parece print de conversa privada ----------
+   Quem envia é a fonte (veículo ou "PF · áudio obtido"); a fala de pessoa só entra como citação, com quem e o meio;
+   data em cada balão e na pílula; sem hora, tique, "online", relógio ou campo de digitar. A situação fica em --tinta. */
+function zap(){
+  const z = c.zap || {}, cx = $('c');
+  const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  const nb = s => String(s || '').replace(/(\d) (?=mil\b|milh|bilh)/g, '$1 ').replace(/R\$ (?=\d)/g, 'R$ ');
+  const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  const data = d => { const m = String(d || '').match(/^(\d{4})(?:-(\d\d))?(?:-(\d\d))?/);
+    return !m ? '' : m[3] ? m[3] + '/' + m[2] + '/' + m[1] : m[2] ? MES[+m[2] - 1] + '/' + m[1] : m[1]; };
+  const ordem = d => { const s = String(d || ''); return s.length === 4 ? s + '-12-31' : s.length === 7 ? s + '-31' : s; };   /* mês e ano contam como o fim */
+  const ICO = {
+    justica: '<path d="M12 4v16M7 20h10M5 7h14M5 7l-3 6.5a3 3 0 0 0 6 0zM19 7l-3 6.5a3 3 0 0 0 6 0z"/>',
+    policia: '<path d="M12 3l7 3v5.5c0 4.6-3 8.2-7 9.5-4-1.3-7-4.9-7-9.5V6z"/>',
+    revelacao: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.7-1.5"/>',
+    temporario: '<circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 2M9.5 2.5h5"/>',
+    cargo: '<circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5M19 8v6M16 11h6"/>',
+    cadeado: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'
+  };
+  const ico = k => ICO[k] ? '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICO[k] + '</svg>' : '';
+  document.documentElement.dataset.tipo = 'zap';
+  document.title = (c.nome || 'BolsoZap') + ' · cartão';
+  cx.classList.add('zap');
+
+  /* esquerda: BOLSOZAP · de quem se trata, o nome da conversa, o gancho e a situação */
+  const col = mk('div', 'zc'), kk = mk('p', 'zk'), quem = String(c.k || 'Flávio Bolsonaro').split(' · ')[0];
+  const aba = /^bolsozap$/i.test(c.nome || '');
+  kk.textContent = aba ? quem.toUpperCase() : 'BOLSOZAP';
+  if (!aba && quem){ kk.appendChild(document.createTextNode(' ')); kk.appendChild(mk('small', '', '· ' + quem.toUpperCase())); }
+  const nome = mk('p', 'zn', c.nome || 'BolsoZap');
+  const g = c.n ? mk('p', 'zg', nb(c.n)) : null;            /* número em âmbar; nunca a situação dele */
+  const l = mk('p', 'zl', nb(c.l));
+  const s = z.sit ? mk('p', 'zs', z.sit) : null;            /* a situação: --tinta, neutra */
+  col.append(kk, nome);
+  if (g) col.append(g);
+  col.append(l);
+  if (s) col.append(s);
+
+  /* direita: o trecho (até 1 pílula e 2 balões, em ordem de data) */
+  const p = mk('div', 'zp'), h = mk('div', 'zh'), b = mk('div', 'zb');
+  /* embaixo do nome, como a linha de status do app: o recorte do painel, sozinho, não passa por conversa privada */
+  const hc = mk('span', 'zhc');
+  hc.append(mk('span', 'zhn', c.nome || 'BolsoZap'), mk('span', 'zhs', 'conversa montada pelo BolsoZap · cada mensagem tem fonte'));
+  h.append(mk('span', 'zav' + (z.t === 'p' ? '' : ' e'), z.av || ''), hc);
+  const itens = (z.msgs || []).slice(0, 2).map(m => ({d: m.d, m: m}));
+  if (z.sis && z.sis.t) itens.push({d: z.sis.d, s: z.sis});
+  itens.sort((x, y) => ordem(x.d) < ordem(y.d) ? -1 : ordem(x.d) > ordem(y.d) ? 1 : 0);
+  let pil = null;
+  itens.forEach(x => {
+    if (x.s){
+      pil = mk('p', 'zsis'); pil.innerHTML = ico(x.s.ic);
+      pil.appendChild(document.createTextNode(x.s.t + (x.s.d ? ' · ' + data(x.s.d) : '')));
+      b.append(pil); return;
+    }
+    const m = x.m, bal = mk('div', 'zm');
+    bal.append(mk('p', 'zde' + (m.cat === 'inst' ? ' inst' : ''), m.de || ''));
+    if (m.q && m.q.t){
+      const q = mk('div', 'zq');
+      q.append(mk('p', 'zqq', [m.q.quem, m.q.meio].filter(Boolean).join(' · ')));
+      q.append(mk('p', 'zqt', '“' + String(m.q.t).replace(/^[“"]+|[”"]+$/g, '') + '”'));
+      bal.append(q);
+    }
+    if (m.t) bal.append(mk('p', 'zt', nb(m.t)));
+    bal.append(mk('p', 'zd', data(m.d)));
+    b.append(bal);
+  });
+  p.append(h, b);
+  const r = mk('div', 'zr');
+  r.innerHTML = ico('cadeado');
+  r.appendChild(document.createTextNode('Montado com reportagens e documentos públicos · cada mensagem tem fonte'));
+  cx.append(col, p, r);
+
+  /* ajuste: nada é cortado; as fontes descem até caber (balão: 30 → 28 px; abaixo disso, só em último caso) */
+  function ajustaZap(){
+    const H = 462, W = 456;                                     /* a coluna vai de y = 100 a 24 px acima da faixa */
+    const px = (e, v) => { e.style.fontSize = v + 'px'; return v; };
+    const linhas = e => Math.round(e.offsetHeight / parseFloat(getComputedStyle(e).lineHeight));
+    const alto = () => col.offsetHeight;
+    let ns = 56, gs = 64, ls = 32, ss = 24;
+    while ((linhas(nome) > 2 || nome.scrollWidth > W) && ns > 40) ns = px(nome, ns - 2);
+    if (g){ while (g.scrollWidth > W && gs > 40) gs = px(g, gs - 2); if (g.scrollWidth > W) g.style.whiteSpace = 'normal'; }
+    while (linhas(l) > 3 && ls > 24) ls = px(l, ls - 1);
+    while (alto() > H && ls > 24) ls = px(l, ls - 1);
+    while (alto() > H && ns > 40) ns = px(nome, ns - 2);
+    while (g && alto() > H && gs > 44) gs = px(g, gs - 2);
+    while (s && alto() > H && ss > 19) ss = px(s, ss - 1);
+    col.style.top = Math.round(100 + Math.max(0, H - alto()) / 2) + 'px';
+
+    const precisa = () => { const ch = Array.prototype.slice.call(b.children);
+      return ch.reduce((a, e) => a + e.offsetHeight, 0) + 14 * Math.max(0, ch.length - 1) + 32; };
+    const tx = b.querySelectorAll('.zqt,.zt');
+    const maxL = () => Array.prototype.reduce.call(tx, (a, e) => Math.max(a, linhas(e)), 0);
+    let f = 30, fp = 20;
+    b.style.setProperty('--zf', f + 'px');
+    while ((precisa() > b.clientHeight || maxL() > 3) && f > 28) b.style.setProperty('--zf', (f -= 1) + 'px');   /* até 3 linhas por balão */
+    while (pil && precisa() > b.clientHeight && fp > 17) fp = px(pil, fp - 1);
+    while (precisa() > b.clientHeight && f > 22) b.style.setProperty('--zf', (f -= 1) + 'px');   /* último recurso: menor, mas inteiro */
+    document.documentElement.dataset.zapFonte = String(f);
+    document.documentElement.dataset.zapLinhas = String(maxL());
+    document.documentElement.dataset.zapCabe = String(alto() <= H && precisa() <= b.clientHeight ? 1 : 0);
+    document.documentElement.dataset.pronto = '1';
+  }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(ajustaZap);
+}
 })();
 </script>
 </body>
