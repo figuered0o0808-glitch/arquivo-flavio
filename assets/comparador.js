@@ -6,7 +6,8 @@
      comparacoes[]                 um botão por item; as contas (conta.pago / conta.pedido) vêm prontas do gerador
    Nada é calculado aqui além do desenho: o número, a unidade e o qualificador ("mais de", "quase") são os do gerador.
    Âncoras: dark-horse.html#dh-custa-<id> abre já no item (e rola até o resultado). O item com so:"pedido" (Oscar)
-   troca a base sozinho. Verbos: "cabe" (filmes), "equivale" (serviços), "para juntar" (salário).
+   troca a base sozinho. Verbos: "cabe" (filmes), "para juntar" (salário); "equivale" fica para o modo "unidades".
+   D5 (26/09/2026): só cinema e trabalho — os R$ 60 milhões são dinheiro privado; nenhuma comparação com serviço público.
    Teste: window.__cmp = { estado(), item(id), base(b) }. */
 (function(){
 'use strict';
@@ -35,18 +36,10 @@ var CHEIAS = BASES.pago.gotas;                                          /* 60 ch
 var ICONES = {
   filme: { cheio: '<path fill-rule="evenodd" d="M1 3h14v10H1z M2.3 4.3h1.3v1.4H2.3z M2.3 7.3h1.3v1.4H2.3z M2.3 10.3h1.3v1.4H2.3z M12.4 4.3h1.3v1.4h-1.3z M12.4 7.3h1.3v1.4h-1.3z M12.4 10.3h1.3v1.4h-1.3z M4.9 4.3h6.2v7.4H4.9z"/>',
            contorno: '<path fill="none" stroke="currentColor" stroke-width="1.2" d="M1.6 3.6h12.8v8.8H1.6z"/>' },
-  posto: { cheio: '<path fill-rule="evenodd" d="M8 1.2 15 7.3V14.8H1V7.3z M7 7.4h2v2.1h2.1v2H9v2.1H7v-2.1H4.9v-2H7z"/>',
-           contorno: '<path fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" d="M8 2 14.4 7.6V14.2H1.6V7.6z"/>' },
-  creche: { cheio: '<path fill-rule="evenodd" d="M8 1.2 15 7.3V14.8H1V7.3z M8 6.4a1.8 1.8 0 1 0 0.001 0z M6.6 11.2h2.8v3.6H6.6z"/>',
-           contorno: '<path fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" d="M8 2 14.4 7.6V14.2H1.6V7.6z"/>' },
-  casa:  { cheio: '<path fill-rule="evenodd" d="M8 1.2 15 7.3V14.8H1V7.3z M6.7 10h2.6v4.8H6.7z"/>',
-           contorno: '<path fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" d="M8 2 14.4 7.6V14.2H1.6V7.6z"/>' },
-  ambulancia: { cheio: '<path fill-rule="evenodd" d="M.8 3.6h9.4v2.9h3l2 2.8v2.9H.8z M4.8 5h1.4v1.4h1.4v1.4H6.2v1.4H4.8V7.8H3.4V6.4h1.4z"/><circle cx="4.2" cy="12.4" r="1.9" stroke="#070a07" stroke-width="1"/><circle cx="11.9" cy="12.4" r="1.9" stroke="#070a07" stroke-width="1"/>',
-           contorno: '<path fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" d="M1.4 4.2h8.2v2.9h3.3l1.7 2.4v2.4H1.4z"/>' },
   ano:   { cheio: '<rect x="6.4" y="1" width="3.2" height="14" rx="1"/>',
            contorno: '<rect x="7" y="1.6" width="2" height="12.8" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/>' }
 };
-var PLURAL = { filme:'filmes', posto:'postos de saúde', creche:'creches', casa:'moradias', ambulancia:'ambulâncias', ano:'anos' };
+var PLURAL = { filme:'filmes', ano:'anos' };
 function simbolos(){
   var s = '';
   Object.keys(ICONES).forEach(function(k){
@@ -142,7 +135,7 @@ function monta(sec){
           '<div class="cmp-pic" aria-hidden="true"></div>' +
           '<p class="cmp-escala" hidden></p>' +
           '<p class="cmp-base"></p>' +
-          '<button type="button" class="cmp-env" data-share="dh-custa">enviar ↗</button>' +
+          '<button type="button" class="cmp-env env" data-share="dh-custa">enviar ↗</button>' +
         '</div>' +
       '</div>' +
     '</div>';

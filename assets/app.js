@@ -10,11 +10,26 @@
   const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
   const temaById = Object.fromEntries(D.temas.map(t=>[t.id,t]));
   const nodeById = Object.fromEntries((D.grafo?.nodes||[]).map(n=>[n.id,n]));
+  // Fato ou manchete que gira em torno de Lula ou do PT fica na base, mas fora de toda lista
+  // (Recentemente, Arquivo, Cronologia, Notícias, FlávioGPT): o site não trata deles.
+  const VIS = (D.itens||[]).filter(i=>!FORA(i.titulo));
 
+  // Chip de status: um só desenho, mono, borda neutra; vermelho só para condenado ou preso.
+  // Nenhuma outra cor (o azul de "Declaração", o violeta de "Acordo") — a cor seria lida como juízo.
+  // Tokens de situação de pessoa (n.situacao): denúncia anulada/arquivada (token 'arquivada') é neutra.
+  const SITU = {
+    preso:{rotulo:'preso', grave:true}, condenado:{rotulo:'condenado', grave:true},
+    denunciado:{rotulo:'denunciado'}, investigado:{rotulo:'investigado'}, arquivada:{rotulo:'denúncia anulada'}
+  };
   function badge(st){
-    const s = D.status[st] || {rotulo:st,cor:'var(--muted)'};
-    return `<span class="badge" style="color:${s.cor}">${esc(s.rotulo)}</span>`;
+    const s = D.status[st] || SITU[st] || {rotulo:st};
+    const grave = st==='condenacao' || !!s.grave;
+    return `<span class="chip${grave?' chip-grave':''}">${esc(s.rotulo)}</span>`;
   }
+  // etiqueta de tema (Recentemente, Cronologia): cinza, com acento; nada de cor por pasta
+  const TEMA_ROT = {rachadinha:'Rachadinha', queiroz:'Queiroz', milicia:'Milícia', juridico:'Jurídico', mansao:'Mansão', master:'Master',
+    patrimonio:'Patrimônio', senado:'Senado', eleicoes:'Eleições', declaracoes:'Declarações', familia:'Família'};
+  const chipTema = id => `<span class="chip chip-tema">${esc(TEMA_ROT[id] || (temaById[id]?temaById[id].nome:id||''))}</span>`;
   // selo de procedência (tier da fonte)
   const TIER = {
     primaria:  {rotulo:'PRIMÁRIA',  cor:'#57f08a'},
@@ -45,8 +60,8 @@
       });
     });
   }
-  const itensDoTema = id => D.itens.filter(i=>i.tema===id);
-  const itensDaPessoa = pid => D.itens.filter(i=>(i.pessoas||[]).includes(pid));
+  const itensDoTema = id => VIS.filter(i=>i.tema===id);
+  const itensDaPessoa = pid => VIS.filter(i=>(i.pessoas||[]).includes(pid));
 
   // A Foz (data/foz.js): por quais rios cada nome passa. Só vale o que a cadeia registra
   // (de_id/para_id de cada elo); nome fora da cadeia não ganha link.
@@ -59,7 +74,7 @@
     const n = nodeById[id]; if(!n) return '';
     if(id==='flavio'){
       const k = (FOZ.escandalos||[]).length;
-      return k ? `<div class="foz-liga"><a href="foz.html">A Foz: ${k} escândalos chegam a ele →</a></div>` : '';
+      return k ? `<div class="foz-liga"><a href="foz.html">A Foz: os ${k} casos e como chegam a ele →</a></div>` : '';
     }
     const es = fozPorNome[id] || []; if(!es.length) return '';
     return `<div class="foz-liga"><div class="fl-k">Nos escândalos: ${es.length} ${es.length===1?'rio passa':'rios passam'} por ${esc(n.nome)}</div>` +
@@ -146,13 +161,32 @@
   // a conversa da pessoa no BolsoZap (data/zap-mapa.js), quando existe
   function zapLink(id){ const c=((window.ZAP_MAPA||{}).grafo||{})[id]; return c?` <a class="backlink" href="zap.html#${esc(c)}">» a conversa no BolsoZap</a>`:''; }
   // presos ou condenados com ligação DIRETA a ele (não a rede inteira)
+  // prisão anulada segundo a cadeia da Foz (a mesma conta do index): o 'preso' desse nome vira "prisão anulada", neutro
+  const PRISAO_ANULADA = (()=>{
+    const PA=/anul\S*\s+(?:a\s+)?(?:ordem de\s+)?pris|pris[ãa]o\s+(?:foi\s+)?anulad/i; const s=new Set();
+    ((window.FOZ||{}).escandalos||[]).forEach(e=>(e.cadeia||[]).forEach(l=>{ if(l.de_id && PA.test(l.status_de||'')) s.add(l.de_id); }));
+    return s;
+  })();
+  const presoHoje = n => (n.situacao||[]).includes('preso') && !PRISAO_ANULADA.has(n.id);
   function presosDiretos(){
     const g=D.grafo||{nodes:[],edges:[]}; const viz=new Set();
     g.edges.forEach(e=>{ if(e.de==='flavio') viz.add(e.para); if(e.para==='flavio') viz.add(e.de); });
-    // a mesma conta do index: prisão anulada (segundo a cadeia da Foz) não conta
-    const PA=/anul\S*\s+(?:a\s+)?(?:ordem de\s+)?pris|pris[ãa]o\s+(?:foi\s+)?anulad/i; const anul=new Set();
-    ((window.FOZ||{}).escandalos||[]).forEach(e=>(e.cadeia||[]).forEach(l=>{ if(l.de_id && PA.test(l.status_de||'')) anul.add(l.de_id); }));
-    return g.nodes.filter(n=>{ const s=n.situacao||[]; return viz.has(n.id) && (s.includes('condenado') || (s.includes('preso') && !anul.has(n.id))); });
+    return g.nodes.filter(n=> viz.has(n.id) && ((n.situacao||[]).includes('condenado') || presoHoje(n)));
+  }
+  // os chips de situação de um nome, como o index: condenado/preso em vermelho; denunciado/investigado neutros;
+  // denúncia anulada ou arquivada (token 'arquivada') em cor neutra, nunca vermelho nem âmbar; token desconhecido é ignorado
+  function situacaoChips(id, s){
+    s = s||[]; const n = nodeById[id]||{id, situacao:s};
+    const cond = s.includes('condenado'), preso = presoHoje(n), w = [];
+    if(cond) w.push(['condenado', true]);
+    if(preso) w.push(['preso', true]);
+    if(!cond && !preso){
+      if(s.includes('preso') && PRISAO_ANULADA.has(id)) w.push(['prisão anulada', false]);
+      if(s.includes('denunciado')) w.push(['denunciado', false]); else if(s.includes('investigado')) w.push(['investigado', false]);
+    }
+    if(s.includes('arquivada')) w.push(['denúncia anulada', false]);
+    if(s.includes('morto') && !w.length){ const a = (String(n.status||'').match(/\bmort[oa]\b[^.;]*?\b((?:19|20)\d\d)\b/i)||[])[1]; w.push(['morto' + (a ? ' em ' + a : ''), false]); }
+    return w.map(([r,g])=>`<span class="chip${g?' chip-grave':''}">${esc(r)}</span>`).join(' ');
   }
   function placarHTML(){
     const p = (D.placar||[]).slice(); const pd = presosDiretos();
@@ -224,7 +258,7 @@
     if(!q){ renderTemas(); return; }
     // "a|b" busca qualquer um dos termos (é o formato dos links da Foz)
     const qs = q.split('|').map(t=>t.trim()).filter(Boolean);
-    const hits = D.itens.filter(i=>{ const t = norm(i.titulo+' '+i.resumo+' '+(temaById[i.tema]?.nome||'')); return qs.some(x=> t.includes(x)); });
+    const hits = VIS.filter(i=>{ const t = norm(i.titulo+' '+i.resumo+' '+(temaById[i.tema]?.nome||'')); return qs.some(x=> t.includes(x)); });
     listaItens(hits, `Busca: "${busca.value.trim().split('|').map(t=>t.trim()).join('" ou "')}" (${hits.length})`, ()=>{busca.value='';renderTemas();});
   });
 
@@ -265,16 +299,17 @@
     }).join('');
     const its = itensDaPessoa(id);
     const lista = its.map(i=>`<div class="vrow" data-item="${i.id}" style="cursor:pointer">${badge(i.status)} <b>${esc(tit(i.titulo))}</b> <span class="date">${esc(i.data||'')}</span></div>`).join('');
-    const flags = (n.situacao||[]).map(s=>badge(s)).join(' ');
+    const flags = situacaoChips(id, n.situacao);
     const sf = (n.situacao_fontes&&n.situacao_fontes.length)?` <a href="${esc(n.situacao_fontes[0].url)}" target="_blank" rel="noopener">[fonte]</a>`:'';
     // Nem todo nome do mapa responde a processo — parte da rede é entorno político,
     // doador e família. Chamar essas pessoas de "investigado" seria falso.
     // A checagem ignora frases negativas: "não é réu, denunciado nem condenado"
     // afirma o contrário das palavras que contém.
-    const temProcesso = (n.situacao||[]).length>0 || (n.status||'')
+    // morto (token 'morto'): sem processo vivo, a ficha não diz "investigado"
+    const temProcesso = !(n.situacao||[]).includes('morto') && ((n.situacao||[]).length>0 || (n.status||'')
       .split(/[.;]/)
       .filter(f=>!/\b(n[ãa]o|nem|sem processo|sem den[úu]ncia|inexist)/i.test(f))
-      .some(f=>/\b(preso|presa|condenad|denunciad|r[ée]u|indiciad|investigad|delator|foragid)/i.test(f));
+      .some(f=>/\b(preso|presa|condenad|denunciad|r[ée]u|indiciad|investigad|delator|foragid)/i.test(f)));
     const rotuloFicha = temProcesso ? 'FICHA DO INVESTIGADO' : 'FICHA';
     const rotuloSit = temProcesso ? 'Situação penal' : 'Situação';
     sheet.innerHTML = `
@@ -312,7 +347,7 @@
         <div class="block"><div class="lbl">1 · Fonte e status em tudo</div><div class="src">Cada registro traz fonte e o status jurídico correto: investigação ≠ denúncia ≠ processo ≠ anulado ≠ condenação. Acusação nunca é tratada como fato provado.</div></div>
         <div class="block"><div class="lbl">2 · Selo de procedência</div><div class="src">Cada fonte é classificada por nível: ${tierPip('primaria')} PRIMÁRIA (MP/STF/STJ/TSE/COAF/Senado), ${tierPip('referencia')} REFERÊNCIA (imprensa profissional), ${tierPip('agregador')} AGREGADOR, ${tierPip('blog')} BLOG/OPINIÃO. O "lastro" do item é o nível mais alto entre suas fontes.</div></div>
         <div class="block"><div class="lbl">3 · Sem condenação ≠ culpado</div><div class="src">Ex.: a rachadinha foi anulada/arquivada por STJ/STF — sem condenação, e o site diz isso. O Caso Master está em investigação.</div></div>
-        <div class="block"><div class="lbl">4 · Close Friends = proximidade</div><div class="src">A rede mostra só a teia de proximidade/favor do senador com gente suspeita. Quem o acusou/investigou/julgou e adversários políticos não entram. Sem dado privado / sem doxxing.</div></div>
+        <div class="block"><div class="lbl">4 · A teia de nomes = proximidade</div><div class="src">A teia mostra a proximidade e o favor entre o senador e os nomes do arquivo, cada um com a situação jurídica e a fonte. Quem o acusou/investigou/julgou e adversários políticos não entram. Sem dado privado / sem doxxing.</div></div>
         <div class="block"><div class="lbl">5 · Dados oficiais</div><div class="src">Patrimônio (TSE) e atuação no Senado vêm de dados abertos oficiais — com o caminho de reprodução.</div></div>
         <div class="block"><div class="lbl">6 · Modo revisão</div><div class="src">As fontes seguem em conferência. Cada item linka a fonte para você <b>verificar por conta própria</b>.</div></div>
       </div>`;
@@ -382,7 +417,7 @@
       return null;
     }
     const sitFonte = n => (n && n.situacao_fontes && n.situacao_fontes.length)
-      ? ` <a href="${esc(n.situacao_fontes[0].url)}" target="_blank" rel="noopener" style="color:#86b3ff">[fonte]</a>` : '';
+      ? ` <a href="${esc(n.situacao_fontes[0].url)}" target="_blank" rel="noopener">[fonte]</a>` : '';
 
     let GA = {}, porId = {};
     function build(){
@@ -500,7 +535,7 @@
         }
         ctx.shadowBlur=0;
         // o anel vermelho diz o que importa: preso ou condenado
-        if(sitMatch(n,SIT[0]) || sitMatch(n,SIT[1])){ ctx.lineWidth=2.5; ctx.strokeStyle='#ff5c5c'; ctx.beginPath(); ctx.arc(x,y,r+2.5,0,Math.PI*2); ctx.stroke(); }
+        if((sitMatch(n,SIT[0]) && !PRISAO_ANULADA.has(n.id)) || sitMatch(n,SIT[1])){ ctx.lineWidth=2.5; ctx.strokeStyle='#ff5c5c'; ctx.beginPath(); ctx.arc(x,y,r+2.5,0,Math.PI*2); ctx.stroke(); }
         if(ring){ ctx.lineWidth=2.5; ctx.strokeStyle='#fff'; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.stroke(); }
         ctx.globalAlpha=1;
       });
@@ -1032,19 +1067,18 @@
   function renderTimeline(){
     // log de eventos: marcos curados + TODOS os itens datados, ordenados, agrupados por ano
     const ev = [];
-    (D.timeline||[]).forEach(e=>{ if(e.data) ev.push({data:e.data, titulo:e.titulo, tema:e.tema, fontes:e.fontes||[], status:null}); });
-    (D.itens||[]).forEach(i=>{ if(i.data) ev.push({data:i.data, titulo:i.titulo, tema:i.tema, fontes:i.fontes||[], status:i.status, id:i.id}); });
+    // marcos e fatos em torno de Lula/PT ficam na base, fora da lista (a mesma peneira do Recentemente)
+    (D.timeline||[]).forEach(e=>{ if(e.data && !FORA(e.titulo)) ev.push({data:e.data, titulo:e.titulo, tema:e.tema, fontes:e.fontes||[], status:null}); });
+    VIS.forEach(i=>{ if(i.data) ev.push({data:i.data, titulo:i.titulo, tema:i.tema, fontes:i.fontes||[], status:i.status, id:i.id}); });
     const k = d => (String(d||'').replace(/[^0-9]/g,'')+'00000000').slice(0,8);
     ev.sort((a,b)=> k(a.data).localeCompare(k(b.data)));
     let html='', yr=null;
     ev.forEach(e=>{
       const y = String(e.data||'????').slice(0,4);
       if(y!==yr){ yr=y; html += `<div class="tl-year">${esc(y)}</div>`; }
-      const t = temaById[e.tema];
-      const tag = (t? t.id : (e.tema||'')).toUpperCase();
       html += `<div class="tl-log" ${e.id?`data-item="${e.id}"`:''}>
         <span class="tl-ts">${esc(e.data||'')}</span>
-        <span class="tl-tag" style="color:${t?t.cor:'#888'}">[${esc(tag)}]</span>
+        ${chipTema(e.tema)}
         ${e.status?badge(e.status):''}
         <span class="tl-tit">${esc(tit(e.titulo))}</span>
         ${(e.fontes&&e.fontes.length&&e.fontes[0].url)?`<a class="tl-src" href="${esc(e.fontes[0].url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">» fonte</a>`:''}
@@ -1056,18 +1090,18 @@
   let swimDone=false;
   function renderSwimlanes(){
     const el = $('#swimlanes'); if(!el) return;
-    const its = (D.itens||[]).filter(i=>i.data && /^\d{4}/.test(String(i.data)));
+    const its = VIS.filter(i=>i.data && /^\d{4}/.test(String(i.data)));
     const yrs = its.map(i=>parseInt(String(i.data).slice(0,4)));
     const minY=Math.min(...yrs), maxY=Math.max(...yrs), span=Math.max(1,maxY-minY);
     const temas = D.temas.filter(t=> its.some(i=>i.tema===t.id));
+    // ponto âmbar = fato; vermelho só condenação (a mesma regra dos chips)
     el.innerHTML = `<div class="sl-axis"><span>${minY}</span><span>${Math.round((minY+maxY)/2)}</span><span>${maxY}</span></div>` +
       temas.map(t=>{
         const dots = its.filter(i=>i.tema===t.id).map(i=>{
           const y=parseInt(String(i.data).slice(0,4)); const left=((y-minY)/span*100);
-          const st=D.status[i.status]||{cor:'#888'};
-          return `<span class="sl-dot" style="left:${left}%;background:${st.cor};box-shadow:0 0 6px ${st.cor}" data-item="${esc(i.id)}" title="${esc((i.data||'')+' · '+tit(i.titulo))}"></span>`;
+          return `<span class="sl-dot${i.status==='condenacao'?' grave':''}" style="left:${left}%" data-item="${esc(i.id)}" title="${esc((i.data||'')+' · '+tit(i.titulo))}"></span>`;
         }).join('');
-        return `<div class="sl-lane"><div class="sl-name" style="color:${t.cor}">${esc(t.nome)}</div><div class="sl-track">${dots}</div></div>`;
+        return `<div class="sl-lane"><div class="sl-name">${esc(TEMA_ROT[t.id]||t.nome)}</div><div class="sl-track">${dots}</div></div>`;
       }).join('');
     $$('.sl-dot', el).forEach(d=> d.addEventListener('click', ()=>{ showView('arquivo','push'); abrirDetalhe(d.dataset.item); }));
     swimDone=true;
@@ -1083,19 +1117,21 @@
     chatMsgs.appendChild(m); m.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
   function answerItem(i){
-    return `<div class="ans-item">${badge(i.status)} <b>${esc(tit(i.titulo))}</b><br><span style="color:#c6cad6">${esc(i.resumo||'')}</span><br><span class="src">${fontesHTML(i.fontes)}</span> <a href="#" data-open="${i.id}" style="color:#7db1ff">abrir no arquivo →</a></div>`;
+    return `<div class="ans-item">${badge(i.status)} <b>${esc(tit(i.titulo))}</b><br><span style="color:var(--muted)">${esc(i.resumo||'')}</span><br><span class="src">${fontesHTML(i.fontes)}</span> <a href="#" data-open="${i.id}" style="color:var(--amber)">abrir no arquivo →</a></div>`;
   }
   function responder(q){
     const nq = norm(q);
     const words = nq.split(/\s+/).filter(w=>w.length>3);
     // pessoa?
-    const pessoa = (D.grafo?.nodes||[]).find(n=> nq.includes(norm(n.nome.split(' ')[0])) || nq.includes(norm(n.nome.split(' ').slice(-1)[0])));
+    // nome inteiro como palavra (senão "Sá" casa com "pesquisa" e a resposta sai sobre outra pessoa)
+    const temNome = s => { const w=norm(s); return w.length>=3 && new RegExp('(^|[^a-z])'+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z]|$)').test(nq); };
+    const pessoa = (D.grafo?.nodes||[]).find(n=> temNome(n.nome.split(' ')[0]) || temNome(n.nome.split(' ').slice(-1)[0]));
     if(pessoa && pessoa.id!=='flavio'){
       const its = itensDaPessoa(pessoa.id);
       return `<b>${esc(pessoa.nome)}</b> — ${esc(pessoa.papel||'')}. ${pessoa.status?'('+esc(pessoa.status)+'). ':''}Veja a aba <b>Rede</b> para os vínculos.` + (its.length?its.map(answerItem).join(''):'');
     }
     // itens por score
-    const scored = D.itens.map(i=>{
+    const scored = VIS.map(i=>{
       const blob = norm(i.titulo+' '+i.resumo+' '+(temaById[i.tema]?.nome||''));
       let s=0; words.forEach(w=>{ if(blob.includes(w)) s++; });
       return {i,s};
@@ -1179,7 +1215,7 @@
     }
     function renderArquivo(){
       const el = $('#news-arquivo'); if(!el) return;
-      const its = (D.itens||[]).filter(i=>i.data && i.fontes && i.fontes.length && i.fontes[0].url)
+      const its = VIS.filter(i=>i.data && i.fontes && i.fontes.length && i.fontes[0].url)
         .slice().sort((a,b)=> String(b.data).localeCompare(String(a.data))).slice(0,18);
       el.innerHTML = its.map(i=>{
         const f=i.fontes[0], t=temaById[i.tema];
@@ -1205,12 +1241,16 @@
   const JANELA_DIAS = 14;
   function diaKey(d){ const m=String(d||'').match(/^(\d{4})-(\d{2})-(\d{2})/); return m?m[0]:null; }
   function fmtDia(k){ const [y,m,d]=k.split('-'); return `${d}/${m}/${y}`; }
+  const maxDia = lista => (lista||[]).reduce((m,x)=>{ const k=diaKey(x.data); return k && k>m ? k : m; }, '');
+  // a janela conta pela data dos fatos, não pelo relógio: os 14 dias terminam no fato mais recente do arquivo
+  // (assets/nav.js conta o selo do menu do mesmo jeito). Assim a aba nunca "esvazia" por falta de atualização.
+  const ultimoFato = () => maxDia(VIS);
   function recentes(){
-    const hoje = new Date(); const lim = new Date(hoje.getTime()-JANELA_DIAS*864e5);
-    const limK = lim.toISOString().slice(0,10);
+    const fim = ultimoFato(); if(!fim) return [];
+    const limK = new Date(new Date(fim+'T12:00:00Z').getTime()-JANELA_DIAS*864e5).toISOString().slice(0,10);
     const ev = [];
     // na vitrine, só o que é sobre ele e sem Lula/PT
-    (D.itens||[]).forEach(i=>{ if(FORA(i.titulo) || NAOE.test(i.titulo||'')) return; const k=diaKey(i.data); if(k && k>=limK) ev.push({k, tipo:'fato', i}); });
+    VIS.forEach(i=>{ if(NAOE.test(i.titulo||'')) return; const k=diaKey(i.data); if(k && k>=limK) ev.push({k, tipo:'fato', i}); });
     (D.noticiasFallback||[]).filter(n=>!FORA(n.titulo)).forEach(n=>{ const k=diaKey(n.data); if(k && k>=limK) ev.push({k, tipo:'news', n}); });
     // manchete que repete um fato do arquivo no mesmo dia não entra duas vezes
     ev.sort((a,b)=> b.k.localeCompare(a.k) || (a.tipo==='fato'?-1:1));
@@ -1219,8 +1259,9 @@
   function renderRecente(){
     const el = $('#rec-lista'); if(!el) return;
     const ev = recentes();
-    const cap = D.noticiasCaptura ? fmtDia(D.noticiasCaptura) : '';
-    $('#rec-quando') && ($('#rec-quando').textContent = cap ? `Atualizado em ${cap}.` : '');
+    // "Atualizado em": a data do fato ou da manchete mais recente do arquivo (não a da captura do feed)
+    const cap = [ultimoFato(), maxDia(D.noticiasFallback)].sort().pop();
+    $('#rec-quando') && ($('#rec-quando').textContent = cap ? `Atualizado em ${fmtDia(cap)}.` : '');
     if(!ev.length){ el.innerHTML = '<div class="ph">Nada novo nos últimos dias.</div>'; return; }
     const dias = {}; ev.forEach(e=>{ (dias[e.k]=dias[e.k]||[]).push(e); });
     // os 5 dias mais recentes; os anteriores atrás de "dias anteriores"
@@ -1228,11 +1269,11 @@
     el.innerHTML = ks.map((k,di)=>{
       const lista = dias[k];
       const rows = lista.map(e=>{
-        if(e.tipo==='fato'){ const i=e.i, t=temaById[i.tema], f=(i.fontes||[])[0];
-          return `<div class="rec-it" data-item="${i.id}"><span class="rk" style="color:${t?t.cor:'#888'}">[${esc((t?t.id:i.tema||'').toUpperCase())}]</span>
+        if(e.tipo==='fato'){ const i=e.i;
+          return `<div class="rec-it" data-item="${i.id}"><span class="rk">${chipTema(i.tema)}</span>
             <span class="rt">${esc(tit(i.titulo))}${badge(i.status)}</span></div>`; }
         const x=e.n;
-        return `<a class="rec-it news" href="${esc(x.url)}" target="_blank" rel="noopener"><span class="rk">[NOTÍCIA]</span><span class="rt">${esc(x.titulo)}</span><span class="rs">» ${esc(x.fonte||'')}</span></a>`;
+        return `<a class="rec-it news" href="${esc(x.url)}" target="_blank" rel="noopener"><span class="rk"><span class="chip chip-tema">Notícia</span></span><span class="rt">${esc(x.titulo)}</span><span class="rs">${esc(x.fonte||'')}</span></a>`;
       });
       // até 4 linhas por dia; o resto atrás de "mais"
       const MAXD = 3, vis = rows.slice(0,MAXD).join(''), resto = rows.slice(MAXD);

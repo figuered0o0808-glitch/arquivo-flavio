@@ -1,7 +1,9 @@
 /* BOLSODRIVE · a espinha do rio.
    Monta o cabeçalho, o mapa do rio e o link "siga o rio" de todas as páginas.
    Contrato de cada página:
-     <body data-trecho="N">  0 nascente · 1 quem anda com ele · 2 o dinheiro · 3 a foz · "m" margem
+     <body data-trecho="N">  0 nascente · 1 a teia de nomes · 2 o dinheiro · 3 a foz · "m" margem
+     <body data-curto="A teia">  opcional: nome curto do trecho/margem na linha do celular (senão vale o `curto` da lista)
+     Rodapé: injeta "fatos até dd/mm" (data do último fato do arquivo; sem o arquivo, a data mais recente dos dados da página).
      <body data-trecho="3" data-afluente="Dark Horse">  um afluente do trecho (TRECHOS[n].afluentes): aparece
        dentro do trecho no mapa (↳), no "você está aqui" e no menu do desktop; o "siga o rio" volta ao trecho
      (na abertura, index.html, data-trecho acompanha os trechos 01/02/03 da própria página e volta a 0 no topo)
@@ -20,14 +22,18 @@
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   /* ---------- a lista única: trechos (a correnteza) e margens ---------- */
+  /* curto: o nome que cabe na linha do celular ("trecho 1 · A TEIA") e no botão "margem: …" do desktop */
   var TRECHOS = [
     {nome:'Nascente', href:'index.html',
      desc:function(){ return 'a abertura: o rio numa tela só'; }},
-    {nome:'Quem anda com ele', href:'drive.html#rede',
+    {nome:'A teia de nomes', curto:'A teia', href:'drive.html#rede',
+     /* duas contagens, sempre qualificadas: os nomes ligados a ele e a teia inteira (o index conta do mesmo jeito) */
      desc:function(){ var d = D(), g = d && d.grafo;
-       if (!g || !g.nodes) return 'a teia de nomes em volta dele';
-       var n = g.nodes.filter(function(x){ return x.id !== 'flavio'; }).length;
-       return n + ' nomes na teia, com a situação de cada um'; }},
+       if (!g || !g.nodes) return 'os nomes em volta dele e a teia completa, com a situação de cada um';
+       var viz = {}; (g.edges || []).forEach(function(e){ if (e.de === 'flavio') viz[e.para] = 1; if (e.para === 'flavio') viz[e.de] = 1; });
+       delete viz.flavio;
+       var n1 = Object.keys(viz).length, n = g.nodes.filter(function(x){ return x.id !== 'flavio'; }).length;
+       return n1 + ' nomes em volta dele; ' + n + ' na teia completa, com a situação de cada um'; }},
     {nome:'O dinheiro', href:'siga-o-dinheiro.html',
      desc:function(){ var d = D(), f = d && d.fluxoDinheiro && d.fluxoDinheiro.fluxos;
        if (!f) return 'de onde vem e para onde vai';
@@ -35,8 +41,8 @@
        return n + ' fluxos de dinheiro, cada um com fonte'; }},
     {nome:'A Foz', href:'foz.html',
      desc:function(){ var z = F();
-       if (!z || !z.escandalos) return 'os escândalos que chegam a ele';
-       return z.escandalos.length + ' escândalos que chegam a ele'; },
+       if (!z || !z.escandalos) return 'os 40 casos e como chegam a ele';
+       return 'os ' + z.escandalos.length + ' casos e como chegam a ele'; },
      afluentes:[{id:'dark-horse', nome:'Dark Horse', href:'dark-horse.html', desc:'o dinheiro do filme, mês a mês', volta:'foz.html#master'}]}
   ];
   var MARGENS = [
@@ -47,8 +53,10 @@
     {id:'noticias',   nome:'Notícias',         href:'drive.html#noticias'},
     {id:'chat',       nome:'FlávioGPT',        href:'drive.html#chat'},
     {id:'quiz',       nome:'Quiz',             href:'quiz.html'},
-    {id:'orbita',     nome:'A rede em órbita', href:'close-friends.html'}
+    {id:'orbita',     nome:'A rede em órbita', curto:'A rede', href:'close-friends.html'}
   ];
+  /* nome curto: o da página (<body data-curto="…">) vence o da lista */
+  function curtoDe(x){ return body.getAttribute('data-curto') || (x && x.curto) || (x && x.nome) || ''; }
   var VIEWS_DRIVE = ['recente','arquivo','rede','cronologia','noticias','chat'];
 
   /* ---------- onde a pessoa está ---------- */
@@ -85,11 +93,68 @@
   }
   function gravarUltimo(n){ try { sessionStorage.setItem('rio_ultimo', String(n)); } catch (e) {} }
 
-  /* fatos do arquivo com data nos últimos 14 dias: a mesma janela da view Recentemente */
+  /* ---------- datas: pela data dos fatos, nunca pelo relógio ---------- */
+  var ISO = /^\d{4}-\d{2}-\d{2}/;
+  /* o fato mais recente do arquivo (data/dados.js) */
+  function ultimoFato(){
+    var d = D(), max = ''; if (!d || !d.itens) return '';
+    d.itens.forEach(function(i){ var m = String(i.data || '').match(ISO); if (m && m[0] > max) max = m[0]; });
+    return max;
+  }
+  /* páginas sem o arquivo (zap, dark-horse): a data mais recente que os dados da própria página carregam
+     (qualquer campo com data ISO em FOZ, DARKHORSE, BOLSOZAP, menos as datas de geração/captura), nunca depois de hoje */
+  var NAO_DATA = {gerado:1, captura:1, noticiasCaptura:1, atualizadoEm:1, v:1};
+  function ultimaDataDe(obj){
+    var max = '', hoje = new Date().toISOString().slice(0, 10), vistos = 0;
+    (function anda(o, prof){
+      if (!o || typeof o !== 'object' || prof > 8 || ++vistos > 60000) return;
+      if (Array.isArray(o)){ for (var i = 0; i < o.length; i++) anda(o[i], prof + 1); return; }
+      for (var k in o){
+        var v = o[k];
+        if (typeof v === 'string'){ if (!NAO_DATA[k]){ var m = v.match(ISO); if (m && m[0] > max && m[0] <= hoje) max = m[0]; } }
+        else if (v && typeof v === 'object') anda(v, prof + 1);
+      }
+    })(obj, 0);
+    return max;
+  }
+  function ultimaData(){
+    var k = ultimoFato(); if (k) return k;
+    /* sem o arquivo: a data que os dados da página declaram como a do último fato do arquivo (BolsoZap: fatos_ate,
+       gerado pelo monta_zap.py a partir de dados.js; Dark Horse: periodo.ate, curado igual; quiz: BD_FATOS_ATE,
+       gravado em data/topicos.js pelo gera_compartilhar.py a partir de dados.js) */
+    var z = (window.BOLSOZAP || {}).fatos_ate || ((window.DARKHORSE || {}).periodo || {}).ate || window.BD_FATOS_ATE || '';
+    if (ISO.test(z)) return z.slice(0, 10);
+    var fontes = [window.FOZ, window.DARKHORSE, window.BOLSOZAP], max = '';
+    for (var i = 0; i < fontes.length; i++){ var m = ultimaDataDe(fontes[i]); if (m > max) max = m; }
+    return max;
+  }
+  function ddmm(k){ return k ? k.slice(8, 10) + '/' + k.slice(5, 7) : ''; }
+  /* manchete ou fato em torno de Lula/PT fica fora de toda vitrine (o site não trata deles); "(não é Flávio)" marca fato que não é sobre ele */
+  var FORA = /\bLula\b|\bPT\b|petista/i, NAOE = /\(não é Flávio\)\s*$/;
+  /* fatos do arquivo nos 14 dias que terminam no fato mais recente: a mesma janela e a mesma peneira da view Recentemente */
   function contaRecentes(){
-    var d = D(); if (!d || !d.itens) return 0;
-    var lim = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
-    return d.itens.filter(function(i){ var m = String(i.data || '').match(/^\d{4}-\d{2}-\d{2}/); return m && m[0] >= lim; }).length;
+    var d = D(), fim = ultimoFato(); if (!d || !d.itens || !fim) return 0;
+    var lim = new Date(new Date(fim + 'T12:00:00Z').getTime() - 14 * 864e5).toISOString().slice(0, 10);
+    return d.itens.filter(function(i){
+      var m = String(i.data || '').match(ISO), t = String(i.titulo || '');
+      return m && m[0] >= lim && !FORA.test(t) && !NAOE.test(t);
+    }).length;
+  }
+  /* rodapé de todas as páginas: uma só data de verdade, derivada do último fato.
+     Entra só depois do load: os scripts da própria página ainda mexem no rodapé (index: textContent += …) e
+     no BolsoZap os dados chegam depois deste script. */
+  var fatosEl = null;
+  function rodape(){
+    if (doc.readyState !== 'complete') return;
+    var k = ultimaData(); if (!k) return;
+    if (!fatosEl || !fatosEl.isConnected){
+      fatosEl = doc.createElement('p'); fatosEl.className = 'nv-fatos';
+      var alvo = doc.querySelector('footer.site-footer, .rodape, body > footer');
+      if (alvo) alvo.appendChild(fatosEl);
+      else if (segue && segue.parentNode) segue.parentNode.insertBefore(fatosEl, segue.nextSibling);
+      else body.appendChild(fatosEl);
+    }
+    fatosEl.textContent = 'fatos até ' + ddmm(k);
   }
 
   /* ---------- a marca: o logo Osciloscópio (o O de BOLSO é a tela de um osciloscópio) ----------
@@ -140,7 +205,6 @@
       '<div class="nv-sec nv-sec-rio"><p class="nv-k">o rio, da nascente à foz</p><ol class="nv-lista" id="nv-lista"></ol></div>' +
       '<div class="nv-sec nv-sec-afl"><p class="nv-k">afluente da foz</p><div class="nv-margens" id="nv-afl-m"></div></div>' +
       '<div class="nv-sec"><p class="nv-k">nas margens</p><div class="nv-margens" id="nv-margens"></div></div>' +
-      '<p class="nv-nota">Estar no rio não é ser acusado. Cada registro traz fonte e status jurídico.</p>' +
     '</div>';
   hdr.parentNode.insertBefore(mapa, hdr.nextSibling);
 
@@ -186,8 +250,8 @@
     el('nv-aqui').innerHTML = afl
       ? '<small>trecho ' + t + '<span class="nv-lg nv-afl-lg"> · afluente</span></small><b>↳ ' + esc(afl.nome) + '</b>'
       : t >= 0
-      ? '<small>trecho ' + t + '<span class="nv-lg"> de ' + (TRECHOS.length - 1) + '</span><span class="nv-ct">/' + (TRECHOS.length - 1) + '</span></small><b>' + esc(TRECHOS[t].nome) + '</b>'
-      : '<small>margem<span class="nv-lg"> do rio</span></small><b>' + esc(mg ? mg.nome : 'fora do rio') + '</b>';
+      ? '<small>trecho ' + t + '<span class="nv-lg"> de ' + (TRECHOS.length - 1) + '</span><span class="nv-ct">/' + (TRECHOS.length - 1) + '</span></small><b>' + esc(curtoDe(TRECHOS[t])) + '</b>'
+      : '<small>margem<span class="nv-lg"> do rio</span></small><b>' + esc(mg ? curtoDe(mg) : 'fora do rio') + '</b>';
 
     /* os 4 trechos em linha (desktop) */
     el('nv-trechos').innerHTML = TRECHOS.map(function(x, i){
@@ -198,7 +262,7 @@
     el('nv-trechos').classList.toggle('com-afl', !!afl);
     /* no BolsoZap o link da linha já marca onde a pessoa está: o botão fica "margens" */
     var zapAqui = !!mg && mg.id === 'zap';
-    el('nv-bt-d').textContent = mg && !zapAqui ? 'margem: ' + mg.nome : 'margens';
+    el('nv-bt-d').textContent = mg && !zapAqui ? 'margem: ' + curtoDe(mg) : 'margens';
     bt.classList.toggle('nv-bt-margem', !!mg && !zapAqui);
     if (zapAqui) el('nv-zap').setAttribute('aria-current', 'page'); else el('nv-zap').removeAttribute('aria-current');
 
@@ -238,8 +302,10 @@
     else if (t >= 0 && t < TRECHOS.length - 1){ alvo = TRECHOS[t + 1]; k = 'siga o rio →'; dsc = alvo.desc(); segue.innerHTML = linkSegue(alvo.href, k, (t + 1) + ' · ' + alvo.nome, dsc); }
     else if (t === TRECHOS.length - 1){ segue.innerHTML = linkSegue('quiz.html', 'depois da foz →', 'Quiz', 'teste o que viu, com fonte em cada resposta'); }
     else { alvo = TRECHOS[ult]; segue.innerHTML = linkSegue(alvo.href, 'voltar ao rio →', ult + ' · ' + alvo.nome, alvo.desc()); }
+    rodape();
     medir();
   }
+  if (doc.readyState === 'complete') rodape(); else window.addEventListener('load', rodape);
   function linkSegue(href, k, nome, d){
     return '<a href="' + href + '"><span class="nv-k2">' + esc(k) + '</span><b>' + esc(nome) + '</b>' + (d ? '<span class="nv-d">' + esc(d) + '</span>' : '') + '</a>';
   }

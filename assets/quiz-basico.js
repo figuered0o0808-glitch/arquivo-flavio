@@ -6,8 +6,12 @@ const fmtBRL = v => 'R$ ' + Number(v).toLocaleString('pt-BR', {
   minimumFractionDigits: Number.isInteger(v) ? 0 : 2, maximumFractionDigits: 2 });
 const fmtPct = v => Number(v).toLocaleString('pt-BR') + '%';
 
-/* Fontes (veículo, detalhe, URL). Cada resposta aponta para uma ou duas. */
+/* Fontes (veículo, detalhe, URL). Cada resposta aponta para uma ou mais. */
 const F = {
+  brasilianista: { v:'O Brasilianista', d:'prestação de contas parcial ao TSE (entregue em 13/09/2026), 21/09/2026',
+    u:'https://obrasilianista.com.br/2026/09/21/politica/onde-esta-o-dinheiro-das-campanhas-de-lula-flavio-e-caiado' },
+  correio: { v:'Correio Braziliense', d:'doações de pessoas físicas na prestação parcial ao TSE, 18/09/2026',
+    u:'https://www.correiobraziliense.com.br/politica/2026/09/7503612-flavio-e-caiado-lideram-lista-de-doacoes-de-pessoas-fisicas-rs-25-milhoes.html' },
   poder_doacoes: { v:'Poder360', d:'prestação de contas parcial ao TSE, consultada em 26/08/2026',
     u:'https://www.poder360.com.br/poder-eleicoes-2026/flavio-lidera-em-doacoes-a-candidatos-ao-planalto-lula-e-2o/' },
   poder_patrimonio: { v:'Poder360', d:'registro da candidatura no TSE, 13/08/2026',
@@ -16,43 +20,41 @@ const F = {
     u:'https://jornaldebrasilia.com.br/noticias/politica-e-poder/flavio-bolsonaro-concentrou-emendas-em-seguranca-e-defesa-e-deixou-ciencia-e-agricultura-de-fora/' },
   em: { v:'Estado de Minas', d:'28/06/2026',
     u:'https://www.em.com.br/politica/2026/06/7450571-flavio-bolsonaro-se-ausentou-em-43-das-votacoes-nominais-do-senado.html' },
-  bdf: { v:'Brasil de Fato', d:'02/04/2026',
-    u:'https://www.brasildefato.com.br/2026/04/02/em-sete-anos-flavio-bolsonaro-teve-apenas-um-projeto-de-lei-aprovado-no-congresso/' },
   senado: { v:'Senado Federal', d:'Dados Abertos, cód. 5894, apurados em 09/09/2026',
     u:'https://www25.senado.leg.br/web/senadores/senador/-/perfil/5894' },
+  bdf: { v:'Brasil de Fato', d:'02/04/2026',
+    u:'https://www.brasildefato.com.br/2026/04/02/em-sete-anos-flavio-bolsonaro-teve-apenas-um-projeto-de-lei-aprovado-no-congresso/' },
   itatiaia: { v:'Itatiaia', d:'entrevista ao Jornal Nacional, 28/08/2026',
     u:'https://www.itatiaia.com.br/politica/eleicoes/flavio-bolsonaro-justifica-medalha-a-adriano-da-nobrega-policial-exemplar-na-epoca/' },
   carta: { v:'CartaCapital', d:'decisão do STF de 26/02/2025',
-    u:'https://www.cartacapital.com.br/politica/o-que-aconteceu-com-o-caso-da-rachadinha-de-flavio-bolsonaro-suposto-candidato-em-2026/' },
-  metropoles: { v:'Metrópoles', d:'pedido à PF em 02/07/2026',
-    u:'https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg' }
+    u:'https://www.cartacapital.com.br/politica/o-que-aconteceu-com-o-caso-da-rachadinha-de-flavio-bolsonaro-suposto-candidato-em-2026/' }
 };
 
 /* As perguntas. Só fatos; status jurídico dentro da resposta. */
 const BASICO = [
-  { tipo:'faixa', min:0, max:1000000, passo:1, inicio:500000, fmt:fmtBRL, dif: d => fmtBRL(Math.round(d * 100) / 100),
-    extremos:['R$ 0','R$ 1 milhão'],
-    pergunta:'Até 26/08/2026, quanto pessoas físicas tinham doado à campanha presidencial dele?',
-    valor:6.01, acerta: v => v <= 10000,
-    numero:'R$ 6,01',
-    resposta:'Na prestação de contas parcial ao TSE consultada em 26/08/2026, pessoas físicas tinham doado <b>R$ 6,01</b> à campanha presidencial de Flávio Bolsonaro. O PL, partido dele, repassou <b>R$ 42 milhões</b>.',
-    ressalva:'Em setembro de 2026, as maiores doações de pessoa física registradas eram de R$ 500 mil (Erasmo Battistella e Fernando de Castro Marques).',
-    chip:'FATO · PRESTAÇÃO DE CONTAS AO TSE',
-    fontes:[F.poder_doacoes],
-    curto:'Doações de pessoas físicas até 26/08', gab:'R$ 6,01',
-    breve:'De pessoas físicas; o PL deu R$ 42 milhões.',
-    zap:'Até 26/08/2026, pessoas físicas tinham doado R$ 6,01 à campanha presidencial de Flávio Bolsonaro; o PL, partido dele, repassou R$ 42 milhões. Prestação de contas parcial ao TSE.' },
+  { tipo:'faixa', min:0, max:100, passo:1, inicio:50, fmt:fmtPct, dif: d => Number(d).toLocaleString('pt-BR') + (d === 1 ? ' ponto percentual' : ' pontos percentuais'),
+    extremos:['0%','100%'],
+    pergunta:'Do dinheiro que a campanha presidencial dele arrecadou até 08/09/2026, que fatia veio do partido, o PL?',
+    valor:95, acerta: v => v >= 85,
+    numero:'95%',
+    resposta:'Pela prestação de contas parcial entregue ao TSE em 13/09/2026 (movimentação até 08/09), a campanha presidencial de Flávio Bolsonaro recebeu <b>R$ 53,5 milhões</b> da direção nacional do PL: <b>95% do total</b>. Pessoas físicas doaram <b>R$ 2,56 milhões</b>; a maior doação, de R$ 500 mil, foi do empresário Erasmo Battistella.',
+    ressalva:'Até 26/08/2026, a prestação parcial registrava R$ 6,01 doados por pessoas físicas (Poder360).',
+    chip:'FATO · PRESTAÇÃO DE CONTAS PARCIAL AO TSE',
+    fontes:[F.brasilianista, F.correio, F.poder_doacoes],
+    curto:'Fatia da campanha vinda do PL (até 08/09)', gab:'95%',
+    breve:'R$ 53,5 milhões do PL, segundo a prestação de contas parcial ao TSE (13/09); de pessoas físicas, R$ 2,56 milhões.',
+    zap:'Do dinheiro que a campanha presidencial de Flávio Bolsonaro arrecadou até 08/09/2026, 95% veio do PL: R$ 53,5 milhões, segundo a prestação de contas parcial ao TSE (13/09). Pessoas físicas doaram R$ 2,56 milhões; a maior doação foi de R$ 500 mil (Erasmo Battistella). Fontes: O Brasilianista (21/09/2026), Correio Braziliense (18/09/2026).' },
 
   { tipo:'multi',
-    pergunta:'Quantos projetos de autoria dele viraram lei em 7 anos de Senado?',
+    pergunta:'Em 7 anos de Senado, quantos projetos de lei de autoria dele foram aprovados pelo Congresso?',
     opcoes:['0','1','12','37'], certa:1,
     numero:'1 projeto',
-    resposta:'Em 7 anos de Senado, <b>1 projeto de autoria dele virou lei</b>. Dados oficiais do Senado (cód. 5894, apurados em 09/09/2026): 188 relatorias, 1.142 votações, 1 projeto de autoria aprovado.',
+    resposta:'Em 7 anos de Senado, <b>1 projeto de lei de autoria dele foi aprovado pelo Congresso</b>: o PL 3.190/2023, sobre microcrédito, sancionado com vetos. Dados abertos do Senado (cód. 5894, apurados em 09/09/2026): 188 relatorias, 1.142 votações, 1 projeto de autoria aprovado.',
     chip:'FATO · DADOS ABERTOS DO SENADO',
-    fontes:[F.bdf, F.senado],
-    curto:'Projetos de autoria dele que viraram lei', gab:'1',
-    breve:'virou lei em 7 anos de Senado.',
-    zap:'Em 7 anos de Senado, 1 projeto de autoria de Flávio Bolsonaro virou lei. Dados oficiais do Senado (cód. 5894, apurados em 09/09/2026): 188 relatorias, 1.142 votações, 1 projeto de autoria aprovado.' },
+    fontes:[F.senado, F.bdf],
+    curto:'Projetos de lei de autoria dele aprovados', gab:'1',
+    breve:'Aprovado pelo Congresso em 7 anos de Senado: o PL 3.190/2023 (microcrédito), sancionado com vetos, segundo os dados abertos do Senado.',
+    zap:'Em 7 anos de Senado, 1 projeto de lei de autoria de Flávio Bolsonaro foi aprovado pelo Congresso: o PL 3.190/2023, sobre microcrédito, sancionado com vetos. Dados abertos do Senado (cód. 5894, apurados em 09/09/2026): 188 relatorias, 1.142 votações, 1 projeto de autoria aprovado.' },
 
   { tipo:'faixa', min:0, max:500, passo:5, inicio:250, fmt:fmtPct, dif: d => Number(d).toLocaleString('pt-BR') + (d === 1 ? ' ponto percentual' : ' pontos percentuais'),
     extremos:['0%','500%'],
@@ -79,7 +81,7 @@ const BASICO = [
     zap:'De cada R$ 100 em emendas indicadas por Flávio Bolsonaro nos orçamentos 2020–2026, R$ 0,80 foi para educação. Saúde ficou com 50,8%; defesa, 21,8%; segurança pública, 19,4%; ciência e agricultura, nada.' },
 
   { tipo:'multi',
-    pergunta:'Em 2026, ele não registrou voto em que fração das votações nominais do Senado?',
+    pergunta:'Em 2026, até 16/06, ele não registrou voto em que fração das deliberações nominais do Senado?',
     opcoes:['4%','20%','43%','71%'], certa:2,
     numero:'43%',
     resposta:'Não registrou voto em <b>43%</b> das 49 deliberações nominais do Senado analisadas em 2026 (até 16/06). <b>A média entre os 81 senadores é 20%</b>; ele é o <b>5º em ausências</b> (Romário, 53%, lidera).',
@@ -92,15 +94,15 @@ const BASICO = [
   { tipo:'multi',
     pergunta:'A quem ele deu a Medalha Tiradentes na Alerj, homenagem que justificou na TV em 28/08/2026?',
     opcoes:['A um delegado da Polícia Civil',
-            'A Adriano da Nóbrega, ex-capitão apontado como chefe do Escritório do Crime',
+            'A Adriano da Nóbrega, ex-capitão apontado pelo MP-RJ como chefe do Escritório do Crime',
             'A um oficial do Corpo de Bombeiros',
             'A um desembargador do TJ-RJ'], certa:1,
-    resposta:'Flávio concedeu na Alerj a <b>Medalha Tiradentes (2005)</b> e uma moção de louvor (2003) a <b>Adriano Magalhães da Nóbrega</b>, ex-capitão do Bope apontado como chefe do “Escritório do Crime”, condenado por homicídio em 2014 e morto em operação policial em 09/02/2020. Em 28/08/2026, no Jornal Nacional, Flávio disse que ele era um <b>“policial exemplar”</b> à época.',
+    resposta:'Flávio concedeu na Alerj a <b>Medalha Tiradentes (2005)</b> e uma moção de louvor (2003) a <b>Adriano Magalhães da Nóbrega</b>, ex-capitão do Bope: condenado em 1ª instância em 2005 pela morte de um guardador de carros e absolvido depois; exonerado da PM em 2014; apontado pelo MP-RJ como chefe do “Escritório do Crime”; morto em operação policial em 09/02/2020, sem ser julgado no caso do Escritório do Crime. Em 28/08/2026, no Jornal Nacional, Flávio disse que ele era um <b>“policial exemplar”</b> à época.',
     chip:'FATO · ALERJ (2003 E 2005) · JORNAL NACIONAL, 28/08/2026',
     fontes:[F.itatiaia],
     curto:'Medalha Tiradentes na Alerj', gab:'Adriano da Nóbrega',
-    breve:'A Adriano da Nóbrega, apontado como chefe do Escritório do Crime.',
-    zap:'Flávio Bolsonaro concedeu na Alerj a Medalha Tiradentes (2005) e uma moção de louvor (2003) a Adriano da Nóbrega, ex-capitão do Bope apontado como chefe do "Escritório do Crime", condenado por homicídio em 2014. Em 28/08/2026, no Jornal Nacional, disse que ele era um "policial exemplar" à época.' },
+    breve:'A Adriano da Nóbrega, apontado pelo MP-RJ como chefe do Escritório do Crime.',
+    zap:'Flávio Bolsonaro concedeu na Alerj a Medalha Tiradentes (2005) e uma moção de louvor (2003) a Adriano da Nóbrega, ex-capitão do Bope apontado pelo MP-RJ como chefe do "Escritório do Crime": condenado em 1ª instância em 2005 e absolvido depois; exonerado da PM em 2014; morto em 09/02/2020 sem ser julgado no caso do Escritório do Crime. Em 28/08/2026, no Jornal Nacional, Flávio disse que ele era um "policial exemplar" à época.' },
 
   { tipo:'multi',
     pergunta:'Quantas pessoas o MP-RJ denunciou na rachadinha da Alerj, em 2020?',
@@ -111,18 +113,7 @@ const BASICO = [
     fontes:[F.carta],
     curto:'Denunciados na rachadinha da Alerj', gab:'17',
     breve:'Ele entre eles; denúncia anulada.',
-    zap:'Em 2020, o MP-RJ denunciou 17 pessoas na rachadinha da Alerj, Flávio Bolsonaro entre elas. A denúncia foi anulada: o STJ anulou as provas em 2021 e o caso foi arquivado em 2022.' },
-
-  { tipo:'multi',
-    pergunta:'Quanto custou a mansão usada como QG da pré-campanha dele, em nome de um coordenador da campanha?',
-    opcoes:['R$ 1,4 milhão','R$ 4 milhões','R$ 14,5 milhões','R$ 42 milhões'], certa:2,
-    numero:'R$ 14,5 milhões',
-    resposta:'A mansão de <b>R$ 14,5 milhões</b> em Brasília está registrada em nome do advogado José Vicente Santini, coordenador da campanha, e foi usada como QG da pré-campanha: R$ 4 milhões de entrada e <b>R$ 10,5 milhões financiados pelo BRB</b>. Em 02/07/2026 um deputado pediu à PF que apurasse a origem dos recursos. Santini diz que a renda vem do escritório e de uma empresa de segurança e que <b>“está tudo declarado”</b>.',
-    chip:'FATO · PEDIDO DE APURAÇÃO À PF EM 02/07/2026',
-    fontes:[F.metropoles],
-    curto:'Mansão usada como QG da pré-campanha', gab:'R$ 14,5 milhões',
-    breve:'Em nome de um coordenador da campanha; o BRB financiou R$ 10,5 milhões.',
-    zap:'A mansão de R$ 14,5 milhões usada como QG da pré-campanha de Flávio Bolsonaro está em nome do advogado José Vicente Santini, coordenador da campanha: R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo BRB. Em 02/07/2026 um deputado pediu à PF que apurasse a origem dos recursos; Santini diz que "está tudo declarado".' }
+    zap:'Em 2020, o MP-RJ denunciou 17 pessoas na rachadinha da Alerj, Flávio Bolsonaro entre elas. A denúncia foi anulada: o STJ anulou as provas em 2021 e o caso foi arquivado em 2022.' }
 ];
 return BASICO;
 })();

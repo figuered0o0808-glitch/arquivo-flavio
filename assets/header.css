@@ -126,7 +126,15 @@ html.nv-trava,html.nv-trava body{overflow:hidden}
 .nv-margens a[aria-current]{color:#ffb02e; border-color:#ffb02e}
 .nv-margens a:last-child:nth-child(odd){grid-column:1/-1}
 .nv-conta{flex:none; min-width:22px; padding:2px 6px; border-radius:999px; background:#ffb02e; color:#120c00; font-size:11px; text-align:center; line-height:1.3}
-.nv-nota{font-family:var(--nv-mono); font-size:12px; line-height:1.5; color:#5c8a63; margin:22px 0 0}
+
+/* ---------- rodapé: "fatos até dd/mm" (nav.js injeta em todas as páginas) ---------- */
+.nv-fatos{font-family:var(--nv-mono); font-size:12px; line-height:1.5; letter-spacing:.04em; color:#5c8a63; margin:14px 0 0}
+.nv-fatos::before{content:"//\00a0"}
+footer.site-footer .nv-fatos{margin:0}
+.rodape .nv-fatos{margin:10px 0 0}
+/* fora de um rodapé (depois do "siga o rio"), alinha com o conteúdo */
+main > .nv-fatos,.wrap > .nv-fatos{margin:14px 0 0}
+body > .nv-fatos{max-width:720px; margin:14px auto 0; padding:0 16px}
 
 /* ---------- siga o rio → próximo trecho (antes do rodapé) ---------- */
 .nv-segue{margin:36px 0 0}
@@ -185,7 +193,6 @@ body.nv-na-margem .nv-segue .nv-k2{color:#86a58c}
   .nv-mapa .nv-k{margin-top:12px}
   .nv-margens{grid-template-columns:1fr}
   .nv-margens a:last-child:nth-child(odd){grid-column:auto}
-  .nv-nota{margin-top:14px}
   .nv-segue b{font-size:17px}
 }
 @media (min-width:900px) and (max-width:1099px){ .nv-row .nv-mark .nv-tag{display:none} }

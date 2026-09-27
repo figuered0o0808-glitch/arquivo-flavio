@@ -1,0 +1,16 @@
+{
+  "name": "BOLSODRIVE: Um rio de escândalos",
+  "short_name": "BOLSODRIVE",
+  "description": "Os escândalos que chegam a Flávio Bolsonaro, cada um com o caminho até ele, a situação jurídica de cada nome e a fonte.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "browser",
+  "background_color": "#070a07",
+  "theme_color": "#070a07",
+  "icons": [
+    { "src": "assets/marca/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "assets/marca/icone-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/marca/icone-32.png", "sizes": "32x32", "type": "image/png" }
+  ]
+}

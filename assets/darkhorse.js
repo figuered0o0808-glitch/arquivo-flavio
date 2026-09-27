@@ -22,6 +22,7 @@
    um quadro por mudança de rolagem.
 
    Links: dark-horse.html#<id do momento> abre no fecho do momento; #dh é a abertura; #dh-lista abre a lista.
+   Botão de envio: .env (âmbar sólido, o mesmo da Foz; o CSS está em dark-horse.html até P1-0 o pôr em base.css).
    Teste: window.__dh = { medir(n), momentos(), vai(id), ... }. Assistir: window.__historia.roteiro().
    ===================================================================== */
 (function(){
@@ -34,6 +35,8 @@ if (raiz.classList.contains('og')) return;
 
 const $ = (s, r) => (r || doc).querySelector(s);
 const $$ = (s, r) => Array.prototype.slice.call((r || doc).querySelectorAll(s));
+/* D02 (26/09/2026): o fim da página fica só com os botões (.porta) — a caixa "volte à foz" que nav.js põe antes do rodapé sai daqui */
+$$('.nv-segue').forEach(n => n.remove());
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const c01 = v => clamp(v, 0, 1);
@@ -121,10 +124,10 @@ function artHtml(m, k){
     .filter((f, i, a) => f && f.url && a.findIndex(g => g && g.url === f.url) === i).map(f => fonteA(f)).join('');
   if (m.portas && m.portas.length){
     const ord = p => p.share ? 0 : p.href ? 1 : 2;
-    acoes += m.portas.slice().sort((x, y) => ord(x) - ord(y)).map(p => p.share ? '<button type="button" class="enviar" data-share="' + esc(p.share) + '">' + esc(p.txt) + '</button>' :
+    acoes += m.portas.slice().sort((x, y) => ord(x) - ord(y)).map(p => p.share ? '<button type="button" class="env" data-share="' + esc(p.share) + '">' + esc(p.txt) + '</button>' :
       p.acao === 'rever' ? '<button type="button" class="porta sec" data-rever>' + esc(p.txt) + '</button>' :
       '<a class="porta sec" href="' + esc(p.href) + '">' + esc(p.txt) + '</a>').join('');
-  } else if (m.share) acoes += '<button type="button" class="enviar" data-share="' + esc(m.share) + '">enviar ↗</button>';
+  } else if (m.share) acoes += '<button type="button" class="env" data-share="' + esc(m.share) + '">enviar ↗</button>';
   if (k === 0 && window.BDRoteiro) acoes += '<button type="button" class="porta sec" data-assistir>▶ assistir</button>';
   return '<article class="dh-m" data-m="' + k + '" data-f="' + (k === 0 ? 'fecha' : 'entra') + '" aria-labelledby="' + (k === 0 ? 'dh-h1' : idg) + '"' + (k ? ' aria-hidden="true"' : '') + '>' +
     '<p class="dh-k">' + esc(m.k) + '</p>' +
@@ -895,7 +898,7 @@ function montaLista(){
   });
   alvo.innerHTML = '<details id="dh-lista-d"><summary><h2 class="k"><span>O calendário em texto, com as fontes</span></h2></summary>' +
     '<ol class="dh-cal">' + h + '</ol>' +
-    '<div class="fim-l"><button type="button" class="enviar" data-share="dh-2025">enviar ↗</button></div></details>';
+    '<div class="fim-l"><button type="button" class="env" data-share="dh-2025">enviar ↗</button></div></details>';
   const teia = $('#dh-teia');
   if (teia && D.pessoas) teia.innerHTML = '<span class="tk">na teia:</span>' + D.pessoas.map(p => '<a href="drive.html?p=' + encodeURIComponent(p.id) + '#rede">' + esc(p.nome) + '</a>').join('');
 }

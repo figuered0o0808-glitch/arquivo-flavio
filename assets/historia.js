@@ -5,7 +5,7 @@
    função da posição de rolagem: s = scrollY + cabeçalho - topo da seção.
 
    Cenas
-     abertura  "40 escândalos chegam a ele. Alguns, de perto:" com o rio completo
+     abertura  "40 casos em volta dele." e a divisão por onde cada um chega a ele, com o rio completo
      capítulo  um escândalo por vez: o número do caso (conta com a rolagem) ou a frase, com quem afirma e a
                fonte; o título, os elos acendendo um a um (o nome e a situação em poucas
                palavras), a situação dele só quando ele tem situação formal no caso (investigado,
@@ -88,7 +88,7 @@ const dataBR = d => /^\d{4}-\d\d-\d\d/.test(d || '') ? d.slice(8, 10) + '/' + d.
    "23 homenageados", "R$ 199.999,79"). Valores compostos ("27 de 33", "4 anos e 2 meses",
    "R$ 20 a R$ 40", "até R$ 500 mil por mês") entram cheios, com fade. No fim da contagem o texto
    é o valor literal dos dados.
-   Destaque-frase (numero.tipo = 'frase': "Emenda negociada", "Medalha Tiradentes"): sem contagem,
+   Destaque-frase (numero.tipo = 'frase': "Mesma sala", "Medalha Tiradentes"): sem contagem,
    letra de manchete menor que a do número, em uma ou duas linhas quebradas entre palavras (ajustaNum). */
 const ESCALA = 'mil|milhão|milhões|bilhão|bilhões|trilhão|trilhões';
 const RX_NUM = new RegExp('^(R\\$\\s?)?(\\d{1,3}(?:\\.\\d{3})+|\\d+)(?:,(\\d+))?(?:\\s+(' + ESCALA + '))?(?:\\s+(\\D+))?$');
@@ -137,16 +137,19 @@ function arvore(e){
      1. fora: caso cuja ligação é só o parentesco (o status dele diz "A ligação é o parentesco");
         caso em que ele é a origem de um elo ou em que a cadeia não converge nele (fica na Foz);
         cadeia com menos de 2 elos documentados.
-     2. nota = 3 se é caso conhecido do público (lista abaixo) + gravidade (preso/condenado no
-        caminho 2, investigado 1) + 0,75 por elo documentado (até 4) + fontes / 4 (até 3).
+     2. nota = 10 se é um dos 8 casos "de perto" (lista abaixo, aprovada pelo dono; um caso com um só elo
+        documentado entra se estiver nela) + gravidade (preso/condenado no caminho 2, investigado 1)
+        + 0,75 por elo documentado (até 4) + fontes / 4 (até 3). Os casos em FORA_DE_PERTO ficam só na Foz.
      3. o Caso Master entra sempre; pelo menos um de cada faixa (ele mesmo, gabinete, família,
-        entorno); no máximo 3 por faixa; 8 capítulos.
+        entorno); no máximo 5 por faixa; 8 capítulos.
      4. ordem: de longe para perto (entorno, família, gabinete, ele mesmo) e, dentro da faixa,
         pelo ano em que começa o período.
    ===================================================================== */
-const CONHECIDOS = ['master', 'rachadinha-alerj', 'inss-contador', 'marielle-ifop', 'cv-governo-rj', 'mocoes-pms-reus-condenados', 'abin-defesa-rachadinha', 'trama-golpista'];
+const CONHECIDOS = ['master', 'rachadinha-alerj', 'marielle-ifop', 'mocoes-pms-reus-condenados', 'abin-defesa-rachadinha', 'trama-golpista', 'loja-chocolates', 'cota-senado-viagens'];
+/* a checagem os classifica como contexto (o endereço do contador; a secretaria que 'aparentemente não atendeu'): ficam na Foz */
+const FORA_DE_PERTO = ['inss-contador', 'cv-governo-rj'];
 const OBRIGATORIOS = ['master'];
-const N_CAP = 8, MAX_FAIXA = 3;
+const N_CAP = 8, MAX_FAIXA = 5;
 const SO_PARENTESCO = /liga[çc][ãa]o é o parentesco/i;
 
 /* =====================================================================
@@ -213,8 +216,8 @@ const MARI_E = TODOS.find(e => e.id === MARI);
 const MARI_D = MARI_E && (MARI_E.cadeia || []).length ? dadosMarielle(MARI_E) : null;
 
 const CAND = TODOS.map(e => ({ e, nos: arvore(e) }))
-  .filter(x => x.nos && (x.e.cadeia || []).length >= 2 && !SO_PARENTESCO.test(x.e.status_flavio || '') && FAIXAS.includes(x.e.faixa))
-  .map(x => Object.assign(x, { nota: (CONHECIDOS.includes(x.e.id) ? 3 : 0) + ({ grave: 2, medio: 1, leve: 0 }[GRAV[x.e.gravidade] || 'leve']) +
+  .filter(x => x.nos && ((x.e.cadeia || []).length >= 2 || CONHECIDOS.includes(x.e.id)) && !FORA_DE_PERTO.includes(x.e.id) && !SO_PARENTESCO.test(x.e.status_flavio || '') && FAIXAS.includes(x.e.faixa))
+  .map(x => Object.assign(x, { nota: (CONHECIDOS.includes(x.e.id) ? 10 : 0) + ({ grave: 2, medio: 1, leve: 0 }[GRAV[x.e.gravidade] || 'leve']) +
     0.75 * Math.min(4, x.e.cadeia.length) + Math.min(3, (x.e.fontes || []).length / 4) }))
   .sort((a, b) => b.nota - a.nota || a.e.id.localeCompare(b.e.id));
 const ESCOLHA = [];
@@ -287,9 +290,9 @@ const CONTA = 0.55;                /* a contagem ocupa os primeiros 55% da fase 
    ===================================================================== */
 const cena = $('#h-cena'), palco = $('#h-palco'), cv = $('#h-cv'), rot = $('#h-rot'), leg = $('#h-leg'), barra = $('#h-barra');
 const hdrEl = $('.site-header');
-const nFoz = TODOS.length;
+const nFoz = TODOS.length, nDireto = TODOS.filter(e => e.faixa === 'direto').length;
 const legCor = '<p class="h-leg-cor" aria-label="Legenda das cores"><span><i style="background:' + HEX.grave + '"></i>preso ou condenado</span>' +
-  '<span><i style="background:' + HEX.medio + '"></i>investigado</span><span><i style="background:' + HEX.leve + '"></i>sem processo</span></p>';
+  '<span><i style="background:' + HEX.medio + '"></i>investigado</span><span><i style="background:' + HEX.leve + '"></i>outros</span></p>';
 const fonteLink = (f, pre) => f && f.url ? '<p class="nf">' + (pre || '') + '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'fonte') + ' ↗</a></p>' : '';
 /* o bloco do número: valor gigante (conta com a rolagem), a frase com quem afirma e a fonte */
 /* quando o capítulo fecha com "ele neste caso", o desfecho não se repete no fim do número */
@@ -328,7 +331,8 @@ const eloHtml = (c, l, i) => {
 };
 
 let html = '<article class="cap cap-intro" data-f="intro" aria-label="A história">' +
-  '<h3 class="cap-n"><span class="g">' + nFoz + '</span> escândalos chegam a ele. Alguns, de perto:</h3>' +
+  '<h3 class="cap-n"><span class="g">' + nFoz + '</span> casos em volta dele.</h3>' +
+  '<p class="cap-sub">' + nDireto + ' por ele mesmo, ' + (nFoz - nDireto) + ' pelo gabinete, pela família ou pelo entorno. Alguns, de perto:</p>' +
   '<ol class="cap-lista">' + CAPS.map(c => '<li><a href="#cap-' + esc(c.id) + '" data-cap="' + c.k + '"><b>' + (c.k + 1) + '</b>' + esc(c.rotulo) + '</a></li>').join('') + '</ol>' +
   legCor + '</article>';
 CAPS.forEach(c => {
@@ -346,7 +350,7 @@ CAPS.forEach(c => {
     '</article>';
 });
 html += '<article class="cap cap-fim" data-f="fim" aria-label="O fim da história">' +
-  '<h3 class="cap-n">Tudo deságua nele.</h3>' +
+  '<h3 class="cap-n">O rio termina nele.</h3>' +
   '<div class="cap-acoes"><a class="porta" href="foz.html">Os ' + nFoz + ', caso a caso →</a><button type="button" class="porta sec" data-rever>↺ rever</button></div>' +
   '</article>';
 leg.innerHTML = html;

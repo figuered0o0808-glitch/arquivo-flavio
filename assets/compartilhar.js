@@ -3,12 +3,21 @@
    o fluxo, o trecho, a pergunta), com texto e imagem próprios. Os tópicos vêm de data/topicos.js
    (window.BD_TOPICOS, gerado por bolso-os-fontes/gera_compartilhar.py).
 
-   window.BDShare.enviar(id)  envia o tópico:
+   window.BDShare.enviar(id, extra?)  envia o tópico:
      1. celular com Web Share nível 2 (navigator.canShare({files})): o cartão c/img/<id>.png + texto + link;
+        no iOS, se o cartão ainda não está baixado, vai só texto + link (a prévia do c/<id>.html já mostra o
+        cartão) e o cartão baixa em segundo plano para a próxima vez — o Safari expira o gesto antes do download;
      2. senão navigator.share({ text, url });
-     3. senão abre https://wa.me/?text=<texto + link>.
+     3. senão https://wa.me/?text=<texto + link>: nova aba, ou a própria aba em navegador embutido
+        (Instagram, Facebook, WhatsApp, Line, WebView).
      O link é sempre c/<id>.html: a prévia do link mostra o cartão do tópico e a página leva ao lugar certo.
+     extra = { texto, url, titulo } sobrepõe os campos do tópico (o resultado do quiz, a mensagem escolhida).
+     Devolve 'arquivo' | 'texto' | 'zap' quando o envio saiu; nada quando a pessoa cancelou.
+     Sem tópico nenhum (página sem data/topicos.js), o envio é o título e o endereço da própria tela — o
+     mesmo em todas as páginas.
    window.BDShare.topico(id)  → { titulo, texto, url, img } (ou null).
+   window.BDShare.envios()    → quantos envios saíram deste aparelho (localStorage['bd_envios'], só local,
+                                nunca enviado a lugar nenhum).
 
    O cartão é baixado antes do toque (quando o botão aparece na tela ou no toque), para o share()
    ainda contar como gesto do usuário. Se o navegador recusar por demora, pede um segundo toque. */
@@ -21,10 +30,23 @@ function topico(id){
   const t = TOP()[id];
   return t ? { titulo: t.titulo, texto: t.texto, url: t.url, img: t.img } : null;
 }
+/* o único fallback sem tópico: a tela em que a pessoa está */
+function reserva(){ return { titulo: document.title, texto: document.title, url: location.href, img: null }; }
+function sobrepoe(base, extra){
+  if (!extra || typeof extra !== 'object') return base;
+  const t = Object.assign({}, base);
+  ['texto', 'url', 'titulo'].forEach(k => { if (typeof extra[k] === 'string' && extra[k]) t[k] = extra[k]; });
+  return t;
+}
+/* texto + link numa mensagem só: se o texto termina em quebra de linha, o link vai na linha de baixo, sem espaço antes */
+function junta(t){ const x = String(t.texto || ''); return (/\n\s*$/.test(x) ? x.replace(/\s+$/, '') + '\n' : x + ' ') + t.url; }
 
 /* Web Share com arquivo: só no celular (no computador vai o texto com o link) */
 const ua = navigator.userAgent || '';
-const CELULAR = /Android|iPhone|iPad|iPod|Mobile/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+const IOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+const CELULAR = IOS || /Android|Mobile/i.test(ua);
+/* navegador embutido de outro app: window.open é bloqueado ou abre fora do app; o link vai na própria aba */
+const EMBUTIDO = /FBAN|FBAV|FB_IAB|Instagram|Line\/|WhatsApp|; wv\)/i.test(ua);
 let comArquivo = false;
 try {
   comArquivo = CELULAR && typeof navigator.canShare === 'function' && typeof File === 'function' &&
@@ -62,27 +84,42 @@ function aviso(msg){
   clearTimeout(avisoT); avisoT = setTimeout(() => { avisoEl.style.opacity = '0'; }, 2600);
 }
 
+/* contador local de envios que saíram (share resolvido ou WhatsApp aberto); fica no aparelho */
+const CHAVE = 'bd_envios';
+function envios(){ try { return parseInt(localStorage.getItem(CHAVE), 10) || 0; } catch (_){ return 0; } }
+function conta(){ try { localStorage.setItem(CHAVE, String(envios() + 1)); } catch (_){} }
+
 function porZap(t){
-  window.open('https://wa.me/?text=' + encodeURIComponent(t.texto + ' ' + t.url), '_blank', 'noopener');
+  const href = 'https://wa.me/?text=' + encodeURIComponent(junta(t));
+  let w = null;
+  if (!EMBUTIDO){
+    try { w = window.open(href, '_blank'); } catch (_){ w = null; }
+    if (w){ try { w.opener = null; } catch (_){} }
+  }
+  if (!w) location.href = href;   /* embutido, ou a janela foi bloqueada: a própria aba */
+  conta();
+  return 'zap';
 }
 
 const ocupado = new Set();
-async function enviar(id){
-  const t = topico(id) || topico('abertura');
-  if (!t){ porZap({ texto: document.title, url: location.href }); return; }   /* página sem data/topicos.js */
-  const chave = TOP()[id] ? id : 'abertura';
+async function enviar(id, extra){
+  const chave = TOP()[id] ? id : (TOP().abertura ? 'abertura' : '');
+  const t = sobrepoe(topico(chave) || reserva(), extra);
   if (ocupado.has(chave)) return;
   ocupado.add(chave);
   try {
-    if (comArquivo){
+    if (comArquivo && chave && t.img){
       let f = pronto.get(chave), esperou = false;
-      if (f === undefined){
+      if (f === undefined && IOS){
+        /* iOS: sem cartão pronto vai texto + link agora; o cartão baixa para a próxima vez */
+        cartao(chave); f = null;
+      } else if (f === undefined){
         esperou = true;
         f = await Promise.race([cartao(chave), new Promise(r => setTimeout(() => r(undefined), 2500))]);
       }
       if (f){
         try {
-          if (navigator.canShare({ files: [f] })){ await navigator.share({ files: [f], text: t.texto + ' ' + t.url }); return; }
+          if (navigator.canShare({ files: [f] })){ await navigator.share({ files: [f], text: junta(t) }); conta(); return 'arquivo'; }
         } catch (err){
           if (err && err.name === 'AbortError') return;
           /* o download demorou e o navegador não aceitou mais como toque: o cartão já está pronto */
@@ -91,10 +128,10 @@ async function enviar(id){
       } else if (f === undefined){ aviso('Preparando a imagem. Toque em enviar de novo.'); return; }
     }
     if (navigator.share){
-      try { await navigator.share({ text: t.texto, url: t.url }); return; }
+      try { await navigator.share({ text: t.texto, url: t.url }); conta(); return 'texto'; }
       catch (err){ if (err && err.name === 'AbortError') return; }
     }
-    porZap(t);
+    return porZap(t);
   } finally { ocupado.delete(chave); }
 }
 
@@ -157,5 +194,5 @@ function liga(){
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', liga); else liga();
 
-window.BDShare = { enviar, topico, prepara: cartao };
+window.BDShare = { enviar, topico, prepara: cartao, envios };
 })();

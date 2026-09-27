@@ -5,8 +5,31 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Siga o dinheiro — BolsoDrive</title>
 <meta name="description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
-<link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=15">
+<meta name="theme-color" content="#070a07">
+<meta name="color-scheme" content="dark">
+<style>html{background:#070a07;color:#d8efdd}</style>
+<link rel="canonical" href="https://figuered0o0808-glitch.github.io/arquivo-flavio/siga-o-dinheiro.html">
+
+<!-- Preview de link (WhatsApp, Telegram, X): o cartão pronto de c/img/siga.png. O ?v= é o do cartão gerado; o integrador refaz quando o cartão muda. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="BOLSODRIVE · Siga o dinheiro">
+<meta property="og:description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
+<meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/siga-o-dinheiro.html">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/siga.png?v=bf40644d">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Siga o dinheiro: os fluxos em volta dele, do BRB à campanha e às emendas, cada um com a fonte e o status">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BOLSODRIVE · Siga o dinheiro">
+<meta name="twitter:description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/siga.png?v=bf40644d">
+<meta name="twitter:image:alt" content="Siga o dinheiro: os fluxos em volta dele, do BRB à campanha e às emendas, cada um com a fonte e o status">
+
+<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
+<link rel="stylesheet" href="assets/header.css?v=3b010dac">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
@@ -132,12 +155,12 @@
 
 </main>
 
-<noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="drive.html#arquivo">Ver o arquivo completo →</a></p></noscript>
+<noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="foz.html">A Foz</a> · <a href="drive.html#arquivo">O arquivo</a> · <a href="zap.html">BolsoZap</a> · <a href="quiz.html">Quiz</a></p></noscript>
 
-<script src="data/dados.js?v=set2026u"></script>
-<script src="data/foz.js?v=14"></script>
-<script src="data/topicos.js?v=5"></script>
-<script src="assets/compartilhar.js?v=2" defer></script>
+<script src="data/dados.js?v=d6676b07"></script>
+<script src="data/foz.js?v=709d4c4d"></script>
+<script src="data/topicos.js?v=ab29a258"></script>
+<script src="assets/compartilhar.js?v=edbe4096" defer></script>
 <script>
 (function(){
 'use strict';
@@ -167,7 +190,7 @@ function fozDe(id){
   return r && ESC[r] ? ESC[r] : null;
 }
 if ((FZ.escandalos || []).length){
-  document.getElementById('foz-fim').textContent = 'A Foz: ' + FZ.escandalos.length + ' escândalos que chegam a ele →';
+  document.getElementById('foz-fim').textContent = 'A Foz: os ' + FZ.escandalos.length + ' casos, e como cada um chega a ele →';
 }
 
 /* Status, ressalva e defesa vêm do próprio dado (fluxoDinheiro.fluxos[i].status / .ressalva / .defesa).
@@ -209,10 +232,9 @@ var el = {
 var LINHA = {
   'R$ 3,1 mi': 'Em 2021, aprovado pela diretoria de Paulo Henrique Costa, preso no caso Master.',
   'R$ 60 mi': '7 remessas em 2025, segundo a PF; ele é investigado no STF, sem denúncia.',
-  'R$ 42 mi': 'Até 26/08/2026, pessoas físicas tinham doado R$ 6,01, segundo a prestação ao TSE.',
-  'R$ 300 mil': 'Doação registrada no TSE e confirmada pelo doador.',
+  'R$ 53,5 mi': 'Na prestação parcial ao TSE de 13/09: 95% do total veio do partido; de pessoas físicas, R$ 2,56 milhões.',
+  'R$ 500 mil': 'A maior doação de pessoa física na prestação parcial de 13/09, segundo o Correio Braziliense.',
   'R$ 1,6 mi': 'Contrato declarado ao TSE com a agência de um ex-assessor de Tarcísio de Freitas.',
-  'R$ 10,5 mi': 'Imóvel de R$ 14,5 milhões usado como QG da campanha; Santini diz que está tudo declarado.',
   'R$ 364 mi': 'Emendas de 2020 a 2026: 50,8% para saúde, 0,8% para educação.'
 };
 function linha(f){ return LINHA[f.valor] || (String(f.obs || '').split(/\.\s/)[0].replace(/\.$/, '') + '.'); }
@@ -354,6 +376,6 @@ window.addEventListener('resize', function(){ if (atual < N) medir(); });
 window.addEventListener('hashchange', function(){ var i = deHash(); if (i !== atual) mostrar(i); });
 })();
 </script>
-<script src="assets/nav.js?v=7"></script>
+<script src="assets/nav.js?v=41bee539"></script>
 </body>
 </html>

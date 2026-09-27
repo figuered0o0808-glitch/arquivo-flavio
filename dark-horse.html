@@ -6,6 +6,8 @@
 <title>Dark Horse: o dinheiro do filme, mês a mês · BOLSODRIVE</title>
 <meta name="description" content="R$ 131 milhões pedidos por Flávio Bolsonaro a Daniel Vorcaro para um filme sobre o pai, segundo a PF; R$ 60 milhões teriam sido pagos. Ele é investigado no STF, sem denúncia. O dinheiro mês a mês, cada fato com fonte.">
 <meta name="theme-color" content="#070a07">
+<meta name="color-scheme" content="dark">
+<style>html{background:#070a07;color:#d8efdd}</style>
 
 <!-- Preview de link (WhatsApp, Telegram, X, Facebook). O cartão é c/img/dark-horse.png (bolso-os-fontes/gera_compartilhar.py). -->
 <meta property="og:type" content="article">
@@ -25,12 +27,13 @@
 <meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/dark-horse.png">
 <meta name="twitter:image:alt" content="Dark Horse: R$ 131 milhões pedidos por Flávio Bolsonaro a Daniel Vorcaro para um filme sobre o pai, segundo a PF.">
 
+<link rel="canonical" href="https://figuered0o0808-glitch.github.io/arquivo-flavio/dark-horse.html">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
-<link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=15">
-<link rel="stylesheet" href="assets/comparador.css?v=2">
+<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
+<link rel="stylesheet" href="assets/header.css?v=3b010dac">
+<link rel="stylesheet" href="assets/comparador.css?v=36a3c552">
 <style>
 /* ===== Dark Horse: o afluente do caso Master (assets/darkhorse.js) =====
    O palco fica preso na tela e a rolagem é o tempo: o rio vira calendário, de dez/2024 a hoje.
@@ -42,15 +45,17 @@ html.rolando{scroll-behavior:auto!important}
 body{overflow-x:hidden}
 .so-leitor{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 
-/* botões e portas: os mesmos da abertura */
-.enviar{flex:none; min-height:44px; min-width:44px; padding:0 12px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--cinza); background:transparent; border:1px solid var(--linha); border-radius:3px; cursor:pointer; text-transform:none}
-.enviar:hover{color:var(--tinta); border-color:rgba(125,245,154,.4)}
+/* botão de envio: .env, o mesmo da Foz (âmbar sólido, 44 px, "enviar ↗"); fica aqui até P1-0 o pôr em base.css. Portas: as mesmas da abertura */
+.env{flex:none; display:inline-flex; align-items:center; justify-content:center; min-height:44px; min-width:44px; padding:0 18px; font-family:var(--sans); font-size:15px; font-weight:700; color:#120c00; background:var(--amber); border:1.5px solid var(--amber); border-radius:2px; cursor:pointer; text-transform:none}
+.env:hover{filter:brightness(1.06)}
+/* D02: o fim da página fica só com os botões; a caixa "volte à foz" do nav.js não entra aqui (assets/darkhorse.js também a remove do DOM) */
+.nv-segue{display:none}
 .porta{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 16px; background:var(--amber); color:#120c00; font-weight:700; font-size:15px;
   line-height:1.2; text-decoration:none; border-radius:3px; border:1.5px solid var(--amber); cursor:pointer; font-family:var(--sans)}
 .porta.sec{background:transparent; color:var(--tinta); border-color:var(--cinza2)}
 .porta.sec:hover{border-color:var(--tinta)}
 .portas{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0}
-.porta:focus-visible, .enviar:focus-visible, .dh-leg a:focus-visible, .dh-sec a:focus-visible, .dh-sec summary:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.porta:focus-visible, .env:focus-visible, .dh-leg a:focus-visible, .dh-sec a:focus-visible, .dh-sec summary:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
 .nf{margin:0; font-family:var(--mono); font-size:12px; color:var(--cinza)}
 .nf a{display:inline-flex; align-items:center; min-height:44px; color:var(--cinza); text-decoration-color:var(--cinza2); text-underline-offset:3px}
 .nf a:hover{color:var(--azul)}
@@ -120,7 +125,7 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .dh-m.aperta2 .dh-linhas p{font-size:13.5px; line-height:1.32; margin-bottom:3px}
 .dh-m.aperta2 .dh-ele{margin-top:4px; padding:1px 0 1px 8px; font-size:12px; line-height:1.35}
 .dh-m.aperta2 .dh-acoes{gap:4px 6px; margin-top:2px}
-.dh-m.aperta2 .dh-acoes .porta, .dh-m.aperta2 .dh-acoes .enviar{min-height:40px; padding:6px 10px; font-size:13px}
+.dh-m.aperta2 .dh-acoes .porta, .dh-m.aperta2 .dh-acoes .env{min-height:40px; padding:6px 12px; font-size:14px}
 .dh-m.aperta2 .nf a{min-height:40px}
 .dh-regua{position:absolute; left:0; top:0; visibility:hidden; pointer-events:none; white-space:nowrap; font-size:100px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
 .dh-regua.mono{font-family:var(--mono); font-weight:700; letter-spacing:-.02em}
@@ -167,6 +172,9 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 }
 
 /* ---------- depois do palco: em fluxo normal ---------- */
+/* T04 (integrador, 27/09/2026): #dh-rio nasce [hidden] e só entra por JS; no primeiro quadro as portas e o rodapé
+   ficavam no alto da tela e eram empurrados 12 mil px (CLS 0,24 a 1280). Enquanto [hidden], reserva uma tela inteira. */
+#dh-rio[hidden]{display:block; visibility:hidden; min-height:100vh}
 .dh-sec{max-width:1180px; margin:0 auto; padding:40px 16px 8px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
 .dh-sec + .dh-sec{padding-top:16px}
 .dh-lista details{max-width:760px; border-top:1px solid var(--linha); border-bottom:1px solid var(--linha)}
@@ -197,13 +205,10 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 @media (max-width:1023px){
   /* a faixa da direita fica livre para o controle do "assistir" */
   .dh-sec, .rodape{padding-right:60px}
-  .nv-segue{margin:36px 60px 0 16px}
 }
 @media (min-width:1024px){
   .dh-sec{padding:56px 24px 8px}
   .rodape{padding:18px 24px 56px}
-  .nv-segue, .nv-segue.solto{max-width:1180px; margin:36px auto 0; padding:0 24px}
-  .nv-segue a{max-width:760px}
 }
 </style>
 </head>
@@ -253,13 +258,13 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
   <button type="button" class="h-para" id="h-para" aria-label="Parar a animação"><span class="ic" aria-hidden="true">■</span><span class="tx">parar</span></button>
 </div>
 
-<script src="data/darkhorse.js?v=4"></script>
-<script src="assets/rio.js?v=8"></script>
-<script src="assets/nav.js?v=7"></script>
-<script src="assets/roteiro.js?v=1" defer></script>
-<script src="assets/darkhorse.js?v=5" defer></script>
-<script src="assets/comparador.js?v=4" defer></script>
-<script src="data/topicos.js?v=5" defer></script>
-<script src="assets/compartilhar.js?v=2" defer></script>
+<script src="data/darkhorse.js?v=ae8c67cc"></script>
+<script src="assets/rio.js?v=241ad6ba"></script>
+<script src="assets/nav.js?v=41bee539"></script>
+<script src="assets/roteiro.js?v=df65181c" defer></script>
+<script src="assets/darkhorse.js?v=175840db" defer></script>
+<script src="assets/comparador.js?v=109df845" defer></script>
+<script src="data/topicos.js?v=ab29a258" defer></script>
+<script src="assets/compartilhar.js?v=edbe4096" defer></script>
 </body>
 </html>

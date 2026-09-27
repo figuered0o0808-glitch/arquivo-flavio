@@ -177,12 +177,14 @@ function monta(c, j, alvo){
     '<button type="button" class="z-quem" data-dados aria-label="Dados da conversa: ' + esc(c.nome) + '">' + av(c) + '<span><b>' + esc(c.nome) + '</b><small>' + esc(c.sit ? c.sit.t : c.papel) + '</small></span></button>' +
     '<button type="button" class="z-ib" data-enc-conv aria-label="Encaminhar esta conversa">' + ic('enc') + '</button>' +
     '<button type="button" class="z-ib" data-menu="conv" aria-label="Mais opções" aria-haspopup="menu" aria-expanded="false">' + ic('mais') + '</button></div>' +
-    (fx ? '<button type="button" class="z-fix" data-fix="' + fx.id + '" aria-label="Mensagem fixada: ' + esc(abrev(fx.de || (fx.f[0] || {}).v) + ': ' + textoFix(fx)) + '">' + ic('pin') + '<span><b>' + esc(abrev(fx.de || (fx.f[0] || {}).v)) + ':</b> ' + esc(textoFix(fx)) + '</span></button>' : '') +
+    '<p class="z-selo">' + ic('cad') + '<span>Cada mensagem resume uma reportagem, com link</span></p>' +
+    (fx ? '<button type="button" class="z-fix" data-fix="' + fx.id + '" aria-label="Mensagem fixada: ' + esc(abrev(fx.de || (fx.f[0] || {}).v) + ': ' + textoFix(fx)) + '"><b>' + ic('pin') + 'Fixada · ' + esc(abrev(fx.de || (fx.f[0] || {}).v)) + '</b><span>' + esc(textoFix(fx)) + '</span></button>' : '') +
     '<button type="button" class="z-pula">Pular para a situação atual</button><div class="z-flut" aria-hidden="true"><span class="z-pil"></span></div>' +
     '<ol class="z-fluxo" aria-label="Mensagens: ' + esc(c.nome) + '">' + h.join('') + '</ol>' +
     '<div class="z-cbaixo"><button type="button" class="z-desce" hidden aria-label="Ir para o fim da conversa"><span>' + ic('bx') + '</span><b hidden></b></button>' +
     '<p>Só as fontes enviam mensagens nesta conversa</p><button type="button" class="z-bt1" data-enc-conv aria-label="Encaminhar esta conversa">' + ic('enc') + '</button></div>';
   R.ol = $('.z-fluxo', cv); R.flut = $('.z-flut', cv); R.desce = $('.z-desce', cv); R.fecho = $('#z-fecho', cv); R.seps = null;
+  mede();
   R.itens = $$(':scope>li', R.ol); R.idx = new Map(R.itens.map((li, i) => [li, i]));
   R.tot = M.length;
   const iDe = id => R.itens.findIndex(li => li.dataset.id === id), N = R.itens.length;
@@ -208,6 +210,18 @@ function monta(c, j, alvo){
     if (q > k) enfileira(q, 0);
   }
   agenda();
+}
+/* altura real do bloco colado no topo (cabeçalho 60 + selo + fixada de 1 ou 2 linhas): a fixada e a data flutuante se encaixam abaixo */
+function mede(){
+  if (!R.flut) return;
+  const s = $('.z-selo', cv), f = $('.z-fix', cv), hs = 60 + (s ? s.offsetHeight : 0);
+  if (f){
+    const sp = $('span', f); f.classList.remove('z-fix3');
+    if (sp && sp.scrollHeight > sp.clientHeight + 1) f.classList.add('z-fix3');   /* 2 linhas não bastaram: 3, e o número inteiro */
+    f.style.top = hs + 'px';
+  }
+  R.ft = hs + (f ? f.offsetHeight : 0);
+  R.flut.style.top = R.ft + 'px';
 }
 function pare(){ clearTimeout(R.T); R.T = 0; if (R.io) R.io.disconnect(); R.io = null; digita(); }
 function posiciona(li){ if (li) W.scrollTo(0, Math.max(0, li.getBoundingClientRect().top + W.scrollY - innerHeight * .3)); }
@@ -299,7 +313,7 @@ function quadro(){
   const f = R.flut;
   if (!R.seps) R.seps = $$('.z-sep:not(.z-leit)', R.ol).map(li => [li.getBoundingClientRect().top + y, li.textContent]);
   /* a data que já saiu por cima; quando um separador de verdade está passando pela vaga dela, ela some (nada de duas pílulas empilhadas) */
-  const ft = R.j && R.j.fixada ? 118 : 70;
+  const ft = R.ft || (R.j && R.j.fixada ? 142 : 94);
   let t = '', perto = false;
   for (const s of R.seps){ const v = s[0] - y; if (v <= ft + 4){ t = s[1]; perto = v > ft - 34; } else { if (v < ft + 34) perto = true; break; } }
   if (t && y > 40 && !perto){
@@ -425,23 +439,30 @@ function desenhaDados(){
 const mini = id => { const c = C[id]; return '<a class="z-mini" href="#' + id + '" data-ir="' + id + '">' + av(c) + '<span><b>' + esc(c.nome) + '</b><small>' + esc(c.papel) + '</small></span></a>'; };
 
 /* ---------- Atualizações e Rio ---------- */
+/* a janela de 14 dias é ancorada no fato mais recente das conversas, nunca no relógio (como historia.js: pela data dos fatos):
+   a aba não esvazia quando o arquivo para de crescer, e o título diz o período de verdade */
 function recentes(){
-  const r = (Z.recentes || []).filter(x => C[x.c]), l = r.filter(x => { const n = dias(x.d, HOJE); return n >= 0 && n <= 14; });
-  return l.length ? [l, 'Fatos dos últimos 14 dias nestas conversas'] : [r.slice(0, 10), 'Últimas atualizações'];
+  const r = (Z.recentes || []).filter(x => C[x.c] && x.d && x.d.length === 10);
+  if (!r.length) return [[], null, null];
+  const fim = r.reduce((m, x) => x.d > m ? x.d : m, r[0].d), l = r.filter(x => dias(x.d, fim) <= 14);
+  return [l, l.reduce((m, x) => x.d < m ? x.d : m, fim), fim];
 }
+const ddmm = s => { const [, m, x] = pt(s); return p2(x) + '/' + p2(m); };
 function pontoAt(){ const [l] = recentes(), v = l.some(x => !VIS.has(x.c + '/' + x.m)); $$('.z-ponto').forEach(p => { p.hidden = !v; }); }
 /* uma linha por conversa, como no app: o fato mais recente e quantos há; o toque abre no mais antigo do período, e a leitura desce pelos outros */
 function desenhaAt(){
-  const [l, tit] = recentes(), G = [], por = {};
+  const [l, ini, fim] = recentes(), G = [], por = {}, S = $('#z-atualizacoes');
   l.forEach(x => { let g = por[x.c]; if (!g){ g = por[x.c] = []; G.push(g); } g.push(x); });
-  $('#z-atualizacoes').innerHTML = '<div class="z-scab"><h2>Atualizações</h2></div><p class="z-atop">' + ic('cro') + tit + '</p><ul class="z-linhas">' + G.slice(0, 10).map(g => {
+  const tit = !l.length ? 'Sem atualizações' : l.length + (l.length > 1 ? ' fatos' : ' fato') + (ini === fim ? ' em ' + ddmm(fim) : ', de ' + ddmm(ini) + ' a ' + ddmm(fim)) + ', nestas conversas';
+  S.dataset.fatos = l.length;
+  S.innerHTML = '<div class="z-scab"><h2>Atualizações</h2></div><p class="z-atop">' + ic('cro') + tit + '</p><ul class="z-linhas">' + G.slice(0, 10).map(g => {
     const x = g[0], o = g[g.length - 1], c = C[x.c], k = o.c + '/' + o.m, n = dias(x.d, HOJE), ks = g.map(y => y.c + '/' + y.m);
     return '<li class="z-linha z-at' + (ks.every(y => VIS.has(y)) ? ' z-visto' : '') + '"><a class="z-la" href="#' + k + '" data-ir="' + k + '" data-visto="' + ks.join(' ') + '">' + av(c) +
       '<span class="z-lc"><span class="z-l1"><b>' + esc(c.nome) + '</b></span><span class="z-lp">' + (n === 0 ? 'hoje' : n === 1 ? 'ontem' : 'há ' + n + ' dias') +
       (g.length > 1 ? ' · ' + g.length + ' fatos' : x.de ? ' · ' + esc(x.de) : '') + '</span><span class="z-lp" style="color:var(--z-texto)">' + esc(frente(x.t)) + '</span></span></a></li>';
   }).join('') + '</ul>';
 }
-const FT = [['Nascente', 'index.html', 'a abertura: o rio numa tela só'], ['Quem anda com ele', 'drive.html#rede', 'a teia de nomes em volta dele'], ['O dinheiro', 'siga-o-dinheiro.html', 'de onde vem e para onde vai'], ['A Foz', 'foz.html', 'os escândalos que chegam a ele']];
+const FT = [['Nascente', 'index.html', 'a abertura: o rio numa tela só'], ['A teia de nomes', 'drive.html#rede', 'os nomes em volta dele'], ['O dinheiro', 'siga-o-dinheiro.html', 'de onde vem e para onde vai'], ['A Foz', 'foz.html', 'os 40 casos e como chegam a ele']];
 function desenhaRio(){
   const N = W.BDNav, T = N && N.TRECHOS ? N.TRECHOS : FT.map(x => ({ nome: x[0], href: x[1], desc: x[2], afluentes: x[0] === 'A Foz' ? [{ nome: 'Dark Horse', href: 'dark-horse.html', desc: 'o dinheiro do filme, mês a mês' }] : [] }));
   const Mg = N && N.MARGENS ? N.MARGENS : [['Arquivo', 'drive.html#arquivo'], ['Cronologia', 'drive.html#cronologia'], ['Notícias', 'drive.html#noticias'], ['Quiz', 'quiz.html']].map(x => ({ nome: x[0], href: x[1] }));
@@ -465,7 +486,7 @@ function topAba(){
 function topConv(c){
   const k = 'zap-' + c.id;
   if (!T()[k]){
-    const pre = 'Flávio Bolsonaro · BolsoZap · ' + c.nome;
+    const pre = 'BOLSODRIVE · BolsoZap · ' + c.nome;
     let tx = pre + (c.sit ? ' · ' + c.sit.t : '') + '. A conversa, com fonte em cada mensagem.';
     if (tx.length > 220) tx = pre + ': a conversa, com fonte em cada mensagem.';
     T()[k] = { titulo: pre, texto: tx, url: base() + 'c/' + k + '.html', img: 'c/img/' + k + '.png' };
@@ -474,7 +495,10 @@ function topConv(c){
 }
 function topMsg(c, m){
   const k = 'zap-' + c.id + '--' + m.id, cc = T()['zap-' + c.id];
-  if (!T()[k]) T()[k] = { titulo: 'Flávio Bolsonaro · BolsoZap · ' + c.nome, texto: m.env || 'Flávio Bolsonaro · BolsoZap · ' + c.nome, url: linkMsg(c, m), img: cc && cc.img || 'c/img/zap-' + c.id + '.png' };
+  if (!T()[k]){
+    const tit = (cc || {}).titulo || 'BOLSODRIVE · BolsoZap · ' + c.nome;
+    T()[k] = { titulo: tit, texto: m.env || tit, url: linkMsg(c, m), img: cc && cc.img || 'c/img/zap-' + c.id + '.png' };
+  }
   return k;
 }
 function registra(c, j){ topConv(c); j.m.forEach(m => topMsg(c, m)); }
@@ -694,7 +718,7 @@ function jk(dir){
   const x = R.idx.get(li); enfileira(x + 1, x + 1); posiciona(li); li.focus({ preventScroll: true });
 }
 W.addEventListener('scroll', agenda, { passive: true });
-W.addEventListener('resize', () => { R.seps = null; if (!R.rz) R.rz = requestAnimationFrame(() => { R.rz = 0; telas(); agenda(); }); });
+W.addEventListener('resize', () => { R.seps = null; if (!R.rz) R.rz = requestAnimationFrame(() => { R.rz = 0; telas(); mede(); agenda(); }); });
 W.addEventListener('popstate', rota);
 
 /* ---------- início ---------- */

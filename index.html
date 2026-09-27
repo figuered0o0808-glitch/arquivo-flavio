@@ -9,29 +9,32 @@
 <title>BOLSODRIVE: Um rio de escândalos · Flávio Bolsonaro</title>
 <meta name="description" content="BOLSODRIVE: um rio de escândalos. O registro público sobre o senador e candidato à Presidência Flávio Bolsonaro: os nomes em volta dele, o dinheiro e os escândalos, cada fato com fonte e status jurídico.">
 <meta name="theme-color" content="#070a07">
+<meta name="color-scheme" content="dark">
+<style>html{background:#070a07;color:#d8efdd}</style>
+<link rel="canonical" href="https://figuered0o0808-glitch.github.io/arquivo-flavio/">
 
 <!-- Preview de link (WhatsApp, Telegram, X, Facebook). Se o endereço do site mudar, troque og:url e og:image. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="BOLSODRIVE: Um rio de escândalos">
-<meta property="og:description" content="Os escândalos que chegam a Flávio Bolsonaro, elo por elo, com a situação jurídica de cada nome e a fonte.">
+<meta property="og:description" content="Os 40 casos em volta de Flávio Bolsonaro e como cada um chega a ele: por ele mesmo, pelo gabinete, pela família ou pelo entorno. Cada fato com fonte e situação jurídica.">
 <meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/">
-<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png?v=a06da120">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
+<meta property="og:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BOLSODRIVE: Um rio de escândalos">
-<meta name="twitter:description" content="Os escândalos que chegam a Flávio Bolsonaro, elo por elo, com a situação jurídica de cada nome e a fonte.">
-<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png">
-<meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro. Tudo deságua nele.">
+<meta name="twitter:description" content="Os 40 casos em volta de Flávio Bolsonaro e como cada um chega a ele: por ele mesmo, pelo gabinete, pela família ou pelo entorno. Cada fato com fonte e situação jurídica.">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png?v=a06da120">
+<meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os escândalos descem como afluentes até a foto de Flávio Bolsonaro.">
 
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
-<link rel="stylesheet" href="assets/base.css?v=4">
+<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
 <style>
 /* ===== A abertura: a nascente do rio =====
    Primeira tela: a bacia (o site inteiro visto de cima, tudo descendo até a foto dele).
@@ -50,8 +53,12 @@ body{overflow-x:hidden}
 .quem{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin:0 0 3px}
 .abre h1.sec{font-size:clamp(18px,5.3vw,30px); letter-spacing:1px; margin:0; line-height:1.2}
 .tese{font-size:clamp(24px,7vw,48px); font-weight:800; line-height:1.05; letter-spacing:-.015em; margin:4px 0 6px}
+/* a divisão dos casos (calculada): por onde cada um chega a ele e em quantos ele mesmo tem situação formal */
+.tese-x{font-size:clamp(15px,4.2vw,18px); line-height:1.4; margin:0 0 6px; max-width:30em}
+.tese-x b{font-weight:700}
 
-.palco{position:relative; height:340px; overflow:hidden; background:var(--papel)}
+/* altura reservada no CSS (sem salto de layout): o palco ocupa o que sobra da primeira tela, como o JS calcula em bacia() */
+.palco{position:relative; flex:1 1 auto; min-height:250px; max-height:640px; overflow:hidden; background:var(--papel)}
 .palco canvas{position:absolute; left:0; top:0; display:block}
 .palco .sem-js{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:16px; text-align:center; color:var(--cinza); font-size:15px}
 /* braços: número, nome e o que é; levam ao trecho */
@@ -92,7 +99,7 @@ body{overflow-x:hidden}
     column-gap:36px; max-width:1320px; margin:0 auto; padding:18px 24px 8px; min-height:0}
   .abre-txt{grid-area:txt; padding:36px 0 0}
   .abre-pe{grid-area:pe; padding:22px 0 0; align-self:start}
-  .palco{grid-area:palco}
+  .palco{grid-area:palco; flex:none; max-height:none; height:clamp(520px, calc(100vh - var(--hdr,57px) - 36px), 780px)}
   .acoes-abre{flex-direction:column; align-items:stretch; max-width:300px}
   .rola{margin-top:4px}
 }
@@ -122,6 +129,7 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .linha .pt.sai{background:transparent!important; border:2px solid currentColor; width:9px; height:9px}
 .linha .nm{font-weight:700}
 .linha .st{font-family:var(--mono); font-size:12px; color:var(--cinza); white-space:nowrap}
+.linha .st.neutro{color:var(--tinta)}   /* denúncia anulada: cor neutra, nunca vermelho nem âmbar */
 .linha .v{font-family:var(--mono); font-weight:700; color:var(--amber); margin-right:6px; white-space:nowrap}
 .porta{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 16px; background:var(--amber); color:#120c00; font-weight:700; font-size:15px;
   line-height:1.2; text-decoration:none; border-radius:3px; border:1.5px solid var(--amber); cursor:pointer; font-family:var(--sans)}
@@ -129,9 +137,32 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .portas{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0}
 [data-seq]{transition:opacity .25s linear}
 
+/* ---------- hoje no rio: faltam N dias para o 1º turno e o caso do dia, logo abaixo da primeira tela ---------- */
+.hoje{max-width:1180px; margin:0 auto; padding:10px 16px 0; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
+.hoje-in{max-width:620px; padding:14px 16px 14px; border:1px solid var(--linha); border-radius:4px; background:var(--leve)}
+.hoje-k{margin:0 0 8px; font-size:16px; font-weight:700; line-height:1.3}
+.hoje-k .dias{font-family:var(--mono); color:var(--amber); font-variant-numeric:tabular-nums}
+.hoje-r{margin:0 0 2px; font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--cinza)}
+.hoje-n{margin:0; font-size:27px; font-weight:800; line-height:1.05; letter-spacing:-.02em; color:var(--amber); font-variant-numeric:tabular-nums}
+.hoje-n.frase{font-size:23px; line-height:1.12}
+.hoje-fr{margin:4px 0 0; font-size:16px; line-height:1.4; max-width:30em}
+.hoje-ele{margin:6px 0 0; padding-left:10px; border-left:2px solid var(--tinta); font-size:14.5px; line-height:1.35}   /* a situação dele: sempre neutra */
+.hoje .nf{margin-top:4px}
+.hoje-acoes{display:flex; flex-wrap:wrap; align-items:center; gap:6px 16px; margin:10px 0 0}
+.env{display:inline-flex; align-items:center; justify-content:center; min-height:44px; min-width:44px; font-size:15px; font-weight:700; padding:0 18px; border-radius:2px; border:1.5px solid var(--amber); background:var(--amber); color:#120c00; cursor:pointer; font-family:var(--sans)}
+.env:focus-visible, .hoje-lk:focus-visible, .hoje-cp:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.hoje-lk{display:inline-flex; align-items:center; min-height:44px; color:var(--amber); font-weight:700; font-size:15px; text-decoration:none}
+.hoje-lk:hover{text-decoration:underline; text-underline-offset:3px}
+.hoje-cp{display:inline-flex; align-items:center; min-height:44px; padding:0; border:0; background:none; font-family:var(--mono); font-size:12px; color:var(--cinza); cursor:pointer; text-decoration:underline; text-decoration-color:var(--cinza2); text-underline-offset:3px}
+.hoje-cp:hover{color:var(--tinta)}
+.hoje-rec{margin:12px 0 0; padding-top:10px; border-top:1px solid var(--linha); font-size:14px; line-height:1.4}
+.hoje-rec .d{font-family:var(--mono); font-size:12px; color:var(--cinza); margin-right:6px}
+.hoje-rec .nf{display:inline; margin:0 0 0 6px}
+@media (min-width:900px){ .hoje{padding:6px 24px 0} }
+
 /* ---------- o caso Marielle, logo depois da primeira tela ---------- */
 .dest{max-width:1180px; margin:0 auto; padding:48px 16px 16px; scroll-margin-top:calc(var(--hdr,57px) + 6px)}
-.dest-in{max-width:620px}
+.dest-in{max-width:620px; container-type:inline-size}   /* o número forte mede a coluna (cqi), não a janela */
 .dest .fr{margin-bottom:14px}
 .dest-l{list-style:none; margin:0 0 10px; padding:0}
 .dest-l li{padding:11px 0; border-top:1px solid rgba(125,245,154,.11); font-size:16.5px; line-height:1.4}
@@ -179,18 +210,18 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .h-palco canvas{position:absolute; left:0; top:0; display:block}
 .h-rot{position:absolute; inset:0; pointer-events:none}
 .h-no{position:absolute; left:0; top:0; max-width:160px; padding:2px 6px; border-radius:3px; background:rgba(7,10,7,.82);
-  font-family:var(--mono); font-size:11px; line-height:1.25; color:var(--tinta); opacity:0; will-change:opacity}
+  font-family:var(--mono); font-size:12px; font-weight:700; line-height:1.25; color:var(--tinta); opacity:0; will-change:opacity}
 .h-no.ele{color:var(--tinta); font-weight:700; letter-spacing:.06em; background:rgba(7,10,7,.9)}   /* ele: sempre neutro */
 /* caso Marielle: os nós com nome e pena; a barra à esquerda tem a cor da situação de cada nome (condenado = vermelho) */
-.h-no.h-mx{padding:2px 6px 3px 7px; font-size:10.5px; line-height:1.25; border-left:2px solid var(--cinza2); background:rgba(7,10,7,.86)}
+.h-no.h-mx{padding:2px 6px 3px 7px; font-size:12px; line-height:1.25; border-left:2px solid var(--cinza2); background:rgba(7,10,7,.86)}
 .h-no.h-mx b{display:block; font-weight:700}
-.h-no.h-mx span{display:block; color:var(--cinza)}
+.h-no.h-mx span{display:block; font-weight:400; color:var(--cinza)}
 .h-no.h-mx.grave{border-left-color:#ff5c5c} .h-no.h-mx.medio{border-left-color:#ffb02e} .h-no.h-mx.leve{border-left-color:#5c8a63} .h-no.h-mx.caso{border-left-color:#86a58c}
 .h-no.h-mx.on{background:rgba(7,10,7,.95); box-shadow:0 0 0 1px rgba(232,255,236,.28)}
 .h-no.h-mx.on span{color:var(--tinta)}
-.h-no.h-lk{max-width:none; padding:1px 5px; font-size:10.5px; color:var(--tinta); background:rgba(7,10,7,.9); border:1px solid rgba(232,255,236,.22); white-space:nowrap}
-@media (max-width:380px){ .h-no.h-mx, .h-no.h-lk{font-size:10px; padding-right:5px} }
-@media (min-width:900px){ .h-no.h-mx, .h-no.h-lk{font-size:11.5px} }
+.h-no.h-lk{max-width:none; padding:1px 5px; font-size:12px; font-weight:400; color:var(--tinta); background:rgba(7,10,7,.9); border:1px solid rgba(232,255,236,.22); white-space:nowrap}
+@media (max-width:380px){ .h-no.h-mx, .h-no.h-lk{font-size:11px; padding-right:5px} }
+@media (min-width:900px){ .h-no, .h-no.h-mx, .h-no.h-lk{font-size:13px} }
 .h-leg{position:absolute; left:0; right:0; top:var(--palcoH,58%); bottom:0; padding:12px 56px 10px 16px; overflow:hidden}
 .h-barra{position:absolute; left:16px; right:56px; bottom:0; height:2px; background:rgba(125,245,154,.12)}
 .h-barra i{position:absolute; inset:0; background:var(--amber); transform-origin:0 0; transform:scaleX(0)}
@@ -257,7 +288,10 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .h-leg-cor span{white-space:nowrap}
 .h-leg-cor i{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px}
 .cap-fim .cap-n{font-size:30px}
+.cap-sub{margin:0 0 6px; font-size:15.5px; line-height:1.38}
 .cap-intro.aperta .cap-lista a{min-height:38px; font-size:12.5px}
+.cap-intro.aperta .cap-sub{font-size:14px}
+.cap-intro.aperta2 .cap-sub{display:none}
 @media (prefers-reduced-motion:no-preference){
   .cap.on{animation:h-entra .35s ease-out}
   .elo.on, .cap-ele{animation:h-entra .35s ease-out}
@@ -279,6 +313,7 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
   .elo .dp{font-size:15.5px}
   .cap-ele{font-size:16px}
   .cap-fim .cap-n{font-size:44px}
+  .cap-sub{font-size:17px}
   .cap-num .nv{margin:10px 0 14px}
   .cap-num.frase .nv{margin:12px 0 16px}
   .cap-num .nt{font-size:19px; line-height:1.42}
@@ -332,7 +367,7 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 @media (max-width:380px){ .leg{font-size:10.5px; gap:0 10px} }
 @media (max-width:899px){
   /* a faixa da direita fica livre para o controle do "assistir" */
-  .dest, .margem, .rodape{padding-right:60px}
+  .dest, .margem, .rodape, .abre-pe, .hoje{padding-right:60px}
   .nv-segue{margin:36px 60px 0 16px}
 }
 @media (min-width:900px){
@@ -348,10 +383,13 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
    A classe só entra com ?og=1 na URL; quem visita o site não vê este modo. */
 html.og, html.og body{overflow:hidden}
 html.og .site-header, html.og .nv-mapa, html.og .nv-segue, html.og .abre-pe, html.og #marielle,
-html.og #curso, html.og #historia, html.og #curso-f, html.og .h-ctl, html.og .margem, html.og .rodape{display:none!important}
+html.og #hoje-no-rio, html.og #curso, html.og #historia, html.og #curso-f, html.og .h-ctl, html.og .margem, html.og .rodape{display:none!important}
 html.og .abre{display:grid; grid-template-columns:440px minmax(0,1fr); grid-template-areas:"txt palco"; align-items:center;
   column-gap:20px; max-width:none; width:1200px; height:630px; min-height:0; margin:0; padding:0 32px 0 60px; overflow:hidden}
 html.og .abre-txt{grid-area:txt; padding:0 0 40px}
+html.og .palco{height:582px; max-height:none}
+html.og .tese{font-size:56px}
+html.og .tese-x{font-size:21px; line-height:1.35; margin:12px 0 0; max-width:none}
 html.og .quem{font-size:14px; margin:0 0 14px}
 html.og .abre h1.sec{font-size:26px; letter-spacing:2px; white-space:nowrap}
 html.og .tese{font-size:68px; line-height:1.02; margin:14px 0 0}
@@ -360,7 +398,7 @@ html.og .og-marca{display:block}
 .og-marca b{color:var(--tinta); font-weight:700}
 </style>
 <script>try { if (/[?&]og=1(&|$)/.test(location.search)) document.documentElement.classList.add('og'); } catch (e) {}</script>
-<link rel="stylesheet" href="assets/header.css?v=15">
+<link rel="stylesheet" href="assets/header.css?v=3b010dac">
 </head>
 <body data-trecho="0">
 
@@ -371,7 +409,8 @@ html.og .og-marca{display:block}
   <div class="abre-txt">
     <p class="quem">Flávio Bolsonaro · candidato à Presidência</p>
     <h1 class="sec" id="h-abre">Um rio de escândalos</h1>
-    <p class="tese">Tudo deságua nele.</p>
+    <p class="tese" id="tese">40 casos em volta dele.</p>
+    <p class="tese-x" id="tese-x"><b>11</b> chegam a ele por ele mesmo, <b>29</b> pelo gabinete, pela família ou pelo entorno. Em <b>3</b>, ele mesmo tem situação formal: investigado em 2, no STF; denunciado em 1, a rachadinha, com a denúncia anulada.</p>
     <p class="og-marca" aria-hidden="true"><b>BOLSODRIVE</b> · cada fato com fonte</p>
   </div>
 
@@ -388,13 +427,21 @@ html.og .og-marca{display:block}
     <p class="leg" aria-label="Legenda das cores">
       <span><i style="background:#ff5c5c"></i>preso ou condenado</span>
       <span><i style="background:#ffb02e"></i>investigado</span>
-      <span><i style="background:#5c8a63"></i>sem processo</span>
+      <span><i style="background:#5c8a63"></i>outros</span>
     </p>
     <div class="acoes-abre">
       <a class="bt" id="siga" href="#marielle">Siga o rio ↓</a>
-      <button type="button" class="bt sec" data-share="abertura">Mandar no WhatsApp</button>
+      <button type="button" class="bt sec" data-share="abertura" aria-label="Mandar no WhatsApp">Mandar ↗</button>
     </div>
     <a class="rola" href="#marielle">ou role você mesmo</a>
+  </div>
+</section>
+
+<!-- hoje no rio: a contagem até o 1º turno e o caso do dia (tabela fixa data → caso, pelo relógio do leitor; some depois de 04/10) -->
+<section class="hoje" id="hoje-no-rio" aria-labelledby="h-hoje" hidden>
+  <div class="hoje-in">
+    <p class="hoje-k" id="h-hoje"></p>
+    <div id="hoje-c"></div>
   </div>
 </section>
 
@@ -410,9 +457,9 @@ html.og .og-marca{display:block}
 
   <section class="trecho" id="quem" aria-labelledby="h-quem">
     <div class="col">
-      <h2 class="k" id="h-quem"><span>01 · Quem anda com ele</span><button type="button" class="enviar" data-share="quem-anda" aria-label="Enviar: quem anda com ele">enviar ↗</button></h2>
+      <h2 class="k" id="h-quem"><span>01 · A teia de nomes</span><button type="button" class="enviar" data-share="quem-anda" aria-label="Enviar: a teia de nomes">enviar ↗</button></h2>
       <div id="quem-c"></div>
-      <div class="portas"><a class="porta" href="drive.html#rede">A teia de nomes →</a></div>
+      <div class="portas"><a class="porta" href="drive.html#rede">A teia completa →</a></div>
     </div>
   </section>
 
@@ -430,7 +477,7 @@ html.og .og-marca{display:block}
 <section class="hist" id="historia" aria-label="A história: alguns escândalos, de perto" data-rot="historia" hidden>
   <div class="h-cena" id="h-cena">
     <div class="h-palco" id="h-palco" aria-hidden="true">
-      <canvas id="h-cv"></canvas>
+      <canvas id="h-cv" aria-hidden="true"></canvas>
       <div class="h-rot" id="h-rot"></div>
     </div>
     <div class="h-leg" id="h-leg"></div>
@@ -456,9 +503,9 @@ html.og .og-marca{display:block}
 </div>
 
 <section class="margem" id="semana" aria-labelledby="h-sem">
-  <h2 class="k" id="h-sem"><span>A semana</span><button type="button" class="enviar" data-share="semana" aria-label="Enviar: a semana">enviar ↗</button></h2>
+  <h2 class="k" id="h-sem"><span>Os últimos 7 dias</span><button type="button" class="enviar" data-share="semana" aria-label="Enviar: os últimos 7 dias do arquivo">enviar ↗</button></h2>
   <div class="bloco" id="sem-c"></div>
-  <div class="lado"><ul class="recentes" id="sem-l" data-rot="leitura"></ul><div class="portas"><a class="porta sec" href="drive.html#recente">Recentemente →</a></div></div>
+  <div class="lado"><ul class="recentes" id="sem-l" data-rot="leitura"></ul><div class="portas"><a class="porta sec" href="drive.html#recente" id="sem-ver">Recentemente →</a></div></div>
 </section>
 
 <section class="margem" id="teste" aria-labelledby="h-teste">
@@ -486,15 +533,15 @@ html.og .og-marca{display:block}
   <button type="button" class="h-para" id="h-para" aria-label="Parar a animação"><span class="ic" aria-hidden="true">■</span><span class="tx">parar</span></button>
 </div>
 
-<script src="data/dados.js?v=set2026u"></script>
-<script src="data/foz.js?v=14"></script>
-<script src="assets/rio.js?v=8"></script>
-<script src="assets/nav.js?v=7"></script>
-<script src="assets/roteiro.js?v=1" defer></script>
-<script src="data/foz-curto.js?v=4"></script>
-<script src="assets/historia.js?v=18" defer></script>
-<script src="data/topicos.js?v=5" defer></script>
-<script src="assets/compartilhar.js?v=2" defer></script>
+<script src="data/dados.js?v=d6676b07"></script>
+<script src="data/foz.js?v=709d4c4d"></script>
+<script src="assets/rio.js?v=241ad6ba"></script>
+<script src="assets/nav.js?v=41bee539"></script>
+<script src="assets/roteiro.js?v=df65181c" defer></script>
+<script src="data/foz-curto.js?v=1dfb2991"></script>
+<script src="assets/historia.js?v=4e9ff491" defer></script>
+<script src="data/topicos.js?v=ab29a258" defer></script>
+<script src="assets/compartilhar.js?v=edbe4096" defer></script>
 <script>
 /* =====================================================================
    A abertura. Todo número sai de window.DOSSIE e window.FOZ; nada é digitado à mão.
@@ -570,11 +617,17 @@ function situacao(id, s){
     if (anulada.has(id) && s.includes('preso')) w.push('prisão anulada');
     if (s.includes('denunciado')) w.push('denunciado'); else if (s.includes('investigado')) w.push('investigado');
   }
-  return { nivel: cond || preso ? 'grave' : (w.length ? 'medio' : 'leve'), txt: w.length ? w.join(' · ') : 'sem processo' };
+  /* denúncia anulada ou arquivada (token 'arquivada'): rótulo em cor neutra, nunca vermelho nem âmbar; sozinha, não é processo.
+     Qualquer outro token desconhecido é ignorado. */
+  const vivo = w.length > 0;
+  if (s.includes('arquivada')) w.push('denúncia anulada');
+  /* morto (token 'morto'): sem processo vivo; o rótulo "morto em <ano>" em cor neutra */
+  if (s.includes('morto') && !vivo){ const a = (String((NO[id] || {}).status || '').match(/\bmort[oa]\b[^.;]*?\b((?:19|20)\d\d)\b/i) || [])[1]; w.push('morto' + (a ? ' em ' + a : '')); }
+  return { nivel: cond || preso ? 'grave' : (vivo ? 'medio' : 'leve'), neutro: !vivo && !cond && !preso && w.length > 0, txt: w.length ? w.join(' · ') : 'sem processo' };
 }
 const filaPessoa = id => ITENS.map((i, k) => k).filter(k => (ITENS[k].pessoas || []).includes(id) && sobreEle(ITENS[k])).sort(porData);
 const NOMES = [...vizinhos].map(id => NO[id]).filter(Boolean).map(n => { const si = situacao(n.id, n.situacao); return {
-  id: 'p-' + n.id, no: n, nome: n.nome, grupo: n.grupo || 'outro', nivel: si.nivel, sit: si.txt, fila: filaPessoa(n.id) }; });
+  id: 'p-' + n.id, no: n, nome: n.nome, grupo: n.grupo || 'outro', nivel: si.nivel, sit: si.txt, neutro: !!si.neutro, fila: filaPessoa(n.id) }; });
 const nNome = { grave: 0, medio: 0, leve: 0 }; NOMES.forEach(n => { nNome[n.nivel]++; });
 
 /* ---------- os escândalos (window.FOZ): registros achados como na Foz ---------- */
@@ -641,8 +694,8 @@ const kMin = kMax ? new Date(Date.parse(kMax + 'T12:00:00Z') - 6 * 864e5).toISOS
 const SEMANA = ITENS.filter(i => { const k = String(i.data || '').slice(0, 10); return k.length === 10 && k >= kMin && k <= kMax && sobreEle(i); });
 /* vitrine: sem declarações (de terceiros ou dele), sem mídia, sem citar Lula ou PT, sem apelido */
 const PRIO = { condenacao: 0, denuncia: 1, investigacao: 1, processo: 2, decisao_judicial: 2, suspeita: 3, fato: 4 };
-const VITRINE = SEMANA.filter(i => i.status !== 'declaracao' && i.tipo !== 'declaracao' && i.tipo !== 'midia' && !LULAPT.test(i.titulo || '') && !/\bchama\b|apelid|\bcria\b/i.test(i.titulo || ''))
-  .sort((a, b) => (PRIO[a.status] ?? 5) - (PRIO[b.status] ?? 5) || String(b.data).localeCompare(String(a.data))).slice(0, 4)
+const VITRINE = SEMANA.filter(i => i.status !== 'declaracao' && i.status !== 'suspeita' && i.tipo !== 'declaracao' && i.tipo !== 'midia' && !LULAPT.test(i.titulo || '') && !/\bchama\b|apelid|\bcria\b/i.test(i.titulo || ''))
+  .sort((a, b) => (PRIO[a.status] ?? 5) - (PRIO[b.status] ?? 5) || String(b.data).localeCompare(String(a.data))).slice(0, 5)
   .sort((a, b) => String(b.data).localeCompare(String(a.data)));
 const nivelItem = s => s === 'condenacao' ? 'grave' : (/^(investigacao|denuncia|processo)$/.test(s) ? 'medio' : 'leve');
 
@@ -658,6 +711,23 @@ const SEN = D.senadoStats || {};
 const cargo = String(fl.papel || '').split(';')[0].trim();
 if (cargo) $('#foz-cargo').textContent = cargo + ', candidato à Presidência';
 
+/* a tese, calculada: os casos em volta dele divididos por onde cada um chega a ele (a faixa da Foz) e, à parte,
+   em quantos ele mesmo tem situação formal (os mesmos CASOS da foz desta página). Nada além do que os dados dizem. */
+(function(){
+  const n = ESC.length, nd = ESC.filter(x => x.faixa === 'direto').length, nc = CASOS.length;
+  if (!n) return;
+  $('#tese').textContent = n + ' casos em volta dele.';
+  /* a situação formal dele, sem omitir o desfecho: quantos investigados (e onde) e quantas denúncias (e que foram anuladas) */
+  const stc = c => String(c.x.e.status_flavio || '').trim(), onde = c => stc(c) + ' ' + String(c.x.e.resumo || '');
+  const inv = CASOS.filter(c => /^Investigad/i.test(stc(c))), den = CASOS.filter(c => /^(Denunciad|R[ée]u\b)/i.test(stc(c)));
+  const partes = [];
+  if (inv.length) partes.push('investigado em ' + inv.length + (inv.every(c => /\bSTF\b/.test(onde(c))) ? ', no STF' : ''));
+  if (den.length) partes.push('denunciado em ' + den.length + (den.length === 1 && /rachadinha/i.test(den[0].x.e.id) ? ', a rachadinha' : '') +
+    (den.every(c => /anulad/i.test(stc(c))) ? (den.length === 1 ? ', com a denúncia anulada' : ', com as denúncias anuladas') : ''));
+  $('#tese-x').innerHTML = '<b>' + nd + '</b> ' + (nd === 1 ? 'chega' : 'chegam') + ' a ele por ele mesmo, <b>' + (n - nd) + '</b> pelo gabinete, pela família ou pelo entorno.' +
+    (nc && partes.length ? ' Em <b>' + nc + '</b>, ele mesmo tem situação formal: ' + partes.join('; ') + '.' : '');
+})();
+
 /* ---------- os números fortes: grandes, em âmbar; o número conta com a rolagem (data-conta, assets/roteiro.js) ----------
    O valor quebra entre o número e a escala ("R$ 364" / "milhões"); o tamanho sai da parte mais longa. */
 const ESCALA = /^(.*\d)\s+(mil|milhão|milhões|bilhão|bilhões)$/;
@@ -669,9 +739,72 @@ const forte = (v, pausa) => {
 };
 const fonteA = f => f && f.url ? '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'fonte') + ' ↗</a>' : esc((f && f.veiculo) || '');
 
+/* ---------- hoje no rio: faltam N dias para o 1º turno e o caso do dia ----------
+   Tabela fixa data → caso (os 8 capítulos "de perto"), pelo relógio do leitor: funciona sem atualização diária.
+   Antes de 27/09 mostra o Master; em 04/10, "Hoje é o dia"; depois, o bloco some. Embaixo, o fato mais recente do arquivo. */
+const DESFECHO_FIM = /[;,.]\s*(?:investigado no STF, sem denúncia|denúncia anulada|sem denúncia)\.?\s*$/i;
+function hojeNoRio(hoje){
+  const box = $('#hoje-c'), kk = $('#h-hoje'), sec = $('#hoje-no-rio');
+  if (!box || !kk || !sec || OG) return;
+  sec.hidden = true; box.innerHTML = ''; kk.textContent = '';
+  const TURNO = '2026-10-04';
+  const DIA = { '2026-09-27': 'master', '2026-09-28': 'marielle-ifop', '2026-09-29': 'rachadinha-alerj', '2026-09-30': 'mocoes-pms-reus-condenados',
+    '2026-10-01': 'abin-defesa-rachadinha', '2026-10-02': 'trama-golpista', '2026-10-03': 'loja-chocolates', '2026-10-04': 'cota-senado-viagens' };
+  const FAIXA = { direto: 'chega a ele por ele mesmo', gabinete: 'chega a ele pelo gabinete', familia: 'chega a ele pela família', entorno: 'chega a ele pelo entorno' };
+  const p2 = v => String(v).padStart(2, '0'), hj = new Date();
+  if (!/^\d{4}-\d\d-\d\d$/.test(hoje || '')) hoje = hj.getFullYear() + '-' + p2(hj.getMonth() + 1) + '-' + p2(hj.getDate());
+  if (hoje > TURNO) return;
+  const faltam = Math.round((Date.parse(TURNO + 'T12:00:00') - Date.parse(hoje + 'T12:00:00')) / 864e5);
+  const ehDia = hoje === TURNO;
+  const id = DIA[hoje] || 'master';
+  const x = escPorId[id], e = x && x.e, n = e && e.numero && e.numero.valor ? e.numero : null, c = ((window.FOZ_CURTO || {})[id]) || {};
+  if (!ehDia && !e) return;
+  /* a frase: a do foz-curto quando completa um número; no destaque-frase, o texto do número (sem ressalva e sem repetir o desfecho) */
+  let frase = n && n.tipo !== 'frase' && c.frase ? c.frase : semRessalva(n ? n.texto : (c.frase || ''));
+  if (c.ele) frase = frase.replace(DESFECHO_FIM, '');
+  const fonte = (n && n.fonte && n.fonte.url) ? n.fonte : ((e && e.fontes) || []).find(f => f && f.url) || null;
+  kk.innerHTML = ehDia ? 'Hoje é o dia.' : (faltam === 1 ? 'Falta <span class="dias">1</span> dia' : 'Faltam <span class="dias">' + faltam + '</span> dias') + ' para o 1º turno · o caso de hoje';
+  let h = '';
+  if (ehDia){
+    h = '<p class="hoje-n">Os ' + ESC.length + ', um a um.</p><div class="hoje-acoes"><a class="hoje-lk" href="foz.html">A Foz, caso a caso →</a></div>';
+  } else {
+    const rot = e.rotulo || e.nome;
+    h = '<p class="hoje-r">' + esc(rot) + ' · ' + esc(FAIXA[e.faixa] || '') + '</p>' +
+      (n ? '<p class="hoje-n' + (n.tipo === 'frase' ? ' frase' : '') + '">' + esc(n.valor) + '</p>' : '') +
+      (frase ? '<p class="hoje-fr">' + esc(fimP(frase).replace(/R\$ (?=\d)/g, 'R$\u00a0')) + '</p>' : '') +
+      (c.ele ? '<p class="hoje-ele">' + esc(c.ele) + '</p>' : '') +
+      (fonte ? '<p class="nf">' + fonteA(fonte) + '</p>' : '') +
+      '<div class="hoje-acoes"><button type="button" class="env" data-share="' + esc(id) + '" aria-label="Enviar: ' + esc(rot) + '">enviar ↗</button>' +
+      '<a class="hoje-lk" href="foz.html#' + esc(id) + '">a ficha na Foz →</a>' +
+      '<button type="button" class="hoje-cp" id="hoje-cp" aria-label="Copiar o texto do dia">copiar o texto</button></div>';
+  }
+  /* o fato mais recente do arquivo, pela vitrine da semana (mesma regra: sem declarações, sem mídia, sem Lula ou PT): o de situação
+     mais formal (condenação, denúncia, investigação) e, entre iguais, o mais novo; sem vitrine, o item mais recente que passa na regra */
+  const rec = VITRINE.slice().sort((a, b) => (PRIO[a.status] ?? 5) - (PRIO[b.status] ?? 5) || String(b.data).localeCompare(String(a.data)))[0] || ITENS.map((i, k) => k).filter(k => { const i = ITENS[k]; return /^\d{4}-\d\d-\d\d/.test(String(i.data || '')) && sobreEle(i) &&
+    i.status !== 'declaracao' && i.tipo !== 'declaracao' && i.tipo !== 'midia' && !LULAPT.test(i.titulo || ''); }).sort(porData).map(k => ITENS[k]).pop();
+  if (rec){
+    const i = rec, f = (i.fontes || []).find(z => z && z.url);
+    h += '<p class="hoje-rec"><span class="d">' + dm(i.data) + '</span>' + esc(i.titulo) + (f ? '<span class="nf">' + fonteA(f) + '</span>' : '') + '</p>';
+  }
+  box.innerHTML = h;
+  sec.hidden = false;
+  /* o texto do dia, pronto para copiar (o mesmo tópico do botão de enviar, com a contagem na frente) */
+  const cp = $('#hoje-cp');
+  if (cp) cp.addEventListener('click', () => {
+    const t = ((window.BD_TOPICOS || {})[id]) || {};
+    const txt = 'Faltam ' + faltam + ' dias para o 1º turno · o caso de hoje: ' +
+      (t.texto || ((e.rotulo || e.nome) + ': ' + (n ? n.valor + ' ' : '') + fimP(frase))) + '\n' + (t.url || location.origin + location.pathname + 'foz.html#' + id);
+    const ok = () => { cp.textContent = 'copiado'; setTimeout(() => { cp.textContent = 'copiar o texto'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, () => {}); return; }
+    const ta = document.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px';
+    document.body.appendChild(ta); ta.select(); try { if (document.execCommand('copy')) ok(); } catch (_){} document.body.removeChild(ta);
+  });
+}
+hojeNoRio();
+
 /* ---------- o caso Marielle: o destaque, a frase e (se o texto listar) as ligações, uma por linha ----------
-   Tudo sai do registro marielle-ifop da Foz. Destaque-frase (numero.tipo 'frase', "Emenda negociada"):
-   manchete sem contagem e o texto inteiro embaixo. Texto no formato "x: o A, que…, e o B, que…" vira
+   Tudo sai do registro marielle-ifop da Foz. Destaque-número (R$ 199.999,79): conta com a rolagem, o texto inteiro
+   embaixo; destaque-frase (numero.tipo 'frase'): manchete sem contagem. Texto no formato "x: o A, que…, e o B, que…" vira
    uma linha por nome, com a situação de cada um tirada do elo da cadeia que sai dele. */
 const forteFrase = (v, pausa) => '<p class="num forte frase" data-rot="pausa:' + (pausa || 2.2) + '">' + esc(v) + '</p>';
 (function(){
@@ -705,7 +838,7 @@ $('#quem-c').innerHTML =
   forte(nNome.grave) +
   '<p class="fr" data-seq>dos <b>' + NOMES.length + ' nomes</b> em volta dele foram presos ou condenados.</p>' +
   '<ul class="linhas" data-rot="leitura">' + TOP.map(n => '<li class="linha" data-trib="' + esc(n.id) + '" data-seq><span class="nm">' + esc(n.nome) + '</span> ' +
-    '<span class="st">' + (n.sit === 'sem processo' ? '' : esc(n.sit)) + '</span><i class="pt" style="background:' + HEX[n.nivel] + '"></i></li>').join('') + '</ul>';
+    '<span class="st' + (n.neutro ? ' neutro' : '') + '">' + (n.sit === 'sem processo' ? '' : esc(n.sit)) + '</span><i class="pt" style="background:' + HEX[n.nivel] + '"></i></li>').join('') + '</ul>';
 
 /* trecho 02: o patrimônio declarado e os fluxos de dinheiro, um por linha */
 const curtoPara = t => String(t || '').split(/,\s/)[0];
@@ -719,14 +852,15 @@ $('#din-c').innerHTML =
 
 /* a foz: os casos em que ele mesmo tem situação formal (investigado, denunciado), a situação em uma linha */
 $('#sit').innerHTML = CASOS.length ?
-  forte(CASOS.length, 1.8) + '<p class="fr" data-seq>' + (CASOS.length === 1 ? 'caso em que ele mesmo é ou foi investigado ou denunciado:' : 'casos em que ele mesmo é ou foi investigado ou denunciado:') + '</p>' +
+  forte(CASOS.length, 1.8) + '<p class="fr" data-seq>' + (CASOS.length === 1 ? 'caso em que ele mesmo tem situação formal:' : 'casos em que ele mesmo tem situação formal:') + '</p>' +
   '<div data-rot="leitura">' + CASOS.map(c => '<div class="caso" data-seq><a href="foz.html#' + esc(c.x.e.id) + '">' + esc(c.x.e.rotulo || c.x.nome) + '</a>' +
     (c.junto.length ? ' <span class="sit">(inclui ' + c.junto.map(j => esc(j.e.rotulo || j.nome)).join(', ') + ')</span>' : '') +
     '<span class="sit">' + esc(statusSeco(c.x.e.status_flavio)) + '</span></div>').join('') + '</div>' : '';
 
 /* margem: a semana */
 $('#sem-c').innerHTML = SEMANA.length ?
-  '<p class="num" data-rot="pausa:1.8"><span data-conta>' + fmtN(SEMANA.length) + '</span></p><p class="fr">fatos sobre ele de ' + dm(kMin) + ' a ' + dm(kMax) + '.</p>' : '';
+  '<p class="num" data-rot="pausa:1.8"><span data-conta>' + fmtN(SEMANA.length) + '</span></p><p class="fr">fatos sobre ele nos últimos 7 dias do arquivo, até ' + dm(kMax) + '.</p>' : '';
+if (SEMANA.length) $('#sem-ver').textContent = 'ver os ' + fmtN(SEMANA.length) + ' →';
 $('#sem-l').innerHTML = VITRINE.map(i => '<li data-seq><i style="background:' + HEX[nivelItem(i.status)] + '"></i><span class="d">' + dm(i.data) + '</span>' + esc(i.titulo) + '</li>').join('');
 if (!SEMANA.length) $('#semana').hidden = true;
 
@@ -793,7 +927,7 @@ const ARMS = [
   { id: 'nomes', itens: NOMES, nm: 'nomes', sb: 'em volta dele', href: '#quem', setor: [138, 302],
     ordem: ['familia', 'operadores', 'milicia', 'financeiro', 'juridico', 'aliado', 'politico', 'outro'] },
   { id: 'dinheiro', itens: FLUX, nm: FLUX.length === 1 ? 'fluxo' : 'fluxos', sb: 'de dinheiro', href: '#dinheiro', setor: [232, 398], ordem: ['chega', 'sai'] },
-  { id: 'escandalos', itens: ESC, nm: 'escândalos', sb: 'chegam a ele', href: '#historia', setor: [-82, 84], ordem: ['entorno', 'familia', 'gabinete', 'direto'] },
+  { id: 'escandalos', itens: ESC, nm: 'casos', sb: 'em volta dele', href: '#historia', setor: [-82, 84], ordem: ['entorno', 'familia', 'gabinete', 'direto'] },
 ].filter(a => a.itens.length);
 const palco = $('#palco'), bRot = $('#b-rot');
 ARMS.forEach(a => {
@@ -1224,7 +1358,7 @@ if ('ResizeObserver' in window){
 let rh = 0;
 document.addEventListener('rio:hist', () => { if (OG) return; clearTimeout(rh); rh = setTimeout(rioFoz, 40); });
 window.addEventListener('pageshow', e => { if (e.persisted) tudo(); });
-window.__abertura = { bacia: () => B, trechos: () => C, foz: () => CF, saida: () => window.__rioSaida, NOMES, FLUX, ESC, CASOS, SEMANA, VITRINE };
+window.__abertura = { bacia: () => B, trechos: () => C, foz: () => CF, saida: () => window.__rioSaida, NOMES, FLUX, ESC, CASOS, SEMANA, VITRINE, hoje: hojeNoRio };
 })();
 </script>
 </body>

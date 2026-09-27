@@ -3,7 +3,7 @@
 window.DOSSIE = {
  "meta": {
   "revisar": true,
-  "atualizadoEm": "2026-09",
+  "atualizadoEm": "2026-09-25",
   "titulo": "BolsoDrive",
   "subtitulo": "um rio de escândalos",
   "aviso": "Compilação jornalística de fatos de interesse público, com fonte e status jurídico. Fontes em conferência."
@@ -92,7 +92,7 @@ window.DOSSIE = {
    "nome": "Mansão (BRB)",
    "cor": "#f5a623",
    "icone": "🏠",
-   "descricao": "A mansão de R$ 5,97 mi financiada pelo BRB — banco cujo então presidente está preso — e o QG de campanha de R$ 14,5 mi em nome de terceiro."
+   "descricao": "A mansão de R$ 5,97 mi financiada pelo BRB, banco cujo então presidente foi preso em 2026 no caso Master; o empréstimo foi julgado regular em 2025."
   },
   {
    "id": "master",
@@ -113,14 +113,14 @@ window.DOSSIE = {
    "nome": "Atuação no Senado",
    "cor": "#38bdf8",
    "icone": "🏛️",
-   "descricao": "Um projeto de lei em sete anos, 43% de faltas em 2026 e R$ 0,80 de cada R$ 100 em emendas para educação."
+   "descricao": "Um projeto de lei de autoria dele aprovado em sete anos; em 14 das 26 votações nominais de 2026 faltou ou não votou; R$ 0,80 de cada R$ 100 em emendas para educação."
   },
   {
    "id": "eleicoes",
    "nome": "Eleições e elegibilidade",
    "cor": "#e879f9",
    "icone": "🗳️",
-   "descricao": "A campanha presidencial: R$ 42 milhões do partido, R$ 6,01 de pessoas físicas, o vice, a chapa e as ações no TSE."
+   "descricao": "A campanha presidencial: R$ 53,5 milhões do partido (95%) e R$ 2,56 milhões de pessoas físicas na parcial ao TSE de 13/09, o vice, a chapa e as ações no TSE."
   },
   {
    "id": "declaracoes",
@@ -1748,7 +1748,7 @@ window.DOSSIE = {
    "status": "condenacao",
    "titulo": "Moraes reconhece trânsito em julgado e manda executar as penas dos cinco condenados no caso Marielle",
    "resumo": "Em decisões publicadas em 13 de julho de 2026, o ministro Alexandre de Moraes reconheceu o trânsito em julgado das condenações no caso Marielle Franco e Anderson Gomes, já certificado pela Secretaria Judiciária do STF, e determinou 'o início imediato do cumprimento da pena dos cinco condenados', após considerar de 'caráter procrastinatório' os embargos infringentes apresentados pelas defesas. As penas: Domingos Brazão e Chiquinho Brazão, 76 anos e 3 meses mais 200 dias-multa cada; Ronald Paulo Alves Pereira, 56 anos; Rivaldo Barbosa, ex-chefe da Polícia Civil do Rio, 18 anos mais 360 dias-multa; e Robson Calixto Fonseca, 9 anos mais 200 dias-multa. Domingos Brazão foi destinado ao presídio Constantino Cokotós, Rivaldo Barbosa ao presídio Pedrolino Werling de Oliveira e Ronald Pereira à Penitenciária Federal de Brasília. Chiquinho Brazão cumpre prisão domiciliar, inicialmente por 90 dias, com tornozeleira eletrônica e proibição de visitas e de redes sociais, por doença arterial coronariana crônica, diabetes tipo 2, sinais de nefropatia bilateral e hipertensão.",
-   "observacao": "Flávio Bolsonaro não é parte neste processo; o item entra pela frente Marielle/milícia. Correções em relação ao item proposto: nenhuma das duas fontes verificadas diz que Rivaldo Barbosa foi condenado por corrupção passiva e obstrução de justiça com reenquadramento da imputação de homicídio, nem tipifica os crimes de Robson Calixto — essas atribuições foram removidas por falta de lastro. A menção a 'Bangu 8' também foi removida: as fontes citam apenas o presídio Pedrolino Werling de Oliveira. A versão das defesas é o próprio recurso (embargos infringentes), tratado por Moraes como protelatório.",
+   "observacao": "O item entra pela frente Marielle/milícia. Correções em relação ao item proposto: nenhuma das duas fontes verificadas diz que Rivaldo Barbosa foi condenado por corrupção passiva e obstrução de justiça com reenquadramento da imputação de homicídio, nem tipifica os crimes de Robson Calixto — essas atribuições foram removidas por falta de lastro. A menção a 'Bangu 8' também foi removida: as fontes citam apenas o presídio Pedrolino Werling de Oliveira. A versão das defesas é o próprio recurso (embargos infringentes), tratado por Moraes como protelatório.",
    "pessoas": [
     "domingos-brazao",
     "chiquinho-brazao",
@@ -2298,7 +2298,7 @@ window.DOSSIE = {
    "data": "2024-02-01",
    "status": "anulado",
    "titulo": "Tentativas de reabertura barradas; risco de prescrição",
-   "resumo": "Após a anulação, o MP-RJ recorreu para reabrir a investigação. Em fevereiro de 2024, o ministro Gilmar Mendes negou recurso do MP. Entre 2025 e 2026, prevaleceu o entendimento de inviabilidade de reabertura criminal, com risco de prescrição, e o caso seguiu sem processo ativo.",
+   "resumo": "Após a anulação, o MP-RJ recorreu para reabrir a investigação. Em fevereiro de 2024, o ministro Gilmar Mendes negou recurso do MP. Entre 2025 e 2026, prevaleceu o entendimento de inviabilidade de reabertura criminal, com risco de prescrição, e o caso não foi reaberto.",
    "pessoas": [
     "flavio"
    ],
@@ -2865,8 +2865,8 @@ window.DOSSIE = {
    "data": "2026-08-04",
    "status": "investigacao",
    "titulo": "Willer Tomaz, advogado próximo de Flávio, é alvo de buscas da PF na Operação Sem Desconto",
-   "resumo": "Em 04/08/2026 a Polícia Federal cumpriu 18 mandados de busca e apreensão expedidos pelo STF, no Distrito Federal e no Maranhão, em nova fase da Operação Sem Desconto, que apura descontos indevidos em benefícios do INSS. Entre os alvos está o advogado Willer Tomaz, descrito pela reportagem como 'amigo próximo do senador Flávio Bolsonaro, a quem costuma acompanhar em agendas e viagens privadas'. Flávio Bolsonaro não é apontado como alvo nem como investigado na operação. Tomaz já havia sido preso em 2017 na Operação Greenfield, com as acusações posteriormente rejeitadas por insuficiência de provas. A matéria não registra manifestação das defesas.",
-   "observacao": "Flávio Bolsonaro NÃO é alvo da operação — o item registra apenas o vínculo pessoal noticiado, e só é relevante ao dossiê porque a OAB alegou depois que documentos sobre ele foram recolhidos nessa busca. Retirei o senador Weverton Rocha da lista de alvos: a fonte aberta não o menciona.",
+   "resumo": "Em 04/08/2026 a Polícia Federal cumpriu 18 mandados de busca e apreensão expedidos pelo STF, no Distrito Federal e no Maranhão, em nova fase da Operação Sem Desconto, que apura descontos indevidos em benefícios do INSS. Entre os alvos está o advogado Willer Tomaz, descrito pela reportagem como 'amigo próximo do senador Flávio Bolsonaro, a quem costuma acompanhar em agendas e viagens privadas'. Tomaz já havia sido preso em 2017 na Operação Greenfield, com as acusações posteriormente rejeitadas por insuficiência de provas. A matéria não registra manifestação das defesas.",
+   "observacao": "O item registra o vínculo pessoal noticiado e entra no dossiê porque a OAB alegou depois que documentos sobre Flávio foram recolhidos nessa busca. Retirei o senador Weverton Rocha da lista de alvos: a fonte aberta não o menciona.",
    "pessoas": [
     "willer-tomaz",
     "flavio"
@@ -3043,7 +3043,7 @@ window.DOSSIE = {
    "status": "decisao_judicial",
    "titulo": "Mendonça afasta cúpula da PF por liminar; Flávio celebra 'grupo especial de Lula desmascarado'",
    "resumo": "Em 8/9, o ministro André Mendonça (STF) concedeu liminar na Pet 16.662 afastando o diretor-geral da PF, Andrei Rodrigues, e o diretor de Inteligência, Leandro Almada, alegando 'monitoramento ilícito de Ministro da Suprema Corte' por relatórios de inteligência ('ao menos há mais de 30 dias este relator tem sido monitorado pela Polícia Federal'); também suspendeu a produção de relatórios sobre ministros. Em sessão virtual da 2ª Turma, Fux (10h04) e Nunes Marques (10h06) acompanharam o relator, mas Gilmar Mendes pediu vista e o referendo foi interrompido; Toffoli não votou. Flávio Bolsonaro, candidato do PL, escreveu nas redes: 'Grupo especial de Lula na Polícia Federal desmascarado oficialmente', e pediu que a PF 'volte a ter autonomia para ir atrás de bandidos, e não de adversários políticos de Lula'. A AGU recorreu alegando competência exclusiva do presidente da República para nomear e exonerar dirigentes federais.",
-   "observacao": "Item de contexto: Flávio não é parte do processo; entra pela declaração pública do candidato. Liminar revertida por Dino em 9/9 (ver item seguinte). Horários dos votos conferidos na Gazeta do Povo (8/9).",
+   "observacao": "Item de contexto: entra pela declaração pública de Flávio. Liminar revertida por Dino em 9/9 (ver item seguinte). Horários dos votos conferidos na Gazeta do Povo (8/9).",
    "pessoas": [
     "flavio"
    ],
@@ -3080,7 +3080,7 @@ window.DOSSIE = {
    "status": "decisao_judicial",
    "titulo": "Dino derruba liminar de Mendonça e reintegra Andrei Rodrigues à chefia da PF",
    "resumo": "Um dia após o afastamento, o ministro Flávio Dino, na Pet 16.669 (acesso da PF ao material apreendido pela Polícia Civil de SP na apuração de emendas parlamentares destinadas a empresas do filme 'Dark Horse'), determinou a reintegração de Andrei Rodrigues e de Leandro Almada e vedou 'novas medidas cautelares fundadas em atos praticados no regular exercício de suas atribuições funcionais'. Dino apontou a ilegitimidade do partido Novo (que tem candidato próprio, Romeu Zema) para pedir cautelares em investigação criminal, a incompetência de Mendonça (nomeação do diretor-geral cabe à Presidência; relatórios da PF já estavam sob análise de Fachin) e o prejuízo às investigações: 'a interrupção dos trabalhos de direção de investigações policiais interessa, sobretudo, aos investigados'. Perguntou ainda: 'Uma parte pode ser juiz de si mesma e antecipar juízos de valor sobre relatórios da Polícia Federal que expressamente a mencionam?'. Só o Plenário poderia rever sua decisão, segundo o próprio Dino.",
-   "observacao": "Decisão proferida na petição ligada às emendas do Dark Horse, o que a conecta ao caso; Flávio não é parte. A expressão 'atropelos processuais' consta na Agência Brasil, não no Conjur.",
+   "observacao": "Decisão proferida na petição ligada às emendas do Dark Horse, o que a conecta ao caso. A expressão 'atropelos processuais' consta na Agência Brasil, não no Conjur.",
    "pessoas": [],
    "fontes": [
     {
@@ -3107,7 +3107,7 @@ window.DOSSIE = {
    "data": "2026-09-09",
    "status": "suspeita",
    "titulo": "OAB alega em petição sigilosa que PF recolheu documentos sobre Flávio fora do escopo do mandado",
-   "resumo": "Reportagem de 09/09/2026 informa que o advogado Michael Cunha, representando a OAB, apresentou petição sob sigilo acusando investigadores da Polícia Federal de extrapolarem suas prerrogativas legais na busca de 04/08/2026 no escritório do advogado Willer Tomaz, na Operação Sem Desconto — operação cujo mandado foi autorizado pelo ministro André Mendonça. Segundo a reportagem, os agentes teriam recolhido material relativo a Flávio Bolsonaro, que não é alvo formal daquela investigação. Trata-se de alegação da entidade de classe, sem decisão judicial reconhecendo a irregularidade. A matéria não traz manifestação da Polícia Federal nem do gabinete de Mendonça.",
+   "resumo": "Reportagem de 09/09/2026 informa que o advogado Michael Cunha, representando a OAB, apresentou petição sob sigilo acusando investigadores da Polícia Federal de extrapolarem suas prerrogativas legais na busca de 04/08/2026 no escritório do advogado Willer Tomaz, na Operação Sem Desconto — operação cujo mandado foi autorizado pelo ministro André Mendonça. Segundo a reportagem, os agentes teriam recolhido material relativo a Flávio Bolsonaro. Trata-se de alegação da entidade de classe, sem decisão judicial reconhecendo a irregularidade. A matéria não traz manifestação da Polícia Federal nem do gabinete de Mendonça.",
    "observacao": "ALEGAÇÃO, não fato provado: petição sob sigilo, sem decisão judicial confirmando e sem contraditório da PF na reportagem. CORREÇÃO relevante: a fonte NÃO diz que a petição foi endereçada a Mendonça — ele apenas autorizou o mandado. Também cortei 'fotografia de telefone e compartilhamento de mensagens', detalhe que só circulou em blogs partidários (claudiodantas.com.br, tvfloridausa) e que não pude verificar.",
    "pessoas": [
     "flavio",
@@ -3132,7 +3132,7 @@ window.DOSSIE = {
    "status": "fato",
    "titulo": "Em ofício a Fux, Gilmar acusa 'prévio ajuste' com Mendonça no afastamento da cúpula da PF (não é Flávio)",
    "resumo": "Em ofício de 11/9 ao presidente da 2ª Turma, Luiz Fux, divulgado pelo Metrópoles em 17/9, o ministro Gilmar Mendes afirmou ter havido 'prévio ajuste — não comunicado a parcela dos demais colegas integrantes do colegiado' entre Fux e André Mendonça na sessão virtual de 8/9, na qual Fux (10h04) e Nunes Marques (10h06) votaram quatro e seis minutos após seu pedido de vista (10h). Gilmar sustenta que 'a Turma não é composta por seu presidente e mais um ou dois ministros. É colegiado de cinco membros'. Gilmar já havia formalizado proposta de emenda regimental para 'impedir que policiais e militares atuem nos gabinetes, exceto na segurança'. O afastamento de Andrei Rodrigues fora revertido por Dino em 9/9; a matéria não registra resposta formal de Fux ou Mendonça.",
-   "observacao": "Data do fato = ofício de 11/9; divulgação em 17/9. Cortada a afirmação de que Gilmar 'defende que o tema vá ao Plenário' (não consta). Item de contexto da briga no STF; Flávio não é parte.",
+   "observacao": "Data do fato = ofício de 11/9; divulgação em 17/9. Cortada a afirmação de que Gilmar 'defende que o tema vá ao Plenário' (não consta). Item de contexto da briga no STF.",
    "pessoas": [],
    "fontes": [
     {
@@ -3623,37 +3623,6 @@ window.DOSSIE = {
    "lastro": "referencia"
   },
   {
-   "id": "lindbergh-farias-leva-a-pf-mansao-de-r-14-5-milh",
-   "tipo": "denuncia",
-   "tema": "mansao",
-   "data": "2026-07-02",
-   "status": "fato",
-   "titulo": "Lindbergh Farias leva à PF mansão de R$ 14,5 milhões financiada pelo BRB e usada como QG de Flávio",
-   "resumo": "O deputado federal Lindbergh Farias protocolou notícia de fato na Polícia Federal pedindo apuração sobre a compra de uma mansão de R$ 14,5 milhões em Brasília, registrada em nome do advogado José Vicente Santini e usada como QG da pré-campanha de Flávio Bolsonaro. A operação teve R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo Banco de Brasília (BRB), com prestações estimadas em R$ 128 mil mensais, o que exigiria renda comprovada de cerca de R$ 429 mil por mês. O pedido quer que a PF apure 'a origem dos recursos, a capacidade financeira real dos compradores, as condições do financiamento e a natureza do uso político do imóvel', e se houve benefício patrimonial indireto ao senador. A assessoria de Flávio Bolsonaro foi procurada e não respondeu até a publicação; não há manifestação de Santini nem do BRB.",
-   "observacao": "É PEDIDO de apuração feito por adversário político, NÃO inquérito instaurado: nenhuma das fontes confirma abertura de investigação pela PF. O imóvel está em nome de Santini, não de Flávio. Contraditório em aberto. Data corrigida para 02/07/2026 (data das duas matérias); a data do protocolo não é informada pelas fontes. O item proposto descrevia Santini como 'coordenador da pré-campanha' — as fontes verificadas o identificam apenas como advogado, e a descrição foi removida.",
-   "pessoas": [
-    "jose-vicente-santini",
-    "flavio"
-   ],
-   "fontes": [
-    {
-     "veiculo": "Metrópoles",
-     "url": "https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg",
-     "data": "2026-07-02",
-     "trecho": "a origem dos recursos, a capacidade financeira real dos compradores, as condições do financiamento",
-     "tier": "referencia"
-    },
-    {
-     "veiculo": "VGN Notícias",
-     "url": "https://www.vgnoticias.com.br/vgnjur/pt-aciona-pf-para-investigar-mansao-de-r-145-milhoes-ligada-a-pre-campanha-de-flavio-bolsonaro/148424",
-     "data": "2026-07-02",
-     "trecho": "a investigação deve esclarecer se houve benefício patrimonial indireto ao senador",
-     "tier": "agregador"
-    }
-   ],
-   "lastro": "referencia"
-  },
-  {
    "id": "origem-dos-recursos-discrepancia-na-declaracao-e",
    "tipo": "investigacao",
    "tema": "master",
@@ -4067,7 +4036,6 @@ window.DOSSIE = {
      "veiculo": "Agência Pública",
      "url": "https://apublica.org/2026/05/flavio-bolsonaro-vorcaro-master-escandalo-filme-dark-horse-azarao/",
      "data": "2026-05",
-     "trecho": "US$ 2 milhões repassados ao Havengate Development Fund LP, no Texas, controlado por aliados de Eduardo Bolsonaro",
      "tier": "referencia"
     }
    ],
@@ -4087,14 +4055,12 @@ window.DOSSIE = {
      "veiculo": "Intercept Brasil",
      "url": "https://www.intercept.com.br/2026/05/13/audio-flavio-negociou-vorcaro-milhoes/",
      "data": "2026-05-13",
-     "trecho": "Flávio Bolsonaro negociou com Daniel Vorcaro R$ 134 milhões para bancar filme sobre Jair",
      "tier": "referencia"
     },
     {
      "veiculo": "CNN Brasil",
      "url": "https://www.cnnbrasil.com.br/politica/flavio-pediu-r-134-mi-a-vorcaro-para-filme-de-bolsonaro-diz-intercept/",
      "data": "2026-05-13",
-     "trecho": "Flávio pediu R$ 134 mi a Vorcaro para filme de Bolsonaro, diz Intercept",
      "tier": "referencia"
     }
    ],
@@ -4121,11 +4087,11 @@ window.DOSSIE = {
      "veiculo": "Intercept Brasil",
      "url": "https://www.intercept.com.br/2026/05/13/audio-flavio-negociou-vorcaro-milhoes/",
      "data": "2026-05-13",
-     "trecho": "US$ 10,6 milhões pagos entre fevereiro e maio de 2025 em seis transferências",
      "tier": "referencia"
     }
    ],
-   "lastro": "referencia"
+   "lastro": "referencia",
+   "observacao": "Atualização (set/2026): a delação homologada pelo STF em 09/09/2026 e o relatório da PF falam em 7 remessas em 2025, cerca de R$ 60 milhões, de um pedido de R$ 131 milhões; 'R$ 61 milhões em seis operações' é o levantamento de maio de 2026."
   },
   {
    "id": "suspeita-de-desvio-us-2-mi-teriam-ido-a-fundo-no",
@@ -4141,7 +4107,6 @@ window.DOSSIE = {
      "veiculo": "CNN Brasil",
      "url": "https://www.cnnbrasil.com.br/politica/entenda-o-caso-flavio-vorcaro-em-6-pontos/",
      "data": "2026-05-14",
-     "trecho": "US$ 2 milhões direcionados ao Havengate Development Fund LP, gerido por Paulo Calixto, advogado de Eduardo Bolsonaro",
      "tier": "referencia"
     },
     {
@@ -4174,13 +4139,11 @@ window.DOSSIE = {
      "veiculo": "The Intercept Brasil",
      "url": "https://www.intercept.com.br/2026/05/13/audio-flavio-negociou-vorcaro-milhoes/",
      "data": "2026-05-13",
-     "trecho": "Flávio Bolsonaro negociou com Daniel Vorcaro R$ 134 milhões para bancar filme sobre Jair",
      "tier": "referencia"
     },
     {
      "veiculo": "CNN Brasil",
      "url": "https://www.cnnbrasil.com.br/politica/entenda-o-caso-flavio-vorcaro-em-6-pontos/",
-     "trecho": "Negociação de repasse de US$ 24 milhões (aproximadamente R$ 134 milhões)",
      "tier": "referencia"
     }
    ],
@@ -4194,7 +4157,7 @@ window.DOSSIE = {
    "status": "investigacao",
    "titulo": "PF apura desembolso de R$ 61 milhões do Master ao filme entre fev e maio de 2025",
    "resumo": "Documentos indicam que ao menos R$ 61 milhões foram transferidos em seis operações bancárias entre fevereiro e maio de 2025 para o financiamento do filme 'Dark Horse'. A Polícia Federal investiga se os recursos foram à produção ou serviram para camuflar transferências.",
-   "observacao": "Linha de investigação aberta pela PF; valores em apuração.",
+   "observacao": "Linha de investigação aberta pela PF; valores em apuração. Atualização (set/2026): a delação homologada pelo STF em 09/09/2026 e o relatório da PF falam em 7 remessas em 2025, cerca de R$ 60 milhões, de um pedido de R$ 131 milhões; 'R$ 61 milhões em seis operações' é o levantamento de maio de 2026.",
    "pessoas": [
     "flavio",
     "vorcaro"
@@ -4203,7 +4166,6 @@ window.DOSSIE = {
     {
      "veiculo": "CNN Brasil",
      "url": "https://www.cnnbrasil.com.br/politica/entenda-o-caso-flavio-vorcaro-em-6-pontos/",
-     "trecho": "Fevereiro a maio de 2025: pelo menos US$ 10,6 milhões (cerca de R$ 61 milhões) foram transferidos em seis operações bancárias",
      "tier": "referencia"
     },
     {
@@ -4223,7 +4185,7 @@ window.DOSSIE = {
    "status": "investigacao",
    "titulo": "Caso Master/Vorcaro: Flávio cobrou repasses do banqueiro para filme sobre Jair",
    "resumo": "Áudios e mensagens divulgados pelo Intercept mostram Flávio Bolsonaro negociando com o ex-banqueiro Daniel Vorcaro (Banco Master) dinheiro para o filme Dark Horse, sobre Jair. Segundo a reportagem, cerca de R$ 61 milhões foram pagos entre fevereiro e maio de 2025.",
-   "observacao": "Flávio confirmou ter pedido dinheiro a Vorcaro, dizendo ser 'um filho procurando patrocínio' para o filme, e nega irregularidade.",
+   "observacao": "Flávio confirmou ter pedido dinheiro a Vorcaro, dizendo ser 'um filho procurando patrocínio' para o filme, e nega irregularidade. Atualização (set/2026): a delação homologada pelo STF em 09/09/2026 e o relatório da PF falam em 7 remessas em 2025, cerca de R$ 60 milhões, de um pedido de R$ 131 milhões; 'R$ 61 milhões entre fevereiro e maio' é o levantamento de maio de 2026.",
    "pessoas": [
     "flavio",
     "vorcaro",
@@ -4235,21 +4197,18 @@ window.DOSSIE = {
      "veiculo": "Intercept Brasil",
      "url": "https://www.intercept.com.br/2026/05/13/audio-flavio-negociou-vorcaro-milhoes/",
      "data": "2026-05-13",
-     "trecho": "Flávio negociou com Vorcaro R$ 134 milhões para bancar filme sobre Jair",
      "tier": "referencia"
     },
     {
      "veiculo": "Agência Pública",
      "url": "https://apublica.org/2026/05/flavio-bolsonaro-vorcaro-master-escandalo-filme-dark-horse-azarao/",
      "data": "2026-05",
-     "trecho": "US$ 10,6 milhões já pagos para a produção do filme; PF investiga possível operação de fachada",
      "tier": "referencia"
     },
     {
      "veiculo": "CNN Brasil",
      "url": "https://www.cnnbrasil.com.br/politica/entenda-o-caso-flavio-vorcaro-em-6-pontos/",
      "data": "2026-05",
-     "trecho": "Seis transferências bancárias somaram US$ 10,6 mi entre fevereiro e maio de 2025",
      "tier": "referencia"
     }
    ],
@@ -4464,7 +4423,7 @@ window.DOSSIE = {
    "status": "decisao_judicial",
    "titulo": "Fachin redistribui a André Mendonça, por prevenção, apuração sobre repasses do Banco Master ao filme 'Dark Horse'",
    "resumo": "Em 26/06/2026 o presidente do STF, Edson Fachin, determinou a redistribuição ao ministro André Mendonça da notícia-crime apresentada pelo deputado Lindbergh Farias, sobre repasses do banqueiro Daniel Vorcaro (Banco Master) ao filme 'Dark Horse'. Fachin escreveu que 'as circunstâncias justificam a redistribuição destes autos, por parâmetro de prevenção, ao Ministro André Mendonça'. A peça de Lindbergh aponta ligação entre o financiamento do filme, as apurações sobre o Banco Master e a relação do senador Flávio Bolsonaro com Vorcaro. A decisão trata apenas de relatoria/competência e não analisou o mérito das acusações.",
-   "observacao": "Decisão de competência interna. Cortei a afirmação de que a peça teria sido protocolada nos autos do inquérito de Moraes sobre a atuação de Eduardo Bolsonaro no exterior — a fonte não diz isso. Nesta data Flávio não foi formalmente incluído como investigado.",
+   "observacao": "Decisão de competência interna. Cortei a afirmação de que a peça teria sido protocolada nos autos do inquérito de Moraes sobre a atuação de Eduardo Bolsonaro no exterior — a fonte não diz isso.",
    "pessoas": [
     "flavio",
     "vorcaro"
@@ -4511,7 +4470,7 @@ window.DOSSIE = {
    "status": "investigacao",
    "titulo": "10ª fase da Compliance Zero mira publicitário apontado como elo entre Flávio Bolsonaro e Vorcaro",
    "resumo": "Em 9 de julho de 2026 a PF deflagrou a 10ª fase da Operação Compliance Zero, que apura suspeitas de fraudes financeiras ligadas ao Banco Master, com busca e apreensão contra o publicitário Thiago Miranda, autorizada pelo ministro André Mendonça. Nesta etapa os investigadores analisam possível ação coordenada em redes sociais para comprometer a credibilidade do Banco Central. Segundo mensagens obtidas pela investigação, Miranda foi o responsável pela aproximação entre Flávio Bolsonaro e Daniel Vorcaro; uma delas registra 'Confirmei com o Flávio Bolsonaro. Quarta dia 11 às 17:30 aqui na sua casa de Brasília'. Medidas cautelares não representam condenação e os investigados mantêm o direito de defesa.",
-   "observacao": "Flávio Bolsonaro não é alvo desta fase. Cortei do resumo original: número de mandados ('dois'), a atribuição da agência 'MiThi' a Miranda, a data de dezembro/2024 para o primeiro encontro e as menções a intimidação de jornalistas e monitoramento irregular — nenhum desses pontos aparece nas fontes verificadas.",
+   "observacao": "Cortei do resumo original: número de mandados ('dois'), a atribuição da agência 'MiThi' a Miranda, a data de dezembro/2024 para o primeiro encontro e as menções a intimidação de jornalistas e monitoramento irregular — nenhum desses pontos aparece nas fontes verificadas.",
    "pessoas": [
     "thiago-miranda",
     "flavio",
@@ -4640,7 +4599,7 @@ window.DOSSIE = {
    "status": "processo",
    "titulo": "Ancine autua produtora de 'Dark Horse' por filmagem irregular e depois concede registro à obra",
    "resumo": "A Ancine lavrou em 28 de julho de 2026 auto de infração contra a Go Up Entertainment por ter filmado no Brasil parte de 'Dark Horse', produção estrangeira sobre a trajetória política de Jair Bolsonaro, sem fazer a comunicação prévia exigida pela legislação. A penalidade prevista vai de R$ 2 mil a R$ 100 mil e não impede automaticamente o lançamento. Em 7 de agosto a mesma agência emitiu o Registro de Obra Estrangeira (ROE); ainda são necessários o Certificado de Registro de Título e a classificação indicativa do Ministério da Justiça para exibição comercial. Em reportagem de 22 de junho, a produtora e o deputado Mário Frias negaram ter recebido dinheiro direto de Vorcaro, embora Karina Ferreira da Gama tenha admitido em entrevista que 90% da verba do filme veio do fundo ligado ao banqueiro.",
-   "observacao": "Processo administrativo em curso na Ancine, sem decisão final nem multa aplicada até 09/09/2026. Flávio Bolsonaro não é parte nesse processo. Este item absorveu o item que tratava da resistência das redes de cinema, cuja parte sobre a Ancine era duplicata e cuja parte sobre exibidores não nomeava nenhuma rede.",
+   "observacao": "Processo administrativo em curso na Ancine, sem decisão final nem multa aplicada até 09/09/2026. Este item absorveu o item que tratava da resistência das redes de cinema, cuja parte sobre a Ancine era duplicata e cuja parte sobre exibidores não nomeava nenhuma rede.",
    "pessoas": [
     "karina-ferreira-da-gama",
     "mario-frias",
@@ -4774,7 +4733,7 @@ window.DOSSIE = {
    "status": "investigacao",
    "titulo": "Repasse de cerca de R$ 9 milhões ao Havengate em setembro de 2025 contradiz versão de Flávio sobre fim dos pagamentos",
    "resumo": "Análise publicada pela Agência Pública em 2 de setembro de 2026, assinada por Thiago Domenici, retoma reportagem da revista piauí segundo a qual Daniel Vorcaro enviou mais cerca de R$ 9 milhões (conversão pela cotação do Banco Central do dia) ao Havengate Development Fund em 16 de setembro de 2025, dois meses antes de sua prisão. O dado contraria a versão dada por Flávio Bolsonaro, que afirmou que 'o último pagamento que ele fez foi em maio de 2025' e que o fundo 'foi fechado, isolado'. O mesmo texto registra outros elementos do caso Master no período: contrato de R$ 131 milhões entre o escritório de Viviane Barci de Moraes e o banco, de R$ 3,6 milhões mensais por três anos, assinado em 23 de janeiro de 2024; e um encontro de duas horas entre o ministro André Mendonça e Vorcaro em 14 de março de 2025, em São Paulo, no Iter, instituto fundado pelo próprio ministro. Não há, até 09/09/2026, manifestação da defesa de Flávio reconciliando as datas.",
-   "observacao": "O texto da Agência Pública é assinado como análise e credita a revelação do repasse à revista piauí. A contradição é entre uma declaração pública do senador e documentos citados pela imprensa; não equivale, por si só, a imputação de crime. O valor em reais é a conversão, pela cotação de venda do Banco Central (PTAX) de 16/09/2025, do valor que consta da fonte. Retirei a atribuição da reportagem a Breno Pires, não confirmada na página.",
+   "observacao": "O texto da Agência Pública é assinado como análise e credita a revelação do repasse à revista piauí. A contradição é entre uma declaração pública do senador e documentos citados pela imprensa. O valor em reais é a conversão, pela cotação de venda do Banco Central (PTAX) de 16/09/2025, do valor que consta da fonte. Retirei a atribuição da reportagem a Breno Pires, não confirmada na página.",
    "pessoas": [
     "vorcaro",
     "flavio"
@@ -4843,7 +4802,6 @@ window.DOSSIE = {
      "veiculo": "A Crítica (Campo Grande)",
      "url": "https://acritica.net/justica/delator-eleva-a-us-12-3-milhoes-dinheiro-enviado-a-fundo-do-filme-sobre-bolsonaro/",
      "data": "2026-09-10",
-     "trecho": "média de US$ 1,76 milhão por operação",
      "tier": "agregador"
     },
     {
@@ -4898,7 +4856,6 @@ window.DOSSIE = {
      "veiculo": "Diário Carioca",
      "url": "https://www.diariocarioca.com/2026/09/08/politica/corrupcao-investigacao/delator-confirma-transferencias-de-us-123-milhoes-feitas-por-vorcaro-ao-fundo-ligado-a-eduardo-bolsonaro",
      "data": "2026-09-08",
-     "trecho": "sete transferências para o fundo Havengate que somaram US$ 12,3 milhões",
      "tier": "agregador"
     },
     {
@@ -4918,7 +4875,7 @@ window.DOSSIE = {
    "data": "2026-09-10",
    "status": "investigacao",
    "titulo": "Operação Make Up: Dino autoriza 49 mandados contra Frias e produtora do Dark Horse; defesa de Flávio tentara tirar o caso de Dino",
-   "resumo": "Em 10/9 (quinta) a PF deflagrou a Operação Make Up, com 49 mandados de busca e apreensão (SP, RJ, CE e DF) autorizados por Flávio Dino, contra o deputado Mário Frias (PL-SP) e a produtora Karina Gama, ligada à GoUp, ao Instituto Conhecer Brasil e à Academia Nacional de Cultura, por suspeita de desvio de emendas parlamentares (peculato, falsidade documental, lavagem, organização criminosa e crimes licitatórios). Na decisão, assinada em 3/9, Dino viu 'fortes indícios de uma única organização criminosa, estruturada para captar, disseminar e ocultar recursos provenientes de verbas públicas', ligando a frente das emendas à do dinheiro de Vorcaro apurada por Mendonça. Segundo o Painel Político, a defesa de Flávio apresentou quatro pedidos entre 13 e 29 de julho para transferir o procedimento de Dino a Mendonça, alegando 'manipulação das regras de competência, a fim de criar uma prevenção artificial'; todos foram rejeitados. Flávio não é alvo da operação. As assessorias de Frias e Karina Gama não responderam.",
+   "resumo": "Em 10/9 (quinta) a PF deflagrou a Operação Make Up, com 49 mandados de busca e apreensão (SP, RJ, CE e DF) autorizados por Flávio Dino, contra o deputado Mário Frias (PL-SP) e a produtora Karina Gama, ligada à GoUp, ao Instituto Conhecer Brasil e à Academia Nacional de Cultura, por suspeita de desvio de emendas parlamentares (peculato, falsidade documental, lavagem, organização criminosa e crimes licitatórios). Na decisão, assinada em 3/9, Dino viu 'fortes indícios de uma única organização criminosa, estruturada para captar, disseminar e ocultar recursos provenientes de verbas públicas', ligando a frente das emendas à do dinheiro de Vorcaro apurada por Mendonça. Segundo o Painel Político, a defesa de Flávio apresentou quatro pedidos entre 13 e 29 de julho para transferir o procedimento de Dino a Mendonça, alegando 'manipulação das regras de competência, a fim de criar uma prevenção artificial'; todos foram rejeitados. As assessorias de Frias e Karina Gama não responderam.",
    "observacao": "Mundo Positivo e Painel Político são fontes secundárias; data de 10/9 (quinta) confirmada por Poder360 e Painel Político. Revista Fórum datou a operação em 9/9 — divergência não adotada. Data da decisão (3/9) vem só da Fórum.",
    "pessoas": [
     "flavio",
@@ -5197,44 +5154,6 @@ window.DOSSIE = {
      "url": "https://revistaforum.com.br/politica/flavio-eduardo-bolsonaro-vorcaro-fuga-eua",
      "data": "2026-09-13",
      "trecho": "Flavio B e Eduardo querem marcar uma agenda com vc. Filme.",
-     "tier": "referencia"
-    }
-   ],
-   "lastro": "referencia"
-  },
-  {
-   "id": "lula-diz-que-flavio-tem-raiva-de-moraes-por-mari",
-   "tipo": "declaracao",
-   "tema": "master",
-   "data": "2026-09-16",
-   "status": "declaracao",
-   "titulo": "Lula diz que Flávio tem 'raiva' de Moraes por Marielle e 8/1 e cobra 'os R$ 130 milhões' de Vorcaro",
-   "resumo": "Em entrevista ao podcast 'Desce a Letra Show' (Cauê Moura e Load Comics), em 16/9/2026, o presidente Lula afirmou: 'A raiva dele pelo Alexandre de Moraes é porque o Alexandre de Moraes mandou prender o cara que mandou matar a Marielle' e 'A bronca dele com o Alexandre de Moraes é porque o Alexandre de Moraes prendeu o pai dele e os golpistas que tentaram fazer o 8 de Janeiro'. Disse que Flávio está 'nervosinho' porque vão aparecer as 'falcatruas dele com o Vorcaro, o churrasco, as bebidas, as mulheres', que 'O que tem que explicar é cadê os R$ 130 milhões que ele pegou do Vorcaro' e que 'É quase que uma quadrilha, e não uma família'. Elogiou Moraes ('trabalho extraordinário para garantir a democracia nesse país'), mas defendeu que investigações contra o ministro prossigam se houver ilícitos. Resposta de Flávio, no mesmo dia, em ato no Recife: 'Se o Lula foi declarado presidente da República, ele deve ao Alexandre de Moraes' e Lula 'passou a mão na cabeça do Alexandre de Moraes'.",
-   "observacao": "A menção a Marielle refere-se à prisão dos irmãos Brazão. Flávio não é investigado no assassinato. O valor de R$ 130 milhões consta em O Tempo, não na matéria do Metrópoles.",
-   "pessoas": [
-    "flavio",
-    "vorcaro"
-   ],
-   "fontes": [
-    {
-     "veiculo": "Metrópoles",
-     "url": "https://www.metropoles.com/brasil/lula-afirma-que-flavio-bolsonaro-tem-raiva-de-moraes-por-prisao-do-pai",
-     "data": "2026-09-16",
-     "trecho": "A raiva dele pelo Alexandre de Moraes é porque o Alexandre de Moraes mandou prender o cara que mandou matar a Marielle",
-     "tier": "referencia"
-    },
-    {
-     "veiculo": "O Tempo",
-     "url": "https://www.otempo.com.br/eleicoes/2026/presidentes/2026/9/16/lula-elogia-moraes-e-diz-que-flavio-esta-nervosinho-porque-vao-aparecer-falcatruas-com-vorcaro",
-     "data": "2026-09-16",
-     "trecho": "R$ 130 milhões que ele pegou do Vorcaro",
-     "tier": "referencia"
-    },
-    {
-     "veiculo": "Metrópoles",
-     "url": "https://www.metropoles.com/brasil/lula-passou-a-mao-na-cabeca-de-moraes-diz-flavio-em-ato-no-recife",
-     "data": "2026-09-16",
-     "trecho": "passou a mão na cabeça do Alexandre de Moraes",
      "tier": "referencia"
     }
    ],
@@ -6397,7 +6316,7 @@ window.DOSSIE = {
      "veiculo": "Gazeta do Povo",
      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/cnt-presidente-junho-2026/",
      "data": "2026-06-15",
-     "trecho": "Lula (PT): 41,8%; Flávio Bolsonaro (PL): 28,2% (CNT/MDA, jun/2026)",
+     "trecho": "Lula: 41,8%; Flávio Bolsonaro (PL): 28,2% (CNT/MDA, jun/2026)",
      "tier": "referencia"
     }
    ],
@@ -6411,7 +6330,7 @@ window.DOSSIE = {
    "status": "fato",
    "titulo": "Rubio responde a Flávio, mantém tarifas e agradece oferta de equipe de transição",
    "resumo": "Em 23/06/2026, o secretário de Estado dos EUA, Marco Rubio, respondeu por carta ao senador Flávio Bolsonaro, que havia pedido que os EUA desistissem de novas tarifas sobre produtos brasileiros. Rubio manteve o apoio a duas investigações comerciais — uma propondo tarifa de 25% e outra 12,5% adicionais — e escreveu que 'continuamos a ter divergências substanciais', citando Pix, propriedade intelectual, etanol e desmatamento ilegal. Na mesma carta registrou: 'Observamos com otimismo sua expectativa em relação às próximas eleições de outubro e sua oferta generosa de colocar uma equipe de transição à nossa disposição.' A matéria não registra manifestação de Flávio ou de sua assessoria após a resposta.",
-   "observacao": "O fato verificado é a existência e o teor da resposta de Rubio — não há aqui imputação de ilícito. Removida da versão proposta a citação 'sérios danos', atribuída à carta de Flávio, que não foi confirmada no texto aberto; a íntegra da carta está em página separada, não aberta.",
+   "observacao": "O fato verificado é a existência e o teor da resposta de Rubio. Removida da versão proposta a citação 'sérios danos', atribuída à carta de Flávio, que não foi confirmada no texto aberto; a íntegra da carta está em página separada, não aberta.",
    "pessoas": [
     "flavio"
    ],
@@ -6433,8 +6352,8 @@ window.DOSSIE = {
    "data": "2026-07-07",
    "status": "investigacao",
    "titulo": "Indicado ao Senado por Flávio é alvo da 6ª fase da Unha e Carne e preso em flagrante com fuzil",
-   "resumo": "Em 07/07/2026 a Polícia Federal cumpriu mandados de busca e apreensão na sexta fase da Operação Unha e Carne, sob relatoria do ministro Alexandre de Moraes, contra Márcio Canella (União Brasil), prefeito licenciado de Belford Roxo e nome recomendado ao Senado pelo Rio de Janeiro por Flávio Bolsonaro, e contra o delegado Marcus Amin, ex-chefe da Polícia Civil do RJ na gestão de Cláudio Castro. A investigação apura lavagem de dinheiro por meio de uma rede de postos de combustíveis, com movimentação superior a R$ 7,6 bilhões em seis anos segundo o Coaf. No mesmo dia Canella foi preso em flagrante 'por porte de arma de calibre restrito', um fuzil encontrado em seu carro. Flávio Bolsonaro não é apontado como investigado na operação. A reportagem tentou contato com a assessoria de Canella e não obteve retorno.",
-   "observacao": "Flávio Bolsonaro NÃO é alvo nem investigado nesta operação; o único vínculo é a indicação política de Canella ao Senado. Corrigi 'ex-prefeito' para 'prefeito licenciado' (Brasil de Fato) e retirei a menção à ADPF das Favelas, não confirmada nas fontes.",
+   "resumo": "Em 07/07/2026 a Polícia Federal cumpriu mandados de busca e apreensão na sexta fase da Operação Unha e Carne, sob relatoria do ministro Alexandre de Moraes, contra Márcio Canella (União Brasil), prefeito licenciado de Belford Roxo e nome recomendado ao Senado pelo Rio de Janeiro por Flávio Bolsonaro, e contra o delegado Marcus Amin, ex-chefe da Polícia Civil do RJ na gestão de Cláudio Castro. A investigação apura lavagem de dinheiro por meio de uma rede de postos de combustíveis, com movimentação superior a R$ 7,6 bilhões em seis anos segundo o Coaf. No mesmo dia Canella foi preso em flagrante 'por porte de arma de calibre restrito', um fuzil encontrado em seu carro. A reportagem tentou contato com a assessoria de Canella e não obteve retorno.",
+   "observacao": "O vínculo com Flávio é a indicação de Canella ao Senado. Corrigi 'ex-prefeito' para 'prefeito licenciado' (Brasil de Fato) e retirei a menção à ADPF das Favelas, não confirmada nas fontes.",
    "pessoas": [
     "marcio-canella",
     "flavio",
@@ -6904,7 +6823,7 @@ window.DOSSIE = {
    "status": "fato",
    "titulo": "Pool SBT/RedeTV!/CNN cancela debate de 14/09 após Lula e Flávio não confirmarem presença",
    "resumo": "Em 08/09, o pool 'O Momento da Decisão' (CNN Brasil, Exame, Metrópoles, Nova Brasil FM, Rádio Itatiaia, RedeTV!, Rede Vida, SBT, SBT News, Terra e VEJA+ TV) anunciou o cancelamento do debate presidencial marcado para 14/09, porque Lula e Flávio Bolsonaro não confirmaram participação até o prazo de 07/09. Flávio mantém a posição de não participar de debates sem Lula presente; ambos já haviam faltado ao debate da Band em 23/08. Seguem no calendário os debates da Record (27/09, 21h) e da Globo (01/10, 21h30), sem confirmação dos dois líderes.",
-   "observacao": "Versão de Flávio: a condição pública de só debater com Lula no palco. Nenhuma nota específica da campanha sobre o cancelamento nas matérias abertas.",
+   "observacao": "Versão de Flávio: a condição pública de só debater com Lula no palco. Nenhuma nota específica da campanha sobre o cancelamento nas matérias abertas. Atualização: em 23/09 a Record cancelou o debate de 27/09, depois que as campanhas de Flávio e do candidato à reeleição avisaram que não iriam (Diário do Grande ABC).",
    "pessoas": [
     "flavio"
    ],
@@ -6913,7 +6832,7 @@ window.DOSSIE = {
      "veiculo": "Revista Fórum",
      "url": "https://revistaforum.com.br/politica/ula-flavio-debate-cancelado",
      "data": "2026-09-08",
-     "trecho": "o motivo foi a ausência de confirmação de Lula (PT) e Flávio Bolsonaro (PL) dentro do prazo estabelecido pelos organizadores",
+     "trecho": "o motivo foi a ausência de confirmação de Lula e Flávio Bolsonaro (PL) dentro do prazo estabelecido pelos organizadores",
      "tier": "referencia"
     },
     {
@@ -6965,7 +6884,7 @@ window.DOSSIE = {
    "status": "fato",
    "titulo": "Prestação parcial ao TSE: Flávio lidera arrecadação com R$ 44,4 milhões, R$ 42,9 mi vindos do PL",
    "resumo": "Dados de prestação de contas parcial do TSE divulgados em 09/09 mostram Flávio Bolsonaro (PL) na liderança da arrecadação entre presidenciáveis, com R$ 44,4 milhões, dos quais R$ 42,9 milhões repassados pelo PL. Lula aparece com R$ 35,9 milhões (R$ 35,1 mi do partido); Ronaldo Caiado (PSD) R$ 6,6 mi (R$ 4,1 mi do partido); Romeu Zema (Novo) R$ 3,9 mi (R$ 3,6 mi do partido); Renan Santos (Missão) R$ 1,3 mi (R$ 1,22 mi de financiamento coletivo); Augusto Cury (Avante) R$ 317 mil (R$ 250 mil do próprio bolso). A arrecadação pode seguir até 04/10.",
-   "observacao": "Cortados: prazo de prestação final (14/11) e cifra de gastos (R$ 49,5 mi), não sustentados pela fonte aberta.",
+   "observacao": "Cortados: prazo de prestação final (14/11) e cifra de gastos (R$ 49,5 mi), não sustentados pela fonte aberta. Atualização: a prestação parcial entregue em 13/09 (movimentação até 08/09) registra R$ 53,5 milhões da direção nacional do PL, 95% do total, e R$ 2,56 milhões de pessoas físicas, segundo o Correio Braziliense (18/09).",
    "pessoas": [
     "flavio"
    ],
@@ -6997,7 +6916,7 @@ window.DOSSIE = {
      "veiculo": "Gazeta do Povo",
      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026-2/",
      "data": "2026-09-11",
-     "trecho": "Lula (PT): 39%; Flávio Bolsonaro (PL): 35%",
+     "trecho": "Lula: 39%; Flávio Bolsonaro (PL): 35%",
      "tier": "referencia"
     }
    ],
@@ -7222,7 +7141,6 @@ window.DOSSIE = {
      "veiculo": "Intercept Brasil",
      "url": "https://www.intercept.com.br/2026/05/13/audio-flavio-negociou-vorcaro-milhoes/",
      "data": "2026-05-13",
-     "trecho": "Flávio negociou diretamente com Vorcaro R$ 134 milhões para bancar filme sobre Jair",
      "tier": "referencia"
     },
     {
@@ -7430,7 +7348,7 @@ window.DOSSIE = {
    "data": "2026-07-07",
    "status": "declaracao",
    "titulo": "Secom chama fala de Flávio Bolsonaro no USTR de 'traição à Pátria'; empresários criticam atuação",
-   "resumo": "Em nota de 7 de julho de 2026, a Secretaria de Comunicação Social da Presidência afirmou que, entre os 34 brasileiros inscritos na audiência do USTR, 'só Flávio Bolsonaro não se posicionou contrário às medidas contra o Brasil', e concluiu: 'Convocar uma potência estrangeira a pressionar o próprio país é traição à Pátria'. A nota acusou ainda o senador de omitir sua ligação com o banqueiro Daniel Vorcaro, de quem teria pedido mais de R$ 130 milhões para, segundo alega, produzir um filme sobre o pai. Reportagem do Jornal do Brasil de 8 de julho registrou que participantes classificaram a atuação do senador como deslocada do ambiente técnico do encontro. Publicamente, Flávio afirmou que não se omitiria na defesa do Brasil.",
+   "resumo": "Em nota de 7 de julho de 2026, a Secretaria de Comunicação Social da Presidência afirmou que, entre os 34 brasileiros inscritos na audiência do USTR, 'só Flávio Bolsonaro não se posicionou contrário às medidas contra o Brasil', e concluiu: 'Convocar uma potência estrangeira a pressionar o próprio país é traição à Pátria'. A nota acusou ainda o senador de omitir sua ligação com o banqueiro Daniel Vorcaro, de quem teria pedido mais de R$ 130 milhões (segundo a PF, o pedido foi de R$ 131 milhões) para, segundo alega, produzir um filme sobre o pai. Reportagem do Jornal do Brasil de 8 de julho registrou que participantes classificaram a atuação do senador como deslocada do ambiente técnico do encontro. Publicamente, Flávio afirmou que não se omitiria na defesa do Brasil.",
    "observacao": "'Traição à Pátria' é qualificação política em nota oficial do governo, não tipificação penal, denúncia ou processo: não há apuração formal por esses fatos. Foi retirada a atribuição de que o senador teria 'apenas sugerido o adiamento da medida com claro objetivo eleitoreiro', que não aparece na versão da nota reproduzida pela fonte aberta, e a afirmação de que ele não respondeu às duas reportagens, que também não consta delas.",
    "pessoas": [
     "flavio",
@@ -8147,7 +8065,7 @@ window.DOSSIE = {
    "status": "investigacao",
    "titulo": "Banco Master/Vorcaro: Flávio negociou dinheiro para filme sobre Jair (contexto clã)",
    "resumo": "Áudios e mensagens divulgados pelo Intercept mostram Flávio Bolsonaro negociando com o ex-banqueiro Daniel Vorcaro (Banco Master, preso desde nov/2025) dinheiro para o filme 'Dark Horse' sobre Jair. Segundo a reportagem, documentos indicam cerca de R$ 61 milhões pagos entre fev e mai/2025. Flávio admitiu encontro com Vorcaro.",
-   "observacao": "Item de Flávio, com dimensão de clã: o filme é sobre Jair, e a PF apura se parte do dinheiro beneficiou Eduardo nos EUA.",
+   "observacao": "Item de Flávio, com dimensão de clã: o filme é sobre Jair, e a PF apura se parte do dinheiro beneficiou Eduardo nos EUA. Atualização (set/2026): a delação homologada pelo STF em 09/09/2026 e o relatório da PF falam em 7 remessas em 2025, cerca de R$ 60 milhões, de um pedido de R$ 131 milhões; 'R$ 61 milhões entre fevereiro e maio' é o levantamento de maio de 2026.",
    "pessoas": [
     "flavio",
     "vorcaro",
@@ -8158,7 +8076,6 @@ window.DOSSIE = {
      "veiculo": "The Intercept Brasil",
      "url": "https://www.intercept.com.br/2026/05/13/audio-flavio-negociou-vorcaro-milhoes/",
      "data": "2026-05-13",
-     "trecho": "Flávio Bolsonaro negociou com Daniel Vorcaro R$ 134 milhões para bancar filme sobre Jair",
      "tier": "referencia"
     },
     {
@@ -8501,6 +8418,524 @@ window.DOSSIE = {
     }
    ],
    "lastro": "referencia"
+  },
+  {
+   "id": "nunes-marques-mantem-no-ar-propaganda-adversaria",
+   "tipo": "decisao_judicial",
+   "tema": "eleicoes",
+   "data": "2026-09-01",
+   "status": "decisao_judicial",
+   "titulo": "Nunes Marques mantém no ar propaganda adversária que associa Flávio a Vorcaro e ao Master",
+   "resumo": "Em 01/09, o presidente do TSE, Nunes Marques, rejeitou dois pedidos da campanha de Flávio Bolsonaro para tirar do ar um vídeo de 30 segundos da campanha adversária que o associa a Daniel Vorcaro e ao Banco Master, com trechos de entrevista e de áudio do senador sobre o financiamento do 'Dark Horse'. O ministro escreveu que 'a propaganda tampouco afirma que ele seja investigado ou acusado da prática dos ilícitos atribuídos aos responsáveis pelo Banco Master' e não viu 'falsidade manifesta ou descontextualização grave', tratando as expressões críticas como 'predominantemente juízos de valor'.",
+   "observacao": "Contrasta com a decisão de Estela Aranha (30/08), que suspendeu outra peça adversária ('funcionário fantasma'), já no arquivo.",
+   "pessoas": [
+    "flavio",
+    "vorcaro"
+   ],
+   "fontes": [
+    {
+     "veiculo": "JOTA",
+     "url": "https://www.jota.info/eleicoes/eleicoes-2026/nunes-marques-rejeita-liminar-para-suspender-propaganda-de-lula-que-associa-flavio-ao-master",
+     "data": "2026-09-01",
+     "trecho": "não houve imputação de participação do candidato nas fraudes financeiras investigadas",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Brasil 247",
+     "url": "https://www.brasil247.com/brasil/tse-nunes-marques-mantem-no-ar-propaganda-de-lula-sobre-flavio-bolsonaro-e-vorcaro/",
+     "data": "2026-09-01",
+     "trecho": "A propaganda tampouco afirma que ele seja investigado ou acusado da prática dos ilícitos atribuídos aos responsáveis pelo Banco Master",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "tse-rejeita-por-4-a-3-multa-a-flavio-pelo-video",
+   "tipo": "decisao_judicial",
+   "tema": "eleicoes",
+   "data": "2026-09-01",
+   "status": "decisao_judicial",
+   "titulo": "TSE rejeita por 4 a 3 multa a Flávio pelo vídeo de IA com o pai na convenção do PL e fixa critérios para deepfake",
+   "resumo": "Em 01/09, o plenário do TSE rejeitou por 4 votos a 3 o pedido de multa a Flávio Bolsonaro pela exibição, na convenção do PL de 25/07, de um vídeo gerado por inteligência artificial em que Jair Bolsonaro aparece declarando apoio ao filho; a maioria entendeu que, naquele contexto, não houve propaganda irregular. Por 5 a 2, o tribunal definiu que deepfake é 'conteúdo sintético produzido ou manipulado por inteligência artificial ou tecnologia equivalente, com grau de realismo ou verossimilhança' que crie, reproduza ou altere imagem, voz ou manifestação de pessoa, e que a vedação só se aplica quando o conteúdo é propaganda eleitoral. A ação era de uma federação partidária adversária.",
+   "observacao": "Desfecho do episódio de 29/07 (Moraes dá 48h à defesa), já no arquivo. A ação era de uma federação partidária adversária.",
+   "pessoas": [
+    "flavio",
+    "jair"
+   ],
+   "fontes": [
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/eleicoes/nunes-marques-vota-contra-considerar-irregular-video-de-bolsonaro-feito-por/",
+     "data": "2026-09-01",
+     "trecho": "conteúdo sintético produzido ou manipulado por inteligência artificial ou tecnologia equivalente",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "flavio-usou-em-agosto-apartamento-em-sp-que-foi",
+   "tipo": "noticia",
+   "tema": "master",
+   "data": "2026-09-16",
+   "status": "fato",
+   "titulo": "Flávio usou em agosto apartamento em SP que foi de cunhado de Vorcaro e hoje é de empresa de Willer Tomaz, diz a piauí",
+   "resumo": "Segundo a revista piauí (16/09), Flávio Bolsonaro ficou alguns dias da primeira quinzena de agosto de 2026 em um apartamento de 158 m² no edifício l'Adresse, na Vila Nova Conceição (SP), onde fez reuniões de campanha, gravou vídeos para o horário eleitoral e participou de podcasts. O imóvel foi comprado por Fabiano Zettel, cunhado e operador financeiro de Daniel Vorcaro, em 17/04/2025, por R$ 5,5 milhões, e vendido em 10/02/2026, por R$ 3,5 milhões, à WT Administração de Imóveis e Bens, empresa do advogado Willer Tomaz, amigo do senador e alvo da PF na Operação Sem Desconto; o registro em cartório é de 04/03/2026, dia da prisão de Zettel. Moradores confirmaram à revista a presença de Flávio e de seguranças. A assessoria do senador disse que ele 'se hospedou apenas em hotéis da região'; Willer Tomaz afirmou não conhecer Zettel nem Vorcaro e nunca ter mantido 'relação pessoal, comercial ou societária' com os dois.",
+   "observacao": "A assessoria do senador disse que ele 'se hospedou apenas em hotéis da região'; Willer Tomaz afirmou não conhecer Zettel nem Vorcaro. A URL original da piauí não está aberta; os dados vêm das reproduções da Folhapress e do Brasil 247.",
+   "pessoas": [
+    "flavio",
+    "willer-tomaz",
+    "zettel",
+    "vorcaro"
+   ],
+   "fontes": [
+    {
+     "veiculo": "A Gazeta (Folhapress)",
+     "url": "https://www.agazeta.com.br/brasil/flavio-bolsonaro-usou-apartamento-de-advogado-investigado-por-fraudes-no-inss-diz-revista-0926",
+     "data": "2026-09-17",
+     "trecho": "se hospedou apenas em hotéis da região",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Brasil 247",
+     "url": "https://www.brasil247.com/brasil/flavio-usou-em-campanha-imovel-que-pertenceu-a-cunhado-de-vorcaro-em-sao-paulo/",
+     "data": "2026-09-16",
+     "trecho": "Não conheço Fabiano Zettel nem Daniel Vorcaro e nunca mantive qualquer 'relação pessoal, comercial ou societária' com os dois.",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "em-vitoria-da-conquista-flavio-diz-que-moraes-e",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-17",
+   "status": "declaracao",
+   "titulo": "Em Vitória da Conquista, Flávio diz que Moraes 'não tem mais condições de continuar sendo ministro do STF' e que Dino 'também não tem condição de ficar lá'; fala em indicar até seis ministros",
+   "resumo": "Em ato de campanha em Vitória da Conquista (BA), em 17/09, Flávio Bolsonaro afirmou: 'Alexandre de Moraes não tem mais condições de continuar sendo ministro do STF' e que 'o Flávio Dino também não tem condição de ficar lá'. Sobre as indicações à Corte num eventual governo, disse: 'Não vão ser quatro, vão ser cinco... Mas já estou pensando que podem ser seis vagas'. Quatro cadeiras abririam por aposentadorias no próximo mandato; as outras duas dependeriam da saída de Moraes e Dino. Disse que indicará 'homens e mulheres' contrários às drogas e ao aborto, que respeitem a Constituição e 'não usem a caneta para perseguir' adversários.",
+   "observacao": "Declaração de campanha. O texto do g1 (17/09) é reproduzido pela 96FM; a URL do g1 não foi localizada.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Portal 96FM (reprodução do g1)",
+     "url": "https://www.96fm.com.br/post/flavio-diz-que-moraes-e-dino-nao-tem-condicoes-de-seguir-no-stf-e-fala-em-indicar-ate-6-ministros",
+     "data": "2026-09-18",
+     "trecho": "Alexandre de Moraes não tem mais condições de continuar sendo ministro do STF",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Terra",
+     "url": "https://www.terra.com.br/noticias/eleicoes/videos/flavio-bolsonaro-diz-que-se-eleito-vai-indicar-6-ministros-do-stf-ao-ja-descartar-moraes-e-dino,07c7e7a6587f2055ce47a019b7b685725g0jpxpm.html",
+     "data": "2026-09-18",
+     "trecho": "vai indicar 6 ministros do STF ao já 'descartar' Moraes e Dino",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "prestacao-parcial-ao-tse-pl-repassou-r-53-5-milh",
+   "tipo": "documento",
+   "tema": "eleicoes",
+   "data": "2026-09-18",
+   "status": "fato",
+   "titulo": "Prestação parcial ao TSE: PL repassou R$ 53,5 milhões (95%) à campanha de Flávio; pessoas físicas doaram R$ 2,56 milhões, e a maior doação foi de R$ 500 mil",
+   "resumo": "Pela prestação de contas parcial entregue ao TSE em 13/09 (movimentação até 08/09), a campanha de Flávio Bolsonaro recebeu R$ 53,5 milhões da direção nacional do PL, 95% do total, R$ 2,56 milhões de pessoas físicas e R$ 106,6 mil de financiamento coletivo; os gastos contratados somavam R$ 56,1 milhões, 63% do teto de R$ 88,9 milhões. A maior doação de pessoa física foi de R$ 500 mil, do empresário Erasmo Carlos Battistella, da Be8. Maiores contratações: F.A.R. Propaganda e Publicidade (R$ 13,1 milhões), Paranoá Digital Produção Cinematográfica (R$ 5 milhões), Aurea Tech (R$ 3,6 milhões) e ALLJET táxi aéreo (R$ 2,2 milhões).",
+   "observacao": "Supera os números de 26/08 (R$ 42 milhões do PL e R$ 6,01 de pessoas físicas). O Terra (19/09) fala em R$ 48,48 milhões arrecadados até 18/09, base diferente da do Correio Braziliense (R$ 56,1 milhões em gastos contratados).",
+   "pessoas": [
+    "flavio",
+    "erasmo-carlos-battistella"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Correio Braziliense",
+     "url": "https://www.correiobraziliense.com.br/politica/2026/09/7503612-flavio-e-caiado-lideram-lista-de-doacoes-de-pessoas-fisicas-rs-25-milhoes.html",
+     "data": "2026-09-18",
+     "trecho": "R$ 2.555.530",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "O Brasilianista",
+     "url": "https://obrasilianista.com.br/2026/09/21/politica/onde-esta-o-dinheiro-das-campanhas-de-lula-flavio-e-caiado",
+     "data": "2026-09-21",
+     "trecho": "R$ 53,5 milhões da Direção Nacional do PL",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Terra",
+     "url": "https://www.terra.com.br/noticias/eleicoes/eleicoes-2026-qual-candidato-a-presidencia-recebeu-mais-doacoes-na-campanha-ate-agora,4e298c0cbd4fb553e92b00b718ceb51ftz61oz1n.html",
+     "data": "2026-09-19",
+     "trecho": "R$ 48.480.585,29",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "deputada-aciona-tse-e-pgr-pelo-uso-na-campanha-d",
+   "tipo": "processo",
+   "tema": "eleicoes",
+   "data": "2026-09-18",
+   "status": "suspeita",
+   "titulo": "Deputada aciona TSE e PGR pelo uso, na campanha de Flávio, do apartamento que pertenceu a cunhado de Vorcaro",
+   "resumo": "Em 18/09, a deputada federal Luciene Cavalcante (PSOL-SP) protocolou representação no TSE e notícia-crime na PGR pedindo apuração de 'eventual benefício econômico à campanha' de Flávio Bolsonaro pelo uso, em agosto, do apartamento da Vila Nova Conceição (SP) que pertenceu a Fabiano Zettel e hoje é da empresa de Willer Tomaz. A representação sustenta que o uso do imóvel não aparece na prestação de contas parcial da candidatura e que, se houve cessão gratuita ou abaixo do preço de mercado, pode configurar doação de fonte vedada; a notícia-crime pede investigação da operação imobiliária (compra por R$ 5,5 milhões e revenda por R$ 3,5 milhões em menos de um ano). Não há decisão. Flávio negou à piauí ter ficado no apartamento e disse ter usado hotéis.",
+   "observacao": "Pedido de apuração por parlamentar adversária; sem decisão do TSE nem da PGR.",
+   "pessoas": [
+    "flavio",
+    "willer-tomaz",
+    "zettel"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Brasil 247",
+     "url": "https://www.brasil247.com/brasil/deputada-aciona-tse-e-pgr-contra-flavio-bolsonaro-por-uso-de-imovel-que-pertenceu-a-cunhado-de-vorcaro/",
+     "data": "2026-09-18",
+     "trecho": "eventual benefício econômico à campanha",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "WSCOM",
+     "url": "https://wscom.com.br/noticias/2026/09/18/deputada-tse-pgr-investigacao-imovel-flavio-bolsonaro/",
+     "data": "2026-09-18",
+     "trecho": "negou à piauí que tenha se hospedado no apartamento e afirmou que utilizou hotéis",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "foto-de-safari-na-africa-do-sul-em-marco-de-2025",
+   "tipo": "foto",
+   "tema": "juridico",
+   "data": "2026-09-19",
+   "status": "fato",
+   "titulo": "Foto de safári na África do Sul em março de 2025 mostra Flávio com Willer Tomaz e Weverton Rocha, investigados na fraude do INSS",
+   "resumo": "Foto revelada pela piauí e pelo O Globo em 19/09 mostra Flávio Bolsonaro em safári na África do Sul, em março de 2025, ao lado do advogado Willer Tomaz e do senador Weverton Rocha, ambos investigados na Operação Sem Desconto (fraude em descontos de aposentadorias do INSS), e do empresário Carlos Alberto de Sá, sócio da VTCLog, cujo indiciamento foi recomendado pela CPI da Covid em 2021. A imagem circulou em 10/03/2025 num grupo de WhatsApp chamado 'África do Sul', com os três e as respectivas mulheres; a PF chegou ao material ao apreender celulares na operação, em agosto de 2026. Segundo O Globo, Flávio e Tomaz fizeram cinco viagens internacionais juntos entre janeiro e maio de 2025. A campanha de Flávio disse: 'Qualquer tentativa de insinuar irregularidade a partir dessa afinidade pessoal é mera ilação, sem qualquer fundamento nos fatos'.",
+   "observacao": "A campanha de Flávio chama de 'mera ilação' qualquer insinuação de irregularidade. As fontes divergem sobre de quem era o celular apreendido (Weverton, segundo o Estado de Minas; Tomaz, segundo o Poder360).",
+   "pessoas": [
+    "flavio",
+    "willer-tomaz"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Estado de Minas",
+     "url": "https://www.em.com.br/politica/2026/09/7504177-o-safari-de-flavio-bolsonaro-com-investigados-pela-pf-e-pela-cpi-do-inss.html",
+     "data": "2026-09-19",
+     "trecho": "grupo 'África do Sul'",
+     "tier": "agregador"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-congresso/foto-mostra-flavio-bolsonaro-em-safari-com-investigados-do-inss/",
+     "data": "2026-09-21",
+     "trecho": "Qualquer tentativa de insinuar irregularidade a partir dessa afinidade pessoal é mera ilação, sem qualquer fundamento nos fatos",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "flavio-divulga-video-de-moraes-desembarcando-de",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-20",
+   "status": "declaracao",
+   "titulo": "Flávio divulga vídeo de Moraes desembarcando de jato ligado a Vorcaro e diz que o ministro 'aparelhou o Estado inteiro'",
+   "resumo": "Em 20/09, Flávio Bolsonaro publicou nas redes um vídeo que registra o ministro Alexandre de Moraes e a mulher, Viviane, desembarcando em 22/08/2025, no aeroporto Santos Dumont, de um Legacy 650 ligado a Daniel Vorcaro, e escreveu que o ministro 'aparelhou o Estado inteiro e a sua máfia implodiu a democracia sob o falso pretexto de protegê-la'. O escritório Barci de Moraes respondeu que contrata táxi aéreo de diferentes empresas, entre elas a Prime Aviation, e que 'em nenhum dos voos realizados em aeronaves da Prime Aviation com integrantes do escritório esteve presente Daniel Vorcaro ou qualquer outra pessoa alheia ao escritório'.",
+   "observacao": "Quatro dias depois, a piauí revelou que o mesmo avião levou Flávio de Fort Lauderdale a Brasília em 19/01/2025 (item de 24/09). A frase completa de Flávio cita o adversário; o trecho foi cortado por regra editorial.",
+   "pessoas": [
+    "flavio",
+    "vorcaro"
+   ],
+   "fontes": [
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/eleicoes/flavio-diz-que-moraes-implodiu-a-democracia-sob-pretexto-de-protege-la/",
+     "data": "2026-09-20",
+     "trecho": "aparelhou o Estado inteiro e a sua máfia implodiu a democracia sob o falso pretexto de protegê-la",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "mensagens-obtidas-pela-pf-mostram-assessora-de-f",
+   "tipo": "documento",
+   "tema": "milicia",
+   "data": "2026-09-21",
+   "status": "investigacao",
+   "titulo": "Mensagens obtidas pela PF mostram assessora de Flávio tratando com 'Peixe', condenado no caso Marielle, a emenda de R$ 199.999,79 ao Ifop",
+   "resumo": "Mensagens extraídas pela PF do celular de Robson Calixto Fonseca, o Peixe, condenado pelo STF em fevereiro de 2026 no processo do assassinato de Marielle Franco, mostram que, em outubro e novembro de 2023, ele tratou com Maria de Fátima Bezerra Castro, secretária parlamentar do gabinete de Flávio Bolsonaro no Senado, da liberação de uma emenda ao Instituto de Formação Profissional José Carlos Procópio (Ifop), ligado aos irmãos Chiquinho e Domingos Brazão. Em 24/10/2023 Peixe escreveu 'Amiga vê com o nosso senador se consegue nos ajudar'; em 26/10 ela respondeu 'Vc vai tbm e já reforça o pedido com o senador'; em 06/11, ao pedido 'vê se o senador consegue nos agraciar', ela disse 'Pode deixar'. Em novembro de 2023 Flávio destinou R$ 199.999,79 ao Ministério do Esporte, que firmou termo de fomento com o Ifop para o projeto 'Jogadores do Futuro', na Taquara (RJ). O material está em inquérito no STF sobre emendas a entidades ligadas aos Brazão. A reportagem é do Estadão (Aguirre Talento). Flávio afirmou que 'a emenda foi destinada dentro da legislação vigente e dos critérios técnicos do Ministério do Esporte' e que a execução é responsabilidade da entidade beneficiária.",
+   "observacao": "Flávio afirma que 'a emenda foi destinada dentro da legislação vigente e dos critérios técnicos do Ministério do Esporte'. A reportagem original é do Estadão (21/09); o Poder360 e o Estado de Minas reproduzem o conteúdo.",
+   "pessoas": [
+    "flavio",
+    "robson-calixto-fonseca",
+    "domingos-brazao",
+    "chiquinho-brazao"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-congresso/assessora-de-flavio-tratou-de-emenda-com-miliciano-do-caso-marielle/",
+     "data": "2026-09-22",
+     "trecho": "Amiga vê com o nosso senador se consegue nos ajudar",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Estado de Minas",
+     "url": "https://www.em.com.br/politica/2026/09/7506425-flavio-bolsonaro-destinou-emenda-a-miliciano-condenado-no-caso-marielle.html",
+     "data": "2026-09-23",
+     "trecho": "A responsabilidade pela execução dos recursos é da entidade beneficiária, não do parlamentar",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "bancada-do-psol-pede-a-pgr-que-flavio-seja-ouvid",
+   "tipo": "processo",
+   "tema": "milicia",
+   "data": "2026-09-21",
+   "status": "suspeita",
+   "titulo": "Bancada do PSOL pede à PGR que Flávio seja ouvido sobre a emenda ao Ifop; líder de outra bancada pede auditoria da CGU em todas as emendas dele no Rio; sem decisão",
+   "resumo": "Em 21/09, a bancada do PSOL na Câmara pediu à PGR o aprofundamento da investigação sobre a emenda de R$ 199.999,79 de Flávio Bolsonaro ao Ifop e que o senador seja ouvido para dizer se sabia das conversas de sua assessora com Robson Calixto, o Peixe, se participou da escolha e da liberação do recurso e quem indicou a entidade. O líder de outra bancada governista pediu auditoria da CGU em todas as emendas de Flávio a entidades do terceiro setor no Rio desde 2019 e a suspensão de novas parcerias com instituições investigadas. Não há decisão da PGR. Flávio diz que 'a destinação das emendas seguiu a legislação e os critérios técnicos estabelecidos pelo Ministério do Esporte'.",
+   "observacao": "Pedidos de parlamentares adversários, sem decisão da PGR.",
+   "pessoas": [
+    "flavio",
+    "robson-calixto-fonseca"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Brasil de Fato",
+     "url": "https://www.brasildefato.com.br/2026/09/22/partidos-vao-a-pgr-por-ligacao-de-flavio-bolsonaro-e-miliciano-envolvido-na-morte-de-marielle/",
+     "data": "2026-09-22",
+     "trecho": "A destinação das emendas seguiu a legislação e os critérios técnicos estabelecidos pelo Ministério do Esporte",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Revista Movimento",
+     "url": "https://movimentorevista.com.br/2026/09/psol-aciona-pgr-por-emenda-de-flavio-negociada-com-condenado-no-caso-marielle/",
+     "data": "2026-09-24",
+     "trecho": "Flavio Bolsonaro deve explicações sobre suas relações com a milícia do Rio de Janeiro",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "lindbergh-farias-pede-a-moraes-a-reabertura-do-c",
+   "tipo": "processo",
+   "tema": "rachadinha",
+   "data": "2026-09-22",
+   "status": "suspeita",
+   "titulo": "Lindbergh Farias pede a Moraes a reabertura do caso da rachadinha e a inclusão de Flávio no inquérito que apura conexões entre grupos criminosos e agentes públicos no Rio; sem decisão",
+   "resumo": "Em 22/09, o deputado federal Lindbergh Farias pediu ao ministro Alexandre de Moraes, no STF, a reabertura da investigação da rachadinha da Alerj e a inclusão de Flávio Bolsonaro como investigado em inquérito que apura conexões entre grupos criminosos e agentes públicos no Rio. Como fato novo, a petição cita as mensagens de Robson Calixto, o Peixe, com uma assessora do gabinete de Flávio antes da emenda de R$ 199,9 mil ao Ifop, paga em novembro de 2023, e outros contatos em fevereiro e novembro de 2024. Pede análise das conversas, rastreamento do dinheiro enviado ao Ifop e levantamento de outras emendas do senador desde 2019 a entidades em áreas de influência de grupos criminosos. Não há decisão. A denúncia da rachadinha foi anulada e o caso, arquivado em 2022.",
+   "observacao": "Pedido de parlamentar adversário, sem decisão. A denúncia da rachadinha foi anulada e o caso, arquivado em 2022.",
+   "pessoas": [
+    "flavio",
+    "robson-calixto-fonseca"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/colunas/neila-guimaraes/lindbergh-pede-ao-stf-para-reabrir-caso-das-rachadinhas-e-investigar-flavio",
+     "data": "2026-09-22",
+     "trecho": "contatos entre Peixe e uma assessora do gabinete de Flávio antes da destinação de uma emenda parlamentar de R$ 199,9 mil",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "em-sao-luis-flavio-acusa-dino-de-perseguicao-pol",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-22",
+   "status": "declaracao",
+   "titulo": "Em São Luís, Flávio acusa Dino de 'perseguição política' na apuração sobre emendas e diz sentir 'nojo' de decisões do STF",
+   "resumo": "Em ato de campanha em São Luís (MA), em 22/09, Flávio Bolsonaro classificou de 'perseguição política' a apuração conduzida pelo ministro Flávio Dino sobre desvio de emendas parlamentares (Operação Make Up, que investiga o financiamento do filme 'Dark Horse'), pediu que o ministro 'deixe de ser um militante na Suprema Corte' e disse sentir 'nojo' de decisões do STF. Acusou o ministro de investigar seletivamente e de poupar aliados políticos no Maranhão. O gabinete de Dino respondeu que o ministro não se manifesta sobre temas político-partidários, dos quais está afastado desde fevereiro de 2024.",
+   "observacao": "Declaração de campanha. Em julho, a defesa de Flávio tentou quatro vezes levar a apuração das emendas de Dino para Mendonça (item de 10/09).",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-diz-que-dino-faz-perseguicao-no-stf-em-apuracao-sobre-emendas/",
+     "data": "2026-09-22",
+     "trecho": "deixe de ser um militante na Suprema Corte",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "tcu-apontou-em-2025-indicios-de-desvio-na-emenda",
+   "tipo": "documento",
+   "tema": "milicia",
+   "data": "2026-09-23",
+   "status": "fato",
+   "titulo": "TCU apontou em 2025 indícios de desvio na emenda de Flávio ao Ifop; senador diz que a execução 'é da entidade beneficiária, não do parlamentar'",
+   "resumo": "Relatório do TCU de 2025 identificou indícios de desvio nos recursos da emenda de R$ 199.999,79 destinada por Flávio Bolsonaro ao Ifop em novembro de 2023 para o projeto esportivo 'Jogadores do Futuro': entre as irregularidades, a contratação de um escritório de advocacia, sem relação com o projeto, para coordená-lo, cujo responsável era o próprio presidente do instituto. Questionado, Flávio afirmou: 'A responsabilidade pela execução dos recursos é da entidade beneficiária, não do parlamentar. Eventuais irregularidades devem ser apuradas pelos órgãos de controle, como determina a lei.'",
+   "observacao": "Complementa o item de 21/09 (mensagens com Peixe). Versão de Flávio: a execução 'é da entidade beneficiária, não do parlamentar'.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Estado de Minas",
+     "url": "https://www.em.com.br/politica/2026/09/7506425-flavio-bolsonaro-destinou-emenda-a-miliciano-condenado-no-caso-marielle.html",
+     "data": "2026-09-23",
+     "trecho": "Eventuais irregularidades devem ser apuradas pelos órgãos de controle, como determina a lei",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "record-cancela-o-debate-presidencial-de-27-09-de",
+   "tipo": "evento",
+   "tema": "eleicoes",
+   "data": "2026-09-23",
+   "status": "fato",
+   "titulo": "Record cancela o debate presidencial de 27/09 depois que Flávio e o candidato à reeleição avisaram que não iriam",
+   "resumo": "Em 23/09, a Record cancelou o debate presidencial marcado para domingo, 27/09, depois que as campanhas de Flávio Bolsonaro e do candidato à reeleição informaram que os dois não participariam. A emissora avaliou que, sem os dois candidatos com maior intenção de voto, o encontro 'não ofereceria ao eleitor o confronto de ideias que ele espera'. Flávio mantém a posição de não ir a debates do 1º turno sem o principal adversário: faltou ao da Band (23/08), e o do pool SBT/CNN (14/09) foi cancelado pelo mesmo motivo. Se houver 2º turno, a Record marcou debate para 11/10, às 21h.",
+   "observacao": "Terceiro debate do 1º turno sem ele: Band (23/08), pool SBT/CNN (14/09, cancelado) e Record (27/09, cancelado).",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Diário do Grande ABC",
+     "url": "https://www.dgabc.com.br/Noticia/4348677/record-confirma-cancelamento-do-debate-presidencial-marcado-para-domingo",
+     "data": "2026-09-23",
+     "trecho": "não ofereceria ao eleitor o confronto de ideias que ele espera",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
+  },
+  {
+   "id": "flavio-voou-de-fort-lauderdale-a-brasilia-em-19",
+   "tipo": "noticia",
+   "tema": "master",
+   "data": "2026-09-24",
+   "status": "fato",
+   "titulo": "Flávio voou de Fort Lauderdale a Brasília em 19/01/2025 num jato com cota de empresa de Vorcaro, revela a piauí; ele diz que 'na época o avião era de Willer'",
+   "resumo": "Segundo a revista piauí (Breno Pires), Flávio Bolsonaro, a mulher, Fernanda, as duas filhas e o advogado Willer Tomaz voaram em 19/01/2025 de Fort Lauderdale (EUA) a Brasília num Legacy 650, prefixo PP-NLR, na véspera da posse de Donald Trump. Um terço das cotas do avião era da Prime You, empresa da qual Daniel Vorcaro foi sócio de 2021 a setembro de 2025 e que também operava a aeronave; Tomaz confirmou ter outra cota, e a terceira era de Laércio Cosentino, fundador da Totvs. É o mesmo avião que levou o ministro Alexandre de Moraes em agosto de 2025, cujo vídeo Flávio havia usado em 20/09 para atacar o ministro. A revista cruzou registros de tráfego aéreo com dados do aeroporto de Brasília. Flávio não respondeu à piauí; no X, escreveu: 'Ainda bem que na época o avião era de Willer. Imagina se fosse agora, eu teria viajado no avião de Alexandre de Moraes'.",
+   "observacao": "Versão de Flávio, no X: 'Ainda bem que na época o avião era de Willer'.",
+   "pessoas": [
+    "flavio",
+    "vorcaro",
+    "willer-tomaz",
+    "fernanda-antunes-figueira-bolsonaro"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-bolsonaro-viajou-dos-eua-para-brasilia-em-jato-de-vorcaro/",
+     "data": "2026-09-24",
+     "trecho": "Flávio não respondeu ao pedido de comentário sobre sua presença na aeronave feito pela reportagem da Piauí",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/flavio-usou-jatinho-de-vorcaro-em-viagem-dos-eua-ao-brasil-diz-revista/",
+     "data": "2026-09-24",
+     "trecho": "Ainda bem que na época o avião era de Willer. Imagina se fosse agora, eu teria viajado no avião de Alexandre de Moraes",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "O Povo",
+     "url": "https://www.opovo.com.br/noticias/politica/2026/09/24/flavio-bolsonaro-voltou-dos-eua-ao-brasil-no-jato-de-vorcaro-usado-por-moraes-diz-revista.html",
+     "data": "2026-09-24",
+     "trecho": "Voo em 19 de janeiro de 2025 de Flórida a Brasília",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "campanha-de-flavio-condiciona-ida-ao-debate-da-g",
+   "tipo": "evento",
+   "tema": "eleicoes",
+   "data": "2026-09-25",
+   "status": "fato",
+   "titulo": "Campanha de Flávio condiciona ida ao debate da Globo de 01/10 à presença do candidato à reeleição",
+   "resumo": "Segundo a Folhapress (25/09), a campanha de Flávio Bolsonaro tende a aceitar o convite da Globo para o debate de 01/10, três dias antes do 1º turno, desde que o candidato à reeleição confirme presença; auxiliares avaliam que o confronto direto interessa e que, sem o adversário principal, o senador concentraria os ataques dos demais. A Globo convidou quatro candidatos. Até 25/09 não havia confirmação.",
+   "observacao": "Fato em aberto até 26/09: sem confirmação oficial da campanha.",
+   "pessoas": [
+    "flavio"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Jornal de Brasília (Folhapress)",
+     "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/flavio-bolsonaro-deve-ir-a-debate-da-globo-apos-lula-indicar-presenca/",
+     "data": "2026-09-25",
+     "trecho": "tendência",
+     "tier": "referencia"
+    },
+    {
+     "veiculo": "Rede Hoje",
+     "url": "https://redehoje.com.br/2026/09/25/eleicoes-flavio-bolsonaro-condiciona-idas-a-debate-na-tv-globo-a-presenca-de-lula/",
+     "data": "2026-09-25",
+     "trecho": "a decisão será tomada mais próximo do evento",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "lindbergh-pede-ao-stf-inquerito-sobre-flavio-e-w",
+   "tipo": "processo",
+   "tema": "juridico",
+   "data": "2026-09-25",
+   "status": "suspeita",
+   "titulo": "Lindbergh pede ao STF inquérito sobre Flávio e Willer Tomaz por suposto benefício oculto via RioPag, processadora de pagamentos de bets da Loterj; sem decisão",
+   "resumo": "Em 25/09, o deputado federal Lindbergh Farias pediu ao STF a abertura de inquérito para apurar se Flávio Bolsonaro teve participação econômica, direta ou por interpostas pessoas, na RioPag S.A., empresa contratada com exclusividade para processar pagamentos de apostas esportivas licenciadas pela Loterj. Segundo a petição, a RioPag seria controlada por Willer Tomaz por meio de laranjas e funcionaria como circuito financeiro para beneficiar o senador de forma oculta, com acesso a mansões em Angra dos Reis, apartamentos e jatos executivos; cita ainda R$ 20,9 milhões de recursos de apostas que não foram localizados no sistema bancário durante bloqueio judicial determinado pela Justiça do Rio. Pede quebra de sigilos bancário e fiscal, identificação de beneficiários finais na CVM, planos de voo à Anac e ao Decea e depoimentos em 60 dias. Não há decisão. Willer Tomaz repudiou as acusações e negou relação comercial ou financeira com Flávio; Flávio e a RioPag não responderam.",
+   "observacao": "Pedido de parlamentar adversário, sem decisão e sem manifestação da PGR. As hipóteses penais (lavagem, peculato, fraude a licitação) são da petição, não de órgão de investigação. Willer Tomaz repudiou as acusações; Flávio e a RioPag não responderam.",
+   "pessoas": [
+    "flavio",
+    "willer-tomaz"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/lindbergh-aciona-stf-contra-flavio-e-willer-por-esquema-na-loterj/",
+     "data": "2026-09-25",
+     "trecho": "Willer repudiou as acusações, negando relação comercial ou financeira com Flávio",
+     "tier": "referencia"
+    }
+   ],
+   "lastro": "referencia"
+  },
+  {
+   "id": "em-rodeio-de-jaguariuna-flavio-promete-o-pai-de",
+   "tipo": "declaracao",
+   "tema": "declaracoes",
+   "data": "2026-09-25",
+   "status": "declaracao",
+   "titulo": "Em rodeio de Jaguariúna, Flávio promete o pai de volta 'ano que vem'",
+   "resumo": "Na noite de 25/09, em discurso de cerca de um minuto na arena do rodeio de Jaguariúna (SP), Flávio Bolsonaro perguntou: 'Quem está com saudade do Bolsonaro, dá um grito. Quem vai ver Bolsonaro aqui ano que vem, dá um grito', prometendo para 2027 a volta do pai, condenado a 27 anos e 3 meses na trama golpista e preso. Disse ainda: 'Merecemos voltar a andar nas ruas em segurança. O agro brasileiro vai ser valorizado de novo'.",
+   "observacao": "Declaração de campanha; o pai está condenado a 27 anos e 3 meses na trama golpista, em prisão domiciliar.",
+   "pessoas": [
+    "flavio",
+    "jair"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Diário do Grande ABC",
+     "url": "https://www.dgabc.com.br/Noticia/4349273/em-jaguariuna-sp-flavio-bolsonaro-promete-jair-bolsonaro-de-volta-no-rodeio",
+     "data": "2026-09-26",
+     "trecho": "Quem vai ver Bolsonaro aqui ano que vem, dá um grito",
+     "tier": "agregador"
+    }
+   ],
+   "lastro": "agregador"
   }
  ],
  "grafo": {
@@ -8512,7 +8947,6 @@ window.DOSSIE = {
     "grupo": "politico",
     "status": "Investigado no STF desde julho de 2026 no inquérito sobre o financiamento do filme Dark Horse, sem denúncia. Foi investigado e denunciado pelo MP-RJ em 2020 no caso das rachadinhas (peculato, lavagem, organização criminosa). As provas foram anuladas pelo STJ e pelo STF, e a denúncia foi anulada; em fev/2025, Gilmar Mendes negou os recursos do MP.",
     "situacao": [
-     "denunciado",
      "investigado"
     ],
     "situacao_fontes": [
@@ -8531,11 +8965,9 @@ window.DOSSIE = {
     "nome": "Fabrício Queiroz",
     "papel": "Ex-assessor, motorista e segurança de Flávio na Alerj; PM reformado; apontado como operador financeiro da rachadinha",
     "grupo": "operadores",
-    "status": "Ex-assessor de Flávio, foi preso em jun/2020 (depois prisão domiciliar) e denunciado no esquema de 'rachadinha' por peculato, lavagem e organização criminosa; as provas do caso foram anuladas pelo STJ em 2021 e ele não foi condenado.",
+    "status": "Ex-assessor de Flávio, foi preso em junho de 2020 (depois em prisão domiciliar) e denunciado no esquema da rachadinha por peculato, lavagem e organização criminosa; as provas foram anuladas pelo STJ em 2021, a denúncia foi anulada e ele não foi condenado.",
     "situacao": [
-     "preso",
-     "denunciado",
-     "investigado"
+     "arquivada"
     ],
     "situacao_fontes": [
      {
@@ -8553,7 +8985,7 @@ window.DOSSIE = {
     "nome": "Jair Messias Bolsonaro",
     "papel": "Ex-presidente; pai de Flávio; amigo de Queiroz desde 1984",
     "grupo": "familia",
-    "status": "Condenado pelo STF em 11/09/2025 na trama golpista a 27 anos e 3 meses (golpe de Estado, organização criminosa armada e outros); condenação transitou em julgado em 25/11/2025 e ele cumpre pena preso na sede da PF em Brasília.",
+    "status": "Condenado pelo STF em 11/09/2025 na trama golpista a 27 anos e 3 meses (golpe de Estado, organização criminosa armada e outros crimes); a condenação transitou em julgado em 25/11/2025. Cumpre a pena em prisão domiciliar desde março de 2026, prorrogada por Alexandre de Moraes em 03/07/2026.",
     "situacao": [
      "preso",
      "condenado",
@@ -8566,8 +8998,8 @@ window.DOSSIE = {
       "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2025-09/por-4-1-stf-condena-bolsonaro-e-mais-sete-pela-trama-golpista"
      },
      {
-      "veiculo": "Agência Brasil",
-      "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2025-11/saiba-os-crimes-cometidos-por-bolsonaro-e-6-aliados-na-trama-golpista"
+      "veiculo": "Estado de Minas",
+      "url": "https://www.em.com.br/politica/2026/09/7498425-condenacao-de-bolsonaro-completa-um-ano-com-stf-em-crise.html"
      }
     ]
    },
@@ -8620,7 +9052,6 @@ window.DOSSIE = {
     "grupo": "juridico",
     "status": "Indiciado pela PF em jul/2024 por lavagem de dinheiro e associação criminosa no caso das joias (recompra de Rolex nos EUA) e investigado no STF; tornou-se réu por racismo, injúria racial e lesão corporal contra garçonete em Brasília; escondeu Fabrício Queiroz em Atibaia em 2020, mas não foi preso nesse episódio; sem condenação criminal confirmada.",
     "situacao": [
-     "denunciado",
      "investigado"
     ],
     "situacao_fontes": [
@@ -8641,8 +9072,7 @@ window.DOSSIE = {
     "grupo": "operadores",
     "status": "Conhecido como Coronel Braga, ex-chefe de gabinete de Flávio Bolsonaro na Alerj; investigado (sigilo bancário/fiscal quebrado) e citado como atuante no esquema da rachadinha, foi um dos denunciados pelo MP-RJ em 2020; a denúncia foi rejeitada/anulada (TJ-RJ em 2021, provas consideradas ilegais pelo STF; reabertura negada por Gilmar Mendes em fev/2025); sem condenação ou prisão.",
     "situacao": [
-     "denunciado",
-     "investigado"
+     "arquivada"
     ],
     "situacao_fontes": [
      {
@@ -8662,8 +9092,7 @@ window.DOSSIE = {
     "grupo": "operadores",
     "status": "Ex-assessora de Flávio Bolsonaro na Alerj que confessou ao MP-RJ ter devolvido mais de 90% do salário a Fabrício Queiroz na rachadinha; investigada e incluída entre os denunciados pelo MP-RJ em 2020, mas a denúncia foi rejeitada/anulada (TJ-RJ 2021, provas anuladas pelo STF; reabertura negada em fev/2025); sem condenação ou prisão.",
     "situacao": [
-     "denunciado",
-     "investigado"
+     "arquivada"
     ],
     "situacao_fontes": [
      {
@@ -8679,14 +9108,11 @@ window.DOSSIE = {
    {
     "id": "adriano",
     "nome": "Adriano Magalhães da Nóbrega",
-    "papel": "Ex-PM apontado como chefe do Escritório do Crime; homenageado por Flávio na Alerj",
+    "papel": "Ex-PM apontado pelo MP-RJ como chefe do Escritório do Crime; homenageado por Flávio na Alerj",
     "grupo": "milicia",
-    "status": "Ex-capitão do BOPE apontado como chefe do 'Escritório do Crime'; foi condenado por homicídio (2014), preso, fugiu e foi morto em operação policial na Bahia em 9/2/2020; era réu/denunciado por milícia e investigado por ligação com a morte de Marielle Franco e com a rachadinha no gabinete de Flávio Bolsonaro.",
+    "status": "Ex-capitão do Bope apontado pelo MP-RJ como chefe do 'Escritório do Crime'. Condenado em 1ª instância em 2005 pela morte de um guardador de carros e absolvido depois; exonerado da PM em 2014; morto em operação policial na Bahia em 09/02/2020, sem ser julgado no caso do Escritório do Crime. Era denunciado pelo MP-RJ por integrar milícia e investigado por ligação com a rachadinha no gabinete de Flávio Bolsonaro, onde a mãe e a ex-mulher dele foram lotadas.",
     "situacao": [
-     "preso",
-     "condenado",
-     "denunciado",
-     "investigado"
+     "morto"
     ],
     "situacao_fontes": [
      {
@@ -8976,10 +9402,9 @@ window.DOSSIE = {
     "nome": "Fernanda Antunes Figueira Bolsonaro",
     "papel": "Esposa de Flávio; coproprietária da mansão de Brasília",
     "grupo": "familia",
-    "status": "Esposa de Flavio Bolsonaro, foi denunciada e investigada pelo MP-RJ em 2020 no caso das rachadinhas (lavagem de dinheiro e organizacao criminosa), mas a denuncia foi rejeitada/anulada por questoes de foro privilegiado; nao foi presa nem condenada.",
+    "status": "Mulher de Flávio Bolsonaro, foi denunciada pelo MP-RJ em 2020 no caso da rachadinha (lavagem de dinheiro e organização criminosa). A denúncia foi anulada depois que o STJ e o STF invalidaram as provas, e o caso foi arquivado; não houve julgamento de mérito.",
     "situacao": [
-     "denunciado",
-     "investigado"
+     "arquivada"
     ],
     "situacao_fontes": [
      {
@@ -9288,28 +9713,59 @@ window.DOSSIE = {
     "nome": "Ângelo Calmon de Sá",
     "papel": "Doador de Flávio: ex-banqueiro (91 anos), ex-controlador do Banco Econômico (intervenção do BC em 1995, liquidado em 1996), ministro da Indústria e Comércio no governo Geisel (1977-79) e ministro no governo Collor (1992). Doação de R$ 400 mil registrada no DivulgaCand/TSE em setembro/2026 — Minha Bahia a lista entre as doações diretas à candidatura de Flávio, como 3º maior doador pessoa física; a Folha (10/09) o descreve como 'entre os maiores doadores da campanha de Flávio'. Já havia doado R$ 300 mil ao PL em 2024 (Metrópoles). Em 2026 também doou R$ 400 mil a ACM Neto (BA), R$ 200 mil a Pedro Lupion (PR) e valores menores a candidatos baianos. Sem manifestação dele nas matérias abertas.",
     "grupo": "financeiro",
-    "status": "Doador registrado no TSE. Foi condenado pela Justiça Federal na Bahia por gestão fraudulenta do Banco Econômico (pena de 13 anos e 4 meses noticiada em 2007); em 2019 a defesa alegou prescrição e idade avançada no STF. A situação atual da pena não foi verificada."
+    "status": "Doador registrado no TSE. Ex-controlador do Banco Econômico: a Justiça Federal na Bahia lhe aplicou pena de 13 anos e 4 meses por gestão fraudulenta do banco, noticiada em 2007; em 2019 a defesa alegou prescrição e idade avançada no STF. A situação atual da pena não foi verificada."
    },
    {
     "id": "karina-ferreira-da-gama",
     "nome": "Karina Ferreira da Gama",
     "papel": "Produtora do filme 'Dark Horse' (Go Up Entertainment), cujo financiamento por Vorcaro foi pedido por Flávio; preside o Instituto Conhecer Brasil (ICB) e controla a Academia Nacional de Cultura (ANC). Alvo de busca e apreensão na Operação Make Up (10/09/2026). Segundo decisão de Flávio Dino citada pelo Poder360, recursos saíam do ICB, passavam por terceirizadas e voltavam à ANC — R$ 6.175.273,64 com 'contornos de lavagem de dinheiro'; a movimentação se relaciona a contrato de Wi-Fi com a Prefeitura de SP. Versão da defesa (nota de 13/09, advogado Ricardo Sayeg): entregou voluntariamente mais de 20 mil páginas à PF, sua participação no filme 'se restringiu à prestação de serviços técnicos', desconhece detalhes do financiamento, 'investigação não é acusação, muito menos condenação'; ajuizou reclamação constitucional no STF.",
     "grupo": "operadores",
-    "status": "Investigada; alvo de busca e apreensão (Operação Make Up, 10/09/2026); não denunciada"
+    "status": "Investigada; alvo de busca e apreensão (Operação Make Up, 10/09/2026); não denunciada",
+    "situacao": [
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Revista Fórum",
+      "url": "https://revistaforum.com.br/politica/pf-elo-mario-frias-karina-gama-flavio-bolsonaro-master"
+     }
+    ]
    },
    {
     "id": "renato-araujo",
     "nome": "Renato Araújo",
     "papel": "Aliado de Flávio e coordenador regional do PL na Costa Verde (RJ) desde maio/2025, escolhido por Jair Bolsonaro e Valdemar Costa Neto; candidato a deputado federal (PL-RJ) em 2026 (derrotado para prefeito de Angra em 2024). Empresário de 40 anos, fundador da Bravo Construções (2011; hoje no nome da esposa), que recebeu R$ 16 milhões do Estado do RJ para reparos em 15 escolas. Organizou motociata e carreata de barcos para Flávio em Angra (29/08/2026) e esteve no ato de 07/09 na Paulista. A PF encontrou contrato não assinado de R$ 900 mil para obras na casa de Bolsonaro em Angra. Perfil da Agência Pública (09/09/2026). Versão: não respondeu ao pedido de entrevista da Pública.",
     "grupo": "operadores",
-    "status": "Investigado (Operação Sarasvati, Polícia Civil-RJ, ago/2026, 20 mandados: Bravo Construções alvo por suspeita de superfaturamento e lavagem em obras de escolas); não denunciado"
+    "status": "Investigado (Operação Sarasvati, Polícia Civil-RJ, ago/2026, 20 mandados: Bravo Construções alvo por suspeita de superfaturamento e lavagem em obras de escolas); não denunciado",
+    "situacao": [
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Agência Pública",
+      "url": "https://apublica.org/2026/09/o-amigo-do-flavio-bolsonaro-em-angra-dos-reis/"
+     },
+     {
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/candidato-investigado-participa-de-barqueata-com-flavio-bolsonaro-em-angra"
+     }
+    ]
    },
    {
     "id": "willer-tomaz",
     "nome": "Willer Tomaz",
-    "papel": "Amigo e aliado de Flávio desde o início do governo Jair Bolsonaro: advogado, alvo de busca e apreensão da PF em 04/08/2026 (Operação Sem Desconto, fraudes no INSS; a PF o aponta como 'hub financeiro, patrimonial e logístico' de políticos). Novidades na janela: a revista piauí revelou (16/09) que Flávio usou na primeira quinzena de agosto, em SP, apartamento de 158 m² da WT Administração de Imóveis e Bens (empresa de Tomaz) para reuniões de campanha, podcasts e gravação de vídeos — imóvel comprado em 10/02/2026 por R$ 3,5 mi (deságio de R$ 2 mi; registro em 04/03/2026) de Fabiano Zettel, cunhado e operador de Vorcaro. Em 09/09, segundo a Revista Fórum, Flávio comparou a PF à 'Gestapo' ao defendê-lo. Versão de Flávio: 'apenas se hospedou em hotéis da região'. Versão de Tomaz: nega irregularidades, diz não conhecer Zettel nem Vorcaro e fala em 'ataques sem qualquer fundamento' de adversários. Não é investigado no caso Master.",
+    "papel": "Amigo e aliado de Flávio desde o início do governo Jair Bolsonaro: advogado, alvo de busca e apreensão da PF em 04/08/2026 (Operação Sem Desconto, fraudes no INSS; a PF o aponta como 'hub financeiro, patrimonial e logístico' de políticos). Novidades na janela: a revista piauí revelou (16/09) que Flávio usou na primeira quinzena de agosto, em SP, apartamento de 158 m² da WT Administração de Imóveis e Bens (empresa de Tomaz) para reuniões de campanha, podcasts e gravação de vídeos — imóvel comprado em 10/02/2026 por R$ 3,5 mi (deságio de R$ 2 mi; registro em 04/03/2026) de Fabiano Zettel, cunhado e operador de Vorcaro. Em 09/09, segundo a Revista Fórum, Flávio comparou a PF à 'Gestapo' ao defendê-lo. Versão de Flávio: 'apenas se hospedou em hotéis da região'. Versão de Tomaz: nega irregularidades, diz não conhecer Zettel nem Vorcaro e fala em 'ataques sem qualquer fundamento' de adversários.",
     "grupo": "aliado",
-    "status": "Investigado (alvo de busca e apreensão da PF em 04/08/2026, caso INSS); não denunciado"
+    "status": "Investigado (alvo de busca e apreensão da PF em 04/08/2026, caso INSS); não denunciado",
+    "situacao": [
+     "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "Estado de Minas",
+      "url": "https://www.em.com.br/politica/2026/08/7473338-amigo-de-flavio-bolsonaro-e-advogado-veja-quem-e-willer-tomaz-alvo-da-pf.html"
+     }
+    ]
    },
    {
     "id": "tallis-gomes",
@@ -9323,102 +9779,111 @@ window.DOSSIE = {
     "nome": "Alfredo Gaspar",
     "papel": "candidato a vice na chapa de Flávio Bolsonaro, anunciada em 5/8/2026 e registrada no TSE sob o número 22; deputado federal (PL-AL) de primeiro mandato, ex-secretário de Segurança Pública de Alagoas",
     "grupo": "politico",
-    "status": "Não é réu, denunciado nem condenado. Em 7/9/2026 o corregedor-geral eleitoral reconheceu a admissibilidade de uma Ação de Investigação Judicial Eleitoral movida pela coligação de Lula contra ele e Flávio, por suposto abuso de poder econômico na Festa do Peão de Barretos; a chapa ainda deve apresentar defesa."
+    "status": "Em 7/9/2026 o corregedor-geral eleitoral reconheceu a admissibilidade de uma Ação de Investigação Judicial Eleitoral movida pela coligação adversária contra ele e Flávio, por suposto abuso de poder econômico na Festa do Peão de Barretos; a chapa ainda deve apresentar defesa."
    },
    {
     "id": "daniella-marques-consentino",
     "nome": "Daniella Marques Consentino",
     "papel": "coordenadora da área econômica da campanha de Flávio Bolsonaro; ex-presidente da Caixa Econômica Federal e ex-secretária de Paulo Guedes no Ministério da Economia. Participou do jantar de banqueiros na casa de Marcelo Kayath, no fim de agosto de 2026, e é citada como possível ministra da Casa Civil.",
     "grupo": "aliado",
-    "status": "Sem processo conhecido."
+    "status": ""
    },
    {
     "id": "adolfo-sachsida",
     "nome": "Adolfo Sachsida",
     "papel": "integra a coordenação econômica da campanha de Flávio Bolsonaro ao lado de Daniella Marques, conforme noticiado em 20/8/2026; ex-ministro de Minas e Energia de Jair Bolsonaro e ex-braço direito de Paulo Guedes.",
     "grupo": "aliado",
-    "status": "Sem processo conhecido."
+    "status": ""
    },
    {
     "id": "jose-vicente-santini",
     "nome": "José Vicente Santini",
-    "papel": "coordenador da campanha de Flávio Bolsonaro. Comprou em setembro de 2025, por R$ 14,5 milhões, a mansão no Lago Sul (DF) que Flávio passou a usar para reuniões e articulações de campanha a partir de 1º/7/2026. Foi secretário nacional de Justiça e secretário-executivo da Casa Civil no governo Jair Bolsonaro, exonerado em 2020 por usar avião da FAB em viagem à Índia; era assessor especial do governador Tarcísio de Freitas quando foi escalado para a campanha. Advoga para o grupo J&F, dos irmãos Batista.",
+    "papel": "coordenador da campanha de Flávio Bolsonaro. Foi secretário nacional de Justiça e secretário-executivo da Casa Civil no governo Jair Bolsonaro, exonerado em 2020 por usar avião da FAB em viagem à Índia; era assessor especial do governador Tarcísio de Freitas quando foi escalado para a campanha. Advoga para o grupo J&F, dos irmãos Batista.",
     "grupo": "aliado",
-    "status": "Não é investigado formalmente, denunciado nem réu. Em 2/7/2026 o deputado Lindbergh Farias apresentou notícia de fato à PF pedindo apuração da origem dos recursos da compra do imóvel (R$ 4 milhões de entrada e R$ 10,5 milhões financiados no BRB). Santini afirmou que 'o dinheiro está tudo declarado, imposto está pago'. Sua ida a um evento em Washington com Marco Rubio e Joesley Batista, em julho de 2026, gerou incômodo em uma ala da campanha."
+    "status": "Sua ida a um evento em Washington com Marco Rubio e Joesley Batista, em julho de 2026, gerou incômodo em uma ala da campanha."
    },
    {
     "id": "nelson-santini",
     "nome": "Nelson Santini",
     "papel": "coordenador logístico e financeiro da campanha de Flávio Bolsonaro, anunciado em 27/2/2026; conhecido como 'Tenente Santini', é oficial da reserva da PM e empresário do setor de segurança, irmão de José Vicente Santini e filho do general Nelson Santini Junior. Foi vereador em Campinas (SP) e já atuou nas campanhas da família Bolsonaro em 2018 e 2022.",
     "grupo": "aliado",
-    "status": "Sem processo conhecido."
+    "status": ""
    },
    {
     "id": "jmartelo-solucoes-em-comunicacao",
     "nome": "JMartelo Soluções em Comunicação",
     "papel": "fornecedora da campanha de Flávio Bolsonaro: contratada por R$ 1,6 milhão sob a rubrica de serviços prestados por terceiros; a agência é de um ex-assessor da Casa Civil do governo Tarcísio de Freitas",
     "grupo": "aliado",
-    "status": "Sem processo conhecido. O nome civil do dono não foi confirmado em fonte aberta."
+    "status": "O nome civil do dono não foi confirmado em fonte aberta."
    },
    {
     "id": "duda-lima",
     "nome": "Duda Lima",
     "papel": "marqueteiro da campanha de Flávio Bolsonaro desde 30/7/2026, quando substituiu Alexandre Oltramari e Eduardo Fischer — segunda troca no comando da comunicação em menos de três meses. Foi marqueteiro de Jair Bolsonaro em 2022, da reeleição de Ricardo Nunes em 2024 e de Celso Russomanno em 2016.",
     "grupo": "aliado",
-    "status": "Sem processo conhecido."
+    "status": ""
    },
    {
     "id": "maria-claudia-bucchianeri",
     "nome": "Maria Claudia Bucchianeri",
     "papel": "advogada da campanha de Flávio Bolsonaro, escolhida em março de 2026 para a atuação contenciosa no TSE; ex-ministra do TSE, nomeada por Jair Bolsonaro em 2021, deixou a Corte em 2023.",
     "grupo": "juridico",
-    "status": "Sem processo conhecido."
+    "status": ""
    },
    {
     "id": "claudio-lottenberg",
     "nome": "Cláudio Lottenberg",
     "papel": "anunciado por Flávio Bolsonaro em 28/8/2026, em entrevista à TV Globo, como seu futuro ministro da Saúde. Médico oftalmologista, 65 anos, preside o Conselho Deliberativo do Hospital Albert Einstein, o Instituto Coalizão Saúde e a Confederação Israelita do Brasil.",
     "grupo": "aliado",
-    "status": "Sem processo conhecido."
+    "status": ""
    },
    {
     "id": "marcelo-kayath",
     "nome": "Marcelo Kayath",
-    "papel": "empresário do mercado financeiro que ofereceu jantar a Flávio Bolsonaro em sua casa, em São Paulo, no fim de agosto de 2026; banqueiros, investidores e empresários presentes o sugeriram ao candidato para ministro da Fazenda de um eventual governo. Ex-presidente do Credit Suisse no Brasil e sócio da gestora QMS Capital, apoiou Lula em 2022.",
+    "papel": "empresário do mercado financeiro que ofereceu jantar a Flávio Bolsonaro em sua casa, em São Paulo, no fim de agosto de 2026; banqueiros, investidores e empresários presentes o sugeriram ao candidato para ministro da Fazenda de um eventual governo. Ex-presidente do Credit Suisse no Brasil e sócio da gestora QMS Capital.",
     "grupo": "aliado",
-    "status": "Sem processo conhecido."
+    "status": ""
    },
    {
     "id": "walter-schlatter",
     "nome": "Walter Schlatter",
     "papel": "doador pessoa física da campanha de Flávio Bolsonaro, com R$ 300 mil registrados na prestação de contas eleitoral. Prefeito de Chapadão do Sul (MS) pelo PP, produtor rural e empresário.",
     "grupo": "financeiro",
-    "status": "Sem processo conhecido. Confirmou pessoalmente a doação por telefone ao Portal Agência da Notícia em 6/9/2026."
+    "status": "Confirmou pessoalmente a doação por telefone ao Portal Agência da Notícia em 6/9/2026."
    },
    {
     "id": "flavio-roscoe",
     "nome": "Flávio Roscoe",
     "papel": "candidato do PL ao governo de Minas Gerais, lançado em 5/8/2026 como o nome de Flávio Bolsonaro para dar palanque estadual à candidatura presidencial; é o candidato que mais recebeu doações privadas no país até o fim de agosto de 2026 (R$ 4 milhões de pessoas físicas). Empresário do setor têxtil, presidiu a Fiemg e disputa sua primeira eleição.",
     "grupo": "politico",
-    "status": "Sem processo conhecido."
+    "status": ""
    },
    {
     "id": "marcio-canella",
     "nome": "Márcio Canella",
-    "papel": "candidato ao Senado pelo Rio de Janeiro com apoio declarado de Flávio Bolsonaro, que manifestou publicamente 'apoio integral' a ele mesmo após a operação da PF; ex-prefeito de Belford Roxo.",
+    "papel": "Ex-prefeito de Belford Roxo; foi pré-candidato ao Senado pelo Rio indicado por Flávio Bolsonaro, que declarou 'apoio integral' a ele mesmo após a operação da PF, até 03/08/2026, quando desistiu; a mãe de Flávio era a 1ª suplente.",
     "grupo": "operadores",
     "status": "Responde em liberdade. Foi preso em flagrante em 7/7/2026, na Operação Unha e Carne da PF, por posse de fuzil calibre 5,56 encontrado em seu veículo — sua defesa alegou que a arma era do segurança. Em 10/7/2026 o ministro Alexandre de Moraes concedeu liberdade provisória, com tornozeleira, entrega de passaporte e suspensão do porte de arma; as cautelares foram revogadas em 24/7/2026. É investigado por lavagem de dinheiro em rede de postos de combustíveis. Não há denúncia formal conhecida.",
     "situacao": [
-     "preso",
      "investigado"
+    ],
+    "situacao_fontes": [
+     {
+      "veiculo": "ND Mais",
+      "url": "https://ndmais.com.br/politica/apadrinhado-flavio-canella-desiste-senado-rj/"
+     },
+     {
+      "veiculo": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/07/11/moraes-manda-soltar-ex-prefeito-de-belford-roxo-apos-prisao-com-fuzil/"
+     }
     ]
    },
    {
     "id": "rogeria-nantes-bolsonaro",
     "nome": "Rogéria Nantes Bolsonaro",
-    "papel": "mãe de Flávio Bolsonaro e suplente na chapa ao Senado de Márcio Canella; a indicação foi feita pelo próprio Flávio.",
+    "papel": "mãe de Flávio Bolsonaro; foi a 1ª suplente na chapa de Márcio Canella ao Senado, indicada por Flávio, até a desistência dele em 03/08/2026.",
     "grupo": "familia",
-    "status": "Sem processo conhecido. Não é alvo da Operação Unha e Carne."
+    "status": ""
    },
    {
     "id": "elcio-de-queiroz",
@@ -9886,8 +10351,7 @@ window.DOSSIE = {
     "grupo": "operadores",
     "status": "Denunciada pelo MP-RJ por integrar o esquema de funcionários fantasmas; teria transferido cerca de R$ 97 mil. Ação posteriormente trancada por decisões do STJ/STF.",
     "situacao": [
-     "denunciado",
-     "investigado"
+     "arquivada"
     ],
     "situacao_fontes": [
      {
@@ -9907,8 +10371,7 @@ window.DOSSIE = {
     "grupo": "operadores",
     "status": "Citada na denúncia do MP-RJ como uma das filhas de Queiroz lotadas no gabinete de Flávio na Alerj dentro da teia de funcionários fantasmas. Ação trancada por decisões do STJ/STF.",
     "situacao": [
-     "denunciado",
-     "investigado"
+     "arquivada"
     ],
     "situacao_fontes": [
      {
@@ -11767,12 +12230,12 @@ window.DOSSIE = {
    {
     "de": "fernanda-antunes-figueira-bolsonaro",
     "para": "flavio",
-    "rotulo": "cocompradora e corré na ação",
+    "rotulo": "mulher de Flávio; cocompradora da mansão do Lago Sul e corré, com ele, na ação popular sobre o financiamento do BRB, julgada improcedente em julho de 2025",
     "status": "fato",
     "fontes": [
      {
-      "veiculo": "PT",
-      "url": "https://pt.org.br/acao-questiona-brb-e-flavio-bolsonaro-por-emprestimo-irregular/"
+      "veiculo": "Metrópoles",
+      "url": "https://www.metropoles.com/colunas/grande-angular/juiz-do-df-considera-regular-emprestimo-de-flavio-bolsonaro-no-brb"
      }
     ]
    },
@@ -12184,7 +12647,7 @@ window.DOSSIE = {
     "de": "daniella-marques-consentino",
     "para": "flavio",
     "rotulo": "coordena a área econômica da campanha",
-    "status": "Sem processo conhecido. É citada como possível ministra da Casa Civil.",
+    "status": "É citada como possível ministra da Casa Civil.",
     "fontes": [
      {
       "veiculo": "Poder360",
@@ -12200,7 +12663,7 @@ window.DOSSIE = {
     "de": "adolfo-sachsida",
     "para": "flavio",
     "rotulo": "integra a coordenação do plano econômico da campanha desde agosto de 2026",
-    "status": "Sem processo conhecido.",
+    "status": "",
     "fontes": [
      {
       "veiculo": "Gazeta do Povo",
@@ -12227,16 +12690,12 @@ window.DOSSIE = {
    {
     "de": "jose-vicente-santini",
     "para": "flavio",
-    "rotulo": "coordenador da campanha; sua mansão de R$ 14,5 milhões passou a ser usada para reuniões da campanha",
-    "status": "Alvo de notícia de fato apresentada à PF por Lindbergh Farias em 2/7/2026; não é investigado formalmente e nega irregularidade.",
+    "rotulo": "coordenador da campanha",
+    "status": "",
     "fontes": [
      {
       "veiculo": "ICL Notícias",
       "url": "https://iclnoticias.com.br/flavio-bolsonaro-usa-mansao-de-r-145-milhoes-de-seu-coordenador-de-campanha/"
-     },
-     {
-      "veiculo": "Metrópoles",
-      "url": "https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg"
      }
     ]
    },
@@ -12244,7 +12703,7 @@ window.DOSSIE = {
     "de": "nelson-santini",
     "para": "flavio",
     "rotulo": "coordenador logístico e financeiro da campanha desde 27/2/2026",
-    "status": "Sem processo conhecido.",
+    "status": "",
     "fontes": [
      {
       "veiculo": "CNN Brasil",
@@ -12351,7 +12810,7 @@ window.DOSSIE = {
    {
     "de": "marcio-canella",
     "para": "flavio",
-    "rotulo": "candidato ao Senado pelo RJ apoiado por Flávio, que declarou 'apoio integral' mesmo após a operação da PF",
+    "rotulo": "foi pré-candidato ao Senado pelo RJ apoiado por Flávio, que declarou 'apoio integral' mesmo após a operação da PF; desistiu da pré-candidatura em 03/08/2026",
     "status": "Preso em flagrante em 7/7/2026 e solto por decisão de Moraes em 10/7/2026; cautelares revogadas em 24/7/2026. Investigado por lavagem de dinheiro, sem denúncia conhecida. A prisão levou o União Brasil a descartar apoio a Flávio.",
     "fontes": [
      {
@@ -12367,8 +12826,8 @@ window.DOSSIE = {
    {
     "de": "rogeria-nantes-bolsonaro",
     "para": "marcio-canella",
-    "rotulo": "suplente na chapa dele ao Senado pelo Rio de Janeiro",
-    "status": "A indicação foi feita pelo próprio Flávio Bolsonaro; ela não é alvo da operação da PF.",
+    "rotulo": "era a suplente na chapa dele ao Senado pelo Rio de Janeiro, até a desistência de 03/08/2026",
+    "status": "A indicação foi feita pelo próprio Flávio Bolsonaro.",
     "fontes": [
      {
       "veiculo": "CNN Brasil",
@@ -12379,8 +12838,8 @@ window.DOSSIE = {
    {
     "de": "rogeria-nantes-bolsonaro",
     "para": "flavio",
-    "rotulo": "mãe de Flávio Bolsonaro e suplente na chapa ao Senado de Márcio Canella",
-    "status": "Sem processo conhecido.",
+    "rotulo": "mãe de Flávio Bolsonaro; foi suplente na chapa de Márcio Canella ao Senado até 03/08/2026",
+    "status": "",
     "fontes": [
      {
       "veiculo": "CNN Brasil",
@@ -13340,7 +13799,7 @@ window.DOSSIE = {
     "de": "jair",
     "para": "mario-fernandes",
     "rotulo": "co-réu / general autor do 'Punhal Verde e Amarelo'",
-    "status": "Fernandes condenado a 26,5 anos; admitiu autoria do plano para matar Lula, Alckmin e Moraes.",
+    "status": "Fernandes condenado a 26,5 anos; admitiu a autoria do plano que, segundo a PF, previa matar autoridades.",
     "fontes": [
      {
       "veiculo": "CNN Brasil",
@@ -13424,7 +13883,7 @@ window.DOSSIE = {
     "de": "bernardo-romao-correa-netto",
     "para": "helio-ferreira-lima",
     "rotulo": "mesmo núcleo operacional ('kids pretos')",
-    "status": "Ambos condenados no núcleo 3 que planejou sequestrar e matar Lula, Alckmin e Moraes.",
+    "status": "Ambos condenados no núcleo 3, que planejou sequestrar e matar autoridades, segundo a PF.",
     "fontes": [
      {
       "veiculo": "Congresso em Foco",
@@ -14829,6 +15288,18 @@ window.DOSSIE = {
    ]
   },
   {
+   "data": "2026-09-16",
+   "titulo": "piauí: Flávio usou em agosto apartamento em SP que foi de cunhado de Vorcaro e hoje é de empresa de Willer Tomaz",
+   "tema": "master",
+   "descricao": "O imóvel foi de Fabiano Zettel, cunhado de Vorcaro, e passou à empresa de Willer Tomaz em fevereiro de 2026; Flávio diz ter usado hotéis.",
+   "fontes": [
+    {
+     "veiculo": "A Gazeta (Folhapress)",
+     "url": "https://www.agazeta.com.br/brasil/flavio-bolsonaro-usou-apartamento-de-advogado-investigado-por-fraudes-no-inss-diz-revista-0926"
+    }
+   ]
+  },
+  {
    "data": "2026-09-17",
    "titulo": "AtlasIntel (11–16/09): Lula 44,1% x Flávio 41,7% no 1º turno; 2º turno Flávio 47,2% x Lula 46,8%",
    "tema": "eleicoes",
@@ -14837,6 +15308,66 @@ window.DOSSIE = {
     {
      "veiculo": "Gazeta do Povo",
      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-21",
+   "titulo": "Estadão: mensagens da PF mostram assessora de Flávio tratando com 'Peixe' a emenda de R$ 199.999,79 ao Ifop",
+   "tema": "milicia",
+   "descricao": "Em outubro e novembro de 2023, Peixe pediu à secretária parlamentar que tratasse da emenda 'com o nosso senador'; a emenda foi paga em novembro de 2023.",
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-congresso/assessora-de-flavio-tratou-de-emenda-com-miliciano-do-caso-marielle/"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-22",
+   "titulo": "Lindbergh Farias pede a Moraes a reabertura do caso da rachadinha; sem decisão",
+   "tema": "rachadinha",
+   "descricao": "Pede a reabertura da investigação da rachadinha e a inclusão de Flávio no inquérito que apura conexões entre grupos criminosos e agentes públicos no Rio; sem decisão.",
+   "fontes": [
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/colunas/neila-guimaraes/lindbergh-pede-ao-stf-para-reabrir-caso-das-rachadinhas-e-investigar-flavio"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-23",
+   "titulo": "Record cancela o debate de 27/09; terceiro debate do 1º turno sem Flávio",
+   "tema": "eleicoes",
+   "descricao": "Flávio e o candidato à reeleição avisaram que não iriam; é o terceiro debate do 1º turno sem ele.",
+   "fontes": [
+    {
+     "veiculo": "Diário do Grande ABC",
+     "url": "https://www.dgabc.com.br/Noticia/4348677/record-confirma-cancelamento-do-debate-presidencial-marcado-para-domingo"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-24",
+   "titulo": "piauí: Flávio voou dos EUA a Brasília em jan/2025 num jato com cota de empresa de Vorcaro",
+   "tema": "master",
+   "descricao": "Um terço das cotas do Legacy PP-NLR era de empresa da qual Vorcaro foi sócio; Flávio: 'na época o avião era de Willer'.",
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-bolsonaro-viajou-dos-eua-para-brasilia-em-jato-de-vorcaro/"
+    }
+   ]
+  },
+  {
+   "data": "2026-09-25",
+   "titulo": "Lindbergh pede ao STF inquérito sobre Flávio e Willer Tomaz por suposto benefício via RioPag/Loterj; sem decisão",
+   "tema": "juridico",
+   "descricao": "Pedido de parlamentar adversário, sem decisão e sem manifestação da PGR.",
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/lindbergh-aciona-stf-contra-flavio-e-willer-por-esquema-na-loterj/"
     }
    ]
   }
@@ -14873,7 +15404,7 @@ window.DOSSIE = {
   ]
  },
  "senadoStats": {
-  "nota": "Atividade no Senado (cód. 5894), apurada em 09/09/2026: muitas relatorias e votações, mas só 1 projeto de autoria virou lei. Mantém o mandato durante a campanha — votou pela última vez em 03/09/2026.",
+  "nota": "Atividade no Senado (cód. 5894), nos dados abertos: relatorias, votações e projetos apurados em 09/09/2026; só 1 projeto de lei de autoria dele foi aprovado pelo Congresso (PL 3.190/2023, microcrédito, sancionado com vetos). Nas 26 votações nominais de 2026 (até 26/09), votou em 10, não compareceu a 10, constou presente sem registrar voto em 4 e estava em licença ou missão em 2. Constou presente pela última vez em 03/09, sem registrar voto; o último voto registrado é de 01/09.",
   "fonte": {
    "veiculo": "Senado Federal — Dados Abertos",
    "url": "https://www25.senado.leg.br/web/senadores/senador/-/perfil/5894"
@@ -14890,6 +15421,10 @@ window.DOSSIE = {
    {
     "label": "Projetos de autoria aprovados",
     "valor": "1"
+   },
+   {
+    "label": "Votações nominais de 2026 em que faltou ou não votou",
+    "valor": "14 de 26"
    }
   ]
  },
@@ -15061,24 +15596,18 @@ window.DOSSIE = {
    "fonte": "Poder360",
    "data": "2026-08",
    "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-declara-r-81-milhoes-em-patrimonio-quase-o-dobro-de-lula/"
-  },
-  {
-   "titulo": "PT pede à PF apuração sobre mansão de R$ 14,5 mi usada como QG da campanha",
-   "fonte": "Metrópoles",
-   "data": "2026-07",
-   "url": "https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg"
   }
  ],
  "noticiasCaptura": "2026-09-20",
  "placar": [
   {
    "numero": "1",
-   "rotulo": "projeto de lei de autoria dele virou lei em 7 anos de Senado",
+   "rotulo": "projeto de lei de autoria dele aprovado pelo Congresso em 7 anos de Senado: o PL 3.190/2023, do microcrédito, sancionado com vetos (dados abertos do Senado)",
    "destino": "tema:senado"
   },
   {
-   "numero": "43%",
-   "rotulo": "das votações nominais de 2026 sem o voto dele — a média do Senado é 20%",
+   "numero": "14 de 26",
+   "rotulo": "votações nominais de 2026 (até 26/09) em que ele faltou (10) ou esteve presente sem votar (4); em outras 2, licença ou missão (dados abertos do Senado)",
    "destino": "tema:senado"
   },
   {
@@ -15098,8 +15627,8 @@ window.DOSSIE = {
    "cor": "tinta"
   },
   {
-   "numero": "R$ 6,01",
-   "rotulo": "doados por pessoas físicas à campanha até 26/08; do partido vieram R$ 42 milhões",
+   "numero": "95%",
+   "rotulo": "do dinheiro da campanha veio do partido: R$ 53,5 milhões do PL contra R$ 2,56 milhões de pessoas físicas, na prestação parcial ao TSE de 13/09",
    "destino": "tema:eleicoes"
   }
  ],
@@ -15139,27 +15668,27 @@ window.DOSSIE = {
    {
     "de": "PL (partido)",
     "para": "Campanha presidencial 2026",
-    "valor": "R$ 42 mi",
-    "obs": "contra R$ 6,01 de pessoas físicas na prestação parcial consultada em 26/08/2026",
+    "valor": "R$ 53,5 mi",
+    "obs": "95% do total na prestação parcial ao TSE de 13/09 (movimentação até 08/09); de pessoas físicas, R$ 2,56 milhões",
     "tema": "eleicoes",
     "status": "FATO · PRESTAÇÃO DE CONTAS AO TSE",
-    "ressalva": "Prestação parcial. Em 9/9/2026, as maiores doações de pessoa física registradas eram de R$ 500 mil (Erasmo Battistella e Fernando de Castro Marques), segundo a Agenda do Poder; os valores do TSE podem divergir dos divulgados pela campanha.",
+    "ressalva": "Prestação parcial entregue em 13/09/2026, com a movimentação até 08/09: R$ 53,5 milhões da direção nacional do PL (95% do total), R$ 2,56 milhões de pessoas físicas e R$ 106,6 mil de financiamento coletivo; gastos contratados de R$ 56,1 milhões, segundo o Correio Braziliense. A arrecadação segue até 04/10 e os números mudam a cada parcial.",
     "fonte": {
-     "veiculo": "Poder360",
-     "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-lidera-em-doacoes-a-candidatos-ao-planalto-lula-e-2o/"
+     "veiculo": "Correio Braziliense",
+     "url": "https://www.correiobraziliense.com.br/politica/2026/09/7503612-flavio-e-caiado-lideram-lista-de-doacoes-de-pessoas-fisicas-rs-25-milhoes.html"
     }
    },
    {
-    "de": "Walter Schlatter",
+    "de": "Erasmo Carlos Battistella (Be8)",
     "para": "Campanha presidencial 2026",
-    "valor": "R$ 300 mil",
-    "obs": "doação de pessoa física, confirmada pelo doador",
+    "valor": "R$ 500 mil",
+    "obs": "a maior doação de pessoa física na prestação parcial ao TSE de 13/09",
     "tema": "eleicoes",
     "status": "FATO · PRESTAÇÃO DE CONTAS AO TSE",
-    "ressalva": "Doação registrada na prestação de contas e confirmada pelo doador por telefone à reportagem.",
+    "ressalva": "Doação registrada na prestação de contas parcial (movimentação até 08/09/2026), segundo o Correio Braziliense; os valores do TSE podem mudar nas parciais seguintes.",
     "fonte": {
-     "veiculo": "Agência da Notícia",
-     "url": "https://www.agenciadanoticia.com.br/mato-grosso/noticia/146289/prefeito-e-empresario-walter-schlatter-doa-r-300-mil-para-campanha-de-flavio-bolsonaro"
+     "veiculo": "Correio Braziliense",
+     "url": "https://www.correiobraziliense.com.br/politica/2026/09/7503612-flavio-e-caiado-lideram-lista-de-doacoes-de-pessoas-fisicas-rs-25-milhoes.html"
     }
    },
    {
@@ -15173,20 +15702,6 @@ window.DOSSIE = {
     "fonte": {
      "veiculo": "Revista Fórum",
      "url": "https://revistaforum.com.br/politica/flavio-bolsonaro-jmartelo/"
-    }
-   },
-   {
-    "de": "BRB (Banco de Brasília)",
-    "para": "Mansão de José Vicente Santini, coordenador da campanha, usada como QG",
-    "valor": "R$ 10,5 mi",
-    "obs": "imóvel de R$ 14,5 mi em nome de um coordenador da campanha; um deputado pediu apuração à PF em 02/07/2026. O coordenador diz que está tudo declarado",
-    "tema": "mansao",
-    "status": "PEDIDO DE APURAÇÃO À PF",
-    "defesa": "Santini diz que está tudo declarado.",
-    "ressalva": "Imóvel registrado em nome do advogado José Vicente Santini, coordenador da campanha: R$ 4 milhões de entrada e R$ 10,5 milhões financiados pelo BRB. Santini diz que a renda vem do escritório e de uma empresa de segurança e que está tudo declarado.",
-    "fonte": {
-     "veiculo": "Metrópoles",
-     "url": "https://www.metropoles.com/colunas/manoela-alcantara/lindbergh-pede-a-pf-que-investigue-mansao-usada-por-flavio-como-qg"
     }
    },
    {

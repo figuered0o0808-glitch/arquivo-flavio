@@ -1,9 +1,9 @@
 /* BolsoDrive · aba Dark Horse. Gerado por bolso-os-fontes/monta_darkhorse.py a partir de darkhorse_curadoria.json; não editar à mão. */
 window.DARKHORSE = {
- "gerado": "2026-09-24",
+ "gerado": "2026-09-27",
  "periodo": {
   "de": "2024-12-01",
-  "ate": "2026-09-24"
+  "ate": "2026-09-25"
  },
  "totais": {
   "pedido": {
@@ -94,6 +94,32 @@ window.DARKHORSE = {
      "veiculo": "O Tempo",
      "data": "2026-09-11",
      "url": "https://www.otempo.com.br/politica/judiciario/2026/9/11/fundo-imobiliario-foi-reativado-para-receber-r-63-mi-de-vorcaro-para-filme-de-bolsonaro"
+    }
+   ]
+  },
+  {
+   "id": "m-jato",
+   "data": "2025-01-19",
+   "hora": null,
+   "margem": "dinheiro",
+   "palco": true,
+   "gotas": 0,
+   "ponto": null,
+   "rot": "19/01 · jato dos EUA com cota de empresa de Vorcaro",
+   "lista": "Ele, a mulher, as filhas e Willer Tomaz voam de Fort Lauderdale a Brasília num Legacy 650 (PP-NLR); um terço das cotas do avião era da Prime You, empresa de que Vorcaro foi sócio até setembro de 2025, segundo a piauí (24/09/2026). Ele: “na época o avião era de Willer”.",
+   "refs": [
+    "jato-pp-nlr"
+   ],
+   "fontes": [
+    {
+     "veiculo": "Poder360",
+     "data": "2026-09-24",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-bolsonaro-viajou-dos-eua-para-brasilia-em-jato-de-vorcaro/"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "data": "2026-09-24",
+     "url": "https://www.cnnbrasil.com.br/politica/flavio-usou-jatinho-de-vorcaro-em-viagem-dos-eua-ao-brasil-diz-revista/"
     }
    ]
   },
@@ -1091,6 +1117,53 @@ window.DARKHORSE = {
    ]
   },
   {
+   "id": "m-tse-ia",
+   "data": "2026-09-01",
+   "hora": null,
+   "margem": "dinheiro",
+   "palco": false,
+   "gotas": 0,
+   "ponto": null,
+   "rot": null,
+   "lista": "O TSE rejeita, por 4 votos a 3, multa a ele pelo vídeo feito com inteligência artificial em que o pai aparece apoiando a candidatura, exibido na convenção do PL em julho; por 5 a 2, define o que conta como deepfake na propaganda.",
+   "refs": [
+    "tse-video-ia-4x3"
+   ],
+   "fontes": [
+    {
+     "veiculo": "CNN Brasil",
+     "data": "2026-09-01",
+     "url": "https://www.cnnbrasil.com.br/eleicoes/nunes-marques-vota-contra-considerar-irregular-video-de-bolsonaro-feito-por/"
+    }
+   ]
+  },
+  {
+   "id": "m-tse-propaganda",
+   "data": "2026-09-01",
+   "hora": null,
+   "margem": "dinheiro",
+   "palco": true,
+   "gotas": 0,
+   "ponto": null,
+   "rot": "01/09/26 · TSE mantém propaganda que o associa a Vorcaro",
+   "lista": "Nunes Marques, presidente do TSE, rejeita dois pedidos da campanha dele e mantém no ar propaganda adversária que o associa a Vorcaro e ao Master, com trechos de entrevista e de áudio sobre o filme; o ministro escreveu que “a propaganda tampouco afirma que ele seja investigado ou acusado da prática dos ilícitos atribuídos aos responsáveis pelo Banco Master”.",
+   "refs": [
+    "tse-propaganda-master"
+   ],
+   "fontes": [
+    {
+     "veiculo": "JOTA",
+     "data": "2026-09-01",
+     "url": "https://www.jota.info/eleicoes/eleicoes-2026/nunes-marques-rejeita-liminar-para-suspender-propaganda-de-lula-que-associa-flavio-ao-master"
+    },
+    {
+     "veiculo": "Brasil 247",
+     "data": "2026-09-01",
+     "url": "https://www.brasil247.com/brasil/tse-nunes-marques-mantem-no-ar-propaganda-de-lula-sobre-flavio-bolsonaro-e-vorcaro/"
+    }
+   ]
+  },
+  {
    "id": "m-delacao",
    "data": "2026-09-09",
    "hora": null,
@@ -1187,6 +1260,27 @@ window.DARKHORSE = {
    ]
   },
   {
+   "id": "m-apartamento",
+   "data": "2026-09-16",
+   "hora": null,
+   "margem": "dinheiro",
+   "palco": true,
+   "gotas": 0,
+   "ponto": null,
+   "rot": "16/09/26 · apartamento que foi do cunhado de Vorcaro",
+   "lista": "Em agosto, ele usou por alguns dias um apartamento em São Paulo comprado em 2025 por Fabiano Zettel, cunhado de Vorcaro, e hoje de empresa de Willer Tomaz; lá fez reuniões de campanha, gravou vídeos e deu entrevistas, segundo a piauí. Ele diz que se hospedou apenas em hotéis da região.",
+   "refs": [
+    "apartamento-zettel"
+   ],
+   "fontes": [
+    {
+     "veiculo": "A Gazeta (Folhapress)",
+     "data": "2026-09-17",
+     "url": "https://www.agazeta.com.br/brasil/flavio-bolsonaro-usou-apartamento-de-advogado-investigado-por-fraudes-no-inss-diz-revista-0926"
+    }
+   ]
+  },
+  {
    "id": "e-sancoes",
    "data": "2026-09-16",
    "hora": null,
@@ -1225,6 +1319,32 @@ window.DARKHORSE = {
      "veiculo": "Jornal de Brasília",
      "data": "2026-09-17",
      "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/flavio-bolsonaro-nega-ter-recebido-ajuda-de-trump-apos-documento-dos-eua-ligar-tarifaco-a-eleicao/"
+    }
+   ]
+  },
+  {
+   "id": "m-representacao",
+   "data": "2026-09-18",
+   "hora": null,
+   "margem": "dinheiro",
+   "palco": false,
+   "gotas": 0,
+   "ponto": null,
+   "rot": null,
+   "lista": "A deputada federal Luciene Cavalcante protocola representação no TSE e notícia-crime na PGR pedindo apuração de “eventual benefício econômico à campanha” pelo uso do apartamento; sem decisão.",
+   "refs": [
+    "representacao-apartamento"
+   ],
+   "fontes": [
+    {
+     "veiculo": "WSCOM",
+     "data": "2026-09-18",
+     "url": "https://wscom.com.br/noticias/2026/09/18/deputada-tse-pgr-investigacao-imovel-flavio-bolsonaro/"
+    },
+    {
+     "veiculo": "Brasil 247",
+     "data": "2026-09-18",
+     "url": "https://www.brasil247.com/brasil/deputada-aciona-tse-e-pgr-contra-flavio-bolsonaro-por-uso-de-imovel-que-pertenceu-a-cunhado-de-vorcaro/"
     }
    ]
   }
@@ -1435,7 +1555,7 @@ window.DARKHORSE = {
    },
    "linhas": [
     "de ligação entre ele e Vorcaro no dia da última remessa ao fundo, segundo a PF.",
-    "Em 2026, ele disse que o último pagamento tinha sido em maio de 2025."
+    "Em 2026, ele disse à GloboNews que o último pagamento tinha sido em maio de 2025, segundo o Correio Braziliense (01/09)."
    ],
    "ele": null,
    "refs": [
@@ -1448,7 +1568,19 @@ window.DARKHORSE = {
     "data": "2026-09-12",
     "url": "https://www.cnnbrasil.com.br/politica/pf-mostra-conversas-de-flavio-com-vorcaro-sobre-recursos-para-dark-horse/"
    },
-   "share": "dh-42s"
+   "share": "dh-42s",
+   "fontes": [
+    {
+     "veiculo": "CNN Brasil",
+     "data": "2026-09-12",
+     "url": "https://www.cnnbrasil.com.br/politica/pf-mostra-conversas-de-flavio-com-vorcaro-sobre-recursos-para-dark-horse/"
+    },
+    {
+     "veiculo": "Correio Braziliense",
+     "data": "2026-09-01",
+     "url": "https://www.correiobraziliense.com.br/politica/2026/09/7491406-coaf-aponta-novos-repasses-de-vorcaro-a-filme-de-bolsonaro.html"
+    }
+   ]
   },
   {
    "id": "dh-luz",
@@ -1502,7 +1634,7 @@ window.DARKHORSE = {
   },
   {
    "id": "dh-hoje",
-   "data": "2026-09-24",
+   "data": "2026-09-25",
    "k": "hoje",
    "grande": {
     "tipo": "citacao",
@@ -1577,6 +1709,10 @@ window.DARKHORSE = {
   {
    "id": "zettel",
    "nome": "Fabiano Zettel"
+  },
+  {
+   "id": "willer-tomaz",
+   "nome": "Willer Tomaz"
   }
  ],
  "comparacoes": [
@@ -1778,163 +1914,6 @@ window.DARKHORSE = {
    }
   },
   {
-   "id": "ubs",
-   "grupo": "servicos",
-   "modo": "unidades",
-   "so": null,
-   "estimativa": false,
-   "rot": "postos de saúde",
-   "unid": [
-    "unidade básica de saúde",
-    "unidades básicas de saúde"
-   ],
-   "sub": "pela média de um anúncio do Ministério da Saúde",
-   "total": 4200000000,
-   "qtd": 1800,
-   "icone": "posto",
-   "base_txt": "média de um anúncio do Ministério da Saúde: R$ 4,2 bilhões para 1,8 mil unidades, cerca de R$ 2,33 milhões cada",
-   "ref": "ref-ubs",
-   "fonte": {
-    "veiculo": "AMB",
-    "data": "2024-03",
-    "url": "https://amb.org.br/primeira-etapa-do-novo-pac-saude-vai-construir-18-mil-ubs-em-todo-o-pais/"
-   },
-   "share": "dh-custa-ubs",
-   "v": 2333333,
-   "conta": {
-    "pago": {
-     "r": 25.71,
-     "n": 25,
-     "txt": "25",
-     "u": "unidades básicas de saúde"
-    },
-    "pedido": {
-     "r": 56.14,
-     "n": 56,
-     "txt": "56",
-     "u": "unidades básicas de saúde"
-    }
-   }
-  },
-  {
-   "id": "creche",
-   "grupo": "servicos",
-   "modo": "unidades",
-   "so": null,
-   "estimativa": false,
-   "rot": "creches",
-   "unid": [
-    "creche pública",
-    "creches públicas"
-   ],
-   "sub": "pelo valor médio do MEC",
-   "v": 3500000,
-   "vagas": 188,
-   "icone": "creche",
-   "base_txt": "valor médio do MEC: R$ 3,5 milhões por unidade, com até 188 crianças em dois turnos",
-   "ref": "ref-creche",
-   "fonte": {
-    "veiculo": "Conviva Educação",
-    "data": "2025-03-07",
-    "url": "https://convivaeducacao.org.br/fique_atento/5316"
-   },
-   "share": "dh-custa",
-   "extra": {
-    "pago": "vagas para até 3,1 mil crianças",
-    "pedido": "vagas para até 6,9 mil crianças"
-   },
-   "conta": {
-    "pago": {
-     "r": 17.14,
-     "n": 17,
-     "txt": "17",
-     "u": "creches públicas"
-    },
-    "pedido": {
-     "r": 37.43,
-     "n": 37,
-     "txt": "37",
-     "u": "creches públicas"
-    }
-   }
-  },
-  {
-   "id": "ambulancia",
-   "grupo": "servicos",
-   "modo": "unidades",
-   "so": null,
-   "estimativa": false,
-   "rot": "ambulâncias",
-   "unid": [
-    "ambulância do Samu",
-    "ambulâncias do Samu"
-   ],
-   "sub": "pela média de uma entrega do Ministério da Saúde",
-   "total": 50400000,
-   "qtd": 156,
-   "icone": "ambulancia",
-   "base_txt": "média de uma entrega do Ministério da Saúde: R$ 50,4 milhões por 156 ambulâncias, cerca de R$ 323 mil cada",
-   "ref": "ref-ambulancia-samu",
-   "fonte": {
-    "veiculo": "Agência Brasil",
-    "data": "2025-03-27",
-    "url": "https://agenciabrasil.ebc.com.br/saude/noticia/2025-03/governo-entrega-156-novas-ambulancias-para-frota-do-samu"
-   },
-   "share": "dh-custa",
-   "v": 323077,
-   "conta": {
-    "pago": {
-     "r": 185.71,
-     "n": 185,
-     "txt": "185",
-     "u": "ambulâncias do Samu"
-    },
-    "pedido": {
-     "r": 405.48,
-     "n": 405,
-     "txt": "405",
-     "u": "ambulâncias do Samu"
-    }
-   }
-  },
-  {
-   "id": "moradia",
-   "grupo": "servicos",
-   "modo": "unidades",
-   "so": null,
-   "estimativa": false,
-   "rot": "moradias",
-   "unid": [
-    "moradia popular",
-    "moradias populares"
-   ],
-   "sub": "pelo maior valor da tabela federal",
-   "v": 180500,
-   "icone": "casa",
-   "base_txt": "maior valor por unidade da tabela federal de moradias populares: R$ 180,5 mil",
-   "ref": "ref-minha-casa-minha-vida",
-   "fonte": {
-    "veiculo": "Ministério das Cidades",
-    "data": "2026-03-23",
-    "url": "https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/habitacao/programa-minha-casa-minha-vida/minha-casa-minha-vida-far/portarias/20260323_Portaria_MCID_725_Especificacoes_MCMV_FAReFDS_COMPILADA.pdf"
-   },
-   "share": "dh-custa-moradia",
-   "conta": {
-    "pago": {
-     "r": 332.41,
-     "n": 332,
-     "txt": "332",
-     "u": "moradias populares"
-    },
-    "pedido": {
-     "r": 725.76,
-     "n": 725,
-     "txt": "725",
-     "u": "moradias populares"
-    }
-   }
-  },
-  {
    "id": "salario",
    "grupo": "trabalho",
    "modo": "anos",
@@ -1984,7 +1963,6 @@ window.DARKHORSE = {
   },
   "grupos": {
    "cinema": "cinema",
-   "servicos": "serviços",
    "trabalho": "trabalho"
   },
   "nota_fonte": {
@@ -2047,7 +2025,7 @@ window.DARKHORSE = {
   },
   "dh-cobranca": {
    "destino": "dark-horse.html#dh-cobranca",
-   "corpo": "'Eu fico sem graça de ficar te cobrando', disse ele a Daniel Vorcaro em áudio de 08/09/2025, com parcelas do filme sobre o pai atrasadas. 'Imagina a gente dando calote no Jim Caviezel.'",
+   "corpo": "'Eu fico sem graça de ficar te cobrando', disse ele a Daniel Vorcaro em áudio de 08/09/2025, com parcelas do filme sobre o pai atrasadas. 'Imagina a gente dando calote no Jim Caviezel'.",
    "cartao": {
     "nome": "O áudio",
     "n": "“Eu fico sem graça de ficar te cobrando.”",
@@ -2057,11 +2035,11 @@ window.DARKHORSE = {
   },
   "dh-42s": {
    "destino": "dark-horse.html#dh-42s",
-   "corpo": "42 segundos de ligação entre ele e Daniel Vorcaro em 16/09/2025, dia da última remessa ao fundo do filme, segundo a PF. Em 2026, ele disse que a última tinha sido em maio de 2025.",
+   "corpo": "42 segundos de ligação entre ele e Vorcaro em 16/09/2025, dia da última remessa do filme, segundo a PF. À GloboNews, ele disse que a última foi em maio de 2025 (Correio Braziliense).",
    "cartao": {
     "nome": "16 de setembro de 2025",
     "n": "42 segundos",
-    "l": "de ligação entre ele e Vorcaro no dia da última remessa ao fundo do filme, segundo a PF. Em 2026, ele disse que a última foi em maio de 2025",
+    "l": "de ligação entre ele e Vorcaro no dia da última remessa ao fundo do filme, segundo a PF. À GloboNews, ele disse que a última foi em maio de 2025 (Correio Braziliense)",
     "tipo": "numero"
    }
   },
@@ -2123,26 +2101,6 @@ window.DARKHORSE = {
     "nome": "Quanto é isso",
     "n": "15 vencedores do Oscar",
     "l": "de melhor filme, entre os últimos 20, custaram menos que os R$ 131 milhões que ele pediu, segundo a PF (orçamentos: Estado de Minas)",
-    "tipo": "texto"
-   }
-  },
-  "dh-custa-ubs": {
-   "destino": "dark-horse.html#dh-custa-ubs",
-   "corpo": "os R$ 60 milhões que teriam sido pagos por Vorcaro para o filme sobre o pai dele, segundo a PF, equivalem a 25 unidades básicas de saúde, pela média de um anúncio do Ministério da Saúde.",
-   "cartao": {
-    "nome": "Quanto é isso",
-    "n": "25 postos de saúde",
-    "l": "unidades básicas, pela média de um anúncio do Ministério da Saúde, equivalem aos R$ 60 milhões que teriam sido pagos, segundo a PF",
-    "tipo": "texto"
-   }
-  },
-  "dh-custa-moradia": {
-   "destino": "dark-horse.html#dh-custa-moradia",
-   "corpo": "os R$ 60 milhões que teriam sido pagos por Vorcaro para o filme sobre o pai dele, segundo a PF, equivalem a 332 moradias populares, pelo maior valor da tabela federal.",
-   "cartao": {
-    "nome": "Quanto é isso",
-    "n": "332 moradias",
-    "l": "populares, pelo maior valor da tabela federal, equivalem aos R$ 60 milhões que teriam sido pagos, segundo a PF",
     "tipo": "texto"
    }
   },

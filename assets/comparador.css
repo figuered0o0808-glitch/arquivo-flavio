@@ -1,5 +1,5 @@
 /* BOLSODRIVE · Dark Horse · "Quanto é isso" (assets/comparador.js monta o conteúdo em section[data-comparador]).
-   Cor: âmbar só no número do resultado; água (verde) só nas gotas do dinheiro; o resto em --tinta e cinzas.
+   Cor: âmbar no número do resultado e no botão de envio (.env, o mesmo da Foz); água (verde) só nas gotas do dinheiro; o resto em --tinta e cinzas.
    Celular: uma coluna, grade de 14 gotas por linha. ≥ 640 px: 22 por linha. ≥ 1024 px: grade à esquerda, botões e resultado à direita. */
 .cmp{
   --c-tinta:var(--tinta,#d8efdd); --c-cinza:var(--cinza,#86a58c); --c-cinza2:var(--cinza2,#4f6b51); --c-amber:var(--amber,#ffb02e);
@@ -67,7 +67,7 @@
 .cmp-frase b{font-weight:700; color:var(--c-tinta)}
 .cmp-extra{margin-top:6px; font-size:15px; color:var(--c-tinta)}
 
-/* pictogramas: até 120, em --tinta; o contorno é a fração que sobra */
+/* pictogramas: até 120, em --tinta; o contorno é a fração que sobra (D5: só filmes e anos de salário) */
 .cmp-pic{display:flex; flex-wrap:wrap; gap:4px; margin:16px 0 6px; color:var(--c-tinta); min-height:18px}
 .cmp-pic:empty{display:none}
 .cmp-pic .pi{display:block; width:18px; height:18px; fill:currentColor; opacity:.14; transition:opacity .22s ease; transition-delay:var(--d,0ms)}
@@ -82,11 +82,11 @@
 .cmp-escala{margin-top:8px; font-family:var(--c-mono); font-size:11.5px; color:var(--c-cinza)}
 .cmp-base{margin-top:14px; font-family:var(--c-mono); font-size:12px; line-height:1.5; color:var(--c-cinza)}
 .cmp-env{
-  margin-top:12px; min-height:44px; min-width:44px; padding:0 14px; cursor:pointer;
-  font-family:var(--c-mono); font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--c-cinza);
-  background:transparent; border:1px solid var(--c-linha); border-radius:3px;
+  display:inline-flex; align-items:center; justify-content:center; margin-top:14px; min-height:44px; min-width:44px; padding:0 18px; cursor:pointer;
+  font-family:var(--sans,system-ui,sans-serif); font-size:15px; font-weight:700; color:#120c00;
+  background:var(--c-amber); border:1.5px solid var(--c-amber); border-radius:2px;
 }
-.cmp-env:hover{color:var(--c-tinta); border-color:rgba(125,245,154,.4)}
+.cmp-env:hover{filter:brightness(1.06)}
 
 @media (min-width:640px){
   .cmp-grade{grid-template-columns:repeat(22,minmax(0,1fr))}

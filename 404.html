@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Endereço não encontrado · BOLSODRIVE</title>
+<meta name="description" content="Este endereço não existe no BOLSODRIVE. Entre pela nascente, por quem anda com ele, pelo dinheiro ou pela Foz.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#070a07">
+<meta name="color-scheme" content="dark">
+<style>html{background:#070a07;color:#d8efdd}</style>
+<script>
+/* O GitHub Pages serve esta página para qualquer endereço inexistente, no próprio caminho pedido (num site de
+   projeto, em /<repositório>/…). Aqui:
+   1. a base absoluta do site (no github.io o site mora em /arquivo-flavio/), para o cabeçalho e os links
+      funcionarem em qualquer profundidade;
+   2. link quebrado ou velho segue para a nascente preservando ?busca e #fragmento (index.html encaminha os
+      hashes antigos, #recente, #arquivo, #rede…, a drive.html).
+   Aberta de propósito (…/404.html), a página só se mostra. */
+(function(){
+  var REPO = 'arquivo-flavio';
+  var p = location.pathname || '/';
+  var base = p.indexOf('/' + REPO + '/') === 0 ? '/' + REPO + '/' : '/';
+  var b = document.createElement('base'); b.href = base; document.head.appendChild(b);
+  var nome = p.split('/').pop();
+  if (nome === '404.html' || nome === '' || nome === 'index.html') return;
+  var alvo = base + 'index.html' + location.search + location.hash;
+  try { location.replace(alvo); } catch (e) { location.href = alvo; }
+})();
+</script>
+<link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
+<link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
+<link rel="apple-touch-icon" href="assets/marca/icone-180.png">
+<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
+<link rel="stylesheet" href="assets/header.css?v=3b010dac">
+<style>
+.wrap{padding-top:28px}
+.kicker{margin-top:0}
+h1{font-size:clamp(24px,6vw,32px); line-height:1.15; margin:0 0 10px; letter-spacing:-.01em}
+.entradas{list-style:none; margin:18px 0 0; padding:0; display:grid; gap:8px}
+.entradas a{display:flex; align-items:baseline; gap:10px; min-height:44px; padding:10px 12px; border:1px solid var(--linha); border-radius:4px; background:var(--leve); color:var(--tinta); text-decoration:none; font-weight:600}
+.entradas a .n{font-family:var(--mono); font-size:12px; color:var(--amber); flex:none}
+.entradas a:hover{border-color:var(--amber)}
+.nota{color:var(--cinza); font-size:13.5px; margin:18px 0 0}
+</style>
+</head>
+<body data-trecho="0">
+
+<header class="site-header" data-nav></header>
+
+<main class="wrap" id="tela">
+  <p class="kicker">404 · endereço não encontrado</p>
+  <h1>Este endereço não existe no rio.</h1>
+  <p class="sub">O link pode estar velho ou incompleto. Entre por um dos trechos:</p>
+  <ul class="entradas">
+    <li><a href="index.html"><span class="n">0</span>Nascente: o rio numa tela só</a></li>
+    <li><a href="drive.html#rede"><span class="n">1</span>A teia de nomes</a></li>
+    <li><a href="siga-o-dinheiro.html"><span class="n">2</span>O dinheiro</a></li>
+    <li><a href="foz.html"><span class="n">3</span>A Foz: os 40 casos, e como cada um chega a ele</a></li>
+  </ul>
+  <p class="nota">Endereços antigos do arquivo (#recente, #arquivo, #cronologia) moram em <a href="drive.html">drive.html</a>.</p>
+</main>
+
+<script src="assets/nav.js?v=41bee539"></script>
+</body>
+</html>

@@ -89,12 +89,17 @@ body.zap .site-header{position:static}
 .z-quem span:last-child{min-width:0; display:flex; flex-direction:column}
 .z-quem b{font-size:16.5px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .z-quem small{font-size:13px; color:var(--z-texto2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.z-fix{position:sticky; top:60px; z-index:5; display:flex; align-items:center; gap:12px; width:100%; height:48px; padding:0 16px; border:0; border-top:1px solid var(--z-linha); background:var(--z-painel); color:var(--z-texto2); font-size:14px; text-align:left; cursor:pointer}
-.z-fix .z-i{width:18px; height:18px}
-.z-fix span{flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.z-fix b{color:var(--z-texto); font-weight:500}
-.z-flut{position:sticky; top:118px; z-index:4; height:0; display:flex; align-items:flex-start; justify-content:center; pointer-events:none}
-.z-cv.z-semfix .z-flut{top:70px}
+/* selo do cabeçalho: cola no rodapé do cabeçalho da conversa (mesmo fundo) e fica no print */
+.z-selo{position:sticky; top:60px; z-index:5; display:flex; align-items:center; gap:6px; margin:0; padding:0 16px 6px; background:var(--z-barra); color:var(--z-texto2); font-size:12.5px; line-height:1.3}
+.z-selo .z-i{width:14px; height:14px}
+/* fixada em 2 linhas inteiras (o número nunca vira "R$ 131 milhões pedid…"); o top real é medido pelo zap.js (mede) */
+.z-fix{position:sticky; top:84px; z-index:5; display:block; width:100%; min-height:48px; padding:5px 16px 7px; border:0; border-top:1px solid var(--z-linha); background:var(--z-painel); color:var(--z-texto); font-size:13.5px; line-height:1.3; text-align:left; cursor:pointer}
+.z-fix b{display:flex; align-items:center; gap:5px; margin:0 0 1px; color:var(--z-texto2); font-size:12px; font-weight:500}
+.z-fix .z-i{width:14px; height:14px}
+.z-fix span{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere}
+.z-fix.z-fix3 span{-webkit-line-clamp:3}   /* só quando o zap.js mede que 2 linhas não bastam neste aparelho: o número nunca some */
+.z-flut{position:sticky; top:142px; z-index:4; height:0; display:flex; align-items:flex-start; justify-content:center; pointer-events:none}
+.z-cv.z-semfix .z-flut{top:94px}
 .z-flut span{display:block; margin-top:0; opacity:0; transition:opacity .25s}
 .z-flut.on span{opacity:1}
 .z-pula{position:absolute; left:8px; top:64px; z-index:7; padding:10px 14px; min-height:44px; border:0; border-radius:8px; background:var(--z-acento); color:#0b141a!important; font-weight:600; cursor:pointer}

@@ -3,7 +3,8 @@
    com leitura: sem scanline, sem brilho, texto de corpo em fonte do sistema,
    mono só em rótulos. O vermelho significa uma coisa só: preso ou condenado. */
 :root{
-  --papel:#070a07; --tinta:#d8efdd; --cinza:#86a58c; --cinza2:#4f6b51;
+  --papel:#070a07; --tinta:#d8efdd; --cinza:#86a58c;
+  --cinza2:#6c8f70;          /* cinza fraco: 5,5:1 sobre --papel, 5,1:1 sobre --leve (era #4f6b51, 3,4:1) */
   --azul:#7df59a;            /* links de fonte (verde do site) */
   --amber:#ffb02e;           /* acento da identidade: destaques, aba ativa */
   --carimbo:#ff5c5c;         /* só marca: anel preso/condenado, hachura, círculo */
@@ -70,6 +71,11 @@ h1.sec::before{content:"// "; color:var(--cinza2)}
 
 .toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%); background:var(--tinta); color:var(--papel); padding:10px 16px; font-family:var(--mono); font-size:13px; opacity:0; pointer-events:none; transition:opacity .18s; z-index:9}
 .toast.on{opacity:1}
+
+/* contraste: o número do trecho no cabeçalho (header.css ainda grava #4f6b51 à mão, 3,4:1) passa a --cinza2.
+   Retirar quando header.css usar var(--cinza2). */
+header.site-header .nv-trechos a:not([aria-current]) .nv-n{color:var(--cinza2)}
+header.site-header .nv-trechos a[aria-current] .nv-n{color:#553a00}   /* na pílula âmbar: 5,8:1 (era #6b4a00, 4,4:1) */
 
 svg text.leg{font-family:var(--mono); font-size:11px; fill:var(--cinza)}
 svg text.rot{font-family:var(--sans); font-size:13px; fill:var(--tinta); font-weight:600}

@@ -19,6 +19,9 @@
      sob o nome no cabeçalho do painel, a linha "conversa montada pelo BolsoZap · cada mensagem tem fonte";
      embaixo, a faixa "Montado com reportagens e documentos públicos". Sem moldura de celular, relógio, tiques,
      "online", campo de digitar, foto, nem nome ou logo de app de mensagens.
+     Rodapé fixo (T05a): o endereço curto do site e "cada fato com fonte" em todo cartão (o PNG solto, sem legenda,
+     leva ao site); no cartão zap, o endereço vai na faixa de baixo. O kicker (k) aceita a faixa da Foz
+     ("chega a ele pelo gabinete / pela família / pelo entorno"); "Flávio Bolsonaro" só nos casos de faixa direto.
      As imagens c/img/<id>.png saem daqui (bolso-os-fontes/gera_compartilhar.py). -->
 <style>
 :root{--papel:#070a07; --tinta:#d8efdd; --cinza:#86a58c; --cinza2:#4f6b51; --amber:#ffb02e; --agua:#7df59a;
@@ -38,6 +41,10 @@ html,body{margin:0; padding:0; background:var(--papel)}
 .num .aspa{color:var(--amber)}
 .fita{display:block; width:800px; height:34px; margin:-2px 0 14px; overflow:visible}
 svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
+/* rodapé fixo: o endereço curto do site (verde = link) e "cada fato com fonte"; abaixo do bloco de texto, à esquerda do rio */
+.rp{position:absolute; left:64px; top:582px; margin:0; font-family:var(--mono); font-size:22px; line-height:1; font-weight:700; letter-spacing:.03em; color:var(--cinza); white-space:nowrap}
+.rp b{color:var(--agua); font-weight:700}
+.c.zap .rp{display:none}
 /* ---- tipo "zap" (BolsoZap): nada acima muda; tudo abaixo só vale dentro de .c.zap ---- */
 .c.zap .txt,.c.zap svg.rio{display:none}
 .zc{position:absolute; left:64px; top:100px; width:456px}
@@ -73,6 +80,7 @@ svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
 .zd{font-size:20px; line-height:1.2; color:#8696a0; text-align:right; margin:3px 0 0; font-variant-numeric:tabular-nums}
 .zr{position:absolute; left:0; right:0; bottom:0; height:44px; box-sizing:border-box; display:flex; align-items:center; padding:0 64px;
   background:#0b120b; border-top:1px solid rgba(116,255,150,.18); font-size:17px; color:#86a58c; white-space:nowrap}
+.zr .end{margin-left:auto; padding-left:28px; font-family:var(--mono); font-weight:700; color:var(--agua)}
 </style>
 </head>
 <body>
@@ -85,9 +93,10 @@ svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
     <p class="l" id="l"></p>
   </div>
   <svg class="rio" id="rio" viewBox="0 0 330 630" aria-hidden="true"></svg>
+  <p class="rp"><b>figuered0o0808-glitch.github.io/arquivo-flavio</b> · cada fato com fonte</p>
 </div>
-<script src="data/topicos.js?v=5"></script>
-<script src="data/topicos-zap.js?v=4"></script>
+<script src="data/topicos.js?v=ab29a258"></script>
+<script src="data/topicos-zap.js?v=08416d8b"></script>
 <script>
 (function(){
 'use strict';
@@ -171,11 +180,11 @@ function ajusta(){
   let fs = 168; num.style.fontSize = fs + 'px';
   while (num.scrollWidth > 800 && fs > 70){ fs -= 4; num.style.fontSize = fs + 'px'; }
   let ls = 31, ns = 54;
-  const cabe = () => txt.offsetHeight <= 444;
+  const cabe = () => txt.offsetHeight <= 436;
   while (!cabe() && fs > 96){ fs -= 4; num.style.fontSize = fs + 'px'; }
   while (!cabe() && ls > 25){ ls -= 1; l.style.fontSize = ls + 'px'; }
   while (!cabe() && ns > 48){ ns -= 2; nome.style.fontSize = ns + 'px'; }
-  txt.style.top = Math.round(136 + Math.max(0, 444 - txt.offsetHeight) / 2) + 'px';   /* centrado no espaço abaixo do logo */
+  txt.style.top = Math.round(136 + Math.max(0, 436 - txt.offsetHeight) / 2) + 'px';   /* centrado no espaço abaixo do logo */
   document.documentElement.dataset.pronto = '1';
 }
 /* texto e citação: a frase quebra linha (até 2 ou 3) e a fonte desce até caber; nunca corta */
@@ -188,14 +197,14 @@ function ajustaFrase(){
   const poe = v => { fs = v; num.style.fontSize = v + 'px'; };
   const linhas = () => Math.round(num.offsetHeight / parseFloat(getComputedStyle(num).lineHeight));
   const larga = () => num.scrollWidth > 800;
-  const cabe = () => txt.offsetHeight <= 444;
+  const cabe = () => txt.offsetHeight <= 436;
   poe(ini);
   while ((linhas() > max || larga()) && fs > min) poe(fs - 2);
   while (!cabe() && fs > min) poe(fs - 2);
   while (!cabe() && ls > 25){ ls -= 1; l.style.fontSize = ls + 'px'; }
   while (!cabe() && ns > 48){ ns -= 2; nome.style.fontSize = ns + 'px'; }
   while ((!cabe() || linhas() > max || larga()) && fs > piso) poe(fs - 2);   /* último recurso: menor, mas inteiro */
-  txt.style.top = Math.round(136 + Math.max(0, 444 - txt.offsetHeight) / 2) + 'px';
+  txt.style.top = Math.round(136 + Math.max(0, 436 - txt.offsetHeight) / 2) + 'px';
   document.documentElement.dataset.linhas = String(linhas());
   document.documentElement.dataset.pronto = '1';
 }
@@ -271,6 +280,9 @@ function zap(){
   const r = mk('div', 'zr');
   r.innerHTML = ico('cadeado');
   r.appendChild(document.createTextNode('Montado com reportagens e documentos públicos · cada mensagem tem fonte'));
+  r.appendChild(mk('span', 'end', 'figuered0o0808-glitch.github.io/arquivo-flavio'));   /* o endereço do site em todo cartão (T05a) */
+  /* sem espaço para os dois na faixa: a segunda metade da frase já está sob o nome, no painel (.zhs) */
+  if (r.scrollWidth > r.clientWidth) r.childNodes[1].textContent = 'Montado com reportagens e documentos públicos';
   cx.append(col, p, r);
 
   /* ajuste: nada é cortado; as fontes descem até caber (balão: 30 → 28 px; abaixo disso, só em último caso) */

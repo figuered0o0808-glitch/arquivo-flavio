@@ -3,10 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Close Friends — BolsoDrive</title>
+<title>A rede em órbita — BolsoDrive</title>
 <meta name="description" content="As ligações diretas de Flávio Bolsonaro, uma pessoa por vez, com a situação de cada uma e a fonte de cada vínculo.">
-<link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=15">
+<meta name="theme-color" content="#070a07">
+<meta name="color-scheme" content="dark">
+<style>html{background:#070a07;color:#d8efdd}</style>
+<link rel="canonical" href="https://figuered0o0808-glitch.github.io/arquivo-flavio/close-friends.html">
+
+<!-- Preview de link (WhatsApp, Telegram, X): o cartão pronto de c/img/quem-anda.png. O ?v= é o do cartão gerado; o integrador refaz quando o cartão muda. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="BOLSODRIVE · A rede em órbita">
+<meta property="og:description" content="As ligações diretas de Flávio Bolsonaro, uma pessoa por vez, com a situação de cada uma e a fonte de cada vínculo.">
+<meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/close-friends.html">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quem-anda.png?v=32d287dd">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A rede em órbita: os nomes em volta dele, com a situação de cada um e a fonte">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BOLSODRIVE · A rede em órbita">
+<meta name="twitter:description" content="As ligações diretas de Flávio Bolsonaro, uma pessoa por vez, com a situação de cada uma e a fonte de cada vínculo.">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quem-anda.png?v=32d287dd">
+<meta name="twitter:image:alt" content="A rede em órbita: os nomes em volta dele, com a situação de cada um e a fonte">
+
+<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
+<link rel="stylesheet" href="assets/header.css?v=3b010dac">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
@@ -100,9 +123,9 @@ div.sat.some{opacity:0; pointer-events:none}
 
 <header class="site-header" data-nav></header>
 
-<div class="wrap">
-  <h1 class="sec">Close Friends</h1>
-  <div class="cab"><p class="sub">Toque em alguém para seguir.</p><button type="button" class="env" data-share="quem-anda">enviar ↗</button></div>
+<main class="wrap">
+  <h1 class="sec">A rede em órbita</h1>
+  <div class="cab"><p class="sub">As ligações diretas dele, com a situação de cada nome e a fonte de cada vínculo.</p><button type="button" class="env" data-share="quem-anda">enviar ↗</button></div>
 
   <div class="pilulas" id="trilhas">
     <button data-trilha="filme">O dinheiro do filme</button>
@@ -126,17 +149,19 @@ div.sat.some{opacity:0; pointer-events:none}
   <div class="legenda">
     <span><i class="g"></i>preso ou condenado</span>
     <span><i class="m"></i>investigado ou denunciado</span>
-    <span><i class="n"></i>sem processo</span>
+    <span><i class="n"></i>outros</span>
   </div>
 
   <div class="ficha" id="ficha"></div>
-</div>
+</main>
+
+<noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para desenhar a rede. <a href="foz.html">A Foz</a> · <a href="siga-o-dinheiro.html">Siga o dinheiro</a> · <a href="zap.html">BolsoZap</a> · <a href="quiz.html">Quiz</a></p></noscript>
 
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
-<script src="data/dados.js?v=set2026u"></script>
-<script src="data/topicos.js?v=5"></script>
-<script src="assets/compartilhar.js?v=2" defer></script>
+<script src="data/dados.js?v=d6676b07"></script>
+<script src="data/topicos.js?v=ab29a258"></script>
+<script src="assets/compartilhar.js?v=edbe4096" defer></script>
 <script>
 (function(){
   const D = window.DOSSIE;
@@ -156,12 +181,18 @@ div.sat.some{opacity:0; pointer-events:none}
     const s = n.situacao || [];
     if (s.includes('preso') || s.includes('condenado')) return 'grave';
     if (s.includes('denunciado') || s.includes('investigado')) return 'medio';
+    if (s.includes('arquivada')) return 'nenhum';      // denúncia anulada: sem anel; a ficha diz "denúncia anulada"
+    if (s.includes('morto')) return 'nenhum';          // morto, sem processo vivo: sem anel; a ficha diz "morto em <ano>"
     const frases = (n.status || '').split(/[.;]/).filter(f => !/\b(n[ãa]o|nem|sem processo|sem den[úu]ncia)/i.test(f));
     if (frases.some(f => /\b(preso|presa|condenad)/i.test(f))) return 'grave';
     if (frases.some(f => /\b(denunciad|r[ée]u|indiciad|investigad|delator)/i.test(f))) return 'medio';
     return 'nenhum';
   }
-  const ROTULO = { grave:'PRESO OU CONDENADO', medio:'DENUNCIADO OU INVESTIGADO', nenhum:'SEM PROCESSO CONHECIDO' };
+  const ROTULO = { grave:'PRESO OU CONDENADO', medio:'DENUNCIADO OU INVESTIGADO', nenhum:'' };   // sem situação: sem selo
+  // a denúncia de 2020 anulada (rachadinha) é situação própria, em cor neutra
+  const anoMorte = n => ((String(n.status || '').match(/\bmort[oa]\b[^.;]*?\b((?:19|20)\d\d)\b/i) || [])[1] || '');
+  const rotulo = n => ((n.situacao || []).includes('morto') && sit(n) === 'nenhum') ? ('MORTO' + (anoMorte(n) ? ' EM ' + anoMorte(n) : '')) :
+    ((n.situacao || []).includes('arquivada') && sit(n) === 'nenhum') ? 'DENÚNCIA ANULADA' : ROTULO[sit(n)];
   const SIT_FLAVIO = 'Rachadinha: denúncia anulada. Caso Master: investigado no STF, sem denúncia.';
   /* a situação de cada um: a 1ª frase; o resto em "mais" */
   function sitCurta(st, sf){
@@ -356,7 +387,7 @@ div.sat.some{opacity:0; pointer-events:none}
       '<p class="quem">' + esc(n.nome) + '</p>' +
       '<p class="papel">' + esc(id === 'flavio' ? 'Senador (PL-RJ), candidato à Presidência' : (n.papel || '')) + '</p>' +
       /* ele: uma linha seca, em cor neutra (nada dele em âmbar ou vermelho) */
-      (id === 'flavio' ? '<p class="sit ele">' + esc(SIT_FLAVIO) + '</p>' : '<div class="chip ' + s + '">' + ROTULO[s] + '</div>') +
+      (id === 'flavio' ? '<p class="sit ele">' + esc(SIT_FLAVIO) + '</p>' : (rotulo(n) ? '<div class="chip ' + s + '">' + rotulo(n) + '</div>' : '')) +
       vinculo +
       (n.status && id !== 'flavio' ? sitCurta(n.status, sf) : '') +
       '<div class="acoes">' +
@@ -391,18 +422,17 @@ div.sat.some{opacity:0; pointer-events:none}
     filme: { nome:'O dinheiro do filme', passos:[
       ['flavio',  'Comece por ele. Em julho de 2026 virou investigado no STF por causa do financiamento de um filme sobre o pai.'],
       ['vorcaro', 'O dono do Banco Master. Áudios divulgados pela imprensa mostram Flávio negociando com ele o dinheiro do filme. Está preso; sem condenação.'],
-      ['paulo_henrique', 'Presidia o BRB quando o banco financiou a mansão de Flávio. Preso na mesma operação do Master, por suspeita de propina. O banqueiro do filme e o banqueiro da casa se encontram aqui.']
+      ['paulo_henrique', 'Presidia o BRB quando o banco financiou a mansão de Flávio, em 2021. O empréstimo foi julgado regular em 2025; Costa está preso e é investigado no caso Master, sem relação apurada com o financiamento.']
     ]},
     milicia: { nome:'Do gabinete à milícia', passos:[
       ['flavio',  'Comece pelo gabinete dele na Alerj, entre 2003 e 2018.'],
-      ['queiroz', 'Ex-assessor, apontado como operador da rachadinha. Foi denunciado; as provas foram anuladas e ninguém foi condenado.'],
-      ['adriano', 'Amigo de Queiroz desde 2003. Flávio deu a ele a Medalha Tiradentes na Alerj. Apontado como chefe do Escritório do Crime; morto em 2020.'],
-      ['ronnie-lessa', 'Parceiro de Adriano no Escritório do Crime. Condenado pelo assassinato de Marielle Franco.']
+      ['queiroz', 'Ex-assessor, apontado pelo MP-RJ como operador da rachadinha. Foi denunciado; a denúncia foi anulada e ninguém foi condenado.'],
+      ['adriano', 'Amigo de Queiroz desde 2003. Flávio propôs para ele a Medalha Tiradentes na Alerj, em 2005; a mãe e a ex-mulher dele foram lotadas no gabinete, segundo o MP-RJ. Apontado pelo MP-RJ como chefe do Escritório do Crime; morto em 09/02/2020 sem ser julgado no caso do Escritório do Crime.']
     ]},
     chapa: { nome:'A chapa de 2026', passos:[
       ['flavio', 'Comece pela campanha presidencial de 2026.'],
-      ['marcio-canella', 'Candidato ao Senado pelo Rio com "apoio integral" de Flávio. Preso em flagrante com um fuzil em julho de 2026; responde em liberdade.'],
-      ['rogeria-nantes-bolsonaro', 'A suplente dele na chapa é a mãe de Flávio — indicada pelo próprio candidato.']
+      ['marcio-canella', 'Foi pré-candidato ao Senado pelo Rio com "apoio integral" de Flávio até 03/08/2026, quando desistiu. Preso em flagrante com um fuzil em julho de 2026 e solto três dias depois; responde em liberdade e é investigado por lavagem de dinheiro.'],
+      ['rogeria-nantes-bolsonaro', 'A 1ª suplente da chapa era a mãe de Flávio, indicada por ele.']
     ]}
   };
   function iniciaTrilha(k){
@@ -444,6 +474,6 @@ div.sat.some{opacity:0; pointer-events:none}
   let rt, lw = window.innerWidth; window.addEventListener('resize', () => { if (window.innerWidth === lw) return; lw = window.innerWidth; clearTimeout(rt); rt = setTimeout(render, 120); });
 })();
 </script>
-<script src="assets/nav.js?v=7"></script>
+<script src="assets/nav.js?v=41bee539"></script>
 </body>
 </html>

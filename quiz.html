@@ -4,9 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Quiz — BolsoDrive</title>
-<meta name="description" content="Quanto você sabe sobre Flávio Bolsonaro? 22 perguntas, cada resposta com fonte.">
-<link rel="stylesheet" href="assets/base.css?v=4">
-<link rel="stylesheet" href="assets/header.css?v=15">
+<meta name="description" content="Quanto você sabe sobre Flávio Bolsonaro? 20 perguntas, cada resposta com fonte.">
+<meta name="theme-color" content="#070a07">
+<meta name="color-scheme" content="dark">
+<style>html{background:#070a07;color:#d8efdd}</style>
+<link rel="canonical" href="https://figuered0o0808-glitch.github.io/arquivo-flavio/quiz.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="BOLSODRIVE · Quiz: 20 perguntas sobre Flávio Bolsonaro">
+<meta property="og:description" content="Cada resposta com a fonte. Chuta antes de abrir.">
+<meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/quiz.html">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quiz.png?v=96e8965a">
+<meta property="og:image:secure_url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quiz.png?v=96e8965a">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Quiz: 20 perguntas sobre Flávio Bolsonaro, com a fonte em cada resposta.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BOLSODRIVE · Quiz: 20 perguntas sobre Flávio Bolsonaro">
+<meta name="twitter:description" content="Cada resposta com a fonte. Chuta antes de abrir.">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quiz.png?v=96e8965a">
+<meta name="twitter:image:alt" content="Quiz: 20 perguntas sobre Flávio Bolsonaro, com a fonte em cada resposta.">
+<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
+<link rel="stylesheet" href="assets/header.css?v=3b010dac">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
@@ -80,6 +101,7 @@ input[type=range]::-moz-range-thumb{width:28px; height:28px; border-radius:50%; 
 .gabarito b{font-variant-numeric:tabular-nums; text-align:right}
 .gabarito small{grid-column:2 / 4; font-family:var(--mono); font-size:11px; color:var(--cinza); margin-top:2px}
 
+#tela{min-height:420px} /* reserva: o quiz entra por JS e empurrava o .fim (CLS 0,11 a 1280) */
 .fim{padding:36px 16px 60px; text-align:center}
 .fim a{display:inline-block; font-size:18px; font-weight:700; color:var(--tinta); text-decoration:none; border-bottom:3px solid var(--tinta)}
 noscript p{padding:20px 16px}
@@ -109,16 +131,16 @@ noscript p{padding:20px 16px}
 <header class="site-header" data-nav></header>
 
 <main class="wrap" id="tela">
-  <noscript><p>Este quiz precisa de JavaScript. Os mesmos fatos, com fonte, estão no <a href="drive.html#arquivo">arquivo completo</a>.</p></noscript>
+  <noscript><p>Este quiz precisa de JavaScript. Os mesmos fatos, com fonte: <a href="foz.html">A Foz</a> · <a href="zap.html">BolsoZap</a> · <a href="siga-o-dinheiro.html">Siga o dinheiro</a> · <a href="dark-horse.html">Dark Horse</a> · <a href="drive.html#arquivo">Arquivo</a>.</p></noscript>
 </main>
 
 <div class="fim"><a href="drive.html#arquivo">Ver o arquivo completo →</a></div>
 
 
-<script src="assets/quiz-basico.js?v=5"></script>
-<script src="assets/quiz-perguntas.js?v=11"></script>
-<script src="data/topicos.js?v=5"></script>
-<script src="assets/compartilhar.js?v=2" defer></script>
+<script src="assets/quiz-basico.js?v=d9818cca"></script>
+<script src="assets/quiz-perguntas.js?v=5fb2d230"></script>
+<script src="data/topicos.js?v=ab29a258"></script>
+<script src="assets/compartilhar.js?v=edbe4096" defer></script>
 <script>
 (function(){
 'use strict';
@@ -160,6 +182,20 @@ function escolhe(b){
   try { history.replaceState(null, '', '#' + bloco); } catch(e){}
   render();
 }
+/* Link direto: #q-<n> abre a pergunta n do quiz inteiro, sem menu (é onde os cartões c/q-<n> pousam).
+   Hash de bloco (#basico…) abre o bloco; qualquer outro hash cai no início. */
+function abrePergunta(n){
+  bloco = 'tudo'; P = TODAS; N = P.length; resp = Array(N).fill(null); i = n - 1;
+  render();
+}
+function rota(){
+  const h = (location.hash || '').slice(1);
+  const m = /^q-(\d{1,3})$/.exec(h);
+  if (m && +m[1] >= 1 && +m[1] <= TODAS.length){ abrePergunta(+m[1]); return; }
+  if (BLOCOS[h]){ escolhe(h); return; }
+  if (h){ try { history.replaceState(null, '', location.pathname + location.search); } catch(e){} }
+  i = -1; render();
+}
 
 /* ---------- utilidades ---------- */
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -174,10 +210,10 @@ async function compartilhar(txt){
    (n = posição da pergunta no quiz inteiro, 1..22) e "quiz" no resultado. Sem o módulo, um texto curto. */
 const idPergunta = p => 'q-' + (TODAS.indexOf(p) + 1);
 function textoFato(p){
-  return p.pergunta + '\n' + (p.numero ? p.numero + '. ' : '') + (p.breve || '') + '\n' + PAGINA();
+  return p.pergunta + '\n' + (p.numero ? p.numero + '. ' : '') + (p.breve || '') + '\n' + PAGINA() + '#' + idPergunta(p);
 }
-function textoFinal(acertos){
-  return 'Acertei ' + acertos + ' de ' + N + ' no quiz sobre Flávio Bolsonaro: ' + PAGINA();
+function textoFinal(acertos, feitas){
+  return 'Acertei ' + acertos + ' de ' + feitas + ' no quiz sobre Flávio Bolsonaro: ' + PAGINA();
 }
 function ligaEnvio(root, txt){
   root.querySelectorAll('[data-share]').forEach(b => b.addEventListener('click', ev => {
@@ -262,6 +298,8 @@ function renderPergunta(k){
   }
   html += '<div class="resposta" id="resposta" aria-live="polite" hidden></div>';
   tela.innerHTML = html;
+  /* No quiz inteiro, o endereço acompanha a pergunta (#q-<n>); num bloco, fica o hash do bloco. */
+  if (bloco === 'tudo'){ try { history.replaceState(null, '', '#' + idPergunta(p)); } catch(e){} }
 
   if (p.tipo === 'multi'){
     tela.querySelectorAll('.opc').forEach(b => b.addEventListener('click', () => responderMulti(p, k, +b.dataset.j)));
@@ -315,24 +353,28 @@ window.addEventListener('resize', () => { if (i < N && resp[i] && P[i].tipo === 
 
 /* ---------- resultado ---------- */
 function renderFim(){
-  const acertos = resp.filter(r => r && r.certo).length;
+  /* Quem entrou pelo link de uma pergunta respondeu só dali em diante: o placar conta as respondidas. */
+  const feitas = resp.filter(Boolean).length, acertos = resp.filter(r => r && r.certo).length;
   let lista = '';
   P.forEach((p, k) => {
     const r = resp[k];
-    lista += '<li><span class="m" aria-label="' + (r && r.certo ? 'acertou' : 'errou') + '">' + (r && r.certo ? '✓' : '✗') + '</span>' +
+    const marca = !r ? '–' : (r.certo ? '✓' : '✗'), rotulo = !r ? 'não respondida' : (r.certo ? 'acertou' : 'errou');
+    lista += '<li><span class="m" aria-label="' + rotulo + '">' + marca + '</span>' +
              '<span>' + esc(p.curto) + '</span><b>' + esc(p.gab) + '</b>' +
              (p.tipo === 'faixa' && r ? '<small>seu chute: ' + esc(p.fmt(r.chute)) + '</small>' : '') + '</li>';
   });
   tela.innerHTML = progresso(N) +
     '<div class="kicker">Resultado</div>' +
     '<p class="frase" style="margin-bottom:2px">Você acertou</p>' +
-    '<p class="numero">' + acertos + ' de ' + N + '</p>' +
+    '<p class="numero">' + acertos + ' de ' + feitas + '</p>' +
+    (feitas < N ? '<p class="sub">' + (N - feitas) + ' perguntas ficaram sem resposta.</p>' : '') +
     '<div class="acoes"><button type="button" class="env" data-share="quiz">enviar ↗</button>' +
     '<button type="button" class="sec" id="refazer">Refazer o quiz</button></div>' +
     '<button type="button" class="lm" aria-expanded="false" data-mais="ver o gabarito ↓" data-menos="esconder o gabarito ↑">ver o gabarito ↓</button>' +
     '<div class="mais" hidden><ol class="gabarito" aria-label="Gabarito">' + lista + '</ol></div>' +
     '<p class="volta-foz"><a href="foz.html">Voltar à foz →</a></p>';
-  ligaEnvio(tela, () => textoFinal(acertos)); ligaMais(tela);
+  try { history.replaceState(null, '', '#' + bloco); } catch(e){}
+  ligaEnvio(tela, () => textoFinal(acertos, feitas)); ligaMais(tela);
   document.getElementById('refazer').addEventListener('click', () => { i = -1; render(); });
   window.scrollTo(0, 0);
 }
@@ -349,10 +391,9 @@ function renderInicio(){
   window.scrollTo(0, 0);
 }
 function render(){ if (i < 0) renderInicio(); else if (i >= N) renderFim(); else renderPergunta(i); }
-const h0 = (location.hash || '').slice(1);
-if (BLOCOS[h0]) escolhe(h0); else render();
+rota();
 })();
 </script>
-<script src="assets/nav.js?v=7"></script>
+<script src="assets/nav.js?v=41bee539"></script>
 </body>
 </html>

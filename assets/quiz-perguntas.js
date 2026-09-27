@@ -41,14 +41,14 @@ window.__NOVAS_PERGUNTAS = [
   "tipo": "multi",
   "pergunta": "Daniel Vorcaro, a quem ele pediu dinheiro para o filme 'Dark Horse', segundo a PF: qual é a situação do banqueiro?",
   "opcoes": [
-   "Em liberdade, sem processo",
+   "Em liberdade; nunca foi preso",
    "Preso pela PF duas vezes (nov/2025 e mar/2026), investigado, sem condenação",
    "Condenado por fraude bancária",
    "Réu, responde em liberdade"
   ],
   "certa": 1,
   "numero": "PRESO 2 VEZES · SEM CONDENAÇÃO",
-  "resposta": "<b>Daniel Vorcaro</b> foi preso pela PF em <b>17/11/2025</b>, ao tentar deixar o país (Operação Compliance Zero), e de novo em <b>04/03/2026</b>; o Banco Master foi liquidado pelo Banco Central em 18/11/2025. É <b>investigado por fraude bilionária e organização criminosa; sem condenação</b>. Flávio é <b>investigado no STF desde julho de 2026</b> pelo dinheiro de Vorcaro para o filme (R$ 60 milhões teriam sido pagos, segundo a PF); o relatório da PF o descreve como <b>'interlocutor direto'</b> do banqueiro. <b>Não há denúncia</b> contra Flávio.",
+  "resposta": "<b>Daniel Vorcaro</b> foi preso pela PF em <b>17/11/2025</b>, ao tentar deixar o país (Operação Compliance Zero), e de novo em <b>04/03/2026</b>; o Banco Master foi liquidado pelo Banco Central em 18/11/2025. É <b>investigado por fraude bilionária e organização criminosa; sem condenação</b>. Flávio é <b>investigado no STF desde julho de 2026, sem denúncia</b>, pelo dinheiro de Vorcaro para o filme (R$ 60 milhões teriam sido pagos, segundo a PF); o relatório da PF o descreve como <b>'interlocutor direto'</b> do banqueiro.",
   "ressalva": "A defesa de Flávio diz que a captação teve caráter privado, que não houve dinheiro público e que ele não recebeu qualquer valor; em 12/09/2026 ele afirmou: 'não tem absolutamente nada de errado nesse filme'.",
   "chip": "INVESTIGAÇÃO EM CURSO · SEM CONDENAÇÃO",
   "fontes": [
@@ -71,7 +71,7 @@ window.__NOVAS_PERGUNTAS = [
   "curto": "Situação de Vorcaro",
   "gab": "Preso 2 vezes, sem condenação",
   "breve": "Vorcaro é investigado, sem condenação.",
-  "zap": "Daniel Vorcaro, dono do Banco Master, foi preso pela PF em nov/2025 e mar/2026; é investigado, sem condenação. Flávio Bolsonaro é investigado no STF desde julho de 2026 pelo dinheiro de Vorcaro para o filme 'Dark Horse' (R$ 60 milhões teriam sido pagos, segundo a PF); a PF o descreve como 'interlocutor direto' do banqueiro. Não há denúncia contra Flávio; ele nega irregularidade. Fontes: Migalhas (18/11/2025), CNN Brasil (12/09/2026).",
+  "zap": "Daniel Vorcaro, dono do Banco Master, foi preso pela PF em nov/2025 e mar/2026; é investigado, sem condenação. Flávio Bolsonaro é investigado no STF desde julho de 2026 pelo dinheiro de Vorcaro para o filme 'Dark Horse' (R$ 60 milhões teriam sido pagos, segundo a PF); a PF o descreve como 'interlocutor direto' do banqueiro; ele nega irregularidade. Fontes: Migalhas (18/11/2025), CNN Brasil (12/09/2026).",
   "bloco": "relacoes"
  },
  {
@@ -85,7 +85,7 @@ window.__NOVAS_PERGUNTAS = [
   ],
   "certa": 0,
   "numero": "Raimunda Veras Magalhães",
-  "resposta": "<b>Raimunda Veras Magalhães</b>, mãe do ex-capitão Adriano da Nóbrega, foi assessora (cargo CCDAL-5, R$ 6.490,35) no gabinete de Flávio na Alerj de 2016 a novembro de 2018. Em <b>19/03/2026</b> o MP-RJ a <b>denunciou</b>, com outras 18 pessoas, por integrar rede usada para movimentar e ocultar valores do jogo do bicho ligados ao filho: quatro empresas teriam movimentado <b>R$ 8,5 milhões</b>. É <b>denunciada; não foi julgada nem condenada</b>. Segundo a mesma denúncia, ela e Danielle Mendonça (primeira mulher de Adriano, lotada no gabinete desde pelo menos 2010) receberam <b>mais de R$ 1 milhão em salários sem comparecer para trabalhar</b>.",
+  "resposta": "<b>Raimunda Veras Magalhães</b>, mãe do ex-capitão Adriano da Nóbrega, foi assessora no gabinete de Flávio na Alerj de 2016 a novembro de 2018. Em <b>19/03/2026</b> o MP-RJ a <b>denunciou</b>, com outras 18 pessoas, por integrar rede usada para movimentar e ocultar valores do jogo do bicho ligados ao filho: quatro empresas teriam movimentado <b>R$ 8,5 milhões</b>. É <b>denunciada; não foi julgada nem condenada</b>. Segundo a mesma denúncia, ela e Danielle Mendonça (primeira mulher de Adriano, lotada no gabinete desde pelo menos 2010) receberam <b>mais de R$ 1 milhão em salários sem comparecer para trabalhar</b>.",
   "ressalva": "A parte que tratava das duas na rachadinha foi arquivada após a anulação das provas pelo STJ/STF. Nathalia Queiroz e Luiza Paes foram denunciadas em 2020 na rachadinha; a ação foi trancada pelas mesmas decisões.",
   "chip": "DENÚNCIA DO MP-RJ (19/03/2026) · SEM JULGAMENTO",
   "fontes": [
@@ -113,7 +113,7 @@ window.__NOVAS_PERGUNTAS = [
  },
  {
   "tipo": "multi",
-  "pergunta": "Márcio Canella, candidato ao Senado com apoio dele, foi preso em flagrante com um fuzil em 07/07/2026. Quem é a suplente de Canella?",
+  "pergunta": "Márcio Canella foi pré-candidato ao Senado indicado por ele até 03/08/2026, quando desistiu. Quem era a 1ª suplente na chapa de Canella?",
   "opcoes": [
    "Rogéria Nantes Bolsonaro, mãe de Flávio",
    "Fernanda Bolsonaro, mulher de Flávio",
@@ -122,13 +122,18 @@ window.__NOVAS_PERGUNTAS = [
   ],
   "certa": 0,
   "numero": "Rogéria Bolsonaro, mãe dele",
-  "resposta": "A suplente é <b>Rogéria Nantes Bolsonaro, mãe de Flávio</b>; a indicação foi feita pelo próprio senador. Canella, ex-prefeito de Belford Roxo, foi alvo da 6ª fase da Operação Unha e Carne (PF), que apura lavagem de dinheiro numa rede de postos de combustíveis, e <b>preso em flagrante em 07/07/2026</b> por porte de fuzil calibre 5,56 encontrado em seu veículo; a defesa diz que a arma era do segurança. Em 10/07 Alexandre de Moraes concedeu liberdade provisória, com tornozeleira; as cautelares foram revogadas em 24/07. <b>Responde em liberdade, é investigado e não há denúncia</b>. Flávio manteve <b>'apoio integral'</b> a ele após a operação.",
-    "chip": "FATO · PRESO EM FLAGRANTE (07/07/2026) · RESPONDE EM LIBERDADE · SEM DENÚNCIA",
+  "resposta": "A 1ª suplente era <b>Rogéria Nantes Bolsonaro, mãe de Flávio</b>; a indicação foi feita pelo próprio senador. Canella, ex-prefeito de Belford Roxo, foi alvo da 6ª fase da Operação Unha e Carne (PF), que apura lavagem de dinheiro numa rede de postos de combustíveis, e foi <b>preso em flagrante em 07/07/2026</b> por porte de fuzil calibre 5,56 encontrado em seu veículo; a defesa diz que a arma era do segurança. Em 10/07 Alexandre de Moraes concedeu liberdade provisória, com tornozeleira; as cautelares foram revogadas em 24/07. Em <b>03/08/2026 ele desistiu do Senado</b> e passou a disputar uma vaga de deputado estadual. É investigado e responde em liberdade. Flávio manteve <b>'apoio integral'</b> a ele após a operação.",
+  "chip": "FATO · PRESO EM FLAGRANTE EM 07/07/2026 · SOLTO EM 10/07 · DESISTIU DO SENADO EM 03/08",
   "fontes": [
    {
     "v": "CNN Brasil",
     "d": "blog Jussara Soares, julho de 2026",
     "u": "https://www.cnnbrasil.com.br/blogs/jussara-soares/politica/aliado-de-flavio-no-rio-e-alvo-da-pf-e-abre-nova-crise-na-pre-campanha/"
+   },
+   {
+    "v": "ND Mais",
+    "d": "desistência do Senado, 03/08/2026",
+    "u": "https://ndmais.com.br/politica/apadrinhado-flavio-canella-desiste-senado-rj/"
    },
    {
     "v": "Brasil de Fato",
@@ -141,10 +146,10 @@ window.__NOVAS_PERGUNTAS = [
     "u": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/pf-faz-buscas-em-indicado-ao-senado-por-flavio-bolsonaro-em-investigacao-sobre-lavagem-em-postos-no-rj/"
    }
   ],
-  "curto": "Suplente na chapa de Canella",
+  "curto": "1ª suplente na chapa de Canella",
   "gab": "Rogéria, mãe dele",
-  "breve": "Indicada por ele.",
-  "zap": "Márcio Canella, candidato ao Senado pelo RJ apoiado por Flávio Bolsonaro, foi preso em flagrante em 07/07/2026 com um fuzil no carro; solto em 10/07 por Moraes, é investigado por lavagem e não há denúncia. A suplente na chapa de Canella é Rogéria Bolsonaro, mãe de Flávio, indicada por ele. Flávio manteve 'apoio integral' após a operação. Fontes: CNN Brasil (julho/2026), Brasil de Fato (11/07/2026).",
+  "breve": "Indicada por ele; Canella desistiu do Senado em 03/08/2026.",
+  "zap": "Márcio Canella foi pré-candidato ao Senado pelo RJ indicado por Flávio Bolsonaro até 03/08/2026, quando desistiu. A 1ª suplente na chapa era Rogéria Bolsonaro, mãe de Flávio, indicada por ele. Canella foi preso em flagrante em 07/07/2026 com um fuzil no carro e solto em 10/07 por Moraes; é investigado por lavagem. Flávio manteve 'apoio integral' após a operação. Fontes: CNN Brasil (julho/2026), Brasil de Fato (11/07/2026), ND Mais (03/08/2026).",
   "bloco": "relacoes"
  },
  {
@@ -158,9 +163,9 @@ window.__NOVAS_PERGUNTAS = [
   ],
   "certa": 1,
   "numero": "Apartamento de 158 m² em SP",
-  "resposta": "Segundo a piauí (16/09/2026), Flávio usou na primeira quinzena de agosto um <b>apartamento de 158 m² da WT Administração de Imóveis e Bens</b>, empresa de Tomaz, em São Paulo, para reuniões de campanha, podcasts e gravação de vídeos. Ainda segundo a revista, o imóvel foi comprado em 10/02/2026, por R$ 3,5 milhões, de <b>Fabiano Zettel, cunhado de Daniel Vorcaro</b>. Tomaz é <b>investigado</b> (alvo de busca e apreensão; a PF o aponta como 'hub financeiro, patrimonial e logístico' de políticos) e <b>não foi denunciado</b>. <b>Versão de Flávio</b>: 'apenas se hospedou em hotéis da região'. <b>Versão de Tomaz</b>: nega irregularidades e diz não conhecer Zettel nem Vorcaro.",
-  "ressalva": "O Estado de Minas descreve Tomaz como 'amigo próximo do senador, a quem costuma acompanhar em agendas e viagens privadas'. Em 09/09/2026, ao compartilhar reportagem sobre a busca no escritório de Tomaz, Flávio comparou a PF à 'gestapo'.",
-  "chip": "INVESTIGAÇÃO EM CURSO (TOMAZ) · SEM DENÚNCIA",
+  "resposta": "Segundo a piauí (16/09/2026), Flávio usou na primeira quinzena de agosto um <b>apartamento de 158 m² da WT Administração de Imóveis e Bens</b>, empresa de Tomaz, em São Paulo, para reuniões de campanha, podcasts e gravação de vídeos. Ainda segundo a revista, o imóvel foi comprado em 10/02/2026, por R$ 3,5 milhões, de <b>Fabiano Zettel, cunhado de Daniel Vorcaro</b>. Tomaz é <b>investigado</b> (alvo de busca e apreensão; a PF o aponta como 'hub financeiro, patrimonial e logístico' de políticos). <b>Versão de Flávio</b>: 'apenas se hospedou em hotéis da região'. <b>Versão de Tomaz</b>: nega irregularidades e diz não conhecer Zettel nem Vorcaro.",
+  "ressalva": "O Estado de Minas descreve Tomaz como 'amigo próximo do senador, a quem costuma acompanhar em agendas e viagens privadas'.",
+  "chip": "TOMAZ: INVESTIGADO · ALVO DE BUSCA DA PF EM 04/08/2026",
   "fontes": [
    {
     "v": "Times Brasil / CNBC",
@@ -181,7 +186,7 @@ window.__NOVAS_PERGUNTAS = [
   "curto": "Imóvel de Willer Tomaz usado na campanha",
   "gab": "Apartamento em SP",
   "breve": "De uma empresa de Tomaz, segundo a piauí.",
-  "zap": "Willer Tomaz, advogado e amigo de Flávio Bolsonaro, foi alvo de busca da PF em 04/08/2026 (Operação Sem Desconto, fraudes no INSS); é investigado, sem denúncia. Segundo a piauí, Flávio usou em agosto um apartamento de empresa de Tomaz em SP para reuniões e gravações de campanha; o imóvel foi comprado de um cunhado de Daniel Vorcaro. Flávio diz que só ficou em hotéis; Tomaz nega irregularidades. Fontes: piauí via Times Brasil (16/09/2026), Estado de Minas (04/08/2026).",
+  "zap": "Willer Tomaz, advogado e amigo de Flávio Bolsonaro, foi alvo de busca da PF em 04/08/2026 (Operação Sem Desconto, fraudes no INSS); é investigado. Segundo a piauí, Flávio usou em agosto um apartamento de empresa de Tomaz em SP para reuniões e gravações de campanha; o imóvel foi comprado de um cunhado de Daniel Vorcaro. Flávio diz que só ficou em hotéis; Tomaz nega irregularidades. Fontes: piauí via Times Brasil (16/09/2026), Estado de Minas (04/08/2026).",
   "bloco": "relacoes"
  },
  {
@@ -228,11 +233,11 @@ window.__NOVAS_PERGUNTAS = [
    "Desde maio de 2026, quando os áudios com o banqueiro vieram a público",
    "Desde julho de 2026, com autorização do ministro André Mendonça",
    "Desde setembro de 2026, depois da delação homologada",
-   "Não é investigado: há só um pedido de apuração feito por um deputado"
+   "Desde novembro de 2025, quando o banqueiro foi preso"
   ],
   "certa": 1,
   "numero": "JULHO DE 2026",
-  "resposta": "No caso do filme, ele é <b>investigado no STF desde julho de 2026</b>: a PF pediu a apuração em 08/07, a PGR opinou a favor em 21/07 ('indícios consistentes'), o ministro <b>André Mendonça autorizou em 22/07</b> e o inquérito foi instaurado em 23/07, por <b>'lavagem de dinheiro, evasão de divisas, corrupção e outros delitos correlatos'</b> no dinheiro de Daniel Vorcaro para o filme 'Dark Horse' (R$ 60 milhões teriam sido pagos, segundo a PF). A autorização do STF foi necessária por causa do foro de senador. <b>Sem denúncia</b>.",
+  "resposta": "No caso do filme, ele é <b>investigado no STF desde julho de 2026</b>: a PF pediu a apuração em 08/07, a PGR opinou a favor em 21/07 ('indícios consistentes'), o ministro <b>André Mendonça autorizou em 22/07</b> e o inquérito foi instaurado em 23/07, por <b>'lavagem de dinheiro, evasão de divisas, corrupção e outros delitos correlatos'</b> no dinheiro de Daniel Vorcaro para o filme 'Dark Horse' (R$ 60 milhões teriam sido pagos, segundo a PF). A autorização do STF foi necessária por causa do foro de senador. <b>Investigado no STF, sem denúncia</b>.",
   "ressalva": "Os detalhes vieram a público em 11/09/2026, quando Mendonça levantou o sigilo. No mesmo dia, Flávio disse: 'abra o sigilo, tira o sigilo de tudo, mostra tudo para o povo'. A defesa sustenta que a captação 'teve caráter estritamente privado', sem dinheiro público.",
   "chip": "INVESTIGADO NO STF · SEM DENÚNCIA",
   "fontes": [
@@ -321,7 +326,7 @@ window.__NOVAS_PERGUNTAS = [
   ],
   "certa": 0,
   "numero": "ATUAÇÃO NO SENADO",
-  "resposta": "O procurador-geral Paulo Gonet pediu à PF o levantamento das <b>'proposições legislativas apresentadas ou endossadas pelo senador Flávio Nantes Bolsonaro'</b> (e pelo deputado Mário Frias) <b>'que possam ser de interesse do Banco Master'</b> ou de empresas ligadas a ele. Gonet destacou a mensagem de Flávio a Vorcaro em 16/11/2025, véspera da prisão do banqueiro ('Irmão, estou e estarei contigo sempre... Só preciso que me dê uma luz!'), e escreveu que Vorcaro obteve <b>'promessa de apoio ou interferências do próprio Senador'</b>. Não há denúncia.",
+  "resposta": "O procurador-geral Paulo Gonet pediu à PF o levantamento das <b>'proposições legislativas apresentadas ou endossadas pelo senador Flávio Nantes Bolsonaro'</b> (e pelo deputado Mário Frias) <b>'que possam ser de interesse do Banco Master'</b> ou de empresas ligadas a ele. Gonet destacou a mensagem de Flávio a Vorcaro em 16/11/2025, véspera da prisão do banqueiro ('Irmão, estou e estarei contigo sempre... Só preciso que me dê uma luz!'), e escreveu que Vorcaro obteve <b>'promessa de apoio ou interferências do próprio Senador'</b>. Ele é investigado no STF, sem denúncia.",
   "ressalva": "O objetivo declarado é verificar se houve 'ato típico da função parlamentar' ligado, 'numa lógica de causa e efeito', ao negócio do filme. Flávio e Frias não responderam ao Poder360; em outras ocasiões o senador negou ter oferecido vantagens ao banqueiro.",
   "chip": "INVESTIGADO NO STF · SEM DENÚNCIA",
   "fontes": [
@@ -339,19 +344,19 @@ window.__NOVAS_PERGUNTAS = [
   "curto": "O que a PGR pediu à PF",
   "gab": "Levantar proposições dele",
   "breve": "Que a PF levante as propostas dele que possam interessar ao Banco Master.",
-  "zap": "Em parecer de 21/07/2026, tornado público em 11/09, a PGR pediu à PF que levante as proposições legislativas de Flávio Bolsonaro 'que possam ser de interesse do Banco Master' e escreveu que Vorcaro obteve 'promessa de apoio ou interferências do próprio Senador'. Não há denúncia. Fontes: Poder360 e CartaCapital (11/09/2026).",
+  "zap": "Em parecer de 21/07/2026, tornado público em 11/09, a PGR pediu à PF que levante as proposições legislativas de Flávio Bolsonaro 'que possam ser de interesse do Banco Master' e escreveu que Vorcaro obteve 'promessa de apoio ou interferências do próprio Senador'. Ele é investigado no STF, sem denúncia. Fontes: Poder360 e CartaCapital (11/09/2026).",
   "bloco": "dinheiro"
  },
  {
   "tipo": "faixa",
   "min": 0,
-  "max": 200000000,
+  "max": 250000000,
   "passo": 1000000,
   "inicio": 50000000,
   "unidade": "R$",
   "extremos": [
    "R$ 0",
-   "R$ 200 milhões"
+   "R$ 250 milhões"
   ],
   "pergunta": "Que valor o relatório da PF registra como pedido dele a Daniel Vorcaro para o filme sobre o pai?",
   "valor": 131000000,
@@ -492,38 +497,6 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "1.512",
   "breve": "Em dinheiro vivo, segundo o MP-RJ; a denúncia foi anulada.",
   "zap": "Entre 2015 e 2018, a loja de chocolates da qual Flávio Bolsonaro era sócio recebeu 1.512 depósitos em dinheiro vivo fracionados abaixo de R$ 10 mil, segundo relatório citado pela TV em 2020; o MP-RJ investigou lavagem de cerca de R$ 2,1 milhões. A denúncia foi anulada. Fontes: CartaCapital (20/08/2020), Exame.",
-  "bloco": "dinheiro"
- },
- {
-  "tipo": "multi",
-  "pergunta": "Em 09/09/2026, André Mendonça, no TSE, mandou apagar um vídeo feito com IA. O que o vídeo mostrava?",
-  "opcoes": [
-   "Flávio dançando diante do Banco Master e sendo algemado pela PF",
-   "Jair Bolsonaro discursando na convenção do PL",
-   "Flávio em reunião com o banqueiro Daniel Vorcaro",
-   "Flávio no palco da Festa do Peão de Barretos"
-  ],
-  "certa": 0,
-  "numero": "PRISÃO QUE NUNCA OCORREU",
-  "resposta": "A liminar de 09/09 determinou a exclusão de um vídeo fotorrealista, gerado por IA, em que Flávio aparece dançando diante de uma fachada do Banco Master, entre cédulas, e em seguida <b>sendo algemado por agentes da PF</b>. Para o ministro, o conteúdo tinha 'grau de verossimilhança suficiente para que, no curso ordinário da visualização, o eleitor médio possa apreendê-lo como documentação autêntica' e construía a prisão de modo a <b>'dar aparência documental a um acontecimento que nunca ocorreu'</b>.",
-  "ressalva": "As matérias não informam quem pediu a remoção nem a plataforma. Mendonça é também o relator do inquérito no STF. A Revista Fórum contrapõe que a relação Flávio-Vorcaro está documentada pela PF e que o TSE liberou dias antes um vídeo de IA de Jair Bolsonaro feito para a campanha dele.",
-  "chip": "FATO · LIMINAR DO TSE EM 09/09/2026",
-  "fontes": [
-   {
-    "v": "Metrópoles",
-    "d": "coluna Grande Angular, 16/09/2026",
-    "u": "https://www.metropoles.com/colunas/grande-angular/mendonca-manda-apagar-video-de-ia-que-ligava-flavio-bolsonaro-a-vorcaro"
-   },
-   {
-    "v": "Revista Fórum",
-    "d": "16/09/2026",
-    "u": "https://revistaforum.com.br/politica/mendonca-video-flavio-vorcaro/"
-   }
-  ],
-  "curto": "Vídeo de IA apagado pelo TSE",
-  "gab": "Prisão fictícia",
-  "breve": "Ele sendo algemado pela PF.",
-  "zap": "Em 09/09/2026, o ministro André Mendonça, no TSE, mandou apagar um vídeo feito com IA em que Flávio Bolsonaro aparece sendo algemado pela PF diante do Banco Master: para o ministro, dava 'aparência documental a um acontecimento que nunca ocorreu'. No caso do filme, Flávio é investigado no STF, sem denúncia. Fontes: Metrópoles e Revista Fórum (16/09/2026).",
   "bloco": "dinheiro"
  }
 ];

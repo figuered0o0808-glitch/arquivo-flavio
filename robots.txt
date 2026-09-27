@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://figuered0o0808-glitch.github.io/arquivo-flavio/sitemap.xml
