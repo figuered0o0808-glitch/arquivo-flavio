@@ -1,9 +1,10 @@
 /* =====================================================================
    assets/roteiro.js · O ROTEIRO da abertura (index.html): a página inteira como um vídeo.
 
-   "Siga o rio ↓" faz a página descer sozinha, de ponta a ponta, na ordem da página:
-     a bacia · o caso Marielle · 01 quem anda com ele · 02 o dinheiro ·
+   "▶ assistir" (#siga, depois da bacia dos 40) faz a página descer sozinha dali até o fim, na ordem da página:
+     o título e o caso de hoje · a bacia dos 40 · 01 a teia de nomes · 02 o dinheiro ·
      a história (assets/historia.js: abertura, capítulos, fim) · a foto · a semana · o teste · mande adiante
+   O rótulo do botão diz quanto dura dali até o fim (#siga-min, calculado do próprio roteiro).
    O roteiro sai do próprio HTML: cada elemento com data-rot diz o que fazer ali.
      data-rot="pausa:2.4"  a tela desliza até ele (acelera no meio, freia na chegada) e para 2,4 s
      data-rot="leitura"    a tela passa devagar por ele (uma lista que se lê enquanto desce)
@@ -106,6 +107,7 @@ Q.add(cenasQuadro);
    O ROTEIRO NO TEMPO: segmentos {t0, t1, y0, y1, ease}
    ===================================================================== */
 const ctl = $('#h-ctl'), btPlay = $('#h-play'), btVel = $('#h-vel'), btPula = $('#h-pula'), btPara = $('#h-para');
+const siga = $('#siga');
 let M = null;                      /* o roteiro medido (refeito quando o tamanho muda) */
 const easeViagem = suave;
 const easeFase = x => 0.55 * x + 0.45 * suave(x);     /* na história: quase constante, com uma freada leve em cada fase */
@@ -264,13 +266,13 @@ function rotulos(){
   if (ativo) vistoCtl = true;
   mostra();
 }
-/* parado: só aparece depois da primeira tela (lá o botão é o "Siga o rio") */
+/* parado: só aparece depois que o botão "▶ assistir" da página (#siga) sai da tela por cima */
 let rM = 0;
 function mostra(){
   if (!ctl) return;
   const ativo = AP.estado !== 'parado';
-  const n = $('#nascente');
-  const lim = n ? topo(n) + n.offsetHeight * 0.6 : window.innerHeight * 0.6;
+  const n = siga || $('#nascente');
+  const lim = n ? topo(n) + n.offsetHeight * (siga ? 1 : 0.6) - (siga ? hdr() : 0) : window.innerHeight * 0.6;
   const v = ativo || window.scrollY > lim;
   if (ctl.hidden === v) ctl.hidden = !v;
 }
@@ -285,9 +287,16 @@ if (ctl){
   btPula.addEventListener('click', pula);
   btPara.addEventListener('click', para);
 }
-/* "Siga o rio ↓": a página desce sozinha a partir daqui */
-const siga = $('#siga');
+/* "▶ assistir": a página desce sozinha a partir daqui; o rótulo diz quanto tempo falta dali até o fim */
 if (siga) siga.addEventListener('click', e => { e.preventDefault(); toca(); });
+function rotuloSiga(){
+  const s = $('#siga-min'); if (!s || !siga || !visto(siga)) return;
+  if (!M) monta();
+  const t0 = tDeY(Math.max(0, topo(siga) - window.innerHeight * 0.5));
+  const min = Math.max(1, Math.round((M.total - t0) / 60));
+  const tx = '(' + min + ' min)';
+  if (s.textContent !== tx) s.textContent = tx;
+}
 
 /* =====================================================================
    Novo tamanho: mede de novo (sem trancos: o tempo sai da posição atual)
@@ -300,6 +309,7 @@ function invalida(){
     if (AP.on || AP.estado === 'pausado'){ monta(); AP.t = tDeY(window.scrollY); AP.set = Math.round(window.scrollY); }
     else if (eraM) M = null;
     Q.agenda(); mostra();
+    if (!AP.on) try { rotuloSiga(); } catch (_){}
   }, 160);
 }
 window.addEventListener('resize', invalida);

@@ -1,6 +1,8 @@
 /* BOLSODRIVE · cabeçalho do rio (montado por assets/nav.js). Carregar por último.
    Celular: uma linha de 48 px (logo, trecho atual, [ RIO ]) + a linha do curso de 8 px.
-   Desktop (≥ 900 px): os 4 trechos em linha como [ ABAS ] e as margens num menu.
+   Desktop (≥ 900 px): os 4 trechos em linha como [ ABAS ] (12 px, 44 px de altura) e as margens num menu.
+   Nome curto: nav.js pode emitir <span class="nv-curto">A teia</span> antes do nome (<span class="nv-nome">); o curto
+   aparece quando a linha aperta (.nv-aperta, medido pelo nav.js) e some no resto. Sem os spans, nada muda.
    Classes nv-* para não herdar as regras antigas de .hrow/.brand/.tab do app.css. */
 :root{--nv-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 
@@ -63,6 +65,8 @@
 
 /* os 4 trechos em linha: só no desktop */
 .nv-trechos{display:none}
+.nv-trechos a .nv-n{color:#6c8f70}                    /* 5,5:1 (era #4f6b51, 3,4:1) */
+.nv-trechos a[aria-current] .nv-n{color:#553a00}      /* sobre o âmbar: 5,8:1 (era #6b4a00, 4,4:1) */
 /* BolsoZap: link direto na linha, só no desktop (no celular fica no mapa); sem cor de destaque e sem colchetes (não é trecho) */
 .nv-zap{display:none}
 
@@ -73,6 +77,8 @@
 .nv-curso i{position:absolute; top:1px; width:6px; height:6px; margin-left:-3px; border-radius:50%; background:#4f6b51}
 .nv-curso i.ok{background:#7df59a}
 .nv-curso i.agora{background:#ffb02e; box-shadow:0 0 0 3px rgba(255,176,46,.25)}
+/* .afl é também a ficha do sistema (base.css); aqui é só o estado "afluente" da linha: nada da ficha vale */
+.nv-curso.afl{width:auto; padding:0; margin:0 auto; border:0; border-radius:0; background:none; text-align:start; transition:none}
 .nv-curso.margem::before{background:rgba(116,255,150,.09)}
 .nv-curso.margem i{background:#2c3d2e}
 .nv-curso.margem i.volta{background:#070a07; box-shadow:inset 0 0 0 1.5px #ffb02e}
@@ -136,20 +142,20 @@ footer.site-footer .nv-fatos{margin:0}
 main > .nv-fatos,.wrap > .nv-fatos{margin:14px 0 0}
 body > .nv-fatos{max-width:720px; margin:14px auto 0; padding:0 16px}
 
-/* ---------- siga o rio → próximo trecho (antes do rodapé) ---------- */
-.nv-segue{margin:36px 0 0}
-.nv-segue.solto{max-width:720px; margin:36px auto 0; padding:0 16px}
+/* ---------- siga o rio → próximo trecho (antes do rodapé) ----------
+   É a .porta do sistema (base.css): rótulo mono cinza + destino em âmbar sans 18/700 + uma linha do que tem lá.
+   Sem caixa e sem borda verde (a caixa verde era herança do terminal); só um filete separa do conteúdo. */
+.nv-segue{margin:36px 0 0; border-top:1px solid rgba(116,255,150,.18)}
+.nv-segue.solto{max-width:720px; margin:36px auto 0; padding:0 16px; border-top:0}
+.nv-segue.solto a{border-top:1px solid rgba(116,255,150,.18)}
 .nv-segue a{
-  display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 12px; min-height:56px; padding:14px 16px;
-  background:#0e160e; border:1px solid rgba(116,255,150,.32); border-left:3px solid #7df59a; border-radius:4px;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 10px; min-height:56px; padding:16px 0 4px;
   color:#d8efdd; text-decoration:none!important;
 }
-.nv-segue a:hover{border-color:#ffb02e; border-left-color:#ffb02e}
-.nv-segue .nv-k2{font-family:var(--nv-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#7df59a}
-.nv-segue b{font-family:var(--nv-mono); font-size:16px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:#ffb02e}
+.nv-segue .nv-k2{font-family:var(--nv-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#86a58c}
+.nv-segue b{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; font-size:18px; font-weight:700; line-height:1.3; color:#ffb02e}
+.nv-segue a:hover b{text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px}
 .nv-segue .nv-d{flex-basis:100%; font-size:14px; line-height:1.4; color:#86a58c; margin-top:2px}
-body.nv-na-margem .nv-segue a{border-left-color:#5c8a63}
-body.nv-na-margem .nv-segue .nv-k2{color:#86a58c}
 
 /* ---------- desktop ---------- */
 @media (min-width:900px){
@@ -157,24 +163,23 @@ body.nv-na-margem .nv-segue .nv-k2{color:#86a58c}
   .nv-aqui{display:none}
   .nv-trechos{display:flex; flex:1; justify-content:flex-end; gap:6px; min-width:0}
   .nv-trechos a{
-    flex:none; display:flex; align-items:center; min-height:34px; padding:0 9px;
-    font-family:var(--nv-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; white-space:nowrap;
+    flex:none; display:flex; align-items:center; min-height:44px; padding:0 10px;
+    font-family:var(--nv-mono); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; white-space:nowrap;
     color:#86a58c; text-decoration:none!important; border:1px solid rgba(116,255,150,.18); border-radius:4px;
   }
   .nv-trechos a::before{content:"[\00a0"} .nv-trechos a::after{content:"\00a0]"}
-  .nv-trechos a .nv-n{color:#4f6b51; margin-right:6px}
+  .nv-trechos a .nv-n{margin-right:6px}
   .nv-trechos a:hover{color:#d8efdd; border-color:rgba(116,255,150,.32)}
   .nv-trechos a[aria-current]{background:#ffb02e; color:#120c00; border-color:#ffb02e}
-  .nv-trechos a[aria-current] .nv-n{color:#6b4a00}
   .nv-zap{
-    flex:none; display:flex; align-items:center; min-height:34px; padding:0 9px;
-    font-family:var(--nv-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; white-space:nowrap;
+    flex:none; display:flex; align-items:center; min-height:44px; padding:0 10px;
+    font-family:var(--nv-mono); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; white-space:nowrap;
     color:#86a58c; text-decoration:none!important; border:1px solid rgba(116,255,150,.18); border-radius:4px;
   }
   .nv-zap:hover{color:#d8efdd; border-color:rgba(116,255,150,.32)}
   .nv-zap[aria-current]{color:#d8efdd; border-color:#ffb02e}
   .nv-zap:focus-visible{outline:2px solid #ffb02e; outline-offset:2px}
-  .nv-bt{min-height:34px; font-size:11px; max-width:230px; overflow:hidden; text-overflow:ellipsis}
+  .nv-bt{min-height:44px; font-size:12px; max-width:230px; overflow:hidden; text-overflow:ellipsis}
   .nv-bt .nv-bt-m{display:none}
   .nv-bt .nv-bt-d{display:inline}
   .nv-bt.nv-bt-margem{border-color:#ffb02e}
@@ -208,5 +213,8 @@ body.nv-na-margem .nv-segue .nv-k2{color:#86a58c}
 .nv-row.nv-aperta .nv-trechos a{padding:0 7px}
 .nv-row.nv-aperta .nv-trechos a::before,.nv-row.nv-aperta .nv-trechos a::after{content:none}
 .nv-row.nv-sem-zap .nv-zap{display:none}
-@media (min-width:1100px){ .nv-trechos a,.nv-zap{font-size:12px; padding:0 10px} .nv-bt{font-size:12px} .nv-row .nv-mark .nv-logo{height:20px; width:204px} }
-@media (min-width:900px) and (pointer:coarse){ .nv-trechos a,.nv-zap,.nv-bt{min-height:44px} }
+@media (min-width:1100px){ .nv-row .nv-mark .nv-logo{height:20px; width:204px} }
+/* nome curto (se o nav.js emitir .nv-curto): escondido por padrão; na linha apertada ele entra no lugar do nome */
+.nv-curto{display:none}
+.nv-row.nv-aperta .nv-curto{display:inline}
+.nv-row.nv-aperta .nv-curto + .nv-nome{display:none}

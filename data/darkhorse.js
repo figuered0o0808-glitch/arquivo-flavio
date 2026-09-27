@@ -1268,7 +1268,7 @@ window.DARKHORSE = {
    "gotas": 0,
    "ponto": null,
    "rot": "16/09/26 · apartamento que foi do cunhado de Vorcaro",
-   "lista": "Em agosto, ele usou por alguns dias um apartamento em São Paulo comprado em 2025 por Fabiano Zettel, cunhado de Vorcaro, e hoje de empresa de Willer Tomaz; lá fez reuniões de campanha, gravou vídeos e deu entrevistas, segundo a piauí. Ele diz que se hospedou apenas em hotéis da região.",
+   "lista": "Em agosto, ele usou por alguns dias um apartamento em São Paulo comprado em 2025 por Fabiano Zettel, cunhado de Vorcaro, e hoje de empresa de Willer Tomaz; lá fez reuniões de campanha, gravou vídeos e deu entrevistas, segundo a piauí. A assessoria dele diz que ele se hospedou apenas em hotéis da região.",
    "refs": [
     "apartamento-zettel"
    ],

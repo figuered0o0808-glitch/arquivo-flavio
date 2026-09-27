@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>O rio em 60 segundos — 8 casos, cada um com a fonte · BolsoDrive</title>
+<meta name="description" content="Oito casos em volta de Flávio Bolsonaro, um por tela: o número, a situação de cada um e a fonte. Toque para avançar; o link de cada tela leva à ficha completa na Foz.">
+<meta name="theme-color" content="#070a07">
+<meta name="color-scheme" content="dark">
+<style>html{background:#070a07;color:#d8efdd}</style>
+<link rel="canonical" href="https://figuered0o0808-glitch.github.io/arquivo-flavio/rio60.html">
+
+<!-- Preview de link (WhatsApp, Telegram, X, Facebook). Cartão provisório: o da abertura (c/img/abertura.png). -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOLSODRIVE: Um rio de escândalos">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="O rio em 60 segundos: 8 casos, cada um com a fonte">
+<meta property="og:description" content="Oito casos em volta de Flávio Bolsonaro, um por tela: o número, a situação e a fonte. Toque para avançar. BOLSODRIVE: Um rio de escândalos.">
+<meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/rio60.html">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/abertura.png?v=99387a2c">
+<meta property="og:image:secure_url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/abertura.png?v=99387a2c">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Um rio de escândalos: 40 casos em volta dele: 11 por ele mesmo, 9 pelo gabinete, 7 pela família, 13 pelo entorno">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="O rio em 60 segundos: 8 casos, cada um com a fonte">
+<meta name="twitter:description" content="Oito casos em volta de Flávio Bolsonaro, um por tela: o número, a situação e a fonte. Toque para avançar. BOLSODRIVE: Um rio de escândalos.">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/abertura.png?v=99387a2c">
+<meta name="twitter:image:alt" content="Um rio de escândalos: 40 casos em volta dele: 11 por ele mesmo, 9 pelo gabinete, 7 pela família, 13 pelo entorno">
+<link rel="stylesheet" href="assets/base.css?v=38ce818e">
+<link rel="stylesheet" href="assets/header.css?v=84dc371e">
+<link rel="stylesheet" href="assets/rio60.css?v=b2178f71">
+<link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
+<link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
+<link rel="apple-touch-icon" href="assets/marca/icone-180.png">
+</head>
+<body class="r6" data-trecho="m" data-curto="60 segundos">
+
+<header class="site-header" data-nav></header>
+
+<!-- O rio em 60 segundos (N01): os 8 casos "de perto" da Foz em formato stories, uma tela por caso, e a tela final
+     com os 40. Tudo vem de data/foz.js, data/foz-curto.js e data/topicos.js (assets/rio60.js monta as telas).
+     Link direto: rio60.html#<id do caso> · rio60.html#os-40 -->
+<main class="r6-app" id="r6">
+  <nav class="r6-ind" id="r6-ind" aria-label="As telas"></nav>
+
+  <div class="r6-palco" id="r6-palco">
+    <div class="r6-card" id="r6-card" tabindex="-1" aria-roledescription="stories" aria-label="O rio em 60 segundos">
+      <canvas class="r6-cv" id="r6-cv" aria-hidden="true"></canvas>
+      <div class="r6-telas" id="r6-telas"></div>
+      <div class="r6-topo">
+        <div class="r6-barras" id="r6-barras" aria-hidden="true"></div>
+        <div class="r6-linha">
+          <p class="r6-cont" id="r6-cont"><span class="r6-marca">O rio em 60 segundos</span></p>
+          <button type="button" class="r6-bt" id="r6-pausa" aria-label="pausar">
+            <svg class="i-pausa" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="5" width="3.6" height="14" rx="1"/><rect x="13.9" y="5" width="3.6" height="14" rx="1"/></svg>
+            <svg class="i-toca" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6a.8.8 0 0 0 1.2.7l10.6-6.8a.8.8 0 0 0 0-1.4L9.2 4.5A.8.8 0 0 0 8 5.2z"/></svg>
+          </button>
+          <a class="r6-bt" id="r6-sai" href="index.html" aria-label="sair dos 60 segundos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </a>
+        </div>
+      </div>
+      <p class="r6-dica" id="r6-dica" hidden></p>
+    </div>
+    <button type="button" class="r6-seta ant" id="r6-ant" aria-label="tela anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button type="button" class="r6-seta prox" id="r6-prox" aria-label="próxima tela"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+
+  <aside class="r6-lado" id="r6-lado" aria-label="Como ler"></aside>
+  <p class="r6-sr" id="r6-vivo" aria-live="polite"></p>
+
+  <noscript>
+    <div class="r6-sem">
+      <p>Esta tela precisa de JavaScript. Os mesmos 8 casos, com a fonte de cada um, estão na Foz:</p>
+      <p><a href="foz.html#master">Caso Master</a> · <a href="foz.html#marielle-ifop">Caso Marielle</a> · <a href="foz.html#mocoes-pms-reus-condenados">Homenagens na Alerj</a> · <a href="foz.html#rachadinha-alerj">Rachadinha</a> · <a href="foz.html#loja-chocolates">Loja de chocolates</a> · <a href="foz.html#abin-defesa-rachadinha">Abin paralela</a> · <a href="foz.html#cota-senado-viagens">Cota do Senado</a> · <a href="foz.html#trama-golpista">Trama golpista</a></p>
+      <p><a href="foz.html">A Foz: os 40 casos →</a></p>
+    </div>
+  </noscript>
+</main>
+
+<script src="data/foz.js?v=880cbd84"></script>
+<script src="data/foz-curto.js?v=7d97a6fb"></script>
+<script src="data/topicos.js?v=75878a47"></script>
+<script src="assets/compartilhar.js?v=edbe4096" defer></script>
+<script src="assets/rio60.js?v=0594d54e"></script>
+<script src="assets/nav.js?v=fc36981b"></script>
+</body>
+</html>

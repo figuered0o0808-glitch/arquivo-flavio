@@ -1,4 +1,5 @@
-/* Perguntas dos blocos 'relações' e 'dinheiro'. Cada uma com fonte e status jurídico dentro da resposta. */
+/* Perguntas dos blocos 'relações' e 'dinheiro'. Cada uma com fonte e status jurídico dentro da resposta.
+   caso: o escândalo na Foz (foz.html#<caso>). neutro: a resposta é a situação dele (ação, inquérito): número em tinta, não em âmbar. */
 window.__NOVAS_PERGUNTAS = [
  {
   "tipo": "multi",
@@ -10,7 +11,7 @@ window.__NOVAS_PERGUNTAS = [
    "Nunca foi preso nem denunciado"
   ],
   "certa": 2,
-  "numero": "PRESO EM 2020 · NUNCA CONDENADO",
+  "numero": "Preso em 2020 · nunca condenado",
   "resposta": "Queiroz foi <b>preso em 18/06/2020</b> em Atibaia (SP), num imóvel de Frederick Wassef, advogado de Flávio e de Jair Bolsonaro; depois passou à prisão domiciliar. Foi <b>denunciado pelo MP-RJ em 19/10/2020</b> por peculato, lavagem e organização criminosa. Em 2021 o STJ <b>anulou as provas</b>; o caso foi arquivado em 2022 e ele <b>nunca foi condenado</b>. Em <b>12/09/2026</b> Queiroz esteve no ato de Flávio em Cabo Frio (RJ), <b>'de maneira discreta ao lado do palco'</b>, em área reservada a assessores e aliados. Ao Metrópoles, disse: <b>'Flávio nem me viu'</b>.",
   "ressalva": "O Jornal do Brasil (13/09/2026) relatou um encontro reservado entre os dois em Brasília no início de 2026, após insistência de Queiroz; Flávio não comentou. Em 16/08, a assessoria de Flávio negara a presença de Queiroz no ato de Copacabana, apesar de foto de abraço publicada por ele.",
   "chip": "FATO · PRESO EM 2020 · PROVAS ANULADAS · NUNCA CONDENADO",
@@ -35,7 +36,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "Preso em 2020, nunca condenado",
   "breve": "Queiroz foi denunciado, e a denúncia foi anulada.",
   "zap": "Fabrício Queiroz, apontado pelo MP-RJ como operador da rachadinha no gabinete de Flávio Bolsonaro (caso anulado), foi preso em 2020 e denunciado, mas as provas foram anuladas pelo STJ e ele nunca foi condenado. Em 12/09/2026 reapareceu em ato de campanha de Flávio em Cabo Frio, ao lado do palco; disse que 'Flávio nem me viu'. Fontes: CNN Brasil (18/06/2020), Metrópoles (14/09/2026).",
-  "bloco": "relacoes"
+  "bloco": "relacoes",
+  "caso": "rachadinha-alerj"
  },
  {
   "tipo": "multi",
@@ -47,7 +49,7 @@ window.__NOVAS_PERGUNTAS = [
    "Réu, responde em liberdade"
   ],
   "certa": 1,
-  "numero": "PRESO 2 VEZES · SEM CONDENAÇÃO",
+  "numero": "Preso 2 vezes · sem condenação",
   "resposta": "<b>Daniel Vorcaro</b> foi preso pela PF em <b>17/11/2025</b>, ao tentar deixar o país (Operação Compliance Zero), e de novo em <b>04/03/2026</b>; o Banco Master foi liquidado pelo Banco Central em 18/11/2025. É <b>investigado por fraude bilionária e organização criminosa; sem condenação</b>. Flávio é <b>investigado no STF desde julho de 2026, sem denúncia</b>, pelo dinheiro de Vorcaro para o filme (R$ 60 milhões teriam sido pagos, segundo a PF); o relatório da PF o descreve como <b>'interlocutor direto'</b> do banqueiro.",
   "ressalva": "A defesa de Flávio diz que a captação teve caráter privado, que não houve dinheiro público e que ele não recebeu qualquer valor; em 12/09/2026 ele afirmou: 'não tem absolutamente nada de errado nesse filme'.",
   "chip": "INVESTIGAÇÃO EM CURSO · SEM CONDENAÇÃO",
@@ -72,7 +74,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "Preso 2 vezes, sem condenação",
   "breve": "Vorcaro é investigado, sem condenação.",
   "zap": "Daniel Vorcaro, dono do Banco Master, foi preso pela PF em nov/2025 e mar/2026; é investigado, sem condenação. Flávio Bolsonaro é investigado no STF desde julho de 2026 pelo dinheiro de Vorcaro para o filme 'Dark Horse' (R$ 60 milhões teriam sido pagos, segundo a PF); a PF o descreve como 'interlocutor direto' do banqueiro; ele nega irregularidade. Fontes: Migalhas (18/11/2025), CNN Brasil (12/09/2026).",
-  "bloco": "relacoes"
+  "bloco": "relacoes",
+  "caso": "master"
  },
  {
   "tipo": "multi",
@@ -109,7 +112,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "Raimunda, mãe de Adriano",
   "breve": "Mãe de Adriano da Nóbrega; denunciada, ainda não julgada.",
   "zap": "Raimunda Veras Magalhães, mãe de Adriano da Nóbrega, foi assessora no gabinete de Flávio Bolsonaro na Alerj de 2016 a 2018. Em 19/03/2026 o MP-RJ a denunciou por lavagem de dinheiro do jogo do bicho ligado ao filho (R$ 8,5 milhões em quatro empresas); denunciada, não julgada. Segundo a denúncia, ela e a ex-mulher de Adriano receberam mais de R$ 1 milhão em salários do gabinete sem comparecer para trabalhar. Fontes: O Tempo e Brasil de Fato (19/03/2026).",
-  "bloco": "relacoes"
+  "bloco": "relacoes",
+  "caso": "jogo-do-bicho"
  },
  {
   "tipo": "multi",
@@ -150,7 +154,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "Rogéria, mãe dele",
   "breve": "Indicada por ele; Canella desistiu do Senado em 03/08/2026.",
   "zap": "Márcio Canella foi pré-candidato ao Senado pelo RJ indicado por Flávio Bolsonaro até 03/08/2026, quando desistiu. A 1ª suplente na chapa era Rogéria Bolsonaro, mãe de Flávio, indicada por ele. Canella foi preso em flagrante em 07/07/2026 com um fuzil no carro e solto em 10/07 por Moraes; é investigado por lavagem. Flávio manteve 'apoio integral' após a operação. Fontes: CNN Brasil (julho/2026), Brasil de Fato (11/07/2026), ND Mais (03/08/2026).",
-  "bloco": "relacoes"
+  "bloco": "relacoes",
+  "caso": "unha-e-carne"
  },
  {
   "tipo": "multi",
@@ -187,7 +192,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "Apartamento em SP",
   "breve": "De uma empresa de Tomaz, segundo a piauí.",
   "zap": "Willer Tomaz, advogado e amigo de Flávio Bolsonaro, foi alvo de busca da PF em 04/08/2026 (Operação Sem Desconto, fraudes no INSS); é investigado. Segundo a piauí, Flávio usou em agosto um apartamento de empresa de Tomaz em SP para reuniões e gravações de campanha; o imóvel foi comprado de um cunhado de Daniel Vorcaro. Flávio diz que só ficou em hotéis; Tomaz nega irregularidades. Fontes: piauí via Times Brasil (16/09/2026), Estado de Minas (04/08/2026).",
-  "bloco": "relacoes"
+  "bloco": "relacoes",
+  "caso": "inss-willer"
  },
  {
   "tipo": "multi",
@@ -200,6 +206,7 @@ window.__NOVAS_PERGUNTAS = [
   ],
   "certa": 0,
   "numero": "Festa do Peão de Barretos",
+  "neutro": true,
   "resposta": "Em <b>07/09/2026</b> o corregedor-geral eleitoral, ministro Antonio Carlos Ferreira, <b>admitiu a AIJE</b> movida pela coligação adversária contra Flávio e Alfredo Gaspar por <b>suposto abuso de poder econômico</b> na 71ª Festa do Peão de Barretos (22/08), onde Flávio discursou no palco principal, em estrutura que a ação diz ter sido custeada por empresas privadas, para público estimado em 60 mil pessoas. A ação pede cassação dos registros e inelegibilidade por 8 anos. O TSE entendeu que os fatos <b>'podem, em tese, configurar irregularidade eleitoral'</b> e deu cinco dias para a defesa. <b>Não há juízo de mérito</b>.",
   "ressalva": "A campanha de Flávio não se manifestou nas matérias consultadas.",
   "chip": "AÇÃO ADMITIDA NO TSE (07/09/2026) · SEM JULGAMENTO DE MÉRITO",
@@ -236,7 +243,8 @@ window.__NOVAS_PERGUNTAS = [
    "Desde novembro de 2025, quando o banqueiro foi preso"
   ],
   "certa": 1,
-  "numero": "JULHO DE 2026",
+  "numero": "Julho de 2026",
+  "neutro": true,
   "resposta": "No caso do filme, ele é <b>investigado no STF desde julho de 2026</b>: a PF pediu a apuração em 08/07, a PGR opinou a favor em 21/07 ('indícios consistentes'), o ministro <b>André Mendonça autorizou em 22/07</b> e o inquérito foi instaurado em 23/07, por <b>'lavagem de dinheiro, evasão de divisas, corrupção e outros delitos correlatos'</b> no dinheiro de Daniel Vorcaro para o filme 'Dark Horse' (R$ 60 milhões teriam sido pagos, segundo a PF). A autorização do STF foi necessária por causa do foro de senador. <b>Investigado no STF, sem denúncia</b>.",
   "ressalva": "Os detalhes vieram a público em 11/09/2026, quando Mendonça levantou o sigilo. No mesmo dia, Flávio disse: 'abra o sigilo, tira o sigilo de tudo, mostra tudo para o povo'. A defesa sustenta que a captação 'teve caráter estritamente privado', sem dinheiro público.",
   "chip": "INVESTIGADO NO STF · SEM DENÚNCIA",
@@ -261,7 +269,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "Julho de 2026",
   "breve": "Ele é investigado no STF, sem denúncia.",
   "zap": "Flávio Bolsonaro é investigado no STF desde julho de 2026 por lavagem de dinheiro, evasão de divisas e corrupção, no dinheiro do banqueiro Daniel Vorcaro para o filme 'Dark Horse' (R$ 60 milhões teriam sido pagos, segundo a PF); o inquérito foi autorizado pelo ministro André Mendonça em 22/07 e o sigilo caiu em 11/09. Sem denúncia. Fontes: Metrópoles (23/07/2026), Brasil de Fato (11/09/2026).",
-  "bloco": "dinheiro"
+  "bloco": "dinheiro",
+  "caso": "master"
  },
  {
   "tipo": "multi",
@@ -313,7 +322,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "7 · R$ 60 mi",
   "breve": "7 em 2025, segundo a delação homologada pelo STF; R$ 60 milhões pagos, segundo a PF.",
   "zap": "Flávio Bolsonaro · delação do caso Dark Horse. Segundo A Crítica e o Diário Carioca, a delação homologada pelo STF em 09/09/2026 descreve 7 transferências em 2025, feitas a pedido de Daniel Vorcaro a um fundo nos EUA ligado ao filme 'Dark Horse'; segundo a PF, R$ 60 milhões teriam sido pagos, e o pedido foi de Flávio, que diz que tudo foi para o filme; o delator diz não saber o destino final do dinheiro. Ele é investigado no STF, sem denúncia.",
-  "bloco": "dinheiro"
+  "bloco": "dinheiro",
+  "caso": "master"
  },
  {
   "tipo": "multi",
@@ -325,7 +335,8 @@ window.__NOVAS_PERGUNTAS = [
    "Nada: o parecer se limitou ao dinheiro do filme"
   ],
   "certa": 0,
-  "numero": "ATUAÇÃO NO SENADO",
+  "numero": "Atuação no Senado",
+  "neutro": true,
   "resposta": "O procurador-geral Paulo Gonet pediu à PF o levantamento das <b>'proposições legislativas apresentadas ou endossadas pelo senador Flávio Nantes Bolsonaro'</b> (e pelo deputado Mário Frias) <b>'que possam ser de interesse do Banco Master'</b> ou de empresas ligadas a ele. Gonet destacou a mensagem de Flávio a Vorcaro em 16/11/2025, véspera da prisão do banqueiro ('Irmão, estou e estarei contigo sempre... Só preciso que me dê uma luz!'), e escreveu que Vorcaro obteve <b>'promessa de apoio ou interferências do próprio Senador'</b>. Ele é investigado no STF, sem denúncia.",
   "ressalva": "O objetivo declarado é verificar se houve 'ato típico da função parlamentar' ligado, 'numa lógica de causa e efeito', ao negócio do filme. Flávio e Frias não responderam ao Poder360; em outras ocasiões o senador negou ter oferecido vantagens ao banqueiro.",
   "chip": "INVESTIGADO NO STF · SEM DENÚNCIA",
@@ -345,7 +356,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "Levantar proposições dele",
   "breve": "Que a PF levante as propostas dele que possam interessar ao Banco Master.",
   "zap": "Em parecer de 21/07/2026, tornado público em 11/09, a PGR pediu à PF que levante as proposições legislativas de Flávio Bolsonaro 'que possam ser de interesse do Banco Master' e escreveu que Vorcaro obteve 'promessa de apoio ou interferências do próprio Senador'. Ele é investigado no STF, sem denúncia. Fontes: Poder360 e CartaCapital (11/09/2026).",
-  "bloco": "dinheiro"
+  "bloco": "dinheiro",
+  "caso": "master"
  },
  {
   "tipo": "faixa",
@@ -391,7 +403,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "R$ 131 milhões",
   "breve": "Segundo a PF; R$ 60 milhões teriam sido pagos.",
   "zap": "Segundo o relatório da PF com sigilo levantado em 11/09/2026, Flávio Bolsonaro pediu R$ 131 milhões ao banqueiro Daniel Vorcaro para o filme 'Dark Horse'; R$ 60 milhões teriam sido pagos. Ele confirmou ter pedido patrocínio ('era um filho buscando patrocínio') e nega irregularidade. É investigado no STF, sem denúncia. Fontes: O Povo (13/09/2026), CNN Brasil e Poder360 (12/09/2026).",
-  "bloco": "dinheiro"
+  "bloco": "dinheiro",
+  "caso": "master"
  },
  {
   "tipo": "multi",
@@ -423,7 +436,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "Cerca de 3 anos",
   "breve": "Com R$ 3,4 milhões em seis aportes extras.",
   "zap": "Flávio Bolsonaro contratou em 2021 um financiamento de 30 anos (R$ 3,1 milhões, BRB) para a mansão do Lago Sul e quitou em 21/03/2024, cerca de 3 anos depois, com R$ 3,4 milhões em seis aportes extraordinários. Ele disse que é 'fruto do suor de meu trabalho'. Fontes: Metrópoles (03/07/2024) e Congresso em Foco.",
-  "bloco": "dinheiro"
+  "bloco": "dinheiro",
+  "caso": "brb-mansao"
  },
  {
   "tipo": "multi",
@@ -460,7 +474,8 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "R$ 3,1 milhões",
   "breve": "Operação aprovada pela diretoria de Paulo Henrique Costa, preso no caso Master.",
   "zap": "O BRB financiou R$ 3,1 milhões, em 360 parcelas, da mansão de R$ 5,97 milhões comprada por Flávio Bolsonaro no Lago Sul em 2021; a operação passou pela diretoria presidida por Paulo Henrique Costa, preso preventivamente em abril de 2026 no caso Banco Master (investigado, sem condenação). Em 2025, um juiz do DF considerou o empréstimo regular. Fontes: Exame (25/02/2021), Agência Brasil (abril/2026), Metrópoles.",
-  "bloco": "dinheiro"
+  "bloco": "dinheiro",
+  "caso": "brb-mansao"
  },
  {
   "tipo": "multi",
@@ -497,6 +512,7 @@ window.__NOVAS_PERGUNTAS = [
   "gab": "1.512",
   "breve": "Em dinheiro vivo, segundo o MP-RJ; a denúncia foi anulada.",
   "zap": "Entre 2015 e 2018, a loja de chocolates da qual Flávio Bolsonaro era sócio recebeu 1.512 depósitos em dinheiro vivo fracionados abaixo de R$ 10 mil, segundo relatório citado pela TV em 2020; o MP-RJ investigou lavagem de cerca de R$ 2,1 milhões. A denúncia foi anulada. Fontes: CartaCapital (20/08/2020), Exame.",
-  "bloco": "dinheiro"
+  "bloco": "dinheiro",
+  "caso": "loja-chocolates"
  }
 ];

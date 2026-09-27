@@ -8,7 +8,157 @@
    Âncoras: dark-horse.html#dh-custa-<id> abre já no item (e rola até o resultado). O item com so:"pedido" (Oscar)
    troca a base sozinho. Verbos: "cabe" (filmes), "para juntar" (salário); "equivale" fica para o modo "unidades".
    D5 (26/09/2026): só cinema e trabalho — os R$ 60 milhões são dinheiro privado; nenhuma comparação com serviço público.
-   Teste: window.__cmp = { estado(), item(id), base(b) }. */
+   Teste: window.__cmp = { estado(), item(id), base(b) }.
+
+   API pura (Onda 1, 27/09/2026), para qualquer página: window.BDComparador
+     valorDe('R$ 131 milhões')   -> { v: 131000000, mes: false } | null (faixa, "até", dólar: null)
+     compara(valor)               -> { v, mes, itens:[{ grupo, n, q, num, unid, frase, base, fonte, icone }] } | null
+                                     valor: número em reais ou o texto ('R$ 20,7 mil por mês'). Só cinema e salário
+                                     mínimo (D5/F11: nada de serviço público). Uma conta por valor; nunca soma casos.
+     bloco(res, { quem })         -> HTML do "Quanto é isso" (usa .qe-* de assets/comparador.css)
+   As bases são as mesmas do Dark Horse: com data/darkhorse.js na página, valem as de lá; sem ele, a cópia abaixo
+   (conferida com darkhorse.js em 27/09/2026). Qualificador igual ao do gerador: "mais de 2", "quase 3", "12". */
+(function(){
+'use strict';
+var FILMES = [   /* ordem de preferência: o mais conhecido primeiro; v_hoje = orçamento corrigido pelo IPCA */
+  { id:'agente-secreto', rot:'O Agente Secreto', unid:['filme do tamanho de O Agente Secreto','filmes do tamanho de O Agente Secreto'], v_hoje:29000000,
+    base_txt:'R$ 28 milhões, em 2025 (R$ 29 milhões em valores de hoje, pelo IPCA)',
+    fonte:{ veiculo:'CNN Brasil', data:'2026-03-04', url:'https://www.cnnbrasil.com.br/entretenimento/oscar-2026-o-agente-secreto-tem-o-menor-orcamento-dos-indicados/' } },
+  { id:'ainda-estou-aqui', rot:'Ainda Estou Aqui', unid:['filme do tamanho de Ainda Estou Aqui','filmes do tamanho de Ainda Estou Aqui'], v_hoje:48600000,
+    base_txt:'estimativa de cerca de R$ 45 milhões, em 2024 (R$ 48,6 milhões em valores de hoje, pelo IPCA)',
+    fonte:{ veiculo:'Metrópoles', data:'2026-05-13', url:'https://www.metropoles.com/entretenimento/cinema/dark-horse-filme-de-bolsonaro-pode-ser-o-mais-caro-da-historia-do-brasil' } },
+  { id:'cidade-de-deus', rot:'Cidade de Deus', unid:['filme do tamanho de Cidade de Deus','filmes do tamanho de Cidade de Deus'], v_hoje:32100000,
+    base_txt:'cerca de R$ 8 milhões, em 2002 (R$ 32,1 milhões em valores de hoje, pelo IPCA)',
+    fonte:{ veiculo:'Aventuras na História', data:'2022-01-26', url:'https://aventurasnahistoria.com.br/noticias/reportagem/ha-20-anos-cidade-de-deus-era-lancado-e-aclamado-mundialmente.phtml' } },
+  { id:'bacurau', rot:'Bacurau', unid:['filme do tamanho de Bacurau','filmes do tamanho de Bacurau'], v_hoje:10900000,
+    base_txt:'R$ 7,5 milhões, em 2019 (R$ 10,9 milhões em valores de hoje, pelo IPCA)',
+    fonte:{ veiculo:'Jornal do Brasil', data:'2026-05-14', url:'https://www.jb.com.br/brasil/2026/05/1059617-a-reacao-de-kleber-mendonca-cujo-filme-custou-5-vezes-menos-que-o-de-bolsonaro-ao-escandalo-de-flavio-com-vorcaro.html' } }
+];
+var SALARIO = { mensal:1621, ano:21073, base_txt:'salário mínimo de R$ 1.621 em 2026, com 13º: R$ 21.073 por ano',
+  fonte:{ veiculo:'Planalto', data:'2025-12-23', url:'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12797.htm' } };
+
+/* com data/darkhorse.js carregado, as bases de lá mandam (a fonte da verdade é a curadoria do Dark Horse) */
+function bases(){
+  var C = (window.DARKHORSE && window.DARKHORSE.comparacoes) || null;
+  if (!C) return { filmes: FILMES, salario: SALARIO };
+  var f = FILMES.map(function(x){
+    var d = C.filter(function(c){ return c.id === x.id && c.v_hoje; })[0];
+    return d ? { id:x.id, rot:d.rot, unid:d.unid || x.unid, v_hoje:d.v_hoje, base_txt:d.base_txt, fonte:d.fonte } : x;
+  });
+  var s = C.filter(function(c){ return c.id === 'salario'; })[0];
+  return { filmes: f, salario: s ? { mensal:s.mensal, ano:s.v, base_txt:s.base_txt, fonte:s.fonte } : SALARIO };
+}
+
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function num(s){ return parseFloat(String(s).replace(/\./g, '').replace(',', '.')); }
+var MULT = { mil:1e3, milhao:1e6, milhoes:1e6, bilhao:1e9, bilhoes:1e9 };
+
+/* "R$ 131 milhões" / "R$ 199.999,79" / "R$ 20,7 mil por mês". Faixa ("R$ 20 a R$ 40"), teto ("até"), dólar: null. */
+function valorDe(t){
+  t = String(t == null ? '' : t);
+  if (/US\$|U\$|d[óo]lar|(?:^|\s)(?:at[ée]|entre)(?=\s)|\d\s*(?:a|e)\s*R\$/i.test(t)) return null;
+  var m = /R\$\s?(\d{1,3}(?:\.\d{3})*(?:,\d+)?|\d+(?:,\d+)?)(?:\s+(milh(?:ão|ões)|bilh(?:ão|ões)|mil)(?![a-zà-ú]))?/i.exec(t);
+  if (!m) return null;
+  var k = m[2] ? MULT[m[2].toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')] || 1 : 1;
+  var v = num(m[1]) * k;
+  if (!(v > 0)) return null;
+  return { v: v, mes: /\bpor m[êe]s\b|\bmensa(l|is)\b/i.test(t) };
+}
+
+/* 2,07 -> "mais de 2"; 2,70 -> "quase 3"; 12,02 -> "12"; 6.216 -> "mais de 6,2 mil" (a regra dos cartões do Dark Horse) */
+function qtd(r){
+  if (r >= 1000){
+    var k = Math.floor(r / 100) / 10, exato = Math.abs(r - Math.round(r / 100) * 100) < 5;
+    return { q: exato ? '' : 'mais de', num: String(k).replace('.', ',') + ' mil', n: r };
+  }
+  var i = Math.floor(r), fr = r - i;
+  if (fr < 0.05) return { q: '', num: String(i), n: r };
+  if (fr > 0.95) return { q: '', num: String(i + 1), n: r };
+  if (fr >= 0.6) return { q: 'quase', num: String(i + 1), n: r };
+  return { q: 'mais de', num: String(i), n: r };
+}
+function reais(v){   /* 131000000 -> "R$ 131 milhões" (só para frases de reserva; o texto do caso manda) */
+  if (v >= 1e9) return 'R$ ' + String(Math.round(v / 1e8) / 10).replace('.', ',') + (v >= 2e9 ? ' bilhões' : ' bilhão');
+  if (v >= 1e6) return 'R$ ' + String(Math.round(v / 1e5) / 10).replace('.', ',') + (v >= 2e6 ? ' milhões' : ' milhão');
+  if (v >= 1e3) return 'R$ ' + String(Math.round(v / 100) / 10).replace('.', ',') + ' mil';
+  return 'R$ ' + String(Math.round(v * 100) / 100).replace('.', ',');
+}
+
+function compara(valor){
+  var x = typeof valor === 'number' ? { v: valor, mes: false } : valorDe(valor);
+  if (!x) return null;
+  var B = bases(), itens = [];
+  if (x.mes){
+    var rm = x.v / B.salario.mensal;
+    if (rm >= 1){
+      var qm = qtd(rm);
+      itens.push({ grupo:'trabalho', icone:'ano', n: rm, q: qm.q, num: qm.num, unid: rm < 1.95 && !qm.q ? 'salário mínimo por mês' : 'salários mínimos por mês',
+        frase: 'todo mês', base: 'salário mínimo de R$ 1.621 em 2026', fonte: B.salario.fonte });
+    }
+  } else {
+    var ra = x.v / B.salario.ano;
+    if (ra >= 1){
+      var qa = qtd(ra);
+      itens.push({ grupo:'trabalho', icone:'ano', n: ra, q: qa.q, num: qa.num, unid: (ra < 1.95 && !qa.q ? 'ano' : 'anos') + ' de salário mínimo, com 13º e sem gastar nada',
+        frase: 'para juntar com um salário mínimo', base: B.salario.base_txt, fonte: B.salario.fonte });
+    }
+    /* cinema só quando cabe ao menos 2 filmes de um dos quatro (o primeiro da lista que couber) */
+    var f = B.filmes.filter(function(y){ return x.v / y.v_hoje >= 2; })[0];
+    if (f){
+      var rf = x.v / f.v_hoje, qf = qtd(rf);
+      itens.push({ grupo:'cinema', icone:'filme', n: rf, q: qf.q, num: qf.num, unid: f.unid[1], frase: 'cabem nesse valor',
+        base: 'Orçamento: ' + f.base_txt, fonte: f.fonte });
+    }
+  }
+  return itens.length ? { v: x.v, mes: x.mes, itens: itens } : null;
+}
+
+/* ---------- desenho (HTML em texto; o CSS é .qe-* em assets/comparador.css) ---------- */
+var ICO = {
+  filme: { vb:'0 0 16 16', c:'<path fill-rule="evenodd" d="M1 3h14v10H1z M2.3 4.3h1.3v1.4H2.3z M2.3 7.3h1.3v1.4H2.3z M2.3 10.3h1.3v1.4H2.3z M12.4 4.3h1.3v1.4h-1.3z M12.4 7.3h1.3v1.4h-1.3z M12.4 10.3h1.3v1.4h-1.3z M4.9 4.3h6.2v7.4H4.9z"/>',
+           o:'<path fill="none" stroke="currentColor" stroke-width="1.2" d="M1.6 3.6h12.8v8.8H1.6z"/>' },
+  ano:   { vb:'4.5 0 7 16', c:'<rect x="6.4" y="1" width="3.2" height="14" rx="1"/>',
+           o:'<rect x="7" y="1.6" width="2" height="12.8" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/>' }
+};
+var ESCALAS = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000];
+function pictos(it, max){
+  var s = ESCALAS.filter(function(e){ return Math.ceil(it.n / e - 1e-9) <= max; })[0] || 1000;
+  var x = it.n / s, cheios = Math.floor(x + 1e-9);
+  return { s: s, cheios: cheios, contorno: x - cheios >= 0.05 ? 1 : 0 };
+}
+function svg(ic, o, d){
+  var I = ICO[ic];
+  return '<svg class="qe-i' + (o ? ' o' : '') + '" viewBox="' + I.vb + '" style="--d:' + d + 'ms" aria-hidden="true" focusable="false">' + (o ? I.o : I.c) + '</svg>';
+}
+function dataBR(d){ var m = /^(\d{4})-(\d{2})(?:-(\d{2}))?$/.exec(d || ''); return m ? (m[3] ? m[3] + '/' : '') + m[2] + '/' + m[1] : (d || ''); }
+function bloco(res, op){
+  if (!res || !res.itens.length) return '';
+  op = op || {};
+  var h = '<section class="qe" aria-label="Quanto é isso">' +
+    '<p class="qe-k">Quanto é isso</p>' +
+    (op.quem ? '<p class="qe-de">' + esc(op.quem) + '</p>' : '');
+  res.itens.forEach(function(it){
+    var p = pictos(it, 30), ic = '';
+    for (var i = 0; i < p.cheios; i++) ic += svg(it.icone, false, Math.min(i * 14, 700));
+    if (p.contorno) ic += svg(it.icone, true, Math.min(p.cheios * 14, 700));
+    var cada = p.s > 1 ? (it.icone === 'ano' ? 'cada traço = ' + p.s + (it.unid.indexOf('mês') >= 0 ? ' salários' : ' anos') : 'cada ícone = ' + p.s + ' filmes') +
+      (p.contorno ? '; em contorno, a fração que sobra' : '') : (p.contorno ? 'em contorno, a fração que sobra' : '');
+    var f = it.fonte || {};
+    h += '<div class="qe-it qe-' + esc(it.grupo) + '">' +
+      '<p class="qe-n">' + (it.q ? '<span class="qe-q">' + esc(it.q) + '</span> ' : '') + esc(it.num) + '</p>' +
+      '<p class="qe-u">' + esc(it.unid) + '</p>' +
+      '<div class="qe-pic ' + (p.cheios + p.contorno <= 12 ? 'g1' : p.cheios + p.contorno <= 30 ? 'g2' : 'g3') + (it.icone === 'ano' ? ' tr' : '') + '">' + ic + '</div>' +
+      (cada ? '<p class="qe-esc">' + esc(cada) + '</p>' : '') +
+      '<p class="qe-b">' + esc(it.base.charAt(0).toUpperCase() + it.base.slice(1)) +
+        (f.url ? ' · <a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'fonte') + (f.data ? ', ' + esc(dataBR(f.data)) : '') + ' ↗</a>' : '') + '</p>' +
+      '</div>';
+  });
+  return h + '<p class="qe-nota">A conta só mede o tamanho do valor.</p></section>';
+}
+
+window.BDComparador = { valorDe: valorDe, compara: compara, qtd: qtd, reais: reais, bloco: bloco, bases: bases };
+})();
+
 (function(){
 'use strict';
 var D = window.DARKHORSE;

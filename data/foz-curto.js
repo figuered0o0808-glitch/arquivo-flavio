@@ -27,7 +27,7 @@ window.FOZ_CURTO = {
   'leo-indio-8jan': { frase: 'O primo dele, que trabalhou no gabinete dele na Alerj, é réu no STF pelo 8 de janeiro.' },
   'gabinete-do-odio-contas-falsas': { frase: 'a partir do Senado a um perfil falso que a PF ligou a um assessor dele, segundo a PF.' },
   'coacao-eduardo': { frase: 'de prisão: a pena do irmão Eduardo por coação no curso do processo, mantida pelo STF.' },
-  'trama-golpista': { frase: 'de prisão: a pena definitiva do pai na trama golpista. Ele diz que vai buscar anistia.' },
+  'trama-golpista': { frase: 'de prisão: a pena definitiva do pai na trama golpista; ele diz que vai “trabalhar pra que a anistia seja feita ainda na transição”.' },
   'joias-sauditas': { frase: 'pagos por Frederick Wassef, ex-advogado dele, para recomprar nos EUA um Rolex do acervo presidencial, segundo o Metrópoles.' },
   'rachadinha-carlos': { frase: 'dele e do irmão Carlos a dois cofres no Banco do Brasil, um na véspera de ele comprar dois imóveis, segundo o MP-RJ.' },
   'cla-valle-gabinetes': { frase: 'dos 286 nomeados nos gabinetes da família desde 1991 eram parentes entre si, segundo O Globo.' },

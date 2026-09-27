@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- As 8 páginas do site. As páginas de prévia c/<id>.html são noindex e ficam fora. -->
+<!-- As 10 páginas do site. As páginas de prévia c/<id>.html são noindex e ficam fora. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://figuered0o0808-glitch.github.io/arquivo-flavio/</loc></url>
   <url><loc>https://figuered0o0808-glitch.github.io/arquivo-flavio/foz.html</loc></url>
@@ -9,4 +9,6 @@
   <url><loc>https://figuered0o0808-glitch.github.io/arquivo-flavio/quiz.html</loc></url>
   <url><loc>https://figuered0o0808-glitch.github.io/arquivo-flavio/dark-horse.html</loc></url>
   <url><loc>https://figuered0o0808-glitch.github.io/arquivo-flavio/zap.html</loc></url>
+  <url><loc>https://figuered0o0808-glitch.github.io/arquivo-flavio/rio60.html</loc></url>
+  <url><loc>https://figuered0o0808-glitch.github.io/arquivo-flavio/kit.html</loc></url>
 </urlset>

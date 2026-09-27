@@ -55,7 +55,7 @@
                       taxa = gotas por segundo; cada gota leva o próximo item da fila (em ordem);
                       leve = gotejamento discreto (sem registros), que não acende a foz;
                       semFoz = a rota não termina na foz (a gota some no fim sem acender o aro)
-                fontes:[{x, y, cor, id, grupo}]         nascentes que pulsam
+                fontes:[{x, y, cor, id, grupo}]         nascentes que pulsam (pulso: escala do anel, padrão 1)
                 foz:{x, y, r, cor, aro}                 ondulação na foz (aro: cor fixa do anel; o anel é dele, então é sempre neutro)
                 janela() -> [topo, base] visível em px do canvas (só isso é desenhado)
                 intro (onda de luz de cima para baixo na primeira vez), aoChegar() quando ela chega à foz,
@@ -316,6 +316,7 @@ function correnteza(cv, cena){
   const rotas = (cena.rotas || []).map(r => Object.assign({}, r, { esp: vel / Math.max(0.01, r.taxa || 0.05), alfa: 1,
     sp: sprite(r.cor, r.leve ? 0.62 : 1), fila: r.fila || [], idx: 0, acc: 0 }));
   const fontes = (cena.fontes || []).map(f => Object.assign({}, f, { alfa: 1 }));
+  const PULSO = cena.pulso || 1;          /* escala do anel que pulsa em cada nascente (a faixa da abertura usa menos) */
   const F = cena.foz ? Object.assign({ alfa: 1 }, cena.foz) : null;
 
   /* traços da correnteza: tracejado que anda no sentido do fluxo; junto à margem anda mais devagar */
@@ -392,7 +393,7 @@ function correnteza(cv, cena){
       if (f.y < a - 14 || f.y > bb + 14) return;
       const ph = (t / 3.2 + k * 0.173) % 1;
       ctx.globalAlpha = 0.6 * (1 - ph) * f.alfa; ctx.strokeStyle = css(f.cor);
-      ctx.beginPath(); ctx.arc(f.x, f.y, 2.6 + ph * 7.5, 0, TAU); ctx.stroke();
+      ctx.beginPath(); ctx.arc(f.x, f.y, (2.6 + ph * 7.5) * PULSO, 0, TAU); ctx.stroke();
     });
 
     const fimR = F ? F.r * 0.9 : 20;

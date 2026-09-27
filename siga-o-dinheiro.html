@@ -17,7 +17,7 @@
 <meta property="og:title" content="BOLSODRIVE · Siga o dinheiro">
 <meta property="og:description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
 <meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/siga-o-dinheiro.html">
-<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/siga.png?v=bf40644d">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/siga.png?v=3301b621">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -25,81 +25,71 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BOLSODRIVE · Siga o dinheiro">
 <meta name="twitter:description" content="Os fluxos de dinheiro do arquivo sobre Flávio Bolsonaro, um de cada vez: origem, destino, valor, fonte e status jurídico.">
-<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/siga.png?v=bf40644d">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/siga.png?v=3301b621">
 <meta name="twitter:image:alt" content="Siga o dinheiro: os fluxos em volta dele, do BRB à campanha e às emendas, cada um com a fonte e o status">
 
-<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
-<link rel="stylesheet" href="assets/header.css?v=3b010dac">
+<link rel="stylesheet" href="assets/base.css?v=38ce818e">
+<link rel="stylesheet" href="assets/header.css?v=84dc371e">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
 <style>
-/* Siga o dinheiro — só o que esta página acrescenta à base.
-   Uma tela por fluxo: origem à esquerda, destino à direita, a linha cresce,
-   o valor conta. O único vermelho é a ponta da seta quando chega. */
+/* Siga o dinheiro (D09, X05, Onda 1) — o desenho da Foz: a bacia dos fluxos no alto (uma lane por fluxo, espessura
+   pelo valor, cor = a situação de quem está no caminho, a mesma da Foz) e o fluxo escolhido como destaque:
+   o número à esquerda, a origem e o destino como uma lane do rio, a frase com quem afirma, a fonte e um "enviar". */
 [hidden]{display:none!important}
 
-.palco{border:1px solid var(--linha); padding:14px 14px 12px; margin:10px 0 0; background:var(--papel)}
-.topo{
-  display:flex; justify-content:space-between; gap:10px;
-  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--cinza); margin:0 0 6px;
-}
-.topo b{color:var(--tinta); font-weight:700}
+/* ---------- a bacia: os fluxos lado a lado ---------- */
+.bacia-d{margin:4px 0 0; border-top:1px solid var(--linha)}
+/* integrador (CLS a 1,6 Mbps): as lanes entram pelo script depois do dados-lite; o espaço fica reservado */
+#bacia:empty{display:block; min-height:368px} @media (max-width:380px){ #bacia:empty{min-height:401px} }
+.bl{display:block; width:100%; min-height:48px; padding:8px 0 9px; border:0; border-bottom:1px solid var(--linha); background:none; color:var(--tinta); font:inherit; text-align:left; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:opacity .2s}
+.bl-t{display:flex; align-items:baseline; gap:10px; margin:0 0 6px; line-height:1.2}
+.bl-v{flex:none; min-width:4.6em; font-size:16px; font-weight:800; color:var(--amber); font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.bl-n{font-size:14px; color:var(--cinza); overflow-wrap:anywhere}
+.bl-l{position:relative; display:block; height:18px}
+.bl-l i{position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); border-radius:99px; background:var(--c)}
+.bl-l i::after{content:""; position:absolute; inset:-3px 0; border-radius:99px; background:var(--c); opacity:.18; filter:blur(3px)}
+.bl.grave{--c:var(--st-grave)} .bl.medio{--c:var(--st-medio)} .bl.outros{--c:var(--st-outros)}
+.bacia-d.escolheu .bl .bl-l{opacity:.4; transition:opacity .2s}
+.bacia-d.escolheu .bl[aria-current] .bl-l,.bl:hover .bl-l{opacity:1}
+.bl[aria-current] .bl-n{color:var(--tinta)}
+.bl[aria-current] .bl-l i{background:linear-gradient(90deg, var(--c) 0 35%, #fff4dc 48%, var(--c) 61% 100%); background-size:260% 100%; animation:corre 3.2s linear infinite}
+@keyframes corre{from{background-position:100% 0} to{background-position:-60% 0}}
+.bl:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.cap{font-size:13px; line-height:1.4; color:var(--cinza); margin:4px 0 18px}
+.bacia-leg .legenda{margin:10px 0 0}
 
-/* o valor abre a leitura: grande, em reais, por extenso (mi -> milhões) */
-.valor{text-align:center; margin:8px 0 14px; color:var(--amber); font-size:clamp(52px,17vw,112px); white-space:nowrap}
-.valor #pre, .valor #suf{font-size:.4em; font-weight:700; letter-spacing:0}
-
-.fluxo{display:grid; grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr); align-items:stretch; margin:0 0 12px; cursor:pointer; -webkit-tap-highlight-color:transparent}
-.caixa{
-  border:1.5px solid var(--tinta); padding:9px 10px 10px; min-height:64px;
-  display:flex; flex-direction:column; justify-content:center; overflow-wrap:anywhere;
-}
-.caixa .rot{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin:0 0 3px}
-.caixa .nome{font-size:15px; line-height:1.3; font-weight:600; hyphens:auto; overflow-wrap:break-word; font-size:14px}
-.seta{align-self:center; width:100%; height:32px; display:block; overflow:visible}
-.seta line{stroke:var(--tinta); stroke-width:2}
-.seta polygon{fill:var(--tinta); opacity:0; transition:opacity .15s}
-
-.obs{font-size:15px; margin:0 0 10px}
-.chip{text-transform:uppercase; line-height:1.5; margin-bottom:10px}
-.fonte a{text-underline-offset:2px}
-
-.acoes{margin-top:10px}
-.acoes button{flex:1; min-height:44px}
-.acoes button[disabled]{opacity:.35; cursor:default}
-.acoes.nav{margin-top:8px}
-
-.fecho{padding:26px 0 10px; text-align:center}
-.fecho .frase{margin:0 auto 14px; max-width:22em}
-.fecho .grande{
-  display:inline-block; padding:10px 4px; min-height:44px; font-size:18px; font-weight:700;
-  color:var(--tinta); text-decoration:underline; text-underline-offset:3px;
-}
-.fecho .acoes{justify-content:center}
-.fecho .acoes button{flex:0 1 auto}
-
-.assina{
-  display:flex; justify-content:space-between; gap:10px; margin-top:14px; padding-top:10px;
-  border-top:1px solid var(--linha); font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--cinza);
-}
-.assina b{color:var(--tinta)}
-
-.vazio{padding:20px 0}
-.obs{font-size:17px; line-height:1.4; margin:0 0 6px}
-.acoes.envio{align-items:center; gap:6px 16px; margin-top:12px}
-.acoes .env{flex:0 0 auto; min-height:44px; padding:0 20px; font-weight:700}
-.foz-liga{margin:6px 0 0}
-.lm{display:inline-flex; align-items:center; min-height:44px; padding:0; margin:2px 0 0; border:0; background:none; color:var(--cinza); font:600 14px var(--sans); cursor:pointer}
-.mais{border-top:1px solid var(--linha); padding-top:10px; margin-bottom:6px}
-/* ligação com a Foz: só nos fluxos que têm .foz nos dados */
-.foz-liga{margin:0 0 12px; font-size:15px}
-.foz-liga a{display:inline-flex; align-items:center; min-height:44px; font-weight:700; color:var(--amber); text-decoration:none}
-.foz-liga a:hover{text-decoration:underline; text-underline-offset:3px}
-.fecho .foz-fim{display:block; margin:0 auto 4px; color:var(--amber)}
-.rodape{margin:28px 0 0; text-align:center; font-size:17px; font-weight:700}
-.rodape a{color:var(--tinta); text-decoration:underline; text-underline-offset:3px; display:inline-block; padding:10px 4px}
+/* ---------- o fluxo escolhido (.dq) ---------- */
+.fluxo-u{margin:0; padding-bottom:12px; touch-action:pan-y}
+.fluxo-u .kicker{margin:0 0 6px}
+.fluxo-u .numero.destaque{margin:0 0 12px; white-space:nowrap}
+/* origem → destino: a lane do rio (4 px, na cor da situação), que cresce da origem ao destino */
+.rota{list-style:none; margin:0 0 12px; padding:0 0 0 28px; position:relative; --c:var(--st-outros); --p:1}
+.rota.grave{--c:var(--st-grave)} .rota.medio{--c:var(--st-medio)}
+/* a lane sai do ponto da origem e chega à ponta da seta, no alto do destino */
+.rota li.de::after{content:""; position:absolute; left:-21px; top:17px; bottom:-10px; width:4px; border-radius:2px; background:var(--c); opacity:.9; transform-origin:50% 0; transform:scaleY(var(--p))}
+.rota li{position:relative; padding:0 0 16px}
+.rota li:last-child{padding-bottom:0}
+.rota li::before{content:""; position:absolute; left:-25px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--leve); border:2px solid var(--c)}
+.rota li.para::before{top:6px; left:-26px; width:0; height:0; border-radius:0; background:none; border-style:solid; border-width:11px 7px 0 7px; border-color:var(--c) transparent transparent transparent; opacity:var(--seta,1); transition:opacity .15s}
+.rota .rot{display:block; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin:0 0 1px}
+.rota b{display:block; font-size:16px; font-weight:700; line-height:1.3; overflow-wrap:break-word}
+.fluxo-u .dq-t{font-size:17px; line-height:1.4; margin:0 0 10px}
+.fluxo-u .chip{text-transform:uppercase; margin:0 0 8px; border-color:var(--cinza2)}   /* D01: borda tinta ou cinza2; aqui cinza2 (nada de caixa clara no palco) */
+.fluxo-u .fonte{margin:0 0 10px}
+.fluxo-u .dq-a{margin:4px 0 2px}
+.fluxo-u .lm{margin:2px 0 0}
+.fluxo-u .mais{border-top:1px solid var(--linha); padding-top:10px; margin:2px 0 6px}
+.fluxo-u .mais .ressalva{font-size:14px; max-width:none}
+/* anterior / próximo: o próximo diz o que vem; o anterior não ocupa espaço quando não há */
+.passos{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:10px 0 0; padding-top:6px; border-top:1px solid var(--linha)}
+.passos .ant{flex:none; min-height:44px; padding:0 4px 0 0; border:0; background:none; color:var(--cinza); font:600 14px var(--sans); cursor:pointer}
+.passos .ant:hover{color:var(--tinta)}
+.passos .porta{margin-left:auto; text-align:right; font-size:15px}
+.passos .porta .v{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){ .bl[aria-current] .bl-l i{animation:none; background:var(--c)} }
+@media (min-width:900px){ .fluxo-u .dq-t{font-size:18px} .rota b{font-size:17px} }
 </style>
 </head>
 <body data-trecho="2">
@@ -108,63 +98,56 @@
 
 <main class="wrap">
   <h1 class="sec">Siga o dinheiro</h1>
-  <p class="sub" id="sub">Um fluxo de cada vez.</p>
+  <p class="sub" id="sub">Os fluxos de dinheiro em volta dele, cada um com a fonte e o status.</p>
 
-  <section class="palco" id="palco" aria-label="Fluxo de dinheiro">
-    <div class="topo"><span id="ind" aria-live="polite"></span><span id="legenda"></span></div>
-
-    <div id="cartao" hidden>
-      <p class="numero valor" id="valor" role="img"><span id="pre"></span><span id="num"></span><span id="suf"></span></p>
-
-      <div class="fluxo" id="fluxo" title="Toque para repetir a animação">
-        <div class="caixa"><span class="rot">de</span><span class="nome" id="de"></span></div>
-        <svg class="seta" id="seta" viewBox="0 0 100 32" aria-hidden="true" focusable="false">
-          <line id="linha" x1="0" y1="16" x2="89" y2="16" stroke-dasharray="89" stroke-dashoffset="89"/>
-          <polygon id="ponta" points="88,9 100,16 88,23"/>
-        </svg>
-        <div class="caixa"><span class="rot">para</span><span class="nome" id="para"></span></div>
-      </div>
-
-      <p class="obs" id="obs"></p>
-      <p class="fonte" id="fonte"></p>
-      <div class="acoes envio"><button type="button" class="env" id="zap" data-share="fluxo-1">enviar ↗</button></div>
-      <p class="foz-liga" id="foz-liga" hidden><a id="foz-a" href="foz.html"></a><span id="foz-dh" hidden> · <a href="dark-horse.html">mês a mês →</a></span></p>
-      <button type="button" class="lm" id="lm" aria-expanded="false">ler mais ↓</button>
-      <div class="mais" id="mais" hidden>
-        <div class="chip" id="chip"></div>
-        <p class="fonte" id="fonte2" hidden></p>
-        <p class="ressalva" id="ressalva"></p>
-      </div>
-      <div class="acoes nav">
-        <button type="button" class="sec" id="ant">← Anterior</button>
-        <button type="button" id="prox">Próximo fluxo →</button>
-      </div>
+  <nav class="bacia-d" id="bacia" aria-label="Os fluxos, lado a lado: toque num para ver"></nav>
+  <div class="bacia-leg">
+    <div class="legenda" aria-label="Cor da água: a situação de quem está no caminho">
+      <span><i class="grave"></i>preso ou condenado</span><span><i class="medio"></i>investigado ou denunciado</span><span><i class="outros"></i>outros</span>
     </div>
+    <p class="cap">A cor é a situação de quem está no caminho, como na Foz; a espessura cresce com o valor.</p>
+  </div>
 
-    <div class="fecho" id="fecho" hidden>
-      <div class="acoes"><button type="button" class="env" data-share="siga">enviar ↗</button></div>
-      <a class="grande foz-fim" href="foz.html" id="foz-fim">A Foz →</a>
-      <a class="grande" href="drive.html#arquivo" data-registros>O arquivo completo →</a>
-      <div class="acoes"><button type="button" class="sec" id="rever">← Rever do início</button></div>
+  <section class="dq fluxo-u" id="palco" aria-label="O fluxo escolhido" hidden>
+    <p class="kicker neutro" id="ind" aria-live="polite"></p>
+    <p class="numero destaque" id="valor" role="img"><span class="p" id="pre"></span><span id="num"></span><span class="u" id="suf"></span></p>
+    <ol class="rota" id="rota" title="Toque para repetir">
+      <li class="de"><span class="rot">de</span><b id="de"></b></li>
+      <li class="para"><span class="rot">para</span><b id="para"></b></li>
+    </ol>
+    <p class="dq-t" id="obs"></p>
+    <div class="chip" id="chip"></div>
+    <p class="fonte" id="fonte"></p>
+    <div class="dq-a">
+      <button type="button" class="env" id="zap" data-share="fluxo-1">enviar ↗</button>
+      <a id="foz-a" href="foz.html" hidden></a>
+      <a id="foz-dh" href="dark-horse.html" hidden>Dark Horse: mês a mês →</a>
     </div>
-
-    <p class="ressalva vazio" id="vazio" hidden>Não há fluxos para mostrar. <a href="drive.html#arquivo" data-registros>Ver o arquivo completo →</a></p>
-
-    <div class="assina"><span><b>BolsoDrive</b> · siga o dinheiro</span><span id="assina-n"></span></div>
+    <button type="button" class="lm" id="lm" aria-expanded="false" aria-controls="mais">ler o contexto ↓</button>
+    <div class="mais" id="mais" hidden>
+      <p class="fonte" id="fonte2" hidden></p>
+      <p class="ressalva" id="ressalva"></p>
+    </div>
+    <nav class="passos" aria-label="Outros fluxos">
+      <button type="button" class="ant" id="ant">← anterior</button>
+      <button type="button" class="porta" id="prox"></button>
+    </nav>
   </section>
 
+  <p class="ressalva vazio" id="vazio" hidden>Não há fluxos para mostrar. <a href="drive.html#arquivo">Ver o arquivo completo →</a></p>
 </main>
 
 <noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para mostrar os fluxos. <a href="foz.html">A Foz</a> · <a href="drive.html#arquivo">O arquivo</a> · <a href="zap.html">BolsoZap</a> · <a href="quiz.html">Quiz</a></p></noscript>
 
-<script src="data/dados.js?v=d6676b07"></script>
-<script src="data/foz.js?v=709d4c4d"></script>
-<script src="data/topicos.js?v=ab29a258"></script>
+<script src="data/dados-lite.js?v=c33857f8"></script>
+<script src="data/foz.js?v=880cbd84"></script>
+<script src="data/topicos.js?v=75878a47"></script>
 <script src="assets/compartilhar.js?v=edbe4096" defer></script>
 <script>
 (function(){
 'use strict';
 
+/* Lê só DOSSIE.fluxoDinheiro (vem igual em data/dados.js e em data/dados-lite.js) e FOZ (o caso de cada fluxo). */
 var D = window.DOSSIE || {};
 var FD = D.fluxoDinheiro || {};
 var brutos = Array.isArray(FD.fluxos) ? FD.fluxos : [];
@@ -172,12 +155,8 @@ var brutos = Array.isArray(FD.fluxos) ? FD.fluxos : [];
 var FLUXOS = brutos.filter(function(f){ return f && typeof f.valor === 'string'; });
 var N = FLUXOS.length;
 
-/* "Ver os N registros": o número sai do arquivo, não do texto */
-if (Array.isArray(D.itens) && D.itens.length){
-  Array.prototype.forEach.call(document.querySelectorAll('[data-registros]'), function(a){ a.textContent = 'Ver os ' + D.itens.length + ' registros →'; });
-}
-
 function limpa(s){ return String(s || ''); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
 /* A Foz (data/foz.js): o fluxo com .foz aponta para o escândalo em que aquele dinheiro chega.
    Um id que não existe mais segue FOZ.redireciona; sem destino, não há link. */
@@ -189,17 +168,16 @@ function fozDe(id){
   var r = (FZ.redireciona || {})[id];
   return r && ESC[r] ? ESC[r] : null;
 }
-if ((FZ.escandalos || []).length){
-  document.getElementById('foz-fim').textContent = 'A Foz: os ' + FZ.escandalos.length + ' casos, e como cada um chega a ele →';
-}
+/* a cor da lane: a gravidade do caso na Foz (a situação de quem está no caminho); sem caso, "outros" */
+var COR = { preso_ou_condenado_na_cadeia:'grave', investigado_na_cadeia:'medio' };
+function corDe(f){ var z = fozDe(f.foz); return (z && COR[z.gravidade]) || 'outros'; }
 
 /* Status, ressalva e defesa vêm do próprio dado (fluxoDinheiro.fluxos[i].status / .ressalva / .defesa).
    A defesa só entra na ressalva quando ela ainda não traz a versão de quem é citado. */
-var PADRAO = { chip:'Fato noticiado', classe:'nenhum', ressalva:'' };
 function statusDe(f){
   var r = f.ressalva || '', d = f.defesa || '';
   if (d && r.indexOf(d.replace(/\.$/, '')) < 0 && !/\b(diz|afirma|nega)\b|improcedente/i.test(r)) r = r ? r + ' ' + d : d;
-  return { chip: f.status || PADRAO.chip, classe: '', ressalva: r };
+  return { chip: f.status || 'Fato noticiado', ressalva: r };
 }
 
 /* "R$ 2,08 mi" → prefixo "R$ ", número 2,08, sufixo " mi". O prefixo guarda "~" e "até". */
@@ -217,17 +195,23 @@ function extenso(valor){
     return n + ' ' + (u === 'mi' ? (um ? 'milhão' : 'milhões') : (um ? 'bilhão' : 'bilhões'));
   });
 }
+/* o valor em reais, para a espessura da lane ("R$ 500 mil" = 5e5; "R$ 3,1 mi" = 3,1e6) */
+function reais(valor){
+  var m = /(\d+(?:[.,]\d+)?)\s*(mil|mi|bi)?\b/.exec(String(valor).replace(/\.(?=\d{3}\b)/g, ''));
+  if (!m) return 0;
+  var n = parseFloat(m[1].replace(',', '.'));
+  return n * ({mil:1e3, mi:1e6, bi:1e9}[m[2]] || 1);
+}
 
 var $ = function(id){ return document.getElementById(id); };
 var el = {
-  sub:$('sub'), palco:$('palco'), ind:$('ind'), cartao:$('cartao'), fecho:$('fecho'), vazio:$('vazio'),
-  valor:$('valor'), pre:$('pre'), num:$('num'), suf:$('suf'), fluxo:$('fluxo'), seta:$('seta'),
-  linha:$('linha'), ponta:$('ponta'), de:$('de'), para:$('para'), obs:$('obs'), chip:$('chip'),
+  sub:$('sub'), palco:$('palco'), ind:$('ind'), vazio:$('vazio'), bacia:$('bacia'),
+  valor:$('valor'), pre:$('pre'), num:$('num'), suf:$('suf'), rota:$('rota'),
+  de:$('de'), para:$('para'), obs:$('obs'), chip:$('chip'),
   fonte:$('fonte'), fonte2:$('fonte2'), ressalva:$('ressalva'), zap:$('zap'), ant:$('ant'),
-  prox:$('prox'), rever:$('rever'), assinaN:$('assina-n'), legenda:$('legenda'),
-  fozLiga:$('foz-liga'), fozA:$('foz-a'), lm:$('lm'), mais:$('mais')
+  prox:$('prox'), fozA:$('foz-a'), fozDh:$('foz-dh'), lm:$('lm'), mais:$('mais')
 };
-/* uma linha por fluxo (chave: o valor em DOSSIE.fluxoDinheiro.fluxos); o texto longo fica em "ler mais".
+/* uma linha por fluxo (chave: o valor em DOSSIE.fluxoDinheiro.fluxos); o texto longo fica em "ler o contexto".
    Fluxo novo sem linha aqui mostra a 1ª frase de .obs. */
 var LINHA = {
   'R$ 3,1 mi': 'Em 2021, aprovado pela diretoria de Paulo Henrique Costa, preso no caso Master.',
@@ -238,32 +222,48 @@ var LINHA = {
   'R$ 364 mi': 'Emendas de 2020 a 2026: 50,8% para saúde, 0,8% para educação.'
 };
 function linha(f){ return LINHA[f.valor] || (String(f.obs || '').split(/\.\s/)[0].replace(/\.$/, '') + '.'); }
+/* o nome curto de cada fluxo na bacia (origem → destino); fluxo novo: as 3 primeiras palavras de cada ponta */
+var CURTO = {
+  'R$ 3,1 mi': 'BRB → mansão dele',
+  'R$ 60 mi': 'operador de Vorcaro → fundo do filme',   /* "a pedido de Vorcaro" lia como se ele tivesse pedido o dinheiro */
+  'R$ 53,5 mi': 'PL → campanha dele',
+  'R$ 500 mil': 'Be8 → campanha dele',
+  'R$ 1,6 mi': 'campanha dele → JMartelo',
+  'R$ 364 mi': 'emendas → destinos indicados por ele'
+};
+function tres(s){ return limpa(s).replace(/\(.*?\)/g, '').trim().split(/\s+/).slice(0, 3).join(' '); }
+function curto(f){ return CURTO[f.valor] || (tres(f.de) + ' → ' + tres(f.para)); }
 
 var reduz = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-var raf = 0, L = 89, prog = 0, atual = 0;
+var raf = 0, atual = -1;
 
-function medir(){
-  var W = Math.max(40, Math.round(el.seta.getBoundingClientRect().width));
-  el.seta.setAttribute('viewBox', '0 0 ' + W + ' 32');
-  L = W - 11;
-  el.linha.setAttribute('x2', L);
-  el.linha.setAttribute('stroke-dasharray', L);
-  el.ponta.setAttribute('points', (W - 12) + ',9 ' + W + ',16 ' + (W - 12) + ',23');
-  aplicar(prog, prog >= 1);
+/* ---------- a bacia ---------- */
+var MAX = Math.max.apply(null, FLUXOS.map(function(f){ return reais(f.valor); }).concat([1]));
+function bacia(){
+  el.bacia.innerHTML = FLUXOS.map(function(f, i){
+    var t = 3 + 13 * Math.sqrt(reais(f.valor) / MAX);           // 3 a 16 px: a raiz do valor (a área cresce com ele)
+    return '<button type="button" class="bl ' + corDe(f) + '" data-i="' + i + '" aria-label="Fluxo ' + (i + 1) + ': ' + esc(extenso(f.valor)) + ', ' + esc(curto(f)) + '">' +
+      '<span class="bl-t"><b class="bl-v">' + esc(f.valor) + '</b><span class="bl-n">' + esc(curto(f)) + '</span></span>' +
+      '<span class="bl-l" aria-hidden="true"><i style="height:' + t.toFixed(1) + 'px"></i></span></button>';
+  }).join('');
+  Array.prototype.forEach.call(el.bacia.querySelectorAll('.bl'), function(b){
+    b.addEventListener('click', function(){ mostrar(+b.getAttribute('data-i'), true); });
+  });
 }
+
+/* ---------- a lane do fluxo cresce e o valor conta ---------- */
 function aplicar(e, chegou){
-  el.linha.setAttribute('stroke-dashoffset', L * (1 - e));
-  el.ponta.style.opacity = chegou ? 1 : 0;
+  el.rota.style.setProperty('--p', e.toFixed(3));
+  el.rota.style.setProperty('--seta', chegou ? 1 : 0);
 }
 function animar(pt){
   if (raf) cancelAnimationFrame(raf);
-  if (reduz){ prog = 1; el.num.textContent = pt.num; aplicar(1, true); return; }
+  if (reduz){ el.num.textContent = pt.num; aplicar(1, true); return; }
   var dur = 1200, t0 = performance.now();
-  prog = 0; el.num.textContent = fmt(0, pt.dec); aplicar(0, false);
+  el.num.textContent = fmt(0, pt.dec); aplicar(0, false);
   function frame(t){
     var p = Math.min(1, (t - t0) / dur);
     var e = 1 - Math.pow(1 - p, 3);
-    prog = e;
     el.num.textContent = p >= 1 ? pt.num : fmt(pt.alvo * e, pt.dec);
     aplicar(e, p >= 0.97);
     if (p < 1) raf = requestAnimationFrame(frame); else raf = 0;
@@ -283,84 +283,82 @@ function linkFonte(p, rotulo, f){
 }
 function setHash(h){ try { history.replaceState(null, '', '#' + h); } catch(e){} }
 
-function mostrar(i){
+function mostrar(i, rola){
+  if (i < 0 || i >= N) i = 0;
+  var f = FLUXOS[i], s = statusDe(f), pt = partes(extenso(f.valor)), prox = FLUXOS[i + 1];
   atual = i;
-  if (i >= N){
-    el.cartao.hidden = true; el.fecho.hidden = false; el.legenda.hidden = true;
-    el.ind.textContent = 'fim · ' + N + ' fluxos';
-    el.assinaN.textContent = 'fim';
-    setHash('fim'); return;
-  }
-  var f = FLUXOS[i], s = statusDe(f), pt = partes(extenso(f.valor));
-  el.fecho.hidden = true; el.cartao.hidden = false; el.legenda.hidden = false;
-  el.ind.textContent = 'fluxo ' + (i + 1) + ' / ' + N;
+  el.palco.hidden = false;
+  el.ind.textContent = 'fluxo ' + (i + 1) + ' de ' + N;
   el.de.textContent = limpa(f.de);
   el.para.textContent = limpa(f.para);
+  el.rota.className = 'rota ' + corDe(f);
   el.pre.textContent = pt.pre; el.suf.textContent = pt.suf;
   el.valor.setAttribute('aria-label', extenso(f.valor));
   el.obs.textContent = linha(f);
   el.chip.textContent = s.chip;
-  el.chip.className = 'chip' + (s.classe ? ' ' + s.classe : '');
   linkFonte(el.fonte, 'Fonte', f.fonte || {});
   if (s.extra){ linkFonte(el.fonte2, 'Status', s.extra); el.fonte2.hidden = false; } else { el.fonte2.hidden = true; }
-  el.ressalva.textContent = s.ressalva; el.ressalva.hidden = !s.ressalva;
+  el.ressalva.textContent = s.ressalva;
+  el.lm.hidden = !s.ressalva;
   var fz = fozDe(f.foz);
-  el.fozLiga.hidden = !fz;
+  el.fozA.hidden = !fz;
   if (fz){ el.fozA.href = 'foz.html#' + encodeURIComponent(fz.id); el.fozA.textContent = 'Na Foz: ' + (fz.rotulo || fz.nome) + ' →'; }
-  document.getElementById('foz-dh').hidden = !(fz && fz.id === 'master');   /* o afluente do filme, mês a mês (dark-horse.html) */
+  el.fozDh.hidden = !(fz && fz.id === 'master');   /* o afluente do filme, mês a mês (dark-horse.html) */
   el.zap.setAttribute('data-share', 'fluxo-' + (brutos.indexOf(f) + 1));
-  el.mais.hidden = true; el.lm.textContent = 'ler mais ↓'; el.lm.setAttribute('aria-expanded', 'false');
-  el.ant.disabled = (i === 0);
-  el.prox.textContent = (i === N - 1) ? 'Concluir →' : 'Próximo fluxo →';
-  el.assinaN.textContent = (i + 1) + '/' + N;
+  el.mais.hidden = true; el.lm.textContent = 'ler o contexto ↓'; el.lm.setAttribute('aria-expanded', 'false');
+  el.ant.hidden = (i === 0);
+  el.prox.innerHTML = '<span>' + (prox ? 'próximo: <span class="v">' + esc(extenso(prox.valor)) + '</span> →' : '↺ voltar ao primeiro') + '</span>';
+  Array.prototype.forEach.call(el.bacia.querySelectorAll('.bl'), function(b, k){
+    if (k === i) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+  });
+  el.bacia.classList.add('escolheu');
   setHash(i + 1);
-  medir(); animar(pt);
+  animar(pt);
+  if (rola) el.palco.scrollIntoView({block:'start', behavior:reduz ? 'auto' : 'smooth'});
 }
 
-function ir(d){ var i = atual + d; if (i < 0 || i > N) return; mostrar(i); window.scrollTo({top:0, behavior:reduz ? 'auto' : 'smooth'}); }
+function ir(d){ var i = atual + d; if (i < 0) return; mostrar(i >= N ? 0 : i, true); }
 
-/* Enviar: o botão manda o tópico da tela (assets/compartilhar.js): "fluxo-<n>" em cada fluxo, "dinheiro" no fim.
+/* Enviar: o botão manda o tópico do fluxo (assets/compartilhar.js): "fluxo-<n>".
    Sem o módulo, manda o fluxo em uma linha e o endereço dele. */
 function base(){ return location.protocol === 'file:' ? location.href.split('#')[0] : location.origin + location.pathname; }
 function mensagem(i){
   var f = FLUXOS[i];
   return extenso(f.valor) + ': ' + limpa(f.de) + ' → ' + limpa(f.para) + '. ' + linha(f) + '\n' + base() + '#' + (i + 1);
 }
-function envia(b, ev){
+el.zap.addEventListener('click', function(ev){
   ev.preventDefault(); ev.stopImmediatePropagation();
-  var id = b.getAttribute('data-share');
+  var id = el.zap.getAttribute('data-share');
   if (window.BDShare && typeof window.BDShare.enviar === 'function'){ window.BDShare.enviar(id); return; }
-  var txt = atual < N ? mensagem(atual) : base();
+  var txt = mensagem(atual);
   if (navigator.share){ navigator.share({text:txt}).catch(function(){}); return; }
   window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
-}
-Array.prototype.forEach.call(document.querySelectorAll('[data-share]'), function(b){ b.addEventListener('click', function(ev){ envia(b, ev); }); });
+});
 el.lm.addEventListener('click', function(){
   var ab = el.mais.hidden; el.mais.hidden = !ab;
-  el.lm.textContent = ab ? 'ler menos ↑' : 'ler mais ↓'; el.lm.setAttribute('aria-expanded', String(ab));
+  el.lm.textContent = ab ? 'fechar o contexto ↑' : 'ler o contexto ↓'; el.lm.setAttribute('aria-expanded', String(ab));
 });
 
 /* Estado inicial */
 if (N === 0){
-  el.cartao.hidden = true; el.fecho.hidden = true; el.vazio.hidden = false; el.ind.textContent = 'sem fluxos';
+  el.palco.hidden = true; el.vazio.hidden = false; el.bacia.hidden = true;
   return;
 }
-el.sub.textContent = N + ' fluxos, um de cada vez.';
+el.sub.textContent = N + ' fluxos de dinheiro em volta dele, cada um com a fonte e o status.';
+bacia();
 
 function deHash(){
-  var h = (location.hash || '').slice(1);
-  if (h === 'fim') return N;
-  var n = parseInt(h, 10);
+  var n = parseInt((location.hash || '').slice(1), 10);
   return (n >= 1 && n <= N) ? n - 1 : 0;
 }
-mostrar(deHash());
+mostrar(deHash(), false);
 
 el.prox.addEventListener('click', function(){ ir(1); });
 el.ant.addEventListener('click', function(){ ir(-1); });
-el.rever.addEventListener('click', function(){ mostrar(0); window.scrollTo({top:0, behavior:reduz ? 'auto' : 'smooth'}); });
-el.fluxo.addEventListener('click', function(){ if (atual < N) animar(partes(extenso(FLUXOS[atual].valor))); });
+el.rota.addEventListener('click', function(){ if (atual >= 0) animar(partes(extenso(FLUXOS[atual].valor))); });
 
 document.addEventListener('keydown', function(e){
+  if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '') || document.documentElement.classList.contains('nv-trava')) return;
   if (e.key === 'ArrowRight') ir(1);
   else if (e.key === 'ArrowLeft') ir(-1);
 });
@@ -372,10 +370,9 @@ el.palco.addEventListener('touchend', function(e){
   if (Date.now() - tt < 600 && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) ir(dx < 0 ? 1 : -1);
 }, {passive:true});
 
-window.addEventListener('resize', function(){ if (atual < N) medir(); });
-window.addEventListener('hashchange', function(){ var i = deHash(); if (i !== atual) mostrar(i); });
+window.addEventListener('hashchange', function(){ var i = deHash(); if (i !== atual) mostrar(i, false); });
 })();
 </script>
-<script src="assets/nav.js?v=41bee539"></script>
+<script src="assets/nav.js?v=fc36981b"></script>
 </body>
 </html>

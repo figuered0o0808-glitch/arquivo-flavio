@@ -1,0 +1,206 @@
+/* BOLSODRIVE · O rio em 60 segundos (rio60.html, assets/rio60.js).
+   Celular: tela cheia abaixo do cabeçalho do site, que colapsa numa faixa de 32 px (logo + [ RIO ]).
+   ≥ 700 px: a mesma tela como um cartão 9:16 no centro, setas dos lados; ≥ 1080 px: índice à esquerda e "como ler" à direita.
+   Cores do sistema (base.css): âmbar = número, fato, ação · verde = fonte · vermelho/âmbar/verde no rio = a cor do caso
+   na Foz · a situação dele em tinta. Movimento só com prefers-reduced-motion: no-preference. */
+
+[hidden]{display:none!important}
+html{scroll-padding-top:0}
+html, body.r6{height:100%}
+body.r6{display:flex; flex-direction:column; height:100vh; height:100dvh; overflow:hidden; overscroll-behavior:none; background:var(--papel)}
+body.r6 .site-header{position:relative; flex:none}
+/* o "siga o rio" do nav.js cairia dentro da tela final: a porta dela já leva à Foz */
+body.r6 .nv-segue{display:none}
+
+/* ---------- cabeçalho colapsado (celular): faixa de 32 px, como no BolsoZap ---------- */
+@media (max-width:699px){
+  body.r6 .site-header:empty{min-height:33px}
+  body.r6 .site-header .nv-row{height:31px; padding:0 4px 0 12px; justify-content:space-between}
+  body.r6 .site-header .nv-mark{min-height:31px}
+  body.r6 .site-header .nv-mark .nv-tag, body.r6 .site-header .nv-aqui, body.r6 .site-header .nv-curso{display:none}
+  body.r6 .site-header .nv-row .nv-mark .nv-logo{height:13px; width:132px}
+  body.r6 .site-header .nv-bt{min-height:30px; padding:0 10px; font-size:11px}
+}
+
+/* ---------- palco ---------- */
+.r6-app{flex:1 1 auto; min-height:0; position:relative; display:grid; grid-template-columns:100%; grid-template-rows:minmax(0,1fr)}
+.r6-palco{position:relative; min-height:0; min-width:0}
+.r6-card{position:absolute; inset:0; overflow:hidden; background:var(--papel); outline:none;
+  touch-action:pan-y; -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; -webkit-tap-highlight-color:transparent; cursor:pointer}
+.r6-card:focus-visible{box-shadow:inset 0 0 0 2px var(--amber)}
+.r6-cv{position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none}
+.r6-telas{position:absolute; inset:0}
+.r6-sr{position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap}
+
+/* ---------- topo: barras + linha ---------- */
+.r6-topo{position:absolute; left:0; right:0; top:0; z-index:3; padding:8px 6px 10px 14px;
+  background:linear-gradient(180deg, rgba(7,10,7,.96) 0, rgba(7,10,7,.86) 62%, rgba(7,10,7,0) 100%); pointer-events:none}
+.r6-topo > *{pointer-events:auto}
+.r6-barras{display:flex; gap:4px; height:3px; margin-right:8px}
+.r6-barras i{flex:1 1 0; height:3px; border-radius:2px; background:rgba(216,239,221,.2); overflow:hidden}
+.r6-barras b{display:block; width:100%; height:100%; background:var(--tinta); transform-origin:0 50%; transform:scaleX(0); will-change:transform}
+.r6-linha{display:flex; align-items:center; height:46px; margin-top:2px}
+.r6-cont{flex:1 1 auto; min-width:0; margin:0; display:flex; align-items:baseline; gap:10px; font:12px/1.2 var(--mono); letter-spacing:.06em; text-transform:uppercase; color:var(--cinza); white-space:nowrap; overflow:hidden}
+.r6-cont .r6-marca{overflow:hidden; text-overflow:ellipsis}
+.r6-cont .r6-pos{flex:none; color:var(--cinza); letter-spacing:.04em}
+.r6-cont .r6-pos b{color:var(--tinta); font-weight:700}
+.r6-bt{flex:none; width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; padding:0; margin:0; border:0; border-radius:2px; background:none; color:var(--tinta); cursor:pointer; text-decoration:none}
+.r6-bt svg{width:22px; height:22px; fill:currentColor}
+#r6-sai svg{fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round}
+.r6-bt:hover{color:var(--amber)}
+.r6-bt:focus-visible, .r6-seta:focus-visible, .r6-denovo:focus-visible, .r6-ind a:focus-visible{outline:2px solid var(--amber); outline-offset:-2px}
+.r6-bt .i-toca{display:none}
+.r6-card.no-fim #r6-pausa{visibility:hidden}     /* na tela final não há o que avançar ("de novo ↺" recomeça) */
+.r6-card.pausado .r6-bt .i-pausa{display:none}
+.r6-card.pausado .r6-bt .i-toca{display:block}
+
+/* ---------- uma tela ---------- */
+.r6-tela{position:absolute; inset:0; display:flex; flex-direction:column; padding:70px 20px calc(16px + env(safe-area-inset-bottom));
+  opacity:0; visibility:hidden; transition:opacity .26s ease, visibility 0s linear .26s}
+.r6-tela.on{opacity:1; visibility:visible; transition:opacity .26s ease}
+.r6-corpo{flex:1 1 auto; min-height:0; display:flex; flex-direction:column; overflow-x:hidden; overflow-y:auto; scrollbar-width:none; overscroll-behavior:contain}
+/* o bloco fica um pouco acima do meio (espaçadores 1 : 1,5); sem espaço, eles somem e o bloco rola */
+.r6-corpo::before{content:""; flex:1 1 0}
+.r6-corpo::after{content:""; flex:1.5 1 0}
+.r6-corpo::-webkit-scrollbar{display:none}
+.r6-in{flex:none; padding:6px 0 10px; max-width:34em;
+  text-shadow:0 0 14px rgba(7,10,7,.95), 0 0 3px rgba(7,10,7,.9)}
+
+.r6-k{margin:0 0 6px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--amber)}
+.r6-nome{margin:0 0 10px; font-size:24px; line-height:1.12; font-weight:800; letter-spacing:-.01em; color:var(--tinta); text-wrap:balance}
+
+/* o número: R$ pequeno no alto, o valor no maior tamanho que cabe (rio60.js), a unidade embaixo */
+.r6-num{margin:0; color:var(--amber); font-weight:800; font-size:120px; line-height:.9; letter-spacing:-.035em; font-variant-numeric:tabular-nums}
+.r6-num.tinta{color:var(--tinta)}
+.r6-nv{display:flex; flex-direction:column; align-items:flex-start}
+.r6-l1{display:inline-flex; align-items:flex-start; white-space:nowrap; padding-bottom:.07em}
+.r6-l1 .p{font-size:clamp(16px,.3em,40px); line-height:1; letter-spacing:0; margin:.1em .16em 0 0; font-weight:800}
+.r6-num .v{display:inline-grid}
+.r6-l1 > .v:first-child{margin-left:-.05em}     /* o "2" e o "1" gigantes têm folga à esquerda: alinhados ao título */
+.r6-num .v > span{grid-area:1/1}
+.r6-num .v .fant{visibility:hidden}
+.r6-num .u{font-size:clamp(19px,.28em,44px); line-height:1.05; letter-spacing:-.005em; font-weight:800; margin-top:.12em; white-space:normal}
+.r6-num.frase{font-size:46px; line-height:1.02; letter-spacing:-.02em; text-wrap:balance; overflow-wrap:normal; hyphens:none; max-width:11em}
+
+.r6-t{margin:14px 0 0; font-size:19px; line-height:1.42; color:var(--tinta); text-wrap:pretty}
+.r6-ele{margin:14px 0 0; padding-left:10px; border-left:2px solid var(--tinta); font-size:15.5px; line-height:1.4; color:var(--tinta)}
+.r6-ele b{font-family:var(--mono); font-size:11px; letter-spacing:.08em; font-weight:700; margin-right:4px}
+.r6-f{margin:12px 0 0; font-family:var(--mono); font-size:12px; color:var(--cinza)}
+.r6-f a{display:inline-block; padding:12px 0; margin:-10px 0 -12px; color:var(--azul); text-underline-offset:3px}
+.r6-tela.aperta .r6-nome{font-size:21px; margin-bottom:8px}
+.r6-tela.aperta .r6-t{font-size:17px; margin-top:10px}
+.r6-tela.aperta .r6-ele{font-size:14.5px; margin-top:10px}
+
+.r6-acoes{flex:none; position:relative; display:flex; flex-wrap:wrap; align-items:center; gap:4px 20px; padding-top:12px}
+/* o rio passa por baixo dos botões */
+.r6-acoes::before{content:""; position:absolute; z-index:-1; left:-24px; right:-24px; top:-28px; bottom:calc(-24px - env(safe-area-inset-bottom));
+  background:linear-gradient(180deg, rgba(7,10,7,0) 0, rgba(7,10,7,.88) 34px, rgba(7,10,7,.96) 100%); pointer-events:none}
+.r6-tela{isolation:isolate}
+.r6-acoes .env{min-height:48px; padding:0 22px; font-size:16px}
+.r6-acoes .porta{font-size:16px}
+
+/* ---------- a tela final ---------- */
+.r6-fim .r6-num{font-size:96px}
+.r6-fig{margin:16px 0 0}
+.r6-bacia{display:block; width:100%; max-width:380px; height:auto; overflow:visible}
+.r6-bacia .rot text{font-family:var(--mono); font-size:9.5px; letter-spacing:.04em; fill:var(--cinza); text-anchor:middle}
+.r6-bacia path.g{stroke-width:4.5; opacity:.1}
+.r6-bacia path.g.on{opacity:.34}
+.r6-bacia path.c{stroke-width:1.15; opacity:.34; stroke-dasharray:1 1; stroke-dashoffset:0}
+.r6-bacia path.c.on{stroke-width:1.9; opacity:1}
+.r6-bacia .foz{fill:var(--papel); stroke:var(--tinta); stroke-width:1.4}
+.r6-bacia .fb{font-family:var(--sans); font-size:9.5px; font-weight:800; fill:var(--tinta); text-anchor:middle; dominant-baseline:central}
+.r6-fig figcaption{margin:6px 0 0; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--cinza); max-width:380px; text-align:center}
+.r6-fim .legenda{margin:12px 0 0}
+.r6-acoes-fim{gap:2px 16px}
+.r6-acoes-fim .r6-porta-g{flex-basis:100%; font-size:20px; min-height:46px}
+.r6-ac2{display:flex; flex-wrap:nowrap; align-items:center; gap:4px 14px}
+.r6-ac2 .env{white-space:nowrap; padding:0 18px}
+@media (max-width:350px){ .r6-ac2{flex-wrap:wrap} }
+.r6-denovo{white-space:nowrap; display:inline-flex; align-items:center; min-height:44px; padding:0; border:0; background:none; font:600 15px var(--sans); color:var(--tinta); cursor:pointer; text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--cinza2)}
+.r6-rod{position:relative; z-index:1; margin:6px 0 0}
+/* tela final em celular baixo (≤ 700 px de altura útil): tudo menor para caber sem rolar */
+.r6-fim.aperta .r6-t{font-size:16px; line-height:1.38}
+.r6-fim.aperta .r6-fig{margin-top:10px}
+.r6-fim.aperta .r6-bacia{max-width:270px}
+.r6-fim.aperta .r6-fig figcaption{max-width:270px}
+.r6-fim.aperta .legenda{font-size:11.5px; margin-top:8px}
+.r6-fim.aperta .r6-acoes-fim .r6-porta-g{font-size:18px; min-height:40px}
+.r6-fim.aperta2 .r6-bacia .rot, .r6-fim.aperta2 .r6-fig figcaption{display:none}
+.r6-fim.aperta2 .r6-bacia{max-width:190px; margin-top:-14px}
+.r6-fim.aperta2 .legenda{font-size:11px; gap:2px 10px; margin-top:6px}
+.r6-fim.aperta2 .r6-in > .r6-k{margin-bottom:2px}
+.r6-fim.aperta2 .r6-t{font-size:15px}
+.r6-rod .nv-fatos{margin:0}
+
+/* ---------- dica da primeira visita ---------- */
+.r6-dica{position:absolute; left:0; right:0; bottom:calc(96px + env(safe-area-inset-bottom)); z-index:4; width:max-content; max-width:calc(100% - 32px); margin:0 auto; padding:8px 12px;
+  font:12px/1.3 var(--mono); color:var(--tinta); background:rgba(14,22,14,.94); border:1px solid var(--linha); border-radius:2px; white-space:nowrap; pointer-events:none; transition:opacity .4s}
+.r6-dica.sai{opacity:0}
+
+/* ---------- setas (desktop); no celular só para o leitor de tela e o teclado ---------- */
+.r6-seta{position:absolute; top:50%; z-index:5; width:48px; height:48px; margin-top:-24px; display:inline-flex; align-items:center; justify-content:center; padding:0;
+  border:1px solid var(--linha); border-radius:50%; background:var(--leve); color:var(--tinta); cursor:pointer}
+.r6-seta svg{width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.r6-seta:hover{border-color:var(--amber); color:var(--amber)}
+.r6-seta[disabled]{opacity:0; pointer-events:none}
+.r6-ind, .r6-lado{display:none}
+.r6-sem{position:absolute; left:0; right:0; top:0; z-index:6; padding:24px 20px; background:var(--papel)}   /* sem JavaScript */
+@media (max-width:699px){
+  .r6-seta{width:1px; height:1px; overflow:hidden; clip-path:inset(50%); border:0}
+  .r6-seta:focus-visible{width:44px; height:44px; clip-path:none; border:1px solid var(--amber)}
+  .r6-seta.ant{left:6px} .r6-seta.prox{right:6px}
+}
+
+/* ---------- ≥ 700 px: o cartão 9:16 no centro ---------- */
+@media (min-width:700px){
+  .r6-app{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); padding:20px 24px 24px; align-items:center}
+  .r6-palco{grid-column:2; grid-row:1; height:100%; max-height:900px; aspect-ratio:9/16; justify-self:center; align-self:center}
+  .r6-card{border:1px solid var(--linha); border-radius:10px}
+  .r6-seta.ant{left:-70px} .r6-seta.prox{right:-70px}
+  .r6-tela{padding:72px 24px 22px}
+}
+@media (min-width:700px) and (max-height:640px){ .r6-palco{max-height:none} }
+
+/* ---------- ≥ 1080 px: índice e "como ler" ---------- */
+@media (min-width:1080px){
+  .r6-ind, .r6-lado{display:block; grid-row:1; align-self:center; width:236px}
+  .r6-ind{grid-column:1; justify-self:end; margin-right:104px}
+  .r6-lado{grid-column:3; justify-self:start; margin-left:104px; font-size:14px; line-height:1.5; color:var(--cinza)}
+  .r6-lk{margin:0 0 10px; font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza)}
+  .r6-lk2{margin:16px 0 4px; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza)}
+  .r6-lado p{margin:0 0 10px}
+  .r6-lado b{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--tinta)}
+  .r6-leg-v{flex-direction:column; gap:6px; margin:6px 0 16px}
+  .r6-leg-v span{white-space:normal}
+  .r6-teclas{font-family:var(--mono); font-size:12px}
+  .r6-teclas kbd{display:inline-block; min-width:22px; padding:1px 5px; border:1px solid var(--cinza2); border-radius:3px; font:12px var(--mono); color:var(--tinta); text-align:center}
+  .r6-ind ol{list-style:none; margin:0; padding:0}
+  .r6-ind a{display:flex; align-items:center; gap:10px; min-height:40px; padding:4px 10px 4px 0; color:var(--cinza); text-decoration:none; font-size:15px; font-weight:600; border-right:2px solid transparent}
+  .r6-ind a:hover{color:var(--tinta)}
+  .r6-ind a[aria-current]{color:var(--tinta); border-right-color:var(--amber)}
+  .r6-ind .n{flex:none; width:22px; font-family:var(--mono); font-size:11px; font-weight:400; color:var(--cinza2)}
+  .r6-ind a[aria-current] .n{color:var(--amber)}
+  .r6-ind i{flex:none; width:4px; height:18px; border-radius:2px}
+  .r6-ind i.grave{background:var(--st-grave)} .r6-ind i.medio{background:var(--st-medio)} .r6-ind i.outros{background:var(--st-outros)}
+  .r6-ind i.todos{background:linear-gradient(var(--st-grave) 0 33%, var(--st-medio) 33% 66%, var(--st-outros) 66%)}
+  .r6-ind .t{min-width:0}
+}
+
+/* ---------- movimento (só sem prefers-reduced-motion) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  .r6-tela.on .r6-in > *{animation:r6-sobe .5s cubic-bezier(.2,.75,.25,1) both}
+  .r6-tela.on .r6-in > :nth-child(2){animation-delay:.04s}
+  .r6-tela.on .r6-in > :nth-child(3){animation-delay:.09s}
+  .r6-tela.on .r6-in > :nth-child(4){animation-delay:.16s}
+  .r6-tela.on .r6-in > :nth-child(5){animation-delay:.22s}
+  .r6-tela.on .r6-in > :nth-child(6){animation-delay:.27s}
+  .r6-tela.on .r6-acoes{animation:r6-sobe .5s .3s cubic-bezier(.2,.75,.25,1) both}
+  .r6-fim.on .r6-bacia path{animation:r6-risca 1.2s cubic-bezier(.3,.6,.2,1) both; animation-delay:calc(var(--d) * 16ms + .25s)}
+  .r6-card.segura .r6-topo{opacity:.35; transition:opacity .2s}
+}
+@keyframes r6-sobe{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
+@keyframes r6-risca{from{stroke-dashoffset:1} to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion: reduce){
+  .r6-tela, .r6-tela.on, .r6-dica{transition:none}
+}

@@ -16,7 +16,7 @@
 <meta property="og:title" content="Flávio Bolsonaro · Dark Horse">
 <meta property="og:description" content="R$ 131 milhões pedidos a Daniel Vorcaro para um filme sobre o pai, segundo a PF; R$ 60 milhões teriam sido pagos. Investigado no STF, sem denúncia. O dinheiro, mês a mês.">
 <meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/dark-horse.html">
-<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/dark-horse.png">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/dark-horse.png?v=10d5a164">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,16 +24,16 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Flávio Bolsonaro · Dark Horse">
 <meta name="twitter:description" content="R$ 131 milhões pedidos a Daniel Vorcaro para um filme sobre o pai, segundo a PF; R$ 60 milhões teriam sido pagos. Investigado no STF, sem denúncia.">
-<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/dark-horse.png">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/dark-horse.png?v=10d5a164">
 <meta name="twitter:image:alt" content="Dark Horse: R$ 131 milhões pedidos por Flávio Bolsonaro a Daniel Vorcaro para um filme sobre o pai, segundo a PF.">
 
 <link rel="canonical" href="https://figuered0o0808-glitch.github.io/arquivo-flavio/dark-horse.html">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
-<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
-<link rel="stylesheet" href="assets/header.css?v=3b010dac">
-<link rel="stylesheet" href="assets/comparador.css?v=36a3c552">
+<link rel="stylesheet" href="assets/base.css?v=38ce818e">
+<link rel="stylesheet" href="assets/header.css?v=84dc371e">
+<link rel="stylesheet" href="assets/comparador.css?v=cb10f632">
 <style>
 /* ===== Dark Horse: o afluente do caso Master (assets/darkhorse.js) =====
    O palco fica preso na tela e a rolagem é o tempo: o rio vira calendário, de dez/2024 a hoje.
@@ -45,17 +45,30 @@ html.rolando{scroll-behavior:auto!important}
 body{overflow-x:hidden}
 .so-leitor{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 
-/* botão de envio: .env, o mesmo da Foz (âmbar sólido, 44 px, "enviar ↗"); fica aqui até P1-0 o pôr em base.css. Portas: as mesmas da abertura */
-.env{flex:none; display:inline-flex; align-items:center; justify-content:center; min-height:44px; min-width:44px; padding:0 18px; font-family:var(--sans); font-size:15px; font-weight:700; color:#120c00; background:var(--amber); border:1.5px solid var(--amber); border-radius:2px; cursor:pointer; text-transform:none}
-.env:hover{filter:brightness(1.06)}
-/* D02: o fim da página fica só com os botões; a caixa "volte à foz" do nav.js não entra aqui (assets/darkhorse.js também a remove do DOM) */
+/* Botões e portas: .env (o único envio, âmbar sólido) e .porta (link âmbar) de assets/base.css.
+   X04: "▶ assistir" e "↺ rever" em mono, sem caixa (o controle, não o fato). D02: uma porta no fim; a caixa
+   "volte à foz" do nav.js não entra aqui (assets/darkhorse.js também a remove do DOM). */
 .nv-segue{display:none}
-.porta{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 16px; background:var(--amber); color:#120c00; font-weight:700; font-size:15px;
-  line-height:1.2; text-decoration:none; border-radius:3px; border:1.5px solid var(--amber); cursor:pointer; font-family:var(--sans)}
-.porta.sec{background:transparent; color:var(--tinta); border-color:var(--cinza2)}
-.porta.sec:hover{border-color:var(--tinta)}
-.portas{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0}
-.porta:focus-visible, .env:focus-visible, .dh-leg a:focus-visible, .dh-sec a:focus-visible, .dh-sec summary:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.env:hover{filter:brightness(1.06)}
+.dh-mono{display:inline-flex; align-items:center; gap:6px; min-height:44px; padding:0 6px; font-family:var(--mono); font-size:12.5px; font-weight:700; letter-spacing:.03em; color:var(--tinta); background:none; border:0; border-radius:2px; cursor:pointer; white-space:nowrap}
+.dh-mono:hover{color:var(--amber)}
+.porta:hover{text-decoration:underline; text-underline-offset:3px}
+.porta:focus-visible, .env:focus-visible, .dh-mono:focus-visible, .dh-leg a:focus-visible, .dh-sec a:focus-visible, .dh-sec summary:focus-visible, .dh-topo a:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+
+/* ---------- o topo no celular (X04): o número acima do calendário, com a situação, a fonte e o envio ----------
+   É o .dq do sistema. No desktop o número já fica ao lado do calendário (a coluna da legenda): o topo some e
+   o primeiro momento do palco é a abertura inteira. */
+.dh-topo{padding:10px 16px 2px}
+.dh-topo > *{max-width:640px}
+.dh-topo .kicker{margin:6px 0 2px}
+.dh-topo h1.sec{margin:0 0 10px}
+.dh-topo .dq{margin:0 0 2px}
+.dh-topo .numero.destaque{font-size:clamp(58px,17.5vw,84px); margin:0 0 6px; white-space:nowrap}
+.dh-topo .numero .p, .dh-topo .numero .u{font-size:.4em}
+.dh-topo .dq-t{font-size:16.5px}
+.dh-topo .dq-a{gap:4px 10px; margin:2px 0 0}
+.dh-gancho{font-size:17px}
+@media (min-width:1024px){ .dh-topo{display:none} }
 .nf{margin:0; font-family:var(--mono); font-size:12px; color:var(--cinza)}
 .nf a{display:inline-flex; align-items:center; min-height:44px; color:var(--cinza); text-decoration-color:var(--cinza2); text-underline-offset:3px}
 .nf a:hover{color:var(--azul)}
@@ -83,6 +96,14 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .dh-mg{display:flex; gap:3px}
 .dh-mg i{display:block; width:6px; height:6px; border-radius:50%; box-sizing:border-box; border:1px solid var(--cinza2)}
 .dh-mg i.on{background:#7df59a; border-color:#7df59a; box-shadow:0 0 4px rgba(125,245,154,.65)}
+/* celular estreito (320–360): o mostrador cabe numa linha sem encostar BRASIL/EUA no mês */
+@media (max-width:360px){
+  .dh-most{padding:0 8px 6px}
+  .dh-most .lado{font-size:10px; letter-spacing:.04em}
+  .dh-most .meio{gap:6px}
+  .dh-most b{font-size:12px; letter-spacing:.02em}
+  .dh-mg{gap:2px} .dh-mg i{width:5px; height:5px}
+}
 
 /* as etiquetas do rio (HTML sobre o canvas): um "mundo" que a câmera desloca inteiro */
 .dh-rot{position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:2}
@@ -93,11 +114,11 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .dh-e.din{text-align:right}
 .dh-e b{font-family:var(--mono); font-size:12px; font-weight:400; color:var(--cinza); letter-spacing:-.01em; margin-right:4px; white-space:nowrap}
 .dh-e.din b{margin-right:0; margin-left:0}
-.dh-e.lugar{font-family:var(--mono); letter-spacing:.05em; text-transform:uppercase; color:var(--tinta)}
+.dh-e.lugar{font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--cinza)}
 .dh-e.eixo, .dh-e.nota{font-family:var(--mono); color:var(--cinza)}
 .dh-e.eixo{white-space:nowrap; letter-spacing:-.03em}
 .dh-e.ponte{font-family:var(--mono); color:var(--tinta); white-space:nowrap; padding:0 4px; background:rgba(7,10,7,.9); border-radius:2px}
-.dh-e.geral{font-family:var(--mono); letter-spacing:.05em; text-transform:uppercase; color:var(--tinta); background:rgba(7,10,7,.8)}
+.dh-e.geral{font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--cinza); background:rgba(7,10,7,.8)}
 .dh-e.foco{font-weight:600}
 
 /* ---------- a legenda de cada momento ---------- */
@@ -115,8 +136,19 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .dh-linhas p{margin:0 0 6px; font-size:15.5px; line-height:1.4}
 .dh-ele{margin:8px 0 0; padding:3px 0 3px 10px; border-left:2px solid var(--tinta); font-family:var(--mono); font-size:12.5px; line-height:1.45; color:var(--tinta)}
 .dh-dica{margin:6px 0 0; font-family:var(--mono); font-size:12px; color:var(--cinza)}
-.dh-acoes{display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; margin:4px 0 0}
-.dh-acoes .porta{min-height:44px; padding:8px 12px; font-size:14px}
+.dh-acoes{display:flex; flex-wrap:wrap; align-items:center; gap:2px 14px; margin:6px 0 0}
+.dh-acoes .porta{font-size:15px}
+/* o 1º momento no celular: o topo já deu o número; aqui o palco ganha o gancho e a legenda do desenho */
+.dh-m .m0-cel{display:none}
+.m0-cel .m0-g{font-size:clamp(25px,7.2vw,30px); margin:2px 0 8px}
+.dh-lg{display:flex; flex-direction:column; gap:4px; margin:6px 0 0; font-size:13px; line-height:1.35; color:var(--cinza)}
+.dh-lg span{display:flex; align-items:baseline; gap:8px}
+.dh-lg i{flex:none; display:inline-block; width:14px; height:0; border-top:1.5px solid #7df59a; transform:translateY(-3px)}
+.dh-lg i.grave{width:7px; height:7px; border:0; border-radius:50%; background:var(--carimbo); transform:translateY(-1px); margin:0 3.5px}
+@media (max-width:1023px){
+  .dh-m.m0 > :not(.m0-cel){display:none}
+  .dh-m.m0 .m0-cel{display:block}
+}
 .dh-m[data-f="entra"] .dh-grande, .dh-m[data-f="entra"] .dh-fecha, .dh-m[data-f="grande"] .dh-fecha{visibility:hidden}
 .dh-m.aperta .dh-linhas p{font-size:14px; line-height:1.36; margin-bottom:4px}
 .dh-m.aperta .dh-k{margin-bottom:3px}
@@ -125,7 +157,8 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .dh-m.aperta2 .dh-linhas p{font-size:13.5px; line-height:1.32; margin-bottom:3px}
 .dh-m.aperta2 .dh-ele{margin-top:4px; padding:1px 0 1px 8px; font-size:12px; line-height:1.35}
 .dh-m.aperta2 .dh-acoes{gap:4px 6px; margin-top:2px}
-.dh-m.aperta2 .dh-acoes .porta, .dh-m.aperta2 .dh-acoes .env{min-height:40px; padding:6px 12px; font-size:14px}
+.dh-m.aperta2 .dh-acoes .env{min-height:40px; padding:6px 12px; font-size:14px}
+.dh-m.aperta2 .dh-acoes .porta, .dh-m.aperta2 .dh-acoes .dh-mono{min-height:40px}
 .dh-m.aperta2 .nf a{min-height:40px}
 .dh-regua{position:absolute; left:0; top:0; visibility:hidden; pointer-events:none; white-space:nowrap; font-size:100px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
 .dh-regua.mono{font-family:var(--mono); font-weight:700; letter-spacing:-.02em}
@@ -196,11 +229,12 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .dh-lista .fim-l{display:flex; justify-content:flex-end; padding:0 0 12px}
 .dh-teia{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:0; max-width:760px}
 .dh-teia .tk{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin-right:2px}
-.dh-teia a{display:inline-flex; align-items:center; min-height:44px; padding:0 12px; border:1px solid var(--linha); border-radius:22px; color:var(--tinta); text-decoration:none; font-size:14px}
-.dh-teia a:hover{border-color:rgba(125,245,154,.45)}
-.dh-arq{margin:14px 0 0; font-size:14.5px}
-.dh-arq a{display:inline-flex; align-items:center; min-height:44px; color:var(--azul); text-underline-offset:3px}
-.dh-fim .portas{margin-top:18px}
+.dh-teia{gap:6px}
+.dh-teia a{display:inline-flex; align-items:center; min-height:40px; padding:0 11px; border:1px solid var(--linha); border-radius:2px; color:var(--tinta); text-decoration:none; font-size:14px}
+.dh-teia a:hover{border-color:var(--cinza2)}
+.dh-fim .porta{margin:22px 0 0; font-size:18px}
+.dh-mais{display:flex; flex-wrap:wrap; gap:0 18px; margin:2px 0 0; font-size:14.5px}
+.dh-mais a{display:inline-flex; align-items:center; min-height:44px; color:var(--azul); text-underline-offset:3px}
 .rodape{max-width:1180px; margin:0 auto; padding:18px 16px 48px; font-size:13.5px; line-height:1.45; color:var(--cinza)}
 @media (max-width:1023px){
   /* a faixa da direita fica livre para o controle do "assistir" */
@@ -217,6 +251,21 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 <header class="site-header" data-nav></header>
 
 <main>
+<!-- O TOPO (celular): o número, quem afirma, a situação dele, a fonte, o envio; depois o gancho para o calendário.
+     O texto é o do 1º momento de data/darkhorse.js (assets/darkhorse.js confere e acerta, se a curadoria mudar). -->
+<section class="dh-topo" id="dh-topo" aria-labelledby="dh-titulo">
+  <p class="kicker neutro" id="dh-tk">Afluente da Foz · caso Master</p>
+  <h1 class="sec" id="dh-titulo">Dark Horse</h1>
+  <div class="dq">
+    <p class="numero destaque" id="dh-tn"><span class="p">R$ </span>131<span class="u"> milhões</span></p>
+    <p class="dq-t" id="dh-tt">pedidos por Flávio Bolsonaro a Daniel Vorcaro para um filme sobre o pai, segundo a PF. R$ 60 milhões teriam sido pagos.</p>
+    <p class="dq-s" id="dh-ts">ele neste caso: investigado no STF desde julho de 2026, sem denúncia.</p>
+    <div class="dq-a"><button type="button" class="env" data-share="dark-horse">enviar ↗</button><button type="button" class="dh-mono" data-assistir>▶ assistir</button></div>
+    <p class="dq-f" id="dh-tf"><a href="https://mais.opovo.com.br/jornal/dom/2026/09/13/pf-aponta-cobrancas-de-flavio-a-vorcaro-e-detalha-relacao-sobre-dark-horse.html" target="_blank" rel="noopener">O Povo, 13/09/2026 ↗</a></p>
+  </div>
+  <a class="porta dh-gancho" href="#dh" data-gancho>O dinheiro do filme, mês a mês ↓</a>
+</section>
+
 <!-- O PALCO: o afluente do caso Master como calendário (assets/darkhorse.js). A rolagem é o tempo. -->
 <section class="dh" id="dh-rio" aria-label="Dark Horse: o dinheiro do filme, mês a mês" data-rot="historia" hidden>
   <div class="h-cena" id="dh-cena">
@@ -241,10 +290,10 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 <!-- o calendário em texto, com as fontes (montado por assets/darkhorse.js a partir de data/darkhorse.js) -->
 <section class="dh-sec dh-lista" id="dh-lista" aria-label="O calendário em texto, com as fontes"></section>
 
-<section class="dh-sec dh-fim" id="dh-portas" aria-label="Na teia e no arquivo">
+<section class="dh-sec dh-fim" id="dh-portas" aria-label="Na teia e a saída">
   <p class="dh-teia" id="dh-teia"></p>
-  <p class="dh-arq"><a href="drive.html?q=Dark%20Horse#arquivo">registros no arquivo →</a></p>
-  <div class="portas"><a class="porta" href="foz.html#master">A Foz, caso a caso →</a><a class="porta sec" href="index.html#cap-master">O rio inteiro →</a><a class="porta sec" href="zap.html#dark-horse">A conversa no BolsoZap →</a></div>
+  <a class="porta" href="foz.html#master">A Foz, caso a caso →</a>
+  <p class="dh-mais"><a href="zap.html#dark-horse">a conversa no BolsoZap</a><a href="index.html#cap-master">o rio inteiro</a><a href="drive.html?q=Dark%20Horse#arquivo">os registros no arquivo</a></p>
 </section>
 </main>
 
@@ -258,13 +307,13 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
   <button type="button" class="h-para" id="h-para" aria-label="Parar a animação"><span class="ic" aria-hidden="true">■</span><span class="tx">parar</span></button>
 </div>
 
-<script src="data/darkhorse.js?v=ae8c67cc"></script>
-<script src="assets/rio.js?v=241ad6ba"></script>
-<script src="assets/nav.js?v=41bee539"></script>
-<script src="assets/roteiro.js?v=df65181c" defer></script>
-<script src="assets/darkhorse.js?v=175840db" defer></script>
-<script src="assets/comparador.js?v=109df845" defer></script>
-<script src="data/topicos.js?v=ab29a258" defer></script>
+<script src="data/darkhorse.js?v=9039f336"></script>
+<script src="assets/rio.js?v=41d32ea1"></script>
+<script src="assets/nav.js?v=fc36981b"></script>
+<script src="assets/roteiro.js?v=b4c6e049" defer></script>
+<script src="assets/darkhorse.js?v=da7b8978" defer></script>
+<script src="assets/comparador.js?v=fe85f128" defer></script>
+<script src="data/topicos.js?v=75878a47" defer></script>
 <script src="assets/compartilhar.js?v=edbe4096" defer></script>
 </body>
 </html>

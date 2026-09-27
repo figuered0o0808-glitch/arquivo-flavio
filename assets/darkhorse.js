@@ -22,7 +22,9 @@
    um quadro por mudança de rolagem.
 
    Links: dark-horse.html#<id do momento> abre no fecho do momento; #dh é a abertura; #dh-lista abre a lista.
-   Botão de envio: .env (âmbar sólido, o mesmo da Foz; o CSS está em dark-horse.html até P1-0 o pôr em base.css).
+   Botão de envio: .env (âmbar sólido, o mesmo da Foz, assets/base.css); portas: .porta (link âmbar); "▶ assistir" e
+   "↺ rever" em mono (.dh-mono). No celular, o número fica no topo da página (#dh-topo, X04), acima do calendário; o 1º
+   momento do palco vira o gancho e a legenda do desenho (.m0-cel). No desktop, o 1º momento é a abertura inteira.
    Teste: window.__dh = { medir(n), momentos(), vai(id), ... }. Assistir: window.__historia.roteiro().
    ===================================================================== */
 (function(){
@@ -111,6 +113,8 @@ const RX_N = /(\d{1,3}(?:\.\d{3})+|\d+)(?:,(\d+))?/;
 const fmtN = (v, dec) => { const f = v.toFixed(dec).split('.'); const i = f[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.'); return f[1] ? i + ',' + f[1] : i; };
 const fonteA = f => f && f.url ? '<p class="nf"><a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'fonte') + ' ↗</a></p>' : '';
 
+const GANCHO = 'O dinheiro do filme, mês a mês';
+const mesAno = iso => { const x = /^(\d{4})-(\d{2})/.exec(iso || ''); return x ? MES[+x[2] - 1].toLowerCase() + '/' + x[1] : ''; };
 function artHtml(m, k){
   const g = m.grande || {}, tipo = /^(numero|hora|texto|citacao)$/.test(g.tipo) ? g.tipo : 'texto';
   let gv = esc(g.v);
@@ -120,21 +124,31 @@ function artHtml(m, k){
   const linhas = (m.linhas || []).length ? '<div class="dh-linhas">' + m.linhas.map(t => '<p>' + esc(t) + '</p>').join('') + '</div>' : '';
   const ele = m.ele ? '<p class="dh-ele">' + esc(m.ele) + '</p>' : '';
   /* a fonte do momento; com m.fontes (duas linhas, duas fontes), um link para cada, sem repetir URL */
-  let acoes = (m.fontes && m.fontes.length ? m.fontes : [m.fonte])
-    .filter((f, i, a) => f && f.url && a.findIndex(g => g && g.url === f.url) === i).map(f => fonteA(f)).join('');
+  /* X04: um .env (o envio, sempre primeiro), as portas como links âmbar, o controle em mono e a fonte por último */
+  let acoes = '';
   if (m.portas && m.portas.length){
     const ord = p => p.share ? 0 : p.href ? 1 : 2;
     acoes += m.portas.slice().sort((x, y) => ord(x) - ord(y)).map(p => p.share ? '<button type="button" class="env" data-share="' + esc(p.share) + '">' + esc(p.txt) + '</button>' :
-      p.acao === 'rever' ? '<button type="button" class="porta sec" data-rever>' + esc(p.txt) + '</button>' :
-      '<a class="porta sec" href="' + esc(p.href) + '">' + esc(p.txt) + '</a>').join('');
+      p.acao === 'rever' ? '<button type="button" class="dh-mono" data-rever>' + esc(p.txt) + '</button>' :
+      '<a class="porta" href="' + esc(p.href) + '">' + esc(p.txt) + '</a>').join('');
   } else if (m.share) acoes += '<button type="button" class="env" data-share="' + esc(m.share) + '">enviar ↗</button>';
-  if (k === 0 && window.BDRoteiro) acoes += '<button type="button" class="porta sec" data-assistir>▶ assistir</button>';
-  return '<article class="dh-m" data-m="' + k + '" data-f="' + (k === 0 ? 'fecha' : 'entra') + '" aria-labelledby="' + (k === 0 ? 'dh-h1' : idg) + '"' + (k ? ' aria-hidden="true"' : '') + '>' +
+  if (k === 0 && window.BDRoteiro) acoes += '<button type="button" class="dh-mono" data-assistir>▶ assistir</button>';
+  acoes += (m.fontes && m.fontes.length ? m.fontes : [m.fonte])
+    .filter((f, i, a) => f && f.url && a.findIndex(g => g && g.url === f.url) === i).map(f => fonteA(f)).join('');
+  /* a abertura não dá instrução ("role…"): dá o gancho, que leva ao 1º momento */
+  const dica = k === 0 ? '<p class="dh-dica"><a class="porta dh-gancho" href="#' + esc((MOM[1] || m).id) + '" data-gancho>' + esc(GANCHO) + ' ↓</a></p>' :
+    (m.dica ? '<p class="dh-dica">' + esc(m.dica) + '</p>' : '');
+  /* no celular o topo da página já deu o número: o 1º momento do palco mostra o gancho e o que o desenho quer dizer */
+  const mini = k !== 0 ? '' : '<div class="m0-cel"><p class="dh-k">de ' + esc(mesAno((D.periodo || {}).de)) + ' a hoje</p>' +
+    '<p class="dh-grande texto m0-g">' + esc(GANCHO) + ' ↓</p>' +
+    '<div class="dh-lg"><span><i></i>dia de remessa ao fundo Havengate, no Texas, segundo a PF</span><span><i class="grave"></i>preso ou condenado</span></div>' +
+    (window.BDRoteiro ? '<div class="dh-acoes"><button type="button" class="dh-mono" data-assistir>▶ assistir</button></div>' : '') + '</div>';
+  return '<article class="dh-m' + (k === 0 ? ' m0' : '') + '" data-m="' + k + '" data-f="' + (k === 0 ? 'fecha' : 'entra') + '" aria-labelledby="' + (k === 0 ? 'dh-h1' : idg) + '"' + (k ? ' aria-hidden="true"' : '') + '>' +
     '<p class="dh-k">' + esc(m.k) + '</p>' +
     (m.h1 ? '<h1 class="sec dh-h1" id="dh-h1">' + esc(m.h1) + '</h1>' : '') +
     grande +
-    '<div class="dh-fecha">' + linhas + ele + (m.dica ? '<p class="dh-dica">' + esc(m.dica) + '</p>' : '') +
-    '<div class="dh-acoes">' + acoes + '</div></div></article>';
+    '<div class="dh-fecha">' + linhas + ele + dica +
+    '<div class="dh-acoes">' + acoes + '</div></div>' + mini + '</article>';
 }
 leg.innerHTML = MOM.map(artHtml).join('');
 const ARTS = $$('.dh-m', leg);
@@ -149,6 +163,27 @@ MOM.forEach((m, k) => {
     if (x) m.conta = { pre: g.v.slice(0, x.index), pos: g.v.slice(x.index + x[0].length), alvo: parseFloat(x[1].replace(/\./g, '') + (x[2] ? '.' + x[2] : '')), dec: x[2] ? x[2].length : 0, ok: !!g.conta && k > 0 };
   }
 });
+/* o topo (celular): o mesmo texto do 1º momento e a mesma fonte do pedido; o HTML já vem com ele (sem salto de layout) */
+(function topo(){
+  const t = $('#dh-topo'); if (!t) return;
+  const m = MOM[0] || {}, g = m.grande || {};
+  const poe = (sel, txt) => { const el = $(sel, t); if (el && txt && el.textContent !== txt) el.textContent = txt; };
+  poe('#dh-tk', m.k); poe('#dh-titulo', m.h1);
+  const x = /^(\D*?)(\d[\d.,]*)(.*)$/.exec(g.v || ''), nEl = $('#dh-tn', t);
+  if (x && nEl){
+    const h = (x[1] ? '<span class="p">' + esc(x[1]) + '</span>' : '') + esc(x[2]) + (x[3] ? '<span class="u">' + esc(x[3]) + '</span>' : '');
+    if (nEl.innerHTML !== h) nEl.innerHTML = h;
+  }
+  poe('#dh-tt', (m.linhas || []).join(' '));
+  poe('#dh-ts', (MOM.find(o => o.ele) || {}).ele);
+  const f = ((D.totais || {}).pedido || {}).fonte || m.fonte, a = $('#dh-tf a', t);
+  if (f && f.url && a){
+    const d = /^(\d{4})-(\d{2})-(\d{2})/.exec(f.data || ''), txt = (f.veiculo || 'fonte') + (d ? ', ' + d[3] + '/' + d[2] + '/' + d[1] : '') + ' ↗';
+    if (a.getAttribute('href') !== f.url) a.setAttribute('href', f.url);
+    if (a.textContent !== txt) a.textContent = txt;
+  }
+})();
+
 /* as 7 minigotas do mostrador */
 mgEl.innerHTML = GOTAS.map(() => '<i></i>').join('');
 const MG = $$('i', mgEl);
@@ -538,7 +573,7 @@ function desenha(E){
   /* a régua dos meses vem depois da água (um canal que cruza a fronteira não apaga o nome do mês);
      o texto leva um contorno da cor do fundo */
   const regua = () => {
-    g.font = (L.desk ? '11px ' : '10.5px ') + MONO; g.textBaseline = 'middle'; g.textAlign = 'right'; g.lineJoin = 'round';
+    g.font = '700 13px ' + MONO; g.textBaseline = 'middle'; g.textAlign = 'right'; g.lineJoin = 'round';   /* X04: o mês é o dado, 13/700 tinta */
     const nome = (t, x, y, cor) => { g.lineWidth = 3; g.strokeStyle = 'rgba(7,10,7,.92)'; g.strokeText(t, x, y); g.fillStyle = cor; g.fillText(t, x, y); };
     /* o nome do mês fica ao lado do traço; se um canal passa ali, ele sobe ou desce o bastante para não ficar por baixo da água */
     const yNome = i => {
@@ -553,7 +588,7 @@ function desenha(E){
         const vazio = MH[i] <= 10.5;
         if (!vazio){
           g.lineWidth = 1; g.strokeStyle = CINZA2; g.beginPath(); g.moveTo(X.fronteira - 4, y); g.lineTo(X.fronteira + 4, y); g.stroke();
-          nome(MESES[i].m === 1 ? String(MESES[i].a) : MES[MESES[i].m - 1].toLowerCase(), X.fronteira - 7, ys(yNome(i)) + 0.5, CINZA2);
+          nome(MESES[i].m === 1 ? String(MESES[i].a) : MES[MESES[i].m - 1].toLowerCase(), X.fronteira - 7, ys(yNome(i)) + 0.5, TINTA);
         } else if (i === 0 || MH[i - 1] > 10.5){
           /* uma sequência de meses vazios: a quebra da régua, um "≈" só, sobre a própria fronteira, longe do traço do
              mês seguinte (um mês vazio só tem 10 px: o "≈" sobe até o fim do mês anterior); se a quebra engole um janeiro, o ano vem ao lado */
@@ -871,6 +906,16 @@ function alvoForaDoPalco(){
   semSuave(true); el.scrollIntoView({ block: 'start' }); semSuave(false);
 }
 
+/* o gancho: do topo, desce ao calendário (a vista geral); da abertura do palco, ao 1º momento. O "assistir" do topo
+   toca do começo do calendário, como o da abertura. */
+doc.addEventListener('click', e => {
+  const t = e.target.closest && e.target.closest('[data-gancho], #dh-topo [data-assistir]');
+  if (!t) return;
+  e.preventDefault();
+  if (t.hasAttribute('data-assistir')){ if (window.BDRoteiro) window.BDRoteiro.toca({ doInicio: true }); else vai(MOM[0].id, 'smooth'); return; }
+  interagiu = true;
+  vai(t.closest('#dh-topo') ? MOM[0].id : (MOM[1] || MOM[0]).id, 'smooth');
+});
 leg.addEventListener('click', e => {
   const t = e.target.closest && e.target.closest('[data-rever], [data-assistir]');
   if (!t) return;

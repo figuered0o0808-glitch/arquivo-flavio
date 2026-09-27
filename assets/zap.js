@@ -73,7 +73,14 @@ function ordem(){
   return Z.conversas.slice().sort((a, b) => (a.fix && b.fix) ? a.fix - b.fix : a.fix ? -1 : b.fix ? 1 :
     fimP(b.ult.d) < fimP(a.ult.d) ? -1 : fimP(b.ult.d) > fimP(a.ult.d) ? 1 : (b.n - a.n) || a.nome.localeCompare(b.nome, 'pt'));
 }
-const av = (c, k) => '<span class="z-av' + (c.tipo === 'e' ? ' z-q' : '') + (k || '') + '" aria-hidden="true">' + esc(c.av) + '</span>';
+/* avatar: caso = quadrado; pessoa = redondo, com foto quando assets/fotos.js (window.BD_FOTOS) a tem. O anel é a situação,
+   nas 3 cores da Foz (c.anel, do monta_zap.py): grave = preso ou condenado; medio = investigado ou denunciado; outros */
+const FOTO = c => { const F = W.BD_FOTOS; return c.tipo === 'p' && F && c.grafo && typeof F[c.grafo] === 'string' ? F[c.grafo] : null; };
+const ANEL = { grave: 'preso ou condenado', medio: 'investigado ou denunciado', outros: 'outros' };
+const av = (c, k) => { const f = FOTO(c); return '<span class="z-av' + (c.tipo === 'e' ? ' z-q' : '') + ' z-a-' + (ANEL[c.anel] ? c.anel : 'outros') + (f ? ' z-comfoto' : '') + (k || '') + '" aria-hidden="true">' +
+  (f ? '<img src="' + esc(f) + '" alt="" width="48" height="48" loading="lazy" decoding="async">' : esc(c.av)) + '</span>'; };
+/* o status curto do cabeçalho (inteiro, sem reticências); o longo fica na situação e nos Dados */
+const stCurto = c => c.sit ? (c.sit.c || c.sit.t) : c.papel;
 /* quando a prévia já abre com quem falou ('Flávio: “…”'), o remetente vai com ' · ', para não somar dois ':' */
 const sepDe = u => u.qc ? ' · ' : ': ';
 function linhaHtml(c){
@@ -137,7 +144,7 @@ function balHtml(m, cab){
   if (m.t) h += '<p class="z-tx">' + esc(m.t) + '</p>';
   h += previa(f);
   if (m.anota) h += '<p class="z-anota">' + ic('info') + '<span>Depois: ' + esc(m.anota.t) + ' · ' + dCurta(m.anota.d) + '</span></p>';
-  return h + '<span class="z-hora">' + (m.ed ? '<em>editada</em>' : '') + carimbo(m) + '</span><button type="button" class="z-mais" aria-label="Fontes desta mensagem" aria-haspopup="dialog">' + ic('bx') + '</button></div>' +
+  return h + '<span class="z-hora">' + (R.j && R.j.fixada === m.id ? '<span class="z-hpin" title="Fixada">' + ic('pin') + '</span>' : '') + (m.ed ? '<em>editada</em>' : '') + carimbo(m) + '</span><button type="button" class="z-mais" aria-label="Fontes desta mensagem" aria-haspopup="dialog">' + ic('bx') + '</button></div>' +
     '<button type="button" class="z-encb" aria-label="Encaminhar esta mensagem"><span>' + ic('enc') + '</span></button></li>';
 }
 const abrev = de => String(de || '').split(' · ')[0];
@@ -149,19 +156,50 @@ function ligas(c, j){
   if (L.dh) l.push(['Mês a mês', 'dark-horse.html']);
   return l;
 }
-function monta(c, j, alvo){
+/* cabeçalho da conversa: voltar · avatar · nome e status curto (inteiro, até 2 linhas) · ⋮; o selo colado embaixo, no mesmo
+   fundo (fica no print). Com o cabeçalho do site em 32 px, os dois somam 100 px antes da 1ª bolha (X02). */
+function cabHtml(c, pronto){
+  const quem = av(c) + '<span><b>' + esc(c.nome) + '</b><small>' + esc(stCurto(c)) + '</small></span>';
+  return '<div class="z-ccab"><div class="z-ccab-l"><button type="button" class="z-ib" data-volta aria-label="Voltar para as conversas">' + ic('vol') + '</button>' +
+    (pronto ? '<button type="button" class="z-quem" data-dados aria-label="Dados da conversa: ' + esc(c.nome) + '. ' + esc(stCurto(c)) + '">' + quem + '</button>' +
+      '<button type="button" class="z-ib z-ib-enc" data-enc-conv aria-label="Encaminhar esta conversa">' + ic('enc') + '</button>' +
+      '<button type="button" class="z-ib" data-menu="conv" aria-label="Mais opções" aria-haspopup="menu" aria-expanded="false">' + ic('mais') + '</button>'
+      : '<span class="z-quem">' + quem + '</span>') +
+    '</div><p class="z-selo">' + ic('cad') + '<span>Cada mensagem resume uma reportagem, com link</span></p></div>';
+}
+/* a situação no alto da conversa, em tinta neutra, com as fontes (toque: a folha com os links) */
+function situHtml(j){
+  const s = j.sit; if (!s || !s.t) return '';
+  const f = s.f || [], vs = f.map(x => x.v).filter((v, i, a) => a.indexOf(v) === i);
+  return '<li class="z-sis z-ui z-situ" data-t="s" role="note"><button type="button" class="z-sit" aria-haspopup="dialog" aria-label="' +
+    esc('Situação em ' + dCurta(s.d) + ': ' + s.t + (vs.length ? '. Fontes: ' + vs.join(', ') : '')) + '">' +
+    '<span class="z-situ-k">' + ic('bal') + 'Situação em ' + dCurta(s.d) + '</span><span class="z-situ-t">' + esc(s.t) + '</span>' +
+    (vs.length ? '<span class="z-situ-f">' + esc(vs.join(' · ')) + ic('bx') + '</span>' : '') + '</button></li>';
+}
+/* modo: 'inicio' = do começo (o botão "ver desde o início" e "Ler do começo"); sem modo, a 1ª visita (e a volta de quem está
+   em dia) abre em "resumo": a situação, o botão "ver desde o início" e a conversa a partir da mensagem mais forte (j.abre).
+   Quem tem mensagens novas volta no ponto em que parou; o link de uma mensagem abre nela. */
+function monta(c, j, alvo, modo){
   pare();
-  const M = j.m, ids = M.map(m => m.id), mem = MEM[c.id];
+  const M = j.m, ids = M.map(m => m.id), mem = MEM[c.id], ini = modo === 'inicio';
   R.c = c; R.j = j; R.msgs = {}; M.forEach(m => { R.msgs[m.id] = m; });
   let ai = alvo ? ids.indexOf(alvo) : -1;
   if (alvo && ai < 0){ aviso('Mensagem não encontrada'); H.replaceState(H.state, '', '#' + c.id); alvo = null; }
-  const ate = ai < 0 && mem && mem.ate ? ids.indexOf(mem.ate) : -1, nl = ate >= 0 ? M.length - 1 - ate : 0, lido = ate >= 0 && !nl;
-  const h = ['<li class="z-sis z-ui" data-t="s" role="note"><button type="button" data-sobre>' + pil(ic('cad') + 'Tudo nesta conversa tem fonte. Toque numa mensagem para ver a fonte.', 'z-amb') + '</button></li>',
-    '<li class="z-sis z-ui" data-t="s" role="note"><button type="button" data-dados>' + pil(esc(j.criou)) + '</button></li>'];
+  const ate = !ini && ai < 0 && mem && mem.ate ? ids.indexOf(mem.ate) : -1, nl = ate >= 0 ? M.length - 1 - ate : 0, lido = ate >= 0 && !nl;
+  const ab = j.abre ? ids.indexOf(j.abre) : -1, resumo = !ini && ai < 0 && !nl && ab >= 0, i0 = resumo ? ab : 0;
+  R.resumo = resumo;
+  const h = [situHtml(j)];
+  if (resumo && ab > 0){
+    const desde = (x => x[1] ? M3[x[1] - 1] + '/' + x[0] : '' + x[0])(pt(M[0].d));
+    h.push('<li class="z-sis z-ui" data-t="s" role="note"><button type="button" class="z-ver" data-inicio aria-label="Ver desde o início: ' + ab + (ab > 1 ? ' mensagens antes' : ' mensagem antes') + ', desde ' + desde + '">' +
+      pil(ic('bx', 'z-cima') + 'Ver desde o início (' + desde + ')') + '</button></li>');
+  }
+  else h.push('<li class="z-sis z-ui" data-t="s" role="note"><button type="button" data-dados>' + pil(esc(j.criou)) + '</button></li>');
   let sep = null, de = null;
   M.forEach((m, i) => {
+    if (i < i0) return;
     if (nl && i === ate + 1) h.push(leit(nl + (nl > 1 ? ' mensagens não lidas' : ' mensagem não lida')));
-    if (m.d !== sep){ h.push(sepHtml(m.d, sep)); sep = m.d; de = null; }
+    if (m.d !== sep){ h.push(sepHtml(m.d, i > i0 ? sep : null)); sep = m.d; de = null; }
     if (m.k === 'sis'){ h.push(sisHtml(m)); de = null; } else { h.push(balHtml(m, m.de !== de)); de = m.de; }
   });
   if (lido) h.push(leit('Você está em dia · conversa atualizada em ' + dCurta(j.gerado)));
@@ -169,29 +207,29 @@ function monta(c, j, alvo){
   lk.push('<a href="zap.html" data-ir="">Todas as conversas</a>');
   h.push('<li class="z-fecho" id="z-fecho" data-t="s" tabindex="-1"><button type="button" class="z-sit" aria-haspopup="dialog">' + pil(esc(j.fecho.t)) + '</button><div class="z-fim">' +
     '<p>Fim da conversa, por enquanto · atualizada em ' + dCurta(j.gerado) + '</p><button type="button" class="z-bt1" data-enc-conv>' + ic('enc') + 'Encaminhar esta conversa</button>' +
-    (nx ? '<a class="z-bt2" href="#' + nx.id + '" data-ir="' + nx.id + '">Próxima conversa: ' + esc(nx.nome) + ' →</a>' : '') +
+    (nx ? '<a class="z-porta" href="#' + nx.id + '" data-ir="' + nx.id + '">Próxima conversa: ' + esc(nx.nome) + ' →</a>' : '') +
     '<p class="z-lks">' + lk.join('<span aria-hidden="true">·</span>') + '</p></div></li>');
-  const fx = j.fixada && R.msgs[j.fixada];
-  cv.className = 'z-cv' + (fx ? '' : ' z-semfix');
-  cv.innerHTML = '<div class="z-ccab"><button type="button" class="z-ib" data-volta aria-label="Voltar para as conversas">' + ic('vol') + '</button>' +
-    '<button type="button" class="z-quem" data-dados aria-label="Dados da conversa: ' + esc(c.nome) + '">' + av(c) + '<span><b>' + esc(c.nome) + '</b><small>' + esc(c.sit ? c.sit.t : c.papel) + '</small></span></button>' +
-    '<button type="button" class="z-ib" data-enc-conv aria-label="Encaminhar esta conversa">' + ic('enc') + '</button>' +
-    '<button type="button" class="z-ib" data-menu="conv" aria-label="Mais opções" aria-haspopup="menu" aria-expanded="false">' + ic('mais') + '</button></div>' +
-    '<p class="z-selo">' + ic('cad') + '<span>Cada mensagem resume uma reportagem, com link</span></p>' +
+  const fx = j.fixada && R.msgs[j.fixada], fxi = fx ? ids.indexOf(fx.id) : -1;
+  /* no resumo, a fixada é a própria mensagem mais forte (ou vem logo depois): a barra só aparece quando a bolha dela sai por cima */
+  const auto = !!fx && resumo && fxi >= i0;
+  cv.className = 'z-cv' + (fx ? (auto ? ' z-fixauto z-fixoff' : ' z-fixon') : ' z-semfix');
+  cv.innerHTML = cabHtml(c, 1) +
     (fx ? '<button type="button" class="z-fix" data-fix="' + fx.id + '" aria-label="Mensagem fixada: ' + esc(abrev(fx.de || (fx.f[0] || {}).v) + ': ' + textoFix(fx)) + '"><b>' + ic('pin') + 'Fixada · ' + esc(abrev(fx.de || (fx.f[0] || {}).v)) + '</b><span>' + esc(textoFix(fx)) + '</span></button>' : '') +
     '<button type="button" class="z-pula">Pular para a situação atual</button><div class="z-flut" aria-hidden="true"><span class="z-pil"></span></div>' +
     '<ol class="z-fluxo" aria-label="Mensagens: ' + esc(c.nome) + '">' + h.join('') + '</ol>' +
     '<div class="z-cbaixo"><button type="button" class="z-desce" hidden aria-label="Ir para o fim da conversa"><span>' + ic('bx') + '</span><b hidden></b></button>' +
-    '<p>Só as fontes enviam mensagens nesta conversa</p><button type="button" class="z-bt1" data-enc-conv aria-label="Encaminhar esta conversa">' + ic('enc') + '</button></div>';
+    '<p>Só as fontes enviam mensagens nesta conversa</p><button type="button" class="z-bt1 z-bt-r" data-enc-conv aria-label="Encaminhar esta conversa">' + ic('enc') + '</button></div>';
   R.ol = $('.z-fluxo', cv); R.flut = $('.z-flut', cv); R.desce = $('.z-desce', cv); R.fecho = $('#z-fecho', cv); R.seps = null;
+  R.fixLi = auto ? R.ol.querySelector('#zm-' + fx.id) : null;
   mede();
   R.itens = $$(':scope>li', R.ol); R.idx = new Map(R.itens.map((li, i) => [li, i]));
-  R.tot = M.length;
+  R.tot = M.length - i0;
   const iDe = id => R.itens.findIndex(li => li.dataset.id === id), N = R.itens.length;
   let k;
   if (TUDO || lido) k = N;
   else if (ai >= 0) k = iDe(alvo) + 1;
   else if (ate >= 0){ k = iDe(ids[ate]) + 1; while (k < N && R.itens[k].dataset.t === 'd') k++; }
+  else if (resumo) k = iDe(j.abre) + 1;   /* a situação, o "ver desde o início" e a mensagem mais forte já na tela */
   else { let n = 0; k = 0; while (k < N && n < 2){ if (R.itens[k].dataset.id) n++; k++; } }
   R.itens.forEach((li, i) => { li.dataset.z = i < k ? '1' : '0'; });
   R.rev = R.fila = R.inst = k; R.fase = null; R.extra = 0;
@@ -211,16 +249,26 @@ function monta(c, j, alvo){
   }
   agenda();
 }
-/* altura real do bloco colado no topo (cabeçalho 60 + selo + fixada de 1 ou 2 linhas): a fixada e a data flutuante se encaixam abaixo */
+/* do começo, sem apagar a memória (o botão "ver desde o início") */
+function comeca(){ const c = R.c, j = R.j; if (!c || !j) return; monta(c, j, null, 'inicio'); W.scrollTo(0, 0); const b = R.ol && R.ol.querySelector('.z-msg'); if (b) b.focus({ preventScroll: true }); }
+/* altura real do cabeçalho (com o selo) e da fixada: a fixada cola embaixo do cabeçalho e flutua sobre as mensagens (margem
+   negativa: aparecer ou sumir não empurra nada); com ela visível desde o início (z-fixon) a lista ganha o espaço dela no alto */
 function mede(){
   if (!R.flut) return;
-  const s = $('.z-selo', cv), f = $('.z-fix', cv), hs = 60 + (s ? s.offsetHeight : 0);
+  const cab = $('.z-ccab', cv), f = $('.z-fix', cv);
+  R.hs = cab ? cab.offsetHeight : 60; R.fh = 0;
   if (f){
     const sp = $('span', f); f.classList.remove('z-fix3');
     if (sp && sp.scrollHeight > sp.clientHeight + 1) f.classList.add('z-fix3');   /* 2 linhas não bastaram: 3, e o número inteiro */
-    f.style.top = hs + 'px';
+    f.style.top = R.hs + 'px';
+    R.fh = f.offsetHeight; f.style.marginBottom = -R.fh + 'px';
+    cv.style.setProperty('--fixh', R.fh + 'px');
   }
-  R.ft = hs + (f ? f.offsetHeight : 0);
+  posFlut();
+}
+function posFlut(){
+  if (!R.flut) return;
+  R.ft = (R.hs || 60) + (R.fh && !cv.classList.contains('z-fixoff') ? R.fh : 0);
   R.flut.style.top = R.ft + 'px';
 }
 function pare(){ clearTimeout(R.T); R.T = 0; if (R.io) R.io.disconnect(); R.io = null; digita(); }
@@ -310,10 +358,15 @@ function quadro(){
   R.raf = 0; if (!R.itens || !R.conv) return;
   const y = W.scrollY, h = innerHeight;
   if (!TUDO && R.fila < R.itens.length && y + h >= d.documentElement.scrollHeight - 6) enfileira(R.itens.length, 0);
+  /* resumo: a barra da fixada aparece quando a bolha dela sai por cima do cabeçalho, e some quando ela volta à tela */
+  if (R.fixLi){
+    const ve = R.fixLi.getBoundingClientRect().bottom < (R.hs || 60) + 2;
+    if (ve === cv.classList.contains('z-fixoff')){ cv.classList.toggle('z-fixoff', !ve); posFlut(); }
+  }
   const f = R.flut;
   if (!R.seps) R.seps = $$('.z-sep:not(.z-leit)', R.ol).map(li => [li.getBoundingClientRect().top + y, li.textContent]);
   /* a data que já saiu por cima; quando um separador de verdade está passando pela vaga dela, ela some (nada de duas pílulas empilhadas) */
-  const ft = R.ft || (R.j && R.j.fixada ? 142 : 94);
+  const ft = R.ft || 68;
   let t = '', perto = false;
   for (const s of R.seps){ const v = s[0] - y; if (v <= ft + 4){ t = s[1]; perto = v > ft - 34; } else { if (v < ft + 34) perto = true; break; } }
   if (t && y > 40 && !perto){
@@ -364,8 +417,8 @@ function folhaMsg(m, ancora){
   R.fm = m; abreFolha(h, ancora);
 }
 function folhaSit(b){
-  const f = (R.j.fecho.f || []);
-  abreFolha('<p class="z-ft" id="z-folha-t">Situação · ' + f.length + (f.length === 1 ? ' fonte' : ' fontes') + '</p><p class="z-fnota">' + esc(R.j.fecho.t) + '</p>' + f.map(linkF).join('') +
+  const s = R.j.sit, f = ((s || R.j.fecho).f || []);
+  abreFolha('<p class="z-ft" id="z-folha-t">Situação · ' + f.length + (f.length === 1 ? ' fonte' : ' fontes') + '</p><p class="z-fnota">' + esc(s ? 'Situação em ' + dCurta(s.d) + ' · ' + s.t : R.j.fecho.t) + '</p>' + f.map(linkF).join('') +
     '<p class="z-fk">Esta conversa</p>' + acao('enc', 'Encaminhar esta conversa', 'data-enc-conv') + acao('ext', 'Copiar link', 'data-copia="c"'), b);
 }
 function folhaLink(k){
@@ -397,6 +450,7 @@ function menu(b){
   else {
     it.push(['Dados da conversa', abreDados], ['Encaminhar conversa', enviaConv], ['Ler do começo', doComeco]);
     ligas(R.c, R.j || {}).forEach(x => it.push(x));
+    it.push(['Sobre o BolsoZap', sobre]);
   }
   if (N && N.abre) it.push(['Mapa do rio', () => N.abre()]);
   fechaMenu();
@@ -448,19 +502,92 @@ function recentes(){
   return [l, l.reduce((m, x) => x.d < m ? x.d : m, fim), fim];
 }
 const ddmm = s => { const [, m, x] = pt(s); return p2(x) + '/' + p2(m); };
-function pontoAt(){ const [l] = recentes(), v = l.some(x => !VIS.has(x.c + '/' + x.m)); $$('.z-ponto').forEach(p => { p.hidden = !v; }); }
-/* uma linha por conversa, como no app: o fato mais recente e quantos há; o toque abre no mais antigo do período, e a leitura desce pelos outros */
+/* ---------- S10: hoje no rio ----------
+   A mesma tabela data -> caso do index (Z.hoje, gerado pelo monta_zap.py a partir do index.html e da Foz), pelo relógio do
+   leitor: "Faltam N dias para o 1º turno · o caso de hoje". Antes do 1º dia da tabela, o 1º caso; em 04/10, "Hoje é o dia.";
+   depois, some. O envio usa o tópico do caso (data/topicos.js, carregado quando a aba abre); sem ele, texto + link c/<id>. */
+function hojeDe(){
+  const Hj = Z.hoje; if (!Hj || !Hj.dia || !Hj.turno || HOJE > Hj.turno) return null;
+  const ks = Object.keys(Hj.dia).sort(), x = Hj.dia[HOJE] || (HOJE < ks[0] ? Hj.dia[ks[0]] : null);
+  const faltam = Math.round((Date.parse(Hj.turno + 'T12:00:00') - Date.parse(HOJE + 'T12:00:00')) / 864e5);
+  return { x, faltam, dia: HOJE === Hj.turno, chave: 'hoje/' + HOJE };
+}
+const faltaTx = o => o.dia ? 'Hoje é o dia.' : o.faltam === 1 ? 'Falta 1 dia para o 1º turno' : 'Faltam ' + o.faltam + ' dias para o 1º turno';
+function hojeHtml(o){
+  if (!o) return '';
+  const cab = '<p class="z-hoje-p">' + pil(ic('cro') + (o.dia ? 'Hoje é o dia.' : faltaTx(o).replace(/(\d+)/, '<b>$1</b>'))) + '</p>';
+  const topo = '<div class="z-hoje-h"><span class="z-av z-q z-a-bd" aria-hidden="true"><img src="assets/marca/favicon.svg" alt="" width="40" height="40"></span><span><b id="z-hoje-t">Hoje no rio</b><small>' +
+    (o.dia ? 'o 1º turno' : 'o caso de hoje · ' + ddmm(HOJE)) + '</small></span></div>';
+  if (o.dia || !o.x) return '<section class="z-hoje" aria-labelledby="z-hoje-t">' + cab + '<article class="z-hoje-c">' + topo +
+    '<p class="z-hoje-n z-hoje-fr0">Os 40, um a um.</p><div class="z-hoje-a"><a class="z-porta" href="foz.html">A Foz, caso a caso →</a></div></article></section>';
+  const x = o.x, cv0 = x.conv && C[x.conv], f = x.f;
+  return '<section class="z-hoje" aria-labelledby="z-hoje-t">' + cab + '<article class="z-hoje-c">' + topo +
+    '<p class="z-hoje-r">' + esc(x.nome) + (x.faixa ? ' · ' + esc(x.faixa) : '') + '</p>' +
+    (x.v ? '<p class="z-hoje-n' + (x.tipo === 'frase' ? ' z-frase' : '') + '">' + esc(x.v) + '</p>' : '') +
+    (x.fr ? '<p class="z-hoje-fr">' + esc(x.fr).replace(/R\$ (?=\d)/g, 'R$ ') + '</p>' : '') +
+    (x.ele ? '<p class="z-hoje-ele">' + esc(x.ele) + '</p>' : '') +
+    (f ? '<a class="z-hoje-f" href="' + esc(f.u) + '" target="_blank" rel="noopener">' + esc(f.v) + (f.d ? ' · ' + dCurta(f.d) : '') + ic('ext') + '</a>' : '') +
+    '<div class="z-hoje-a"><button type="button" class="z-bt1" data-hoje-env aria-label="Encaminhar o caso de hoje: ' + esc(x.nome) + '">' + ic('enc') + 'Encaminhar</button>' +
+    (cv0 ? '<a class="z-porta" href="#' + cv0.id + '" data-ir="' + cv0.id + '">A conversa: ' + esc(cv0.nome) + ' →</a>' : '<a class="z-porta" href="foz.html#' + esc(x.id) + '">A ficha na Foz →</a>') + '</div>' +
+    '<button type="button" class="z-hoje-cp" data-hoje-cp>copiar o texto do dia</button></article></section>';
+}
+/* a linha do topo da lista: o gancho do dia a um toque (abre a aba Atualizações) */
+function hojeLinha(){
+  const el = $('#z-hoje-l'); if (!el) return;
+  const o = hojeDe();
+  if (!o){ el.hidden = true; return; }
+  el.hidden = false;
+  /* só o nome do caso: o número vai no cartão, com quem afirma (nunca "R$ 131 milhões" solto) */
+  el.innerHTML = '<button type="button" class="z-hl" data-aba="atualizacoes">' + ic('cro') + '<span><b>' + esc(faltaTx(o)) + '</b>' +
+    (o.x && !o.dia ? '<small>o caso de hoje: <em>' + esc(o.x.nome) + '</em></small>' : '<small>Os 40, um a um.</small>') + '</span>' +
+    (VIS.has(o.chave) ? '' : '<i class="z-hl-p" aria-label="novo"></i>') + ic('bx', 'z-dir') + '</button>';
+}
+/* data/topicos.js (os 40 casos) só quando o caso do dia aparece: o índice do zap fica leve; os tópicos do zap ficam */
+function topicosFoz(){
+  if (R.tf) return R.tf;
+  R.tf = new Promise(res => {
+    const antes = T(), s = d.createElement('script'), fim = () => { W.BD_TOPICOS = Object.assign(W.BD_TOPICOS || {}, antes); res(); };
+    s.src = 'data/topicos.js?v=' + encodeURIComponent(Z.v || Z.gerado || ''); s.async = true; s.onload = fim; s.onerror = fim;
+    d.head.appendChild(s);
+  });
+  return R.tf;
+}
+function textoHoje(o){
+  const x = o.x, t = T()[x.id] || {};
+  const corpo = t.texto ? String(t.texto).replace(/\s+$/, '') : x.nome + ': ' + (x.v ? x.v + ' ' : '') + (x.fr || '') + (x.f ? ' (' + x.f.v + ')' : '');
+  return { texto: faltaTx(o) + ' · o caso de hoje: ' + corpo + '\n', url: t.url || base() + 'c/' + x.id + '.html' };
+}
+function enviaHoje(){
+  const o = hojeDe(); if (!o || !o.x) return;
+  const S = W.BDShare, x = o.x, tx = textoHoje(o);
+  if (!S || typeof S.enviar !== 'function'){ T()['hoje-' + x.id] = { titulo: x.nome, texto: tx.texto, url: tx.url }; return folhaLink('hoje-' + x.id); }
+  vigia();
+  try { S.enviar(x.id, tx); } catch (e) { folhaLink(x.id); }
+}
+function copiaHoje(){ const o = hojeDe(); if (!o || !o.x) return; const tx = textoHoje(o); copia(tx.texto + tx.url); }
+
+function pontoAt(){
+  const [l] = recentes(), o = hojeDe(), v = l.some(x => !VIS.has(x.c + '/' + x.m)) || !!(o && !VIS.has(o.chave));
+  $$('.z-ponto').forEach(p => { p.hidden = !v; });
+}
+/* uma linha por conversa, como no app: o fato mais recente e quantos há; o toque abre no mais antigo do período, e a leitura desce
+   pelos outros. O anel é a situação (como na lista); o que ainda não foi visto tem o nome em negrito e a contagem em verde. */
 function desenhaAt(){
-  const [l, ini, fim] = recentes(), G = [], por = {}, S = $('#z-atualizacoes');
+  const [l, ini, fim] = recentes(), G = [], por = {}, S = $('#z-atualizacoes'), o = hojeDe();
   l.forEach(x => { let g = por[x.c]; if (!g){ g = por[x.c] = []; G.push(g); } g.push(x); });
   const tit = !l.length ? 'Sem atualizações' : l.length + (l.length > 1 ? ' fatos' : ' fato') + (ini === fim ? ' em ' + ddmm(fim) : ', de ' + ddmm(ini) + ' a ' + ddmm(fim)) + ', nestas conversas';
   S.dataset.fatos = l.length;
-  S.innerHTML = '<div class="z-scab"><h2>Atualizações</h2></div><p class="z-atop">' + ic('cro') + tit + '</p><ul class="z-linhas">' + G.slice(0, 10).map(g => {
-    const x = g[0], o = g[g.length - 1], c = C[x.c], k = o.c + '/' + o.m, n = dias(x.d, HOJE), ks = g.map(y => y.c + '/' + y.m);
-    return '<li class="z-linha z-at' + (ks.every(y => VIS.has(y)) ? ' z-visto' : '') + '"><a class="z-la" href="#' + k + '" data-ir="' + k + '" data-visto="' + ks.join(' ') + '">' + av(c) +
-      '<span class="z-lc"><span class="z-l1"><b>' + esc(c.nome) + '</b></span><span class="z-lp">' + (n === 0 ? 'hoje' : n === 1 ? 'ontem' : 'há ' + n + ' dias') +
-      (g.length > 1 ? ' · ' + g.length + ' fatos' : x.de ? ' · ' + esc(x.de) : '') + '</span><span class="z-lp" style="color:var(--z-texto)">' + esc(frente(x.t)) + '</span></span></a></li>';
+  S.innerHTML = '<div class="z-scab"><h2>Atualizações</h2></div>' + hojeHtml(o) + '<p class="z-atop">' + ic('cro') + tit + '</p><ul class="z-linhas">' + G.slice(0, 10).map(g => {
+    const x = g[0], o2 = g[g.length - 1], c = C[x.c], k = o2.c + '/' + o2.m, n = dias(x.d, HOJE), ks = g.map(y => y.c + '/' + y.m), novos = ks.filter(y => !VIS.has(y)).length;
+    return '<li class="z-linha z-at' + (novos ? '' : ' z-visto') + '"><a class="z-la" href="#' + k + '" data-ir="' + k + '" data-visto="' + ks.join(' ') + '">' + av(c) +
+      '<span class="z-lc"><span class="z-l1"><b>' + esc(c.nome) + '</b><span class="z-ld' + (novos ? ' z-ac' : '') + '">' + (n === 0 ? 'hoje' : n === 1 ? 'ontem' : 'há ' + n + ' dias') + '</span></span>' +
+      '<span class="z-l2"><span class="z-lp z-lp2">' + esc(frente(x.t)) + '</span>' + (novos ? '<b class="z-cont">' + novos + '</b>' : '') + '</span>' +
+      '<span class="z-lp">' + (g.length > 1 ? g.length + ' fatos' : x.de ? esc(x.de) : '1 fato') + '</span></span></a></li>';
   }).join('') + '</ul>';
+  if (o){
+    if (o.x && !o.dia) topicosFoz();
+    if (!VIS.has(o.chave)){ VIS.add(o.chave); st('zap:vistos', Array.from(VIS)); pontoAt(); hojeLinha(); }
+  }
 }
 const FT = [['Nascente', 'index.html', 'a abertura: o rio numa tela só'], ['A teia de nomes', 'drive.html#rede', 'os nomes em volta dele'], ['O dinheiro', 'siga-o-dinheiro.html', 'de onde vem e para onde vai'], ['A Foz', 'foz.html', 'os 40 casos e como chegam a ele']];
 function desenhaRio(){
@@ -591,7 +718,7 @@ function abreConv(id, alvo){
   const j = JS.get(id);
   if (j){ registra(c, j); monta(c, j, alvo); return; }
   pare();
-  cv.className = 'z-cv'; cv.innerHTML = '<div class="z-ccab"><button type="button" class="z-ib" data-volta aria-label="Voltar para as conversas">' + ic('vol') + '</button><span class="z-quem">' + av(c) + '<span><b>' + esc(c.nome) + '</b><small>' + esc(c.sit ? c.sit.t : c.papel) + '</small></span></span></div>';
+  cv.className = 'z-cv'; cv.innerHTML = cabHtml(c, 0);
   W.scrollTo(0, 0);
   carrega(c).then(j => { if (R.conv === id){ registra(c, j); monta(c, j, alvo); if (R.dados) desenhaDados(); } }, () => {
     if (R.conv === id) cv.insertAdjacentHTML('beforeend', '<p class="z-vazio">Não foi possível abrir esta conversa agora. <a href="#' + id + '" data-ir="' + id + '">Tentar de novo</a></p>');
@@ -618,7 +745,7 @@ function telas(){
   else if (t === 'dados' || ((t === 'atualizacoes' || t === 'rio') && um) || (t === 'lista' && antes === 'conversa')) W.scrollTo(0, 0);
   else if (antes === 'dados' && t === 'conversa') W.scrollTo(0, R.convY);
 }
-function doComeco(){ const c = R.c, j = R.j; if (!c || !j) return; delete MEM[c.id]; st('zap:v1', MEM); monta(c, j, null); W.scrollTo(0, 0); }
+function doComeco(){ const c = R.c, j = R.j; if (!c || !j) return; delete MEM[c.id]; st('zap:v1', MEM); monta(c, j, null, 'inicio'); W.scrollTo(0, 0); }
 
 /* ---------- eventos ---------- */
 d.addEventListener('click', e => {
@@ -629,7 +756,7 @@ d.addEventListener('click', e => {
   if ((b = t.closest('[data-ir]'))){
     if (e.button || e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
-    if (b.dataset.visto){ b.dataset.visto.split(' ').forEach(k => VIS.add(k)); st('zap:vistos', Array.from(VIS)); pontoAt(); }
+    if (b.dataset.visto){ b.dataset.visto.split(' ').forEach(k => VIS.add(k)); st('zap:vistos', Array.from(VIS)); pontoAt(); hojeLinha(); }
     if (R.folha) escondeFolha();
     ir(b.getAttribute('data-ir')); return;
   }
@@ -647,6 +774,9 @@ d.addEventListener('click', e => {
   if (t.closest('[data-enc-msg]')){ const m = R.fm; fechaFolha(); return enviaMsg(m); }
   if ((b = t.closest('.z-encb'))) return enviaMsg(R.msgs[b.closest('li').dataset.id]);
   if ((b = t.closest('[data-fix]'))) return pula(b.dataset.fix, 1);
+  if (t.closest('[data-inicio]')) return comeca();
+  if ((b = t.closest('[data-hoje-env]'))) return enviaHoje(b);
+  if ((b = t.closest('[data-hoje-cp]'))) return copiaHoje();
   if (t.closest('.z-desce')) return tudo();
   if (t.closest('.z-pula')) return tudo(1);
   if ((b = t.closest('.z-sit'))) return folhaSit(b);
@@ -661,8 +791,11 @@ d.addEventListener('click', e => {
 d.addEventListener('pointerdown', e => {
   const t = e.target;
   if (R.menu && t.closest && !t.closest('#z-menu') && !t.closest('[data-menu]')) fechaMenu();
-  const b = t.closest && t.closest('[data-enc-conv],[data-enc-msg],[data-enc-aba],.z-encb'), S = W.BDShare;
-  if (b && S){ const k = topicoDe(b), f = S.baixa || S.prepara; if (k && typeof f === 'function') try { f(k); } catch (x) {} }
+  const b = t.closest && t.closest('[data-enc-conv],[data-enc-msg],[data-enc-aba],.z-encb,[data-hoje-env]'), S = W.BDShare;
+  if (b && S){
+    const o = b.hasAttribute('data-hoje-env') ? hojeDe() : null, k = o ? (o.x && T()[o.x.id] ? o.x.id : null) : topicoDe(b), f = S.baixa || S.prepara;
+    if (k && typeof f === 'function') try { f(k); } catch (x) {}
+  }
 }, { passive: true });
 d.addEventListener('focusin', e => {
   const li = R.itens && e.target.closest && e.target.closest('.z-fluxo>li');
@@ -728,6 +861,7 @@ W.addEventListener('popstate', rota);
   else H.replaceState({ z: s.z || 0 }, '');
 })();
 desenhaLista();
+hojeLinha();
 $('#z-boas-l').innerHTML = Z.conversas.filter(c => c.fix).sort((a, b) => a.fix - b.fix).map(c => mini(c.id)).join('');
 pontoAt();
 rota();

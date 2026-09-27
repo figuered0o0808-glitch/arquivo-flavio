@@ -22,6 +22,17 @@ window.FOZ = {
     },
     "tipo": "frase"
    },
+   "ele_diz": {
+    "texto": "O áudio mostra apenas minhas advogadas comunicando as suspeitas de que um grupo agia com interesses políticos dentro da Receita Federal",
+    "literal": true,
+    "meio": "sobre o áudio da reunião",
+    "data": "2024-07-15",
+    "fonte": {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/audio-apreendido-pela-pf-mostra-ramagem-orientando-advogadas-de-flavio-bolsonaro-e-alertando-para-risco-politico-do-envolvimento-do-gsi-no-caso/",
+     "data": "2024-07-15"
+    }
+   },
    "cadeia": [
     {
      "de": "Alexandre Ramagem (então diretor-geral da Abin)",
@@ -146,7 +157,20 @@ window.FOZ = {
      "trecho": "ilações desprovidas de fundamento jurídico e sem nenhuma evidência"
     }
    ],
-   "ressalva": "Ramagem foi condenado na trama golpista, não por este episódio. Na rachadinha, as provas foram anuladas e a denúncia, arquivada em 2022."
+   "ressalva": "Ramagem foi condenado na trama golpista, não por este episódio. Na rachadinha, as provas foram anuladas e a denúncia, arquivada em 2022.",
+   "rotas": {
+    "historia": "cap-abin-defesa-rachadinha",
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "alexandre-ramagem",
+     "jair",
+     "carlos-bolsonaro"
+    ],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "master",
@@ -165,6 +189,17 @@ window.FOZ = {
      "veiculo": "O Povo",
      "url": "https://mais.opovo.com.br/jornal/dom/2026/09/13/pf-aponta-cobrancas-de-flavio-a-vorcaro-e-detalha-relacao-sobre-dark-horse.html",
      "data": "2026-09-13"
+    }
+   },
+   "ele_diz": {
+    "texto": "era um filho procurando patrocínio",
+    "literal": true,
+    "meio": "ao confirmar o pedido a Vorcaro, depois da divulgação dos áudios",
+    "data": "2026-05-13",
+    "fonte": {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/entenda-o-caso-flavio-vorcaro-em-6-pontos/",
+     "data": "2026-05-14"
     }
    },
    "busca": "Vorcaro|Banco Master|Dark Horse",
@@ -192,6 +227,42 @@ window.FOZ = {
       "data": "2026-09-12"
      },
      "de_id": "vorcaro"
+    },
+    {
+     "de": "Jato PP-NLR",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Em 19/01/2025, Flávio, a mulher, as duas filhas e o advogado Willer Tomaz voaram nele de Fort Lauderdale (EUA) a Brasília. A Prime You, empresa de que Daniel Vorcaro foi sócio de 2021 a setembro de 2025, operava o avião e tinha uma das cotas; Tomaz tinha outra, segundo a piauí.",
+     "status_de": "",
+     "fonte": {
+      "veiculo": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-bolsonaro-viajou-dos-eua-para-brasilia-em-jato-de-vorcaro/",
+      "data": "2026-09-24"
+     }
+    },
+    {
+     "de": "Fabiano Zettel",
+     "de_id": "zettel",
+     "para": "Willer Tomaz",
+     "para_id": "willer-tomaz",
+     "relacao": "Cunhado de Daniel Vorcaro, comprou em abril de 2025, por R$ 5,5 milhões, um apartamento no condomínio l'Adresse, na Vila Nova Conceição (SP), e o vendeu em fevereiro de 2026, por R$ 3,5 milhões, à WT Administração de Imóveis e Bens, empresa de Willer Tomaz, segundo a piauí.",
+     "status_de": "investigado no caso Master (Operação Compliance Zero), com prisão preventiva decretada pelo STF em 04/03/2026; sem condenação",
+     "fonte": {
+      "veiculo": "A Gazeta (Folhapress)",
+      "url": "https://www.agazeta.com.br/brasil/flavio-bolsonaro-usou-apartamento-de-advogado-investigado-por-fraudes-no-inss-diz-revista-0926",
+      "data": "2026-09-17"
+     }
+    },
+    {
+     "de": "Willer Tomaz",
+     "de_id": "willer-tomaz",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Flávio ficou alguns dias da primeira quinzena de agosto de 2026 no condomínio l'Adresse, onde está o apartamento da empresa de Tomaz, segundo a piauí; a assessoria dele diz que ele se hospedou em hotéis da região.",
+     "status_de": "alvo de busca e apreensão em 04/08/2026 na Operação Sem Desconto (fraude no INSS)",
+     "fonte": {
+      "veiculo": "A Gazeta (Folhapress)",
+      "url": "https://www.agazeta.com.br/brasil/flavio-bolsonaro-usou-apartamento-de-advogado-investigado-por-fraudes-no-inss-diz-revista-0926",
+      "data": "2026-09-17"
+     }
     }
    ],
    "fontes": [
@@ -244,63 +315,40 @@ window.FOZ = {
      "veiculo": "Wikipédia (Daniel Vorcaro)",
      "url": "https://pt.wikipedia.org/wiki/Daniel_Vorcaro",
      "trecho": "datas das duas prisões: 17/11/2025 e 04/03/2026"
-    }
-   ],
-   "ressalva": "Segundo a PF, R$ 60 milhões teriam sido pagos."
-  },
-  {
-   "id": "cota-senado-viagens",
-   "nome": "Cota do Senado em viagens",
-   "rotulo": "Cota do Senado",
-   "faixa": "direto",
-   "gravidade": "investigado_na_cadeia",
-   "status_flavio": "É alvo de representação no TCU, processo de controle e não criminal, relatada pelo ministro Odair Cunha (mai/2026). Sobre a viagem de dezembro, disse que o pedido de reembolso foi equívoco da assessoria e que devolveria o valor. Sobre a viagem de novembro, confirmou o encontro com Vorcaro, que disse ter sido para tratar do filme do pai, afirmou que a viagem não envolveu benefício pessoal e negou uso irregular de recursos públicos.",
-   "operacao": "Representação no TCU (relator Odair Cunha)",
-   "periodo": "nov/2025 – mai/2026",
-   "resumo": "O Senado reembolsou R$ 2.629,99 em passagens de ida e volta de Flávio a São Paulo em 29/11/2025, dia em que ele visitou Daniel Vorcaro. A viagem consta no Portal da Transparência da Casa. O Senado também pagou R$ 13,6 mil em quatro bilhetes para Flávio e o assessor Fernando Nascimento Pessoa irem a um evento de pré-campanha com o mercado financeiro em SP, em 11–12/12/2025. A deputada Sâmia Bomfim (PSOL) pediu apuração, e o TCU autuou representação sobre o uso da cota (CEAPS) nos deslocamentos de Flávio.",
-   "numero": {
-    "valor": "Visita a Vorcaro",
-    "texto": "em 29/11/2025, com o banqueiro já fora da prisão e de tornozeleira; o Senado reembolsou as passagens, R$ 2.629,99, segundo O Antagonista",
-    "fonte": {
-     "veiculo": "O Antagonista",
-     "url": "https://oantagonista.com.br/brasil/deputada-pede-ao-senado-e-tcu-investigacao-sobre-uso-da-cota-parlamentar-por-flavio/",
-     "data": "2026-05-20"
-    },
-    "tipo": "frase"
-   },
-   "cadeia": [
-    {
-     "de": "Senado Federal (Cota para o Exercício da Atividade Parlamentar)",
-     "para": "Flávio Bolsonaro",
-     "relacao": "Reembolsou as passagens de 29/11/2025 e pagou as de dezembro, pedidas pelo gabinete dele.",
-     "status_de": "Representação autuada na unidade técnica do TCU, sobre o custeio de deslocamentos de Flávio com a CEAPS.",
-     "fonte": {
-      "veiculo": "Correio da Manhã (coluna Paulo Cappelli)",
-      "url": "https://www.correiodamanha.com.br/colunistas/paulo-cappelli/2026/05/289481-flavio-bolsonaro-entra-na-mira-do-tcu-por-uso-de-cota-parlamentar-ex-deputado-do-pt-e-sorteado-relator.html",
-      "data": "2026-05-28"
-     }
-    }
-   ],
-   "fontes": [
-    {
-     "veiculo": "O Antagonista",
-     "url": "https://oantagonista.com.br/brasil/deputada-pede-ao-senado-e-tcu-investigacao-sobre-uso-da-cota-parlamentar-por-flavio/",
-     "data": "2026-05-20",
-     "trecho": "reembolso ao Senado de duas passagens, ao custo total de 2.629 reais e 99 centavos, para a viagem de 29/11/2025 a São Paulo, quando visitou Daniel Vorcaro"
     },
     {
-     "veiculo": "Metrópoles",
-     "url": "https://www.metropoles.com/brasil/senado-custeou-viagem-de-pre-campanha-de-flavio-em-sao-paulo",
-     "data": "2026-01-07",
-     "trecho": "R$ 13,6 mil em passagens para o senador e um assessor irem a evento com o mercado financeiro em SP, 11–12/12/2025"
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-bolsonaro-viajou-dos-eua-para-brasilia-em-jato-de-vorcaro/",
+     "data": "2026-09-24",
+     "trecho": "Flávio não respondeu ao pedido de comentário sobre sua presença na aeronave feito pela reportagem da Piauí"
     },
     {
-     "veiculo": "Correio da Manhã",
-     "url": "https://www.correiodamanha.com.br/colunistas/paulo-cappelli/2026/05/289481-flavio-bolsonaro-entra-na-mira-do-tcu-por-uso-de-cota-parlamentar-ex-deputado-do-pt-e-sorteado-relator.html",
-     "data": "2026-05-28"
+     "veiculo": "A Gazeta (Folhapress)",
+     "url": "https://www.agazeta.com.br/brasil/flavio-bolsonaro-usou-apartamento-de-advogado-investigado-por-fraudes-no-inss-diz-revista-0926",
+     "data": "2026-09-17",
+     "trecho": "A assessoria de Flávio afirma que o presidenciável se hospedou apenas em hotéis da região"
     }
    ],
-   "ressalva": "Ele é alvo de representação no TCU, processo de controle, não criminal, e disse que devolveria o valor."
+   "ressalva": "Segundo a PF, R$ 60 milhões teriam sido pagos.",
+   "rotas": {
+    "historia": "cap-master",
+    "zap": "dark-horse",
+    "quiz": [
+     "q-9",
+     "q-14",
+     "q-15",
+     "q-16",
+     "q-17"
+    ],
+    "dh": "dark-horse.html",
+    "teia": [
+     "vorcaro",
+     "willer-tomaz",
+     "zettel"
+    ],
+    "busca": "Vorcaro|Banco Master|Dark Horse",
+    "registros": 85
+   }
   },
   {
    "id": "inquerito-cpi-covid",
@@ -391,7 +439,18 @@ window.FOZ = {
      "trecho": "O processo segue aberto e sob sigilo"
     }
    ],
-   "ressalva": "O inquérito corre sob sigilo."
+   "ressalva": "O inquérito corre sob sigilo.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "jair"
+    ],
+    "busca": "CPI da Covid|CPI da Pandemia",
+    "registros": 2
+   }
   },
   {
    "id": "loja-chocolates",
@@ -409,6 +468,15 @@ window.FOZ = {
      "veiculo": "CartaCapital",
      "url": "https://www.cartacapital.com.br/politica/flavio-bolsonaro-recebeu-1-512-depositos-suspeitos-em-loja-de-chocolate-diz-tv/",
      "data": "2020-08-21"
+    }
+   },
+   "ele_diz": {
+    "texto": "Nega crime e diz que as operações da loja são legais, feitas com recursos próprios e declaradas à Receita.",
+    "data": "2020-08-20",
+    "fonte": {
+     "veiculo": "Exame",
+     "url": "https://exame.com/brasil/mp-rj-investiga-lavagem-de-r21-milhoes-em-loja-de-flavio-bolsonaro/",
+     "data": "2020-08-20"
     }
    },
    "busca": "chocolate|Kopenhagen|Bolsotini",
@@ -449,7 +517,18 @@ window.FOZ = {
      "data": "2021-02-04"
     }
    ],
-   "ressalva": "Parte do processo da rachadinha, arquivado em 2022 após a anulação das provas."
+   "ressalva": "Parte do processo da rachadinha, arquivado em 2022 após a anulação das provas.",
+   "rotas": {
+    "historia": "cap-loja-chocolates",
+    "zap": null,
+    "quiz": [
+     "q-20"
+    ],
+    "dh": null,
+    "teia": [],
+    "busca": "chocolate|Kopenhagen|Bolsotini",
+    "registros": 17
+   }
   },
   {
    "id": "pec-praias-relatoria",
@@ -467,6 +546,15 @@ window.FOZ = {
      "veiculo": "revista piauí",
      "url": "https://piaui.uol.com.br/web/pec-praias-flavio-bolsonaro-amigo-angra-dos-reis/",
      "data": "2024-08-06"
+    }
+   },
+   "ele_diz": {
+    "texto": "Não respondeu às reportagens da piauí (2024) e da Pública (2026) sobre o amigo.",
+    "data": "2026-09-09",
+    "fonte": {
+     "veiculo": "Agência Pública",
+     "url": "https://apublica.org/2026/09/o-amigo-do-flavio-bolsonaro-em-angra-dos-reis/",
+     "data": "2026-09-09"
     }
    },
    "cadeia": [
@@ -499,9 +587,26 @@ window.FOZ = {
      "veiculo": "revista piauí",
      "url": "https://piaui.uol.com.br/web/pec-praias-flavio-bolsonaro-amigo-angra-dos-reis/",
      "data": "2024-08-06"
+    },
+    {
+     "veiculo": "Agência Pública",
+     "url": "https://apublica.org/2026/09/o-amigo-do-flavio-bolsonaro-em-angra-dos-reis/",
+     "data": "2026-09-09",
+     "trecho": "Procurado pela Pública, Araújo não respondeu ao pedido de entrevista, assim como Flávio Bolsonaro"
     }
    ],
-   "ressalva": "O MP-RJ concluiu em 2023 que não houve crime."
+   "ressalva": "O MP-RJ concluiu em 2023 que não houve crime.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "renato-araujo"
+    ],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "psl-rj-2018",
@@ -522,6 +627,15 @@ window.FOZ = {
      "data": "2020-10-26"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Procurado pelo UOL em outubro de 2020, não respondeu.",
+    "data": "2020-10-26",
+    "fonte": {
+     "veiculo": "UOL",
+     "url": "https://noticias.uol.com.br/politica/ultimas-noticias/2020/10/26/flavio-bolsonaro-rachadinha-gastos-candidaturas-fraudulentas.htm",
+     "data": "2020-10-26"
+    }
    },
    "cadeia": [
     {
@@ -601,7 +715,16 @@ window.FOZ = {
      "url": "https://www1.folha.uol.com.br/poder/2022/09/ex-assessora-de-flavio-citada-em-rachadinha-ganha-r-407-mil-de-candidatos-bolsonaristas.shtml",
      "data": "2022-09-27"
     }
-   ]
+   ],
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "rachadinha-alerj",
@@ -620,6 +743,17 @@ window.FOZ = {
      "veiculo": "ConJur",
      "url": "https://www.conjur.com.br/2020-nov-04/mp-denuncia-flavio-bolsonaro-esquema-rachadinha-alerj/",
      "data": "2020-11-04"
+    }
+   },
+   "ele_diz": {
+    "texto": "Mais uma peça foi movimentada no tabuleiro para atacar Bolsonaro",
+    "literal": true,
+    "meio": "nas redes, no dia da prisão de Queiroz",
+    "data": "2020-06-18",
+    "fonte": {
+     "veiculo": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/republica/ligacoes-de-queiroz-com-familia-bolsonaro-ex-assessor/",
+     "data": "2020-06-18"
     }
    },
    "busca": "rachadinha",
@@ -706,7 +840,21 @@ window.FOZ = {
      "data": "2020-06-18"
     }
    ],
-   "ressalva": "O STJ e o STF anularam as provas, e a denúncia foi arquivada em 2022."
+   "ressalva": "O STJ e o STF anularam as provas, e a denúncia foi arquivada em 2022.",
+   "rotas": {
+    "historia": "cap-rachadinha-alerj",
+    "zap": "rachadinha-alerj",
+    "quiz": [
+     "q-7",
+     "q-8"
+    ],
+    "dh": null,
+    "teia": [
+     "queiroz"
+    ],
+    "busca": "rachadinha",
+    "registros": 41
+   }
   },
   {
    "id": "vazamento-furna-da-onca",
@@ -727,6 +875,15 @@ window.FOZ = {
      "data": "2021-07-06"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Em depoimento ao MPF, em 20/07/2020, negou ter recebido informação sobre a operação.",
+    "data": "2020-07-20",
+    "fonte": {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/justica/em-depoimento-flavio-nega-ter-sido-informado-sobre-operacao-furna-da-onca/",
+     "data": "2020-07-20"
+    }
    },
    "busca": "Furna da Onça|Paulo Marinho",
    "cadeia": [
@@ -817,7 +974,142 @@ window.FOZ = {
      "trecho": "Exoneração de Queiroz e da filha em 15/10/2018; relato semelhante no livro 'Tormenta', de Thaís Oyama."
     }
    ],
-   "ressalva": "É o relato de Paulo Marinho ao MPF."
+   "ressalva": "É o relato de Paulo Marinho ao MPF.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "paulo-marinho"
+    ],
+    "busca": "Furna da Onça|Paulo Marinho",
+    "registros": 1
+   }
+  },
+  {
+   "id": "cota-senado-viagens",
+   "nome": "Viagens: cota, jato e safári",
+   "rotulo": "Cota, jato e safári",
+   "faixa": "direto",
+   "gravidade": "investigado_na_cadeia",
+   "status_flavio": "É alvo de representação no TCU, processo de controle e não criminal, relatada pelo ministro Odair Cunha (mai/2026). Sobre a viagem de dezembro, disse que o pedido de reembolso foi equívoco da assessoria e que devolveria o valor. Sobre a viagem de novembro, confirmou o encontro com Vorcaro, que disse ter sido para tratar do filme do pai, afirmou que a viagem não envolveu benefício pessoal e negou uso irregular de recursos públicos.",
+   "operacao": "Representação no TCU (relator Odair Cunha)",
+   "periodo": "jan/2025 – set/2026",
+   "resumo": "O Senado reembolsou R$ 2.629,99 em passagens de ida e volta de Flávio a São Paulo em 29/11/2025, dia em que ele visitou Daniel Vorcaro, e pagou R$ 13,6 mil em quatro bilhetes para ele e um assessor irem a um evento de pré-campanha com o mercado financeiro em SP, em 11–12/12/2025. A deputada Sâmia Bomfim (PSOL) pediu apuração, e o TCU autuou representação sobre o uso da cota. Em 19/01/2025, Flávio, a família e o advogado Willer Tomaz voaram de Fort Lauderdale (EUA) a Brasília no jato PP-NLR, operado pela Prime You, empresa de que Vorcaro foi sócio até setembro de 2025, segundo a piauí. Em março de 2025, uma foto mostra Flávio num safári na África do Sul com Tomaz e o senador Weverton Rocha, investigados na fraude do INSS, segundo o Estado de Minas.",
+   "numero": {
+    "valor": "Visita a Vorcaro",
+    "texto": "em 29/11/2025, com o banqueiro já fora da prisão e de tornozeleira; o Senado reembolsou as passagens, R$ 2.629,99, segundo O Antagonista",
+    "fonte": {
+     "veiculo": "O Antagonista",
+     "url": "https://oantagonista.com.br/brasil/deputada-pede-ao-senado-e-tcu-investigacao-sobre-uso-da-cota-parlamentar-por-flavio/",
+     "data": "2026-05-20"
+    },
+    "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Ainda bem que na época o avião era de Willer",
+    "literal": true,
+    "meio": "sobre o voo no jato PP-NLR",
+    "data": "2026-09-24",
+    "fonte": {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/flavio-usou-jatinho-de-vorcaro-em-viagem-dos-eua-ao-brasil-diz-revista/",
+     "data": "2026-09-24"
+    }
+   },
+   "busca": "PP-NLR|safári",
+   "cadeia": [
+    {
+     "de": "Senado Federal (Cota para o Exercício da Atividade Parlamentar)",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Reembolsou as passagens de 29/11/2025 e pagou as de dezembro, pedidas pelo gabinete dele.",
+     "status_de": "Representação autuada na unidade técnica do TCU, sobre o custeio de deslocamentos de Flávio com a CEAPS.",
+     "fonte": {
+      "veiculo": "Correio da Manhã (coluna Paulo Cappelli)",
+      "url": "https://www.correiodamanha.com.br/colunistas/paulo-cappelli/2026/05/289481-flavio-bolsonaro-entra-na-mira-do-tcu-por-uso-de-cota-parlamentar-ex-deputado-do-pt-e-sorteado-relator.html",
+      "data": "2026-05-28"
+     }
+    },
+    {
+     "de": "Jato PP-NLR",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Em 19/01/2025, Flávio, a mulher, as duas filhas e o advogado Willer Tomaz voaram nele de Fort Lauderdale (EUA) a Brasília. A Prime You, empresa de que Daniel Vorcaro foi sócio de 2021 a setembro de 2025, operava o avião e tinha uma das cotas; Tomaz tinha outra, segundo a piauí.",
+     "status_de": "",
+     "fonte": {
+      "veiculo": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/flavio-usou-jatinho-de-vorcaro-em-viagem-dos-eua-ao-brasil-diz-revista/",
+      "data": "2026-09-24"
+     }
+    },
+    {
+     "de": "Willer Tomaz",
+     "de_id": "willer-tomaz",
+     "para": "Flávio Bolsonaro",
+     "relacao": "Amigo de Flávio, está com ele e com o senador Weverton Rocha numa foto de safári na África do Sul, em março de 2025, segundo o Estado de Minas.",
+     "status_de": "alvo de busca e apreensão em 04/08/2026 na Operação Sem Desconto (fraude no INSS)",
+     "fonte": {
+      "veiculo": "Estado de Minas",
+      "url": "https://www.em.com.br/politica/2026/09/7504177-o-safari-de-flavio-bolsonaro-com-investigados-pela-pf-e-pela-cpi-do-inss.html",
+      "data": "2026-09-19"
+     }
+    }
+   ],
+   "fontes": [
+    {
+     "veiculo": "O Antagonista",
+     "url": "https://oantagonista.com.br/brasil/deputada-pede-ao-senado-e-tcu-investigacao-sobre-uso-da-cota-parlamentar-por-flavio/",
+     "data": "2026-05-20",
+     "trecho": "reembolso ao Senado de duas passagens, ao custo total de 2.629 reais e 99 centavos, para a viagem de 29/11/2025 a São Paulo, quando visitou Daniel Vorcaro"
+    },
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/senado-custeou-viagem-de-pre-campanha-de-flavio-em-sao-paulo",
+     "data": "2026-01-07",
+     "trecho": "R$ 13,6 mil em passagens para o senador e um assessor irem a evento com o mercado financeiro em SP, 11–12/12/2025"
+    },
+    {
+     "veiculo": "Correio da Manhã",
+     "url": "https://www.correiodamanha.com.br/colunistas/paulo-cappelli/2026/05/289481-flavio-bolsonaro-entra-na-mira-do-tcu-por-uso-de-cota-parlamentar-ex-deputado-do-pt-e-sorteado-relator.html",
+     "data": "2026-05-28"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-bolsonaro-viajou-dos-eua-para-brasilia-em-jato-de-vorcaro/",
+     "data": "2026-09-24",
+     "trecho": "Flávio não respondeu ao pedido de comentário sobre sua presença na aeronave feito pela reportagem da Piauí"
+    },
+    {
+     "veiculo": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/flavio-usou-jatinho-de-vorcaro-em-viagem-dos-eua-ao-brasil-diz-revista/",
+     "data": "2026-09-24",
+     "trecho": "Ainda bem que na época o avião era de Willer"
+    },
+    {
+     "veiculo": "Estado de Minas",
+     "url": "https://www.em.com.br/politica/2026/09/7504177-o-safari-de-flavio-bolsonaro-com-investigados-pela-pf-e-pela-cpi-do-inss.html",
+     "data": "2026-09-19",
+     "trecho": "grupo 'África do Sul'"
+    },
+    {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-congresso/foto-mostra-flavio-bolsonaro-em-safari-com-investigados-do-inss/",
+     "data": "2026-09-21",
+     "trecho": "mera ilação, sem qualquer fundamento nos fatos"
+    }
+   ],
+   "ressalva": "Ele é alvo de representação no TCU, processo de controle, não criminal, e disse que devolveria o valor.",
+   "rotas": {
+    "historia": "cap-cota-senado-viagens",
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "willer-tomaz"
+    ],
+    "busca": "PP-NLR|safári",
+    "registros": 2
+   }
   },
   {
    "id": "cargo-camara-durante-faculdade",
@@ -833,6 +1125,15 @@ window.FOZ = {
     "texto": "em Brasília, no cargo na Câmara que ele ocupou aos 19 anos enquanto fazia faculdade e estágio no Rio, segundo a BBC News Brasil",
     "fonte": {
      "veiculo": "Folha de S.Paulo (reportagem da BBC News Brasil)",
+     "url": "https://www1.folha.uol.com.br/poder/2019/01/flavio-bolsonaro-ocupou-cargo-na-camara-enquanto-fazia-faculdade-e-estagio-no-rio.shtml",
+     "data": "2019-01-23"
+    }
+   },
+   "ele_diz": {
+    "texto": "A assessoria dele disse que não responderia às perguntas da BBC News Brasil.",
+    "data": "2019-01-23",
+    "fonte": {
+     "veiculo": "Folha de S.Paulo",
      "url": "https://www1.folha.uol.com.br/poder/2019/01/flavio-bolsonaro-ocupou-cargo-na-camara-enquanto-fazia-faculdade-e-estagio-no-rio.shtml",
      "data": "2019-01-23"
     }
@@ -867,7 +1168,16 @@ window.FOZ = {
      "url": "https://www1.folha.uol.com.br/poder/2019/01/flavio-bolsonaro-ocupou-cargo-na-camara-enquanto-fazia-faculdade-e-estagio-no-rio.shtml",
      "data": "2019-01-23"
     }
-   ]
+   ],
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "defesa-milicias-alerj-2007-2008",
@@ -887,6 +1197,17 @@ window.FOZ = {
      "data": "2026-09-23"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Eu sou contra milícias, só que nesse momento (em 2007) estava começando uma discussão sobre o que era isso",
+    "literal": true,
+    "meio": "ao SBT, sobre o discurso de 2007",
+    "data": "2019-01-24",
+    "fonte": {
+     "veiculo": "Terra (Estadão Conteúdo)",
+     "url": "https://www.terra.com.br/noticias/brasil/politica/flavio-bolsonaro-diz-a-tv-que-e-contra-milicias-e-que-frases-foram-tiradas-de-contexto,8bf0ae23c1260c1b4098136ed92263a4w82hatr4.html",
+     "data": "2019-01-24"
+    }
    },
    "cadeia": [
     {
@@ -983,7 +1304,16 @@ window.FOZ = {
      "url": "https://pt.wikipedia.org/wiki/Fl%C3%A1vio_Bolsonaro",
      "trecho": "Em 2008, na instalação da CPI das Milícias, Flávio voltou a defender milicianos."
     }
-   ]
+   ],
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "marielle-ifop",
@@ -1002,6 +1332,17 @@ window.FOZ = {
      "veiculo": "CNN Brasil",
      "url": "https://www.cnnbrasil.com.br/politica/assessora-de-flavio-negociou-emenda-com-condenado-em-caso-marielle/",
      "data": "2026-09-22"
+    }
+   },
+   "ele_diz": {
+    "texto": "A responsabilidade pela execução dos recursos é da entidade beneficiária, não do parlamentar",
+    "literal": true,
+    "meio": "sobre o relatório do TCU",
+    "data": "2026-09-23",
+    "fonte": {
+     "veiculo": "Estado de Minas",
+     "url": "https://www.em.com.br/politica/2026/09/7506425-flavio-bolsonaro-destinou-emenda-a-miliciano-condenado-no-caso-marielle.html",
+     "data": "2026-09-23"
     }
    },
    "busca": "Marielle|Ifop|Robson Calixto|Brazão",
@@ -1182,9 +1523,27 @@ window.FOZ = {
      "url": "https://www.migalhas.com.br/quentes/450632/stf-veja-penas-fixadas-pela-1-turma-a-mandantes-da-morte-de-marielle",
      "data": "2026-02-25",
      "trecho": "Calixto: 9 anos e 200 dias-multa por organização criminosa armada."
+    },
+    {
+     "veiculo": "Estado de Minas",
+     "url": "https://www.em.com.br/politica/2026/09/7506425-flavio-bolsonaro-destinou-emenda-a-miliciano-condenado-no-caso-marielle.html",
+     "data": "2026-09-23",
+     "trecho": "A responsabilidade pela execução dos recursos é da entidade beneficiária, não do parlamentar"
     }
    ],
-   "ressalva": "Peixe foi condenado por integrar organização criminosa armada, não pela execução do crime."
+   "ressalva": "Peixe foi condenado por integrar organização criminosa armada, não pela execução do crime.",
+   "rotas": {
+    "historia": "cap-marielle-ifop",
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "ronald-paulo-alves-pereira",
+     "robson-calixto-fonseca"
+    ],
+    "busca": "Marielle|Ifop|Robson Calixto|Brazão",
+    "registros": 6
+   }
   },
   {
    "id": "inss-contador",
@@ -1205,6 +1564,15 @@ window.FOZ = {
      "data": "2026-09-12"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Já negou envolvimento no esquema do INSS; procurado pelo ICL Notícias sobre a sala compartilhada, não se manifestou.",
+    "data": "2026-09-12",
+    "fonte": {
+     "veiculo": "Estado de Minas",
+     "url": "https://www.em.com.br/politica/2026/09/7499131-empresa-de-flavio-bolsonaro-divide-endereco-com-empresas-do-careca-do-inss.html",
+     "data": "2026-09-12"
+    }
    },
    "busca": "Careca do INSS|Bravo Grafeno|Sem Desconto",
    "cadeia": [
@@ -1273,7 +1641,16 @@ window.FOZ = {
      "data": "2026-02-03",
      "trecho": "administradora desde 16 de abril de 2021"
     }
-   ]
+   ],
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": "Careca do INSS|Bravo Grafeno|Sem Desconto",
+    "registros": 4
+   }
   },
   {
    "id": "quarto-elemento",
@@ -1294,6 +1671,15 @@ window.FOZ = {
      "data": "2018-09-05"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Negou, pessoalmente e em nota, que os irmãos fizessem parte da campanha.",
+    "data": "2018-09-04",
+    "fonte": {
+     "veiculo": "MEON (com O Estado de S. Paulo)",
+     "url": "https://www.meon.com.br/noticias/prisao-de-pms-causa-mal-estar-na-campanha-de-filho-de-bolsonaro-no-rio",
+     "data": "2018-09-05"
+    }
    },
    "busca": "Quarto Elemento|Valdenice",
    "cadeia": [
@@ -1370,7 +1756,16 @@ window.FOZ = {
      "data": "2019-02-22",
      "trecho": "Valdenice tinha procuração para movimentar dinheiro da campanha de Flávio."
     }
-   ]
+   ],
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": "Quarto Elemento|Valdenice",
+    "registros": 2
+   }
   },
   {
    "id": "servulo-assessor-em-portugal",
@@ -1386,6 +1781,15 @@ window.FOZ = {
     "texto": "fora do país, em oito viagens a Portugal, recebendo como assessor do gabinete dele na Alerj, segundo o Jornal Nacional",
     "fonte": {
      "veiculo": "Folha de S.Paulo (sobre reportagem do Jornal Nacional)",
+     "url": "https://www1.folha.uol.com.br/poder/2018/12/ex-assessor-de-flavio-bolsonaro-recebia-da-alerj-mesmo-fora-do-brasil.shtml",
+     "data": "2018-12-12"
+    }
+   },
+   "ele_diz": {
+    "texto": "Disse que não era verdade que o assessor morasse em Portugal, embora a família dele more lá.",
+    "data": "2018-12-12",
+    "fonte": {
+     "veiculo": "Folha de S.Paulo",
      "url": "https://www1.folha.uol.com.br/poder/2018/12/ex-assessor-de-flavio-bolsonaro-recebia-da-alerj-mesmo-fora-do-brasil.shtml",
      "data": "2018-12-12"
     }
@@ -1420,9 +1824,25 @@ window.FOZ = {
      "veiculo": "Folha de S.Paulo",
      "url": "https://www1.folha.uol.com.br/poder/2018/12/ex-assessor-de-flavio-bolsonaro-recebia-da-alerj-mesmo-fora-do-brasil.shtml",
      "data": "2018-12-12"
+    },
+    {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/brasil/politica-br/ex-assessor-de-flavio-bolsonaro-recebia-ate-quando-estava-fora-do-pais",
+     "data": "2018-12-12"
     }
    ],
-   "ressalva": "Os dois foram denunciados na rachadinha; as provas foram anuladas e a denúncia, arquivada em 2022."
+   "ressalva": "Os dois foram denunciados na rachadinha; as provas foram anuladas e a denúncia, arquivada em 2022.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "queiroz"
+    ],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "assessor-ex-caixa",
@@ -1439,6 +1859,15 @@ window.FOZ = {
     "fonte": {
      "veiculo": "Folha de S.Paulo",
      "url": "https://www1.folha.uol.com.br/poder/2026/05/flavio-bolsonaro-manteve-como-assessor-ex-dirigente-da-caixa-demitido-por-assedio.shtml",
+     "data": "2026-05-25"
+    }
+   },
+   "ele_diz": {
+    "texto": "Disse que o assessor omitiu da chefia pendências judiciais e exercia atividades particulares no horário de expediente, e determinou a exoneração.",
+    "data": "2026-05-25",
+    "fonte": {
+     "veiculo": "Jornal de Brasília (Folhapress)",
+     "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/flavio-bolsonaro-manteve-como-assessor-ex-dirigente-da-caixa-demitido-por-assedio/",
      "data": "2026-05-25"
     }
    },
@@ -1460,9 +1889,24 @@ window.FOZ = {
      "veiculo": "Folha de S.Paulo",
      "url": "https://www1.folha.uol.com.br/poder/2026/05/flavio-bolsonaro-manteve-como-assessor-ex-dirigente-da-caixa-demitido-por-assedio.shtml",
      "data": "2026-05-25"
+    },
+    {
+     "veiculo": "Jornal de Brasília (Folhapress)",
+     "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/flavio-bolsonaro-manteve-como-assessor-ex-dirigente-da-caixa-demitido-por-assedio/",
+     "data": "2026-05-25",
+     "trecho": "O gabinete não compactua com qualquer desvio de conduta"
     }
    ],
-   "ressalva": "Acordo de não persecução não é condenação. O assessor foi exonerado após a reportagem."
+   "ressalva": "Acordo de não persecução não é condenação. O assessor foi exonerado após a reportagem.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "escritorio-do-crime",
@@ -1483,6 +1927,17 @@ window.FOZ = {
      "data": "2020-02-11"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Eu não posso ser responsabilizado pelo que a pessoa se transforma depois de cinco, 10, 15, 20 anos",
+    "literal": true,
+    "meio": "no Jornal Nacional, sobre a medalha a Adriano",
+    "data": "2026-08-28",
+    "fonte": {
+     "veiculo": "Rádio Itatiaia",
+     "url": "https://www.itatiaia.com.br/politica/eleicoes/flavio-bolsonaro-justifica-medalha-a-adriano-da-nobrega-policial-exemplar-na-epoca/",
+     "data": "2026-08-28"
+    }
    },
    "busca": "Escritório do Crime|Adriano da Nóbrega|Adriano Magalhães",
    "cadeia": [
@@ -1544,7 +1999,21 @@ window.FOZ = {
      "trecho": "Adriano recebeu a Medalha Tiradentes; Ronald, moção de Flávio em 2004"
     }
    ],
-   "ressalva": "Adriano morreu em 2020 sem ser julgado no caso do Escritório do Crime. Na rachadinha, as provas foram anuladas e a denúncia, arquivada em 2022."
+   "ressalva": "Adriano morreu em 2020 sem ser julgado no caso do Escritório do Crime. Na rachadinha, as provas foram anuladas e a denúncia, arquivada em 2022.",
+   "rotas": {
+    "historia": null,
+    "zap": "escritorio-do-crime",
+    "quiz": [
+     "q-6"
+    ],
+    "dh": null,
+    "teia": [
+     "danielle",
+     "adriano"
+    ],
+    "busca": "Escritório do Crime|Adriano da Nóbrega|Adriano Magalhães",
+    "registros": 29
+   }
   },
   {
    "id": "jogo-do-bicho",
@@ -1565,6 +2034,15 @@ window.FOZ = {
      "data": "2026-03-19"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "À Folha, não quis comentar por não ter tomado conhecimento da acusação.",
+    "data": "2026-03-19",
+    "fonte": {
+     "veiculo": "Folhapress (via Acessa)",
+     "url": "https://www.acessa.com/politica/2026/03/315937-ex-assessora-de-flavio-bolsonaro-e-denunciada-sob-acusacao-de-lavar-dinheiro-de-filho-miliciano.html",
+     "data": "2026-03-19"
+    }
    },
    "busca": "jogo do bicho|Bernardo Bello|Operação Legado",
    "cadeia": [
@@ -1618,7 +2096,20 @@ window.FOZ = {
      "data": "2026-03-19"
     }
    ],
-   "ressalva": "Raimunda ainda não foi julgada."
+   "ressalva": "Raimunda ainda não foi julgada.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [
+     "q-10"
+    ],
+    "dh": null,
+    "teia": [
+     "raimunda"
+    ],
+    "busca": "jogo do bicho|Bernardo Bello|Operação Legado",
+    "registros": 2
+   }
   },
   {
    "id": "leo-indio-8jan",
@@ -1719,7 +2210,16 @@ window.FOZ = {
      "data": "2026-06-28",
      "trecho": "Foragido desde 2025, com mandado de prisão assinado por Moraes."
     }
-   ]
+   ],
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "gabinete-do-odio-contas-falsas",
@@ -1740,6 +2240,17 @@ window.FOZ = {
      "data": "2021-06-16"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "…é possível encontrar milhares de perfis de apoio. Até onde se sabe, todos eles são livres e independentes",
+    "literal": true,
+    "meio": "sobre as contas removidas pelo Facebook",
+    "data": "2020-07-08",
+    "fonte": {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/midia/facebook-exclui-contas-falsas-ligadas-a-gabinetes-da-familia-bolsonaro/",
+     "data": "2020-07-08"
+    }
    },
    "cadeia": [
     {
@@ -1794,7 +2305,16 @@ window.FOZ = {
      "data": "2021-07-01"
     }
    ],
-   "ressalva": "O inquérito foi arquivado em 2021."
+   "ressalva": "O inquérito foi arquivado em 2021.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "coacao-eduardo",
@@ -1814,6 +2334,17 @@ window.FOZ = {
      "data": "2025-07-14"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Mais uma grande injustiça cometida contra o Eduardo Bolsonaro, num processo que é absolutamente nulo",
+    "literal": true,
+    "meio": "em vídeo nas redes, sobre a condenação do irmão",
+    "data": "2026-06-17",
+    "fonte": {
+     "veiculo": "Metro1",
+     "url": "https://www.metro1.com.br/noticias/politica/184058,flavio-bolsonaro-chama-condenacao-de-eduardo-pelo-stf-de-grande-injustica-e-fala-em-vinganca",
+     "data": "2026-06-17"
+    }
    },
    "busca": "coação|tarifaço",
    "cadeia": [
@@ -1862,7 +2393,18 @@ window.FOZ = {
      "trecho": "somente os filhos parlamentares... haviam vocalizado o argumento"
     }
    ],
-   "ressalva": "Regime semiaberto; recurso rejeitado pelo STF em 18/09/2026."
+   "ressalva": "Regime semiaberto; recurso rejeitado pelo STF em 18/09/2026.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": "dark-horse.html#dh-tarifa",
+    "teia": [
+     "eduardo"
+    ],
+    "busca": "coação|tarifaço",
+    "registros": 8
+   }
   },
   {
    "id": "trama-golpista",
@@ -1875,13 +2417,24 @@ window.FOZ = {
    "resumo": "Em 11/09/2025 a 1ª Turma do STF condenou Jair Bolsonaro a 27 anos e 3 meses por tentativa de golpe de Estado, organização criminosa armada e outros crimes. A condenação transitou em julgado em 25/11/2025. Desde março de 2026 ele cumpre a pena em prisão domiciliar humanitária, que Moraes renovou em julho de 2026. A defesa pediu a anulação em maio de 2026, e o PGR Paulo Gonet se manifestou contra.",
    "numero": {
     "valor": "Anistia ao pai",
-    "texto": "condenado a 27 anos e 3 meses na trama golpista: ele diz que vai buscá-la ainda na transição, se eleito, segundo a InfoMoney",
+    "texto": "condenado a 27 anos e 3 meses na trama golpista: “vou trabalhar pra que a anistia seja feita ainda na transição”, disse ele em sabatina na TV Globo, segundo a InfoMoney",
     "fonte": {
      "veiculo": "InfoMoney",
      "url": "https://www.infomoney.com.br/politica/flavio-diz-que-buscara-anistia-para-bolsonaro-ainda-durante-governo-de-transicao/",
      "data": "2026-08-28"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "vou trabalhar pra que a anistia seja feita ainda na transição",
+    "literal": true,
+    "meio": "em sabatina na TV Globo",
+    "data": "2026-08-28",
+    "fonte": {
+     "veiculo": "InfoMoney",
+     "url": "https://www.infomoney.com.br/politica/flavio-diz-que-buscara-anistia-para-bolsonaro-ainda-durante-governo-de-transicao/",
+     "data": "2026-08-28"
+    }
    },
    "busca": "golpista|golpe de Estado|8 de janeiro",
    "cadeia": [
@@ -1935,7 +2488,18 @@ window.FOZ = {
      "data": "2026-08-08",
      "trecho": "Flávio Nantes Bolsonaro obteve uma carta do investigado"
     }
-   ]
+   ],
+   "rotas": {
+    "historia": "cap-trama-golpista",
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "jair"
+    ],
+    "busca": "golpista|golpe de Estado|8 de janeiro",
+    "registros": 8
+   }
   },
   {
    "id": "joias-sauditas",
@@ -2020,7 +2584,18 @@ window.FOZ = {
      "trecho": "Wassef não é mais advogado de Flávio Bolsonaro no caso da rachadinha"
     }
    ],
-   "ressalva": "A PGR pediu o arquivamento; Moraes ainda não decidiu."
+   "ressalva": "A PGR pediu o arquivamento; Moraes ainda não decidiu.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "wassef"
+    ],
+    "busca": "joias|Rolex",
+    "registros": 4
+   }
   },
   {
    "id": "rachadinha-carlos",
@@ -2112,7 +2687,19 @@ window.FOZ = {
      "data": "2024-09",
      "trecho": "acessaram 153 vezes as duas caixas mantidas no local ao longo dos 12 anos"
     }
-   ]
+   ],
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "carlos-bolsonaro",
+     "jorge-luiz-fernandes"
+    ],
+    "busca": "Jorge Luiz Fernandes|Câmara do Rio|cofres",
+    "registros": 2
+   }
   },
   {
    "id": "cla-valle-gabinetes",
@@ -2130,6 +2717,15 @@ window.FOZ = {
      "veiculo": "Metrópoles",
      "url": "https://www.metropoles.com/brasil/politica-brasil/pgr-apura-audios-de-ex-cunhada-que-envolvem-bolsonaro-com-rachadinha",
      "data": "2021-08-24"
+    }
+   },
+   "ele_diz": {
+    "texto": "A defesa dele chamou os áudios de gravações clandestinas, feitas sem autorização da Justiça.",
+    "data": "2021-07-05",
+    "fonte": {
+     "veiculo": "O Tempo",
+     "url": "https://www.otempo.com.br/politica/audios-de-ex-cunhada-ligam-jair-bolsonaro-a-esquema-de-rachadinhas-diz-site-1.2508532",
+     "data": "2021-07-05"
     }
    },
    "cadeia": [
@@ -2244,7 +2840,18 @@ window.FOZ = {
      "data": "2021-07-07"
     }
    ],
-   "ressalva": "Ninguém foi denunciado por esses fatos."
+   "ressalva": "Ninguém foi denunciado por esses fatos.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "jair"
+    ],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "imoveis-dinheiro-vivo",
@@ -2309,7 +2916,16 @@ window.FOZ = {
      "trecho": "atendeu a um pedido do senador Flávio Bolsonaro (PL-RJ)"
     }
    ],
-   "ressalva": "O STF derrubou a ordem, pedida por ele, de tirar as reportagens do ar."
+   "ressalva": "O STF derrubou a ordem, pedida por ele, de tirar as reportagens do ar.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": "51 imóveis|16 imóveis",
+    "registros": 2
+   }
   },
   {
    "id": "cheques-michelle",
@@ -2383,7 +2999,18 @@ window.FOZ = {
      "trecho": "provas obtidas ao longo dos dois anos de investigação... foram consideradas anuladas"
     }
    ],
-   "ressalva": "Jair diz que os cheques pagavam um empréstimo dele a Queiroz."
+   "ressalva": "Jair diz que os cheques pagavam um empréstimo dele a Queiroz.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "queiroz"
+    ],
+    "busca": "89 mil|cheques de",
+    "registros": 2
+   }
   },
   {
    "id": "brb-mansao",
@@ -2402,6 +3029,16 @@ window.FOZ = {
      "veiculo": "Metrópoles",
      "url": "https://www.metropoles.com/colunas/grande-angular/juiz-do-df-considera-regular-emprestimo-de-flavio-bolsonaro-no-brb",
      "data": "2025-07-01"
+    }
+   },
+   "ele_diz": {
+    "texto": "Disse que pagou a casa com a renda de advogado e empresário e com o trabalho da mulher, dentista.",
+    "meio": "na defesa numa ação popular",
+    "data": "2021",
+    "fonte": {
+     "veiculo": "Congresso em Foco",
+     "url": "https://www.congressoemfoco.com.br/noticia/20550/flavio-bolsonaro-diz-que-mansao-de-r-6-milhoes-foi-paga-com-renda-de-advogado",
+     "data": "2021"
     }
    },
    "busca": "BRB|Paulo Henrique Costa",
@@ -2457,7 +3094,21 @@ window.FOZ = {
      "trecho": "ex-presidente do BRB, Paulo Henrique Costa é preso pela PF"
     }
    ],
-   "ressalva": "A Justiça julgou o empréstimo regular em 2025."
+   "ressalva": "A Justiça julgou o empréstimo regular em 2025.",
+   "rotas": {
+    "historia": null,
+    "zap": "brb-mansao",
+    "quiz": [
+     "q-18",
+     "q-19"
+    ],
+    "dh": null,
+    "teia": [
+     "paulo_henrique"
+    ],
+    "busca": "BRB|Paulo Henrique Costa",
+    "registros": 17
+   }
   },
   {
    "id": "mocoes-pms-reus-condenados",
@@ -2475,6 +3126,17 @@ window.FOZ = {
      "veiculo": "piauí",
      "url": "https://piaui.uol.com.br/web/flavio-os-condenados-e-os-condecorados/",
      "data": "2019-02-22"
+    }
+   },
+   "ele_diz": {
+    "texto": "…já concedi centenas de outras homenagens. Aqueles que cometem erros devem responder por seus atos",
+    "literal": true,
+    "meio": "em nota, sobre as homenagens",
+    "data": "2019-01-22",
+    "fonte": {
+     "veiculo": "Jovem Pan",
+     "url": "https://jovempan.com.br/noticias/brasil/flavio-bolsonaro-aqueles-que-cometem-erros-devem-responder-por-seus-atos.html",
+     "data": "2019-01-22"
     }
    },
    "busca": "Moção|homenag|Medalha Tiradentes|Turnowski|Amarildo",
@@ -2631,7 +3293,18 @@ window.FOZ = {
      "trecho": "Resposta: à época das homenagens, era impossível prever que alguns policiais desonrassem a farda."
     }
    ],
-   "ressalva": "Na maioria dos casos, a homenagem veio antes do crime ou da condenação."
+   "ressalva": "Na maioria dos casos, a homenagem veio antes do crime ou da condenação.",
+   "rotas": {
+    "historia": "cap-mocoes-pms-reus-condenados",
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "ronald-paulo-alves-pereira"
+    ],
+    "busca": "Moção|homenag|Medalha Tiradentes|Turnowski|Amarildo",
+    "registros": 13
+   }
   },
   {
    "id": "cv-governo-rj",
@@ -2652,6 +3325,15 @@ window.FOZ = {
      "data": "2026-05-25"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Em nota, disse que qualquer envolvido com tráfico de drogas, milícia ou narcoterrorismo deve ser punido com todo o rigor da lei.",
+    "data": "2026-05-25",
+    "fonte": {
+     "veiculo": "Metrópoles",
+     "url": "https://www.metropoles.com/colunas/tacio-lorran/mensagens-revelam-troca-de-favores-entre-traficante-do-cv-e-aliado-de-flavio-no-rj",
+     "data": "2026-05-25"
+    }
    },
    "busca": "Gutemberg|Carracena|Comando Vermelho",
    "cadeia": [
@@ -2727,7 +3409,16 @@ window.FOZ = {
      "trecho": "Bacellar se reuniu com Jair, Flávio e Carlos em julho de 2024"
     }
    ],
-   "ressalva": "Gutemberg nega relação com o traficante e não foi indiciado."
+   "ressalva": "Gutemberg nega relação com o traficante e não foi indiciado.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": "Gutemberg|Carracena|Comando Vermelho",
+    "registros": 2
+   }
   },
   {
    "id": "unha-e-carne",
@@ -2814,7 +3505,20 @@ window.FOZ = {
      "trecho": "vazamento de informações sigilosas de operações policiais contra o Comando Vermelho"
     }
    ],
-   "ressalva": "Canella não foi denunciado; Moraes revogou as cautelares dele em 24/07/2026."
+   "ressalva": "Canella não foi denunciado; Moraes revogou as cautelares dele em 24/07/2026.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [
+     "q-11"
+    ],
+    "dh": null,
+    "teia": [
+     "marcio-canella"
+    ],
+    "busca": "Canella|Unha e Carne",
+    "registros": 1
+   }
   },
   {
    "id": "covaxin",
@@ -2835,6 +3539,15 @@ window.FOZ = {
      "data": "2021-09-23"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Diz não ter 'nenhuma relação comercial, financeira' com Maximiano.",
+    "data": "2021-06-25",
+    "fonte": {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/governo/nao-tenho-nenhuma-relacao-comercial-com-maximiano-diz-flavio-bolsonaro/",
+     "data": "2021-06-25"
+    }
    },
    "cadeia": [
     {
@@ -2933,7 +3646,16 @@ window.FOZ = {
      "data": "2022-04-23"
     }
    ],
-   "ressalva": "O inquérito contra Jair por prevaricação foi arquivado em 2022."
+   "ressalva": "O inquérito contra Jair por prevaricação foi arquivado em 2022.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "emenda-master",
@@ -2954,6 +3676,15 @@ window.FOZ = {
      "data": "2026-05-07"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "À CNN, disse que as acusações contra Ciro são graves e o descartou como vice.",
+    "data": "2026-05-08",
+    "fonte": {
+     "veiculo": "Correio Braziliense",
+     "url": "https://www.correiobraziliense.com.br/politica/2026/05/7415714-flavio-bolsonaro-descarta-ciro-nogueira-como-vice-apos-acao-da-pf.html",
+     "data": "2026-05-08"
+    }
    },
    "busca": "Ciro Nogueira",
    "cadeia": [
@@ -3014,7 +3745,18 @@ window.FOZ = {
      "trecho": "repasses como propina em troca da Emenda Master"
     }
    ],
-   "ressalva": "Ciro nega e não foi denunciado."
+   "ressalva": "Ciro nega e não foi denunciado.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": "dark-horse.html",
+    "teia": [
+     "ciro-nogueira"
+    ],
+    "busca": "Ciro Nogueira",
+    "registros": 1
+   }
   },
   {
    "id": "valdemar-emendas-pl",
@@ -3036,11 +3778,22 @@ window.FOZ = {
     },
     "tipo": "frase"
    },
+   "ele_diz": {
+    "texto": "Lamentável ver a PF atuando de forma seletiva para constranger um adversário político",
+    "literal": true,
+    "meio": "nas redes, sobre o bloqueio dos bens de Valdemar",
+    "data": "2026-07-10",
+    "fonte": {
+     "veiculo": "CartaCapital",
+     "url": "https://www.cartacapital.com.br/politica/flavio-bolsonaro-sai-em-defesa-de-valdemar-costa-neto-e-fala-em-perseguicao/",
+     "data": "2026-07-10"
+    }
+   },
    "cadeia": [
     {
      "de": "Valdemar Costa Neto (presidente nacional do PL)",
      "para": "Flávio Bolsonaro",
-     "relacao": "Preside o partido de Flávio. Segundo O Globo, centraliza boa parte da negociação de alianças, da montagem dos palanques estaduais e da estratégia nacional da campanha presidencial.",
+     "relacao": "O elo é o partido: Valdemar preside o PL, partido de Flávio. Segundo O Globo, centraliza boa parte da negociação de alianças, da montagem dos palanques estaduais e da estratégia nacional da campanha presidencial.",
      "status_de": "Investigado na Operação Transparência (PF). O STF bloqueou R$ 119 mi em bens, valor total das 21 emendas, para garantir ressarcimento em caso de condenação. A defesa nega 'categoricamente' qualquer crime.",
      "fonte": {
       "veiculo": "Agência Brasil",
@@ -3100,9 +3853,23 @@ window.FOZ = {
      "veiculo": "Congresso em Foco",
      "url": "https://www.congressoemfoco.com.br/noticia/7556/alexandre-de-moraes-concede-liberdade-provisoria-a-valdemar",
      "data": "2024-02-10"
+    },
+    {
+     "veiculo": "CartaCapital",
+     "url": "https://www.cartacapital.com.br/politica/flavio-bolsonaro-sai-em-defesa-de-valdemar-costa-neto-e-fala-em-perseguicao/",
+     "data": "2026-07-10"
     }
    ],
-   "ressalva": "Valdemar nega crime e não foi denunciado."
+   "ressalva": "Valdemar nega crime e não foi denunciado.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "make-up",
@@ -3123,6 +3890,17 @@ window.FOZ = {
      "data": "2026-09-10"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "O que tem claramente é uma tentativa de interferência política, mais uma vez, agora, do ministro Flávio Dino sobre as eleições",
+    "literal": true,
+    "meio": "em agenda em Roraima, sobre a operação",
+    "data": "2026-09-10",
+    "fonte": {
+     "veiculo": "A Tarde",
+     "url": "https://atarde.com.br/politica/dark-horse-flavio-reage-a-operacao-e-fala-em-interferencia-politica-1401627",
+     "data": "2026-09-10"
+    }
    },
    "busca": "Make Up|Mário Frias",
    "cadeia": [
@@ -3186,7 +3964,18 @@ window.FOZ = {
      "data": "2026-07-23",
      "trecho": "autorizou a abertura de inquérito para investigar o senador"
     }
-   ]
+   ],
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": "dark-horse.html",
+    "teia": [
+     "mario-frias"
+    ],
+    "busca": "Make Up|Mário Frias",
+    "registros": 8
+   }
   },
   {
    "id": "ceperj-castro",
@@ -3251,7 +4040,18 @@ window.FOZ = {
      "data": "2026-06-01"
     }
    ],
-   "ressalva": "Condenação eleitoral, no TSE."
+   "ressalva": "Condenação eleitoral, no TSE.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "claudio-castro"
+    ],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "inss-willer",
@@ -3272,6 +4072,17 @@ window.FOZ = {
      "data": "2026-09-21"
     },
     "tipo": "frase"
+   },
+   "ele_diz": {
+    "texto": "Qualquer tentativa de insinuar irregularidade a partir dessa afinidade pessoal é mera ilação, sem qualquer fundamento nos fatos",
+    "literal": true,
+    "meio": "a assessoria dele, sobre a amizade com Tomaz",
+    "data": "2026-09-21",
+    "fonte": {
+     "veiculo": "Poder360",
+     "url": "https://www.poder360.com.br/poder-congresso/foto-mostra-flavio-bolsonaro-em-safari-com-investigados-do-inss/",
+     "data": "2026-09-21"
+    }
    },
    "busca": "Willer Tomaz",
    "cadeia": [
@@ -3338,7 +4149,20 @@ window.FOZ = {
      "trecho": "apartamento de 158,87 m²"
     }
    ],
-   "ressalva": "A defesa de Tomaz diz que as viagens foram pagas com recursos próprios."
+   "ressalva": "A defesa de Tomaz diz que as viagens foram pagas com recursos próprios.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [
+     "q-12"
+    ],
+    "dh": null,
+    "teia": [
+     "willer-tomaz"
+    ],
+    "busca": "Willer Tomaz",
+    "registros": 8
+   }
   },
   {
    "id": "hospitais-federais-rj",
@@ -3423,7 +4247,16 @@ window.FOZ = {
      "data": "2021-10-27"
     }
    ],
-   "ressalva": "O relatório final da CPI não incluiu esses gestores."
+   "ressalva": "O relatório final da CPI não incluiu esses gestores.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "sarasvati",
@@ -3438,6 +4271,15 @@ window.FOZ = {
    "numero": {
     "valor": "R$ 16 milhões",
     "texto": "do Estado por obras em 15 escolas, pagos à construtora de um aliado dele, alvo de busca por suspeita de fraude, segundo a Pública",
+    "fonte": {
+     "veiculo": "Agência Pública",
+     "url": "https://apublica.org/2026/09/o-amigo-do-flavio-bolsonaro-em-angra-dos-reis/",
+     "data": "2026-09-09"
+    }
+   },
+   "ele_diz": {
+    "texto": "Procurado pela Pública, não respondeu.",
+    "data": "2026-09-09",
     "fonte": {
      "veiculo": "Agência Pública",
      "url": "https://apublica.org/2026/09/o-amigo-do-flavio-bolsonaro-em-angra-dos-reis/",
@@ -3484,7 +4326,18 @@ window.FOZ = {
      "trecho": "candidato investigado participa de barqueata com Flávio Bolsonaro em Angra"
     }
    ],
-   "ressalva": "Araújo não foi indiciado. É o mesmo empresário da PEC das Praias."
+   "ressalva": "Araújo não foi indiciado. É o mesmo empresário da PEC das Praias.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "renato-araujo"
+    ],
+    "busca": null,
+    "registros": 0
+   }
   },
   {
    "id": "sem-refino",
@@ -3570,7 +4423,18 @@ window.FOZ = {
      "trecho": "Castro era o pré-candidato ao Senado na chapa de Flávio; Flávio define o substituto com Jair"
     }
    ],
-   "ressalva": "Castro nega irregularidades e não foi denunciado."
+   "ressalva": "Castro nega irregularidades e não foi denunciado.",
+   "rotas": {
+    "historia": null,
+    "zap": null,
+    "quiz": [],
+    "dh": null,
+    "teia": [
+     "claudio-castro"
+    ],
+    "busca": "Refit|Ricardo Magro|Sem Refino|Cláudio Castro",
+    "registros": 1
+   }
   }
  ],
  "redireciona": {

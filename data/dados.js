@@ -514,7 +514,7 @@ window.DOSSIE = {
      "veiculo": "O Tempo",
      "url": "https://www.otempo.com.br/opiniao/politica/contas-da-mae-do-miliciano-adriano-revelam-transferencias-para-fabricio-queiroz-1.2378953",
      "data": "2019",
-     "trecho": "Contas da mãe do miliciano Adriano revelam transferências para Fabrício Queiroz",
+     "trecho": "Contas da mãe de Adriano da Nóbrega revelam transferências para Fabrício Queiroz",
      "tier": "referencia"
     }
    ],
@@ -774,7 +774,7 @@ window.DOSSIE = {
    "data": "2019-01-22",
    "status": "fato",
    "titulo": "Mãe e ex-mulher de Adriano da Nóbrega eram lotadas no gabinete de Flávio na Alerj",
-   "resumo": "Reportagens revelaram que Raimunda Veras Magalhães (mãe) e Danielle Mendonça da Costa (esposa) do miliciano Adriano da Nóbrega ocupavam cargos no gabinete de Flávio Bolsonaro na Alerj. Ambas tinham cargo CCDAL-5, com salário de R$ 6.490,35, e foram exoneradas a pedido em 13/11/2018.",
+   "resumo": "Reportagens revelaram que Raimunda Veras Magalhães (mãe) e Danielle Mendonça da Costa (esposa) de Adriano da Nóbrega, apontado pelo MP-RJ como chefe do Escritório do Crime, ocupavam cargos no gabinete de Flávio Bolsonaro na Alerj. Ambas tinham cargo CCDAL-5, com salário de R$ 6.490,35, e foram exoneradas a pedido em 13/11/2018.",
    "pessoas": [
     "raimunda",
     "danielle",
@@ -1597,7 +1597,7 @@ window.DOSSIE = {
    "tema": "milicia",
    "data": "2022-04-06",
    "status": "declaracao",
-   "titulo": "Irmã de Adriano acusa governo Bolsonaro de oferecer cargos pela morte do miliciano",
+   "titulo": "Irmã de Adriano acusa governo Bolsonaro de oferecer cargos pela morte do irmão",
    "resumo": "Em conversas interceptadas, Daniela, irmã de Adriano, afirmou que o governo Bolsonaro teria oferecido cargos comissionados no Planalto 'pela vida' do irmão: 'Fizeram uma reunião com o nome do Adriano no Planalto'. Ela reforçou a tese de queima de arquivo, mas responsabilizou o então governador Witzel pela morte.",
    "pessoas": [],
    "fontes": [
@@ -7841,7 +7841,7 @@ window.DOSSIE = {
    "tema": "familia",
    "data": "2005-06",
    "status": "fato",
-   "titulo": "Flávio condecorou e defendeu o miliciano Adriano da Nóbrega (Medalha Tiradentes, 2005)",
+   "titulo": "Flávio condecorou e defendeu Adriano da Nóbrega, depois apontado pelo MP-RJ como chefe do Escritório do Crime (Medalha Tiradentes, 2005)",
    "resumo": "Como deputado estadual, Flávio Bolsonaro concedeu Moção de Louvor (out/2003) e a Medalha Tiradentes (jun/2005) ao então PM Adriano da Nóbrega, depois apontado pelo MP-RJ como chefe da milícia de Rio das Pedras e do 'Escritório do Crime'. Jair o defendeu em discurso na Câmara em out/2005.",
    "observacao": "Item de Flávio (cruzamento clã: Jair também defendeu Nóbrega). Nóbrega foi morto pela polícia em 2020.",
    "pessoas": [
@@ -9358,7 +9358,7 @@ window.DOSSIE = {
     "nome": "Rogério Teixeira Júnior (Juninho do Pneu)",
     "papel": "Deputado federal (União Brasil-RJ); comprou imóveis de Julia Lotufo atribuídos a Adriano",
     "grupo": "operadores",
-    "status": "Deputado federal denunciado pelo MPRJ na Operação Legado por lavagem de dinheiro, exploração de jogo do bicho e ocultação de bens ligados ao grupo do miliciano Adriano da Nóbrega; denunciado junto com Raimunda Veras (mãe de Adriano e ex-assessora de Flávio na Alerj). Não há mandado de prisão contra ele.",
+    "status": "Deputado federal denunciado pelo MP-RJ na Operação Legado por lavagem de dinheiro, exploração de jogo do bicho e ocultação de bens ligados ao grupo de Adriano da Nóbrega; denunciado junto com Raimunda Veras (mãe de Adriano e ex-assessora de Flávio na Alerj).",
     "situacao": [
      "denunciado",
      "investigado"
@@ -10741,7 +10741,7 @@ window.DOSSIE = {
    {
     "id": "edevaldo-de-oliveira",
     "nome": "Edevaldo de Oliveira",
-    "papel": "Advogado, 'correspondente' de Wassef em Atibaia; elo com defensor de Queiroz e do miliciano Adriano",
+    "papel": "Advogado, 'correspondente' de Wassef em Atibaia; elo com o defensor de Queiroz e de Adriano da Nóbrega",
     "grupo": "juridico",
     "status": "Ex-PRF, advogado desde 2009; correspondente de Wassef em Atibaia; auxiliou Catta Pretta a obter documentos para habeas corpus de Queiroz; teria acompanhado depoimento 'notoriamente combinado' para obstruir investigação.",
     "situacao": [],
@@ -10755,9 +10755,9 @@ window.DOSSIE = {
    {
     "id": "paulo-emilio-catta-pretta",
     "nome": "Paulo Emílio Catta Pretta",
-    "papel": "Advogado que defendeu Fabrício Queiroz e o miliciano Adriano da Nóbrega",
+    "papel": "Advogado que defendeu Fabrício Queiroz e Adriano da Nóbrega, apontado pelo MP-RJ como chefe do Escritório do Crime",
     "grupo": "juridico",
-    "status": "Defensor de Queiroz e do miliciano Adriano da Nóbrega; recrutou Edevaldo de Oliveira (correspondente de Wassef) para apoiar HC de Queiroz por motivo de saúde.",
+    "status": "Defensor de Queiroz e de Adriano da Nóbrega, apontado pelo MP-RJ como chefe do Escritório do Crime; recrutou Edevaldo de Oliveira (correspondente de Wassef) para apoiar HC de Queiroz por motivo de saúde.",
     "situacao": [],
     "situacao_fontes": [
      {
@@ -13659,7 +13659,7 @@ window.DOSSIE = {
     "de": "paulo-emilio-catta-pretta",
     "para": "adriano",
     "rotulo": "advogado de defesa",
-    "status": "Catta Pretta defendeu o miliciano Adriano da Nóbrega, do Escritório do Crime.",
+    "status": "Catta Pretta defendeu Adriano da Nóbrega, apontado pelo MP-RJ como chefe do Escritório do Crime.",
     "fontes": [
      {
       "veiculo": "Crusoé",

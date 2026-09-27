@@ -1,7 +1,13 @@
 /* BolsoDrive — base visual compartilhada pelas seções novas.
    A identidade é a do site (fundo escuro, verde e âmbar de terminal), aplicada
    com leitura: sem scanline, sem brilho, texto de corpo em fonte do sistema,
-   mono só em rótulos. O vermelho significa uma coisa só: preso ou condenado. */
+   mono só em rótulos. O vermelho significa uma coisa só: preso ou condenado.
+
+   SISTEMA DE COMPONENTES (extraído da Foz; Onda 1, 27/09/2026) — ver o bloco "COMPONENTES" abaixo.
+   Cor: vermelho = preso ou condenado · âmbar = número, fato, ação · verde = fonte, link · qualquer outra cor é bug.
+   Tipo: corpo 16 · fichas 14 · ressalvas 13 · mono só em rótulo, status, fonte e legenda (nunca em manchete,
+   número ou nome de pessoa). Um .env e uma .porta por unidade; a situação dele sempre em tinta (neutra).
+   As regras daqui têm a especificidade mínima: o <style> de cada página vem depois e sempre ganha. */
 :root{
   --papel:#070a07; --tinta:#d8efdd; --cinza:#86a58c;
   --cinza2:#6c8f70;          /* cinza fraco: 5,5:1 sobre --papel, 5,1:1 sobre --leve (era #4f6b51, 3,4:1) */
@@ -11,6 +17,8 @@
   --linha:rgba(116,255,150,.18); --leve:#0e160e;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* os 3 status (as lanes da Foz): nomes para usar em anel, ponto, lane e legenda; nenhuma cor nova */
+  --st-grave:var(--carimbo); --st-medio:var(--amber); --st-outros:#5c8a63;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -31,32 +39,44 @@ button{font-family:var(--sans)}
 .wrap{max-width:560px; margin:0 auto; padding:16px 16px 60px}
 @media (min-width:900px){ .wrap{max-width:720px; padding-top:24px} }
 h1{font-size:26px; margin:6px 0 4px; letter-spacing:-.01em}
-/* título de seção: o mesmo do Arquivo, em todas as páginas */
+/* título de seção: o mesmo do Arquivo, em todas as páginas; um por página */
 h1.sec{font-family:var(--mono); font-size:22px; color:var(--amber); text-transform:uppercase; letter-spacing:2px; margin:0 0 6px}
 h1.sec::before{content:"// "; color:var(--cinza2)}
 .sub{color:var(--cinza); margin:0 0 14px; font-size:15px}
 
-/* tipografia de número */
+/* ---------- tipografia de número ---------- */
+/* .kicker: rótulo mono acima do título ("ELE MESMO", "TRECHO 3"); .kicker.neutro = o mesmo em cinza, sem peso.
+   O "kicker da unidade" (o nome do caso, 16/700 tinta) é o título da ficha: .afl .n / .dq h2. */
 .kicker{font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--amber); text-transform:uppercase; font-weight:700; margin:12px 0 8px}
-.numero{font-size:clamp(56px,19vw,124px); font-weight:800; line-height:.95; letter-spacing:-.03em; font-variant-numeric:tabular-nums; margin:0 0 14px}
+.kicker.neutro{color:var(--cinza); font-weight:400}
+/* .numero: sans 800 âmbar tabular, sempre à esquerda e sempre com a frase que diz quem afirma.
+   Escala: .ficha 27 → .destaque 44–72 → .menor 26–58 (resposta, linha) → sem modificador 56–124 (palco).
+   Prefixo/sufixo menores, com o espaço DENTRO do span: <span class="p">R$ </span>131<span class="u"> milhões</span>.
+   Frase-choque no lugar do número: .numero.frase. No .dq, use <p class="numero destaque"> (o .dq-n da Foz não reduz o "R$"). */
+.numero{color:var(--amber); font-size:clamp(56px,19vw,124px); font-weight:800; line-height:.95; letter-spacing:-.02em; font-variant-numeric:tabular-nums; margin:0 0 14px}
 .numero.menor{font-size:clamp(26px,8.2vw,58px); white-space:nowrap}
+.numero.destaque{font-size:clamp(44px,13vw,72px); line-height:1; margin:0}
+.numero.ficha{font-size:27px; line-height:1.05; letter-spacing:-.01em; margin:0}
+.numero .p, .numero .u{font-size:.42em; font-weight:700; letter-spacing:0}
+.numero.ficha .p, .numero.ficha .u{font-size:.58em}
+.numero.frase{font-size:clamp(30px,8.8vw,46px); line-height:1.04; letter-spacing:-.015em; text-wrap:balance; overflow-wrap:normal; hyphens:none; max-width:12em; white-space:normal}
+.numero.ficha.frase{font-size:23px; line-height:1.1; letter-spacing:-.005em; max-width:none}
 .frase{font-size:clamp(17px,4.7vw,22px); margin:0 0 12px; max-width:32em}
 
-/* status: vermelho sólido = grave; contorno âmbar = médio; cinza = nenhum */
-.chip{display:inline-block; font-family:var(--mono); font-size:11px; letter-spacing:.06em; font-weight:700; padding:5px 9px; margin:0 0 12px; border:1.5px solid var(--amber); color:var(--amber)}
-.chip.grave{background:var(--carimbo); border-color:var(--carimbo); color:#1a0505}
+/* status: situação literal e atribuída, em tinta; vermelho só na borda, e só para preso ou condenado */
+.chip{display:inline-block; max-width:100%; font-family:var(--mono); font-size:11px; line-height:1.45; letter-spacing:.04em; font-weight:400; padding:3px 7px; margin:0 0 12px; border:1px solid var(--tinta); border-radius:2px; color:var(--tinta)}
+.chip.grave{border-color:var(--st-grave)}
 .chip.nenhum{border-color:var(--cinza2); color:var(--cinza)}
 
 .fonte{font-family:var(--mono); font-size:12px; color:var(--cinza); margin:0 0 6px}
 .fonte a{color:var(--azul); display:inline-block; padding:8px 0; margin:-8px 0}
-.ressalva{font-size:12.5px; line-height:1.45; color:var(--cinza); max-width:34em; margin:6px 0 0}
+.ressalva{font-size:13px; line-height:1.45; color:var(--cinza); max-width:34em; margin:6px 0 0}
 
 /* botões: um sólido, um vazado; nunca mais que dois lado a lado */
 .acoes{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px}
 .acoes button, .acoes a{font-size:15px; font-weight:600; padding:11px 15px; border-radius:2px; text-decoration:none; border:1.5px solid var(--amber); background:var(--amber); color:#120c00; cursor:pointer}
-.acoes .sec{background:transparent; color:var(--tinta); border-color:var(--cinza2)}
 
-/* pílulas de escolha (trilhas, modos) */
+/* pílulas de escolha (trilhas, modos, filtros): raio 999 só aqui */
 .pilulas{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 10px}
 .pilulas button{font-size:13px; padding:8px 12px; border:1.5px solid var(--cinza2); background:transparent; color:var(--tinta); border-radius:999px; cursor:pointer; font-weight:600}
 .pilulas button.on{background:var(--amber); border-color:var(--amber); color:#120c00}
@@ -72,10 +92,96 @@ h1.sec::before{content:"// "; color:var(--cinza2)}
 .toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%); background:var(--tinta); color:var(--papel); padding:10px 16px; font-family:var(--mono); font-size:13px; opacity:0; pointer-events:none; transition:opacity .18s; z-index:9}
 .toast.on{opacity:1}
 
-/* contraste: o número do trecho no cabeçalho (header.css ainda grava #4f6b51 à mão, 3,4:1) passa a --cinza2.
-   Retirar quando header.css usar var(--cinza2). */
-header.site-header .nv-trechos a:not([aria-current]) .nv-n{color:var(--cinza2)}
-header.site-header .nv-trechos a[aria-current] .nv-n{color:#553a00}   /* na pílula âmbar: 5,8:1 (era #6b4a00, 4,4:1) */
+/* =====================================================================================================
+   COMPONENTES — o molde da Foz, para todas as páginas (medidas de foz.html; direcao-de-arte.md §1–2)
+   .env · .sec · .porta · .lm · .dq · .afl · .legenda  (+ .kicker .numero .chip acima)
+   ===================================================================================================== */
+
+/* .env — o único botão de envio: âmbar sólido, 44 px, sans 15/700, "enviar ↗" (data-share="<tópico>").
+   Um por unidade (ficha, destaque, cartão). Nunca verde, nunca mono, nunca contorno. */
+.acoes .env,.env{display:inline-flex; align-items:center; justify-content:center; min-height:44px; min-width:44px; font-size:15px; font-weight:700; padding:0 18px; border-radius:2px; border:1.5px solid var(--amber); background:var(--amber); color:#120c00; cursor:pointer; font-family:var(--sans); text-decoration:none}
+.env:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.env[disabled]{opacity:.45; cursor:default}
+
+/* .sec — a ação secundária ao lado do .env ("85 registros", "a conversa no BolsoZap →", "▶ assistir"):
+   contorno cinza2, texto tinta, sans 14/600, 44 px. (h1.sec é outra coisa: o título mono da página.) */
+:where(a,button).sec{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 12px; font-family:var(--sans); font-size:14px; font-weight:600; border:1.5px solid var(--cinza2); border-radius:2px; background:transparent; color:var(--tinta); text-decoration:none; cursor:pointer}
+.acoes .sec{background:transparent; color:var(--tinta); border-color:var(--cinza2)}
+:where(a,button).sec:hover{border-color:var(--tinta)}
+:where(a,button).sec:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+
+/* .porta — a saída para o próximo trecho: link âmbar 16/700 com seta no texto ("O quiz: 20 perguntas →").
+   Sem caixa, sem borda verde, sem mono. Uma por página (no fim da unidade ou da página). */
+.porta{display:inline-flex; align-items:center; min-height:44px; padding:0; font-family:var(--sans); font-size:16px; font-weight:700; color:var(--amber); text-decoration:none; background:none; border:0; cursor:pointer}
+.porta:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+
+/* .lm — "ler mais ↓" / "ler a fonte ↓": âmbar, sem borda; diz o que abre */
+.lm{display:inline-flex; align-items:center; min-height:44px; padding:0; margin:0 0 6px; border:0; background:none; color:var(--amber); font:600 15px var(--sans); cursor:pointer; text-decoration:none}
+
+/* .dq — o destaque: um por página, no topo. Caixa --leve, borda 1 px + 3 px tinta à esquerda.
+   <div class="dq">
+     <h2>Caso Marielle</h2>                          título 20/800 tinta (a pessoa nunca em âmbar)
+     <p class="numero destaque">…</p>                número 44–72 âmbar (ou .numero.frase); .dq-n = o mesmo, sem .p/.u
+     <p class="dq-t">o que é, segundo quem</p>       texto 16
+     <p class="dq-s">situação dele, literal</p>      situação 15, tinta, filete à esquerda
+     <p class="dq-r">ressalva</p>                    14 cinza (se houver)
+     <div class="dq-a"><a href>a ficha →</a><button class="env" data-share>enviar ↗</button>
+       <span class="dq-f">Fonte, dd/mm/aaaa ↗</span></div>
+   </div> */
+.dq{margin:0 0 22px; padding:14px 16px 10px; border:1px solid var(--linha); border-left:3px solid var(--tinta); border-radius:4px; background:var(--leve)}
+.dq h2{margin:0 0 6px; font-size:20px; line-height:1.15; font-weight:800; color:var(--tinta)}
+.dq h2 b{color:var(--amber); font-variant-numeric:tabular-nums; white-space:nowrap}
+.dq .dq-n{margin:0; color:var(--amber); font-weight:800; font-size:clamp(44px,13vw,72px); line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.dq .dq-n.frase{margin:2px 0 8px; font-size:clamp(30px,8.8vw,46px); line-height:1.04; letter-spacing:-.015em; text-wrap:balance; overflow-wrap:normal; hyphens:none; max-width:12em}
+.dq .dq-t{margin:0 0 6px; font-size:16px; line-height:1.45; color:var(--tinta)}
+.dq .dq-s{margin:0 0 6px; font-size:15px; line-height:1.45; color:var(--tinta); padding-left:10px; border-left:2px solid var(--tinta)}
+.dq .dq-r{margin:0 0 8px; font-size:14px; line-height:1.45; color:var(--cinza)}
+.dq .dq-a{display:flex; flex-wrap:wrap; align-items:center; gap:4px 16px}
+.dq .dq-a > a{display:inline-flex; align-items:center; min-height:44px; font-size:16px; font-weight:700; color:var(--amber); text-decoration:none}
+.dq .dq-a > a:hover{text-decoration:underline; text-underline-offset:3px}
+.dq .dq-f{font-family:var(--mono); font-size:12px; color:var(--cinza)}
+.dq .dq-f a{display:inline-block; padding:10px 0; margin:-10px 0; color:var(--azul)}
+
+/* .afl — a ficha: cartão 1 px --linha, raio 4, --leve; 130–190 px; sem sombra, ícone, emoji ou prefixo.
+   <button class="afl">                                (ou <a>/<article>)
+     <b class="n">Caso Queiroz</b>                     kicker da unidade 16/700 tinta
+     <span class="an"><b>R$ 2 mi</b>                   número 27/800 âmbar (<b class="frase"> para frase-choque)
+       <span class="t">o que é, segundo quem</span></span>   texto 14, até 3 linhas
+     <span class="via">quem liga a ele</span>          14 tinta (opcional)
+     <span class="sf">situação literal</span>          status mono 10,5, borda tinta (até 2 linhas)
+     <span class="mais">ler mais</span>
+   </button> */
+.afl{display:block; width:100%; text-align:left; padding:10px 12px 11px; margin:0 0 12px; border:1px solid var(--linha); border-radius:4px; background:var(--leve); color:var(--tinta); font:inherit; text-decoration:none; transition:border-color .2s, box-shadow .2s}
+a.afl, button.afl{cursor:pointer}
+a.afl:hover, button.afl:hover, .afl.flash{border-color:var(--amber)}
+.afl.flash{box-shadow:0 0 0 2px rgba(255,176,46,.35)}
+.afl:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.afl .n{font-size:16px; font-weight:700; display:block; line-height:1.25}
+.afl .an{display:block; margin:6px 0 8px}
+.afl .an b{display:block; font-size:27px; font-weight:800; line-height:1.05; letter-spacing:-.01em; color:var(--amber); font-variant-numeric:tabular-nums}
+.afl .an b .p, .afl .an b .u{font-size:.58em; font-weight:700; letter-spacing:0}
+.afl .an b.frase{font-size:23px; line-height:1.1; letter-spacing:-.005em; text-wrap:balance}
+.afl .an .t{display:block; font-size:14px; line-height:1.4; color:var(--tinta); margin-top:3px}
+.afl .via{display:block; font-size:14px; line-height:1.35; color:var(--tinta); margin:4px 0 2px}
+.afl .sf{display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; padding:3px 7px; margin-top:2px; border:1px solid var(--tinta); border-radius:2px; color:var(--tinta)}
+.afl .mais{display:block; font-family:var(--mono); font-size:11px; color:var(--azul); margin-top:6px}
+/* grade de fichas (2 colunas a partir de 520 px; 1 no celular estreito) */
+.afls{display:grid; grid-template-columns:1fr; gap:0 12px}
+@media (min-width:520px){ .afls{grid-template-columns:1fr 1fr} }
+/* na grade as fichas têm a altura da linha: conteúdo no alto (o <button> centraria), "ler mais" no pé */
+.afls > .afl{display:flex; flex-direction:column; align-items:flex-start}
+.afls > .afl .mais{margin-top:auto; padding-top:6px}
+
+/* .legenda — os 3 status, sempre os mesmos 3 e nesta ordem:
+   <div class="legenda"><span><i class="grave"></i>preso ou condenado</span>
+     <span><i class="medio"></i>investigado ou denunciado</span><span><i class="outros"></i>outros</span></div>
+   (<i class="anel …"> para o anel dos retratos: contorno em vez de traço) */
+.legenda{font-family:var(--sans); font-size:12px; color:var(--cinza); display:flex; gap:4px 12px; flex-wrap:wrap; margin:8px 0 4px}
+.legenda span{white-space:nowrap}
+.legenda i{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:3px; margin-right:5px}
+.legenda i.grave{background:var(--st-grave)} .legenda i.medio{background:var(--st-medio)} .legenda i.outros{background:var(--st-outros)}
+.legenda i.anel{width:11px; height:11px; border-radius:50%; vertical-align:-1px; background:transparent; border:2px solid var(--st-outros)}
+.legenda i.anel.grave{border-color:var(--st-grave)} .legenda i.anel.medio{border-color:var(--st-medio)}
 
 svg text.leg{font-family:var(--mono); font-size:11px; fill:var(--cinza)}
 svg text.rot{font-family:var(--sans); font-size:13px; fill:var(--tinta); font-weight:600}

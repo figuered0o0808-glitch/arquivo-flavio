@@ -1,5 +1,11 @@
 /* BOLSODRIVE · a espinha do rio.
-   Monta o cabeçalho, o mapa do rio e o link "siga o rio" de todas as páginas.
+   Monta o cabeçalho, o menu e o link "siga o rio" de todas as páginas.
+   O menu (Onda 1, X03/D13): 5 destinos (A Foz, ↳ Dark Horse, O dinheiro, BolsoZap, Quiz) + "Arquivo", que agrupa o
+   resto (Recentemente, os registros, a teia de nomes e a órbita, Cronologia, Notícias, Pergunte ao arquivo); no alto,
+   "O rio em 60 segundos"; no pé, "enviar esta tela" (S13: o tópico da tela atual) e o "Kit de envio".
+   Celular: [ MENU ] abre o menu em tela cheia. Desktop: os 5 destinos em linha; [ MENU ] abre o resto.
+   Os trechos do rio (0 nascente → 3 foz) continuam: a linha do curso, o "trecho N de 3" e o "siga o rio".
+   Página que quiser dizer qual tópico é a tela atual: window.BD_TELA = 'id' ou function(){ return 'id' }.
    Contrato de cada página:
      <body data-trecho="N">  0 nascente · 1 a teia de nomes · 2 o dinheiro · 3 a foz · "m" margem
      <body data-curto="A teia">  opcional: nome curto do trecho/margem na linha do celular (senão vale o `curto` da lista)
@@ -10,7 +16,8 @@
      <header class="site-header" data-nav></header>
      <link rel="stylesheet" href="assets/header.css">  e, no fim do body,  <script src="assets/nav.js"></script>
    Em drive.html, a troca de view muda data-trecho e chama window.BDNav.atualiza().
-   BolsoZap (zap.html, data-trecho="m"): a 1ª margem do mapa; no desktop também um link direto na linha (.nv-zap). */
+   BolsoZap (zap.html, data-trecho="m"): um dos 5 destinos (no desktop, na linha).
+   window.BDNav: { atualiza, abre, fecha, TRECHOS, MARGENS (tudo o que não é trecho), DESTINOS, ARQUIVO }. */
 (function(){
   'use strict';
   var doc = document, body = doc.body, raiz = doc.documentElement;
@@ -32,7 +39,10 @@
        if (!g || !g.nodes) return 'os nomes em volta dele e a teia completa, com a situação de cada um';
        var viz = {}; (g.edges || []).forEach(function(e){ if (e.de === 'flavio') viz[e.para] = 1; if (e.para === 'flavio') viz[e.de] = 1; });
        delete viz.flavio;
-       var n1 = Object.keys(viz).length, n = g.nodes.filter(function(x){ return x.id !== 'flavio'; }).length;
+       /* com data/resumo.js (index) o grafo vem recortado: as contagens da teia inteira estão em meta.n */
+       var mn = (d.meta && d.meta.lite && d.meta.n) || null;
+       var n1 = mn && mn.nomes ? mn.nomes : Object.keys(viz).length,
+           n = mn && mn.nos ? mn.nos - 1 : g.nodes.filter(function(x){ return x.id !== 'flavio'; }).length;
        return n1 + ' nomes em volta dele; ' + n + ' na teia completa, com a situação de cada um'; }},
     {nome:'O dinheiro', href:'siga-o-dinheiro.html',
      desc:function(){ var d = D(), f = d && d.fluxoDinheiro && d.fluxoDinheiro.fluxos;
@@ -45,16 +55,32 @@
        return 'os ' + z.escandalos.length + ' casos e como chegam a ele'; },
      afluentes:[{id:'dark-horse', nome:'Dark Horse', href:'dark-horse.html', desc:'o dinheiro do filme, mês a mês', volta:'foz.html#master'}]}
   ];
-  var MARGENS = [
-    {id:'zap',        nome:'BolsoZap',         href:'zap.html'},
-    {id:'recente',    nome:'Recentemente',     href:'drive.html#recente'},
-    {id:'arquivo',    nome:'Arquivo',          href:'drive.html#arquivo'},
-    {id:'cronologia', nome:'Cronologia',       href:'drive.html#cronologia'},
-    {id:'noticias',   nome:'Notícias',         href:'drive.html#noticias'},
-    {id:'chat',       nome:'FlávioGPT',        href:'drive.html#chat'},
-    {id:'quiz',       nome:'Quiz',             href:'quiz.html'},
-    {id:'orbita',     nome:'A rede em órbita', curto:'A rede', href:'close-friends.html'}
+  /* os 5 destinos do menu (D13), nesta ordem; afl = afluente do anterior (recuado, com ↳) */
+  var DESTINOS = [
+    {id:'foz', nome:'A Foz', href:'foz.html', trecho:3,
+     desc:function(){ var z = F(); return 'os ' + (z && z.escandalos ? z.escandalos.length : 40) + ' casos, e como cada um chega a ele'; }},
+    {id:'dark-horse', nome:'Dark Horse', href:'dark-horse.html', afl:true, desc:'o dinheiro do filme, mês a mês'},
+    {id:'dinheiro', nome:'O dinheiro', href:'siga-o-dinheiro.html', trecho:2, desc:function(){ return TRECHOS[2].desc(); }},
+    {id:'zap', nome:'BolsoZap', href:'zap.html', desc:'cada mensagem é uma reportagem, com fonte'},
+    {id:'quiz', nome:'Quiz', href:'quiz.html',
+     desc:function(){ var t = window.BD_TOPICOS || {}, n = Object.keys(t).filter(function(k){ return /^q-\d+$/.test(k); }).length;
+       return (n ? n + ' perguntas' : 'perguntas') + ', com a fonte de cada resposta'; }}
   ];
+  /* "Arquivo": o resto, num grupo só (a teia de nomes é o trecho 1; a órbita é um modo dela) */
+  var ARQUIVO = [
+    {id:'recente',    nome:'Recentemente',        href:'drive.html#recente'},
+    {id:'arquivo',    nome:'Os registros',        curto:'Registros', href:'drive.html#arquivo'},
+    {id:'rede',       nome:'A teia de nomes',     curto:'A teia', href:'drive.html#rede'},
+    {id:'orbita',     nome:'Em órbita',           curto:'Em órbita', href:'close-friends.html'},
+    {id:'cronologia', nome:'Cronologia',          href:'drive.html#cronologia'},
+    {id:'noticias',   nome:'Notícias',            href:'drive.html#noticias'},
+    {id:'chat',       nome:'Pergunte ao arquivo', curto:'Pergunte', href:'drive.html#chat'}
+  ];
+  var RIO60 = {id:'rio60', nome:'O rio em 60 segundos', curto:'60 segundos', href:'rio60.html', desc:'os casos principais, um por tela, com o envio em cada um'};
+  var KIT = {id:'kit', nome:'Kit de envio', curto:'Kit de envio', href:'kit.html', desc:'20 cartões com fonte, textos prontos e stories para o status'};
+  /* MARGENS (contrato antigo, lido pelo zap.js): tudo o que não é trecho, na ordem do menu */
+  var MARGENS = [DESTINOS[3], DESTINOS[4], RIO60, KIT].concat(ARQUIVO.filter(function(x){ return x.id !== 'rede'; }));
+  var ROTULO_GRUPO = {zap:'conversas', quiz:'teste', rio60:'em 1 minuto', kit:'mande adiante'};
   /* nome curto: o da página (<body data-curto="…">) vence o da lista */
   function curtoDe(x){ return body.getAttribute('data-curto') || (x && x.curto) || (x && x.nome) || ''; }
   var VIEWS_DRIVE = ['recente','arquivo','rede','cronologia','noticias','chat'];
@@ -75,18 +101,36 @@
     return null;
   }
   function descDe(x){ return typeof x.desc === 'function' ? x.desc() : (x.desc || ''); }
+  function viewDrive(){
+    var v = doc.querySelector('.view.active');
+    var id = v && v.id ? v.id.replace(/^view-/, '') : (location.hash || '#recente').slice(1);
+    return VIEWS_DRIVE.indexOf(id) >= 0 ? id : 'recente';
+  }
   function margemAtual(){
     var p = pagina();
     if (p === 'zap.html') return 'zap';
     if (p === 'quiz.html') return 'quiz';
+    if (p === 'kit.html') return 'kit';
+    if (p === 'rio60.html') return 'rio60';
     if (p === 'close-friends.html') return 'orbita';
-    if (p === 'drive.html'){
-      var v = doc.querySelector('.view.active');
-      var id = v && v.id ? v.id.replace(/^view-/, '') : (location.hash || '#recente').slice(1);
-      return VIEWS_DRIVE.indexOf(id) >= 0 ? id : 'recente';
-    }
+    if (p === 'drive.html') return viewDrive();
     return '';
   }
+  /* o item do menu em que a pessoa está (destino, item do Arquivo, 60 s ou kit); '' na abertura */
+  function aquiId(){
+    var p = pagina();
+    if (p === 'foz.html') return 'foz';
+    if (p === 'dark-horse.html') return 'dark-horse';
+    if (p === 'siga-o-dinheiro.html') return 'dinheiro';
+    if (p === 'drive.html') return viewDrive();
+    return margemAtual();
+  }
+  function itemDe(id){
+    var l = DESTINOS.concat(ARQUIVO, [RIO60, KIT]);
+    for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i];
+    return null;
+  }
+  function noArquivo(id){ return ARQUIVO.some(function(x){ return x.id === id; }); }
   function lerUltimo(){
     try { var v = sessionStorage.getItem('rio_ultimo'); if (v === '0' || v === '1' || v === '2' || v === '3') return +v; } catch (e) {}
     return 1;
@@ -97,7 +141,8 @@
   var ISO = /^\d{4}-\d{2}-\d{2}/;
   /* o fato mais recente do arquivo (data/dados.js) */
   function ultimoFato(){
-    var d = D(), max = ''; if (!d || !d.itens) return '';
+    var d = D(), max = ''; if (d && d.meta && d.meta.lite && d.meta.ultimo && !d.itens) return d.meta.ultimo;
+    if (!d || !d.itens) return '';
     d.itens.forEach(function(i){ var m = String(i.data || '').match(ISO); if (m && m[0] > max) max = m[0]; });
     return max;
   }
@@ -133,7 +178,9 @@
   var FORA = /\bLula\b|\bPT\b|petista/i, NAOE = /\(não é Flávio\)\s*$/;
   /* fatos do arquivo nos 14 dias que terminam no fato mais recente: a mesma janela e a mesma peneira da view Recentemente */
   function contaRecentes(){
-    var d = D(), fim = ultimoFato(); if (!d || !d.itens || !fim) return 0;
+    var d = D(), fim = ultimoFato();
+    if (d && d.contagens && !d.itens) return d.contagens.recentes14 || 0;   /* data/resumo.js: a conta já vem feita */
+    if (!d || !d.itens || !fim) return 0;
     var lim = new Date(new Date(fim + 'T12:00:00Z').getTime() - 14 * 864e5).toISOString().slice(0, 10);
     return d.itens.filter(function(i){
       var m = String(i.data || '').match(ISO), t = String(i.titulo || '');
@@ -183,33 +230,110 @@
     });
   })();
 
+  /* ---------- estilo do menu (Onda 1): vem junto com o markup, depois do header.css (o integrador pode movê-lo para lá) ---------- */
+  (function estilo(){
+    if (doc.getElementById('nv-estilo')) return;
+    var s = doc.createElement('style'); s.id = 'nv-estilo';
+    s.textContent = [
+      /* "O rio em 60 segundos": a entrada rápida, no alto do menu */
+      '.nv-60{display:flex; align-items:center; gap:12px; min-height:64px; margin:6px 0 2px; padding:10px 14px 10px 12px; border:1px solid rgba(255,176,46,.5); border-radius:4px; background:#0e160e; color:#d8efdd; text-decoration:none!important}',
+      '.nv-60:hover,.nv-60[aria-current]{border-color:#ffb02e}',
+      '.nv-60 .nv-play{flex:none; width:40px; height:40px; border-radius:50%; background:#ffb02e; position:relative}',
+      '.nv-60 .nv-play::after{content:""; position:absolute; left:15px; top:12px; border-style:solid; border-width:8px 0 8px 13px; border-color:transparent transparent transparent #120c00}',
+      '.nv-60 b{display:block; font-family:var(--nv-sans); font-size:17px; font-weight:700; line-height:1.25; color:#ffb02e}',
+      '.nv-60 .nv-d{display:block; font-size:13.5px; line-height:1.35; color:#86a58c; margin-top:2px}',
+      /* os destinos: sem a linha do rio (não são trechos em ordem); o atual em âmbar com um ponto */
+      '.nv-dest{list-style:none; margin:0; padding:0}',
+      '.nv-dest > li{position:relative}',
+      '.nv-dest > li > a,.nv-dest .nv-abre{display:flex; flex-direction:column; justify-content:center; width:100%; min-height:62px; padding:10px 0 10px 18px; text-align:left; text-decoration:none!important; color:#d8efdd; background:none; border:0; border-bottom:1px solid rgba(116,255,150,.12); font:inherit; cursor:pointer}',
+      '.nv-dest > li > a::before,.nv-dest .nv-abre::before{content:""; position:absolute; left:2px; top:50%; width:7px; height:7px; margin-top:-4px; border-radius:50%; border:1.5px solid #4f6b51}',
+      '.nv-dest > li > a[aria-current]::before{background:#ffb02e; border-color:#ffb02e; box-shadow:0 0 0 3px rgba(255,176,46,.22)}',
+      '.nv-dest > li > a b,.nv-dest .nv-abre b{font-family:var(--nv-mono); font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.04em}',
+      '.nv-dest > li > a .nv-d,.nv-dest .nv-abre .nv-d{display:block; font-size:14px; line-height:1.35; color:#86a58c; margin-top:3px}',
+      '.nv-dest > li > a[aria-current] b,.nv-dest > li > a:hover b,.nv-dest .nv-abre:hover b{color:#ffb02e}',
+      '.nv-dest li.nv-afl-i > a{min-height:52px; padding-left:40px}',
+      '.nv-dest li.nv-afl-i > a::before{left:22px}',
+      '.nv-dest li.nv-afl-i b::before{content:"↳\\00a0"; color:#86a58c}',
+      '.nv-dest .nv-abre{position:relative; padding-right:52px}',
+      '.nv-dest .nv-abre .nv-mais{position:absolute; right:0; top:50%; margin-top:-22px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; font-family:var(--nv-mono); font-size:18px; color:#ffb02e; border:1px solid rgba(116,255,150,.25); border-radius:4px}',
+      '.nv-dest .nv-abre[aria-expanded="true"] .nv-mais{border-color:#ffb02e}',
+      '.nv-dest .nv-abre.nv-aqui-grupo::before{background:#ffb02e; border-color:#ffb02e}',
+      '.nv-arq{padding:10px 0 12px; border-bottom:1px solid rgba(116,255,150,.12)}',
+      '.nv-arq .nv-margens{grid-template-columns:repeat(2,minmax(0,1fr))}',
+      '.nv-arq .nv-margens a{padding:0 8px; font-size:12px; letter-spacing:.01em}',
+      '.nv-arq[hidden]{display:none}',
+      '.nv-arq .nv-margens a span{white-space:nowrap}',
+      /* mande adiante: enviar a tela atual (S13) e o kit */
+      '.nv-env{display:flex; align-items:center; justify-content:center; width:100%; min-height:48px; padding:0 18px; border:1.5px solid #ffb02e; border-radius:2px; background:#ffb02e; color:#120c00; font-family:var(--nv-sans); font-size:16px; font-weight:700; cursor:pointer}',
+      '.nv-env:focus-visible{outline:2px solid #ffb02e; outline-offset:2px}',
+      '.nv-vai{font-family:var(--nv-mono); font-size:12px; line-height:1.45; color:#86a58c; margin:8px 0 0}',
+      '.nv-vai b{font-weight:400; color:#d8efdd}',
+      '.nv-kit{display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 10px; min-height:56px; padding:14px 0 4px; margin-top:12px; border-top:1px solid rgba(116,255,150,.12); color:#d8efdd; text-decoration:none!important}',
+      '.nv-kit b{font-family:var(--nv-sans); font-size:17px; font-weight:700; color:#ffb02e}',
+      '.nv-kit .nv-d{flex-basis:100%; font-size:14px; line-height:1.4; color:#86a58c}',
+      '.nv-kit:hover b{text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px}',
+      '.nv-kit[aria-current] b{text-decoration:underline; text-underline-offset:3px}',
+      '.nv-60:focus-visible,.nv-kit:focus-visible,.nv-abre:focus-visible{outline:2px solid #ffb02e; outline-offset:2px}',
+      '.nv-sec-envio{margin-top:6px}',
+      '.nv-mapa .nv-sec-rio{display:block}',
+      ':root{--nv-sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}',
+      /* celular: a linha do cabeçalho sem "trecho 0" (a abertura não é um trecho a descer) */
+      '.nv-aqui:empty{visibility:hidden}',
+      /* 320–359 px: colchetes colados ao "menu" e o nome em 10,5 px, para "KIT DE ENVIO" e "↳ DARK HORSE" caberem inteiros */
+      '@media (max-width:359px){ .nv-row .nv-bt::before{content:"["} .nv-row .nv-bt::after{content:"]"} .nv-row .nv-aqui b{font-size:10.5px} }',
+      /* desktop: os 5 destinos já estão na linha; o menu mostra o 60 s, o Arquivo aberto e o envio */
+      '@media (min-width:900px){',
+      '  .nv-mapa{width:360px}',
+      '  .nv-mapa .nv-dest > li:not(.nv-grupo){display:none}',
+      '  .nv-mapa .nv-sec-rio > .nv-k{display:none}',
+      '  .nv-dest .nv-abre{min-height:0; padding:12px 0 2px; border:0; cursor:default}',
+      '  .nv-dest .nv-abre::before,.nv-dest .nv-abre .nv-mais{display:none}',
+      '  .nv-dest .nv-abre b{font-size:12px; letter-spacing:.08em; color:#5c8a63}',
+      '  .nv-dest .nv-abre b::before{content:"//\\00a0"}',
+      '  .nv-dest .nv-abre .nv-d{display:none}',
+      '  .nv-arq,.nv-arq[hidden]{display:block; padding:6px 0 12px; border:0}',
+      '  .nv-arq .nv-margens{grid-template-columns:repeat(2,minmax(0,1fr))}',
+      '  .nv-arq .nv-margens a:last-child:nth-child(odd){grid-column:1/-1}',
+      '  .nv-trechos a.nv-afl-t .nv-n{margin-right:5px}',
+      '  .nv-row.nv-sem-zap .nv-trechos a.nv-opc{display:none}',
+      '  .nv-mapa.nv-com-opc .nv-dest > li.nv-opc-i{display:block}',
+      '}'
+    ].join('\n');
+    doc.head.appendChild(s);
+  })();
+
   /* ---------- markup (montado uma vez) ---------- */
   hdr.innerHTML =
     '<div class="nv-row">' +
       marca() +
       '<span class="nv-aqui" id="nv-aqui"></span>' +
-      '<nav class="nv-trechos" id="nv-trechos" aria-label="Trechos do rio"></nav>' +
-      '<a class="nv-zap" id="nv-zap" href="zap.html">BolsoZap</a>' +     // desktop: a aba BolsoZap direto na linha (no celular, só no mapa)
+      '<nav class="nv-trechos" id="nv-trechos" aria-label="Destinos"></nav>' +   // desktop: os 5 destinos em linha
       '<button type="button" class="nv-bt" id="nv-bt" aria-expanded="false" aria-controls="nv-mapa">' +
-        '<span class="nv-bt-m">rio</span><span class="nv-bt-d" id="nv-bt-d">margens</span></button>' +
+        '<span class="nv-bt-m">menu</span><span class="nv-bt-d" id="nv-bt-d">menu</span></button>' +
     '</div>' +
     '<div class="nv-curso" id="nv-curso" aria-hidden="true"><span class="nv-feito" id="nv-feito"></span></div>';
 
   var mapa = doc.createElement('div');
   mapa.className = 'nv-mapa'; mapa.id = 'nv-mapa'; mapa.hidden = true;
-  mapa.setAttribute('role', 'dialog'); mapa.setAttribute('aria-modal', 'true'); mapa.setAttribute('aria-label', 'Mapa do rio');
+  mapa.setAttribute('role', 'dialog'); mapa.setAttribute('aria-modal', 'true'); mapa.setAttribute('aria-label', 'Menu');
   mapa.innerHTML =
     '<div class="nv-mapa-in">' +
       '<div class="nv-topo">' + marca() +
         '<button type="button" class="nv-fecha" id="nv-fecha">fechar</button></div>' +
-      '<div class="nv-sec nv-sec-rio"><p class="nv-k">o rio, da nascente à foz</p><ol class="nv-lista" id="nv-lista"></ol></div>' +
-      '<div class="nv-sec nv-sec-afl"><p class="nv-k">afluente da foz</p><div class="nv-margens" id="nv-afl-m"></div></div>' +
-      '<div class="nv-sec"><p class="nv-k">nas margens</p><div class="nv-margens" id="nv-margens"></div></div>' +
+      '<a class="nv-60" id="nv-60" href="' + RIO60.href + '"><span class="nv-play" aria-hidden="true"></span>' +
+        '<span><b>' + esc(RIO60.nome) + '</b><span class="nv-d">' + esc(RIO60.desc) + '</span></span></a>' +
+      '<div class="nv-sec nv-sec-rio"><p class="nv-k">o rio</p><ol class="nv-dest" id="nv-lista"></ol></div>' +
+      '<div class="nv-sec nv-sec-envio"><p class="nv-k">mande adiante</p>' +
+        '<button type="button" class="nv-env" id="nv-env">enviar esta tela ↗</button>' +
+        '<p class="nv-vai" id="nv-vai"></p>' +
+        '<a class="nv-kit" id="nv-kit" href="' + KIT.href + '"><b>' + esc(KIT.nome) + ' →</b><span class="nv-d">' + esc(KIT.desc) + '</span></a>' +
+      '</div>' +
     '</div>';
   hdr.parentNode.insertBefore(mapa, hdr.nextSibling);
 
   var el = function(id){ return doc.getElementById(id); };
   var bt = el('nv-bt'), fecha = el('nv-fecha'), curso = el('nv-curso'), feito = el('nv-feito');
+  var grupoAberto = null;   // o Arquivo aberto ou fechado (null = o padrão: aberto só quando a pessoa está nele)
 
   /* estações da linha do curso */
   TRECHOS.forEach(function(t, i){
@@ -238,54 +362,57 @@
   function atualiza(){
     var t = trechoAtual(), m = t < 0 ? margemAtual() : '', ult;
     var naAbertura = pagina() === 'index.html', afl = afluenteAtual(t);
-    /* na abertura os trechos 1 a 3 são o resumo: a página de cada trecho ainda não foi vista; no afluente, a página é o afluente */
-    var atual = function(i){ return i === t && !afl ? (naAbertura && t > 0 ? ' aria-current="location"' : ' aria-current="page"') : ''; };
     tAtual = t;
     if (t >= 0 && !(naAbertura && t > 0)) gravarUltimo(t);
     ult = t >= 0 ? t : lerUltimo();
-    var mg = null; MARGENS.forEach(function(x){ if (x.id === m) mg = x; });
+    var mg = itemDe(m), aqui = aquiId(), naArq = noArquivo(aqui);
     body.classList.toggle('nv-na-margem', t < 0);
+    var cur = function(id){ return id === aqui ? ' aria-current="page"' : ''; };
 
-    /* trecho atual (celular) */
+    /* onde a pessoa está (celular): "trecho N de 3" nos trechos 1 a 3 (sem "trecho 0": a abertura não é um trecho),
+       o afluente, ou o grupo da margem ("arquivo", "conversas", "teste"…) com o nome curto */
     el('nv-aqui').innerHTML = afl
       ? '<small>trecho ' + t + '<span class="nv-lg nv-afl-lg"> · afluente</span></small><b>↳ ' + esc(afl.nome) + '</b>'
-      : t >= 0
+      : t > 0
       ? '<small>trecho ' + t + '<span class="nv-lg"> de ' + (TRECHOS.length - 1) + '</span><span class="nv-ct">/' + (TRECHOS.length - 1) + '</span></small><b>' + esc(curtoDe(TRECHOS[t])) + '</b>'
-      : '<small>margem<span class="nv-lg"> do rio</span></small><b>' + esc(mg ? curtoDe(mg) : 'fora do rio') + '</b>';
+      : t === 0 ? ''
+      : '<small>' + esc(noArquivo(m) ? 'arquivo' : (ROTULO_GRUPO[m] || 'margem do rio')) + '</small><b>' + esc(mg ? curtoDe(mg) : 'fora do rio') + '</b>';
 
-    /* os 4 trechos em linha (desktop) */
-    el('nv-trechos').innerHTML = TRECHOS.map(function(x, i){
-      if (afl && i === t) return '<a href="' + x.href + '" class="nv-pai"><span class="nv-n">' + i + '</span>' + esc(x.nome) + '</a>' +
-        '<a href="' + afl.href + '" class="nv-afl-t" aria-current="page"><span class="nv-n">↳</span>' + esc(afl.nome) + '</a>';
-      return '<a href="' + x.href + '"' + atual(i) + '><span class="nv-n">' + i + '</span>' + esc(x.nome) + '</a>';
+    /* os 5 destinos em linha (desktop); no afluente, o destino-pai fica marcado com contorno */
+    el('nv-trechos').innerHTML = DESTINOS.map(function(x){
+      var pai = afl && x.trecho === t && !x.afl;
+      return '<a href="' + x.href + '"' + cur(x.id) + (x.afl ? ' class="nv-afl-t' + '"' : pai ? ' class="nv-pai"' : x.id === 'quiz' ? ' class="nv-opc"' : '') + '>' +
+        (x.afl ? '<span class="nv-n">↳</span>' : '') + esc(x.nome) + '</a>';
     }).join('');
-    el('nv-trechos').classList.toggle('com-afl', !!afl);
-    /* no BolsoZap o link da linha já marca onde a pessoa está: o botão fica "margens" */
-    var zapAqui = !!mg && mg.id === 'zap';
-    el('nv-bt-d').textContent = mg && !zapAqui ? 'margem: ' + curtoDe(mg) : 'margens';
-    bt.classList.toggle('nv-bt-margem', !!mg && !zapAqui);
-    if (zapAqui) el('nv-zap').setAttribute('aria-current', 'page'); else el('nv-zap').removeAttribute('aria-current');
+    el('nv-trechos').classList.remove('com-afl');
+    /* o botão: "menu"; no desktop, numa página do Arquivo (ou 60 s, kit), diz onde a pessoa está, com o nome curto */
+    var fora = !!mg && !DESTINOS.some(function(x){ return x.id === mg.id; });
+    el('nv-bt-d').textContent = fora ? (naArq ? 'arquivo: ' : '') + curtoDe(mg) : (t === 1 ? 'arquivo: ' + curtoDe(itemDe('rede')) : 'menu');
+    bt.classList.toggle('nv-bt-margem', fora || t === 1);
 
-    /* mapa */
-    el('nv-lista').innerHTML = TRECHOS.map(function(x, i){
-      var c = t < 0 ? (i === ult ? 'volta' : '') : (i < t ? 'ok' : (i === t ? 'agora' : ''));
-      var sub = (x.afluentes || []).map(function(a){
-        return '<li><a href="' + a.href + '"' + (a === afl ? ' aria-current="page"' : '') + '>↳ <b>' + esc(a.nome) + '</b>' +
-          '<span class="nv-d">' + esc(descDe(a)) + '</span></a></li>';
-      }).join('');
-      return '<li class="' + c + '"><a href="' + x.href + '"' + atual(i) + '>' +
-        '<span class="nv-n">' + i + '</span><b>' + esc(x.nome) + '</b><span class="nv-d">' + esc(x.desc()) + '</span></a>' +
-        (sub ? '<ul class="nv-afl">' + sub + '</ul>' : '') + '</li>';
-    }).join('');
-    /* desktop: o mapa da lista fica escondido; o afluente entra no menu */
-    el('nv-afl-m').innerHTML = TRECHOS.reduce(function(l, x){ return l.concat(x.afluentes || []); }, []).map(function(a){
-      return '<a href="' + a.href + '"' + (a === afl ? ' aria-current="page"' : '') + '><span>↳ ' + esc(a.nome) + '</span></a>';
-    }).join('');
+    /* o menu: os 5 destinos e o Arquivo (um grupo que abre) */
+    var aberto = grupoAberto === null ? naArq : grupoAberto;
     var rc = contaRecentes();
-    el('nv-margens').innerHTML = MARGENS.map(function(x){
-      var conta = x.id === 'recente' && rc ? '<b class="nv-conta" aria-label="' + rc + ' fatos novos">' + rc + '</b>' : '';
-      return '<a href="' + x.href + '"' + (x.id === m ? ' aria-current="page"' : '') + '><span>' + esc(x.nome) + '</span>' + conta + '</a>';
-    }).join('');
+    el('nv-lista').innerHTML = DESTINOS.map(function(x){
+      return '<li' + (x.afl ? ' class="nv-afl-i"' : x.id === 'quiz' ? ' class="nv-opc-i"' : '') + '><a href="' + x.href + '"' + cur(x.id) + '><b>' + esc(x.nome) + '</b>' +
+        '<span class="nv-d">' + esc(descDe(x)) + '</span></a></li>';
+    }).join('') +
+      '<li class="nv-grupo"><button type="button" class="nv-abre' + (naArq ? ' nv-aqui-grupo' : '') + '" id="nv-abre" aria-expanded="' + aberto + '" aria-controls="nv-arq">' +
+        '<b>Arquivo</b><span class="nv-d">o que saiu, a teia de nomes, a busca</span><span class="nv-mais" aria-hidden="true">' + (aberto ? '−' : '+') + '</span></button>' +
+      '<div class="nv-arq" id="nv-arq"' + (aberto ? '' : ' hidden') + '><div class="nv-margens">' +
+      ARQUIVO.map(function(x){
+        var conta = x.id === 'recente' && rc ? '<b class="nv-conta" aria-label="' + rc + ' fatos novos">' + rc + '</b>' : '';
+        return '<a href="' + x.href + '"' + cur(x.id) + '><span>' + esc(x.nome) + '</span>' + conta + '</a>';
+      }).join('') + '</div></div></li>';
+    el('nv-abre').addEventListener('click', function(){
+      if (mqDesk.matches) return;
+      var ab = this.getAttribute('aria-expanded') !== 'true';
+      grupoAberto = ab; this.setAttribute('aria-expanded', String(ab));
+      el('nv-arq').hidden = !ab; this.querySelector('.nv-mais').textContent = ab ? '−' : '+';
+    });
+    if (aqui === 'rio60') el('nv-60').setAttribute('aria-current', 'page'); else el('nv-60').removeAttribute('aria-current');
+    if (aqui === 'kit') el('nv-kit').setAttribute('aria-current', 'page'); else el('nv-kit').removeAttribute('aria-current');
+    envioTela();
 
     /* linha do curso */
     curso.classList.toggle('margem', t < 0);
@@ -306,6 +433,43 @@
     medir();
   }
   if (doc.readyState === 'complete') rodape(); else window.addEventListener('load', rodape);
+
+  /* ---------- S13: enviar a tela atual (o tópico do trecho, do caso ou da página) ----------
+     Ordem: a página diz (window.BD_TELA); senão o fragmento (#<caso> na Foz, #q-N no quiz, a conversa no Zap);
+     senão o tópico da página. Tópico que não existe em BD_TOPICOS cai no da abertura; sem tópicos, vai o endereço. */
+  function topicos(){ return window.BD_TOPICOS || {}; }
+  function existe(id){ return !!(id && topicos()[id]); }
+  function topicoTela(){
+    var T = topicos(), p = pagina(), h = decodeURIComponent((location.hash || '').slice(1)), t = trechoAtual(), id = '';
+    try { var b = window.BD_TELA; id = typeof b === 'function' ? b() : b; } catch (e) { id = ''; }
+    if (existe(id)) return id;
+    if (p === 'foz.html') id = existe(h) ? h : (T[(window.FOZ && window.FOZ.redireciona || {})[h]] ? window.FOZ.redireciona[h] : '');
+    else if (p === 'dark-horse.html') id = existe(h) ? h : 'dark-horse';
+    else if (p === 'siga-o-dinheiro.html') id = 'siga';
+    else if (p === 'quiz.html') id = /^q-\d+$/.test(h) && existe(h) ? h : 'quiz';
+    else if (p === 'zap.html'){ var c = h.split(/--|\//)[0]; id = existe('zap-' + h.replace('/', '--')) ? 'zap-' + h.replace('/', '--') : existe('zap-' + c) ? 'zap-' + c : 'zap'; }
+    else if (p === 'close-friends.html') id = 'quem-anda';
+    else if (p === 'kit.html') id = 'kit';
+    else if (p === 'rio60.html') id = existe('rio60') ? 'rio60' : 'abertura';
+    else if (p === 'drive.html'){ var v = viewDrive(); id = v === 'rede' ? 'quem-anda' : v === 'recente' ? 'semana' : 'abertura'; }
+    else if (p === 'index.html') id = t === 1 ? 'quem-anda' : t === 2 ? 'dinheiro' : 'abertura';
+    return existe(id) ? id : (existe('abertura') ? 'abertura' : '');
+  }
+  function tituloCurto(s){ return String(s || '').replace(/^(BOLSODRIVE|Flávio Bolsonaro)\s*·\s*/, ''); }
+  function envioTela(){
+    var b = el('nv-env'), id = topicoTela(), t = id ? topicos()[id] : null;
+    if (id) b.setAttribute('data-share', id); else b.removeAttribute('data-share');
+    el('nv-vai').innerHTML = t ? 'vai o cartão e o link: <b>' + esc(tituloCurto(t.titulo)) + '</b>' : 'vai o endereço desta página';
+  }
+  /* sem o módulo de envio (assets/compartilhar.js) ou sem tópico: o título e o endereço da tela */
+  el('nv-env').addEventListener('click', function(ev){
+    if (window.BDShare && this.hasAttribute('data-share')) return;      // o compartilhar.js cuida (delegação no document)
+    ev.preventDefault();
+    var url = location.href, tit = doc.title;
+    if (navigator.share){ navigator.share({ title: tit, url: url }).catch(function(){}); return; }
+    var w = 'https://wa.me/?text=' + encodeURIComponent(tit + '\n' + url);
+    if (/FBAN|FBAV|Instagram|WhatsApp|; wv\)/i.test(navigator.userAgent || '')) location.href = w; else window.open(w, '_blank', 'noopener');
+  });
   function linkSegue(href, k, nome, d){
     return '<a href="' + href + '"><span class="nv-k2">' + esc(k) + '</span><b>' + esc(nome) + '</b>' + (d ? '<span class="nv-d">' + esc(d) + '</span>' : '') + '</a>';
   }
@@ -326,8 +490,8 @@
 
   /* --hdr: altura real do cabeçalho, para o scroll-padding-top e os títulos grudados */
   function medir(){ cabeLinha(); raiz.style.setProperty('--hdr', hdr.offsetHeight + 'px'); }
-  /* desktop: se a linha não cabe (os trechos transbordariam por cima do logo), aperta os trechos; se ainda não couber,
-     tira o link BolsoZap da linha (ele segue no mapa). Mede a largura natural de cada item, não a da caixa. */
+  /* desktop: se a linha não cabe (os destinos transbordariam por cima do logo), tira os colchetes; se ainda não couber,
+     tira o Quiz da linha (.nv-opc; ele segue no menu). Mede a largura natural de cada item, não a da caixa. */
   var linha = hdr.querySelector('.nv-row');
   function excede(){
     var cs = getComputedStyle(linha), gap = parseFloat(cs.columnGap) || 0, tr = el('nv-trechos'), gt = parseFloat(getComputedStyle(tr).columnGap) || 0;
@@ -342,9 +506,10 @@
   }
   function cabeLinha(){
     linha.classList.remove('nv-aperta', 'nv-sem-zap');
-    if (!mqDesk.matches) return;
+    if (!mqDesk.matches){ mapa.classList.remove('nv-com-opc'); return; }
     if (excede()) linha.classList.add('nv-aperta');
     if (excede()) linha.classList.add('nv-sem-zap');
+    mapa.classList.toggle('nv-com-opc', linha.classList.contains('nv-sem-zap'));   // o Quiz que saiu da linha entra no menu
   }
   window.addEventListener('resize', function(){ medir(); progresso(); });
 
@@ -359,7 +524,8 @@
     raiz.classList.toggle('nv-trava', cheia);
     mapa.setAttribute('aria-modal', cheia ? 'true' : 'false');
     if (v){
-      var foco = mqDesk.matches ? mapa.querySelector('.nv-margens a') : fecha;
+      envioTela();
+      var foco = mqDesk.matches ? el('nv-60') : fecha;
       if (foco) foco.focus();
     } else if (devolveFoco !== false){ bt.focus(); }
   }
@@ -389,7 +555,7 @@
   /* voltar do navegador (bfcache) não pode trazer o mapa aberto */
   window.addEventListener('pageshow', function(e){ if (e.persisted && aberto()) abre(false, false); });
 
-  window.BDNav = { atualiza: atualiza, abre: function(){ abre(true); }, fecha: function(){ abre(false); }, TRECHOS: TRECHOS, MARGENS: MARGENS };
+  window.BDNav = { atualiza: atualiza, abre: function(){ abre(true); }, fecha: function(){ abre(false); }, TRECHOS: TRECHOS, MARGENS: MARGENS, DESTINOS: DESTINOS, ARQUIVO: ARQUIVO };
   atualiza();
   try { if (new URLSearchParams(location.search).get('menu')) abre(true); } catch (e) {}
 })();

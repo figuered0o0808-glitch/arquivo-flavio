@@ -17,7 +17,7 @@
 <meta property="og:title" content="BOLSODRIVE · A rede em órbita">
 <meta property="og:description" content="As ligações diretas de Flávio Bolsonaro, uma pessoa por vez, com a situação de cada uma e a fonte de cada vínculo.">
 <meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/close-friends.html">
-<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quem-anda.png?v=32d287dd">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quem-anda.png?v=d1aaa642">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -25,23 +25,42 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BOLSODRIVE · A rede em órbita">
 <meta name="twitter:description" content="As ligações diretas de Flávio Bolsonaro, uma pessoa por vez, com a situação de cada uma e a fonte de cada vínculo.">
-<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quem-anda.png?v=32d287dd">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quem-anda.png?v=d1aaa642">
 <meta name="twitter:image:alt" content="A rede em órbita: os nomes em volta dele, com a situação de cada um e a fonte">
 
-<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
-<link rel="stylesheet" href="assets/header.css?v=3b010dac">
+<link rel="stylesheet" href="assets/base.css?v=38ce818e">
+<link rel="stylesheet" href="assets/header.css?v=84dc371e">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
 <style>
+/* A rede em órbita (X08, S12, Onda 1): o placar da situação no alto, a órbita, e a ficha da pessoa como destaque (.dq).
+   Anel = a situação literal da pessoa (tokens de data/dados.js, a mesma conta do index e dos cartões):
+   vermelho = preso ou condenado · âmbar = investigado ou denunciado · verde = outros · ele em tinta (neutro). */
+
+/* placar: um número e a barra dos 3 status, que é também a legenda dos anéis */
+.placar{margin:2px 0 16px}
+.pl-top{display:flex; align-items:flex-end; justify-content:space-between; gap:12px}
+/* integrador (CLS a 1,6 Mbps): o placar é preenchido depois do dados-lite + grafo; o espaço fica reservado */
+#pl-n:empty{min-height:clamp(44px, 13vw + 2px, 72px)} #pl-t:empty{min-height:45px} #pl-leg:empty{min-height:39px}
+@media (min-width:600px){ #pl-leg:empty{min-height:17px} } @media (min-width:900px){ #pl-t:empty{min-height:48px} }
+.pl-top .numero{margin:0}
+.pl-top .numero .u{font-size:.5em}
+.pl-t{margin:6px 0 10px; font-size:16px; line-height:1.4; max-width:30em}
+.pl-barra{display:flex; gap:2px; height:8px; margin:0 0 4px; border-radius:2px; overflow:hidden}
+.pl-barra i{display:block; min-width:4px}
+.pl-barra .grave{background:var(--st-grave)} .pl-barra .medio{background:var(--st-medio)} .pl-barra .outros{background:var(--st-outros)}
+.placar .legenda{margin:6px 0 0}
+.placar .legenda b{font-weight:700; color:var(--tinta); font-variant-numeric:tabular-nums}
+
 /* busca */
-.busca{display:flex; gap:8px; margin:0 0 10px}
-.busca input{flex:1; font:inherit; font-size:16px; padding:10px 12px; border:1.5px solid var(--linha); border-radius:2px; background:var(--leve); color:var(--tinta); min-width:0}
+.busca{display:flex; gap:8px; margin:14px 0 10px}
+.busca input{flex:1; font:inherit; font-size:16px; padding:10px 12px; min-height:44px; border:1px solid var(--linha); border-radius:2px; background:var(--leve); color:var(--tinta); min-width:0}
 .busca input:focus{outline:none; border-color:var(--tinta)}
 
 /* caminho percorrido */
 .migalhas{font-family:var(--mono); font-size:12px; color:var(--cinza); margin:8px 0 6px; min-height:18px; display:flex; flex-wrap:wrap; gap:4px; align-items:center}
-.migalhas button{font-family:var(--mono); font-size:12px; background:none; border:0; padding:0; color:var(--azul); text-decoration:underline; text-underline-offset:2px; cursor:pointer}
+.migalhas button{font-family:var(--mono); font-size:12px; background:none; border:0; padding:6px 0; color:var(--azul); text-decoration:underline; text-underline-offset:2px; cursor:pointer}
 .migalhas b{color:var(--tinta); font-weight:700}
 
 /* órbita */
@@ -49,8 +68,7 @@
 .orbita svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
 .orbita line{stroke:var(--linha); stroke-width:1.5; transition:stroke .25s, stroke-width .25s}
 .orbita line.teia{stroke:var(--linha); stroke-width:1; stroke-dasharray:3 4}
-.orbita line.on{stroke:var(--tinta); stroke-width:2; stroke-dasharray:none}
-.orbita line.fan{stroke:var(--cinza2); stroke-width:1}
+.orbita line.fio{stroke:var(--linha); stroke-width:1; opacity:.8}
 
 .no{
   position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
@@ -59,64 +77,74 @@
   transition:left .45s cubic-bezier(.2,.7,.2,1), top .45s cubic-bezier(.2,.7,.2,1), opacity .3s;
   -webkit-tap-highlight-color:transparent;
 }
+.no:focus-visible{outline:none}
+.no:focus-visible .disco{box-shadow:0 0 0 3px var(--papel), 0 0 0 5px var(--amber)}
 .no.some{opacity:0; pointer-events:none}
 .no .disco{
   width:56px; height:56px; border-radius:50%; margin:0 0 5px; background:var(--leve);
   display:flex; align-items:center; justify-content:center; overflow:hidden; flex:none;
-  font-weight:700; font-size:18px; color:var(--cinza); border:2px dotted var(--cinza2);
+  font-weight:700; font-size:20px; letter-spacing:-.01em; color:var(--tinta); border:2px solid var(--st-outros);
   transition:box-shadow .2s;
 }
 .no .disco img{width:100%; height:100%; object-fit:cover; display:block}
-.no.medio .disco{border:2.5px solid var(--tinta)}
-.no.grave .disco{border:3px solid var(--carimbo)}
+.no.medio .disco{border:2.5px solid var(--st-medio)}
+.no.grave .disco{border:3px solid var(--st-grave)}
+.no.ele .disco{border:2.5px solid var(--tinta)}
 .no.centro .disco{width:84px; height:84px; font-size:26px}
 .no.centro{width:120px; cursor:default}
-.no.sel .disco{box-shadow:0 0 0 4px var(--papel), 0 0 0 6px var(--tinta)}
-.no .nome{font-size:12px; line-height:1.15; color:var(--tinta); font-weight:600; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
-.no.centro .nome{font-size:14px}
+.no .nome{font-size:12px; line-height:1.15; color:var(--tinta); font-weight:600; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; text-shadow:0 0 4px var(--papel), 0 0 8px var(--papel)}
+.no.centro .nome{font-size:14px; font-weight:700}
 .no.veio .nome::after{content:" ↩"; color:var(--cinza)}
 /* satélites: o 2º grau atrás de cada pessoa, sem nome — só a situação */
 div.sat{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:28px; height:28px; display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:1; transition:left .45s cubic-bezier(.2,.7,.2,1), top .45s cubic-bezier(.2,.7,.2,1), opacity .3s; -webkit-tap-highlight-color:transparent}
 div.sat.some{opacity:0; pointer-events:none}
-.sat i{display:block; width:11px; height:11px; border-radius:50%; background:var(--leve); border:1.5px dotted var(--cinza2)}
-.sat.medio i{border:2px solid var(--tinta)}
-.sat.grave i{border:2px solid var(--carimbo)}
-.orbita line.fio{stroke:var(--linha); stroke-width:1; opacity:.8}
+.sat i{display:block; width:11px; height:11px; border-radius:50%; background:var(--leve); border:1.5px solid var(--st-outros)}
+.sat.medio i{border:2px solid var(--st-medio)}
+.sat.grave i{border:2px solid var(--st-grave)}
+.sat.ele i{border:2px solid var(--tinta)}
 
-.mais{display:block; margin:22px auto 0; font-family:var(--mono); font-size:12px; padding:7px 14px; border-radius:999px; border:1px solid var(--linha); background:var(--papel); color:var(--cinza); cursor:pointer}
+.mais{display:block; margin:18px auto 0; font-family:var(--mono); font-size:12px; min-height:44px; padding:0 16px; border-radius:999px; border:1px solid var(--linha); background:var(--papel); color:var(--tinta); cursor:pointer}
 .mais[hidden]{display:none}
 
-.legenda{font-family:var(--mono); font-size:11px; color:var(--cinza); display:flex; gap:14px; flex-wrap:wrap; margin:14px 0 10px}
-.legenda i{display:inline-block; width:12px; height:12px; border-radius:50%; vertical-align:-2px; margin-right:5px; background:var(--leve)}
-.legenda i.g{border:2px solid var(--carimbo)} .legenda i.m{border:2px solid var(--tinta)} .legenda i.n{border:2px dotted var(--cinza2)}
-
-/* ficha */
-.ficha{border-top:1px solid var(--linha); padding-top:14px; min-height:150px}
-.ficha .quem{font-size:20px; font-weight:800; margin:0 0 2px; letter-spacing:-.01em}
-.ficha .papel{color:var(--cinza); font-size:14px; margin:0 0 10px}
-.vinculo{background:var(--leve); padding:12px 14px; border-left:3px solid var(--tinta); margin:0 0 12px}
-.vinculo .rot{font-family:var(--mono); font-size:11px; color:var(--cinza); letter-spacing:.06em; margin-bottom:4px}
-.vinculo p{margin:0 0 6px; font-size:15px}
-.ficha .sit{font-size:14px; color:var(--cinza); margin:0 0 12px}
-.ficha .sit.ele{color:var(--tinta); padding-left:10px; border-left:2px solid var(--tinta)}
-.sit-m{border:0; background:none; padding:6px 2px; color:var(--amber); font:600 13px var(--sans); cursor:pointer}
-.dica{color:var(--cinza); font-size:14px; margin:6px 0 0}
-.cab{display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 12px}
-.cab .sub{margin:0}
-.cab[hidden]{display:none}
-.env{flex:none; display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px; border:1.5px solid var(--amber); border-radius:2px; background:var(--amber); color:#120c00; font:700 15px var(--sans); cursor:pointer}
+/* a ficha da pessoa: o destaque (.dq) da página */
+.ficha{margin:8px 0 0}
+.ficha .papel{color:var(--cinza); font-size:14px; line-height:1.4; margin:0 0 10px}
+.ficha .chip{margin:0 0 10px}
+.ficha .caso{margin:6px 0 12px; padding:10px 0 2px; border-top:1px solid var(--linha)}
+.ficha .caso .kicker{margin:0 0 4px}
+.ficha .caso .numero.destaque{font-size:clamp(40px,12vw,64px)}
+.ficha .caso .numero.frase{font-size:clamp(26px,7.4vw,38px); margin:0 0 6px}
+.ficha .caso .dq-t{margin:6px 0 4px}
+.vinculo{margin:0 0 12px; padding:10px 0 0; border-top:1px solid var(--linha)}
+.vinculo .rot{font-family:var(--mono); font-size:11px; color:var(--cinza); letter-spacing:.06em; margin-bottom:4px; text-transform:uppercase}
+.vinculo p{margin:0 0 4px; font-size:15px; line-height:1.45}
+.ficha .sit{font-size:14px; line-height:1.45; color:var(--cinza); margin:0 0 10px}
+.sit-m{border:0; background:none; padding:6px 2px; min-height:32px; color:var(--amber); font:600 13px var(--sans); cursor:pointer}
+.dica{color:var(--cinza); font-size:14px; line-height:1.45; margin:4px 0 8px}
+.ficha .dq-a{margin-top:4px}
+.ficha .dq-a > a.sec{min-height:44px; color:var(--tinta); font-size:14px; font-weight:600}
+.vinculo p.fonte{font-size:12px; margin:2px 0 0}
+.credito{font-family:var(--mono); font-size:11px; color:var(--cinza); margin:10px 0 0}
+.credito a{color:var(--azul)}
 
 /* lista "mais" */
 .folha{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; z-index:60}
 .folha.on{display:block}
 .folha .cx{position:absolute; left:0; right:0; bottom:0; max-height:78vh; overflow:auto; overscroll-behavior:contain; border-top:1px solid var(--linha); background:var(--papel); padding:14px 16px 30px; border-radius:14px 14px 0 0}
 .folha h3{margin:0 0 8px; font-size:15px}
-.folha .it{display:flex; gap:10px; align-items:center; padding:9px 0; border-bottom:1px solid var(--linha); cursor:pointer}
-.folha .it .d{width:36px; height:36px; border-radius:50%; background:var(--leve); flex:none; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--cinza); overflow:hidden; border:2px dotted var(--cinza2)}
+.folha .it{display:flex; gap:10px; align-items:center; width:100%; padding:9px 0; border:0; border-bottom:1px solid var(--linha); background:none; color:var(--tinta); font:inherit; text-align:left; cursor:pointer}
+.folha .it .d{width:36px; height:36px; border-radius:50%; background:var(--leve); flex:none; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--tinta); overflow:hidden; border:2px solid var(--st-outros)}
 .folha .it .d img{width:100%;height:100%;object-fit:cover}
-.folha .it.grave .d{border:2.5px solid var(--carimbo)} .folha .it.medio .d{border:2.5px solid var(--tinta)}
+.folha .it.grave .d{border:2.5px solid var(--st-grave)} .folha .it.medio .d{border:2.5px solid var(--st-medio)} .folha .it.ele .d{border:2.5px solid var(--tinta)}
 .folha .it b{display:block; font-size:14px}
 .folha .it span{font-size:12px; color:var(--cinza); display:block}
+
+/* créditos das fotos (licenças livres; a atribuição que a licença pede) */
+.creditos{margin:26px 0 0; font-size:12px; color:var(--cinza)}
+.creditos summary{font-family:var(--mono); font-size:12px; cursor:pointer; min-height:44px; display:flex; align-items:center}
+.creditos ul{list-style:none; margin:0; padding:0; font-family:var(--mono); font-size:11px; line-height:1.6}
+.creditos a{color:var(--azul)}
+@media (min-width:900px){ .pl-t{font-size:17px} }
 </style>
 </head>
 <body data-trecho="m">
@@ -125,17 +153,19 @@ div.sat.some{opacity:0; pointer-events:none}
 
 <main class="wrap">
   <h1 class="sec">A rede em órbita</h1>
-  <div class="cab"><p class="sub">As ligações diretas dele, com a situação de cada nome e a fonte de cada vínculo.</p><button type="button" class="env" data-share="quem-anda">enviar ↗</button></div>
+  <p class="sub">As ligações diretas dele, com a situação de cada nome e a fonte de cada vínculo.</p>
+
+  <section class="placar" id="placar" aria-label="A situação dos nomes em volta dele">
+    <div class="pl-top"><p class="numero destaque" id="pl-n"></p><button type="button" class="env" data-share="quem-anda">enviar ↗</button></div>
+    <p class="pl-t" id="pl-t"></p>
+    <div class="pl-barra" id="pl-barra" aria-hidden="true"></div>
+    <div class="legenda" id="pl-leg"></div>
+  </section>
 
   <div class="pilulas" id="trilhas">
     <button data-trilha="filme">O dinheiro do filme</button>
     <button data-trilha="milicia">Do gabinete à milícia</button>
     <button data-trilha="chapa">A chapa de 2026</button>
-  </div>
-
-  <div class="busca">
-    <input id="busca" list="pessoas" placeholder="buscar uma pessoa…" autocomplete="off">
-    <datalist id="pessoas"></datalist>
   </div>
 
   <div id="narra" class="narra" hidden></div>
@@ -146,21 +176,25 @@ div.sat.some{opacity:0; pointer-events:none}
   </div>
   <button class="mais" id="mais" hidden></button>
 
-  <div class="legenda">
-    <span><i class="g"></i>preso ou condenado</span>
-    <span><i class="m"></i>investigado ou denunciado</span>
-    <span><i class="n"></i>outros</span>
+  <div class="busca">
+    <input id="busca" list="pessoas" placeholder="procurar um nome…" autocomplete="off" aria-label="procurar um nome na teia">
+    <datalist id="pessoas"></datalist>
   </div>
 
-  <div class="ficha" id="ficha"></div>
+  <div class="dq ficha" id="ficha" aria-live="polite"></div>
+
+  <details class="creditos" id="creditos" hidden><summary>créditos das fotos</summary><ul id="creditos-l"></ul></details>
 </main>
 
 <noscript><p class="ressalva" style="text-align:center;padding:0 16px">Esta página precisa de JavaScript para desenhar a rede. <a href="foz.html">A Foz</a> · <a href="siga-o-dinheiro.html">Siga o dinheiro</a> · <a href="zap.html">BolsoZap</a> · <a href="quiz.html">Quiz</a></p></noscript>
 
-<div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
+<div class="folha" id="folha"><div class="cx" id="folha-cx" role="dialog" aria-label="Todas as ligações"></div></div>
 
-<script src="data/dados.js?v=d6676b07"></script>
-<script src="data/topicos.js?v=ab29a258"></script>
+<script src="data/dados-lite.js?v=c33857f8"></script>
+<script src="data/grafo.js?v=3cdb7544"></script>
+<script src="data/topicos.js?v=75878a47"></script>
+<script src="assets/fotos.js?v=734cce7c"></script>
+<script src="data/foz.js?v=880cbd84" defer></script>
 <script src="assets/compartilhar.js?v=edbe4096" defer></script>
 <script>
 (function(){
@@ -169,35 +203,38 @@ div.sat.some{opacity:0; pointer-events:none}
   const ADJ = {};
   D.grafo.edges.forEach(e => { (ADJ[e.de] = ADJ[e.de] || []).push(e); (ADJ[e.para] = ADJ[e.para] || []).push(e); });
   const ITENS = {};
-  D.itens.forEach(i => (i.pessoas || []).forEach(p => { (ITENS[p] = ITENS[p] || []).push(i); }));
+  (D.itens || []).forEach(i => (i.pessoas || []).forEach(p => { (ITENS[p] = ITENS[p] || []).push(i); }));
 
   const $ = s => document.querySelector(s);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-  /* ---------- situação: três estados, nada mais ---------- */
-  // "não é réu, denunciado nem condenado" contém as palavras mas afirma o
-  // contrário; frases negativas são ignoradas.
+  /* ---------- situação: três estados, pelos tokens do arquivo (a conta do index e dos cartões) ----------
+     grave = condenado, ou preso (menos prisão anulada, segundo a cadeia da Foz); medio = investigado ou denunciado;
+     outros = o resto (denúncia anulada, morte, nenhum processo). Ele fica fora: situação em cor neutra. */
+  let ANUL = new Set();
   function sit(n){
+    if (!n) return 'outros';
+    if (n.id === 'flavio') return 'ele';
     const s = n.situacao || [];
-    if (s.includes('preso') || s.includes('condenado')) return 'grave';
-    if (s.includes('denunciado') || s.includes('investigado')) return 'medio';
-    if (s.includes('arquivada')) return 'nenhum';      // denúncia anulada: sem anel; a ficha diz "denúncia anulada"
-    if (s.includes('morto')) return 'nenhum';          // morto, sem processo vivo: sem anel; a ficha diz "morto em <ano>"
-    const frases = (n.status || '').split(/[.;]/).filter(f => !/\b(n[ãa]o|nem|sem processo|sem den[úu]ncia)/i.test(f));
-    if (frases.some(f => /\b(preso|presa|condenad)/i.test(f))) return 'grave';
-    if (frases.some(f => /\b(denunciad|r[ée]u|indiciad|investigad|delator)/i.test(f))) return 'medio';
-    return 'nenhum';
+    if (s.includes('condenado') || (s.includes('preso') && !ANUL.has(n.id))) return 'grave';
+    if (s.includes('investigado') || s.includes('denunciado')) return 'medio';
+    return 'outros';
   }
-  const ROTULO = { grave:'PRESO OU CONDENADO', medio:'DENUNCIADO OU INVESTIGADO', nenhum:'' };   // sem situação: sem selo
-  // a denúncia de 2020 anulada (rachadinha) é situação própria, em cor neutra
+  const ROTULO = { grave:'PRESO OU CONDENADO', medio:'INVESTIGADO OU DENUNCIADO' };
   const anoMorte = n => ((String(n.status || '').match(/\bmort[oa]\b[^.;]*?\b((?:19|20)\d\d)\b/i) || [])[1] || '');
-  const rotulo = n => ((n.situacao || []).includes('morto') && sit(n) === 'nenhum') ? ('MORTO' + (anoMorte(n) ? ' EM ' + anoMorte(n) : '')) :
-    ((n.situacao || []).includes('arquivada') && sit(n) === 'nenhum') ? 'DENÚNCIA ANULADA' : ROTULO[sit(n)];
+  const rotulo = n => {
+    const s = sit(n);
+    if (ROTULO[s]) return ROTULO[s];
+    if ((n.situacao || []).includes('morto')) return 'MORTO' + (anoMorte(n) ? ' EM ' + anoMorte(n) : '');
+    if ((n.situacao || []).includes('arquivada')) return 'DENÚNCIA ANULADA';
+    return '';                                             // sem situação: sem selo
+  };
   const SIT_FLAVIO = 'Rachadinha: denúncia anulada. Caso Master: investigado no STF, sem denúncia.';
+  const frases = st => String(st || '').split(/(?<=\.)\s+(?=[A-ZÁÉÍÓÚ])/);
   /* a situação de cada um: a 1ª frase; o resto em "mais" */
   function sitCurta(st, sf){
-    const fr = String(st).split(/(?<=\.)\s+(?=[A-ZÁÉÍÓÚ])/), resto = fr.slice(1).join(' ');
-    return '<p class="sit">' + esc(fr[0]) + (resto ? '<span class="sit-r" hidden> ' + esc(resto) + '</span> <button type="button" class="sit-m" onclick="this.previousElementSibling.hidden=false;this.remove()">mais</button>' : '') + sf + '</p>';
+    const fr = frases(st), resto = fr.slice(1).join(' ');
+    return '<p class="sit">' + esc(fr[0]) + (resto ? '<span class="sit-r" hidden> ' + esc(resto) + '</span> <button type="button" class="sit-m">mais</button>' : '') + sf + '</p>';
   }
 
   function vizinhos(id){
@@ -226,32 +263,72 @@ div.sat.some{opacity:0; pointer-events:none}
     return ((p[0] || '')[0] || '') + ((p[p.length - 1] || '')[0] || '');
   }
 
-  /* ---------- fotos (Wikipédia, licença livre) ---------- */
-  const WIKI = {"flavio":"Flávio Bolsonaro","jair":"Jair Bolsonaro","michelle":"Michelle Bolsonaro","eduardo":"Eduardo Bolsonaro","carlos-bolsonaro":"Carlos Bolsonaro","vorcaro":"Daniel Vorcaro","ronnie-lessa":"Ronnie Lessa","adriano":"Adriano da Nóbrega","walter-braga-netto":"Walter Braga Netto","mauro-cesar-barbosa-cid":"Mauro Cid","anderson-torres":"Anderson Torres","augusto-heleno":"Augusto Heleno","almir-garnier":"Almir Garnier Santos","alexandre-ramagem":"Alexandre Ramagem","domingos-brazao":"Domingos Brazão","chiquinho-brazao":"Chiquinho Brazão","wassef":"Frederick Wassef","ciro-nogueira":"Ciro Nogueira","tarcisio-de-freitas":"Tarcísio de Freitas","ibaneis-rocha":"Ibaneis Rocha","mario-frias":"Mário Frias","nelson-tanure":"Nelson Tanure","rivaldo-barbosa":"Rivaldo Barbosa","silvinei-vasques":"Silvinei Vasques"};
-  const FOTO = {};
-  async function fotos(){
-    let cache = {}; try { cache = JSON.parse(localStorage.getItem('af_fotos_v1')) || {}; } catch(e){}
-    const faltam = Object.keys(WIKI).filter(id => !(WIKI[id] in cache));
-    if (faltam.length){
-      try{
-        const u = 'https://pt.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=200&redirects=1&origin=*&titles=' + encodeURIComponent(faltam.map(id => WIKI[id]).join('|'));
-        const d = await fetch(u).then(r => r.json());
-        const rd = {}; (d.query.redirects || []).forEach(x => rd[x.from] = x.to);
-        const byT = {}; Object.values(d.query.pages).forEach(p => { byT[p.title] = (p.thumbnail || {}).source || ''; });
-        faltam.forEach(id => { const url = byT[rd[WIKI[id]] || WIKI[id]]; if (url) cache[WIKI[id]] = url; });
-        try { localStorage.setItem('af_fotos_v1', JSON.stringify(cache)); } catch(e){}
-      }catch(e){}
-    }
-    Object.keys(WIKI).forEach(id => { if (cache[WIKI[id]]) FOTO[id] = cache[WIKI[id]]; });
-    document.querySelectorAll('.no[data-id]').forEach(el => pintaDisco(el.querySelector('.disco'), el.dataset.id));
+  /* ---------- o placar: os nomes ligados diretamente a ele, pela situação ---------- */
+  const DIRETOS = vizinhos('flavio').map(x => x.id).filter(id => id !== 'flavio');
+  function placar(){
+    const c = { grave:0, medio:0, outros:0 };
+    DIRETOS.forEach(id => { c[sit(N[id])]++; });
+    const n = DIRETOS.length;
+    $('#pl-n').innerHTML = c.grave + '<span class="u"> de </span>' + n;
+    $('#pl-n').setAttribute('aria-label', c.grave + ' de ' + n);
+    $('#pl-t').textContent = 'nomes em volta dele foram presos ou condenados. Cada nome com a fonte.';
+    $('#pl-barra').innerHTML = ['grave', 'medio', 'outros'].map(k => c[k] ? '<i class="' + k + '" style="flex:' + c[k] + '"></i>' : '').join('');
+    $('#pl-leg').innerHTML = '<span><i class="anel grave"></i><b>' + c.grave + '</b> presos ou condenados</span>' +
+      '<span><i class="anel medio"></i><b>' + c.medio + '</b> investigados ou denunciados</span>' +
+      '<span><i class="anel outros"></i><b>' + c.outros + '</b> outros</span>';
   }
+
+  /* ---------- a Foz (data/foz.js, carregado depois): o caso em que cada nome aparece ---------- */
+  let CASOS = {}, ESC = {};
+  const GRAV = { preso_ou_condenado_na_cadeia:3, investigado_na_cadeia:2, sem_processo_na_cadeia:1 };
+  function lerFoz(){
+    const F = window.FOZ; if (!F || !F.escandalos) return false;
+    const PA = /anul\S*\s+(?:a\s+)?(?:ordem de\s+)?pris|pris[ãa]o\s+(?:foi\s+)?anulad/i, T = window.BD_TOPICOS || {};
+    ANUL = new Set(); CASOS = {}; ESC = {};
+    F.escandalos.forEach(e => {
+      ESC[e.id] = e;
+      const conta = {};
+      (e.cadeia || []).forEach(l => {
+        if (l.de_id && PA.test(l.status_de || '')) ANUL.add(l.de_id);
+        [l.de_id, l.para_id].forEach(id => { if (id && id !== 'flavio') conta[id] = (conta[id] || 0) + 1; });
+      });
+      Object.keys(conta).forEach(id => {
+        /* o caso que mais fala dela: mais elos; o caso com o nome dela no id; o mais grave */
+        const ch = id.split(/[-_]/)[0], nota = conta[id] * 10 + (ch.length > 3 && e.id.indexOf(ch) >= 0 ? 15 : 0) + (GRAV[e.gravidade] || 0);
+        if (T[e.id] && (!CASOS[id] || nota > CASOS[id].nota)) CASOS[id] = { id: e.id, nota };
+      });
+    });
+    return true;
+  }
+  const casoDe = id => (CASOS[id] && ESC[CASOS[id].id]) || null;
+  /* na Foz "ele" é sempre Flávio; na ficha de outra pessoa o pronome ficaria ambíguo: o texto do caso diz o nome */
+  const explicita = t => String(t).replace(/\bdele\b/g, 'de Flávio').replace(/\bnele\b/g, 'em Flávio').replace(/\bEle\b/g, 'Flávio').replace(/\bele\b/g, 'Flávio');
+  const dataBR = d => /^\d{4}-\d{2}-\d{2}/.test(d || '') ? d.slice(8, 10) + '/' + d.slice(5, 7) + '/' + d.slice(0, 4) : '';
+  /* número da Foz: "R$ 131 milhões" → R$ pequeno + 131 + " milhões" pequeno; frase-choque em .numero.frase */
+  function numeroHTML(nm){
+    const v = String(nm.valor || '');
+    if (nm.tipo === 'frase' || !/\d/.test(v)) return '<p class="numero frase">' + esc(v) + '</p>';
+    const m = /^(\D*?)(\d[\d.,]*)(.*)$/.exec(v);
+    if (!m) return '<p class="numero destaque">' + esc(v) + '</p>';
+    return '<p class="numero destaque">' + (m[1] ? '<span class="p">' + esc(m[1]) + '</span>' : '') + esc(m[2]) + (m[3] ? '<span class="u">' + esc(m[3]) + '</span>' : '') + '</p>';
+  }
+
+  /* ---------- fotos: retratos locais (assets/fotos.js, licença livre); sem eles, as iniciais ---------- */
+  const FOTO = window.BD_FOTOS || {}, CRED = window.BD_FOTOS_CREDITO || {};
   function pintaDisco(disco, id){
-    if (FOTO[id] && !disco.querySelector('img')){ disco.innerHTML = '<img alt="" src="' + esc(FOTO[id]) + '">'; }
-    else if (!FOTO[id] && !disco.textContent) disco.textContent = iniciais(N[id].nome);
+    if (FOTO[id]){ if (!disco.querySelector('img')) disco.innerHTML = '<img alt="" src="' + esc(FOTO[id]) + '" loading="lazy" decoding="async">'; }
+    else if (!disco.textContent) disco.textContent = iniciais(N[id].nome);
+  }
+  function creditos(){
+    const ids = Object.keys(FOTO).filter(id => N[id] && CRED[id]);
+    if (!ids.length) return;
+    $('#creditos-l').innerHTML = ids.map(id => { const c = CRED[id];
+      return '<li>' + esc(N[id].nome) + ': ' + esc(c.autor || '') + ' · <a href="' + esc(c.pagina || c.licenca_url || '#') + '" target="_blank" rel="noopener">' + esc(c.licenca || 'licença') + '</a></li>'; }).join('');
+    $('#creditos').hidden = false;
   }
 
   /* ---------- estado ---------- */
-  let centro = 'flavio', caminho = ['flavio'], sel = null, trilha = null, passo = 0;
+  let centro = 'flavio', caminho = ['flavio'], trilha = null, passo = 0;
   const orb = $('#orbita'), svg = $('#linhas'), elMais = $('#mais');
   const nos = new Map();      // id -> div
   const R1 = 36, R2 = 48;     // raios do anel e dos satélites, em % da largura
@@ -279,9 +356,11 @@ div.sat.some{opacity:0; pointer-events:none}
   function criaNo(id){
     const n = N[id], el = document.createElement('div');
     el.className = 'no some ' + sit(n); el.dataset.id = id;
+    el.setAttribute('role', 'button'); el.tabIndex = 0; el.setAttribute('aria-label', n.nome);
     el.innerHTML = '<div class="disco"></div><div class="nome">' + esc(curto(n.nome)) + '</div>';
     pintaDisco(el.querySelector('.disco'), id);
     el.addEventListener('click', () => toque(id));
+    el.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); toque(id); } });
     orb.appendChild(el); nos.set(id, el);
     return el;
   }
@@ -331,8 +410,10 @@ div.sat.some{opacity:0; pointer-events:none}
     nos.forEach((el, id) => { if (!vivosNos.has(id)) { el.classList.add('some'); setTimeout(() => { if (el.classList.contains('some')) { el.remove(); nos.delete(id); } }, 320); } });
     const c = nos.get(centro) || criaNo(centro);
     coloca(c, { x:50, y:50 }, 'centro ' + sit(N[centro]));
+    c.tabIndex = -1;
     mostra.forEach((x, i) => {
       const el = nos.get(x.id) || criaNo(x.id);
+      el.tabIndex = 0;
       coloca(el, pos(ang(i, mostra.length), R1), sit(N[x.id]) + (x.id === anterior ? ' veio' : ''));
     });
     const vivosSats = new Set(satsNovos.map(s => s.id));
@@ -356,54 +437,96 @@ div.sat.some{opacity:0; pointer-events:none}
     if (!N[id]) return;
     const k = caminho.indexOf(id);
     caminho = k >= 0 ? caminho.slice(0, k + 1) : caminho.concat([id]);
-    centro = id; sel = null; render();
+    centro = id; render(); marca();
   }
   function explorarVia(meio, id){
     if (nos.has(id)) { explorar(id); return; }
-    caminho = caminho.concat([meio, id]); centro = id; sel = null; render();
+    caminho = caminho.concat([meio, id]); centro = id; render(); marca();
   }
+  /* o endereço acompanha a pessoa no centro (o link enviado cai nela) */
+  function marca(){ try { history.replaceState(null, '', centro === 'flavio' ? location.pathname : '#' + centro); } catch (e) {} }
 
   function migalhas(){
     $('#migalhas').innerHTML = caminho.map((id, i) =>
       i === caminho.length - 1 ? '<b>' + esc(N[id].nome) + '</b>'
-                               : '<button data-ir="' + esc(id) + '">' + esc(curto(N[id].nome)) + '</button><span>›</span>').join('');
+                               : '<button type="button" data-ir="' + esc(id) + '">' + esc(curto(N[id].nome)) + '</button><span>›</span>').join('');
     document.querySelectorAll('#migalhas [data-ir]').forEach(b => b.addEventListener('click', () => explorar(b.dataset.ir)));
   }
   function fonteHTML(fontes){
     const f = (fontes || [])[0]; if (!f || !f.url) return '';
-    return '<div class="fonte">fonte: <a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'ver') + '</a></div>';
+    return '<p class="fonte">fonte: <a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'ver') + '</a></p>';
   }
+
+  /* ---------- a ficha (.dq): nome, situação literal, o caso da Foz com o número, o vínculo, o envio ---------- */
   function ficha(){
-    const id = sel || centro, n = N[id], s = sit(n);
-    const its = (ITENS[id] || []).length;
+    const id = centro, n = N[id], s = sit(n), its = (ITENS[id] || []).length, ele = id === 'flavio';
+    const caso = ele ? null : casoDe(id);
     let vinculo = '';
     if (caminho.length > 1){
       const ant = caminho[caminho.length - 2], e = arestaEntre(ant, centro);
-      if (e) vinculo = '<div class="vinculo"><div class="rot">COMO SE LIGA A ' + esc(N[ant].nome.toUpperCase()) + '</div><p>' + esc(e.rotulo || '') + '</p>' + fonteHTML(e.fontes) + '</div>';
+      if (e) vinculo = '<div class="vinculo"><div class="rot">como se liga a ' + esc(ant === 'flavio' ? 'Flávio' : N[ant].nome) + '</div><p>' + esc(e.rotulo || '') + '</p>' + fonteHTML(e.fontes) + '</div>';
     }
     const sf = (n.situacao_fontes && n.situacao_fontes[0] && n.situacao_fontes[0].url)
       ? ' <a href="' + esc(n.situacao_fontes[0].url) + '" target="_blank" rel="noopener">[fonte]</a>' : '';
+    let casoH = '';
+    if (caso && caso.numero){
+      const f = caso.numero.fonte || {};
+      casoH = '<div class="caso"><p class="kicker neutro">na Foz · ' + esc(caso.rotulo || caso.nome) + '</p>' + numeroHTML(caso.numero) +
+        '<p class="dq-t">' + esc(explicita(caso.numero.texto || '')) + '</p>' +
+        (f.url ? '<p class="dq-f"><a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.veiculo || 'fonte') + (dataBR(f.data) ? ', ' + dataBR(f.data) : '') + ' ↗</a></p>' : '') + '</div>';
+    }
+    const cr = CRED[id] && FOTO[id] ? '<p class="credito">foto: ' + esc(CRED[id].autor || '') + ' · <a href="' + esc(CRED[id].pagina || CRED[id].licenca_url || '#') + '" target="_blank" rel="noopener">' + esc(CRED[id].licenca || 'licença') + '</a></p>' : '';
+    const envio = ele ? '' : '<button type="button" class="env" data-share="' + (caso ? esc(caso.id) : 'quem-anda') + '"' + (caso ? '' : ' data-pessoa="' + esc(id) + '"') + '>enviar ↗</button>';
     $('#ficha').innerHTML =
-      '<p class="quem">' + esc(n.nome) + '</p>' +
-      '<p class="papel">' + esc(id === 'flavio' ? 'Senador (PL-RJ), candidato à Presidência' : (n.papel || '')) + '</p>' +
+      '<h2>' + esc(n.nome) + '</h2>' +
+      '<p class="papel">' + esc(ele ? 'Senador (PL-RJ), candidato à Presidência' : (n.papel || '')) + '</p>' +
       /* ele: uma linha seca, em cor neutra (nada dele em âmbar ou vermelho) */
-      (id === 'flavio' ? '<p class="sit ele">' + esc(SIT_FLAVIO) + '</p>' : (rotulo(n) ? '<div class="chip ' + s + '">' + rotulo(n) + '</div>' : '')) +
-      vinculo +
-      (n.status && id !== 'flavio' ? sitCurta(n.status, sf) : '') +
-      '<div class="acoes">' +
-        (its ? '<a class="sec" href="drive.html#arquivo" target="_blank" rel="noopener">' + its + (its === 1 ? ' registro' : ' registros') + '</a>' : '') +
-      '</div>' +
-      '';
+      (ele ? '<p class="dq-s">' + esc(SIT_FLAVIO) + '</p><p class="dica">Toque num nome da órbita para abrir a ficha: a situação, a fonte do vínculo e o caso da Foz em que aparece.</p>'
+           : (rotulo(n) ? '<div class="chip' + (s === 'grave' ? ' grave' : s === 'outros' ? ' nenhum' : '') + '">' + rotulo(n) + '</div>' : '')) +
+      (n.status && !ele ? sitCurta(n.status, sf) : '') +
+      casoH + vinculo +
+      '<div class="dq-a">' + envio +
+        (caso ? '<a href="foz.html#' + encodeURIComponent(caso.id) + '">a ficha do caso →</a>' : '') +
+        (its ? '<a class="sec" href="drive.html#arquivo">' + its + (its === 1 ? ' registro' : ' registros') + '</a>' : '') +
+      '</div>' + cr;
   }
+  $('#ficha').addEventListener('click', ev => {
+    const m = ev.target.closest('.sit-m');
+    if (m){ m.previousElementSibling.hidden = false; m.remove(); return; }
+    const b = ev.target.closest('[data-share]'); if (!b) return;
+    ev.preventDefault(); ev.stopPropagation();          // o envio é daqui (texto da pessoa), não da delegação do compartilhar.js
+    envia(b.dataset.share, b.dataset.pessoa ? textoPessoa(b.dataset.pessoa) : null);
+  });
+
+  /* S12: sem caso na Foz, vai o cartão da teia com o texto da pessoa (literal: o vínculo e a 1ª frase da situação)
+     e o link que abre a órbita nela */
+  function textoPessoa(id){
+    const n = N[id], e = arestaEntre('flavio', id), fr = frases(n.status)[0] || '';
+    const quem = '*' + n.nome + '*' + (e && e.rotulo ? ' — ligação com Flávio Bolsonaro: ' + e.rotulo.replace(/\.$/, '') : (n.papel ? ', ' + n.papel.replace(/\.$/, '') : '')) + '.';
+    /* a situação vai sempre inteira (a 1ª frase, literal): cortar poderia tirar o "solto", o "anulada" */
+    const st = fr ? fr.replace(/\s*$/, '') : (rotulo(n) ? 'Situação: ' + rotulo(n).toLowerCase() + '.' : '');
+    const T = (window.BD_TOPICOS || {})['quem-anda'], base = T && T.url ? T.url.replace(/c\/[^/]*$/, '') : location.origin + location.pathname.replace(/[^/]*$/, '');
+    return { texto: quem + (st ? '\n' + st : '') + '\nNa teia de nomes em volta de Flávio Bolsonaro, cada nome com a fonte.\nBOLSODRIVE\n',
+             url: base + 'close-friends.html#' + encodeURIComponent(id) };
+  }
+  function envia(topico, extra){
+    if (window.BDShare && typeof window.BDShare.enviar === 'function'){ window.BDShare.enviar(topico, extra || undefined); return; }
+    const url = extra ? extra.url : location.origin + location.pathname, txt = extra ? extra.texto + url : url;
+    if (navigator.share){ navigator.share(extra ? { text: extra.texto, url } : { url }).catch(() => {}); return; }
+    window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+  }
+  /* o cabeçalho ("enviar esta tela", assets/nav.js): o caso de quem está no centro, senão a teia */
+  window.BD_TELA = () => { const c = centro !== 'flavio' && casoDe(centro); return c ? c.id : 'quem-anda'; };
 
   /* ---------- "+ N ligações" ---------- */
   function abreFolha(lista){
     $('#folha-cx').innerHTML = '<h3>Todas as ligações de ' + esc(N[centro].nome) + '</h3>' +
-      lista.map(x => '<div class="it ' + sit(N[x.id]) + '" data-id="' + esc(x.id) + '"><div class="d">' + (FOTO[x.id] ? '<img alt="" src="' + esc(FOTO[x.id]) + '">' : esc(iniciais(N[x.id].nome))) + '</div><div><b>' + esc(N[x.id].nome) + '</b><span>' + esc((x.e.rotulo || '').slice(0, 90)) + '</span></div></div>').join('');
+      lista.map(x => '<button type="button" class="it ' + sit(N[x.id]) + '" data-id="' + esc(x.id) + '"><span class="d">' + (FOTO[x.id] ? '<img alt="" src="' + esc(FOTO[x.id]) + '" loading="lazy">' : esc(iniciais(N[x.id].nome))) + '</span><span><b>' + esc(N[x.id].nome) + '</b><span>' + esc((x.e.rotulo || '').slice(0, 90)) + '</span></span></button>').join('');
     $('#folha').classList.add('on');
     document.querySelectorAll('#folha-cx .it').forEach(el => el.addEventListener('click', () => { $('#folha').classList.remove('on'); explorar(el.dataset.id); }));
   }
   $('#folha').addEventListener('click', e => { if (e.target === $('#folha')) $('#folha').classList.remove('on'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') $('#folha').classList.remove('on'); });
 
   /* ---------- busca ---------- */
   const porNome = {};
@@ -413,6 +536,7 @@ div.sat.some{opacity:0; pointer-events:none}
     const id = porNome[e.target.value]; if (!id) return;
     if (trilha) encerraTrilha();
     caminho = id === 'flavio' ? ['flavio'] : ['flavio', id]; explorar(id); e.target.value = ''; e.target.blur();
+    $('#orbita').scrollIntoView({ block:'start', behavior:'smooth' });
   });
 
   /* ---------- trilhas guiadas ---------- */
@@ -436,44 +560,40 @@ div.sat.some{opacity:0; pointer-events:none}
     ]}
   };
   function iniciaTrilha(k){
-    trilha = TRILHAS[k]; passo = 0; $('.cab').hidden = true;
+    trilha = TRILHAS[k]; passo = 0;
     document.querySelectorAll('#trilhas button').forEach(b => b.classList.toggle('on', b.dataset.trilha === k));
-    caminho = []; sel = null; vaiPasso();
+    caminho = []; vaiPasso();
   }
   function vaiPasso(){
     const [id, txt] = trilha.passos[passo];
     explorar(id);
     const fim = passo === trilha.passos.length - 1, el = $('#narra'); el.hidden = false;
     el.innerHTML = '<div class="passo">' + esc(trilha.nome.toUpperCase()) + ' · ' + (passo + 1) + ' / ' + trilha.passos.length + '</div><p>' + esc(txt) + '</p>' +
-      '<div class="bt">' + (fim ? '' : '<button id="prox">Próximo →</button>') + '<button class="sec" id="sair">' + (fim ? 'Encerrar' : 'Sair da trilha') + '</button></div>';
+      '<div class="bt">' + (fim ? '' : '<button type="button" id="prox">Próximo →</button>') + '<button type="button" class="sec" id="sair">' + (fim ? 'Encerrar' : 'Sair da trilha') + '</button></div>';
     const p = $('#prox'); if (p) p.addEventListener('click', () => { passo++; vaiPasso(); });
     $('#sair').addEventListener('click', encerraTrilha);
   }
   function encerraTrilha(){
-    trilha = null; $('#narra').hidden = true; $('.cab').hidden = false;
+    trilha = null; $('#narra').hidden = true;
     document.querySelectorAll('#trilhas button').forEach(b => b.classList.remove('on'));
     ficha();
   }
   document.querySelectorAll('#trilhas button').forEach(b => b.addEventListener('click', () => iniciaTrilha(b.dataset.trilha)));
 
-  /* ---------- enviar: o tópico da página (assets/compartilhar.js); sem o módulo, o endereço ---------- */
-  document.querySelectorAll('[data-share]').forEach(b => b.addEventListener('click', ev => {
-    ev.preventDefault(); ev.stopImmediatePropagation();
-    if (window.BDShare && typeof window.BDShare.enviar === 'function'){ window.BDShare.enviar(b.dataset.share); return; }
-    const url = location.origin + location.pathname;
-    if (navigator.share){ navigator.share({ url }).catch(() => {}); return; }
-    window.open('https://wa.me/?text=' + encodeURIComponent(url), '_blank', 'noopener');
-  }));
+  /* ---------- o envio do placar: o tópico da teia (assets/compartilhar.js); sem o módulo, o endereço ---------- */
+  $('#placar [data-share]').addEventListener('click', ev => { ev.preventDefault(); ev.stopImmediatePropagation(); envia('quem-anda'); });
 
   /* ---------- deep link e arranque ---------- */
-  const h = location.hash.replace('#', '');
+  const h = decodeURIComponent(location.hash.replace('#', ''));
   if (h && N[h]) { caminho = h === 'flavio' ? ['flavio'] : ['flavio', h]; centro = h; }
-  render();
-  fotos();
+  lerFoz();
+  placar(); render(); creditos();
+  /* data/foz.js chega depois (defer): refaz o placar (prisão anulada) e a ficha (o caso da Foz) */
+  if (!window.FOZ) document.addEventListener('DOMContentLoaded', () => { if (lerFoz()){ placar(); ficha(); } });
   // só redesenha quando a largura muda: no celular, a barra de endereço some/volta e dispara resize só de altura
   let rt, lw = window.innerWidth; window.addEventListener('resize', () => { if (window.innerWidth === lw) return; lw = window.innerWidth; clearTimeout(rt); rt = setTimeout(render, 120); });
 })();
 </script>
-<script src="assets/nav.js?v=41bee539"></script>
+<script src="assets/nav.js?v=fc36981b"></script>
 </body>
 </html>

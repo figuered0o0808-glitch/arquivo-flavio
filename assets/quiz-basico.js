@@ -30,7 +30,9 @@ const F = {
     u:'https://www.cartacapital.com.br/politica/o-que-aconteceu-com-o-caso-da-rachadinha-de-flavio-bolsonaro-suposto-candidato-em-2026/' }
 };
 
-/* As perguntas. Só fatos; status jurídico dentro da resposta. */
+/* As perguntas. Só fatos; status jurídico dentro da resposta.
+   caso: o id do escândalo na Foz (data/foz.js) quando a pergunta é de um caso; a resposta revelada leva à ficha
+   (foz.html#<caso>), a ficha leva de volta à pergunta (monta_foz.py lê este campo) e o cartão q-N ganha a cor do caso. */
 const BASICO = [
   { tipo:'faixa', min:0, max:100, passo:1, inicio:50, fmt:fmtPct, dif: d => Number(d).toLocaleString('pt-BR') + (d === 1 ? ' ponto percentual' : ' pontos percentuais'),
     extremos:['0%','100%'],
@@ -100,18 +102,18 @@ const BASICO = [
     resposta:'Flávio concedeu na Alerj a <b>Medalha Tiradentes (2005)</b> e uma moção de louvor (2003) a <b>Adriano Magalhães da Nóbrega</b>, ex-capitão do Bope: condenado em 1ª instância em 2005 pela morte de um guardador de carros e absolvido depois; exonerado da PM em 2014; apontado pelo MP-RJ como chefe do “Escritório do Crime”; morto em operação policial em 09/02/2020, sem ser julgado no caso do Escritório do Crime. Em 28/08/2026, no Jornal Nacional, Flávio disse que ele era um <b>“policial exemplar”</b> à época.',
     chip:'FATO · ALERJ (2003 E 2005) · JORNAL NACIONAL, 28/08/2026',
     fontes:[F.itatiaia],
-    curto:'Medalha Tiradentes na Alerj', gab:'Adriano da Nóbrega',
+    curto:'Medalha Tiradentes na Alerj', gab:'Adriano da Nóbrega', caso:'escritorio-do-crime',
     breve:'A Adriano da Nóbrega, apontado pelo MP-RJ como chefe do Escritório do Crime.',
     zap:'Flávio Bolsonaro concedeu na Alerj a Medalha Tiradentes (2005) e uma moção de louvor (2003) a Adriano da Nóbrega, ex-capitão do Bope apontado pelo MP-RJ como chefe do "Escritório do Crime": condenado em 1ª instância em 2005 e absolvido depois; exonerado da PM em 2014; morto em 09/02/2020 sem ser julgado no caso do Escritório do Crime. Em 28/08/2026, no Jornal Nacional, Flávio disse que ele era um "policial exemplar" à época.' },
 
   { tipo:'multi',
     pergunta:'Quantas pessoas o MP-RJ denunciou na rachadinha da Alerj, em 2020?',
     opcoes:['3','9','17','40'], certa:2,
-    numero:'17 denunciados',
+    numero:'17 denunciados', neutro:true,
     resposta:'Em 2020, o MP-RJ denunciou <b>17 pessoas</b> na rachadinha da Alerj, ele entre elas. A denúncia foi <b>anulada</b>: o STJ anulou as provas em 2021, o caso foi arquivado em 2022 e o STF negou os recursos do MP em 26/02/2025.',
     chip:'DENÚNCIA ANULADA',
     fontes:[F.carta],
-    curto:'Denunciados na rachadinha da Alerj', gab:'17',
+    curto:'Denunciados na rachadinha da Alerj', gab:'17', caso:'rachadinha-alerj',
     breve:'Ele entre eles; denúncia anulada.',
     zap:'Em 2020, o MP-RJ denunciou 17 pessoas na rachadinha da Alerj, Flávio Bolsonaro entre elas. A denúncia foi anulada: o STJ anulou as provas em 2021 e o caso foi arquivado em 2022.' }
 ];

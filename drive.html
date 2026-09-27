@@ -17,7 +17,7 @@
 <meta property="og:title" content="BOLSODRIVE: Um rio de escândalos">
 <meta property="og:description" content="O arquivo: o que saiu nos últimos dias sobre Flávio Bolsonaro, as pastas por caso, a cronologia e a teia de nomes. Cada fato com fonte e situação jurídica.">
 <meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/drive.html">
-<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png?v=a06da120">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png?v=3016cc80">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -25,44 +25,15 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BOLSODRIVE: Um rio de escândalos">
 <meta name="twitter:description" content="O arquivo: o que saiu nos últimos dias sobre Flávio Bolsonaro, as pastas por caso, a cronologia e a teia de nomes. Cada fato com fonte e situação jurídica.">
-<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png?v=a06da120">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/og-rio.png?v=3016cc80">
 <meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os casos descem como afluentes até a foto de Flávio Bolsonaro.">
 
-<link rel="stylesheet" href="assets/app.css?v=416f9208">
-<link rel="stylesheet" href="assets/header.css?v=3b010dac">
+<link rel="stylesheet" href="assets/base.css?v=38ce818e">
+<link rel="stylesheet" href="assets/app.css?v=5b4c7f23">
+<link rel="stylesheet" href="assets/header.css?v=84dc371e">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
-<style>
-/* ligação com a Foz: por quais rios um nome passa (assets/app.js, fozHTML) */
-.foz-liga{margin:12px 0 0; padding:10px 12px; border:1px solid var(--line); border-left:2px solid var(--amber); border-radius:var(--radius)}
-.foz-liga .fl-k{font-size:12px; color:var(--muted); margin:0 0 4px; line-height:1.4}
-.foz-liga a{display:flex; align-items:center; min-height:40px; font-size:14px; font-weight:600; color:var(--amber); text-decoration:none; border-top:1px solid var(--line)}
-.foz-liga .fl-k + a{border-top:0}
-.foz-liga > a:first-child{border-top:0}
-.foz-liga a:hover{text-decoration:underline; text-underline-offset:3px}
-.sheet .block .foz-liga{margin:0}
-/* caminho de um caso na teia (assets/app.js, showCaminho) */
-.toolbar .backlink{margin-bottom:0; min-height:40px}
-.caminho-btn{cursor:pointer; font-family:inherit}
-.caminho-btn[aria-pressed="true"]{border-color:#d8efdd; color:#d8efdd}
-.rede-painel .cm-t{margin:6px 0 10px; font-size:15px; line-height:1.45; color:var(--text)}
-.rede-painel .cm-s{margin:0 0 8px; font-size:13px; line-height:1.45; color:var(--text); padding-left:9px; border-left:2px solid #d8efdd}
-.rede-painel .cm-r{margin:0 0 8px; font-size:12px; line-height:1.45; color:var(--muted)}
-.rede-painel .cm-f{margin:0 0 4px; font-size:11px; color:var(--muted)}
-.rede-painel .cm-f a{color:var(--green-b)}
-.rede-painel .cm-foz{display:inline-flex; align-items:center; min-height:40px; font-size:14px; font-weight:600; color:var(--amber); text-decoration:none}
-.rede-painel .cm-foz:hover{text-decoration:underline; text-underline-offset:3px}
-.rede-painel .cm-a{display:flex; flex-wrap:wrap; align-items:center; gap:4px 14px; margin:0 0 6px}
-.cm-env{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 16px; border:1.5px solid var(--amber); border-radius:2px; background:var(--amber); color:#120c00; font:700 15px var(--sans, system-ui); cursor:pointer}
-.caminho-nota .cn-a{display:flex; flex-wrap:wrap; align-items:center; gap:4px 14px; margin-top:6px}
-.rec-vermais{margin:4px 0 0}
-.caminho-nota{display:none}
-@media (max-width:860px){
-  .caminho-nota:not([hidden]){display:block; margin:-6px 0 12px; padding:9px 11px; border:1px solid var(--line); border-left:2px solid #d8efdd; border-radius:var(--radius); font-size:14px; line-height:1.45; color:var(--text)}
-  .caminho-nota .cn-mais{display:inline-flex; align-items:center; min-height:36px; padding:0; border:0; background:none; color:var(--amber); font:inherit; font-size:13px; cursor:pointer}
-}
-</style>
 </head>
 <body data-trecho="m">
 
@@ -75,120 +46,113 @@
     <p class="tese"><a href="index.html">Nascente</a> · <a href="drive.html#rede">A teia de nomes</a> · <a href="siga-o-dinheiro.html">O dinheiro</a> · <a href="foz.html">A Foz: os 40 casos e como chegam a ele</a></p>
   </noscript>
 
-  <!-- RECENTEMENTE -->
+  <!-- RECENTEMENTE (e as manchetes de outros veículos, que eram a aba Notícias) -->
   <section id="view-recente" class="view active">
     <div class="view-head">
-      <h1>Recentemente</h1>
-      <p class="tese">O que saiu sobre ele nos últimos dias. <span id="rec-quando" class="rec-quando"></span></p>
+      <h1 class="sec">Recentemente</h1>
+      <p class="sub">O que saiu sobre ele nos últimos 14 dias do arquivo, cada fato com fonte. <span id="rec-quando" class="rec-quando"></span></p>
     </div>
+    <div id="rec-destaque" class="rec-dq"></div>
     <div id="rec-lista" class="recente"></div>
-    <p class="rec-mais"><button class="backlink" data-go="cronologia">ver a cronologia completa →</button> <button class="backlink" data-go="arquivo">ver as pastas do arquivo →</button></p>
+    <section id="manchetes" class="manchetes" aria-labelledby="man-t" hidden>
+      <h2 class="kx" id="man-t">Nas manchetes</h2>
+      <p class="man-sub">Outros veículos, nos últimos dias. O título é o do veículo; o link leva à reportagem.</p>
+      <div id="man-lista"></div>
+    </section>
+    <p class="rec-mais"><button type="button" class="vt" data-go="cronologia">a cronologia completa →</button><button type="button" class="vt" data-go="arquivo">as pastas do arquivo →</button></p>
   </section>
 
   <!-- ARQUIVO -->
   <section id="view-arquivo" class="view">
     <div class="view-head">
-      <h1>Arquivo</h1>
-      <p class="tese">Tudo o que o site mostra, com fonte em cada linha.</p>
+      <h1 class="sec">Arquivo</h1>
+      <p class="sub" id="arq-sub">Tudo o que o site mostra, cada registro com fonte. Procure um nome, um caso ou um ano.</p>
     </div>
-    <div class="toolbar">
-      <label class="search">🔎 <input id="busca" placeholder="Buscar no arquivo…" autocomplete="off"></label>
-    </div>
-    <div id="arquivo-grid" class="grid"></div>
-    <div id="arquivo-itens" style="display:none"></div>
+    <div class="busca-box"><input id="busca" type="search" placeholder="Procure: Queiroz, Vorcaro, 2020…" autocomplete="off" aria-label="Procurar no arquivo"></div>
+    <div id="arquivo-grid"></div>
+    <div id="arquivo-itens" hidden></div>
   </section>
 
-  <!-- REDE -->
+  <!-- A TEIA -->
   <section id="view-rede" class="view">
     <div class="view-head">
-      <h1>A teia de nomes</h1>
-      <p>Os nomes em volta dele e a teia completa, cada um com a situação jurídica e a fonte. Anel vermelho: preso ou condenado.</p>
+      <h1 class="sec">A teia de nomes</h1>
+      <p class="sub">Os nomes em volta dele, cada um com a situação jurídica e a fonte. A cor de cada nome é a situação dele; toque num nome para ver a ficha.</p>
     </div>
+    <div id="rede-dq" class="rede-dq"></div>
     <div class="toolbar">
-      <label class="search"><input id="rede-search" placeholder="buscar nome na rede…" autocomplete="off"></label>
-      <button type="button" class="backlink caminho-btn" id="caminho-marielle" aria-pressed="false">caminho: caso Marielle</button>
-      <a class="backlink" href="close-friends.html">◎ ver em órbita</a>
+      <div class="busca-box"><input id="rede-search" type="search" placeholder="Procure um nome na teia" autocomplete="off" aria-label="Procurar um nome na teia"></div>
+      <button type="button" class="pil caminho-btn" id="caminho-marielle" aria-pressed="false">caminho: caso Marielle</button>
+      <a class="pil" href="close-friends.html">ver em órbita</a>
     </div>
     <p class="caminho-nota" id="caminho-nota" hidden></p>
     <div class="rede-wrap">
       <div class="canvas-box">
         <canvas id="grafo" role="img" aria-label="Teia de nomes ligados a Flávio Bolsonaro"></canvas>
+        <p class="teia-cap" id="teia-cap" aria-hidden="true"></p>
         <div class="teia-ctl" role="group" aria-label="zoom do mapa">
           <button type="button" id="grafo-mais" title="aproximar" aria-label="aproximar">+</button>
           <button type="button" id="grafo-menos" title="afastar" aria-label="afastar">−</button>
           <button type="button" id="grafo-fit" title="recentrar a teia inteira" aria-label="recentrar">⤢<span> recentrar</span></button>
         </div>
-        <button type="button" id="grafo-cheia">⤢ abrir o mapa</button>
-        <button type="button" id="grafo-fechar">× fechar</button>
+        <button type="button" id="grafo-fechar">fechar ×</button>
         <p class="teia-dica" id="teia-dica" aria-hidden="true"></p>
-        <div class="legenda" id="legenda"></div>
+        <div class="teia-leg" id="legenda"></div>
+        <button type="button" class="sec" id="grafo-cheia">abrir a teia inteira</button>
         <div class="teia-cartao" id="teia-cartao" aria-live="polite" hidden></div>
       </div>
-      <aside id="rede-painel" class="rede-painel"><div class="ph">Carregando…</div></aside>
+      <aside id="rede-painel" class="rede-painel"><p class="ph">Carregando…</p></aside>
     </div>
   </section>
 
   <!-- CRONOLOGIA -->
   <section id="view-cronologia" class="view">
     <div class="view-head">
-      <h1>A Cronologia</h1>
-      <p>Vinte anos de casos, um atrás do outro.</p>
+      <h1 class="sec">Cronologia</h1>
+      <p class="sub">Os registros do arquivo, ano a ano. Em cada ano, os principais; o resto em "ver todos".</p>
     </div>
-    <div class="cron-toggle">
-      <button class="cron-tab active" data-cron="log">log</button>
-      <button class="cron-tab" data-cron="faixas">faixas por caso</button>
+    <div id="cr-topo"></div>
+    <div class="pilulas cr-modo" role="group" aria-label="modo da cronologia">
+      <button type="button" class="cron-tab on" data-cron="log" aria-pressed="true">ano a ano</button>
+      <button type="button" class="cron-tab" data-cron="faixas" aria-pressed="false">por pasta</button>
     </div>
     <div id="timeline" class="timeline"></div>
-    <div id="swimlanes" class="swimlanes" style="display:none"></div>
+    <div id="swimlanes" class="swimlanes" hidden></div>
   </section>
 
-  <!-- NOTÍCIAS -->
-  <section id="view-noticias" class="view">
-    <div class="view-head">
-      <h1>Notícias</h1>
-      <p>As manchetes mais recentes sobre ele.</p>
-    </div>
-    <div class="news-bar">
-      <span id="news-status" class="news-status">…</span>
-      <button id="news-refresh" class="backlink">↻ atualizar</button>
-    </div>
-    <div class="news-sec">google notícias</div>
-    <div id="news-list" class="news-list"></div>
-    <div class="news-sec">do arquivo · fontes mais recentes</div>
-    <div id="news-arquivo" class="news-list"></div>
-  </section>
-
-  <!-- ESPECIALISTA -->
+  <!-- PERGUNTE AO ARQUIVO (era FlávioGPT; é uma busca por palavra, não gera texto) -->
   <section id="view-chat" class="view">
     <div class="view-head">
-      <h1>FlávioGPT</h1>
-      <p>Pergunte. As respostas saem só do arquivo, com fonte.</p>
+      <h1 class="sec">Pergunte ao arquivo</h1>
+      <p class="sub" id="chat-sub">Procura palavra por palavra nos registros e nos nomes da teia. A resposta é o que o arquivo tem, com a fonte; nada é escrito na hora.</p>
     </div>
     <div class="chat-shell">
-      <div id="chat-msgs" class="chat-msgs"></div>
       <form id="chat-form" class="chat-form">
-        <input id="chat-inp" placeholder="Ex.: como ficou o caso da rachadinha?" autocomplete="off">
-        <button type="submit" aria-label="Perguntar">↑</button>
+        <div class="busca-box"><input id="chat-inp" type="search" placeholder="Ex.: rachadinha, Queiroz, jato" autocomplete="off" aria-label="Sua pergunta"></div>
+        <button type="submit">procurar</button>
       </form>
-      <div id="chat-chips" class="chat-chips"></div>
+      <div id="chat-chips" class="pilulas chat-chips"></div>
+      <div id="chat-msgs" class="chat-msgs" aria-live="polite"></div>
     </div>
   </section>
 
   <footer class="site-footer">
-    <button id="link-metodo">// método &amp; transparência</button>
-    <span class="foot-dim">Cada fato tem fonte e a situação jurídica de cada nome.</span>
+    <button type="button" id="link-metodo">Método e transparência</button>
+    <span class="foot-dim">Cada fato tem fonte; cada nome, a situação jurídica.</span>
   </footer>
 
 </main>
 
 <div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
 
-<script src="data/dados.js?v=d6676b07"></script>
-<script src="data/foz.js?v=709d4c4d"></script>
+<script src="data/dados.js?v=d2cfb2ad"></script>
+<script src="data/foz.js?v=880cbd84"></script>
 <script src="data/zap-mapa.js?v=02cdbfdf"></script>
-<script src="data/topicos.js?v=ab29a258"></script>
+<script src="data/topicos.js?v=75878a47"></script>
+<script src="assets/fotos.js?v=734cce7c"></script>
+<script src="data/noticias.js?v=dc013f5c"></script>
 <script src="assets/compartilhar.js?v=edbe4096" defer></script>
-<script src="assets/app.js?v=4d3b17cc"></script>
-<script src="assets/nav.js?v=41bee539"></script>
+<script src="assets/app.js?v=be5d5084"></script>
+<script src="assets/nav.js?v=fc36981b"></script>
 </body>
 </html>

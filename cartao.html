@@ -6,45 +6,94 @@
 <title>BOLSODRIVE · cartão</title>
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=1200">
-<!-- O cartão de um tópico (1200×630), para a prévia de link e o envio com imagem.
-     cartao.html?id=<id> lê window.BD_TOPICOS[id].cartao = {k, nome, n, l[, cor][, tipo]} de data/topicos.js.
-     tipo: sem tipo (ou "numero") = o número grande de sempre, numa linha; "texto" = frase em âmbar, até 2 linhas
-     (96 → 64 px); "hora" = mono, numa linha; "citacao" = fala em --tinta com as aspas em âmbar, até 3 linhas
-     (76 → 52 px); "fita" = o número e, embaixo, uma gota por unidade (o número inicial de n, até 20).
-     cor:"tinta" põe o destaque em --tinta (a situação dele, nunca em âmbar), em qualquer tipo.
+<!-- O cartão de um tópico, para a prévia de link, o envio com imagem e o status.
+     cartao.html?id=<id>          1200×630 (c/img/<id>.png)
+     cartao.html?id=<id>&f=story  1080×1920 (c/story/<id>.png): o mesmo cartão em pé, para status e stories
+     Lê window.BD_TOPICOS[id].cartao de data/topicos.js:
+       k      kicker (a faixa da Foz: "chega a ele pelo gabinete / pela família / pelo entorno"; "Flávio Bolsonaro"
+              só nos casos de faixa direto)
+       nome   o caso; n o destaque; l a linha de contexto (quem afirma)
+       tipo   sem tipo (ou "numero") = o número grande; "texto" = frase em âmbar, até 2 linhas (3 no story);
+              "hora" = mono; "citacao" = fala em --tinta com as aspas em âmbar; "fita" = uma gota por unidade;
+              "acerto" = faixa de acerto do quiz (cartao.acerto = [de, até, total]: total segmentos, a faixa em âmbar)
+       cor    "tinta": o destaque em --tinta (a situação dele, ou o nome de uma pessoa: âmbar só para número e fato)
+       st     a cor da água, a mesma da Foz: "grave" (alguém preso ou condenado no caminho), "medio" (investigado
+              ou denunciado no caminho), "outros"; sem st, o verde do rio. Nunca é a situação dele: o disco dele é
+              sempre neutro. A legenda diz de quem é a cor.
+       fios   [grave, medio, outros]: em vez de um afluente, um fio por caso ou por nome (a abertura, a teia),
+              cada um na cor da situação, todos desaguando no disco; a legenda traz as contagens
+       canto  o trecho e o tamanho da faixa, no canto de cima ("O ENTORNO · 13 CASOS")
+       foto   {src, cred?, st?}: cartão de pessoa; o retrato é a nascente do afluente (nunca o disco dele), com o
+              anel na cor da situação literal da pessoa e o crédito no canto de baixo
+     S04: a 300 px de largura (a miniatura do WhatsApp) sobrevivem logo, nome, destaque e a linha de contexto
+     (42 px); o rio ocupa 240 px; o bloco de texto fica centrado na altura.
      "zap" (BolsoZap, tópicos de data/topicos-zap.js): outro desenho. À esquerda (520 px) o logo, BOLSOZAP, o nome da
      conversa, o gancho (n em âmbar só quando é número, l) e a situação em --tinta; à direita (600 px) um trecho de
      conversa MARCADO, com cartao.zap = {av, t:"e"|"p", sit, sis:{t,d,ic}|null, msgs:[{de, cat, d, t|null, q|null}]}:
      até 1 pílula e 2 balões em ordem de data, a fonte como remetente e a data em cada balão, marca d'água BOLSOZAP;
      sob o nome no cabeçalho do painel, a linha "conversa montada pelo BolsoZap · cada mensagem tem fonte";
      embaixo, a faixa "Montado com reportagens e documentos públicos". Sem moldura de celular, relógio, tiques,
-     "online", campo de digitar, foto, nem nome ou logo de app de mensagens.
+     "online", campo de digitar, foto, nem nome ou logo de app de mensagens. (Sem versão story.)
      Rodapé fixo (T05a): o endereço curto do site e "cada fato com fonte" em todo cartão (o PNG solto, sem legenda,
-     leva ao site); no cartão zap, o endereço vai na faixa de baixo. O kicker (k) aceita a faixa da Foz
-     ("chega a ele pelo gabinete / pela família / pelo entorno"); "Flávio Bolsonaro" só nos casos de faixa direto.
-     As imagens c/img/<id>.png saem daqui (bolso-os-fontes/gera_compartilhar.py). -->
+     leva ao site); no cartão zap, o endereço vai na faixa de baixo.
+     As imagens saem daqui (bolso-os-fontes/gera_compartilhar.py). -->
 <style>
-:root{--papel:#070a07; --tinta:#d8efdd; --cinza:#86a58c; --cinza2:#4f6b51; --amber:#ffb02e; --agua:#7df59a;
+:root{--papel:#070a07; --tinta:#d8efdd; --cinza:#86a58c; --cinza2:#6c8f70; --amber:#ffb02e; --agua:#7df59a; --carimbo:#ff5c5c; --outros:#5c8a63;
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 html,body{margin:0; padding:0; background:var(--papel)}
 .c{position:relative; width:1200px; height:630px; overflow:hidden; background:var(--papel); color:var(--tinta); font-family:var(--sans)}
 .logo{position:absolute; left:64px; top:50px; width:262px; height:auto; display:block}
-.txt{position:absolute; left:64px; top:136px; width:800px}
-.k{font-family:var(--mono); font-size:18px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--cinza); margin:0 0 12px}
-.nome{font-size:54px; font-weight:800; line-height:1.04; letter-spacing:-.015em; margin:0 0 6px}
-.num{font-size:168px; font-weight:800; line-height:1; letter-spacing:-.035em; color:var(--amber); white-space:nowrap; margin:0 0 10px}
-.l{font-size:31px; line-height:1.24; color:#b3cdb8; margin:0}
+.canto{position:absolute; right:52px; top:61px; margin:0; font-family:var(--mono); font-size:17px; line-height:1; font-weight:700; letter-spacing:.1em; color:var(--cinza); white-space:nowrap; text-transform:uppercase}
+.canto i{font-style:normal; color:var(--cinza2)}
+.txt{position:absolute; left:64px; top:112px; width:872px}
+.k{font-family:var(--mono); font-size:22px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--cinza); margin:0 0 12px}
+.nome{font-size:60px; font-weight:800; line-height:1.04; letter-spacing:-.015em; margin:0 0 6px}
+.num{font-size:168px; font-weight:800; line-height:1; letter-spacing:-.035em; color:var(--amber); white-space:nowrap; margin:0 0 12px; font-variant-numeric:tabular-nums}
+.l{font-size:42px; line-height:1.22; color:#b3cdb8; margin:0; text-wrap:pretty}
 /* variantes (cartao.tipo); sem tipo, ou "numero", o número de sempre */
 .num.t-texto{white-space:normal; line-height:1.02; letter-spacing:-.025em; text-wrap:balance; margin:0 0 16px}
 .num.t-hora{font-family:var(--mono); font-weight:700; letter-spacing:-.045em; word-spacing:-.32em}
 .num.t-cit{white-space:normal; color:var(--tinta); font-weight:700; line-height:1.1; letter-spacing:-.02em; text-wrap:balance; margin:0 0 18px}
 .num .aspa{color:var(--amber)}
-.fita{display:block; width:800px; height:34px; margin:-2px 0 14px; overflow:visible}
-svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
-/* rodapé fixo: o endereço curto do site (verde = link) e "cada fato com fonte"; abaixo do bloco de texto, à esquerda do rio */
+.fita{display:block; width:100%; height:34px; margin:-2px 0 14px; overflow:visible}
+.barra{display:flex; gap:6px; margin:4px 0 20px}
+.barra i{flex:1; height:18px; border-radius:2px; background:rgba(116,255,150,.12)}
+.barra i.antes{background:var(--tinta); opacity:.8}
+.barra i.faixa{background:var(--amber)}
+/* o rio: 240 px à direita; o disco dele, neutro; a legenda diz de quem é a cor da água */
+svg.rio{position:absolute; left:960px; top:0; width:240px; height:630px; overflow:visible}
+.leg{position:absolute; left:966px; top:468px; width:220px; margin:0; font-size:15px; line-height:1.3; color:var(--cinza)}
+.leg span{display:block; padding-left:30px; text-indent:-30px}
+.leg i{display:inline-block; width:22px; height:5px; border-radius:2px; vertical-align:4px; margin-right:8px}
+.leg b{color:var(--tinta); font-weight:700; font-variant-numeric:tabular-nums}
+.cred{position:absolute; right:22px; top:611px; margin:0; font-family:var(--mono); font-size:13px; line-height:1; color:var(--cinza2); white-space:nowrap}
+/* rodapé fixo: o endereço curto do site (verde = link) e "cada fato com fonte"; abaixo do bloco de texto */
 .rp{position:absolute; left:64px; top:582px; margin:0; font-family:var(--mono); font-size:22px; line-height:1; font-weight:700; letter-spacing:.03em; color:var(--cinza); white-space:nowrap}
 .rp b{color:var(--agua); font-weight:700}
-.c.zap .rp{display:none}
+.c.zap .rp,.c.zap .canto,.c.zap .leg,.c.zap .cred{display:none}
+
+/* ---- story 1080×1920 (?f=story): o mesmo cartão em pé; zona segura de 250 px em cima e embaixo ---- */
+.c.story{width:1080px; height:1920px}
+.c.story .logo{left:80px; top:250px; width:440px}
+.c.story .canto{left:80px; right:auto; top:346px; font-size:24px}
+.c.story .txt{left:80px; top:400px; width:760px}
+.c.story .k{font-size:30px; margin:0 0 18px}
+.c.story .nome{font-size:84px; margin:0 0 14px; text-wrap:balance}
+.c.story .num{font-size:220px; white-space:normal; line-height:.98; text-wrap:balance; margin:0 0 22px}
+.c.story .num.t-texto{line-height:1.02; margin:0 0 26px}
+.c.story .num.t-cit{line-height:1.1; margin:0 0 26px}
+.c.story .l{font-size:52px; line-height:1.24}
+.c.story .barra{gap:8px; margin:8px 0 30px}
+.c.story .barra i{height:26px}
+.c.story svg.rio{left:0; top:0; width:1080px; height:1920px}
+.c.story .leg{left:90px; top:1508px; width:900px; font-size:28px; text-align:center}
+.c.story .leg span{display:inline-block; padding:0; text-indent:0; margin:0 14px}
+.c.story .leg i{width:34px; height:7px; vertical-align:7px; margin-right:12px}
+.c.story .rp{left:0; right:0; top:1598px; font-size:30px; text-align:center; white-space:normal; line-height:1.5}
+.c.story .rp b{display:block}
+.c.story .rp .rp-s{display:none}
+.c.story .cred{right:80px; top:1700px; font-size:20px}
+
 /* ---- tipo "zap" (BolsoZap): nada acima muda; tudo abaixo só vale dentro de .c.zap ---- */
 .c.zap .txt,.c.zap svg.rio{display:none}
 .zc{position:absolute; left:64px; top:100px; width:456px}
@@ -73,7 +122,7 @@ svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
   background:#202c33; color:#e9edef; border-radius:0 14px 14px 14px}
 .zm::before{content:""; position:absolute; left:-11px; top:0; width:12px; height:15px; background:#202c33; clip-path:polygon(0 0,100% 0,100% 100%)}
 .zde{font-size:22px; font-weight:600; line-height:1.25; margin:0 0 4px; color:#9fd8c4}
-.zde.inst{color:#c7b8f5}
+.zde.inst{color:#9fd8c4}
 .zq{background:#1a252c; border-left:4px solid #8696a0; border-radius:6px; padding:7px 14px 9px; margin:6px 0 2px}
 .zqq{font-size:19px; line-height:1.3; color:#8696a0; margin:0 0 3px}
 .zqt,.zt{font-size:var(--zf,28px); line-height:1.28; margin:0; text-wrap:pretty}
@@ -86,43 +135,62 @@ svg.rio{position:absolute; left:870px; top:0; width:330px; height:630px}
 <body>
 <div class="c" id="c">
   <img class="logo" src="assets/marca/logo.svg" alt="BOLSODRIVE">
+  <p class="canto" id="canto" hidden></p>
   <div class="txt" id="txt">
     <p class="k" id="k"></p>
     <p class="nome" id="nome"></p>
     <p class="num" id="num"></p>
     <p class="l" id="l"></p>
   </div>
-  <svg class="rio" id="rio" viewBox="0 0 330 630" aria-hidden="true"></svg>
-  <p class="rp"><b>figuered0o0808-glitch.github.io/arquivo-flavio</b> · cada fato com fonte</p>
+  <svg class="rio" id="rio" viewBox="0 0 240 630" aria-hidden="true"></svg>
+  <p class="leg" id="leg" hidden></p>
+  <p class="cred" id="cred" hidden></p>
+  <p class="rp"><b>figuered0o0808-glitch.github.io/arquivo-flavio</b><span class="rp-s"> · </span>cada fato com fonte</p>
 </div>
-<script src="data/topicos.js?v=ab29a258"></script>
-<script src="data/topicos-zap.js?v=08416d8b"></script>
+<script src="data/topicos.js?v=75878a47"></script>
+<script src="data/topicos-zap.js?v=98e1f2d2"></script>
 <script>
 (function(){
 'use strict';
 const T = window.BD_TOPICOS || {};
-const id = new URLSearchParams(location.search).get('id') || 'abertura';
+const Q = new URLSearchParams(location.search);
+const id = Q.get('id') || 'abertura';
 const t = T[id] || T.abertura || { cartao: { k: 'Flávio Bolsonaro', nome: 'Um rio de escândalos', n: '', l: '' } };
 const c = t.cartao || {};
 const $ = s => document.getElementById(s);
-if (c.tipo === 'zap') return zap();   /* o BolsoZap tem desenho próprio (fim do arquivo); os outros tipos seguem abaixo, intactos */
+if (c.tipo === 'zap') return zap();   /* o BolsoZap tem desenho próprio (fim do arquivo) e não tem versão story */
+const STORY = Q.get('f') === 'story';
+const cx = $('c');
+if (STORY){ cx.classList.add('story'); document.querySelector('meta[name=viewport]').setAttribute('content', 'width=1080'); }
+document.documentElement.dataset.formato = STORY ? 'story' : 'cartao';
+/* medidas por formato: onde o bloco de texto pode ficar (top..top+alto) e os tamanhos de partida e de piso */
+const G = STORY
+  ? { top: 400, alto: 870, W: 760, nome: 84, nomeMin: 60, num: 220, num1: 150, numMin: 104, l: 52, lMin: 42,
+      frase: [150, 96, 72, 3], cit: [112, 72, 56, 4] }
+  : { top: 112, alto: 448, W: 872, nome: 60, nomeMin: 48, num: 168, num1: 70, numMin: 110, l: 42, lMin: 36,
+      frase: [100, 64, 48, 2], cit: [80, 52, 40, 3] };
+const COR = { grave: '#ff5c5c', medio: '#ffb02e', outros: '#5c8a63' };
+const VERDE = '#7df59a';
+const nb = s => String(s || '').replace(/(\d) (?=mil\b|milh|bilh)/g, '$1 ').replace(/R\$ (?=\d)/g, 'R$ ');
+
 $('k').textContent = c.k || 'Flávio Bolsonaro';
 $('nome').textContent = c.nome || '';
-const TIPO = ({texto:1, hora:1, citacao:1, fita:1})[c.tipo] ? c.tipo : '';   /* "numero" e desconhecidos: o de sempre */
+const TIPO = ({texto:1, hora:1, citacao:1, fita:1, acerto:1})[c.tipo] ? c.tipo : '';   /* "numero" e desconhecidos: o de sempre */
 document.documentElement.dataset.tipo = TIPO;
+const num = $('num');
 if (TIPO === 'citacao'){
   /* a fala em --tinta; só as aspas em âmbar (a de abertura fica pendurada à esquerda) */
-  const m = String(c.n || '').match(/^([“"«‘]*)([\s\S]*?)([”"»’]*)$/), num = $('num');
+  const m = String(c.n || '').match(/^([“"«‘]*)([\s\S]*?)([”"»’]*)$/);
   num.classList.add('t-cit');
   if (m[1]){ const a = document.createElement('span'); a.className = 'aspa ab'; a.textContent = m[1]; num.appendChild(a); }
   num.appendChild(document.createTextNode(m[2]));
   if (m[3]){ const a = document.createElement('span'); a.className = 'aspa'; a.textContent = m[3]; num.appendChild(a); }
 } else {
-  $('num').textContent = c.n || '';
-  /* na frase que quebra linha, o número não se separa da unidade ("2,8 mil", "R$ 60") */
-  if (TIPO === 'texto') $('num').textContent = String(c.n || '').replace(/(\d) (?=mil\b|milh|bilh)/g, '$1\u00a0').replace(/R\$ (?=\d)/g, 'R$\u00a0');
-  if (TIPO === 'texto') $('num').classList.add('t-texto');
-  if (TIPO === 'hora') $('num').classList.add('t-hora');
+  /* o número não se separa da unidade ("2,8 mil", "R$ 60") quando a linha quebra */
+  /* no story o número pode ir para duas linhas: "R$ 131" / "milhões" (o R$ não se separa do número; a unidade pode) */
+  num.textContent = TIPO === 'texto' ? nb(c.n) : STORY ? String(c.n || '').replace(/R\$ (?=\d)/g, 'R$\u00a0') : String(c.n || '');
+  if (TIPO === 'texto') num.classList.add('t-texto');
+  if (TIPO === 'hora') num.classList.add('t-hora');
 }
 if (TIPO === 'fita'){
   /* uma gota por unidade, espaçadas por igual (o desenho não diz data) */
@@ -134,82 +202,173 @@ if (TIPO === 'fita'){
     let g = '<line x1="0" y1="17" x2="' + (passo * (q - 1) + 40).toFixed(1) + '" y2="17" stroke="#4f6b51" stroke-width="2"/>';
     for (let i = 0; i < q; i++) g += '<circle cx="' + (20 + passo * i).toFixed(1) + '" cy="17" r="11" fill="#7df59a" fill-opacity=".92"/>';
     f.innerHTML = g;
-    $('num').after(f);
+    num.after(f);
   }
 }
-if (c.cor === 'tinta') $('num').style.color = 'var(--tinta)';   /* a situação dele: nunca em âmbar */
-$('l').textContent = String(c.l || '').replace(/(\d) (?=mil\b|milh|bilh)/g, '$1\u00a0').replace(/R\$ (?=\d)/g, 'R$\u00a0');   /* "R$ 52 bilhões" não se parte no fim da linha */
-document.title = (c.nome || 'BOLSODRIVE') + ' · cartão';
+if (TIPO === 'acerto' && Array.isArray(c.acerto)){
+  /* faixa de acerto do quiz: um segmento por pergunta; até "de" em tinta, a faixa em âmbar */
+  const [de, ate, tot] = c.acerto.map(Number), b = document.createElement('div');
+  b.className = 'barra'; b.setAttribute('aria-hidden', 'true');
+  for (let i = 1; i <= Math.min(40, tot || 0); i++){
+    const s = document.createElement('i');
+    if (i < de) s.className = 'antes'; else if (i <= ate) s.className = 'faixa';
+    b.appendChild(s);
+  }
+  num.after(b);
+}
+if (c.cor === 'tinta') num.style.color = 'var(--tinta)';   /* a situação dele, ou o nome de uma pessoa: nunca em âmbar */
+$('l').textContent = nb(c.l);   /* "R$ 52 bilhões" não se parte no fim da linha */
+if (c.canto){ $('canto').textContent = c.canto; $('canto').hidden = false; }
+document.title = (c.nome || 'BOLSODRIVE') + ' · ' + (STORY ? 'story' : 'cartão');
 
-/* o afluente: desce do alto até o ponto (ele); a forma varia um pouco por tópico */
+/* ---------- a legenda: de quem é a cor da água (nunca dele) ---------- */
+const LEG = { grave: 'alguém preso ou condenado no caminho', medio: 'alguém investigado ou denunciado no caminho' };
+const leg = Array.isArray(c.leg) ? c.leg : c.st && LEG[c.st] ? [[c.st, null, LEG[c.st]]] : [];
+if (leg.length){
+  $('leg').innerHTML = leg.map(x => '<span>' + (x[0] ? '<i style="background:' + (COR[x[0]] || VERDE) + '"></i>' : '') +
+    (x[1] != null ? '<b>' + String(x[1]).replace(/[<&]/g, '') + '</b> ' : '') + String(x[2] || '').replace(/[<&]/g, '') + '</span>').join('');
+  $('leg').hidden = false;
+}
+
+/* ---------- o rio: da nascente ao disco dele ---------- */
 let h = 2166136261; for (let i = 0; i < id.length; i++){ h ^= id.charCodeAt(i); h = Math.imul(h, 16777619); }
 const rnd = () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return ((h >>> 0) % 10000) / 10000; };
-const P = { x: 168, y: 486 };                                   /* o ponto */
-const x0 = 120 + rnd() * 110, a1 = 40 + rnd() * 50, a2 = 30 + rnd() * 40, s = rnd() < .5 ? -1 : 1;
-const main = `M${x0.toFixed(1)},-10 C${(x0 + s * a1).toFixed(1)},120 ${(P.x - s * a2).toFixed(1)},250 ${(P.x + s * 18).toFixed(1)},340 S${P.x},440 ${P.x},${P.y - 40}`;
-/* dois afluentes menores: um desce do alto, outro entra pela borda direita; os dois encontram o principal */
-const t1x = s > 0 ? 40 + rnd() * 40 : 250 + rnd() * 40;
-const trib1 = `M${t1x.toFixed(1)},-10 C${t1x.toFixed(1)},110 ${(P.x - s * 70).toFixed(1)},200 ${(P.x + s * 14).toFixed(1)},318`;
-const t2y = 150 + rnd() * 90;
-const trib2 = `M340,${t2y.toFixed(1)} C260,${(t2y + 40).toFixed(1)} ${(P.x + 50).toFixed(1)},330 ${(P.x + 6).toFixed(1)},404`;
 const NS = 'http://www.w3.org/2000/svg';
 const svg = $('rio');
-svg.innerHTML =
-  '<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7df59a" stop-opacity=".12"/><stop offset=".75" stop-color="#7df59a" stop-opacity=".75"/><stop offset="1" stop-color="#7df59a" stop-opacity=".95"/></linearGradient>' +
-  '<radialGradient id="aura"><stop offset="0" stop-color="#7df59a" stop-opacity=".28"/><stop offset="1" stop-color="#7df59a" stop-opacity="0"/></radialGradient></defs>' +
-  `<path d="${trib1}" fill="none" stroke="#7df59a" stroke-opacity=".22" stroke-width="2.5" stroke-linecap="round"/>` +
-  `<path d="${trib2}" fill="none" stroke="#7df59a" stroke-opacity=".18" stroke-width="2" stroke-linecap="round"/>` +
-  `<path d="${main}" fill="none" stroke="url(#g)" stroke-width="22" stroke-opacity=".22" stroke-linecap="round"/>` +
-  `<path d="${main}" fill="none" stroke="url(#g)" stroke-width="6" stroke-linecap="round"/>` +
-  `<circle cx="${P.x}" cy="${P.y}" r="92" fill="url(#aura)"/>` +
-  `<circle cx="${P.x}" cy="${P.y}" r="40" fill="#0e160e" stroke="#7df59a" stroke-width="3"/>` +
-  `<text x="${P.x}" y="${P.y + 8}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="22" font-weight="700" fill="#d8efdd">FB</text>`;
-/* gotas descendo o afluente principal */
-const guia = document.createElementNS(NS, 'path'); guia.setAttribute('d', main); svg.appendChild(guia); guia.setAttribute('fill', 'none');
-const L = guia.getTotalLength();
-[0.18, 0.36, 0.52, 0.66, 0.78, 0.88].forEach((f, i) => {
-  const p = guia.getPointAtLength(L * f), g = document.createElementNS(NS, 'circle');
-  g.setAttribute('cx', p.x.toFixed(1)); g.setAttribute('cy', p.y.toFixed(1)); g.setAttribute('r', (2.6 + i * .35).toFixed(2));
-  g.setAttribute('fill', '#e8ffec'); g.setAttribute('fill-opacity', (0.45 + i * .08).toFixed(2)); svg.appendChild(g);
+const R = STORY
+  ? { vb: '0 0 1080 1920', P: { x: 540, y: 1418 }, r: 56, fb: 32, foto: { x: 944, y: 470, r: 84 }, lx: [866, 1066] }
+  : { vb: '0 0 240 630', P: { x: 132, y: 410 }, r: 38, fb: 22, foto: { x: 118, y: 162, r: 52 }, lx: [14, 226] };
+svg.setAttribute('viewBox', R.vb);
+const P = R.P, f = n => n.toFixed(1);
+const foto = c.foto && c.foto.src ? c.foto : null;
+const corLane = COR[c.st] || VERDE;
+/* um curso da nascente (x0, y0) até o alto do disco; no story o rio desce pela margem direita e dobra para o disco */
+function curso(x0, y0, s, a1, a2){
+  const fim = P.y - R.r;
+  if (STORY){
+    const yb = 1120, xb = x0 - 12;
+    return `M${f(x0)},${f(y0)} C${f(x0 - s * a1)},${f(y0 + (yb - y0) * .36)} ${f(xb + s * a2 * .5)},${f(yb - 240)} ${f(xb)},${yb}` +
+      ` C${f(xb)},${yb + 170} ${f(P.x + 110)},${f(fim - 64)} ${f(P.x + 4)},${f(fim + 1)}`;
+  }
+  const sp = fim - y0;
+  return `M${f(x0)},${f(y0)} C${f(x0 + s * a1)},${f(y0 + sp * .34)} ${f(P.x - s * a2)},${f(y0 + sp * .6)} ${f(P.x + s * 14)},${f(y0 + sp * .8)}` +
+    ` S${f(P.x)},${f(fim - sp * .08)} ${f(P.x)},${f(fim)}`;
+}
+let g = '<defs><radialGradient id="aura"><stop offset="0" stop-color="#d8efdd" stop-opacity=".16"/><stop offset="1" stop-color="#d8efdd" stop-opacity="0"/></radialGradient>' +
+  '<linearGradient id="gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + corLane + '" stop-opacity=".15"/><stop offset=".6" stop-color="' + corLane + '" stop-opacity=".8"/><stop offset="1" stop-color="' + corLane + '" stop-opacity=".98"/></linearGradient>' +
+  (foto ? '<clipPath id="fc"><circle cx="' + R.foto.x + '" cy="' + R.foto.y + '" r="' + R.foto.r + '"/></clipPath>' : '') + '</defs>';
+let main = null;
+const fios = Array.isArray(c.fios) ? c.fios.map(n => Math.max(0, parseInt(n, 10) || 0)) : null;
+if (fios && fios.reduce((a, b) => a + b, 0) > 0){
+  /* um fio por caso (ou por nome), na cor da situação: o vermelho no meio, os outros nas bordas */
+  const [ng, nm, no] = fios, ol = Math.floor(no / 2), ml = Math.floor(nm / 2);
+  const cores = [].concat(Array(ol).fill(COR.outros), Array(ml).fill(COR.medio), Array(ng).fill(COR.grave),
+    Array(nm - ml).fill(COR.medio), Array(no - ol).fill(COR.outros));
+  const N = cores.length, [xa, xb] = R.lx, w = N > 24 ? (STORY ? 1.6 : 1.7) : N > 8 ? (STORY ? 3.4 : 2.4) : (STORY ? 7 : 4.5);
+  cores.forEach((cor, i) => {
+    const sx = N > 1 ? xa + (xb - xa) * i / (N - 1) : (xa + xb) / 2;
+    const d = STORY
+      ? (() => { const xm = 960 + (sx - 963) * .22;   /* o leque se fecha descendo a margem e dobra para o disco */
+          return `M${f(sx)},-10 C${f(sx)},420 ${f(xm)},760 ${f(xm)},1120 C${f(xm)},${f(1290 + (xm - 960) * .3)} ${f(P.x + 110 + (xm - 960) * 2)},${f(P.y - R.r - 64 - (xm - 960) * .8)} ${f(P.x + (xm - 960) * .4)},${f(P.y - R.r + 2)}`; })()
+      : `M${f(sx)},-10 C${f(sx)},${f(P.y * .42)} ${f(P.x + (sx - P.x) * .42)},${f(P.y - 150)} ${f(P.x + (sx - P.x) * .08)},${f(P.y - R.r + 2)}`;
+    g += `<path d="${d}" fill="none" stroke="${cor}" stroke-opacity=".86" stroke-width="${w}" stroke-linecap="round"/>`;
+  });
+} else {
+  /* um afluente na cor da situação do caso (a da Foz); dois menores, bem fracos, encontram o principal */
+  const s = rnd() < .5 ? -1 : 1;
+  const x0 = foto ? R.foto.x : STORY ? 930 + rnd() * 50 : 60 + rnd() * 120;
+  const y0 = foto ? R.foto.y + R.foto.r + 6 : -10;
+  main = curso(x0, y0, s, (STORY ? 40 : 30) + rnd() * 40, (STORY ? 30 : 24) + rnd() * 30);
+  const guia = document.createElementNS(NS, 'path'); guia.setAttribute('d', main); svg.appendChild(guia);
+  const L = guia.getTotalLength(), pt = q => guia.getPointAtLength(L * q);
+  const j1 = pt(foto ? .35 : .3), j2 = pt(.55);
+  const t1x = STORY ? 1000 + rnd() * 60 : s > 0 ? 20 + rnd() * 30 : 190 + rnd() * 30;
+  const trib1 = `M${f(t1x)},-10 C${f(t1x)},${f(j1.y * .5)} ${f((t1x + j1.x) / 2)},${f(j1.y * .8)} ${f(j1.x)},${f(j1.y)}`;
+  const t2y = STORY ? 520 + rnd() * 200 : 150 + rnd() * 70, xd = STORY ? 1090 : 250;
+  const trib2 = `M${xd},${f(t2y)} C${f(xd - 60)},${f(t2y + 40)} ${f(j2.x + 40)},${f(j2.y - 60)} ${f(j2.x)},${f(j2.y)}`;
+  svg.removeChild(guia);
+  g += `<path d="${trib1}" fill="none" stroke="${corLane}" stroke-opacity=".2" stroke-width="${STORY ? 3.5 : 2.2}" stroke-linecap="round"/>` +
+    `<path d="${trib2}" fill="none" stroke="${corLane}" stroke-opacity=".16" stroke-width="${STORY ? 3 : 1.8}" stroke-linecap="round"/>` +
+    `<path d="${main}" fill="none" stroke="url(#gl)" stroke-width="${STORY ? 30 : 20}" stroke-opacity=".2" stroke-linecap="round"/>` +
+    `<path d="${main}" fill="none" stroke="url(#gl)" stroke-width="${STORY ? 9 : 6}" stroke-linecap="round"/>`;
+}
+/* o disco dele: sempre neutro (nunca na cor da água) */
+g += `<circle cx="${P.x}" cy="${P.y}" r="${R.r * 2.3}" fill="url(#aura)"/>` +
+  `<circle cx="${P.x}" cy="${P.y}" r="${R.r}" fill="#0e160e" stroke="#d8efdd" stroke-opacity=".85" stroke-width="${STORY ? 4 : 3}"/>` +
+  `<text x="${P.x}" y="${P.y + R.fb * .36}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="${R.fb}" font-weight="700" fill="#d8efdd">FB</text>`;
+/* o retrato (cartão de pessoa): a nascente do afluente, com o anel na cor da situação literal da pessoa */
+let img = null;
+if (foto){
+  const anel = COR[foto.st] || 'rgba(216,239,221,.55)';
+  g += `<circle cx="${R.foto.x}" cy="${R.foto.y}" r="${R.foto.r}" fill="#0e160e"/>` +
+    `<image id="retrato" x="${R.foto.x - R.foto.r}" y="${R.foto.y - R.foto.r}" width="${R.foto.r * 2}" height="${R.foto.r * 2}" preserveAspectRatio="xMidYMid slice" clip-path="url(#fc)"/>` +
+    `<circle cx="${R.foto.x}" cy="${R.foto.y}" r="${R.foto.r}" fill="none" stroke="${anel}" stroke-width="${STORY ? 6 : 4}"/>`;
+  if (foto.cred){ $('cred').textContent = 'foto: ' + foto.cred; $('cred').hidden = false; }
+}
+svg.innerHTML = g;
+if (main){
+  /* gotas descendo o afluente principal */
+  const guia = document.createElementNS(NS, 'path'); guia.setAttribute('d', main); guia.setAttribute('fill', 'none'); svg.appendChild(guia);
+  const L = guia.getTotalLength();
+  [0.18, 0.36, 0.52, 0.66, 0.78, 0.88].forEach((q, i) => {
+    const p = guia.getPointAtLength(L * q), d = document.createElementNS(NS, 'circle');
+    d.setAttribute('cx', f(p.x)); d.setAttribute('cy', f(p.y)); d.setAttribute('r', ((2.6 + i * .35) * (STORY ? 1.6 : 1)).toFixed(2));
+    d.setAttribute('fill', '#f2fff4'); d.setAttribute('fill-opacity', (0.4 + i * .08).toFixed(2)); svg.appendChild(d);
+  });
+}
+const carregou = !foto ? Promise.resolve() : new Promise(ok => {
+  img = svg.querySelector('#retrato');
+  const pre = new Image();
+  pre.onload = () => { img.setAttribute('href', foto.src); ok(); };
+  pre.onerror = () => { img.remove(); ok(); };   /* sem o arquivo, sem retrato (o anel fica) */
+  pre.src = foto.src;
+  setTimeout(ok, 4000);
 });
 
-/* ajuste: o número cabe numa linha; o bloco cabe na altura */
+/* ---------- ajuste: o destaque e a linha cabem; o bloco fica centrado na altura ---------- */
 function ajusta(){
-  if (TIPO === 'texto' || TIPO === 'citacao') return ajustaFrase();
-  const txt = $('txt'), num = $('num'), l = $('l'), nome = $('nome');
-  let fs = 168; num.style.fontSize = fs + 'px';
-  while (num.scrollWidth > 800 && fs > 70){ fs -= 4; num.style.fontSize = fs + 'px'; }
-  let ls = 31, ns = 54;
-  const cabe = () => txt.offsetHeight <= 436;
-  while (!cabe() && fs > 96){ fs -= 4; num.style.fontSize = fs + 'px'; }
-  while (!cabe() && ls > 25){ ls -= 1; l.style.fontSize = ls + 'px'; }
-  while (!cabe() && ns > 48){ ns -= 2; nome.style.fontSize = ns + 'px'; }
-  txt.style.top = Math.round(136 + Math.max(0, 436 - txt.offsetHeight) / 2) + 'px';   /* centrado no espaço abaixo do logo */
-  document.documentElement.dataset.pronto = '1';
+  const txt = $('txt'), l = $('l'), nome = $('nome');
+  const px = (e, v) => { e.style.fontSize = v + 'px'; return v; };
+  const linhas = e => Math.round(e.offsetHeight / parseFloat(getComputedStyle(e).lineHeight));
+  const cabe = () => txt.offsetHeight <= G.alto;
+  const larga = () => num.scrollWidth > G.W + 1;
+  let ns = px(nome, G.nome), ls = px(l, G.l), fs;
+  while (linhas(nome) > 2 && ns > G.nomeMin) ns = px(nome, ns - 2);
+  if (TIPO === 'texto' || TIPO === 'citacao'){
+    /* a frase quebra linha (até 2 ou 3; no story 3 ou 4) e a fonte desce até caber; nunca corta */
+    const [ini, min, piso, max] = TIPO === 'citacao' ? G.cit : G.frase;
+    const ab = num.querySelector('.aspa.ab');
+    if (ab){ px(num, 100); ab.style.marginLeft = (-ab.getBoundingClientRect().width / 100).toFixed(3) + 'em'; }
+    fs = px(num, ini);
+    while ((linhas(num) > max || larga()) && fs > min) fs = px(num, fs - 2);
+    while (!cabe() && fs > min) fs = px(num, fs - 2);
+    while (!cabe() && ls > G.lMin) ls = px(l, ls - 1);
+    while (!cabe() && ns > G.nomeMin) ns = px(nome, ns - 2);
+    while ((!cabe() || linhas(num) > max || larga()) && fs > piso) fs = px(num, fs - 2);   /* último recurso: menor, mas inteiro */
+  } else {
+    fs = px(num, G.num);
+    if (STORY){
+      /* numa linha até num1; se não couber, em duas linhas (equilibradas), de novo do tamanho cheio */
+      num.style.whiteSpace = 'nowrap';
+      while (larga() && fs > 170) fs = px(num, fs - 4);
+      if (larga()){
+        num.style.whiteSpace = 'normal'; fs = px(num, G.num);
+        while ((larga() || linhas(num) > 2) && fs > G.numMin) fs = px(num, fs - 4);
+      }
+    } else {
+      while (larga() && fs > G.num1) fs = px(num, fs - 4);
+    }
+    while (!cabe() && fs > G.numMin) fs = px(num, fs - 4);
+    while (!cabe() && ls > G.lMin) ls = px(l, ls - 1);
+    while (!cabe() && ns > G.nomeMin) ns = px(nome, ns - 2);
+    while (!cabe() && fs > 80) fs = px(num, fs - 4);
+  }
+  txt.style.top = Math.round(G.top + Math.max(0, G.alto - txt.offsetHeight) / 2) + 'px';   /* centrado na altura */
+  const d = document.documentElement.dataset;
+  d.linhas = String(linhas(num)); d.fonteNum = String(fs); d.fonteLinha = String(ls); d.cabe = cabe() ? '1' : '0';
+  d.pronto = '1';
 }
-/* texto e citação: a frase quebra linha (até 2 ou 3) e a fonte desce até caber; nunca corta */
-function ajustaFrase(){
-  const txt = $('txt'), num = $('num'), l = $('l'), nome = $('nome');
-  const cit = TIPO === 'citacao', max = cit ? 3 : 2, ini = cit ? 76 : 96, min = cit ? 52 : 64, piso = cit ? 40 : 48;
-  let fs = ini, ls = 31, ns = 54;
-  const ab = num.querySelector('.aspa.ab');
-  if (ab){ num.style.fontSize = '100px'; ab.style.marginLeft = (-ab.getBoundingClientRect().width / 100).toFixed(3) + 'em'; }
-  const poe = v => { fs = v; num.style.fontSize = v + 'px'; };
-  const linhas = () => Math.round(num.offsetHeight / parseFloat(getComputedStyle(num).lineHeight));
-  const larga = () => num.scrollWidth > 800;
-  const cabe = () => txt.offsetHeight <= 436;
-  poe(ini);
-  while ((linhas() > max || larga()) && fs > min) poe(fs - 2);
-  while (!cabe() && fs > min) poe(fs - 2);
-  while (!cabe() && ls > 25){ ls -= 1; l.style.fontSize = ls + 'px'; }
-  while (!cabe() && ns > 48){ ns -= 2; nome.style.fontSize = ns + 'px'; }
-  while ((!cabe() || linhas() > max || larga()) && fs > piso) poe(fs - 2);   /* último recurso: menor, mas inteiro */
-  txt.style.top = Math.round(136 + Math.max(0, 436 - txt.offsetHeight) / 2) + 'px';
-  document.documentElement.dataset.linhas = String(linhas());
-  document.documentElement.dataset.pronto = '1';
-}
-(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(ajusta);
-
+Promise.all([document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve(), carregou]).then(ajusta);
 /* ---------- tipo "zap" (BolsoZap): um trecho de conversa MARCADO, que não parece print de conversa privada ----------
    Quem envia é a fonte (veículo ou "PF · áudio obtido"); a fala de pessoa só entra como citação, com quem e o meio;
    data em cada balão e na pílula; sem hora, tique, "online", relógio ou campo de digitar. A situação fica em --tinta. */

@@ -15,8 +15,8 @@
 <meta property="og:title" content="BOLSODRIVE · Quiz: 20 perguntas sobre Flávio Bolsonaro">
 <meta property="og:description" content="Cada resposta com a fonte. Chuta antes de abrir.">
 <meta property="og:url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/quiz.html">
-<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quiz.png?v=96e8965a">
-<meta property="og:image:secure_url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quiz.png?v=96e8965a">
+<meta property="og:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quiz.png?v=29f5ed48">
+<meta property="og:image:secure_url" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quiz.png?v=29f5ed48">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,106 +24,116 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BOLSODRIVE · Quiz: 20 perguntas sobre Flávio Bolsonaro">
 <meta name="twitter:description" content="Cada resposta com a fonte. Chuta antes de abrir.">
-<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quiz.png?v=96e8965a">
+<meta name="twitter:image" content="https://figuered0o0808-glitch.github.io/arquivo-flavio/c/img/quiz.png?v=29f5ed48">
 <meta name="twitter:image:alt" content="Quiz: 20 perguntas sobre Flávio Bolsonaro, com a fonte em cada resposta.">
-<link rel="stylesheet" href="assets/base.css?v=388bbd0f">
-<link rel="stylesheet" href="assets/header.css?v=3b010dac">
+<link rel="stylesheet" href="assets/base.css?v=38ce818e">
+<link rel="stylesheet" href="assets/header.css?v=84dc371e">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
 <style>
-/* ---- Quiz: uma pergunta por tela; resposta, fonte e status no mesmo
-   enquadramento, para o print carregar a prova junto. ---------------- */
-h1{margin-top:2px}
-.sub{margin-bottom:18px}
+/* ---- Quiz: uma pergunta por tela; resposta, fonte, envio e a ficha do caso no mesmo enquadramento,
+   para o print carregar a prova junto. O título e os blocos só na abertura (que já é a 1ª pergunta);
+   a porta só no resultado. Componentes de assets/base.css (.env .sec .porta .lm .numero .chip .pilulas). */
+.nv-segue{display:none}      /* a porta do quiz é a do resultado (uma por página) */
+#tela{min-height:620px}      /* reserva: o quiz entra por JS (sem ela o rodapé subia e descia: CLS) */
+@media (min-width:900px){ #tela{min-height:640px} }
+.abre .sub{margin:0 0 12px; max-width:30em}
+.abre .pilulas{margin:0 0 20px}
+.abre .pilulas{gap:6px}
+.pilulas button{min-height:44px; padding:0 12px}
 
 /* progresso */
-.prog{display:flex; align-items:center; justify-content:space-between; gap:14px; margin:2px 0 16px}
+.prog{display:flex; align-items:center; justify-content:space-between; gap:14px; margin:2px 0 14px}
 .prog-n{font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--cinza); white-space:nowrap}
-.segs{display:flex; gap:4px; flex:1; max-width:220px}
+.segs{display:flex; gap:3px; flex:1; max-width:240px}
 .segs i{flex:1; height:4px; background:var(--linha)}
 .segs i.feita{background:var(--tinta)}
-.segs i.atual{background:var(--cinza2)}
+.segs i.atual{background:var(--amber)}
 
 /* pergunta */
-.pergunta{font-size:clamp(20px,5.6vw,26px); font-weight:700; line-height:1.25; letter-spacing:-.01em; margin:0 0 16px; outline:none}
+.pergunta{font-family:var(--sans); font-size:clamp(21px,5.8vw,27px); font-weight:700; line-height:1.24; letter-spacing:-.01em; margin:0 0 18px; color:var(--tinta); text-transform:none; outline:none; text-wrap:pretty}
+.pergunta::before{content:none}
 
 /* múltipla escolha */
 .opcoes{display:flex; flex-direction:column; gap:8px; margin:0 0 4px}
-.opc{
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  width:100%; min-height:52px; padding:12px 14px; text-align:left;
-  font-size:16px; line-height:1.3; color:var(--tinta); background:transparent;
-  border:2px solid var(--cinza2); border-radius:2px; cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-}
+.opc{display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; min-height:52px; padding:12px 14px; text-align:left;
+  font-size:16px; line-height:1.3; color:var(--tinta); background:transparent; border:1.5px solid var(--cinza2); border-radius:2px; cursor:pointer; -webkit-tap-highlight-color:transparent}
+.opc:hover:not(:disabled){border-color:var(--tinta)}
 .opc .m{font-size:17px; font-weight:700; min-width:18px; text-align:right; visibility:hidden}
 .opc:disabled{cursor:default; color:var(--cinza); border-color:var(--linha)}
 .opc.certa:disabled{color:var(--tinta); border-color:var(--tinta); font-weight:700}
-.opc.certa .m{visibility:visible}
-.opc.errada:disabled{color:var(--cinza); border-color:var(--linha)}
+.opc.certa .m{visibility:visible; color:var(--tinta)}
 .opc.errada .t{text-decoration:line-through}
 .opc.errada .m{visibility:visible; color:var(--cinza)}
-.opc:focus-visible{outline:2px solid var(--tinta); outline-offset:2px}
+.opc:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
 
-/* chute no controle deslizante */
-.chute{font-size:clamp(30px,10vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1; font-variant-numeric:tabular-nums; margin:0 0 6px; white-space:nowrap}
+/* chute no controle deslizante: o chute é da pessoa (tinta); o anel da resposta é o fato (âmbar) */
+.chute{font-size:clamp(34px,11vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1; font-variant-numeric:tabular-nums; margin:0 0 6px; white-space:nowrap}
 .trilho{position:relative}
 input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:44px; margin:0; display:block; background:transparent; cursor:pointer}
 input[type=range]:disabled{cursor:default}
 input[type=range]:focus{outline:none}
-input[type=range]:focus-visible{outline:2px solid var(--tinta); outline-offset:2px}
+input[type=range]:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
 input[type=range]::-webkit-slider-runnable-track{height:4px; background:var(--linha)}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:28px; height:28px; border-radius:50%; background:var(--tinta); border:0; margin-top:-12px}
 input[type=range]::-moz-range-track{height:4px; background:var(--linha); border:0}
 input[type=range]::-moz-range-thumb{width:28px; height:28px; border-radius:50%; background:var(--tinta); border:0}
-.anel{position:absolute; top:50%; width:20px; height:20px; margin:-10px 0 0 -10px; border:2px solid var(--tinta); border-radius:50%; pointer-events:none; display:none}
+.anel{position:absolute; top:50%; width:22px; height:22px; margin:-11px 0 0 -11px; border:2.5px solid var(--amber); border-radius:50%; pointer-events:none; display:none}
 .anel.on{display:block}
 .extremos{display:flex; justify-content:space-between; font-family:var(--mono); font-size:11px; color:var(--cinza); margin:-2px 0 4px}
-.compara{font-size:16px; margin:12px 0 14px}
-.compara b{font-variant-numeric:tabular-nums}
+.revela{display:flex; margin-top:14px}
+.revela button{flex:1; min-height:52px; font-size:16px; font-weight:700; border-radius:2px; border:1.5px solid var(--amber); background:var(--amber); color:#120c00; cursor:pointer}
+.revela button:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
 
-/* bloco de resposta */
-.resposta{border-top:1px solid var(--linha); margin-top:16px; padding-top:8px}
+/* a resposta: número âmbar (em tinta quando é a situação dele), uma frase, a fonte, enviar e seguir */
+.resposta{border-top:1px solid var(--linha); margin-top:18px; padding-top:4px}
 .resposta .cab{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
-.resposta .kicker{margin:10px 0 8px}
+.resposta .kicker{margin:12px 0 6px}
 .veredito{font-family:var(--mono); font-size:12px; letter-spacing:.08em; font-weight:700; color:var(--tinta); white-space:nowrap}
-.resposta .numero.menor{margin-bottom:8px}
-.resposta .frase{font-size:clamp(16px,4.3vw,19px)}
-.resposta .frase b{font-weight:700}
-.chip{max-width:100%; white-space:normal; line-height:1.5}
-.acoes button{min-height:44px}
+.compara{font-size:14px; line-height:1.4; color:var(--cinza); margin:0 0 6px}
+.compara b{color:var(--tinta); font-weight:700; font-variant-numeric:tabular-nums}
+.resposta .numero.menor{white-space:normal; font-size:clamp(34px,10vw,52px); margin:2px 0 6px}
+.resposta .numero.menor.frase{font-size:clamp(23px,6.4vw,34px); line-height:1.1; letter-spacing:-.012em; max-width:none; text-wrap:balance}
+.resposta .numero.neutro{color:var(--tinta)}
+.resposta .breve{font-size:clamp(17px,4.6vw,19px); line-height:1.42; margin:0 0 8px; max-width:32em}
+.resposta .fonte{margin:0 0 4px}
+.acoes-q{display:flex; gap:8px; margin:14px 0 6px}
+.acoes-q .env{flex:0 0 auto; min-height:48px; padding:0 20px}
+.acoes-q .prox{flex:1 1 auto; min-height:48px; font-size:15px; font-weight:700}
+.acoes-q .env:focus-visible, .acoes-q .prox:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+/* siga este caso: o mesmo rótulo e o mesmo link âmbar da ficha da Foz */
+.siga{margin:8px 0 0; border-top:1px solid var(--linha); padding-top:8px}
+.siga-k{display:block; font-family:var(--mono); font-size:11px; letter-spacing:.1em; font-weight:700; text-transform:uppercase; color:var(--tinta); margin:0}
+.siga a{display:inline-flex; align-items:center; min-height:44px; font-size:16px; font-weight:700; color:var(--amber); text-decoration:none}
+.siga a:hover{text-decoration:underline; text-underline-offset:3px}
+.resposta .lm{margin:2px 0 0}
+.mais{border-top:1px solid var(--linha); padding-top:10px; margin-top:4px}
+.mais .frase{font-size:16px; line-height:1.5}
+.mais .frase b{font-weight:700}
+.mais .chip{white-space:normal; line-height:1.5; border-color:var(--cinza2); color:var(--cinza)}
 
-/* tela final */
-.gabarito{list-style:none; margin:14px 0 4px; padding:0; border-top:1px solid var(--linha)}
+/* resultado: o número, a barra das perguntas (âmbar = acertou), enviar, gabarito, a porta */
+.res .numero.destaque{margin:0 0 10px}
+.placar{display:flex; gap:3px; margin:0 0 8px; max-width:440px}
+.placar i{flex:1; height:12px; border-radius:1px; background:transparent; box-shadow:inset 0 0 0 1px var(--cinza2)}
+.placar i.ok{background:var(--amber); box-shadow:none}
+.placar i.nr{box-shadow:inset 0 -1px 0 var(--linha)}
+.placar-l{font-family:var(--mono); font-size:11.5px; color:var(--cinza); margin:0 0 4px}
+.res .acoes-q .sec{flex:1 1 auto; min-height:48px}
+.placar-l.vai{margin:-2px 0 6px}
+.gabarito{list-style:none; margin:0 0 4px; padding:0}
 .gabarito li{display:grid; grid-template-columns:22px 1fr auto; column-gap:8px; align-items:baseline; padding:9px 0; border-bottom:1px solid var(--linha); font-size:15px; line-height:1.3}
 .gabarito .m{font-size:16px; font-weight:700}
-.gabarito b{font-variant-numeric:tabular-nums; text-align:right}
+.gabarito li.ok .m{color:var(--amber)}
+.gabarito li.err .m, .gabarito li.nr .m{color:var(--cinza)}
+.gabarito b{font-variant-numeric:tabular-nums; text-align:right; max-width:11em}
 .gabarito small{grid-column:2 / 4; font-family:var(--mono); font-size:11px; color:var(--cinza); margin-top:2px}
+.res .porta{margin:18px 0 0}
 
-#tela{min-height:420px} /* reserva: o quiz entra por JS e empurrava o .fim (CLS 0,11 a 1280) */
-.fim{padding:36px 16px 60px; text-align:center}
-.fim a{display:inline-block; font-size:18px; font-weight:700; color:var(--tinta); text-decoration:none; border-bottom:3px solid var(--tinta)}
-noscript p{padding:20px 16px}
-.acoes button{flex:1 1 auto}
-.blocos{display:grid; gap:10px; margin:6px 0 0}
-.bloco{display:flex; flex-direction:column; align-items:flex-start; gap:3px; text-align:left; padding:14px 16px; border:1.5px solid var(--cinza2); border-radius:2px; background:var(--leve); color:var(--tinta); cursor:pointer; font:inherit; min-height:44px}
-.bloco:hover{border-color:var(--amber)}
-.bloco b{font-size:17px; color:var(--amber)}
-.bloco span{font-size:14px; color:var(--cinza)}
-.volta-foz{margin:18px 0 0}
-.volta-foz a{display:inline-flex; align-items:center; min-height:44px; font-size:17px; font-weight:700; color:var(--amber); text-decoration:none}
-.volta-foz a:hover{text-decoration:underline; text-underline-offset:3px}
-.bloco i{font-style:normal; font-family:var(--mono); font-size:11px; color:var(--cinza2); letter-spacing:.06em}
-/* versão enxuta: número, uma frase, fonte; o resto em "ler mais". Status dele em cor neutra. */
-.chip{border-color:var(--cinza2); color:var(--cinza)}
-.resposta .numero.menor{white-space:normal; font-size:clamp(26px,7.4vw,48px)}
-.resposta .breve{font-size:clamp(17px,4.6vw,20px); line-height:1.4; margin:0 0 8px}
-.acoes .env{flex:0 0 auto; min-height:44px; padding:0 20px; font-weight:700}
-.acoes .env.sec{border-color:var(--amber); color:var(--amber)}
-.lm{display:inline-flex; align-items:center; min-height:44px; padding:0; margin:6px 0 0; border:0; background:none; color:var(--cinza); font:600 14px var(--sans); cursor:pointer}
-.mais{border-top:1px solid var(--linha); padding-top:10px; margin-top:4px}
-.mais .frase{font-size:16px}
+.rodape{max-width:560px; margin:0 auto; padding:0 16px 48px; font-size:13px; color:var(--cinza)}
+@media (min-width:900px){ .rodape{max-width:720px} }
+noscript p{padding:20px 0}
 </style>
 </head>
 <body data-trecho="m">
@@ -134,22 +144,28 @@ noscript p{padding:20px 16px}
   <noscript><p>Este quiz precisa de JavaScript. Os mesmos fatos, com fonte: <a href="foz.html">A Foz</a> · <a href="zap.html">BolsoZap</a> · <a href="siga-o-dinheiro.html">Siga o dinheiro</a> · <a href="dark-horse.html">Dark Horse</a> · <a href="drive.html#arquivo">Arquivo</a>.</p></noscript>
 </main>
 
-<div class="fim"><a href="drive.html#arquivo">Ver o arquivo completo →</a></div>
+<footer class="rodape"></footer>
 
 
-<script src="assets/quiz-basico.js?v=d9818cca"></script>
-<script src="assets/quiz-perguntas.js?v=5fb2d230"></script>
-<script src="data/topicos.js?v=ab29a258"></script>
+<script src="assets/quiz-basico.js?v=87859d76"></script>
+<script src="assets/quiz-perguntas.js?v=b7865771"></script>
+<script src="data/topicos.js?v=75878a47"></script>
 <script src="assets/compartilhar.js?v=edbe4096" defer></script>
 <script>
 (function(){
 'use strict';
 
-/* Endereço da página sai de location — nada de domínio chumbado. */
-const PAGINA = () => location.origin + location.pathname;
-
 const fmtBRL = v => 'R$ ' + Number(v).toLocaleString('pt-BR', {
   minimumFractionDigits: Number.isInteger(v) ? 0 : 2, maximumFractionDigits: 2 });
+
+/* valor em reais para ler de relance: "R$ 131 milhões", "R$ 1,5 milhão", "R$ 500 mil" (abaixo de mil, os centavos) */
+function reais(v){
+  const a = Math.abs(v), n = (x, d) => Number(x).toLocaleString('pt-BR', { maximumFractionDigits: d });
+  if (a >= 1e9) return 'R$ ' + n(v / 1e9, 1) + (a < 2e9 ? ' bilhão' : ' bilhões');
+  if (a >= 1e6) return 'R$ ' + n(v / 1e6, 1) + (a < 2e6 ? ' milhão' : ' milhões');
+  if (a >= 1e3) return 'R$ ' + n(v / 1e3, 1) + ' mil';
+  return fmtBRL(v);
+}
 
 /* Fontes e perguntas do bloco 'o básico': assets/quiz-basico.js */
 const BASICO = (window.__QUIZ_BASICO || []).slice();
@@ -159,67 +175,104 @@ BASICO.forEach(p => p.bloco = 'basico');
 const NOVAS = (window.__NOVAS_PERGUNTAS || []).map(q => {
   if (q.tipo !== 'faixa' || q.fmt) return q;
   const u = q.unidade || '';
-  const f = v => u === 'R$' ? fmtBRL(v) : (u === '%' ? String(v) + '%' : String(v) + (u ? ' ' + u : ''));
+  const f = v => u === 'R$' ? reais(v) : (u === '%' ? String(v) + '%' : String(v) + (u ? ' ' + u : ''));
   return Object.assign({}, q, { fmt: f, dif: d => f(Math.round(d)), acerta: v => Math.abs(v - q.valor) <= (q.tolerancia || 0) });
 });
 
 const BLOCOS = {
-  tudo:     { nome: 'Tudo',        desc: 'todas as perguntas' },
-  basico:   { nome: 'O básico',    desc: 'mandato, patrimônio, campanha' },
-  relacoes: { nome: 'As relações', desc: 'quem anda com ele' },
-  dinheiro: { nome: 'O dinheiro',  desc: 'mansões, banco, filme' },
+  tudo:     { nome: 'Tudo' },
+  basico:   { nome: 'O básico' },
+  relacoes: { nome: 'As relações' },
+  dinheiro: { nome: 'O dinheiro' },
+};
+/* o caso de cada pergunta na Foz (campo caso: das perguntas): o nome que aparece em "Siga este caso" */
+const CASO_NOME = {
+  'master': 'Caso Master', 'rachadinha-alerj': 'Rachadinha (Alerj)', 'escritorio-do-crime': 'Escritório do Crime',
+  'jogo-do-bicho': 'Jogo do bicho', 'unha-e-carne': 'Unha e Carne', 'inss-willer': 'INSS: Willer Tomaz',
+  'brb-mansao': 'A mansão e o BRB', 'loja-chocolates': 'Loja de chocolates'
 };
 const TODAS = BASICO.concat(NOVAS);
-let bloco = 'tudo';
-let P = TODAS, N = P.length;
 const tela = document.getElementById('tela');
-let i = -1;                          /* -1 = tela de escolha */
+let bloco = 'tudo', P = TODAS, N = P.length;
+let i = 0;                           /* a pergunta na tela; i >= N = resultado */
+let abertura = true;                 /* título e blocos em cima da 1ª pergunta; some ao passar para a 2ª */
 let resp = Array(N).fill(null);      /* só em memória: nada de localStorage */
-function escolhe(b){
+
+function usa(b){
   bloco = BLOCOS[b] ? b : 'tudo';
   P = bloco === 'tudo' ? TODAS : TODAS.filter(p => p.bloco === bloco);
-  N = P.length; resp = Array(N).fill(null); i = 0;
-  try { history.replaceState(null, '', '#' + bloco); } catch(e){}
+  N = P.length; resp = Array(N).fill(null);
+}
+/* a abertura: o título, os blocos e a 1ª pergunta do bloco, já para responder (o fato a um toque) */
+function abre(b){
+  usa(b); i = 0; abertura = true;
+  try { history.replaceState(null, '', bloco === 'tudo' ? location.pathname + location.search : '#' + bloco); } catch(e){}
   render();
 }
-/* Link direto: #q-<n> abre a pergunta n do quiz inteiro, sem menu (é onde os cartões c/q-<n> pousam).
-   Hash de bloco (#basico…) abre o bloco; qualquer outro hash cai no início. */
-function abrePergunta(n){
-  bloco = 'tudo'; P = TODAS; N = P.length; resp = Array(N).fill(null); i = n - 1;
-  render();
-}
+/* Link direto: #q-<n> abre a pergunta n do quiz inteiro, sem título nem menu (é onde os cartões c/q-<n> pousam).
+   Hash de bloco (#basico…) abre a abertura naquele bloco; qualquer outro hash cai na abertura. */
 function rota(){
   const h = (location.hash || '').slice(1);
   const m = /^q-(\d{1,3})$/.exec(h);
-  if (m && +m[1] >= 1 && +m[1] <= TODAS.length){ abrePergunta(+m[1]); return; }
-  if (BLOCOS[h]){ escolhe(h); return; }
-  if (h){ try { history.replaceState(null, '', location.pathname + location.search); } catch(e){} }
-  i = -1; render();
+  if (m && +m[1] >= 1 && +m[1] <= TODAS.length){ usa('tudo'); i = +m[1] - 1; abertura = false; render(); return; }
+  abre(BLOCOS[h] ? h : 'tudo');
 }
 
 /* ---------- utilidades ---------- */
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-async function compartilhar(txt){
-  if (navigator.share){
-    try { await navigator.share({ text: txt }); return; }
-    catch(e){ if (e && e.name === 'AbortError') return; }
-  }
-  location.href = 'https://wa.me/?text=' + encodeURIComponent(txt);
-}
-/* Enviar: o botão manda o tópico da tela (assets/compartilhar.js): "q-<n>" na resposta
-   (n = posição da pergunta no quiz inteiro, 1..22) e "quiz" no resultado. Sem o módulo, um texto curto. */
+function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+const escRe = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const idPergunta = p => 'q-' + (TODAS.indexOf(p) + 1);
-function textoFato(p){
-  return p.pergunta + '\n' + (p.numero ? p.numero + '. ' : '') + (p.breve || '') + '\n' + PAGINA() + '#' + idPergunta(p);
+
+/* ---------- o que vai no envio ----------
+   O botão leva data-share (o cartão do tópico, assets/compartilhar.js) e manda o texto desta pessoa por cima:
+   na pergunta, o chute e a resposta; no resultado, o placar. Só texto já curado (pergunta, gab, breve). */
+const ASSINA = 'Quiz BOLSODRIVE';
+function textoChute(p, r){
+  const gab = String(p.gab || p.numero || '').trim(), br = String(p.breve || '').trim();
+  let eu;
+  if (p.tipo === 'faixa') eu = 'Chutei ' + p.fmt(r.chute) + '; a resposta é ';
+  else {
+    const op = String(p.opcoes[r.escolha] || '');
+    /* opção de número vai como está ("Chutei 12"); opção de texto, entre aspas; texto longo, só "Errei" */
+    const cita = /^(R\$\s*)?[\d.,]+\s*(%|mil|milh(ão|ões)|bilh(ão|ões))?$/.test(op) ? op : '“' + op + '”';
+    eu = r.certo ? 'Acertei: a resposta é ' : (op.length <= 34 ? 'Chutei ' + cita + '; a resposta é ' : 'Errei: a resposta é ');
+  }
+  /* a frase curta que já começa pela resposta ("A Adriano da Nóbrega, apontado…") continua a partir dela */
+  const m = br && gab ? new RegExp('^(?:(?:a|o|as|os|à|ao)\\s+)?' + escRe(gab), 'i').exec(br) : null;
+  const resto = m ? br.slice(m[0].length).trim() : br;
+  const junta = m && /^[,;]/.test(resto) ? '*' + gab + '*' + resto : '*' + gab + '*.' + (resto ? ' ' + resto : '');
+  let t = p.pergunta.trim() + '\n' + eu + junta;
+  if ((t + '\n' + ASSINA).length > 300) t = p.pergunta.trim() + '\n' + eu + '*' + gab + '*.';
+  return t + '\n' + ASSINA + '\n';
 }
 function textoFinal(acertos, feitas){
-  return 'Acertei ' + acertos + ' de ' + feitas + ' no quiz sobre Flávio Bolsonaro: ' + PAGINA();
+  const de = bloco === 'tudo' ? '' : ' (' + BLOCOS[bloco].nome.toLowerCase() + ')';
+  return 'Acertei *' + acertos + ' de ' + feitas + '* no quiz sobre Flávio Bolsonaro' + de + ', cada resposta com a fonte. Quanto você acerta?\n' + ASSINA + '\n';
 }
-function ligaEnvio(root, txt){
+/* o cartão do resultado: a faixa de acerto (quiz-f1..f4, cartao.acerto = [de, até, total]) só quando as
+   perguntas respondidas são o quiz inteiro; um bloco ou uma entrada pelo meio vai com o cartão geral do quiz */
+function faixaDe(acertos, feitas){
+  const T = window.BD_TOPICOS || {};
+  if (feitas !== TODAS.length) return 'quiz';
+  for (let j = 1; T['quiz-f' + j]; j++){
+    const c = (T['quiz-f' + j].cartao || {}).acerto;
+    if (c && c[2] === feitas && acertos >= c[0] && acertos <= c[1]) return 'quiz-f' + j;
+  }
+  return 'quiz';
+}
+function envia(id, texto){
+  if (window.BDShare && typeof window.BDShare.enviar === 'function'){ window.BDShare.enviar(id, { texto }); return; }
+  /* sem o módulo: o texto e o link do tópico (ou a própria página) */
+  const t = (window.BD_TOPICOS || {})[id], url = t && t.url ? t.url : location.href;
+  const msg = texto.replace(/\s+$/, '') + '\n' + url;
+  if (navigator.share){ navigator.share({ text: msg }).catch(() => {}); return; }
+  location.href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+}
+function ligaEnvio(root, texto){
   root.querySelectorAll('[data-share]').forEach(b => b.addEventListener('click', ev => {
-    ev.preventDefault(); ev.stopImmediatePropagation();
-    if (window.BDShare && typeof window.BDShare.enviar === 'function'){ window.BDShare.enviar(b.dataset.share); return; }
-    compartilhar(txt());
+    ev.preventDefault(); ev.stopImmediatePropagation();   /* o clique geral do compartilhar.js mandaria o texto do tópico */
+    envia(b.dataset.share, texto());
   }));
 }
 function ligaMais(root){
@@ -227,60 +280,81 @@ function ligaMais(root){
   if (!lm || !mais) return;
   lm.addEventListener('click', () => {
     const ab = mais.hidden; mais.hidden = !ab;
-    lm.textContent = ab ? (lm.dataset.menos || 'ler menos ↑') : (lm.dataset.mais || 'ler mais ↓'); lm.setAttribute('aria-expanded', String(ab));
+    lm.textContent = ab ? lm.dataset.menos : lm.dataset.mais; lm.setAttribute('aria-expanded', String(ab));
   });
 }
-const reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- pedaços de tela ---------- */
 function progresso(k){
   let segs = '';
-  for (let j = 0; j < N; j++){
-    segs += '<i class="' + (resp[j] ? 'feita' : (j === k ? 'atual' : '')) + '"></i>';
-  }
+  for (let j = 0; j < N; j++) segs += '<i class="' + (resp[j] ? 'feita' : (j === k ? 'atual' : '')) + '"></i>';
   return '<div class="prog"><span class="prog-n">' + Math.min(k + 1, N) + ' / ' + N + '</span>' +
          '<div class="segs" aria-hidden="true">' + segs + '</div></div>';
+}
+function topoAbertura(){
+  const conta = b => b === 'tudo' ? TODAS.length : TODAS.filter(p => p.bloco === b).length;
+  return '<div class="abre"><h1 class="sec">Quanto você sabe sobre ele?</h1>' +
+    '<p class="sub">' + TODAS.length + ' perguntas. Chute antes de ver; cada resposta vem com a fonte.</p>' +
+    '<div class="pilulas" role="group" aria-label="Perguntas">' + Object.keys(BLOCOS).filter(b => conta(b) > 0).map(b =>
+      '<button type="button" data-b="' + b + '" aria-label="' + esc(BLOCOS[b].nome) + ': ' + conta(b) + ' perguntas"' + (b === bloco ? ' class="on" aria-pressed="true"' : ' aria-pressed="false"') + '>' +
+      esc(BLOCOS[b].nome) + '</button>').join('') + '</div></div>';
 }
 function fontesHtml(p){
   return p.fontes.map(f =>
     '<p class="fonte">' + esc(f.v) + ' · ' + esc(f.d) + ' · <a href="' + esc(f.u) + '" target="_blank" rel="noopener">ver a fonte</a></p>'
   ).join('');
 }
+/* número: âmbar quando é número ou fato; tinta quando a resposta é a situação dele (neutro) ou um nome */
+function numeroHtml(p){
+  const n = String(p.numero || '').trim(); if (!n) return '';
+  const digito = /\d/.test(n), frase = n.length > 14 || !digito;
+  return '<p class="numero menor' + (frase ? ' frase' : '') + (p.neutro || !digito ? ' neutro' : '') + '">' + esc(n) + '</p>';
+}
+function sigaHtml(p){
+  if (!p.caso) return '';
+  return '<nav class="siga" aria-label="Siga este caso"><span class="siga-k">Na Foz · ' + esc(CASO_NOME[p.caso] || 'este caso') + '</span>' +
+         '<a href="foz.html#' + encodeURIComponent(p.caso) + '">a ficha deste caso →</a></nav>';
+}
+/* a próxima sem resposta depois de k (quem entrou pelo link de uma pergunta volta às que pulou pelo resultado) */
+function proxAberta(k){ for (let j = k + 1; j < N; j++) if (!resp[j]) return j; return N; }
 function blocoResposta(p, k, certo, extra){
-  const ultima = k === N - 1, f = p.fontes[0];
+  const ultima = proxAberta(k) >= N, f = p.fontes[0];
   return '<div class="cab"><div class="kicker">Resposta</div>' +
          '<span class="veredito">' + (certo ? '✓ VOCÊ ACERTOU' : '✗ VOCÊ ERROU') + '</span></div>' +
-         (extra || '') +
-         (p.numero ? '<p class="numero menor">' + esc(p.numero) + '</p>' : '') +
+         numeroHtml(p) +
          '<p class="breve">' + esc(p.breve || '') + '</p>' +
+         (extra || '') +
          (f ? '<p class="fonte">' + esc(f.v) + ' · <a href="' + esc(f.u) + '" target="_blank" rel="noopener">ver a fonte</a></p>' : '') +
-         '<div class="acoes"><button type="button" id="proxima">' + (ultima ? 'Ver o resultado →' : 'Próxima →') + '</button>' +
-         '<button type="button" class="env sec" data-share="' + esc(idPergunta(p)) + '">enviar ↗</button></div>' +
-         '<button type="button" class="lm" aria-expanded="false">ler mais ↓</button>' +
+         '<div class="acoes-q"><button type="button" class="env" data-share="' + esc(idPergunta(p)) + '">enviar ↗</button>' +
+         '<button type="button" class="sec prox" id="proxima">' + (ultima ? 'Ver o resultado →' : 'Próxima →') + '</button></div>' +
+         sigaHtml(p) +
+         '<button type="button" class="lm" aria-expanded="false" data-mais="a resposta inteira e as fontes ↓" data-menos="fechar ↑">a resposta inteira e as fontes ↓</button>' +
          '<div class="mais" hidden><p class="frase">' + p.resposta + '</p>' +
          '<div class="chip">' + esc(p.chip) + '</div>' + fontesHtml(p) +
          (p.ressalva ? '<p class="ressalva">' + esc(p.ressalva) + '</p>' : '') + '</div>';
 }
-function ligarResposta(p){
-  document.getElementById('proxima').addEventListener('click', () => { i++; render(); });
+function ligarResposta(p, k){
+  document.getElementById('proxima').addEventListener('click', () => { abertura = false; i = proxAberta(k); render(); });
   const r = document.getElementById('resposta');
-  ligaEnvio(r, () => textoFato(p)); ligaMais(r);
+  ligaEnvio(r, () => textoChute(p, resp[k])); ligaMais(r);
   r.hidden = false;
-  const b = r.getBoundingClientRect(), barra = (document.querySelector(".site-header")||{offsetHeight:44}).offsetHeight + 8;
+  /* a resposta entra na tela até o botão de enviar (o resto, rolando) */
+  const alvo = r.querySelector('.acoes-q') || r;
+  const b = alvo.getBoundingClientRect(), barra = (document.querySelector('.site-header') || { offsetHeight: 44 }).offsetHeight + 8;
   if (b.bottom > window.innerHeight){
-    const dy = Math.min(b.top - barra, b.bottom - window.innerHeight + 12);
+    const dy = Math.min(r.getBoundingClientRect().top - barra, b.bottom - window.innerHeight + 16);
     if (dy > 0) window.scrollBy({ top: dy, behavior: reduzido ? 'auto' : 'smooth' });
   }
 }
 
 /* ---------- perguntas ---------- */
 function renderPergunta(k){
-  const p = P[k];
-  let html = progresso(k);
-  if (k === 0){
-    html += '<h1 class="sec">Quanto você sabe sobre ele?</h1>';
-  }
-  html += '<h2 class="pergunta" tabindex="-1">' + esc(p.pergunta) + '</h2>';
+  const p = P[k], topo = abertura && k === 0;
+  let html = topo ? topoAbertura() : '';
+  html += progresso(k);
+  /* a pergunta é o título da tela quando não há o da abertura */
+  const hp = topo ? 'h2' : 'h1';
+  html += '<' + hp + ' class="pergunta" tabindex="-1">' + esc(p.pergunta) + '</' + hp + '>';
 
   if (p.tipo === 'multi'){
     html += '<div class="opcoes" role="group" aria-label="Opções">';
@@ -294,13 +368,14 @@ function renderPergunta(k){
             '<div class="trilho"><input type="range" id="faixa" min="' + p.min + '" max="' + p.max + '" step="' + p.passo + '" value="' + p.inicio + '" aria-label="Seu chute"><i class="anel" id="anel"></i></div>' +
             '<div class="extremos"><span>' + esc(p.extremos[0]) + '</span><span>' + esc(p.extremos[1]) + '</span></div>' +
             '</div>' +
-            '<div class="acoes" id="rev"><button type="button" id="revelar">Revelar</button></div>';
+            '<div class="revela" id="rev"><button type="button" id="revelar">Revelar</button></div>';
   }
   html += '<div class="resposta" id="resposta" aria-live="polite" hidden></div>';
   tela.innerHTML = html;
-  /* No quiz inteiro, o endereço acompanha a pergunta (#q-<n>); num bloco, fica o hash do bloco. */
-  if (bloco === 'tudo'){ try { history.replaceState(null, '', '#' + idPergunta(p)); } catch(e){} }
+  /* No quiz inteiro, fora da abertura, o endereço acompanha a pergunta (#q-<n>); num bloco, fica o hash do bloco. */
+  if (bloco === 'tudo' && !topo){ try { history.replaceState(null, '', '#' + idPergunta(p)); } catch(e){} }
 
+  if (topo) tela.querySelectorAll('.pilulas button').forEach(b => b.addEventListener('click', () => { if (b.dataset.b !== bloco) abre(b.dataset.b); }));
   if (p.tipo === 'multi'){
     tela.querySelectorAll('.opc').forEach(b => b.addEventListener('click', () => responderMulti(p, k, +b.dataset.j)));
   } else {
@@ -310,7 +385,7 @@ function renderPergunta(k){
     document.getElementById('revelar').addEventListener('click', () => responderFaixa(p, k, +faixa.value));
   }
   window.scrollTo(0, 0);
-  tela.querySelector('.pergunta').focus({ preventScroll: true });
+  if (!topo) tela.querySelector('.pergunta').focus({ preventScroll: true });
 }
 
 function responderMulti(p, k, j){
@@ -323,8 +398,9 @@ function responderMulti(p, k, j){
     if (jj === p.certa){ b.classList.add('certa'); b.querySelector('.m').textContent = '✓'; }
     else if (jj === j){ b.classList.add('errada'); b.querySelector('.m').textContent = '✗'; }
   });
+  marcaFeita(k);
   document.getElementById('resposta').innerHTML = blocoResposta(p, k, certo);
-  ligarResposta(p);
+  ligarResposta(p, k);
 }
 
 function posicionarAnel(p){
@@ -343,57 +419,56 @@ function responderFaixa(p, k, v){
   faixa.disabled = true;
   document.getElementById('rev').remove();
   posicionarAnel(p);
+  marcaFeita(k);
   const dif = Math.abs(v - p.valor);
-  const extra = '<p class="compara">Você chutou <b>' + esc(p.fmt(v)) + '</b>; a resposta é <b>' + esc(p.fmt(p.valor)) + '</b>. ' +
-                'Diferença: <b>' + esc(p.dif(dif)) + '</b>.</p>';
+  const extra = '<p class="compara">Seu chute: <b>' + esc(p.fmt(v)) + '</b> · diferença: ' + esc(p.dif(dif)) + '</p>';
   document.getElementById('resposta').innerHTML = blocoResposta(p, k, certo, extra);
-  ligarResposta(p);
+  ligarResposta(p, k);
 }
+function marcaFeita(k){ const s = tela.querySelectorAll('.segs i')[k]; if (s) s.className = 'feita'; }
 window.addEventListener('resize', () => { if (i < N && resp[i] && P[i].tipo === 'faixa') posicionarAnel(P[i]); });
 
 /* ---------- resultado ---------- */
 function renderFim(){
   /* Quem entrou pelo link de uma pergunta respondeu só dali em diante: o placar conta as respondidas. */
   const feitas = resp.filter(Boolean).length, acertos = resp.filter(r => r && r.certo).length;
-  let lista = '';
+  const id = faixaDe(acertos, feitas);
+  /* o que vai junto: o cartão da faixa ("acertei 6 a 10 de 20"), dito antes do toque */
+  const vai = id === 'quiz' ? '' : String(((window.BD_TOPICOS || {})[id] || {}).titulo || '').replace(/^.*Quiz:\s*/, '');
+  let lista = '', barra = '';
   P.forEach((p, k) => {
-    const r = resp[k];
+    const r = resp[k], cl = !r ? 'nr' : (r.certo ? 'ok' : 'err');
     const marca = !r ? '–' : (r.certo ? '✓' : '✗'), rotulo = !r ? 'não respondida' : (r.certo ? 'acertou' : 'errou');
-    lista += '<li><span class="m" aria-label="' + rotulo + '">' + marca + '</span>' +
+    barra += '<i class="' + cl + '"></i>';
+    lista += '<li class="' + cl + '"><span class="m" aria-label="' + rotulo + '">' + marca + '</span>' +
              '<span>' + esc(p.curto) + '</span><b>' + esc(p.gab) + '</b>' +
              (p.tipo === 'faixa' && r ? '<small>seu chute: ' + esc(p.fmt(r.chute)) + '</small>' : '') + '</li>';
   });
-  tela.innerHTML = progresso(N) +
+  tela.innerHTML = '<div class="res">' +
     '<div class="kicker">Resultado</div>' +
-    '<p class="frase" style="margin-bottom:2px">Você acertou</p>' +
-    '<p class="numero">' + acertos + ' de ' + feitas + '</p>' +
-    (feitas < N ? '<p class="sub">' + (N - feitas) + ' perguntas ficaram sem resposta.</p>' : '') +
-    '<div class="acoes"><button type="button" class="env" data-share="quiz">enviar ↗</button>' +
-    '<button type="button" class="sec" id="refazer">Refazer o quiz</button></div>' +
-    '<button type="button" class="lm" aria-expanded="false" data-mais="ver o gabarito ↓" data-menos="esconder o gabarito ↑">ver o gabarito ↓</button>' +
+    '<p class="numero destaque" aria-label="' + acertos + ' acertos de ' + feitas + '">' + acertos + '<span class="u"> de ' + feitas + '</span></p>' +
+    '<div class="placar" aria-hidden="true">' + barra + '</div>' +
+    '<p class="placar-l">' + (feitas < N ? (N - feitas) + (N - feitas === 1 ? ' pergunta ficou' : ' perguntas ficaram') + ' sem resposta · ' : '') + 'âmbar: acertou</p>' +
+    '<div class="acoes-q"><button type="button" class="env" data-share="' + id + '">enviar ↗</button>' +
+    (feitas < N ? '<button type="button" class="sec" id="faltam">' + (N - feitas === 1 ? 'Responder a que falta →' : 'Responder as ' + (N - feitas) + ' que faltam →') + '</button>'
+                : '<button type="button" class="sec" id="refazer">Refazer o quiz</button>') + '</div>' +
+    (vai ? '<p class="placar-l vai">vai o cartão “' + esc(vai) + '” e o link do quiz</p>' : '') +
+    '<button type="button" class="lm" aria-expanded="false" data-mais="o gabarito, pergunta a pergunta ↓" data-menos="fechar o gabarito ↑">o gabarito, pergunta a pergunta ↓</button>' +
     '<div class="mais" hidden><ol class="gabarito" aria-label="Gabarito">' + lista + '</ol></div>' +
-    '<p class="volta-foz"><a href="foz.html">Voltar à foz →</a></p>';
-  try { history.replaceState(null, '', '#' + bloco); } catch(e){}
+    '<a class="porta" href="foz.html">A Foz: os 40 casos, cada um com a fonte →</a></div>';
+  try { history.replaceState(null, '', bloco === 'tudo' ? location.pathname + location.search : '#' + bloco); } catch(e){}
   ligaEnvio(tela, () => textoFinal(acertos, feitas)); ligaMais(tela);
-  document.getElementById('refazer').addEventListener('click', () => { i = -1; render(); });
+  const rf = document.getElementById('refazer'), ft = document.getElementById('faltam');
+  if (rf) rf.addEventListener('click', () => abre(bloco));
+  if (ft) ft.addEventListener('click', () => { abertura = false; i = resp.findIndex(r => !r); render(); });
   window.scrollTo(0, 0);
 }
 
-function renderInicio(){
-  const conta = b => b === 'tudo' ? TODAS.length : TODAS.filter(p => p.bloco === b).length;
-  tela.innerHTML =
-    '<h1 class="sec">Quanto você sabe sobre ele?</h1>' +
-    '<p class="sub">Escolha por onde começar.</p>' +
-    '<div class="blocos">' + Object.keys(BLOCOS).filter(b => conta(b) > 0).map(b =>
-      '<button type="button" class="bloco" data-b="' + b + '"><b>' + esc(BLOCOS[b].nome) + '</b><i>' + conta(b) + ' perguntas</i></button>').join('') +
-    '</div>';
-  tela.querySelectorAll('.bloco').forEach(b => b.addEventListener('click', () => escolhe(b.dataset.b)));
-  window.scrollTo(0, 0);
-}
-function render(){ if (i < 0) renderInicio(); else if (i >= N) renderFim(); else renderPergunta(i); }
+function render(){ if (i >= N) renderFim(); else renderPergunta(Math.max(0, i)); }
 rota();
+window.addEventListener('hashchange', () => { if (/^#q-\d+$/.test(location.hash)) rota(); });
 })();
 </script>
-<script src="assets/nav.js?v=41bee539"></script>
+<script src="assets/nav.js?v=fc36981b"></script>
 </body>
 </html>
