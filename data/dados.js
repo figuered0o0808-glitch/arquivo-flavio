@@ -9544,7 +9544,7 @@ window.DOSSIE = {
     "nome": "Thiago Miranda",
     "papel": "Publicitário; intermediou o contato de Flávio com Vorcaro, segundo a Agência Pública",
     "grupo": "operadores",
-    "status": "Confirmou a transferência de cerca de R$ 62 mi para o Dark Horse; citado nas investigações sobre o financiamento.",
+    "status": "Publicitário citado nas investigações sobre o financiamento do filme 'Dark Horse'; alvo de busca da PF em julho de 2026.",
     "situacao": [
      "investigado"
     ],
@@ -11557,7 +11557,7 @@ window.DOSSIE = {
    {
     "id": "instituto-de-formacao-profissional-jose-ca",
     "nome": "Instituto de Formação Profissional José Carlos Procópio (Ifop)",
-    "papel": "ONG na Taquara que a PF aponta como ligada aos Brazão, destino de emendas apuradas na Operação Emendatio",
+    "papel": "ONG na Taquara que recebeu emenda de Flávio; a PF apura emendas a entidades ligadas aos irmãos Brazão (Operação Emendatio)",
     "grupo": "financeiro",
     "status": "Investigado pela PF por receber emenda de R$ 199.999,79 (destinada por Flávio Bolsonaro) no esquema que a PF atribui a Robson Calixto, o Peixe.",
     "situacao": [
@@ -11970,12 +11970,12 @@ window.DOSSIE = {
    {
     "de": "flavio",
     "para": "vorcaro",
-    "rotulo": "teria pedido a Vorcaro R$ 131 mi, segundo a PF, para o filme 'Dark Horse' sobre Jair; ~R$ 61 mi liberados (áudios revelados pela Intercept)",
+    "rotulo": "pediu a Vorcaro R$ 131 mi para o filme 'Dark Horse' sobre Jair, dos quais R$ 60 mi teriam sido pagos, segundo a PF",
     "status": "investigacao",
     "fontes": [
      {
-      "veiculo": "Agência Brasil",
-      "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-05/moraes-pede-parecer-da-pgr-sobre-incluir-jair-e-flavio-em-inquerito"
+      "veiculo": "O Povo",
+      "url": "https://mais.opovo.com.br/jornal/dom/2026/09/13/pf-aponta-cobrancas-de-flavio-a-vorcaro-e-detalha-relacao-sobre-dark-horse.html"
      },
      {
       "veiculo": "Intercept Brasil",
@@ -12042,8 +12042,8 @@ window.DOSSIE = {
    {
     "de": "eduardo",
     "para": "flavio",
-    "rotulo": "irmão; inquérito sobre atos nos EUA pode alcançar Flávio (relação com Vorcaro)",
-    "status": "investigacao",
+    "rotulo": "irmão de Flávio",
+    "status": "fato",
     "fontes": [
      {
       "veiculo": "Agência Brasil",
@@ -12242,16 +12242,12 @@ window.DOSSIE = {
    {
     "de": "vorcaro",
     "para": "goup-entertainment",
-    "rotulo": "teria financiado ~R$ 61 mi em seis transferências (2025)",
+    "rotulo": "teria pago R$ 60 mi para o filme, segundo a PF",
     "status": "investigacao",
     "fontes": [
      {
-      "veiculo": "Metrópoles",
-      "url": "https://www.metropoles.com/brasil/vorcaro-pagou-r-61-milhoes-para-filme-de-bolsonaro-flavio-cobrou-dinheiro-ouca"
-     },
-     {
-      "veiculo": "CNN Brasil",
-      "url": "https://www.cnnbrasil.com.br/politica/produtora-nega-patrocinio-de-vorcaro-a-filme-de-bolsonaro-nenhum-centavo/"
+      "veiculo": "O Povo",
+      "url": "https://mais.opovo.com.br/jornal/dom/2026/09/13/pf-aponta-cobrancas-de-flavio-a-vorcaro-e-detalha-relacao-sobre-dark-horse.html"
      }
     ]
    },
@@ -14103,7 +14099,7 @@ window.DOSSIE = {
     "de": "thiago-miranda",
     "para": "flavio",
     "rotulo": "intermediou contato com Vorcaro",
-    "status": "Publicitário que ligou Flávio a Vorcaro e confirmou transferência de ~R$ 62 mi ao Dark Horse.",
+    "status": "Publicitário que aproximou Flávio de Vorcaro, segundo mensagens obtidas pela PF.",
     "fontes": [
      {
       "veiculo": "Agência Pública",
@@ -14567,7 +14563,7 @@ window.DOSSIE = {
     "de": "robson-calixto-fonseca",
     "para": "instituto-de-formacao-profissional-jose-ca",
     "rotulo": "captou verbas para a ONG",
-    "status": "PF aponta Peixe como coordenador do repasse de emendas ao Ifop, ONG ligada à milícia dos Brazão.",
+    "status": "Segundo a PF, Peixe coordenava o repasse de emendas ao Ifop; a apuração trata de emendas a entidades ligadas aos irmãos Brazão.",
     "fontes": [
      {
       "veiculo": "Revista Fórum",

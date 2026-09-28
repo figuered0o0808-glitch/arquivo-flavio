@@ -36,6 +36,16 @@
      "online", campo de digitar, foto, nem nome ou logo de app de mensagens. (Sem versão story.)
      Rodapé fixo (T05a): o endereço curto do site e "cada fato com fonte" em todo cartão (o PNG solto, sem legenda,
      leva ao site); no cartão zap, o endereço vai na faixa de baixo.
+     Onda 2:
+       "pergunta"  (quiz, q-<n>): só a pergunta (em --tinta, até 4 linhas) e "Chuta antes de abrir." em âmbar; sem o
+                   nome, sem a resposta, sem retrato e sem a cor de caso (o gerador não manda st, foto nem leg).
+       "caminho"   (<caso>--caminho, N07): à esquerda a faixa, o caso e o destaque ("2" condenados, em vermelho; ou
+                   "3" elos, em âmbar); à direita o caminho, de cima para baixo até o disco dele (neutro): cada nome
+                   com a situação literal e, se houver, o que o liga ao seguinte; o anel e o fio de cada um na cor da
+                   situação (vermelho = preso ou condenado; âmbar = investigado, denunciado, réu ou alvo; o resto,
+                   neutro). cartao.caminho = {nos:[{n, s, c, f, q?}], ares:[[de, para]] (para -1 = o disco), fora?}.
+       O rio nasce abaixo do rótulo do canto (máscara no topo): o fio nunca cruza o "3 DE 6".
+       O cartão dos tópicos leves vem de data/cartoes.js (window.BD_CARTOES[id]), não de data/topicos.js.
      As imagens saem daqui (bolso-os-fontes/gera_compartilhar.py). -->
 <style>
 :root{--papel:#070a07; --tinta:#d8efdd; --cinza:#86a58c; --cinza2:#6c8f70; --amber:#ffb02e; --agua:#7df59a; --carimbo:#ff5c5c; --outros:#5c8a63;
@@ -130,6 +140,32 @@ svg.rio{position:absolute; left:960px; top:0; width:240px; height:630px; overflo
 .zr{position:absolute; left:0; right:0; bottom:0; height:44px; box-sizing:border-box; display:flex; align-items:center; padding:0 64px;
   background:#0b120b; border-top:1px solid rgba(116,255,150,.18); font-size:17px; color:#86a58c; white-space:nowrap}
 .zr .end{margin-left:auto; padding-left:28px; font-family:var(--mono); font-weight:700; color:var(--agua)}
+.zb.so-pil .zsis{font-size:28px; padding:14px 26px; border-radius:14px; line-height:1.3}   /* S14: mensagem que é pílula */
+
+/* ---- tipo "pergunta" (quiz): a pergunta em --tinta; "Chuta antes de abrir." em âmbar (ação) ---- */
+.c.perg .nome{display:none}
+.num.t-perg{white-space:normal; color:var(--tinta); font-weight:800; line-height:1.08; letter-spacing:-.02em; text-wrap:balance; margin:0 0 22px}
+.c.perg .l{color:var(--amber); font-weight:700}
+
+/* ---- tipo "caminho" (N07): o caminho do caso até ele ---- */
+.c.cam .txt,.c.cam svg.rio,.c.cam .leg,.c.cam .cred{display:none}
+.cc{position:absolute; left:64px; top:112px; width:430px}
+.cc .k{margin:0 0 12px}
+.cc .ccn{font-size:50px; font-weight:800; line-height:1.04; letter-spacing:-.015em; margin:0 0 10px; text-wrap:balance}
+.cc .ccg{font-size:150px; font-weight:800; line-height:1; letter-spacing:-.035em; color:var(--amber); margin:0 0 6px; font-variant-numeric:tabular-nums}
+.cc .ccg.grave{color:var(--carimbo)}
+.cc .ccl{font-size:31px; line-height:1.22; color:#b3cdb8; margin:0; text-wrap:pretty}
+.cp{position:absolute; left:528px; top:104px; width:624px; height:456px}
+.cp svg{position:absolute; left:0; top:0; width:624px; height:456px; overflow:visible}
+.cr{list-style:none; margin:0; padding:0; position:relative}
+.cr li{margin:0 0 var(--cg,14px); line-height:1.2}
+.cr .nn{display:block; font-size:var(--cn,25px); font-weight:700; line-height:1.2; color:var(--tinta)}
+.cr .nq{display:block; font-size:var(--cs,18px); line-height:1.3; color:#b3cdb8; margin-top:2px}
+.cr .ns{display:block; font-size:var(--cs,18px); line-height:1.3; color:var(--cinza); margin-top:2px}
+.cr li.grave .ns{color:var(--carimbo)}
+.cr li.fim{margin:0}
+.cr li.fim .nn{line-height:52px}
+.cr .fora{display:block; font-family:var(--mono); font-size:15px; color:var(--cinza2); margin-top:4px}
 </style>
 </head>
 <body>
@@ -147,8 +183,9 @@ svg.rio{position:absolute; left:960px; top:0; width:240px; height:630px; overflo
   <p class="cred" id="cred" hidden></p>
   <p class="rp"><b>figuered0o0808-glitch.github.io/arquivo-flavio</b><span class="rp-s"> · </span>cada fato com fonte</p>
 </div>
-<script src="data/topicos.js?v=75878a47"></script>
-<script src="data/topicos-zap.js?v=98e1f2d2"></script>
+<script src="data/topicos.js?v=d0b7736c"></script>
+<script src="data/topicos-zap.js?v=34a3e255"></script>
+<script src="data/cartoes.js?v=22695c3a"></script>
 <script>
 (function(){
 'use strict';
@@ -156,9 +193,11 @@ const T = window.BD_TOPICOS || {};
 const Q = new URLSearchParams(location.search);
 const id = Q.get('id') || 'abertura';
 const t = T[id] || T.abertura || { cartao: { k: 'Flávio Bolsonaro', nome: 'Um rio de escândalos', n: '', l: '' } };
-const c = t.cartao || {};
+/* tópico leve (caminho, mensagem do BolsoZap): o cartão está em data/cartoes.js */
+const c = t.cartao || (T[id] && (window.BD_CARTOES || {})[id]) || {};
 const $ = s => document.getElementById(s);
 if (c.tipo === 'zap') return zap();   /* o BolsoZap tem desenho próprio (fim do arquivo) e não tem versão story */
+if (c.tipo === 'caminho') return caminho();   /* N07: idem (sem versão story) */
 const STORY = Q.get('f') === 'story';
 const cx = $('c');
 if (STORY){ cx.classList.add('story'); document.querySelector('meta[name=viewport]').setAttribute('content', 'width=1080'); }
@@ -166,19 +205,24 @@ document.documentElement.dataset.formato = STORY ? 'story' : 'cartao';
 /* medidas por formato: onde o bloco de texto pode ficar (top..top+alto) e os tamanhos de partida e de piso */
 const G = STORY
   ? { top: 400, alto: 870, W: 760, nome: 84, nomeMin: 60, num: 220, num1: 150, numMin: 104, l: 52, lMin: 42,
-      frase: [150, 96, 72, 3], cit: [112, 72, 56, 4] }
+      frase: [150, 96, 72, 3], cit: [112, 72, 56, 4], perg: [96, 64, 52, 6] }
   : { top: 112, alto: 448, W: 872, nome: 60, nomeMin: 48, num: 168, num1: 70, numMin: 110, l: 42, lMin: 36,
-      frase: [100, 64, 48, 2], cit: [80, 52, 40, 3] };
+      frase: [100, 64, 48, 2], cit: [80, 52, 40, 3], perg: [66, 46, 38, 4] };
 const COR = { grave: '#ff5c5c', medio: '#ffb02e', outros: '#5c8a63' };
 const VERDE = '#7df59a';
 const nb = s => String(s || '').replace(/(\d) (?=mil\b|milh|bilh)/g, '$1 ').replace(/R\$ (?=\d)/g, 'R$ ');
 
 $('k').textContent = c.k || 'Flávio Bolsonaro';
 $('nome').textContent = c.nome || '';
-const TIPO = ({texto:1, hora:1, citacao:1, fita:1, acerto:1})[c.tipo] ? c.tipo : '';   /* "numero" e desconhecidos: o de sempre */
+const TIPO = ({texto:1, hora:1, citacao:1, fita:1, acerto:1, pergunta:1})[c.tipo] ? c.tipo : '';   /* "numero" e desconhecidos: o de sempre */
 document.documentElement.dataset.tipo = TIPO;
 const num = $('num');
-if (TIPO === 'citacao'){
+if (TIPO === 'pergunta'){
+  /* quiz: só a pergunta, em --tinta (não é número nem fato); a linha é o convite, em âmbar */
+  cx.classList.add('perg');
+  num.classList.add('t-perg');
+  num.textContent = nb(c.n);
+} else if (TIPO === 'citacao'){
   /* a fala em --tinta; só as aspas em âmbar (a de abertura fica pendurada à esquerda) */
   const m = String(c.n || '').match(/^([“"«‘]*)([\s\S]*?)([”"»’]*)$/);
   num.classList.add('t-cit');
@@ -217,6 +261,7 @@ if (TIPO === 'acerto' && Array.isArray(c.acerto)){
   num.after(b);
 }
 if (c.cor === 'tinta') num.style.color = 'var(--tinta)';   /* a situação dele, ou o nome de uma pessoa: nunca em âmbar */
+if (c.cor === 'grave') num.style.color = 'var(--carimbo)';   /* preso ou condenado (de terceiros, nunca dele) */
 $('l').textContent = nb(c.l);   /* "R$ 52 bilhões" não se parte no fim da linha */
 if (c.canto){ $('canto').textContent = c.canto; $('canto').hidden = false; }
 document.title = (c.nome || 'BOLSODRIVE') + ' · ' + (STORY ? 'story' : 'cartão');
@@ -254,9 +299,14 @@ function curso(x0, y0, s, a1, a2){
   return `M${f(x0)},${f(y0)} C${f(x0 + s * a1)},${f(y0 + sp * .34)} ${f(P.x - s * a2)},${f(y0 + sp * .6)} ${f(P.x + s * 14)},${f(y0 + sp * .8)}` +
     ` S${f(P.x)},${f(fim - sp * .08)} ${f(P.x)},${f(fim)}`;
 }
+/* o rio nasce abaixo do rótulo do canto: uma máscara apaga a água até logo abaixo dele (o fio não cruza o "3 DE 6") */
+const fade = !STORY && c.canto ? (() => { const r = $('canto').getBoundingClientRect(); return r.height ? Math.round(r.bottom + 8) : 0; })() : 0;
+let rios = '';
 let g = '<defs><radialGradient id="aura"><stop offset="0" stop-color="#d8efdd" stop-opacity=".16"/><stop offset="1" stop-color="#d8efdd" stop-opacity="0"/></radialGradient>' +
   '<linearGradient id="gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + corLane + '" stop-opacity=".15"/><stop offset=".6" stop-color="' + corLane + '" stop-opacity=".8"/><stop offset="1" stop-color="' + corLane + '" stop-opacity=".98"/></linearGradient>' +
-  (foto ? '<clipPath id="fc"><circle cx="' + R.foto.x + '" cy="' + R.foto.y + '" r="' + R.foto.r + '"/></clipPath>' : '') + '</defs>';
+  (foto ? '<clipPath id="fc"><circle cx="' + R.foto.x + '" cy="' + R.foto.y + '" r="' + R.foto.r + '"/></clipPath>' : '') +
+  (fade ? '<linearGradient id="fade" gradientUnits="userSpaceOnUse" x1="0" y1="' + fade + '" x2="0" y2="' + (fade + 56) + '"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="1"/></linearGradient>' +
+    '<mask id="mk" maskUnits="userSpaceOnUse" x="-80" y="-80" width="400" height="800"><rect x="-80" y="-80" width="400" height="800" fill="url(#fade)"/></mask>' : '') + '</defs>';
 let main = null;
 const fios = Array.isArray(c.fios) ? c.fios.map(n => Math.max(0, parseInt(n, 10) || 0)) : null;
 if (fios && fios.reduce((a, b) => a + b, 0) > 0){
@@ -271,7 +321,7 @@ if (fios && fios.reduce((a, b) => a + b, 0) > 0){
       ? (() => { const xm = 960 + (sx - 963) * .22;   /* o leque se fecha descendo a margem e dobra para o disco */
           return `M${f(sx)},-10 C${f(sx)},420 ${f(xm)},760 ${f(xm)},1120 C${f(xm)},${f(1290 + (xm - 960) * .3)} ${f(P.x + 110 + (xm - 960) * 2)},${f(P.y - R.r - 64 - (xm - 960) * .8)} ${f(P.x + (xm - 960) * .4)},${f(P.y - R.r + 2)}`; })()
       : `M${f(sx)},-10 C${f(sx)},${f(P.y * .42)} ${f(P.x + (sx - P.x) * .42)},${f(P.y - 150)} ${f(P.x + (sx - P.x) * .08)},${f(P.y - R.r + 2)}`;
-    g += `<path d="${d}" fill="none" stroke="${cor}" stroke-opacity=".86" stroke-width="${w}" stroke-linecap="round"/>`;
+    rios += `<path d="${d}" fill="none" stroke="${cor}" stroke-opacity=".86" stroke-width="${w}" stroke-linecap="round"/>`;
   });
 } else {
   /* um afluente na cor da situação do caso (a da Foz); dois menores, bem fracos, encontram o principal */
@@ -287,11 +337,12 @@ if (fios && fios.reduce((a, b) => a + b, 0) > 0){
   const t2y = STORY ? 520 + rnd() * 200 : 150 + rnd() * 70, xd = STORY ? 1090 : 250;
   const trib2 = `M${xd},${f(t2y)} C${f(xd - 60)},${f(t2y + 40)} ${f(j2.x + 40)},${f(j2.y - 60)} ${f(j2.x)},${f(j2.y)}`;
   svg.removeChild(guia);
-  g += `<path d="${trib1}" fill="none" stroke="${corLane}" stroke-opacity=".2" stroke-width="${STORY ? 3.5 : 2.2}" stroke-linecap="round"/>` +
+  rios += `<path d="${trib1}" fill="none" stroke="${corLane}" stroke-opacity=".2" stroke-width="${STORY ? 3.5 : 2.2}" stroke-linecap="round"/>` +
     `<path d="${trib2}" fill="none" stroke="${corLane}" stroke-opacity=".16" stroke-width="${STORY ? 3 : 1.8}" stroke-linecap="round"/>` +
     `<path d="${main}" fill="none" stroke="url(#gl)" stroke-width="${STORY ? 30 : 20}" stroke-opacity=".2" stroke-linecap="round"/>` +
     `<path d="${main}" fill="none" stroke="url(#gl)" stroke-width="${STORY ? 9 : 6}" stroke-linecap="round"/>`;
 }
+g += '<g id="agua"' + (fade ? ' mask="url(#mk)"' : '') + '>' + rios + '</g>';
 /* o disco dele: sempre neutro (nunca na cor da água) */
 g += `<circle cx="${P.x}" cy="${P.y}" r="${R.r * 2.3}" fill="url(#aura)"/>` +
   `<circle cx="${P.x}" cy="${P.y}" r="${R.r}" fill="#0e160e" stroke="#d8efdd" stroke-opacity=".85" stroke-width="${STORY ? 4 : 3}"/>` +
@@ -309,11 +360,11 @@ svg.innerHTML = g;
 if (main){
   /* gotas descendo o afluente principal */
   const guia = document.createElementNS(NS, 'path'); guia.setAttribute('d', main); guia.setAttribute('fill', 'none'); svg.appendChild(guia);
-  const L = guia.getTotalLength();
+  const L = guia.getTotalLength(), agua = svg.querySelector('#agua') || svg;
   [0.18, 0.36, 0.52, 0.66, 0.78, 0.88].forEach((q, i) => {
     const p = guia.getPointAtLength(L * q), d = document.createElementNS(NS, 'circle');
     d.setAttribute('cx', f(p.x)); d.setAttribute('cy', f(p.y)); d.setAttribute('r', ((2.6 + i * .35) * (STORY ? 1.6 : 1)).toFixed(2));
-    d.setAttribute('fill', '#f2fff4'); d.setAttribute('fill-opacity', (0.4 + i * .08).toFixed(2)); svg.appendChild(d);
+    d.setAttribute('fill', '#f2fff4'); d.setAttribute('fill-opacity', (0.4 + i * .08).toFixed(2)); agua.appendChild(d);
   });
 }
 const carregou = !foto ? Promise.resolve() : new Promise(ok => {
@@ -334,9 +385,9 @@ function ajusta(){
   const larga = () => num.scrollWidth > G.W + 1;
   let ns = px(nome, G.nome), ls = px(l, G.l), fs;
   while (linhas(nome) > 2 && ns > G.nomeMin) ns = px(nome, ns - 2);
-  if (TIPO === 'texto' || TIPO === 'citacao'){
-    /* a frase quebra linha (até 2 ou 3; no story 3 ou 4) e a fonte desce até caber; nunca corta */
-    const [ini, min, piso, max] = TIPO === 'citacao' ? G.cit : G.frase;
+  if (TIPO === 'texto' || TIPO === 'citacao' || TIPO === 'pergunta'){
+    /* a frase quebra linha (até 2 ou 3; no story 3 ou 4; a pergunta até 4) e a fonte desce até caber; nunca corta */
+    const [ini, min, piso, max] = TIPO === 'citacao' ? G.cit : TIPO === 'pergunta' ? G.perg : G.frase;
     const ab = num.querySelector('.aspa.ab');
     if (ab){ px(num, 100); ab.style.marginLeft = (-ab.getBoundingClientRect().width / 100).toFixed(3) + 'em'; }
     fs = px(num, ini);
@@ -369,6 +420,105 @@ function ajusta(){
   d.pronto = '1';
 }
 Promise.all([document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve(), carregou]).then(ajusta);
+/* ---------- tipo "caminho" (N07): o caminho do caso até ele, nome a nome ----------
+   À esquerda, a faixa, o caso e o destaque (quantos presos ou condenados; sem nenhum, quantos elos). À direita, os
+   nomes de cima para baixo, cada um num fio (um fio por caminho que chega nele), todos desaguando no disco dele, que
+   fica neutro e sem situação. Anel, fio e situação na cor de cada nome: vermelho = preso ou condenado; âmbar =
+   investigado, denunciado, réu ou alvo; o resto, neutro. O texto vem pronto do gerador (a regra da ficha da Foz). */
+function caminho(){
+  const cx = $('c'), K = c.caminho || {}, nos = K.nos || [], ares = K.ares || [];
+  const NS = 'http://www.w3.org/2000/svg', f1 = n => n.toFixed(1);
+  const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  const nb = s => String(s || '').replace(/(\d) (?=mil\b|milh|bilh)/g, '$1 ').replace(/R\$ (?=\d)/g, 'R$ ');
+  const COR = { grave: '#ff5c5c', medio: '#ffb02e', '': '#5c8a63' }, ANEL = { grave: '#ff5c5c', medio: '#ffb02e', '': '#86a58c' };
+  document.documentElement.dataset.tipo = 'caminho';
+  document.title = (c.nome || 'O caminho') + ' · cartão';
+  cx.classList.add('cam');
+  if (c.canto){ $('canto').textContent = c.canto; $('canto').hidden = false; }
+
+  /* esquerda: a faixa, o caso, o destaque e a linha */
+  const col = mk('div', 'cc'), nm = mk('p', 'ccn', c.nome || ''), gg = mk('p', 'ccg' + (c.cor === 'grave' ? ' grave' : ''), c.n || ''),
+    ll = mk('p', 'ccl', nb(c.l));
+  col.append(mk('p', 'k', c.k || 'Flávio Bolsonaro'), nm, gg, ll);
+
+  /* direita: os nomes e, por baixo, os fios */
+  const W = 624, H = 456, pn = mk('div', 'cp'), sv = document.createElementNS(NS, 'svg'), ol = mk('ol', 'cr');
+  sv.setAttribute('viewBox', '0 0 ' + W + ' ' + H); sv.setAttribute('aria-hidden', 'true');
+  const L = nos.reduce((a, n) => Math.max(a, (+n.f || 0) + 1), 1), SP = L > 3 ? 26 : 30, X0 = 23;
+  const lx = k => X0 + k * SP, fbx = X0 + (L - 1) * SP / 2, RFB = 25;
+  ol.style.paddingLeft = Math.max(X0 + (L - 1) * SP + 30, fbx + RFB + 16) + 'px';
+  const lis = nos.map(n => {
+    const li = mk('li', n.c || '');
+    li.append(mk('span', 'nn', n.n));
+    if (n.q) li.append(mk('span', 'nq', nb(n.q)));
+    if (n.s) li.append(mk('span', 'ns', nb(n.s)));
+    ol.append(li); return li;
+  });
+  const fim = mk('li', 'fim');
+  fim.append(mk('span', 'nn', 'Flávio Bolsonaro'));
+  if (K.fora) fim.append(mk('span', 'fora', '+ ' + K.fora + (K.fora > 1 ? ' nomes' : ' nome') + ' na ficha do caso'));
+  ol.append(fim);
+  pn.append(sv, ol);
+  cx.append(col, pn);
+
+  function ajustaCam(){
+    const px = (e, v) => { e.style.fontSize = v + 'px'; return v; };
+    const linhas = e => Math.round(e.offsetHeight / parseFloat(getComputedStyle(e).lineHeight));
+    /* a coluna da esquerda cabe em 448 px (de 112 a 560), centrada na altura */
+    let ns = 50, gs = 150, ls = 31;
+    while (linhas(nm) > 3 && ns > 34) ns = px(nm, ns - 2);
+    while (col.offsetHeight > 448 && ls > 24) ls = px(ll, ls - 1);
+    while (col.offsetHeight > 448 && ns > 34) ns = px(nm, ns - 2);
+    while (col.offsetHeight > 448 && gs > 96) gs = px(gg, gs - 6);
+    col.style.top = Math.round(112 + Math.max(0, 448 - col.offsetHeight) / 2) + 'px';
+    /* a lista cabe em H: o intervalo, depois as letras (nome 25 → 19; situação 18 → 14,5) */
+    const v = (k, x) => ol.style.setProperty(k, x + 'px');
+    let cn = 25, cs = 18, cg = 16;
+    v('--cn', cn); v('--cs', cs); v('--cg', cg);
+    while (ol.offsetHeight > H && cg > 8) v('--cg', cg -= 2);
+    while (ol.offsetHeight > H && cs > 14.5){ v('--cs', cs -= .5); if (cn > 19) v('--cn', cn -= .5); }
+    const top = Math.max(0, Math.round((H - ol.offsetHeight) / 2));
+    ol.style.marginTop = top + 'px';
+    /* os fios: o centro da 1ª linha do nome de cada um; o disco no meio da linha dele */
+    /* (o offsetParent dos nomes e das linhas é a lista, position:relative; o da lista, o painel) */
+    const y = lis.map(li => { const nn = li.firstChild; return ol.offsetTop + nn.offsetTop + parseFloat(getComputedStyle(nn).lineHeight) / 2; });
+    const yfb = ol.offsetTop + fim.offsetTop + 26;
+    let g = '<defs><radialGradient id="aura"><stop offset="0" stop-color="#d8efdd" stop-opacity=".16"/><stop offset="1" stop-color="#d8efdd" stop-opacity="0"/></radialGradient></defs>';
+    let fios = '';
+    ares.forEach(([a, b]) => {
+      const na = nos[a]; if (!na) return;
+      const xa = lx(+na.f || 0), ya = y[a], cor = COR[na.c || ''] || COR[''];
+      let d;
+      if (b === -1){
+        const yb = yfb - RFB + 2, yk = Math.max(ya, yb - 50);
+        d = Math.abs(xa - fbx) < .5 ? `M${f1(xa)},${f1(ya)} L${f1(fbx)},${f1(yb)}`
+          : `M${f1(xa)},${f1(ya)} L${f1(xa)},${f1(yk)} C${f1(xa)},${f1(yk + (yb - yk) * .6)} ${f1(fbx)},${f1(yk + (yb - yk) * .35)} ${f1(fbx)},${f1(yb)}`;
+      } else {
+        const nb_ = nos[b]; if (!nb_) return;
+        const xb = lx(+nb_.f || 0), yb = y[b];
+        if (xb === xa) d = `M${f1(xa)},${f1(ya)} L${f1(xb)},${f1(yb)}`;
+        else if (xb > xa){ const yk = Math.min(yb, ya + 36); d = `M${f1(xa)},${f1(ya)} C${f1(xa)},${f1(ya + 24)} ${f1(xb)},${f1(ya + 12)} ${f1(xb)},${f1(yk)} L${f1(xb)},${f1(yb)}`; }
+        else { const yk = Math.max(ya, yb - 36); d = `M${f1(xa)},${f1(ya)} L${f1(xa)},${f1(yk)} C${f1(xa)},${f1(yb - 12)} ${f1(xb)},${f1(yb - 24)} ${f1(xb)},${f1(yb)}`; }
+      }
+      fios += `<path d="${d}" fill="none" stroke="${cor}" stroke-opacity=".16" stroke-width="12" stroke-linecap="round"/>` +
+        `<path d="${d}" fill="none" stroke="${cor}" stroke-opacity=".92" stroke-width="4" stroke-linecap="round"/>`;
+    });
+    g += fios;
+    nos.forEach((n, k) => {
+      g += `<circle cx="${f1(lx(+n.f || 0))}" cy="${f1(y[k])}" r="9" fill="#070a07" stroke="${ANEL[n.c || ''] || ANEL['']}" stroke-width="3.5"/>`;
+    });
+    /* o disco dele: sempre neutro */
+    g += `<circle cx="${f1(fbx)}" cy="${f1(yfb)}" r="${RFB * 2.3}" fill="url(#aura)"/>` +
+      `<circle cx="${f1(fbx)}" cy="${f1(yfb)}" r="${RFB}" fill="#0e160e" stroke="#d8efdd" stroke-opacity=".85" stroke-width="3"/>` +
+      `<text x="${f1(fbx)}" y="${f1(yfb + 6)}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" font-weight="700" fill="#d8efdd">FB</text>`;
+    sv.innerHTML = g;
+    const d = document.documentElement.dataset;
+    d.camCabe = ol.offsetHeight <= H && col.offsetHeight <= 448 ? '1' : '0';
+    d.camFonte = String(cs); d.cabe = d.camCabe;
+    d.pronto = '1';
+  }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(ajustaCam);
+}
 /* ---------- tipo "zap" (BolsoZap): um trecho de conversa MARCADO, que não parece print de conversa privada ----------
    Quem envia é a fonte (veículo ou "PF · áudio obtido"); a fala de pessoa só entra como citação, com quem e o meio;
    data em cada balão e na pílula; sem hora, tique, "online", relógio ou campo de digitar. A situação fica em --tinta. */
@@ -397,7 +547,8 @@ function zap(){
   const col = mk('div', 'zc'), kk = mk('p', 'zk'), quem = String(c.k || 'Flávio Bolsonaro').split(' · ')[0];
   const aba = /^bolsozap$/i.test(c.nome || '');
   kk.textContent = aba ? quem.toUpperCase() : 'BOLSOZAP';
-  if (!aba && quem){ kk.appendChild(document.createTextNode(' ')); kk.appendChild(mk('small', '', '· ' + quem.toUpperCase())); }
+  /* conversa sem faixa nem nome dele (Caso Marielle, A Foz): só BOLSOZAP, sem repetir a marca */
+  if (!aba && quem && !/^bolsodrive$/i.test(quem)){ kk.appendChild(document.createTextNode(' ')); kk.appendChild(mk('small', '', '· ' + quem.toUpperCase())); }
   const nome = mk('p', 'zn', c.nome || 'BolsoZap');
   const g = c.n ? mk('p', 'zg', nb(c.n)) : null;            /* número em âmbar; nunca a situação dele */
   const l = mk('p', 'zl', nb(c.l));
@@ -425,16 +576,20 @@ function zap(){
     }
     const m = x.m, bal = mk('div', 'zm');
     bal.append(mk('p', 'zde' + (m.cat === 'inst' ? ' inst' : ''), m.de || ''));
+    /* o texto que anuncia a citação ("A PGR pediu…:") vem antes dela; nos outros, a citação e depois o texto (como no site) */
+    const anuncia = m.t && m.q && m.q.t && /:\s*$/.test(m.t);
+    if (anuncia) bal.append(mk('p', 'zt', nb(m.t)));
     if (m.q && m.q.t){
       const q = mk('div', 'zq');
       q.append(mk('p', 'zqq', [m.q.quem, m.q.meio].filter(Boolean).join(' · ')));
       q.append(mk('p', 'zqt', '“' + String(m.q.t).replace(/^[“"]+|[”"]+$/g, '') + '”'));
       bal.append(q);
     }
-    if (m.t) bal.append(mk('p', 'zt', nb(m.t)));
+    if (m.t && !anuncia) bal.append(mk('p', 'zt', nb(m.t)));
     bal.append(mk('p', 'zd', data(m.d)));
     b.append(bal);
   });
+  if (!(z.msgs || []).length && pil) b.classList.add('so-pil');   /* S14: a mensagem é uma pílula, sozinha no trecho */
   p.append(h, b);
   const r = mk('div', 'zr');
   r.innerHTML = ico('cadeado');

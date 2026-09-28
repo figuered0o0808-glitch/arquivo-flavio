@@ -412,6 +412,39 @@ html.og .quem{font-size:14px; margin:0 0 14px}
 html.og .abre h1.sec{font-size:26px; letter-spacing:2px; white-space:nowrap}
 html.og .tese{font-size:68px; line-height:1.02; margin:14px 0 0}
 html.og .og-marca{display:block}
+/* ---------- "compare com você" (trecho 02): o salário de quem lê × o patrimônio declarado e o pedido de R$ 131 milhões.
+   O que se digita não é guardado nem enviado (sem storage, sem URL, sem rede): a conta fica nesta tela.
+   Altura fixa (o resultado sempre na tela, com o salário mínimo até alguém digitar): o rio do trecho não refaz o caminho. */
+.cmp{margin:18px 0 8px; padding:12px 14px 14px; border:1px solid var(--linha); border-radius:4px; background:var(--leve); max-width:480px}
+.cmp-k{margin:0 0 8px; font-size:16px; font-weight:700; line-height:1.25; color:var(--tinta)}
+.cmp-f{display:grid; grid-template-columns:auto minmax(0,230px); justify-content:start; align-items:center; gap:6px 12px}
+.cmp-l{max-width:6.6em; margin:0; font-size:14px; line-height:1.3; color:var(--cinza)}
+.cmp-in{display:flex; align-items:center; gap:8px; min-height:48px; padding:0 12px; border:1.5px solid var(--cinza2); border-radius:2px; background:var(--papel); cursor:text}
+.cmp-in:focus-within{border-color:var(--amber)}
+.cmp-in span{font-weight:700; color:var(--cinza)}
+.cmp-in input{flex:1; min-width:0; height:46px; margin:0; padding:0; border:0; outline:0; background:transparent; color:var(--tinta); font:700 20px var(--sans); font-variant-numeric:tabular-nums}
+.cmp-in input::placeholder{color:var(--cinza2); font-weight:400}
+.cmp-com{margin:10px 0 0; font-size:14px; line-height:1.4; color:var(--cinza)}
+@media (max-width:639px){ .cmp-com{min-height:2.8em} }   /* as duas frases ("salário mínimo" / "R$ X por mês") com a mesma altura */
+.cmp-com b{color:var(--tinta)}
+.cmp-com a{font-family:var(--mono); font-size:12px; color:var(--azul); text-underline-offset:3px; white-space:nowrap}
+.cmp-n{margin:10px 0 0; font-size:34px; font-weight:800; line-height:1.02; letter-spacing:-.01em; color:var(--amber); font-variant-numeric:tabular-nums}
+.cmp-n .u{font-size:.58em; font-weight:700; letter-spacing:0}
+.cmp-t{margin:3px 0 0; font-size:15px; line-height:1.42; color:var(--tinta)}
+.cmp-t b{font-weight:700}
+.cmp-t a{font-family:var(--mono); font-size:12px; color:var(--azul); text-underline-offset:3px; white-space:nowrap; display:inline-block; padding:8px 0; margin:-8px 0}
+.cmp-t .qd{color:var(--cinza)}
+.cmp-s{margin:6px 0 0; padding-left:10px; border-left:2px solid var(--tinta); font-size:14px; line-height:1.4; color:var(--tinta)}
+.cmp-a{display:flex; align-items:center; gap:8px 14px; margin-top:12px}
+.cmp-a .env{flex:none}
+.cmp-p{margin:0; max-width:17em; font-size:12.5px; line-height:1.35; color:var(--cinza)}
+/* "mande para quem ainda não viu": a escolha do público (.pilulas do sistema) e a mensagem como vai sair */
+.pub{margin:14px 0 8px}
+.pub button{min-height:44px; font-size:14px}
+.msg{max-width:480px; margin:4px 0 0; padding:10px 12px 11px; border:1px solid var(--linha); border-left:3px solid var(--tinta); border-radius:4px; background:var(--leve);
+  font-size:15px; line-height:1.45; color:var(--tinta); white-space:pre-wrap; overflow-wrap:anywhere}
+.msg b{font-weight:800}
+.msg .url{display:block; margin-top:2px; font-family:var(--mono); font-size:11.5px; line-height:1.45; color:var(--azul); word-break:break-all}
 .og-marca{display:none; margin:34px 0 0; font-family:var(--mono); font-size:13px; line-height:1.7; letter-spacing:.08em; color:var(--cinza); white-space:nowrap}
 .og-marca b{color:var(--tinta); font-weight:700}
 </style>
@@ -434,7 +467,7 @@ html.og .og-marca{display:block}
   </div>
 
   <!-- o caso de hoje: a contagem até o 1º turno e um dos 8 casos "de perto" (tabela fixa data → caso, pelo relógio do leitor);
-       em 04/10, "Hoje é o dia"; depois, o caso Marielle. O .dq do sistema, com o botão de envio ao lado do fato. -->
+       em 04/10, "Hoje é o dia"; depois, um dos 40 por dia. O .dq do sistema, com o botão de envio ao lado do fato. -->
   <article class="dq hoje" id="hoje-no-rio" aria-labelledby="h-hoje" hidden>
     <p class="hoje-k" id="hoje-k"></p>
     <div id="hoje-c"><h2 id="h-hoje">O caso de hoje</h2></div>
@@ -535,10 +568,16 @@ html.og .og-marca{display:block}
   <div class="lado"><div class="resp" id="resp" aria-live="polite"></div><div class="acao"><button type="button" class="env" data-share="quiz" aria-label="Enviar o teste">enviar ↗</button><a class="porta" href="quiz.html" id="porta-quiz">O quiz completo →</a></div></div>
 </section>
 
+<!-- "mande para quem ainda não viu": um texto pronto por público, montado dos tópicos (data/topicos.js); sem script, vai o tópico da abertura -->
 <section class="margem" id="adiante" aria-labelledby="h-adi">
-  <h2 class="k" id="h-adi"><span>Mande adiante</span></h2>
+  <h2 class="k" id="h-adi"><span>Mande para quem ainda não viu</span></h2>
   <div class="bloco" data-rot="pausa:2" data-rot-marca>
-    <div class="acao"><button type="button" class="env" data-share="abertura">Mandar no WhatsApp</button><button type="button" class="lm" id="hoje-cp" hidden>copiar o texto de hoje</button></div>
+    <div class="pilulas pub" id="pub" role="group" aria-label="Para quem é a mensagem" hidden>
+      <button type="button" data-pub="familia" class="on" aria-pressed="true">para a família</button>
+      <button type="button" data-pub="grupo" aria-pressed="false">para o grupo</button>
+    </div>
+    <div class="msg" id="msg" aria-live="polite" hidden></div>
+    <div class="acao"><button type="button" class="env" id="msg-env" data-share="abertura">Mandar no WhatsApp</button><button type="button" class="lm" id="msg-cp" hidden>copiar o texto</button><button type="button" class="lm" id="hoje-cp" hidden>copiar o texto de hoje</button></div>
   </div>
   <div class="lado"><ul class="indice" id="indice" aria-label="As margens do rio"></ul></div>
 </section>
@@ -554,17 +593,17 @@ html.og .og-marca{display:block}
   <button type="button" class="h-para" id="h-para" aria-label="Parar a animação"><span class="ic" aria-hidden="true">■</span><span class="tx">parar</span></button>
 </div>
 
-<script src="data/resumo.js?v=13b66e78"></script>
+<script src="data/resumo.js?v=84fd02db"></script>
 <script src="assets/fotos.js?v=734cce7c"></script>
-<script src="data/foz.js?v=880cbd84"></script>
+<script src="data/foz.js?v=0c91d9eb"></script>
 <script src="assets/rio.js?v=41d32ea1"></script>
 <script src="assets/bacia.js?v=9d26099f"></script>
-<script src="assets/nav.js?v=fc36981b"></script>
+<script src="assets/nav.js?v=db4ad0ea"></script>
 <script src="assets/roteiro.js?v=b4c6e049" defer></script>
-<script src="data/foz-curto.js?v=7d97a6fb"></script>
-<script src="assets/historia.js?v=4e9ff491" defer></script>
-<script src="data/topicos.js?v=75878a47" defer></script>
-<script src="assets/compartilhar.js?v=edbe4096" defer></script>
+<script src="data/foz-curto.js?v=49585cb8"></script>
+<script src="assets/historia.js?v=a818a94e" defer></script>
+<script src="data/topicos.js?v=d0b7736c" defer></script>
+<script src="assets/compartilhar.js?v=f3f9b497" defer></script>
 <script>
 /* =====================================================================
    A abertura. Todo número sai de window.DOSSIE e window.FOZ; nada é digitado à mão.
@@ -612,7 +651,7 @@ const semRessalva = t => String(t || '').replace(RESSALVA, '').replace(/\s*[;,]\
 function limpaNeg(s){ return String(s || '').toLowerCase().replace(/(?:^|[^\wÀ-ú])(n[ãa]o|nunca|sem|nenhum|ningu[ée]m)\s+(\S+\s+){0,2}?(pres[oa]s?|condena\S*|condenad\S*|indiciad\S*|indiciamento\S*|investigad\S*|denunciad\S*|den[úu]ncia\S*|r[ée]u|processad\S*)\b/g, ' '); }
 function statusCls(t){
   const s = limpaNeg(t);
-  const desfeito = /\banul(ou|ad[oa]s?)\b|revogou a (ordem de )?pris|pris[ãa]o (foi )?revogad|\bsolt[oa]s?\b|\barquivad[oa]s?\b/.test(s);
+  const desfeito = /\banul(ou|ad[oa]s?)\b|revogou a (ordem de )?pris|pris[ãa]o (foi )?revogad|\bsolt[oa]s?\b|\barquivad[oa]s?\b|revogou as (medidas )?cautelares/.test(s);
   if (/\bcondenad[oa]s?\b/.test(s) && !/condena\S*\s+(foi\s+)?anulad/.test(s)) return 'grave';
   if (/\bpres[oa]s?\b/.test(s)) return desfeito ? (/\barquivad/.test(s) ? 'leve' : 'medio') : 'grave';
   if (/(investigad|denunciad|\br[ée]u\b|\balvo\b|indiciad|processad)/.test(s)) return /\barquivad/.test(s) && !/(investigad|\br[ée]u\b|indiciad|processad)/.test(s) ? 'leve' : 'medio';
@@ -776,7 +815,7 @@ const fonteA = f => f && f.url ? '<a href="' + esc(f.url) + '" target="_blank" r
 /* ---------- o caso de hoje (primeira tela): faltam N dias para o 1º turno e um caso, no molde do destaque da Foz ----------
    Tabela fixa data → caso (os 8 capítulos "de perto"), pelo relógio do leitor: funciona sem atualização diária.
    Antes de 27/09, o Master; em 04/10, "Hoje é o dia. Os 40, um a um." com o caso Marielle (o destaque da Foz);
-   depois, o caso Marielle sem a contagem. A primeira tela sempre tem um fato, a fonte, a situação dele (neutra,
+   depois, um dos 40 por dia (RODA, abaixo), sem a contagem. A primeira tela sempre tem um fato, a fonte, a situação dele (neutra,
    só quando formal) e o botão de envio daquele caso. */
 const DESFECHO_FIM = /[;,.]\s*(?:investigado no STF, sem denúncia|denúncia anulada|sem denúncia)\.?\s*$/i;
 const TURNO = '2026-10-04';
@@ -794,14 +833,28 @@ function numHtml(v){
   return (p ? '<span class="p">' + esc(p) + ' </span>' : '') + esc(m[2]) + (u ? '<span class="u"> ' + esc(u) + '</span>' : '');
 }
 const hojeISO = () => { const p2 = v => String(v).padStart(2, '0'), d = new Date(); return d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()); };
-let HOJE = null;                  /* { id, faltam, antes } do caso na tela (para o "copiar o texto de hoje") */
+const diasEntre = (a, b) => Math.round((Date.parse(b + 'T12:00:00Z') - Date.parse(a + 'T12:00:00Z')) / 864e5);
+/* depois de 04/10: um dos 40 por dia, numa roda fixa — as faixas se revezam (ele mesmo, gabinete, família, entorno) e,
+   dentro de cada faixa, a ordem da Foz; o caso Marielle (o do dia 04) fecha a volta. Pela data do leitor, sem servidor:
+   o mesmo dia mostra o mesmo caso em qualquer aparelho, e 40 dias seguidos mostram os 40, sem repetir. */
+const RODA = (function(){
+  const vez = ['direto', 'gabinete', 'familia', 'entorno'], fila = {};
+  ESC.forEach(x => { if (x.e.id !== DESTAQUE) (fila[x.faixa] = fila[x.faixa] || []).push(x.e.id); });
+  const r = [], max = Math.max(0, ...Object.keys(fila).map(f => fila[f].length));
+  for (let i = 0; i < max; i++) vez.forEach(f => { if (fila[f] && i < fila[f].length) r.push(fila[f][i]); });
+  Object.keys(fila).forEach(f => { if (vez.indexOf(f) < 0) r.push.apply(r, fila[f]); });
+  if (escPorId[DESTAQUE]) r.push(DESTAQUE);
+  return r;
+})();
+const casoDoDia = hoje => RODA.length ? RODA[(((diasEntre(TURNO, hoje) - 1) % RODA.length) + RODA.length) % RODA.length] : DESTAQUE;
+let HOJE = null;                  /* { id, faltam, antes, ehDia } do caso na tela (para o "copiar o texto de hoje") */
 function hojeNoRio(hoje){
   const box = $('#hoje-c'), kk = $('#hoje-k'), sec = $('#hoje-no-rio');
   if (!box || !kk || !sec || OG) return;
   if (!/^\d{4}-\d\d-\d\d$/.test(hoje || '')) hoje = hojeISO();
-  const faltam = Math.round((Date.parse(TURNO + 'T12:00:00') - Date.parse(hoje + 'T12:00:00')) / 864e5);
+  const faltam = diasEntre(hoje, TURNO);
   const antes = hoje < TURNO, ehDia = hoje === TURNO;
-  let id = antes ? (DIA[hoje] || 'master') : DESTAQUE;
+  let id = antes ? (DIA[hoje] || 'master') : ehDia ? DESTAQUE : casoDoDia(hoje);
   if (!escPorId[id]) id = escPorId[DESTAQUE] ? DESTAQUE : (ESC[0] && ESC[0].e.id);
   const x = escPorId[id], e = x && x.e;
   if (!e){ sec.hidden = true; return; }
@@ -813,7 +866,7 @@ function hojeNoRio(hoje){
   const fonte = (n && n.fonte && n.fonte.url) ? n.fonte : ((e.fontes || []).find(f => f && f.url) || null);
   const rot = e.rotulo || e.nome;
   kk.innerHTML = antes ? (faltam === 1 ? 'Falta <b>1</b> dia' : 'Faltam <b>' + faltam + '</b> dias') + ' para o 1º turno · o caso de hoje' :
-    ehDia ? 'Hoje é o dia. Os ' + ESC.length + ', um a um, logo abaixo.' : '';
+    ehDia ? 'Hoje é o dia. Os ' + ESC.length + ', um a um, logo abaixo.' : 'O caso de hoje · <b>' + dm(hoje) + '</b> · um dos ' + ESC.length;
   kk.hidden = !kk.innerHTML;
   sec.classList.toggle('fim-dia', ehDia);
   box.innerHTML = '<h2 id="h-hoje">' + esc(rot) + (FAIXA_VIA[e.faixa] ? ' <span class="via">· ' + FAIXA_VIA[e.faixa] + '</span>' : '') + '</h2>' +
@@ -825,22 +878,30 @@ function hojeNoRio(hoje){
     '<a href="foz.html#' + esc(id) + '">o caminho →</a></div>';
   sec.dataset.id = id;
   sec.hidden = false;
-  HOJE = { id, faltam, antes, rot, frase, n };
-  /* o texto do dia, pronto para o dono copiar (lá embaixo, em "Mande adiante"): o mesmo tópico do botão, com a contagem na frente */
-  const cp = $('#hoje-cp'); if (cp) cp.hidden = !antes;
+  HOJE = { id, faltam, antes, ehDia, rot, frase, n };
+  /* o texto do dia, pronto para o dono copiar (lá embaixo, em "Mande para quem ainda não viu"): o mesmo tópico do botão,
+     com a contagem na frente (antes de 04/10) ou "o caso de hoje" (depois) */
+  const cp = $('#hoje-cp'); if (cp) cp.hidden = false;
 }
 hojeNoRio();
+/* copiar para a área de transferência (o botão diz "copiado" por um instante) */
+function copia(txt, bt, rotulo){
+  const ok = () => { bt.textContent = 'copiado'; setTimeout(() => { bt.textContent = rotulo; }, 1600); };
+  if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, () => {}); return; }
+  const ta = document.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px';
+  document.body.appendChild(ta); ta.select(); try { if (document.execCommand('copy')) ok(); } catch (_){} document.body.removeChild(ta);
+}
+/* a raiz do site, para os links montados aqui (o tópico da abertura já traz o endereço público) */
+const raizSite = () => { const a = ((window.BD_TOPICOS || {}).abertura || {}).url; return a ? a.replace(/c\/[^/]*$/, '') : location.origin + location.pathname.replace(/[^/]*$/, ''); };
 (function(){
   const cp = $('#hoje-cp'); if (!cp) return;
   cp.addEventListener('click', () => {
     if (!HOJE) return;
     const t = ((window.BD_TOPICOS || {})[HOJE.id]) || {};
-    const txt = (HOJE.faltam === 1 ? 'Falta 1 dia' : 'Faltam ' + HOJE.faltam + ' dias') + ' para o 1º turno · o caso de hoje: ' +
-      (t.texto || (HOJE.rot + ': ' + (HOJE.n ? HOJE.n.valor + ' ' : '') + fimP(HOJE.frase))) + '\n' + (t.url || location.origin + location.pathname.replace(/[^/]*$/, '') + 'foz.html#' + HOJE.id);
-    const ok = () => { cp.textContent = 'copiado'; setTimeout(() => { cp.textContent = 'copiar o texto de hoje'; }, 1600); };
-    if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, () => {}); return; }
-    const ta = document.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px';
-    document.body.appendChild(ta); ta.select(); try { if (document.execCommand('copy')) ok(); } catch (_){} document.body.removeChild(ta);
+    const pre = HOJE.antes ? (HOJE.faltam === 1 ? 'Falta 1 dia' : 'Faltam ' + HOJE.faltam + ' dias') + ' para o 1º turno · o caso de hoje: ' :
+      HOJE.ehDia ? 'Hoje é o dia. Um dos ' + ESC.length + ' casos: ' : 'O caso de hoje, um dos ' + ESC.length + ': ';
+    const txt = pre + String(t.texto || (HOJE.rot + ': ' + (HOJE.n ? HOJE.n.valor + ' ' : '') + fimP(HOJE.frase))).replace(/\s+$/, '') + '\n' + (t.url || raizSite() + 'foz.html#' + HOJE.id);
+    copia(txt, cp, 'copiar o texto de hoje');
   });
 })();
 
@@ -886,6 +947,101 @@ $('#din-c').innerHTML =
     ' <span class="st">' + esc(stFluxo(x.f.status)) + '</span>' +
     '<i class="pt' + (x.sai ? ' sai' : '') + '" style="' + (x.sai ? 'color:' : 'background:') + HEX[x.nivel] + '"></i></li>').join('') + '</ul>';
 
+/* enviar um tópico com texto próprio (o cartão e o link são os do tópico; o texto é o que a pessoa vê na tela).
+   O botão tem data-share (para o cartão ser baixado antes do toque), mas o clique para aqui: não chega à delegação. */
+function manda(id, texto){
+  if (window.BDShare && window.BDShare.enviar) return window.BDShare.enviar(id, { texto });
+  const t = (window.BD_TOPICOS || {})[id] || {}, url = t.url || location.href.split('#')[0];
+  const x = /\n\s*$/.test(texto) ? texto.replace(/\s+$/, '') + '\n' + url : texto + ' ' + url;
+  if (navigator.share){ navigator.share({ text: x }).catch(() => {}); return; }
+  window.open('https://wa.me/?text=' + encodeURIComponent(x), '_blank', 'noopener');
+}
+const ligaEnvio = (bt, id, texto) => bt.addEventListener('click', ev => { ev.preventDefault(); ev.stopPropagation(); manda(typeof id === 'function' ? id() : id, texto()); });
+
+/* ---------- "compare com você" (N05): o salário de quem lê → quanto tempo levaria para juntar dois valores do site ----------
+   (1) o patrimônio que ele declarou ao TSE no último registro (valores nominais); (2) o pedido de R$ 131 milhões, segundo a PF
+   (o número da ficha Master da Foz, com a fonte e a situação dele). Conta: salário × 13 por ano (com 13º), sem gastar nada,
+   a mesma base do "Quanto é isso" do Dark Horse. Até alguém digitar, a conta é a do salário mínimo.
+   Nada é guardado nem enviado: sem localStorage, sem URL, sem rede; "enviar" manda só o texto que a pessoa vê, com o
+   cartão "O dinheiro" (c/dinheiro.html → index.html#dinheiro, onde está esta conta). */
+const SM = { mensal: 1621, fonte: { veiculo: 'Planalto', url: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12797.htm' } };   /* salário mínimo de 2026 (o mesmo de assets/comparador.js) */
+const reaisDe = t => { const m = /R\$\s?(\d{1,3}(?:\.\d{3})*(?:,\d+)?|\d+(?:,\d+)?)(?:\s+(mil|milh(?:ão|ões)|bilh(?:ão|ões))(?![\wÀ-ú]))?/i.exec(String(t || '')); if (!m) return 0;
+  const k = !m[2] ? 1 : /^mil$/i.test(m[2]) ? 1e3 : /^milh/i.test(m[2]) ? 1e6 : 1e9; return parseFloat(m[1].replace(/\./g, '').replace(',', '.')) * k || 0; };
+/* o que a pessoa digitou → reais por mês ("3.500", "3500", "3.500,50", "3500.50"); abaixo de R$ 100, nada */
+const reaisBR = v => v.toLocaleString('pt-BR', { minimumFractionDigits: v % 1 ? 2 : 0, maximumFractionDigits: 2 });
+const salarioDe = s => {
+  s = String(s || '').replace(/[^\d.,]/g, '');
+  if (!s) return 0;
+  if (s.indexOf(',') >= 0){ const i = s.lastIndexOf(','); s = s.slice(0, i).replace(/[.,]/g, '') + '.' + s.slice(i + 1).replace(/\D/g, ''); }
+  else if (/^\d+\.\d{1,2}$/.test(s)) { /* ponto decimal */ }
+  else s = s.replace(/\./g, '');
+  const v = parseFloat(s);
+  return v >= 100 && v < 1e11 ? v : 0;
+};
+/* anos (fração) → pedaços [número, unidade]: "388 anos", "6 anos e 3 meses", "7 meses", "menos de 1 mês" */
+const duracao = r => {
+  if (r >= 10) return [[fmtN(Math.floor(r)), 'anos']];
+  if (r >= 1){ const a = Math.floor(r), m = Math.floor((r - a) * 12 + 1e-9); return [[String(a), a === 1 ? 'ano' : 'anos']].concat(m ? [[String(m), m === 1 ? 'mês' : 'meses']] : []); }
+  const m = Math.floor(r * 12 + 1e-9);
+  return [m >= 1 ? [String(m), m === 1 ? 'mês' : 'meses'] : ['menos de 1', 'mês']];
+};
+const durTxt = r => duracao(r).map(p => p[0] + ' ' + p[1]).join(' e ');
+const durHtml = r => duracao(r).map(p => esc(p[0]) + ' <span class="u">' + esc(p[1]) + '</span>').join(' <span class="u">e</span> ');
+const anoFim = r => r > 0 && r < 5e4 ? new Date(Date.now() + r * 365.2425 * 864e5).getFullYear() : 0;
+(function(){
+  const box = $('#din-c'); if (!box || OG) return;
+  const mx = escPorId.master, nm = mx && mx.e.numero, cm = (window.FOZ_CURTO || {}).master || {};
+  const vPed = nm && !/US\$|d[óo]lar|USD/i.test(nm.valor + ' ' + nm.texto) ? reaisDe(nm.valor) : 0, vPat = p1 ? p1.valor : 0;
+  if (!vPat && !vPed) return;
+  /* a frase do pedido e a situação dele: as da ficha Master (foz-curto), sem o ponto final para caber na conta */
+  const semPonto = t => String(t || '').trim().replace(/[.;]\s*$/, '');
+  const fPed = semPonto(cm.frase || String((nm && nm.texto) || '').split(';')[0]);
+  const ele = semPonto(cm.ele || (String((nm && nm.texto) || '').split(';')[1] || ''));
+  const TSE = Object.assign({}, fontePT, { veiculo: 'TSE' });
+  const el = document.createElement('div');
+  el.className = 'cmp'; el.id = 'compare'; el.setAttribute('role', 'group'); el.setAttribute('aria-labelledby', 'cmp-k');
+  el.innerHTML = '<p class="cmp-k" id="cmp-k">Compare com você</p>' +
+    '<div class="cmp-f"><label class="cmp-l" for="cmp-v">Seu salário por mês</label>' +
+    '<div class="cmp-in"><span aria-hidden="true">R$</span><input id="cmp-v" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" maxlength="16" placeholder="' + fmtN(SM.mensal) + '" aria-describedby="cmp-com"></div></div>' +
+    '<p class="cmp-com" id="cmp-com" aria-live="polite"></p>' +
+    (vPat ? '<p class="cmp-n" id="cmp-n1"></p><p class="cmp-t">para juntar os <b>' + fmtMi(vPat) + '</b> que ele declarou ao TSE em ' + p1.ano + ', em valores nominais. <span class="qd" id="cmp-q1"></span> ' + fonteA(TSE) + '</p>' : '') +
+    (vPed ? '<p class="cmp-n" id="cmp-n2"></p><p class="cmp-t">para juntar os <b>' + esc(nm.valor) + '</b> ' + esc(fPed) + '. <span class="qd" id="cmp-q2"></span> ' + fonteA(nm.fonte) + '</p>' +
+      (ele ? '<p class="cmp-s">' + esc(cap1(ele)) + '.</p>' : '') : '') +
+    '<div class="cmp-a"><button type="button" class="env" id="cmp-env" data-share="dinheiro" aria-label="Enviar a sua conta">enviar ↗</button>' +
+    '<p class="cmp-p">Nada do que você digita é guardado nem enviado.</p></div>';
+  box.insertBefore(el, $('ul.linhas', box));
+  const inp = $('#cmp-v', el), com = $('#cmp-com', el);
+  let sal = 0;
+  function conta(){
+    sal = salarioDe(inp.value);
+    const m = sal || SM.mensal, ano = m * 13;
+    com.innerHTML = sal ? 'Com <b>R$ ' + esc(reaisBR(m)) + '</b> por mês, com 13º e sem gastar nada:' :
+      'Com um salário mínimo (R$ ' + fmtN(SM.mensal) + ', ' + fonteA(SM.fonte) + '), com 13º e sem gastar nada:';
+    [[vPat, 1], [vPed, 2]].forEach(([v, i]) => {
+      if (!v) return;
+      const r = v / ano, a = anoFim(r);
+      $('#cmp-n' + i, el).innerHTML = durHtml(r);
+      $('#cmp-q' + i, el).textContent = a ? 'Começando hoje, terminaria em ' + a + '.' : '';
+    });
+  }
+  /* o texto que vai: a conta de quem envia (sem o salário), os dois valores com quem afirma, e o convite para refazer */
+  function texto(){
+    const ano = (sal || SM.mensal) * 13, partes = [];
+    if (vPat) partes.push('para juntar o patrimônio que Flávio Bolsonaro declarou ao TSE em ' + p1.ano + ' (' + fmtMi(vPat) + ', valor nominal)');
+    if (vPed) partes.push('para juntar os ' + nm.valor + ' ' + (vPat ? fPed : fPed.replace(/\bpor ele\b/, 'por Flávio Bolsonaro')) + (ele ? '; ' + ele.charAt(0).toLowerCase() + ele.slice(1) : ''));
+    const d = [vPat, vPed].filter(Boolean).map(v => durTxt(v / ano));
+    return (sal ? 'Com o meu salário, com 13º e sem gastar nada, eu levaria ' : 'Quem ganha um salário mínimo, com 13º e sem gastar nada, levaria ') +
+      '*' + d[0] + '* ' + partes[0] + (partes[1] ? ' e ' + d[1] + ' ' + partes[1] : '') + '. Faça a conta com o seu:\n';
+  }
+  inp.addEventListener('input', conta);
+  inp.addEventListener('change', () => { if (sal) inp.value = reaisBR(sal); });
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); inp.blur(); } });
+  $('.cmp-in', el).addEventListener('click', () => inp.focus());
+  ligaEnvio($('#cmp-env', el), 'dinheiro', texto);
+  conta();
+  window.__compare = { conta: v => { inp.value = v; conta(); return texto(); }, texto };
+})();
+
 /* a foz: os casos em que ele mesmo tem situação formal (investigado, denunciado), a situação em uma linha */
 $('#sit').innerHTML = CASOS.length ?
   forte(CASOS.length, 1.8) + '<p class="fr" data-seq>' + (CASOS.length === 1 ? 'caso em que ele mesmo tem situação formal:' : 'casos em que ele mesmo tem situação formal:') + '</p>' +
@@ -914,9 +1070,44 @@ if (quizN != null){
 } else { $('#teste').hidden = true; }
 
 /* margem: as outras páginas */
-const MARG = [['drive.html#recente', 'Recentemente'], ['drive.html#arquivo', 'Arquivo'], ['drive.html#cronologia', 'Cronologia'], ['drive.html#noticias', 'Notícias'],
+const MARG = [['drive.html#recente', 'Recentemente'], ['drive.html#arquivo', 'Arquivo'], ['drive.html#cronologia', 'Cronologia'],
   ['drive.html#chat', 'Pergunte ao arquivo'], ['quiz.html', 'Quiz'], ['close-friends.html', 'A rede em órbita']];
 $('#indice').innerHTML = MARG.map(m => '<li><a href="' + m[0] + '">' + esc(m[1]) + '</a></li>').join('');
+
+/* ---------- "mande para quem ainda não viu": um texto pronto por público, dos tópicos já curados (data/topicos.js) ----------
+   família: um caso só, o texto do tópico inteiro (o caso Marielle: a emenda ao Ifop, segundo mensagens obtidas pela PF),
+   com o cartão e o link daquele caso; grupo: três casos de três faixas, a primeira linha de cada tópico, com o cartão e o
+   link da abertura. Nenhuma palavra nova sobre os casos: só a abertura ("Não sei se você viu", "Três dos 40…").
+   Os tópicos chegam com defer: monta no DOMContentLoaded; sem eles, fica o botão da abertura, como antes. */
+const PUB_FAM = 'marielle-ifop', PUB_GRUPO = ['marielle-ifop', 'master', 'mocoes-pms-reus-condenados'];
+function mande(){
+  const TP = window.BD_TOPICOS || {}, pub = $('#pub'), msg = $('#msg'), env = $('#msg-env'), cp = $('#msg-cp');
+  if (!pub || !msg || !env || !cp) return;
+  const linha1 = id => String((TP[id] || {}).texto || '').split('\n')[0].trim();
+  const NUM = ['', 'Um', 'Dois', 'Três'];
+  const M = {};
+  if (TP[PUB_FAM] && TP[PUB_FAM].texto) M.familia = { id: PUB_FAM, texto: 'Não sei se você viu:\n' + TP[PUB_FAM].texto };
+  const g = PUB_GRUPO.filter(id => linha1(id));
+  if (g.length > 1 && TP.abertura) M.grupo = { id: 'abertura', texto: NUM[g.length] + ' dos ' + ESC.length + ' casos em volta de Flávio Bolsonaro, cada um com a fonte:\n\n' +
+    g.map(id => '• ' + linha1(id)).join('\n\n') + '\n\nOs ' + ESC.length + ', um a um:\n' };
+  const bts = $$('button[data-pub]', pub).filter(b => { const ok = !!M[b.dataset.pub]; b.hidden = !ok; return ok; });
+  if (!bts.length) return;
+  let vez = bts[0].dataset.pub;
+  /* a mensagem como vai sair: *negrito* do WhatsApp em negrito, o link na última linha */
+  const mostra = () => {
+    const m = M[vez], url = (TP[m.id] || {}).url || '';
+    bts.forEach(b => { const on = b.dataset.pub === vez; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+    msg.innerHTML = esc(m.texto.replace(/\s+$/, '')).replace(/\*([^*\n]+)\*/g, '<b>$1</b>') + '<span class="url">' + esc(url) + '</span>';
+    env.setAttribute('data-share', m.id);
+    env.setAttribute('aria-label', 'Mandar no WhatsApp: a mensagem ' + (vez === 'familia' ? 'para a família' : 'para o grupo'));
+  };
+  bts.forEach(b => b.addEventListener('click', () => { vez = b.dataset.pub; mostra(); }));
+  ligaEnvio(env, () => M[vez].id, () => M[vez].texto);
+  cp.addEventListener('click', () => { const m = M[vez]; copia(m.texto.replace(/\s+$/, '') + '\n' + ((TP[m.id] || {}).url || ''), cp, 'copiar o texto'); });
+  pub.hidden = false; msg.hidden = false; cp.hidden = false;
+  mostra();
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mande); else mande();
 if (/confer[êe]ncia/i.test((D.meta || {}).aviso || '')) $('#rodape').textContent += ' Fontes em conferência.';
 
 /* ---------- enviar: cada botão leva o tópico da tela (data-share → assets/compartilhar.js).
@@ -1429,10 +1620,13 @@ if (!OG && 'IntersectionObserver' in window && history.replaceState){
 function tudo(){ arvore(); if (BAC) BAC.monta(); if (!OG) rioTrechos(); }
 tudo();
 let largura = window.innerWidth, altura = window.innerHeight, rt = 0;
+const digitando = () => { const a = document.activeElement; return !!a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA'); };
 window.addEventListener('resize', () => {
   clearTimeout(rt);
   rt = setTimeout(() => {
     const mudouL = window.innerWidth !== largura, mudouA = Math.abs(window.innerHeight - altura) > 140;
+    /* o teclado abriu (alguém digita o salário no "compare com você"): nada acima do campo muda de altura */
+    if (!mudouL && digitando()) return;
     largura = window.innerWidth; altura = window.innerHeight;
     if (mudouL || mudouA) arvore();
     if (mudouL && BAC) BAC.monta();

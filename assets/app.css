@@ -160,10 +160,49 @@ button{font-family:inherit; cursor:pointer; color:inherit}
 @media (max-width:480px){ .pbars{gap:8px} .pbar-val{font-size:11px; white-space:normal; text-align:center; line-height:1.2} }
 
 /* ===== A TEIA ===== */
-.rede-dq{max-width:760px}
-.rede-dq .pn-l{display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 10px}
-.rede-dq .pn-l button{min-height:36px; padding:0 10px; border:1px solid var(--cinza2); border-radius:2px; background:transparent; color:var(--tinta); font:600 13px var(--sans); cursor:pointer}
-.rede-dq .pn-l button:hover{border-color:var(--tinta)}
+.rede-dq{max-width:960px}
+/* o placar de situação em dois anéis (N07): um ponto por nome, na cor da situação; ele no centro, em tinta */
+.plc .dq-t{max-width:34em}
+.plc-g{display:grid; grid-template-columns:1fr; gap:6px 26px; align-items:start; margin:6px 0 4px}
+@media (min-width:760px){ .plc-g{grid-template-columns:minmax(0,300px) minmax(0,1fr)} }
+.plc-fig{margin:0}
+.aneis{display:block; width:100%; max-width:270px; height:auto; margin:0 auto; overflow:visible}
+@media (min-width:760px){ .aneis{max-width:300px} }
+.aneis .guia{fill:none; stroke:var(--linha); stroke-width:1}
+.aneis .pd{cursor:pointer; transition:opacity .18s}
+.aneis .pd.grave{fill:var(--st-grave)} .aneis .pd.medio{fill:var(--st-medio)} .aneis .pd.outros{fill:var(--st-outros)}
+.aneis.foco .pd{opacity:.14}
+.aneis.foco .pd.on{opacity:1; stroke:var(--tinta); stroke-width:1.4}
+.aneis .an-n{font:700 10px var(--mono); fill:var(--cinza); text-anchor:middle; dominant-baseline:middle; letter-spacing:.04em}
+.aneis .ele{fill:#0e160e; stroke:var(--tinta); stroke-width:2}
+.plc-fig figcaption{margin:8px 0 0}
+.plc-fig .legenda{display:flex; flex-wrap:wrap; justify-content:center; gap:2px 12px; margin:0 0 6px}
+.plc-an{display:block; font-size:13px; line-height:1.45; color:var(--cinza); text-align:center; max-width:32em; margin:0 auto}
+@media (min-width:760px){ .plc-fig .legenda{justify-content:flex-start} .plc-an{text-align:left; margin:0} }
+.plc-tab{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums}
+.plc-tab thead th{padding:0 0 6px; font:400 12px/1.3 var(--mono); color:var(--cinza); text-align:right; vertical-align:bottom; width:6.6em}
+.plc-tab thead th b{display:block; font:800 22px/1.05 var(--sans); color:var(--tinta)}
+.plc-tab tbody th{padding:0; font:600 15px/1.3 var(--sans); color:var(--tinta); text-align:left; border-top:1px solid var(--linha)}
+.plc-tab tbody tr.sub th{padding-left:14px; font-weight:400; color:var(--cinza)}
+.plc-tab td{padding:0; text-align:right; border-top:1px solid var(--linha)}
+.plc-tab thead td{border:0}
+.plc-n{min-width:52px; min-height:44px; padding:0 8px; border:1.5px solid transparent; border-radius:2px; background:none; font:800 22px/1 var(--sans); font-variant-numeric:tabular-nums; cursor:pointer}
+.plc-n.grave{color:var(--st-grave)} .plc-n.medio{color:var(--amber)} .plc-n.neutro{color:var(--tinta)}
+.plc-n:hover{border-color:var(--cinza2)}
+.plc-n[aria-pressed="true"]{border-color:var(--tinta); background:rgba(216,239,221,.08)}
+.plc-n[disabled]{color:var(--cinza2); cursor:default}
+.plc-n:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+.plc-nota{margin:8px 0 0; font-size:13px; line-height:1.45; color:var(--cinza)}
+.plc-lista{margin:10px 0 6px; padding:2px 0 0; border-top:1px solid var(--linha)}
+.plc-lista .kx{margin:12px 0 6px}
+.plc-p{padding:9px 0; border-top:1px solid var(--linha)}
+.plc-lista .kx + .plc-p{border-top:0}
+.plc-nm{margin:0 0 3px}
+.plc-pes{display:inline; padding:0; border:0; background:none; font:700 16px/1.35 var(--sans); color:var(--tinta); text-align:left; cursor:pointer; text-decoration:underline; text-decoration-color:var(--cinza2); text-underline-offset:3px}
+.plc-pes:hover{text-decoration-color:var(--tinta)}
+.plc-nm .chip{margin-left:4px}
+.plc-s{margin:0; font-size:14px; line-height:1.45; color:var(--cinza)}
+.plc-ac{margin:4px 0 0}
 .toolbar{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:0 0 12px}
 .toolbar .busca-box{flex:1 1 240px; margin:0}
 .pil{display:inline-flex; align-items:center; min-height:44px; padding:0 14px; border:1.5px solid var(--cinza2); border-radius:999px; background:transparent; color:var(--tinta); font:600 13px var(--sans); cursor:pointer; text-decoration:none!important}
@@ -225,6 +264,8 @@ html.teia-cheia,html.teia-cheia body{overflow:hidden}
 .teia-cartao .tc-sit{margin:6px 0 0; padding-left:9px; border-left:2px solid var(--tinta); font-size:14px; line-height:1.45; color:var(--tinta)}
 .teia-cartao .tc-a{display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; margin-top:10px}
 .teia-cartao .tc-viz{font-size:12px; color:var(--cinza)}
+.teia-cartao .tc-cam{margin:8px 0 0; font-size:13.5px; line-height:1.45; color:var(--tinta)}
+.teia-cartao .tc-cam b{font-weight:800}
 .teia-cartao .tc-foz,.teia-cartao .zap-l{display:inline-flex; align-items:center; min-height:44px; font-size:14px; font-weight:700; color:var(--amber)}
 /* o painel ao lado (desktop) ou abaixo (celular) */
 .rede-painel{min-width:0; padding:14px 16px; border:1px solid var(--linha); border-radius:4px; background:var(--leve); max-height:720px; overflow:auto; overflow-wrap:break-word}
@@ -265,6 +306,34 @@ html.teia-cheia,html.teia-cheia body{overflow:hidden}
 .foz-liga .fl-k{margin:4px 0 0; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--cinza)}
 .foz-liga a{display:flex; align-items:center; min-height:44px; font-size:15px; font-weight:700; color:var(--amber); border-top:1px solid var(--linha)}
 .foz-liga .fl-k + a{border-top:0}
+/* pessoa → casos: o caso, o número da ficha e "elo por elo" */
+.foz-liga a.fl-c{flex-wrap:wrap; align-items:baseline; gap:0 10px; padding:9px 0; text-decoration:none}
+.foz-liga .fl-n{font-size:15px; font-weight:700; color:var(--tinta)}
+.foz-liga .fl-v{font-size:17px; font-weight:800; color:var(--amber); font-variant-numeric:tabular-nums; white-space:nowrap}
+.foz-liga .fl-x{margin-left:auto; font-size:14px; font-weight:700; color:var(--amber); white-space:nowrap}
+.foz-liga a.fl-c:hover .fl-n{text-decoration:underline; text-underline-offset:3px}
+/* graus de separação: o caminho de um nome até ele, de cima para baixo, como a cadeia da Foz */
+.grau{margin:10px 0 12px; padding:10px 12px 6px; border:1px solid var(--linha); border-left:3px solid var(--tinta); border-radius:4px; background:rgba(216,239,221,.03)}
+.grau .vlbl{margin:0 0 8px; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--cinza)}
+.grau .vlbl b{font-family:var(--sans); font-size:15px; font-weight:800; letter-spacing:0; text-transform:none; color:var(--tinta); margin-left:4px}
+.grau .vlbl span{text-transform:none; letter-spacing:0}
+.elos{list-style:none; margin:0; padding:0 0 0 18px; position:relative}
+.elos::before{content:""; position:absolute; left:5px; top:10px; bottom:12px; width:2px; background:rgba(216,239,221,.35)}
+.elo-p{position:relative; margin:0; padding:2px 0; font-size:15px; line-height:1.4; color:var(--tinta)}
+.elo-p::before{content:""; position:absolute; left:-18px; top:7px; width:12px; height:12px; border-radius:50%; background:var(--st-outros); box-shadow:0 0 0 3px var(--leve)}
+.elo-p.grave::before{background:var(--st-grave)} .elo-p.medio::before{background:var(--st-medio)}
+.elo-p.ele::before{background:var(--leve); border:2px solid var(--tinta); box-sizing:border-box}
+.elo-p .chip{margin-left:2px}
+.elo-n{padding:0; border:0; background:none; font:700 15px/1.4 var(--sans); color:var(--tinta); text-align:left; cursor:pointer; text-decoration:underline; text-decoration-color:var(--cinza2); text-underline-offset:3px}
+.elo-n:hover{text-decoration-color:var(--tinta)}
+.elo-l{margin:2px 0 6px; padding:0; font-size:13.5px; line-height:1.45; color:var(--cinza)}
+.elo-l .src{display:block; font-family:var(--mono); font-size:11px}
+.elo-l .chip{font-size:10px}
+.grau-a{display:flex; flex-wrap:wrap; align-items:center; gap:4px 16px; margin:8px 0 4px}
+.sheet .grau{margin:12px 0}
+.gr-t{margin:0 0 4px; font-size:14px; line-height:1.45; color:var(--tinta)}
+.sit i{display:block; flex-basis:100%; order:3; font-style:normal; font-size:12.5px; color:var(--cinza); margin-top:-2px}
+.sit{flex-wrap:wrap}
 
 /* ===== CRONOLOGIA ===== */
 .cr-topo{max-width:760px; margin:0 0 6px; padding:12px 14px 10px; border:1px solid var(--linha); border-radius:4px; background:var(--leve)}
@@ -319,10 +388,31 @@ button.cr-it:hover .cr-t{text-decoration:underline; text-underline-offset:3px; t
 .resp-q{margin:0 0 6px; font-family:var(--mono); font-size:12px; color:var(--cinza)}
 .resp-q b{font-family:var(--sans); font-size:17px; font-weight:800; color:var(--tinta)}
 .resp-i{margin:0 0 4px; font-size:15px; color:var(--tinta)}
-.resp-p{margin:0 0 8px; padding:10px 12px; border:1px solid var(--linha); border-left:3px solid var(--tinta); border-radius:4px; background:var(--leve); font-size:15px; line-height:1.45}
-.resp-p b{font-size:17px}
-.resp-p .p-a{display:flex; flex-wrap:wrap; gap:0 16px}
-.resp-p .p-a button,.resp-p .p-a a{display:inline-flex; align-items:center; min-height:44px; padding:0; border:0; background:none; font:700 14px var(--sans); color:var(--amber); cursor:pointer}
+/* a busca única: os resultados em fichas (o .afl da Foz), por grupo: casos, nomes, BolsoZap, registros */
+.bg .kx{margin:22px 0 8px}
+.bfs{display:flex; flex-direction:column}
+.bf{margin:0 0 10px; padding:10px 12px 6px; border:1px solid var(--linha); border-radius:4px; background:var(--leve); color:var(--tinta)}
+.bf-k{margin:0 0 4px; font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--cinza)}
+.bf-n{margin:0 0 6px; font-size:17px; line-height:1.25; font-weight:800; color:var(--tinta)}
+.bf .numero.ficha{margin:0 0 4px}
+.bf-t{margin:0 0 6px; font-size:14.5px; line-height:1.45; color:var(--tinta)}
+.bf-m{margin:0 0 6px; font-size:16px; line-height:1.45; color:var(--tinta)}
+.bf-papel{margin:0 0 6px; font-size:14px; line-height:1.45; color:var(--cinza)}
+.bf-chips{margin:0 0 6px}
+.bf-chips .chip{margin:0 4px 4px 0}
+.bf-s{margin:0 0 6px; padding-left:9px; border-left:2px solid var(--tinta); font-size:14px; line-height:1.45; color:var(--tinta)}
+.bf-c{margin:0 0 6px; font-size:14px; line-height:1.45; color:var(--cinza)}
+.bf-c a{color:var(--amber); font-weight:700}
+.bf-q{margin:2px 0 6px; padding:0 0 0 10px; border-left:2px solid var(--tinta); font-size:16px; line-height:1.45; color:var(--tinta)}
+.bf-q cite{display:block; margin-top:3px; font-style:normal; font-size:13px; color:var(--cinza)}
+.bf-f{margin:0 0 4px; font-family:var(--mono); font-size:12px; color:var(--cinza)}
+.bf-f a{display:inline-block; padding:8px 0; margin:-8px 0; color:var(--azul)}
+.bf-a{display:flex; flex-wrap:wrap; align-items:center; gap:2px 16px}
+.bf-p,.bf-a .zap-l{display:inline-flex; align-items:center; min-height:44px; padding:0; border:0; background:none; font:700 15px var(--sans); color:var(--amber); cursor:pointer; text-decoration:none}
+.bf-p:hover,.bf-a .zap-l:hover{text-decoration:underline; text-underline-offset:3px}
+.resp-i .bf-p{min-height:0}
+.bf-tb{margin:0 0 6px; font-size:14px; color:var(--cinza); max-width:760px}
+.bf-tb .lm{display:inline; min-height:0; margin:0; padding:6px 0; font-size:14px; text-align:left}
 
 /* ===== a folha (ficha de um registro ou de um nome): sobe do pé, como na Foz ===== */
 .overlay{position:fixed; inset:0; z-index:60; display:none; background:rgba(0,0,0,.62)}
@@ -386,3 +476,6 @@ input{font-size:16px}
 @media (max-width:410px){.rec-dq:empty{min-height:467px}}
 @media (max-width:370px){.rec-dq:empty{min-height:493px}}
 @media (max-width:340px){.rec-dq:empty{min-height:559px}}
+/* Pergunte ao arquivo (integrador, Onda 2): a resposta de ?busca= / do menu chega no DOMContentLoaded; a vista ocupa a
+   tela desde a 1ª pintura para o rodapé e o "siga o rio" não pularem (CLS 0,17 → 0 a 1280) */
+#view-chat.active{min-height:100vh}

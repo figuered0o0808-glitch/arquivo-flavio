@@ -73,7 +73,7 @@ const nomeCurto = n => { n = String(n || '').trim(); if (n.length > 26) n = n.re
    prisão revogada, "solto", "arquivada". "Processado" conta como investigado (mesma regra de foz.html). */
 function statusCls(s){
   s = String(s || '').toLowerCase().replace(/(?:^|[^\wÀ-ú])(n[ãa]o|nunca|sem|nenhum|ningu[ée]m)\s+(\S+\s+){0,2}?(pres[oa]s?|condena\S*|condenad\S*|indiciad\S*|indiciamento\S*|investigad\S*|denunciad\S*|den[úu]ncia\S*|r[ée]u|processad\S*)\b/g, ' ');
-  const desfeito = /\banul(ou|ad[oa]s?)\b|revogou a (ordem de )?pris|pris[ãa]o (foi )?revogad|\bsolt[oa]s?\b|\barquivad[oa]s?\b/.test(s);
+  const desfeito = /\banul(ou|ad[oa]s?)\b|revogou a (ordem de )?pris|pris[ãa]o (foi )?revogad|\bsolt[oa]s?\b|\barquivad[oa]s?\b|revogou as (medidas )?cautelares/.test(s);
   if (/\bcondenad[oa]s?\b/.test(s) && !/condena\S*\s+(foi\s+)?anulad/.test(s)) return 'grave';
   if (/\bpres[oa]s?\b/.test(s)) return desfeito ? (/\barquivad/.test(s) ? 'leve' : 'medio') : 'grave';
   if (/(investigad|denunciad|\br[ée]u\b|\balvo\b|indiciad|processad)/.test(s)) return /\barquivad/.test(s) && !/(investigad|\br[ée]u\b|indiciad|processad)/.test(s) ? 'leve' : 'medio';
@@ -281,8 +281,10 @@ const CAPS = ESCOLHA.map((x, k) => {
 const NCAP = CAPS.length;
 
 /* ---------- ritmo: comprimento de cada fase (em u, fração da altura da cena) e tempo no "assistir" (s, em 1×) ---------- */
-const U = { intro: 2.2, num: 2.4, entra: 1.8, elo: 1.1, ele: 2.0, sai: 0.8, fim: 2.2 };
-const T = { intro: 3.0, num: 3.6, entra: 1.3, elo: 1.2, ele: 2.2, sai: 0.6, fim: 2.6 };
+/* 27/09 (Onda 2): ~25% mais curto na rolagem e ~18% no "assistir" (a página tinha 35 telas no celular; agora ≤ 30),
+   com os mesmos capítulos, números e elos; o limiar de cada efeito (0,35–0,9 u) continua cabendo em cada fase */
+const U = { intro: 1.7, num: 1.8, entra: 1.35, elo: 0.82, ele: 1.5, sai: 0.6, fim: 1.7 };
+const T = { intro: 2.5, num: 3.0, entra: 1.1, elo: 1.0, ele: 1.8, sai: 0.5, fim: 2.1 };
 const CONTA = 0.55;                /* a contagem ocupa os primeiros 55% da fase do número; o resto é para ler */
 
 /* =====================================================================
@@ -1092,6 +1094,9 @@ window.addEventListener('resize', () => {
   clearTimeout(rt);
   rt = setTimeout(() => {
     const mudouL = window.innerWidth !== largura, mudouA = Math.abs(window.innerHeight - altura) > 140;
+    /* o teclado de um campo da página (o "compare com você") não refaz a história */
+    const at = doc.activeElement;
+    if (!mudouL && at && (at.tagName === 'INPUT' || at.tagName === 'TEXTAREA')) return;
     largura = window.innerWidth; altura = window.innerHeight;
     if (mudouL || mudouA) refaz();
   }, 200);

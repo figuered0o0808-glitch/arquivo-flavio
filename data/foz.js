@@ -160,7 +160,7 @@ window.FOZ = {
    "ressalva": "Ramagem foi condenado na trama golpista, não por este episódio. Na rachadinha, as provas foram anuladas e a denúncia, arquivada em 2022.",
    "rotas": {
     "historia": "cap-abin-defesa-rachadinha",
-    "zap": null,
+    "zap": "abin-paralela",
     "quiz": [],
     "dh": null,
     "teia": [
@@ -442,7 +442,7 @@ window.FOZ = {
    "ressalva": "O inquérito corre sob sigilo.",
    "rotas": {
     "historia": null,
-    "zap": null,
+    "zap": "inquerito-cpi-covid",
     "quiz": [],
     "dh": null,
     "teia": [
@@ -1101,7 +1101,7 @@ window.FOZ = {
    "ressalva": "Ele é alvo de representação no TCU, processo de controle, não criminal, e disse que devolveria o valor.",
    "rotas": {
     "historia": "cap-cota-senado-viagens",
-    "zap": null,
+    "zap": "viagens",
     "quiz": [],
     "dh": null,
     "teia": [
@@ -1324,10 +1324,10 @@ window.FOZ = {
    "status_flavio": "Na Operação Emendatio, a PF apura a emenda que ele destinou ao Ifop, mas ele não foi alvo dos mandados. Ele afirma que a emenda seguiu a legislação e os critérios técnicos do Ministério do Esporte.",
    "operacao": "Operação Emendatio (PF, jul/2026, autorizada por Alexandre de Moraes)",
    "periodo": "2023–2026",
-   "resumo": "O STF condenou cinco pessoas no caso do assassinato da vereadora Marielle Franco e do motorista Anderson Gomes: os irmãos Domingos e Chiquinho Brazão (76 anos e 3 meses cada), o major da PM Ronald Paulo Alves Pereira (56 anos), o ex-chefe da Polícia Civil Rivaldo Barbosa (18 anos, por corrupção passiva e obstrução de Justiça; absolvido do homicídio) e Robson Calixto, o Peixe (9 anos, por integrar organização criminosa armada, não pela execução). As penas começaram a ser cumpridas em julho de 2026. Dois dos cinco têm ligação documentada com Flávio: em 2004, 14 anos antes do crime, por indicação dele, a Alerj concedeu moção honrosa ao major Ronald; em 2023, segundo a PF, Peixe tratou com uma assessora do gabinete dele no Senado a emenda de R$ 199.999,79 que Flávio destinou ao Ifop, instituto ligado aos Brazão. A PF apura o destino dessa emenda na Operação Emendatio.",
+   "resumo": "O STF condenou cinco pessoas no caso do assassinato da vereadora Marielle Franco e do motorista Anderson Gomes: os irmãos Domingos e Chiquinho Brazão (76 anos e 3 meses cada), o major da PM Ronald Paulo Alves Pereira (56 anos), o ex-chefe da Polícia Civil Rivaldo Barbosa (18 anos, por corrupção passiva e obstrução de Justiça; absolvido do homicídio) e Robson Calixto, o Peixe (9 anos, por integrar organização criminosa armada, não pela execução). As penas começaram a ser cumpridas em julho de 2026. Dois dos cinco têm ligação documentada com Flávio: em 2004, 14 anos antes do crime, por indicação dele, a Alerj concedeu moção honrosa ao major Ronald; em 2023, segundo a PF, Peixe tratou com uma assessora do gabinete dele no Senado a emenda de R$ 199.999,79 que Flávio destinou ao Ifop. Na Operação Emendatio, a PF apura emendas a entidades ligadas aos Brazão.",
    "numero": {
     "valor": "R$ 199.999,79",
-    "texto": "em emenda dele ao Ifop, ligado aos irmãos Brazão; uma assessora dele tratou dela com o Peixe, hoje condenado no caso Marielle, segundo mensagens obtidas pela PF",
+    "texto": "em emenda dele ao Ifop; uma assessora dele tratou dela com o Peixe, hoje condenado no caso Marielle, segundo mensagens obtidas pela PF, que apura emendas a entidades ligadas aos irmãos Brazão",
     "fonte": {
      "veiculo": "CNN Brasil",
      "url": "https://www.cnnbrasil.com.br/politica/assessora-de-flavio-negociou-emenda-com-condenado-em-caso-marielle/",
@@ -1534,7 +1534,7 @@ window.FOZ = {
    "ressalva": "Peixe foi condenado por integrar organização criminosa armada, não pela execução do crime.",
    "rotas": {
     "historia": "cap-marielle-ifop",
-    "zap": null,
+    "zap": "caso-marielle",
     "quiz": [],
     "dh": null,
     "teia": [
@@ -3296,7 +3296,7 @@ window.FOZ = {
    "ressalva": "Na maioria dos casos, a homenagem veio antes do crime ou da condenação.",
    "rotas": {
     "historia": "cap-mocoes-pms-reus-condenados",
-    "zap": null,
+    "zap": "homenagens-alerj",
     "quiz": [],
     "dh": null,
     "teia": [

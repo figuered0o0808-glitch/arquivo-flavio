@@ -1,8 +1,10 @@
 /* BOLSODRIVE · a espinha do rio.
    Monta o cabeçalho, o menu e o link "siga o rio" de todas as páginas.
    O menu (Onda 1, X03/D13): 5 destinos (A Foz, ↳ Dark Horse, O dinheiro, BolsoZap, Quiz) + "Arquivo", que agrupa o
-   resto (Recentemente, os registros, a teia de nomes e a órbita, Cronologia, Notícias, Pergunte ao arquivo); no alto,
-   "O rio em 60 segundos"; no pé, "enviar esta tela" (S13: o tópico da tela atual) e o "Kit de envio".
+   resto (Recentemente, os registros, a teia de nomes e a órbita, Cronologia); no alto, "O rio em 60 segundos" e a caixa
+   "Pergunte ao arquivo" (a busca única do drive.html#chat: casos, nomes, BolsoZap e registros); no pé, "enviar esta
+   tela" (S13: o tópico da tela atual) e o "Kit de envio". Notícias virou a faixa "Nas manchetes" do Recentemente
+   (drive.html#noticias continua valendo) e saiu do menu (Onda 2, P2-C).
    Celular: [ MENU ] abre o menu em tela cheia. Desktop: os 5 destinos em linha; [ MENU ] abre o resto.
    Os trechos do rio (0 nascente → 3 foz) continuam: a linha do curso, o "trecho N de 3" e o "siga o rio".
    Página que quiser dizer qual tópico é a tela atual: window.BD_TELA = 'id' ou function(){ return 'id' }.
@@ -73,8 +75,7 @@
     {id:'rede',       nome:'A teia de nomes',     curto:'A teia', href:'drive.html#rede'},
     {id:'orbita',     nome:'Em órbita',           curto:'Em órbita', href:'close-friends.html'},
     {id:'cronologia', nome:'Cronologia',          href:'drive.html#cronologia'},
-    {id:'noticias',   nome:'Notícias',            href:'drive.html#noticias'},
-    {id:'chat',       nome:'Pergunte ao arquivo', curto:'Pergunte', href:'drive.html#chat'}
+    {id:'chat',       nome:'Pergunte ao arquivo', curto:'Pergunte', href:'drive.html#chat'}   // no menu, é a caixa de busca (nv-busca)
   ];
   var RIO60 = {id:'rio60', nome:'O rio em 60 segundos', curto:'60 segundos', href:'rio60.html', desc:'os casos principais, um por tela, com o envio em cada um'};
   var KIT = {id:'kit', nome:'Kit de envio', curto:'Kit de envio', href:'kit.html', desc:'20 cartões com fonte, textos prontos e stories para o status'};
@@ -263,6 +264,15 @@
       '.nv-arq .nv-margens a{padding:0 8px; font-size:12px; letter-spacing:.01em}',
       '.nv-arq[hidden]{display:none}',
       '.nv-arq .nv-margens a span{white-space:nowrap}',
+      /* a busca única no menu */
+      '.nv-busca{margin:10px 0 4px}',
+      '.nv-busca .nv-k{display:block; margin:0 0 6px}',
+      '.nv-bq{display:flex; gap:6px}',
+      '.nv-bq input{flex:1; min-width:0; min-height:44px; padding:0 12px; border:1px solid rgba(116,255,150,.25); border-radius:4px; background:#0e160e; color:#d8efdd; font:16px var(--nv-sans); -webkit-appearance:none; appearance:none}',
+      '.nv-bq input::placeholder{color:#86a58c}',
+      '.nv-bq input:focus{outline:none; border-color:#ffb02e}',
+      '.nv-bq button{flex:none; min-height:44px; padding:0 14px; border:1.5px solid #ffb02e; border-radius:2px; background:transparent; color:#ffb02e; font:700 15px var(--nv-sans); cursor:pointer}',
+      '.nv-bq button:focus-visible{outline:2px solid #ffb02e; outline-offset:2px}',
       /* mande adiante: enviar a tela atual (S13) e o kit */
       '.nv-env{display:flex; align-items:center; justify-content:center; width:100%; min-height:48px; padding:0 18px; border:1.5px solid #ffb02e; border-radius:2px; background:#ffb02e; color:#120c00; font-family:var(--nv-sans); font-size:16px; font-weight:700; cursor:pointer}',
       '.nv-env:focus-visible{outline:2px solid #ffb02e; outline-offset:2px}',
@@ -322,6 +332,10 @@
         '<button type="button" class="nv-fecha" id="nv-fecha">fechar</button></div>' +
       '<a class="nv-60" id="nv-60" href="' + RIO60.href + '"><span class="nv-play" aria-hidden="true"></span>' +
         '<span><b>' + esc(RIO60.nome) + '</b><span class="nv-d">' + esc(RIO60.desc) + '</span></span></a>' +
+      '<form class="nv-busca" id="nv-busca" role="search" action="drive.html#chat">' +
+        '<label class="nv-k" for="nv-q">pergunte ao arquivo</label>' +
+        '<div class="nv-bq"><input id="nv-q" type="search" enterkeyhint="search" autocomplete="off" placeholder="Queiroz, Ifop, jato…">' +
+        '<button type="submit">procurar</button></div></form>' +
       '<div class="nv-sec nv-sec-rio"><p class="nv-k">o rio</p><ol class="nv-dest" id="nv-lista"></ol></div>' +
       '<div class="nv-sec nv-sec-envio"><p class="nv-k">mande adiante</p>' +
         '<button type="button" class="nv-env" id="nv-env">enviar esta tela ↗</button>' +
@@ -398,9 +412,9 @@
         '<span class="nv-d">' + esc(descDe(x)) + '</span></a></li>';
     }).join('') +
       '<li class="nv-grupo"><button type="button" class="nv-abre' + (naArq ? ' nv-aqui-grupo' : '') + '" id="nv-abre" aria-expanded="' + aberto + '" aria-controls="nv-arq">' +
-        '<b>Arquivo</b><span class="nv-d">o que saiu, a teia de nomes, a busca</span><span class="nv-mais" aria-hidden="true">' + (aberto ? '−' : '+') + '</span></button>' +
+        '<b>Arquivo</b><span class="nv-d">o que saiu, os registros, a teia de nomes</span><span class="nv-mais" aria-hidden="true">' + (aberto ? '−' : '+') + '</span></button>' +
       '<div class="nv-arq" id="nv-arq"' + (aberto ? '' : ' hidden') + '><div class="nv-margens">' +
-      ARQUIVO.map(function(x){
+      ARQUIVO.filter(function(x){ return x.id !== 'chat'; }).map(function(x){
         var conta = x.id === 'recente' && rc ? '<b class="nv-conta" aria-label="' + rc + ' fatos novos">' + rc + '</b>' : '';
         return '<a href="' + x.href + '"' + cur(x.id) + '><span>' + esc(x.nome) + '</span>' + conta + '</a>';
       }).join('') + '</div></div></li>';
@@ -539,7 +553,7 @@
     if (!aberto()) return;
     if (e.key === 'Escape' || e.key === 'Esc'){ e.preventDefault(); abre(false); return; }
     if (e.key !== 'Tab') return;
-    var f = Array.prototype.filter.call(mapa.querySelectorAll('a[href],button'), function(x){ return x.offsetParent !== null; });
+    var f = Array.prototype.filter.call(mapa.querySelectorAll('a[href],button,input'), function(x){ return x.offsetParent !== null; });
     if (mqDesk.matches) f = [bt].concat(f);         // desktop: o foco circula entre o botão e o menu
     if (!f.length) return;
     var i = f.indexOf(doc.activeElement);
@@ -554,6 +568,17 @@
   if (mqDesk.addEventListener) mqDesk.addEventListener('change', mudaMq); else if (mqDesk.addListener) mqDesk.addListener(mudaMq);
   /* voltar do navegador (bfcache) não pode trazer o mapa aberto */
   window.addEventListener('pageshow', function(e){ if (e.persisted && aberto()) abre(false, false); });
+
+  /* "pergunte ao arquivo": no drive, responde ali mesmo; fora dele, leva a pergunta ao drive.html#chat pelo
+     sessionStorage (o termo não vai no endereço) ou, sem ele, por ?busca= */
+  el('nv-busca').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = String(el('nv-q').value || '').trim(); if (!q) { el('nv-q').focus(); return; }
+    if (window.BDBusca && typeof window.BDBusca.perguntar === 'function'){ abre(false, false); el('nv-q').value = ''; window.BDBusca.perguntar(q); return; }
+    var ok = false;
+    try { sessionStorage.setItem('bd_pergunta', q); ok = sessionStorage.getItem('bd_pergunta') === q; } catch (_){}
+    location.href = ok ? 'drive.html#chat' : 'drive.html?busca=' + encodeURIComponent(q) + '#chat';
+  });
 
   window.BDNav = { atualiza: atualiza, abre: function(){ abre(true); }, fecha: function(){ abre(false); }, TRECHOS: TRECHOS, MARGENS: MARGENS, DESTINOS: DESTINOS, ARQUIVO: ARQUIVO };
   atualiza();

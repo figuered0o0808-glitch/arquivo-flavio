@@ -1527,13 +1527,14 @@ window.DARKHORSE = {
    "k": "08/09/2025",
    "grande": {
     "tipo": "citacao",
-    "v": "“Eu fico sem graça de ficar te cobrando.”",
+    "v": "“Eu fico sem graça de ficar te cobrando, está em um momento muito decisivo aqui do filme”",
     "conta": false
    },
    "linhas": [
-    "ele a Vorcaro, em áudio, com parcelas do filme atrasadas."
+    "ele a Vorcaro, em áudio obtido pela PF."
    ],
    "ele": null,
+   "audio": "audio-8-set-2025",
    "refs": [
     "audio-8-set-2025"
    ],
@@ -2025,11 +2026,11 @@ window.DARKHORSE = {
   },
   "dh-cobranca": {
    "destino": "dark-horse.html#dh-cobranca",
-   "corpo": "'Eu fico sem graça de ficar te cobrando', disse ele a Daniel Vorcaro em áudio de 08/09/2025, com parcelas do filme sobre o pai atrasadas. 'Imagina a gente dando calote no Jim Caviezel'.",
+   "corpo": "'Eu fico sem graça de ficar te cobrando' e 'Imagina a gente dando calote no Jim Caviezel', disse ele a Daniel Vorcaro em áudio de 08/09/2025 obtido pela PF.",
    "cartao": {
-    "nome": "O áudio",
-    "n": "“Eu fico sem graça de ficar te cobrando.”",
-    "l": "ele a Daniel Vorcaro, em 08/09/2025, com parcelas do filme sobre o pai atrasadas",
+    "nome": "O áudio, lido",
+    "n": "“Eu fico sem graça de ficar te cobrando”",
+    "l": "ele a Daniel Vorcaro, em áudio de 08/09/2025 obtido pela PF",
     "tipo": "citacao"
    }
   },
@@ -2114,5 +2115,42 @@ window.DARKHORSE = {
     "tipo": "texto"
    }
   }
+ },
+ "audio": {
+  "id": "audio-8-set-2025",
+  "rotulo": "O áudio, lido",
+  "data": "2025-09-08",
+  "quem": "Flávio Bolsonaro",
+  "a": "a Vorcaro",
+  "meio": "áudio obtido pela PF",
+  "trechos": [
+   {
+    "id": "audio-cobranca",
+    "t": "Eu fico sem graça de ficar te cobrando, está em um momento muito decisivo aqui do filme",
+    "fonte": {
+     "veiculo": "Metrópoles",
+     "data": "2026-05-13",
+     "url": "https://www.metropoles.com/brasil/vorcaro-pagou-r-61-milhoes-para-filme-de-bolsonaro-flavio-cobrou-dinheiro-ouca"
+    }
+   },
+   {
+    "id": "calote",
+    "t": "Imagina a gente dando calote no Jim Caviezel",
+    "fonte": {
+     "veiculo": "Metrópoles",
+     "data": "2026-05-13",
+     "url": "https://www.metropoles.com/brasil/vorcaro-pagou-r-61-milhoes-para-filme-de-bolsonaro-flavio-cobrou-dinheiro-ouca"
+    }
+   }
+  ],
+  "ouca": {
+   "veiculo": "CNN Brasil",
+   "data": "2026-05-13",
+   "url": "https://www.cnnbrasil.com.br/politica/ouca-o-audio-de-flavio-bolsonaro-pedindo-dinheiro-a-vorcaro/"
+  },
+  "sit": "ele neste caso: investigado no STF desde julho de 2026, sem denúncia.",
+  "momento": "dh-cobranca",
+  "share": "dh-cobranca",
+  "conversa": "dark-horse"
  }
 };

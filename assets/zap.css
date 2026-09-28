@@ -427,3 +427,35 @@ body.zap .site-header{position:static}
 /* Revisão da Onda 1: enquanto o zap.js não montou a lista (rede lenta), nada abaixo dela aparece;
    sem isso a legenda, o rodapé e o "siga o rio" pintam no alto e descem de uma vez (CLS 0,16 a 1,6 Mbps). */
 .z-linhas:empty ~ .z-leg, .z-linhas:empty ~ .z-lrod, #z-esq:has(.z-linhas:empty) .nv-segue{display:none}
+
+/* Onda 2 (P2-D). A Foz no BolsoZap: cada mensagem é o cartão de um caso, no padrão da ficha — rótulo em tinta, destaque
+   em âmbar (a situação dele, quando é o destaque, em tinta), frase, ELE em tinta, fonte e a ficha na Foz (porta âmbar). */
+.z-fz .z-bal{min-width:min(280px,85%)}
+.z-fzk{display:block; margin:2px 0 0; color:var(--z-texto); font-size:13.5px; font-weight:700; letter-spacing:.01em}
+.z-fzn{display:block; margin:2px 0 3px; color:var(--z-ambar); font-size:27px; font-weight:800; line-height:1.08; letter-spacing:-.015em; font-variant-numeric:tabular-nums; overflow-wrap:normal; text-wrap:balance}
+.z-fzn.z-frase{font-size:21px; line-height:1.15; letter-spacing:-.005em}
+.z-fzn.z-tinta{color:var(--z-texto)}
+.z-fzele{margin:6px 0 0; padding-left:9px; border-left:2px solid var(--z-texto2); color:var(--z-texto); font-size:14px; line-height:1.35}
+.z-fzele b{margin-right:6px; font-size:11.5px; font-weight:800; letter-spacing:.06em}
+.z-fzp{display:inline-flex; align-items:center; min-height:44px; margin:0 0 -6px; padding:0 2px; color:var(--z-ambar); font-size:15px; font-weight:700; text-decoration:none}
+.z-fzp:hover{text-decoration:underline; text-underline-offset:3px}
+.z-fzp:focus-visible{outline:2px solid var(--z-ambar); outline-offset:2px}
+.z-sepfx .z-pil{font-weight:700; color:var(--z-texto)}
+
+/* Print de bolha (N09): segurar uma mensagem abre o print dela com o botão de enviar */
+@media (hover:none){ .z-fluxo .z-bl .z-bal{-webkit-touch-callout:none; -webkit-user-select:none; user-select:none} }
+.z-bl.z-segura .z-bal{transition:transform .35s ease .12s, filter .35s ease .12s; transform:scale(.975); filter:brightness(1.12)}
+.z-print{margin:6px 16px 12px; padding:0 0 10px; border:1px solid rgba(233,237,239,.14); border-radius:10px; background:var(--z-fundo); overflow:hidden}
+.z-print-cab{display:flex; align-items:center; gap:10px; padding:8px 12px; background:var(--z-barra)}
+.z-print-cab .z-av{width:36px; height:36px; font-size:13px}
+.z-print-cab b{display:block; font-size:15px}
+.z-print-cab small{display:block; color:var(--z-texto2); font-size:12.5px; line-height:1.3}
+.z-print-m{padding:10px 10px 2px}
+.z-print-m .z-bal{max-width:100%; cursor:default}
+.z-print-m .z-prev{pointer-events:none}
+.z-print figcaption{padding:4px 12px 0; color:var(--z-texto2); font-size:12px}
+.z-print-a{display:flex; justify-content:flex-start; margin:0 16px 10px}
+.z-print-a .env{min-width:140px}
+.z-fdica{display:flex; align-items:center; gap:8px; margin:6px 20px 10px; color:var(--z-texto2); font-size:13px}
+.z-fdica .z-i{width:16px; height:16px; flex:none}
+@media (prefers-reduced-motion:reduce){ .z-bl.z-segura .z-bal{transition:none; transform:none} }

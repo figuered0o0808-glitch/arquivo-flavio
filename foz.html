@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="assets/base.css?v=38ce818e">
 <link rel="stylesheet" href="assets/header.css?v=84dc371e">
 <link rel="stylesheet" href="assets/comparador.css?v=cb10f632">
+<link rel="stylesheet" href="assets/audio-lido.css?v=a3adc37e">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
 <link rel="apple-touch-icon" href="assets/marca/icone-180.png">
@@ -267,6 +268,10 @@ body[data-trecho="3"] .nv-segue{display:none}
 .siga a:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
 .siga a .n{font-variant-numeric:tabular-nums}
 .folha .acoes{margin:0 0 14px}
+/* O ÁUDIO, LIDO (N04, P2-B): o lugar fica reservado enquanto data/darkhorse.js chega (a ficha não pula) */
+.al-slot:empty{min-height:420px}
+@media (min-width:430px){ .al-slot:empty{min-height:400px} }
+@media (min-width:760px){ .al-slot:empty{min-height:384px} }
 /* desktop (D12): o destaque na largura da bacia, em duas colunas: nome e número à esquerda, frase e ações à direita */
 @media (min-width:1000px){
   .dq{width:min(1100px, calc(100vw - 64px)); margin-left:calc(50% - min(550px, 50vw - 32px)); display:grid; grid-template-columns:minmax(0,11fr) minmax(0,9fr); grid-template-areas:"h t" "n t" "n a"; column-gap:40px; align-items:start; padding:20px 24px 16px}
@@ -318,16 +323,19 @@ body[data-trecho="3"] .nv-segue{display:none}
 
 <div class="folha" id="folha"><div class="cx" id="folha-cx"></div></div>
 
-<script src="data/dados-lite.js?v=c33857f8"></script>
+<script src="data/dados-lite.js?v=d9efead5"></script>
 <script src="assets/fotos.js?v=734cce7c"></script>
-<script src="data/foz.js?v=880cbd84"></script>
-<script src="data/zap-mapa.js?v=02cdbfdf"></script>
-<script src="data/foz-curto.js?v=7d97a6fb"></script>
-<script src="data/topicos.js?v=75878a47"></script>
-<script src="assets/compartilhar.js?v=edbe4096" defer></script>
+<script src="data/foz.js?v=0c91d9eb"></script>
+<script src="data/zap-mapa.js?v=e26bbba5"></script>
+<script src="data/foz-curto.js?v=49585cb8"></script>
+<script src="data/topicos.js?v=d0b7736c"></script>
+<script src="assets/compartilhar.js?v=f3f9b497" defer></script>
 <script src="assets/quiz-basico.js?v=87859d76" defer></script>
 <script src="assets/quiz-perguntas.js?v=b7865771" defer></script>
 <script src="assets/comparador.js?v=fe85f128"></script>
+<script src="assets/audio-lido.js?v=c36aad86" defer></script>
+<!-- os dados do áudio (data/darkhorse.js): não carregam com a página; assets/audio-lido.js os pede quando a ficha Master abre -->
+<script type="text/x-adiado" data-al-dados src="data/darkhorse.js?v=c5acd306"></script>
 <script>
 /* =====================================================================
    RIO: motor de água do BolsoDrive. Canvas 2D, sem dependências.
@@ -804,6 +812,8 @@ function fraseDe(e){
 const ehFrase = n => !!n && n.tipo === 'frase';
 /* o caso com afluente próprio: link secundário na ficha, depois de "enviar" */
 const AFLUENTE = { master: ['dark-horse.html', 'o afluente, mês a mês →'], 'coacao-eduardo': ['dark-horse.html#dh-tarifa', 'as datas, lado a lado →'] };
+/* O ÁUDIO, LIDO (N04): o caso com áudio transcrito pela fonte (id de data/darkhorse.js, audio.id) */
+const AUDIO = { master: 'audio-8-set-2025' };
 /* o botão de enviar manda o tópico da tela (assets/compartilhar.js); sem ele, um texto curto do caso */
 function envia(id, ev){
   if (ev){ ev.preventDefault(); ev.stopImmediatePropagation(); }
@@ -1342,7 +1352,7 @@ function irPara(id){
    "nenhum", "ninguém") não contam; "processado" conta como investigado */
 function statusCls(s){
   s = String(s || '').toLowerCase().replace(/(?:^|[^\wÀ-ú])(n[ãa]o|nunca|sem|nenhum|ningu[ée]m)\s+(\S+\s+){0,2}?(pres[oa]s?|condena\S*|condenad\S*|indiciad\S*|indiciamento\S*|investigad\S*|denunciad\S*|den[úu]ncia\S*|r[ée]u|processad\S*)\b/g, ' ');
-  const desfeito = /\banul(ou|ad[oa]s?)\b|revogou a (ordem de )?pris|pris[ãa]o (foi )?revogad|\bsolt[oa]s?\b|\barquivad[oa]s?\b/.test(s);
+  const desfeito = /\banul(ou|ad[oa]s?)\b|revogou a (ordem de )?pris|pris[ãa]o (foi )?revogad|\bsolt[oa]s?\b|\barquivad[oa]s?\b|revogou as (medidas )?cautelares/.test(s);
   if (/\bcondenad[oa]s?\b/.test(s) && !/condena\S*\s+(foi\s+)?anulad/.test(s)) return 'grave';
   if (/\bpres[oa]s?\b/.test(s)) return desfeito ? (/\barquivad/.test(s) ? '' : 'medio') : 'grave';
   if (/(investigad|denunciad|\br[ée]u\b|\balvo\b|indiciad|processad)/.test(s)) return /\barquivad/.test(s) && !/(investigad|\br[ée]u\b|indiciad|processad)/.test(s) ? '' : 'medio';
@@ -1407,9 +1417,12 @@ function abre(id){
     blocoNumero(e) +
     eleBox(e) +
     '<div class="acoes"><button type="button" class="env" data-share="' + esc(e.id) + '">enviar ↗</button></div>' +
+    (AUDIO[e.id] ? '<div class="al-slot" data-al="' + esc(AUDIO[e.id]) + '"></div>' : '') +
     quantoHtml(e) +
     sigaHtml(e) +
     (mari ? ligacoesMarielle(e) + '<div class="cam-mari">' + cadeia + '</div>' : cadeia) +
+    /* N07 (Onda 2): o cartão "o caminho" do caso (gera_compartilhar.py: <caso>--caminho), quando existe */
+    ((window.BD_TOPICOS || {})[e.id + '--caminho'] ? '<div class="acoes cam-env"><button type="button" class="sec" data-share="' + esc(e.id) + '--caminho">enviar o caminho ↗</button></div>' : '') +
     '<button type="button" class="lm" id="lm" aria-expanded="false">ler mais ↓</button>' +
     '<div class="mais-box">' +
       '<p class="op">' + esc([e.operacao, e.periodo].filter(Boolean).join(' · ')) + '</p>' +
@@ -1427,9 +1440,27 @@ function abre(id){
     $('#lm').textContent = ab ? 'ler menos ↑' : 'ler mais ↓'; $('#lm').setAttribute('aria-expanded', String(ab));
   });
   ligaEnvio($('#folha-cx'));
+  montaAudio($('#folha-cx .al-slot'));
   realca(id);
   cabeFrase($('#folha-cx .nb-n.frase'));
   conta(document.getElementById('nb-conta'));
+}
+/* O ÁUDIO, LIDO (N04): a transcrição publicada pela fonte, letra a letra sobre o osciloscópio da marca, com "ouça na
+   fonte", quem gravou, a data e a situação dele (assets/audio-lido.js). Os dados vêm de data/darkhorse.js, pedido só aqui. */
+function montaAudio(slot){
+  if (!slot) return;
+  const vai = () => {
+    const AL = window.BDAudioLido;
+    if (!AL){ slot.remove(); return; }
+    AL.carrega(A => {
+      if (!slot.isConnected) return;
+      if (!A || A.id !== slot.dataset.al){ slot.remove(); return; }
+      AL.monta(slot, A, { modo: 'cheio', auto: true, share: A.share });
+      ligaEnvio(slot);
+    });
+  };
+  if (window.BDAudioLido || document.readyState !== 'loading') vai();
+  else document.addEventListener('DOMContentLoaded', vai, { once: true });
 }
 /* destaque-frase em no máximo 2 linhas e sem palavra saindo da caixa: se não couber, a letra desce de 2 em 2px */
 function cabeFrase(el){
@@ -1566,6 +1597,6 @@ window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() =
 }, 150); });
 })();
 </script>
-<script src="assets/nav.js?v=fc36981b"></script>
+<script src="assets/nav.js?v=db4ad0ea"></script>
 </body>
 </html>

@@ -16,8 +16,17 @@
      Sem tópico nenhum (página sem data/topicos.js), o envio é o título e o endereço da própria tela — o
      mesmo em todas as páginas.
    window.BDShare.topico(id)  → { titulo, texto, url, img } (ou null).
-   window.BDShare.envios()    → quantos envios saíram deste aparelho (localStorage['bd_envios'], só local,
-                                nunca enviado a lugar nenhum).
+   window.BDShare.envios()    → quantos envios saíram deste aparelho (localStorage['bd_envios']).
+   window.BDShare.enviou(id)  → true se este aparelho já mandou o tópico (localStorage['bd_enviados']).
+
+   Contador local (T05f): conta os envios concluídos (share resolvido ou WhatsApp aberto) e guarda os ids já
+   mandados. Fica só no aparelho: nada vai para a rede, sem cookie, sem medição. Onde faz sentido:
+     · o aviso depois do envio: "Enviado" e, do 2º em diante, "Enviado · você já mandou N deste aparelho"
+       (<html data-envio-aviso="nao"> desliga o aviso, para páginas com retorno próprio, como o BolsoZap);
+     · qualquer elemento [data-envios] recebe o texto e aparece quando N > 0; o valor do atributo é o modelo
+       ({n} = o número; {a|b} = singular|plural), por padrão "você já mandou {n}";
+     · todo [data-share] de um tópico já mandado ganha data-enviado="1" (para a página marcar, se quiser);
+     · o evento 'bd:envio' em window, com detail = { id, n, modo }.
 
    O cartão é baixado antes do toque (quando o botão aparece na tela ou no toque), para o share()
    ainda contar como gesto do usuário. Se o navegador recusar por demora, pede um segundo toque. */
@@ -84,10 +93,30 @@ function aviso(msg){
   clearTimeout(avisoT); avisoT = setTimeout(() => { avisoEl.style.opacity = '0'; }, 2600);
 }
 
-/* contador local de envios que saíram (share resolvido ou WhatsApp aberto); fica no aparelho */
-const CHAVE = 'bd_envios';
+/* contador local de envios que saíram (share resolvido ou WhatsApp aberto); fica no aparelho, nunca vai à rede */
+const CHAVE = 'bd_envios', CHAVE_IDS = 'bd_enviados';
 function envios(){ try { return parseInt(localStorage.getItem(CHAVE), 10) || 0; } catch (_){ return 0; } }
-function conta(){ try { localStorage.setItem(CHAVE, String(envios() + 1)); } catch (_){} }
+function enviados(){ try { const a = JSON.parse(localStorage.getItem(CHAVE_IDS) || '[]'); return Array.isArray(a) ? a : []; } catch (_){ return []; } }
+function enviou(id){ return !!id && enviados().indexOf(id) >= 0; }
+function mostraEnvios(){
+  const n = envios();
+  document.querySelectorAll('[data-envios]').forEach(el => {
+    const m = el.getAttribute('data-envios') || 'você já mandou {n}';
+    el.textContent = m.replace(/\{n\}/g, n).replace(/\{([^|{}]*)\|([^{}]*)\}/g, (_, a, b) => (n === 1 ? a : b));
+    el.setAttribute('data-envios-n', String(n));
+    el.hidden = n < 1;
+  });
+}
+function marca(id){ if (id) document.querySelectorAll('[data-share]').forEach(el => { if (el.getAttribute('data-share') === id) el.setAttribute('data-enviado', '1'); }); }
+function conta(id, modo){
+  let n = envios() + 1;
+  try { localStorage.setItem(CHAVE, String(n)); } catch (_){ n = 0; }   /* sem armazenamento (aba anônima): não há contagem */
+  if (id){ try { const a = enviados().filter(x => x !== id); a.push(id); localStorage.setItem(CHAVE_IDS, JSON.stringify(a.slice(-400))); } catch (_){} }
+  marca(id); mostraEnvios();
+  if (modo !== 'zap' && document.documentElement.getAttribute('data-envio-aviso') !== 'nao')
+    aviso(n > 1 ? 'Enviado · você já mandou ' + n + ' deste aparelho' : 'Enviado');
+  try { window.dispatchEvent(new CustomEvent('bd:envio', { detail: { id: id || '', n: n, modo: modo } })); } catch (_){}
+}
 
 function porZap(t){
   const href = 'https://wa.me/?text=' + encodeURIComponent(junta(t));
@@ -97,7 +126,7 @@ function porZap(t){
     if (w){ try { w.opener = null; } catch (_){} }
   }
   if (!w) location.href = href;   /* embutido, ou a janela foi bloqueada: a própria aba */
-  conta();
+  conta(t.id, 'zap');
   return 'zap';
 }
 
@@ -105,6 +134,7 @@ const ocupado = new Set();
 async function enviar(id, extra){
   const chave = TOP()[id] ? id : (TOP().abertura ? 'abertura' : '');
   const t = sobrepoe(topico(chave) || reserva(), extra);
+  t.id = chave;
   if (ocupado.has(chave)) return;
   ocupado.add(chave);
   try {
@@ -119,7 +149,7 @@ async function enviar(id, extra){
       }
       if (f){
         try {
-          if (navigator.canShare({ files: [f] })){ await navigator.share({ files: [f], text: junta(t) }); conta(); return 'arquivo'; }
+          if (navigator.canShare({ files: [f] })){ await navigator.share({ files: [f], text: junta(t) }); conta(chave, 'arquivo'); return 'arquivo'; }
         } catch (err){
           if (err && err.name === 'AbortError') return;
           /* o download demorou e o navegador não aceitou mais como toque: o cartão já está pronto */
@@ -128,7 +158,7 @@ async function enviar(id, extra){
       } else if (f === undefined){ aviso('Preparando a imagem. Toque em enviar de novo.'); return; }
     }
     if (navigator.share){
-      try { await navigator.share({ text: t.texto, url: t.url }); conta(); return 'texto'; }
+      try { await navigator.share({ text: t.texto, url: t.url }); conta(chave, 'texto'); return 'texto'; }
       catch (err){ if (err && err.name === 'AbortError') return; }
     }
     return porZap(t);
@@ -167,6 +197,7 @@ function prepara(el){
   if (!el.textContent.trim()) el.textContent = 'enviar ↗';
   if (t && (!el.getAttribute('aria-label') || el.__bdRotulo)){ el.setAttribute('aria-label', 'Enviar: ' + t.titulo.replace(/^Flávio Bolsonaro · /, '')); el.__bdRotulo = 1; }
   if (el.tagName === 'BUTTON' && !el.getAttribute('type')) el.setAttribute('type', 'button');
+  if (enviou(id)) el.setAttribute('data-enviado', '1');
   if (io) io.observe(el);
 }
 function varre(raiz){
@@ -179,11 +210,14 @@ function liga(){
   st.textContent = '[data-share]{min-height:44px;min-width:44px;cursor:pointer;touch-action:manipulation}';
   document.head.appendChild(st);
   varre(document.body);
+  mostraEnvios();
+  /* outra aba do mesmo site contou um envio: o número acompanha */
+  window.addEventListener('storage', e => { if (e.key === CHAVE || e.key === CHAVE_IDS){ mostraEnvios(); enviados().forEach(marca); } });
   if ('MutationObserver' in window){
     new MutationObserver(ms => {
       let mostrou = false;
       ms.forEach(m => {
-        m.addedNodes.forEach(n => { if (n.nodeType === 1) varre(n); });
+        m.addedNodes.forEach(n => { if (n.nodeType === 1){ varre(n); if (n.matches && (n.matches('[data-envios]') || n.querySelector('[data-envios]'))) mostraEnvios(); } });
         if (m.type !== 'attributes' || m.target.nodeType !== 1) return;
         if (m.attributeName === 'aria-hidden') mostrou = true;
         else if (m.target.hasAttribute('data-share')) prepara(m.target);
@@ -194,5 +228,5 @@ function liga(){
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', liga); else liga();
 
-window.BDShare = { enviar, topico, prepara: cartao, envios };
+window.BDShare = { enviar, topico, prepara: cartao, envios, enviou };
 })();

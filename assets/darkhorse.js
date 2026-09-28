@@ -26,6 +26,9 @@
    "↺ rever" em mono (.dh-mono). No celular, o número fica no topo da página (#dh-topo, X04), acima do calendário; o 1º
    momento do palco vira o gancho e a legenda do desenho (.m0-cel). No desktop, o 1º momento é a abertura inteira.
    Teste: window.__dh = { medir(n), momentos(), vai(id), ... }. Assistir: window.__historia.roteiro().
+   O áudio, lido (N04, P2-B): o momento com "audio" (dh-cobranca) troca o destaque pela transcrição de D.audio sobre o
+   osciloscópio da marca (assets/audio-lido.js). Na fase "grande" as letras acompanham a rolagem (para a frente e para
+   trás); no fecho (ou num link direto para o momento) a leitura segue sozinha até o fim. Movimento reduzido: inteira.
    ===================================================================== */
 (function(){
 'use strict';
@@ -115,14 +118,20 @@ const fonteA = f => f && f.url ? '<p class="nf"><a href="' + esc(f.url) + '" tar
 
 const GANCHO = 'O dinheiro do filme, mês a mês';
 const mesAno = iso => { const x = /^(\d{4})-(\d{2})/.exec(iso || ''); return x ? MES[+x[2] - 1].toLowerCase() + '/' + x[1] : ''; };
+/* o áudio, lido: só com o JS do áudio e os dados dele (sem eles, o momento fica com o destaque em citação) */
+const AUD = D.audio && window.BDAudioLido && (D.audio.trechos || []).length ? D.audio : null;
+const ehAudio = m => !!(AUD && m.audio && m.audio === AUD.id);
 function artHtml(m, k){
   const g = m.grande || {}, tipo = /^(numero|hora|texto|citacao)$/.test(g.tipo) ? g.tipo : 'texto';
   let gv = esc(g.v);
   if (tipo === 'citacao') gv = gv.replace(/^“/, '<span class="q">“</span>').replace(/”$/, '<span class="q">”</span>');
-  const idg = 'dh-g-' + k;
-  const grande = '<p class="dh-grande ' + tipo + '" id="' + idg + '"><span class="gv">' + gv + '</span></p>';
+  const idg = 'dh-g-' + k, au = ehAudio(m);
+  const grande = au ? '<div class="dh-grande citacao dh-audio" id="' + idg + '">' + window.BDAudioLido.html(AUD, { modo: 'palco' }) + '</div>' :
+    '<p class="dh-grande ' + tipo + '" id="' + idg + '"><span class="gv">' + gv + '</span></p>';
   const linhas = (m.linhas || []).length ? '<div class="dh-linhas">' + m.linhas.map(t => '<p>' + esc(t) + '</p>').join('') + '</div>' : '';
-  const ele = m.ele ? '<p class="dh-ele">' + esc(m.ele) + '</p>' : '';
+  /* a situação dele em cor neutra: a do momento ou, no áudio, a mesma do fim (D.audio.sit = o "ele" do dh-hoje) */
+  const eleT = m.ele || (au ? AUD.sit : '');
+  const ele = eleT ? '<p class="dh-ele">' + esc(eleT) + '</p>' : '';
   /* a fonte do momento; com m.fontes (duas linhas, duas fontes), um link para cada, sem repetir URL */
   /* X04: um .env (o envio, sempre primeiro), as portas como links âmbar, o controle em mono e a fonte por último */
   let acoes = '';
@@ -132,6 +141,7 @@ function artHtml(m, k){
       p.acao === 'rever' ? '<button type="button" class="dh-mono" data-rever>' + esc(p.txt) + '</button>' :
       '<a class="porta" href="' + esc(p.href) + '">' + esc(p.txt) + '</a>').join('');
   } else if (m.share) acoes += '<button type="button" class="env" data-share="' + esc(m.share) + '">enviar ↗</button>';
+  if (au) acoes += window.BDAudioLido.ouca(AUD);
   if (k === 0 && window.BDRoteiro) acoes += '<button type="button" class="dh-mono" data-assistir>▶ assistir</button>';
   acoes += (m.fontes && m.fontes.length ? m.fontes : [m.fonte])
     .filter((f, i, a) => f && f.url && a.findIndex(g => g && g.url === f.url) === i).map(f => fonteA(f)).join('');
@@ -144,7 +154,7 @@ function artHtml(m, k){
     '<div class="dh-lg"><span><i></i>dia de remessa ao fundo Havengate, no Texas, segundo a PF</span><span><i class="grave"></i>preso ou condenado</span></div>' +
     (window.BDRoteiro ? '<div class="dh-acoes"><button type="button" class="dh-mono" data-assistir>▶ assistir</button></div>' : '') + '</div>';
   return '<article class="dh-m' + (k === 0 ? ' m0' : '') + '" data-m="' + k + '" data-f="' + (k === 0 ? 'fecha' : 'entra') + '" aria-labelledby="' + (k === 0 ? 'dh-h1' : idg) + '"' + (k ? ' aria-hidden="true"' : '') + '>' +
-    '<p class="dh-k">' + esc(m.k) + '</p>' +
+    '<p class="dh-k">' + esc(m.k) + (au ? ' · ' + esc(AUD.rotulo || 'O áudio, lido') : '') + '</p>' +
     (m.h1 ? '<h1 class="sec dh-h1" id="dh-h1">' + esc(m.h1) + '</h1>' : '') +
     grande +
     '<div class="dh-fecha">' + linhas + ele + dica +
@@ -158,6 +168,7 @@ const larg = (t, mono) => { regua.classList.toggle('mono', !!mono); regua.textCo
 MOM.forEach((m, k) => {
   const a = ARTS[k], g = m.grande || {};
   m.art = a; m.gEl = $('.dh-grande', a); m.gv = $('.gv', a);
+  if (ehAudio(m)) m.al = window.BDAudioLido.monta(m.gEl, AUD, { modo: 'palco' });
   if (g.tipo === 'numero'){
     const x = RX_N.exec(g.v || '');
     if (x) m.conta = { pre: g.v.slice(0, x.index), pos: g.v.slice(x.index + x[0].length), alvo: parseFloat(x[1].replace(/\./g, '') + (x[2] ? '.' + x[2] : '')), dec: x[2] ? x[2].length : 0, ok: !!g.conta && k > 0 };
@@ -473,6 +484,7 @@ function ajusta(){
       if (m.n1 && m.conta && m.conta.ok){ m.conta.pos2 = quebra ? '' : m.conta.pos; m.n1.textContent = m.conta.pre + fmtN(m.conta.alvo, m.conta.dec) + m.conta.pos2; }
       fs = Math.min(max, 0.97 * (quebra ? dois : um));
     } else if (tipo === 'hora') fs = Math.min(desk ? 72 : 46, 0.96 * 100 * Wg / larg(m.grande.v, true));
+    else if (m.al) fs = desk ? 30 : 22;            /* a transcrição inteira (dois trechos) sobre o osciloscópio */
     else if (tipo === 'citacao') fs = desk ? 38 : 26;
     else fs = desk ? 46 : 33;
     m.fs = fs;
@@ -838,16 +850,26 @@ function aplicaLegenda(E){
     const o = String(q20(p));
     if (m.gv.style.opacity !== o) m.gv.style.opacity = o === '1' ? '' : o;
   }
+  /* o áudio, lido: na fase "grande" a letra segue a rolagem; no fecho (ou chegando por link), a leitura segue sozinha */
+  if (m.al){
+    if (reduzido) m.al.cheio();
+    else {
+      if (E.fase === 'entra') m.al.rola(0);
+      else if (E.fase === 'grande') m.al.rola(Math.floor(c01(E.fl / (0.85 * E.flen)) * m.al.n));
+      else m.al.corre(dtQ);
+      m.al.passo(dtQ);
+    }
+  }
 }
 
 /* =====================================================================
    O quadro: o requestAnimationFrame único da página (window.BDQuadro, de assets/roteiro.js)
    ===================================================================== */
-let visivel = false, Eant = null, barraP = -1;
+let visivel = false, Eant = null, barraP = -1, dtQ = 0;
 function quadro(dt){
   if (!L || !visivel || doc.hidden) return false;
   const E = estadoDe(sAgora());
-  G.t += dt || 0;
+  G.t += dt || 0; dtQ = dt || 0;
   const mudou = !Eant || Math.abs(E.s - Eant.s) > 0.3;
   if (!reduzido || mudou){ desenha(E); aplicaRotulos(E); aplicaMostrador(E); aplicaLegenda(E); }
   Eant = E;

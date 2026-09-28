@@ -3,7 +3,10 @@
    e cada registro ligado ao caso da Foz quando o arquivo sabe qual é.
    Cor: vermelho = preso ou condenado · âmbar = número, fato, ação · verde = fonte, link. A situação dele, em tinta.
    Links que continuam valendo: drive.html#recente|#arquivo|#rede|#cronologia|#noticias|#chat, ?q=a|b#arquivo,
-   ?p=<id>#rede, ?caminho=marielle#rede e, novo, ?i=<id do registro>#arquivo (abre a ficha do registro). */
+   ?p=<id>#rede (o nome, com o caminho até ele), ?caminho=marielle#rede, ?i=<id do registro>#arquivo (a ficha do
+   registro) e ?busca=<termo>#chat (a "Pergunte ao arquivo" já respondida).
+   Onda 2 (P2-C): o placar de situação em dois anéis (#rede-dq), os graus de separação (o caminho de um nome até ele,
+   no painel, na ficha e no mapa), pessoa → casos da Foz (a cadeia) e a busca única (casos, nomes, BolsoZap, registros). */
 (function(){
   const D = window.DOSSIE || {};
   D.itens = D.itens || []; D.temas = D.temas || []; D.grafo = D.grafo || {nodes:[], edges:[]};
@@ -140,8 +143,10 @@
     const n = nodeById[id]; if(!n) return '';
     if(id==='flavio'){ return ESC.length ? `<div class="foz-liga"><a href="foz.html">A Foz: os ${ESC.length} casos e como chegam a ele →</a></div>` : ''; }
     const es = fozPorNome[id] || []; if(!es.length) return '';
-    return `<div class="foz-liga"><p class="fl-k">${es.length===1?'Um caso da Foz passa':es.length+' casos da Foz passam'} por ${esc(n.nome)}</p>` +
-      es.map(e=>`<a href="foz.html#${encodeURIComponent(e.id)}">${esc(e.rotulo||e.nome)} →</a>`).join('') + `</div>`;
+    // pessoa → casos (N07): só onde o nome está na cadeia do caso (de_id/para_id), com o número da ficha
+    return `<div class="foz-liga"><p class="fl-k">Na cadeia de ${es.length===1?'um caso':es.length+' casos'} da Foz</p>` +
+      es.map(e=>{ const v = String((e.numero||{}).valor||''), num = /\d/.test(v) && v.length<=22;
+        return `<a class="fl-c" href="foz.html#${encodeURIComponent(e.id)}"><span class="fl-n">${esc(e.rotulo||e.nome)}</span>${num?`<span class="fl-v">${esc(v)}</span>`:''}<span class="fl-x">elo por elo →</span></a>`; }).join('') + `</div>`;
   }
 
   /* ---------------- o registro ---------------- */
@@ -320,9 +325,11 @@
   function presosDiretos(){ return D.grafo.nodes.filter(n=> VIZ_FLAVIO.has(n.id) && ((n.situacao||[]).includes('condenado') || presoHoje(n))); }
   // os chips de situação de um nome, como o index: condenado/preso em vermelho (só a borda); denunciado/investigado
   // neutros; denúncia anulada (token 'arquivada') neutra, nunca vermelha nem âmbar; token desconhecido é ignorado
-  function situacaoChips(id, s){
-    s = Array.isArray(s) ? s : []; const n = nodeById[id]||{id, situacao:s};
-    const cond = s.includes('condenado'), preso = presoHoje(n), w = [];
+  // os rótulos (a mesma regra dos chips), para o texto de envio: [[rótulo, grave], …]
+  function sitRotulos(id, s){
+    const n = nodeById[id]||{id, situacao:s};
+    s = Array.isArray(s) ? s : (Array.isArray(n.situacao) ? n.situacao : []);
+    const cond = s.includes('condenado'), preso = presoHoje(Object.assign({}, n, {situacao:s})), w = [];
     if(cond) w.push(['condenado', true]);
     if(preso) w.push(['preso', true]);
     if(!cond && !preso){
@@ -331,7 +338,10 @@
     }
     if(s.includes('arquivada')) w.push(['denúncia anulada', false]);
     if(s.includes('morto') && !w.length){ const a = (String(n.status||'').match(/\bmort[oa]\b[^.;]*?\b((?:19|20)\d\d)\b/i)||[])[1]; w.push(['morto' + (a ? ' em ' + a : ''), false]); }
-    return w.map(([r,g])=>`<span class="chip${g?' grave':''}">${esc(r)}</span>`).join(' ');
+    return w;
+  }
+  function situacaoChips(id, s){
+    return sitRotulos(id, Array.isArray(s) ? s : []).map(([r,g])=>`<span class="chip${g?' grave':''}">${esc(r)}</span>`).join(' ');
   }
 
   // os números do placar: um .numero, a frase com a fonte, "enviar" (tópico placar-N do gerador) e a pasta
@@ -436,7 +446,14 @@
     const hits = VIS.filter(i=>{ const t = blob(i)+' '+String(i.data||''); return qs.some(x=> t.includes(x)); });
     const caso = ESC.find(e=> e.busca && norm(e.busca)===q);
     const rot = String(v).trim().split('|').map(t=>t.trim()).filter(Boolean).join('” ou “');
-    listaItens(hits, caso ? '' : `Busca: “${rot}”`, ()=>{ busca.value=''; renderTemas(); }, caso ? casoDQ(caso) : '', hits.length>30 ? 6 : 0);
+    listaItens(hits, caso ? '' : `Busca: “${rot}”`, ()=>{ busca.value=''; renderTemas(); }, caso ? casoDQ(caso) : tambemHTML(String(v).trim()), hits.length>30 ? 6 : 0);
+  }
+  // a busca do Arquivo é a mesma da "Pergunte ao arquivo": acima dos registros, o que mais o arquivo tem (casos, nomes, Zap)
+  function tambemHTML(v){
+    if(!v || v.indexOf('|')>=0 || typeof Busca==='undefined') return '';
+    const r = Busca.procura(v), gs = r.grupos.filter(g=> g.g!=='item'); if(!gs.length) return '';
+    const p = gs.map(g=>{ const n = g.l.filter(h=>h.doc.tipo!=='conv').length || g.l.length; return `${n} ${GRUPO_NOME[g.g][n===1?0:1]}`; });
+    return `<p class="bf-tb">Também no arquivo: <button type="button" class="lm" data-q-arq="${esc(v)}">${esc(p.join(' · '))} →</button></p>`;
   }
   if(busca) busca.addEventListener('input', ()=> buscar(busca.value));
 
@@ -487,6 +504,70 @@
     const es = fozPorNome[id] || [];
     return `<button type="button" class="env" data-share="${esc(es.length ? es[0].id : 'quem-anda')}">enviar ↗</button>`;
   }
+
+  /* ---------------- graus de separação (N07) ----------------
+     O caminho mais curto de um nome até ele, pela teia inteira: só arestas que existem em dados.js (grafo.edges),
+     cada elo com o rótulo literal da aresta, o status e a fonte; cada nome com a situação (os mesmos chips).
+     Quando há mais de um caminho com o mesmo número de elos, o mais documentado (mais fontes) vem primeiro. */
+  const GRAU = (()=>{
+    const adj = {}; D.grafo.nodes.forEach(n=>{ adj[n.id] = []; });
+    D.grafo.edges.forEach(e=>{ if(adj[e.de] && adj[e.para] && e.de!==e.para){ adj[e.de].push([e.para, e]); adj[e.para].push([e.de, e]); } });
+    const dist = {}; if(adj.flavio){ dist.flavio = 0; const fila = ['flavio'];
+      while(fila.length){ const u = fila.shift(); adj[u].forEach(([v])=>{ if(!(v in dist)){ dist[v] = dist[u]+1; fila.push(v); } }); } }
+    return {adj, dist};
+  })();
+  const nFontes = e => (e.fontes||[]).filter(f=>f && /^https?:\/\//.test(f.url||'')).length;
+  const memoCam = {};
+  function caminhos(id){
+    if(memoCam[id]) return memoCam[id];
+    const {adj, dist} = GRAU; if(id==='flavio' || !(id in dist)) return (memoCam[id] = []);
+    const todos = [];
+    (function vai(u, nos, ars){
+      if(todos.length >= 400) return;
+      if(u==='flavio'){ todos.push({nos:nos.slice(), ars:ars.slice()}); return; }
+      adj[u].forEach(([v, e])=>{ if(dist[v]===dist[u]-1){ nos.push(v); ars.push(e); vai(v, nos, ars); nos.pop(); ars.pop(); } });
+    })(id, [id], []);
+    const peso = c => c.ars.reduce((s,e)=> s + Math.min(3, nFontes(e)) + (e.rotulo ? 1 : 0), 0);
+    todos.sort((a,b)=> peso(b)-peso(a) || a.nos.join('>').localeCompare(b.nos.join('>')));
+    const vistos = new Set();
+    return (memoCam[id] = todos.filter(c=>{ const k = c.nos.join('>'); if(vistos.has(k)) return false; vistos.add(k); return true; }).slice(0, 12));
+  }
+  // o texto de envio do caminho: cada nome com a situação, cada elo com a relação literal; ele, sem rótulo
+  function textoCaminho(c){
+    const lin = [];
+    c.nos.forEach((id, k)=>{
+      const n = nodeById[id]; if(!n) return;
+      if(id==='flavio'){ lin.push(n.nome); return; }
+      const r = sitRotulos(id).map(x=>x[0]);
+      lin.push(n.nome + (r.length ? ` — ${r.join(', ')}` : ''));
+      const e = c.ars[k]; if(e && e.rotulo) lin.push('↓ ' + e.rotulo);
+    });
+    const el = c.ars.length, n0 = nodeById[c.nos[0]];
+    return `*${el} ${el===1?'elo':'elos'}* entre ${n0 ? n0.nome : ''} e Flávio Bolsonaro, na teia de nomes do BOLSODRIVE:\n${lin.join('\n')}\nCada elo com a fonte:\n`;
+  }
+  // o cartão do caminho (painel, ficha): a cadeia de cima (o nome) para baixo (ele), como a cadeia da Foz
+  function caminhoHTML(id, k){
+    const cs = caminhos(id); if(!cs.length) return '';
+    k = ((+k||0) % cs.length + cs.length) % cs.length;
+    const c = cs[k], el = c.ars.length;
+    const x = extra('cam:'+id+':'+k, {texto:textoCaminho(c), url:BASE+'drive.html?p='+encodeURIComponent(id)+'#rede'});
+    const T = window.BD_TOPICOS || {}, top = T['caminho-'+id] ? 'caminho-'+id : 'quem-anda';
+    const li = [];
+    c.nos.forEach((nid, i)=>{
+      const n = nodeById[nid]; if(!n) return;
+      li.push(nid==='flavio'
+        ? `<li class="elo-p ele"><b>${esc(n.nome)}</b></li>`
+        : `<li class="elo-p ${sitDe(n)}"><button type="button" class="elo-n" data-node="${esc(nid)}">${esc(n.nome)}</button> ${situacaoChips(nid, n.situacao)}</li>`);
+      const e = c.ars[i];
+      // o elo: a relação literal da aresta e a fonte (o status da aresta fica nos vínculos; aqui poderia ser lido como dele)
+      if(e) li.push(`<li class="elo-l">${esc(e.rotulo||'ligação registrada na teia')}${nFontes(e)?`<span class="src">${fontesCurtas((e.fontes||[]).slice(0,2))}</span>`:''}</li>`);
+    });
+    return `<div class="grau" data-grau="${esc(id)}" data-k="${k}">
+      <p class="vlbl">O caminho até ele <b>${el} ${el===1?'elo':'elos'}</b>${cs.length>1?` <span>· caminho ${k+1} de ${cs.length} com ${el} ${el===1?'elo':'elos'}</span>`:''}</p>
+      <ol class="elos">${li.join('')}</ol>
+      <div class="grau-a"><button type="button" class="env" data-share="${esc(top)}" data-x="${esc(x)}">enviar ↗</button>${cs.length>1?`<button type="button" class="lm grau-outro" data-outro="${esc(id)}" data-k="${k+1}">outro caminho →</button>`:''}</div>
+    </div>`;
+  }
   // ---- ficha de um nome (perfil completo) ----
   function abrirFicha(id){
     const n = nodeById[id]; if(!n) return;
@@ -506,11 +587,26 @@
       ${chips?`<div class="p-chips">${chips}</div>`:''}
       ${n.status?`<p class="p-st">${esc(n.status)}${sitFonte(n)}</p>`:''}
       <div class="f-a">${envioPessoa(id)}${zapLink(id)}</div>
+      ${caminhoHTML(id)}
       ${fozHTML(id)}
       <p class="f-sub">Vínculos (${ev.length})</p><div>${viz||'<p class="vazio">—</p>'}</div>
       ${its.length?`<p class="f-sub">No arquivo (${its.length})</p><div>${lista}</div>`:''}`);
     $$('.vrow[data-item]', sheet).forEach(r=> r.addEventListener('click', ()=> abrirDetalhe(r.dataset.item)));
     $$('.vrow[data-node]', sheet).forEach(r=> r.addEventListener('click', ()=> abrirFicha(r.dataset.node)));
+    ligaGrau(sheet, nid=> abrirFicha(nid));
+  }
+  // os botões do cartão do caminho: um nome da cadeia (abre o nome) e "outro caminho" (troca o cartão no lugar)
+  function ligaGrau(raiz, noNome, aoTrocar){
+    const g = raiz.querySelector('.grau'); if(!g) return;
+    $$('[data-node]', g).forEach(b=> b.addEventListener('click', ()=> noNome(b.dataset.node)));
+    const o = g.querySelector('.grau-outro');
+    if(o) o.addEventListener('click', ()=>{
+      const id = o.dataset.outro, k = +o.dataset.k||0, tmp = document.createElement('div');
+      tmp.innerHTML = caminhoHTML(id, k); const novo = tmp.firstElementChild; if(!novo) return;
+      g.replaceWith(novo); ligaGrau(raiz, noNome, aoTrocar);
+      if(aoTrocar) aoTrocar(id, +novo.dataset.k||0);
+      const b = novo.querySelector('.grau-outro'); try{ (b||novo).focus({preventScroll:true}); }catch(e){}
+    });
   }
   window.__abrirFicha = abrirFicha;
   function fechar(){ overlay.classList.remove('open'); }
@@ -586,20 +682,20 @@
     const TOQUE = !!(window.matchMedia && matchMedia('(pointer:coarse)').matches);
     const S_MAX = 2.4;
 
-    // categorias de situação (lista do painel): só os tokens de situação de cada nome, como o index
-    const SIT = [
-      {key:'preso',       label:'presos ou já presos'},
-      {key:'condenado',   label:'condenados'},
-      {key:'denunciado',  label:'denunciados ou réus'},
-      {key:'investigado', label:'investigados'}
-    ];
-    const sitMatch = (n,c) => Array.isArray(n.situacao) && n.situacao.includes(c.key);
     // os nomes da teia sem ele (o mesmo número do menu: "152 na teia completa")
     const nomesTeia = () => nodes.filter(n=>n.id!=='flavio').length;
     const emPrevia = () => !cheia && !inteira && !sel && !filterSet && !caminho && PREV.length>0;
+    // o caminho do nome selecionado até ele (graus de separação): os nomes e os pares de cada elo
+    let camSel = null;   // {id, k, nos:Set, pares:[[a,b],…], c}
+    function poeCam(id, k){
+      const cs = id ? caminhos(id) : [];
+      if(!cs.length){ camSel = null; return; }
+      k = ((+k||0) % cs.length + cs.length) % cs.length; const c = cs[k];
+      camSel = {id, k, c, nos:new Set(c.nos), pares:c.nos.slice(1).map((b,i)=>[c.nos[i], b])};
+    }
     function activeIds(){
       if(caminho) return caminho.ids;
-      if(sel){ const s=new Set([sel]); (adj[sel]||new Set()).forEach(x=>s.add(x)); return s; }
+      if(sel){ const s=new Set([sel]); (adj[sel]||new Set()).forEach(x=>s.add(x)); if(camSel && camSel.id===sel) camSel.nos.forEach(x=>s.add(x)); return s; }
       if(filterSet) return filterSet;
       return null;
     }
@@ -778,6 +874,15 @@
         ctx.lineWidth = on?1.6:0.8;
         ctx.beginPath(); ctx.moveTo(SX(e.a),SY(e.a)); ctx.lineTo(SX(e.b),SY(e.b)); ctx.stroke();
       });
+      // o caminho até ele (graus de separação): os elos por cima, mais grossos, em tinta
+      if(sel && camSel && camSel.id===sel){
+        ctx.lineCap='round';
+        camSel.pares.forEach(([a,b])=>{ const A=porId[a], B=porId[b]; if(!A||!B) return;
+          ctx.beginPath(); ctx.moveTo(SX(A),SY(A)); ctx.lineTo(SX(B),SY(B));
+          ctx.strokeStyle='rgba(216,239,221,.16)'; ctx.lineWidth=9; ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(SX(A),SY(A)); ctx.lineTo(SX(B),SY(B));
+          ctx.strokeStyle='rgba(238,243,238,.95)'; ctx.lineWidth=3; ctx.stroke(); });
+      }
       ctx.textAlign='center'; ctx.lineJoin='round';
       const caixas=[];
       const livre=(x,y,w,h)=>{ for(const c of caixas){ if(x<c.x+c.w && x+w>c.x && y<c.y+c.h && y+h>c.y) return false; } return true; };
@@ -786,7 +891,7 @@
         const x=SX(n), y=SY(n), r=Math.max(4, n.r*cam.s);
         if(x+r+60<0 || x-r-60>W || y+r+30<0 || y-r-30>H) return;
         const near = act ? act.has(n.id) : true;
-        const ring = (n.id===sel) || (n===hover) || (filterSet && filterSet.has(n.id)) || (caminho && caminho.ids.has(n.id));
+        const ring = (n.id===sel) || (n===hover) || (filterSet && filterSet.has(n.id)) || (caminho && caminho.ids.has(n.id)) || (sel && camSel && camSel.id===sel && camSel.nos.has(n.id));
         ctx.globalAlpha = near?1:(caminho?0.1:0.16);
         desenhaNo(n, x, y, r, ring);
         if(ring){ ctx.lineWidth=2; ctx.strokeStyle='#d8efdd'; ctx.beginPath(); ctx.arc(x,y,r+3,0,Math.PI*2); ctx.stroke(); }
@@ -925,6 +1030,7 @@
       const n = porId[id]; if(!n || !W) return;
       const A = areaLivre(), cx=(A.x0+A.x1)/2, cy=(A.y0+A.y1)/2;
       const viz = new Set([id]); (adj[id]||new Set()).forEach(x=>viz.add(x));
+      if(camSel && camSel.id===id) camSel.nos.forEach(x=>viz.add(x));   // o caminho até ele entra no quadro
       if(deLista){
         let c = camPara(viz, {sMax:1.4, padX:16, padY:30, rot:true});
         if(c.s < 0.5){ const s=Math.max(cam.s, 0.8); c={s, tx:cx-n.wx*s, ty:cy-n.wy*s}; }
@@ -945,29 +1051,41 @@
       $$('.vrow[data-item]', painel).forEach(r=> r.addEventListener('click', ()=>abrirDetalhe(r.dataset.item)));
     }
     function marcaGrupo(){ $$('.teia-grupos button[data-grupo]').forEach(b=> b.setAttribute('aria-pressed', b.dataset.grupo===grupoAtivo ? 'true' : 'false')); }
+    // o painel de entrada: a teia inteira em graus de separação (quantos elos até ele), cada linha abre a lista
+    const GRAUS = [[1,'1 elo','ligados diretamente a ele'],[2,'2 elos','ligados a alguém ligado a ele'],[3,'3 elos',''],[4,'4 elos ou mais','']];
+    const noGrau = (n,g) => { const d = GRAU.dist[n.id]; return n.id!=='flavio' && d!=null && (g===4 ? d>=4 : d===g); };
     function showOverview(){
-      sairCaminho(); sel=null; filterSet=null; filtroTitulo=''; grupoAtivo=null; marcaGrupo();
-      const rows = SIT.map(c=>Object.assign({}, c, {n: nodes.filter(n=>sitMatch(n,c)).length}));
+      sairCaminho(); sel=null; camSel=null; filterSet=null; filtroTitulo=''; grupoAtivo=null; marcaGrupo();
+      const rows = GRAUS.map(([g,rot,t])=>({g, rot, t, n: nodes.filter(n=>noGrau(n,g)).length})).filter(r=>r.n);
       painel.innerHTML = `<p class="kx">A teia inteira <span>· ${nomesTeia()} nomes</span></p>
-        <div class="sit-lista">${rows.map(r=>`<button type="button" class="sit" data-cat="${r.key}"><b>${r.n}</b> ${esc(r.label)}<span>→</span></button>`).join('')}</div>
-        <p class="ph">Cada número abre a lista, com a situação literal e a fonte de cada nome. Um nome pode estar em mais de uma linha.</p>`;
-      $$('.sit', painel).forEach(b=> b.addEventListener('click', ()=>showCategory(b.dataset.cat)));
+        <p class="gr-t">Quantos elos separam cada nome dele:</p>
+        <div class="sit-lista">${rows.map(r=>`<button type="button" class="sit" data-grau="${r.g}"><b>${r.n}</b> a ${esc(r.rot)}${r.t?`<i>${esc(r.t)}</i>`:''}<span>→</span></button>`).join('')}</div>
+        <p class="ph">Toque num nome, no mapa ou numa lista: aparece o caminho mais curto até ele, elo por elo, com a situação de cada nome e a fonte de cada ligação.</p>`;
+      $$('.sit[data-grau]', painel).forEach(b=> b.addEventListener('click', ()=>showGrau(+b.dataset.grau)));
       cartao(); pede();
     }
-    function mostraLista(ids, titulo, linha){
-      sairCaminho(); sel=null;
+    function mostraLista(ids, titulo, linha, ordem){
+      sairCaminho(); sel=null; camSel=null;
       const membros = nodes.filter(n=>ids.has(n.id));
+      if(ordem) membros.sort(ordem);
       filterSet = new Set(membros.map(n=>n.id)); filtroTitulo=titulo;
       painel.innerHTML = `<button type="button" class="vt" id="ov-back">← a teia</button>
         <h3>${esc(titulo)} <span class="man-f">(${membros.length})</span></h3>
         <div class="vlist">${membros.map(linha||vrowNome).join('')||'<p class="ph">—</p>'}</div>`;
       ligaPainel(); cartao(); enquadraFiltro(); pede();
     }
-    function showCategory(key){
-      const c = SIT.find(x=>x.key===key); if(!c){ showOverview(); return; }
+    function showGrau(g){
+      const r = GRAUS.find(x=>x[0]===g); if(!r){ showOverview(); return; }
       grupoAtivo=null; marcaGrupo();
-      mostraLista(new Set(nodes.filter(n=>sitMatch(n,c)).map(n=>n.id)), c.label.charAt(0).toUpperCase()+c.label.slice(1),
-        n=>`<div class="vrow" data-node="${esc(n.id)}"><b>${esc(n.nome)}</b><br>${esc(n.status||'')}${sitFonte(n)}</div>`);
+      const rk = {grave:0, medio:1, outros:2};
+      mostraLista(new Set(nodes.filter(n=>noGrau(n,g)).map(n=>n.id)), 'Nomes a '+r[1]+' dele',
+        n=>`<div class="vrow" data-node="${esc(n.id)}"><b>${esc(n.nome)}</b> ${situacaoChips(n.id, n.situacao)}${n.papel?`<br>${esc(n.papel)}`:''}</div>`,
+        (a,b)=> rk[a.st]-rk[b.st] || String(a.nome).localeCompare(String(b.nome),'pt'));
+    }
+    // a lista literal de uma linha do placar (nome, situação, fonte), acesa no mapa
+    function showSit(ids, titulo){
+      grupoAtivo=null; marcaGrupo();
+      mostraLista(new Set(ids), titulo, n=>`<div class="vrow" data-node="${esc(n.id)}"><b>${esc(n.nome)}</b> ${situacaoChips(n.id, n.situacao)}<br>${esc(n.status||'')}${sitFonte(n)}</div>`);
     }
     function enquadraFiltro(){ if(filterSet && filterSet.size && filterSet.size<=40 && W){ const c=camPara(filterSet, {sMax:1.4, padX:16, padY:24, rot:true}); if(c.s>=sMin()) anima(c); } }
     function showGrupo(g){
@@ -1001,17 +1119,19 @@
       painel.innerHTML = `<button type="button" class="vt" id="ov-back">← a teia</button>
         <h3>${esc(n.nome)}</h3>${n.papel?`<p class="papel">${esc(n.papel)}</p>`:''}
         ${(chips||n.status)?`<div class="p-sit">${chips?`<div>${chips}</div>`:''}${n.status?esc(n.status):''}${sitFonte(n)}</div>`:''}
+        ${camSel && camSel.id===id ? caminhoHTML(id, camSel.k) : ''}
         <div class="pa"><button type="button" class="sec" id="ov-ficha">ficha completa</button>${zapLink(id)}</div>
         ${fozHTML(id)}
         <div class="vlist"><p class="vlbl">Vínculos (${ev.length})</p>${viz||'<p class="ph">—</p>'}</div>
         ${its.length?`<div class="vlist"><p class="vlbl">No arquivo (${its.length})</p>${lista}</div>`:''}`;
       ligaPainel();
+      ligaGrau(painel, nid=> select(nid, true), (cid, k)=>{ poeCam(cid, k); cartao(); mostra(cid); pede(); });
       $('#ov-ficha', painel).addEventListener('click', ()=> abreFicha(id));
     }
     function select(id, deLista){
       if(!nodeById[id]) return;
       const daPrevia = emPrevia();
-      sairCaminho(); filterSet=null; filtroTitulo=''; grupoAtivo=null; marcaGrupo(); sel=id; hover=null;
+      sairCaminho(); filterSet=null; filtroTitulo=''; grupoAtivo=null; marcaGrupo(); sel=id; hover=null; poeCam(id, 0);
       painelPessoa(id); cartao(); mostra(id, deLista || daPrevia, daPrevia); pede();
     }
     // ---- caminho de um caso: acende só os nomes e as arestas do caso ----
@@ -1072,10 +1192,19 @@
       let h='';
       if(sel && nodeById[sel]){
         const n=nodeById[sel], nv=(adj[sel]||new Set()).size, chips=situacaoChips(sel, n.situacao);
+        // o caminho até ele, numa linha (o cartão inteiro está no painel e na ficha)
+        let cam = '', envCam = '';
+        if(camSel && camSel.id===sel){
+          const c = camSel.c, el = c.ars.length;
+          cam = `<p class="tc-cam"><b>${el} ${el===1?'elo':'elos'} até ele:</b> ${c.nos.map(x=> esc(nodeById[x] ? nodeById[x].nome : x)).join(' → ')}</p>`;
+          const T = window.BD_TOPICOS || {}, k = extra('cam:'+sel+':'+camSel.k, {texto:textoCaminho(c), url:BASE+'drive.html?p='+encodeURIComponent(sel)+'#rede'});
+          envCam = `<button type="button" class="env" data-share="${esc(T['caminho-'+sel] ? 'caminho-'+sel : 'quem-anda')}" data-x="${esc(k)}">enviar ↗</button>`;
+        }
         h = `<div class="tc-top"><b class="tc-nome">${esc(n.nome)}</b><button type="button" class="tc-x" aria-label="limpar seleção">×</button></div>
           ${n.papel?`<p class="tc-papel">${esc(n.papel)}</p>`:''}
           ${(chips||n.status)?`<p class="tc-sit">${chips?chips+' ':''}${esc(n.status||'')}${sitFonte(n)}</p>`:''}
-          <div class="tc-a"><button type="button" class="sec tc-ficha">ficha completa</button>${zapLink(sel)}<span class="tc-viz">${nv} ${nv===1?'vínculo aceso':'vínculos acesos'} no mapa</span></div>`;
+          ${cam}
+          <div class="tc-a">${envCam}<button type="button" class="sec tc-ficha">ficha completa</button>${zapLink(sel)}<span class="tc-viz">${nv} ${nv===1?'vínculo aceso':'vínculos acesos'} no mapa</span></div>`;
       } else if(caminho){
         const C=CAMINHOS[caminho.chave]||{};
         h = `<div class="tc-top"><b class="tc-nome">${esc(C.titulo||'')}</b><button type="button" class="tc-x" aria-label="sair do caminho">×</button></div>
@@ -1296,29 +1425,109 @@
       try{ localStorage.setItem('af_fotos_v1', JSON.stringify(cache)); }catch(e){}
       ids.forEach(id=>{ const url=cache[WIKI[id]]; if(url) carrega(id, url); });
     }
-    window.BD_TEIA = { cores: COR, usadas: ()=> [...usadas], porCor: ()=>{ const o={}; nodes.forEach(n=>{ (o[n.st]=o[n.st]||[]).push(n.id); }); return {ele:o.ele||[], grave:(o.grave||[]).length, medio:(o.medio||[]).length, outros:(o.outros||[]).length}; }, previa: ()=> emPrevia() ? PREV.map(n=>n.id) : null, rotulos: ()=> rotulos.map(c=>c.n.id) };
+    window.BD_TEIA = { cores: COR, usadas: ()=> [...usadas], porCor: ()=>{ const o={}; nodes.forEach(n=>{ (o[n.st]=o[n.st]||[]).push(n.id); }); return {ele:o.ele||[], grave:(o.grave||[]).length, medio:(o.medio||[]).length, outros:(o.outros||[]).length}; }, previa: ()=> emPrevia() ? PREV.map(n=>n.id) : null, rotulos: ()=> rotulos.map(c=>c.n.id),
+      graus: ()=>{ const o={}; Object.keys(GRAU.dist).forEach(id=>{ if(id!=='flavio'){ const d=GRAU.dist[id]; o[d]=(o[d]||0)+1; } }); return o; },
+      caminho: (id,k)=>{ const c=caminhos(id)[k||0]; return c ? {nos:c.nos, elos:c.ars.map(e=>e.de+'>'+e.para), n:caminhos(id).length} : null; },
+      aceso: ()=> camSel ? {id:camSel.id, k:camSel.k, nos:[...camSel.nos]} : null, sel: ()=> sel };
     return {
       ensure(){ if(started){ resize(); pede(); return; } if(!canvas) return; started=true; resize(); build(); bind();
         assenta(); renderLegenda(); fitView(); showOverview(); pede(); carregarFotos();
       },
       focus(id){ this.ensure(); select(id, true); },
       lista(ids, titulo){ this.ensure(); grupoAtivo=null; marcaGrupo(); mostraLista(new Set(ids), titulo); },
+      sit(ids, titulo){ this.ensure(); showSit(ids, titulo); },
       caminho(chave){ this.ensure(); showCaminho(chave); },
       preloadFotos(){ try{ carregarFotos(); }catch(e){} }
     };
   })();
 
-  // o destaque da teia: quantos dos nomes em volta dele foram presos ou condenados (o número do tópico quem-anda)
+  /* ---------------- o placar de situação em dois anéis (N07) ----------------
+     O destaque da teia: quantos dos nomes em volta dele foram presos ou condenados (o número do tópico quem-anda),
+     e o placar: anel de dentro, os nomes ligados diretamente a ele (as arestas dele); anel de fora, a rede ampla
+     (a teia inteira, os de dentro incluídos). Cada contador conta só o token literal de `situacao` de cada nome
+     (dados.js); "presos ou condenados" é a cor vermelha da teia (condenado, ou preso sem prisão anulada).
+     Ele fica fora da conta, no centro, em tinta. Tocar num número: a lista literal (nome, situação, fonte);
+     tocar num nome: a pessoa na teia, com o caminho até ele. */
+  const temTok = (n, t) => Array.isArray(n.situacao) && n.situacao.includes(t);
+  const PLC = [
+    {k:'grave',       rot:'presos ou condenados', cor:'grave',  f:n=> sitDe(n)==='grave'},
+    {k:'preso',       rot:'foram presos',         cor:'grave',  sub:1, f:n=> temTok(n,'preso')},
+    {k:'condenado',   rot:'condenados',           cor:'grave',  sub:1, f:n=> temTok(n,'condenado')},
+    {k:'denunciado',  rot:'denunciados',          cor:'medio',  f:n=> temTok(n,'denunciado')},
+    {k:'investigado', rot:'investigados',         cor:'medio',  f:n=> temTok(n,'investigado')},
+    {k:'arquivada',   rot:'denúncia anulada',     cor:'neutro', f:n=> temTok(n,'arquivada')}
+  ];
+  const ANEL = {
+    viz: D.grafo.nodes.filter(n=> n.id!=='flavio' && VIZ_FLAVIO.has(n.id)),
+    all: D.grafo.nodes.filter(n=> n.id!=='flavio')
+  };
+  const ANEL_ROT = {viz:'em volta dele', all:'na rede ampla'};
+  const RK = {grave:0, medio:1, outros:2};
+  const plcConta = (a, k) => { const t = PLC.find(x=>x.k===k); return t ? ANEL[a].filter(t.f) : []; };
+  function aneisSVG(){
+    const deg = {}; D.grafo.edges.forEach(e=>{ deg[e.de]=(deg[e.de]||0)+1; deg[e.para]=(deg[e.para]||0)+1; });
+    const ord = l => l.slice().sort((a,b)=> RK[sitDe(a)]-RK[sitDe(b)] || (deg[b.id]||0)-(deg[a.id]||0) || String(a.nome).localeCompare(String(b.nome),'pt'));
+    const GAP = 0.2;   // folga no alto de cada anel, onde fica o número dele
+    const pts = (l, R, r, anel) => l.map((n,k)=>{
+      const a = -Math.PI/2 + GAP + (k+.5)/l.length*(2*Math.PI - 2*GAP);
+      return `<circle class="pd ${sitDe(n)}" data-anel="${anel}" data-id="${esc(n.id)}" cx="${(Math.cos(a)*R).toFixed(1)}" cy="${(Math.sin(a)*R).toFixed(1)}" r="${r}"><title>${esc(n.nome)}</title></circle>`;
+    }).join('');
+    const foto = (FOTOS && FOTOS.flavio) || '';
+    return `<svg class="aneis" viewBox="-160 -160 320 320" role="img" aria-label="Dois anéis de pontos, um por nome, na cor da situação: dentro, os ${ANEL.viz.length} ligados diretamente a ele; fora, a rede ampla, ${ANEL.all.length} nomes. No centro, ele.">
+      <circle class="guia" r="146"/><circle class="guia" r="86"/>
+      ${pts(ord(ANEL.all), 146, 2.5, 'all')}${pts(ord(ANEL.viz), 86, 5.2, 'viz')}
+      <text class="an-n" x="0" y="-142">${ANEL.all.length}</text><text class="an-n" x="0" y="-82">${ANEL.viz.length}</text>
+      <clipPath id="plc-ele"><circle r="36"/></clipPath>
+      <circle class="ele" r="37"/>${foto?`<image href="${esc(foto)}" x="-36" y="-36" width="72" height="72" clip-path="url(#plc-ele)" preserveAspectRatio="xMidYMid slice"/>`:''}
+    </svg>`;
+  }
   function renderRedeDq(){
     const el=$('#rede-dq'); if(!el) return;
     const pd = presosDiretos(); if(!pd.length){ el.innerHTML=''; return; }
-    el.innerHTML = `<div class="dq">
+    const linha = t => `<tr${t.sub?' class="sub"':''}><th scope="row">${esc(t.rot)}</th>${['viz','all'].map(a=>{ const n = plcConta(a, t.k).length;
+      return `<td><button type="button" class="plc-n ${t.cor}" data-plc="${a}:${t.k}" aria-pressed="false"${n?'':' disabled'} aria-label="${n} ${esc(t.rot)}, ${ANEL_ROT[a]}">${n}</button></td>`; }).join('')}</tr>`;
+    el.innerHTML = `<div class="dq plc">
       <h2>Em volta dele</h2>
       <p class="numero destaque">${pd.length}<span class="u"> de ${VIZ_FLAVIO.size}</span></p>
-      <p class="dq-t">nomes ligados a ele foram presos ou condenados, segundo as fontes de cada ficha:</p>
-      <div class="pn-l">${pd.map(n=>`<button type="button" data-pessoa="${esc(n.id)}">${esc(n.nome)}</button>`).join('')}</div>
+      <p class="dq-t">nomes ligados diretamente a ele foram presos ou condenados, segundo as fontes de cada ficha.</p>
+      <div class="plc-g">
+        <figure class="plc-fig">${aneisSVG()}
+          <figcaption><span class="legenda"><span><i class="grave"></i>preso ou condenado</span><span><i class="medio"></i>investigado ou denunciado</span><span><i class="outros"></i>outros</span></span>
+          <span class="plc-an">Um ponto por nome. Dentro, os ${ANEL.viz.length} ligados diretamente a ele; fora, a rede ampla, os ${ANEL.all.length} da teia. No centro, ele, fora da conta.</span></figcaption>
+        </figure>
+        <div class="plc-t">
+          <table class="plc-tab"><thead><tr><td></td><th scope="col"><b>${ANEL.viz.length}</b>em volta dele</th><th scope="col"><b>${ANEL.all.length}</b>na rede ampla</th></tr></thead>
+            <tbody>${PLC.map(linha).join('')}</tbody></table>
+          <p class="plc-nota">Toque num número: a lista, com a situação literal e a fonte de cada nome. Um nome pode estar em mais de uma linha.</p>
+        </div>
+      </div>
+      <div class="plc-lista" id="plc-lista" aria-live="polite" hidden></div>
       <div class="dq-a"><button type="button" class="env" data-share="quem-anda">enviar ↗</button><button type="button" class="lm" data-lista="presos">ver na teia ↓</button></div>
     </div>`;
+    ligaPlacar(el);
+  }
+  function plcListaHTML(a, k){
+    const t = PLC.find(x=>x.k===k); if(!t) return '';
+    const l = plcConta(a, k).sort((x,y)=> RK[sitDe(x)]-RK[sitDe(y)] || String(x.nome).localeCompare(String(y.nome),'pt'));
+    const MAX = 8;
+    const row = n => `<article class="plc-p"><p class="plc-nm"><button type="button" class="plc-pes" data-pessoa="${esc(n.id)}">${esc(n.nome)}</button> ${situacaoChips(n.id, n.situacao)}</p>${n.status?`<p class="plc-s">${esc(n.status)}${sitFonte(n)}</p>`:''}</article>`;
+    return `<p class="kx">${esc(t.rot.charAt(0).toUpperCase()+t.rot.slice(1))} <span>· ${ANEL_ROT[a]} · ${l.length}</span></p>
+      ${l.slice(0,MAX).map(row).join('')}${l.length>MAX?`<div hidden>${l.slice(MAX).map(row).join('')}</div><button type="button" class="lm" data-mais>ver os outros ${l.length-MAX} ↓</button>`:''}
+      <p class="plc-ac"><button type="button" class="lm" data-plc-teia="${a}:${k}">acender ${l.length===1?'este nome':'os '+l.length} na teia ↓</button></p>`;
+  }
+  let plcSel = '';
+  function ligaPlacar(el){
+    const svg = $('.aneis', el), lista = $('#plc-lista', el);
+    const marca = v => {
+      plcSel = v;
+      $$('.plc-n', el).forEach(b=> b.setAttribute('aria-pressed', b.dataset.plc===v ? 'true' : 'false'));
+      const [a, k] = v ? v.split(':') : ['',''], ids = v ? new Set(plcConta(a, k).map(n=>n.id)) : null;
+      if(svg){ svg.classList.toggle('foco', !!v);
+        $$('.pd', svg).forEach(c=> c.classList.toggle('on', !!ids && ids.has(c.dataset.id) && (a==='all' || c.dataset.anel==='viz'))); }
+      if(lista){ lista.hidden = !v; lista.innerHTML = v ? plcListaHTML(a, k) : ''; }
+    };
+    $$('.plc-n', el).forEach(b=> b.addEventListener('click', ()=> marca(plcSel===b.dataset.plc ? '' : b.dataset.plc)));
+    if(svg) svg.addEventListener('click', ev=>{ const c = ev.target.closest && ev.target.closest('.pd'); if(!c) return; Grafo.focus(c.dataset.id); irTeia(); });
   }
   const irTeia = () => { const b=$('.canvas-box'); if(b) setTimeout(()=> b.scrollIntoView({block:'start', behavior: RMq() ? 'auto' : 'smooth'}), 30); };
   const RMq = () => !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -1392,49 +1601,193 @@
     swimDone=true;
   }
 
-  /* ---------------- PERGUNTE AO ARQUIVO (busca por palavra; não gera texto) ---------------- */
-  const chatMsgs = $('#chat-msgs');
-  function responder(q){
-    const nq = norm(q);
-    const words = nq.split(/[^a-z0-9]+/).filter(w=>w.length>3);
-    const temNome = s => { const w=norm(s); return w.length>=3 && new RegExp('(^|[^a-z])'+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z]|$)').test(nq); };
-    // ele primeiro: "o Flávio" é ele, não outro Flávio da teia; sobre ele a resposta são os registros
-    const achou = D.grafo.nodes.find(n=> temNome(String(n.nome).split(' ')[0]) || temNome(String(n.nome).split(' ').slice(-1)[0]));
-    const pessoa = achou && achou.id!=='flavio' ? achou : null;
-    let h = `<p class="resp-q">Você perguntou: <b>${esc(q)}</b></p>`;
-    if(pessoa){
-      const its = itensDaPessoa(pessoa.id).sort(porDataDesc), chips = situacaoChips(pessoa.id, pessoa.situacao);
-      h += `<div class="resp-p"><b>${esc(pessoa.nome)}</b>${pessoa.papel?` — ${esc(pessoa.papel)}`:''}${chips?`<div class="p-chips" style="margin:6px 0 0">${chips}</div>`:''}${pessoa.status?`<p class="p-st" style="margin:6px 0 0">${esc(pessoa.status)}${sitFonte(pessoa)}</p>`:''}
-        <div class="p-a"><button type="button" data-pessoa="${esc(pessoa.id)}">ver na teia →</button></div></div>`;
-      if(its.length) h += `<p class="resp-i">${its.length} ${its.length===1?'registro cita':'registros citam'} ${esc(pessoa.nome)}${its.length>3?'; os 3 mais recentes':''}:</p><div class="regs">${its.slice(0,3).map(i=>regHTML(i)).join('')}</div>`;
-      return h;
+  /* ---------------- PERGUNTE AO ARQUIVO: a busca única (N08; busca por palavra, não gera texto) ----------------
+     Uma caixa para tudo: os casos da Foz (data/foz.js), os nomes da teia (dados.js), as mensagens do BolsoZap
+     (data/busca.js, window.BD_BUSCA, gerado por bolso-os-fontes/gera_busca.py) e os registros do arquivo (dados.js).
+     Procura cada palavra no começo de uma palavra do texto, sem acento; o resultado vem em fichas, cada uma com a
+     fonte e o link. Nada é escrito na hora: o que aparece é o que o arquivo já tem. */
+  const Busca = (function(){
+    const nz = s => ' ' + norm(s).replace(/[^a-z0-9]+/g, ' ').trim() + ' ';
+    const STOP = new Set(('a o as os de da do das dos e em no na nos nas num numa um uma uns umas que quem qual quais quando onde como '+
+      'por pelo pela pelos pelas para pra pro com sem sobre ao aos ate entre foi era ser sao tem ter ha seu sua seus suas dele dela deles '+
+      'delas isso isto esse essa este esta me te se lhe eu voce ele ela eles elas mais menos muito ja nao sim ou mas tambem so sabe fala '+
+      'falou disse diz ver caso casos coisa historia tudo sobre').split(' '));
+    const FRACO = new Set(['flavio', 'bolsonaro', 'senador']);   // estão em quase tudo: só contam se não houver outra palavra
+    const B = () => window.BD_BUSCA || {};
+    let DOCS = null, comZap = false;
+    function monta(){
+      if(DOCS && (comZap || !window.BD_BUSCA)) return DOCS;   // refaz uma vez quando o data/busca.js (defer) chega
+      comZap = !!window.BD_BUSCA;
+      const b = B(), docs = [];
+      // os casos: a ficha da Foz (rótulo, termos de busca do caso, número) e, no corpo, o texto do número, o resumo e os nomes da cadeia
+      const casos = ESC.length ? ESC : [];
+      casos.forEach(e=>{ const nm = e.numero || {};
+        docs.push({tipo:'caso', id:e.id, e, A:nz((e.rotulo||'')+' '+(e.nome||'')), T:nz(String(e.busca||'').replace(/\|/g,' ')), B:nz(nm.valor||''),
+          C:nz((nm.texto||'')+' '+(e.resumo||'')+' '+(e.operacao||'')+' '+(e.cadeia||[]).map(l=>(l.de||'')+' '+(l.para||'')).join(' '))}); });
+      if(!casos.length) (b.casos||[]).forEach(c=> docs.push({tipo:'caso', id:c.id, c, A:nz((c.r||'')+' '+(c.nm||'')), T:nz((c.termos||[]).join(' ')), B:nz(c.num||''), C:nz((c.tx||'')+' '+(c.nomes||[]).join(' '))}));
+      // os nomes da teia (ele não: o arquivo inteiro é sobre ele)
+      const pes = D.grafo.nodes.length ? D.grafo.nodes : (b.pessoas||[]).map(p=>({id:p.id, nome:p.n, grupo:p.g, situacao:p.s}));
+      pes.forEach(n=>{ if(n.id==='flavio') return;
+        docs.push({tipo:'pessoa', id:n.id, n, A:nz(n.nome), B:nz(n.papel||''), C:nz((n.status||'')+' '+(GRUPO_LABEL[n.grupo]||''))}); });
+      // o BolsoZap: as conversas (pelo nome) e as mensagens (a citação, o texto, quem diz, a conversa)
+      const cv = b.conversas || {};
+      Object.keys(cv).forEach(c=> docs.push({tipo:'conv', id:c, cv:cv[c], A:nz(cv[c].n), B:' ', C:' '}));
+      (b.zap||[]).forEach(z=>{ const q = z.q || null, c = cv[z.c] || {};
+        docs.push({tipo:'zap', id:z.c+'/'+z.m, z, d:z.d, A:nz(q ? q.t : z.t), B:nz((c.n||'')+' '+(z.de||'')+' '+(q ? q.quem : '')),
+          C:nz((q ? (z.t||'')+' '+(q.meio||'') : '')+' '+((z.f||{}).veiculo||''))}); });
+      // os registros do arquivo: o título, a pasta, e no corpo o resumo e os veículos
+      VIS.forEach(i=> docs.push({tipo:'item', id:i.id, i, d:i.data, A:nz(tit(i.titulo)), B:nz(temaNome(i.tema)),
+        C:nz((i.resumo||'')+' '+(i.fontes||[]).map(f=>f && f.veiculo || '').join(' '))}));
+      return (DOCS = docs);
     }
-    const scored = VIS.map(i=>{ const b = blob(i); let s=0; words.forEach(w=>{ if(b.includes(w)) s++; }); return {i,s}; })
-      .filter(x=>x.s>0).sort((a,b)=> b.s-a.s || porDataDesc(a.i,b.i));
-    if(scored.length){
-      const top = scored.slice(0,3), s0 = scored[0].s, todos = scored.filter(x=>x.s===s0).length;
-      h += `<p class="resp-i">O arquivo tem ${scored.length} ${scored.length===1?'registro':'registros'} com essas palavras. ${scored.length>3?'Os 3 mais próximos:':''}</p><div class="regs">${top.map(x=>regHTML(x.i)).join('')}</div>`;
-      if(scored.length>3) h += `<button type="button" class="lm" data-busca="${esc(words.join('|'))}">ver ${scored.length} no Arquivo →</button>`;
-      return h + (todos ? '' : '');
+    function termos(q){
+      const ws = norm(q).replace(/[^a-z0-9]+/g, ' ').trim().split(' ').filter(w=> w && !STOP.has(w));
+      const fortes = [...new Set(ws.filter(w=> !FRACO.has(w)))];
+      return {ts: fortes, soEle: !fortes.length && ws.some(w=> FRACO.has(w))};
     }
-    return h + `<p class="resp-i">O arquivo não tem registro com essas palavras. Tente um caso (${D.temas.slice(0,5).map(t=>esc(temaNome(t.id))).join(', ')}…) ou um nome, como Queiroz.</p>`;
+    // pontos de uma palavra num documento: título/nome 10, apelido/termo/pasta 7, corpo 3; palavra inteira +2;
+    // ano (2020) na data do registro ou da mensagem: 5. Palavra de 1–2 letras só vale inteira ("PF", "8").
+    function pontua(doc, t){
+      const curto = t.length < 3;
+      const m = (h, w) => h.indexOf(' '+t+' ') >= 0 ? w+2 : (!curto && h.indexOf(' '+t) >= 0 ? w : 0);
+      let s = Math.max(m(doc.A,10), doc.T ? m(doc.T,10) : 0, m(doc.B,7), m(doc.C,3));
+      if(/^(19|20)\d\d$/.test(t) && String(doc.d||'').slice(0,4)===t) s = Math.max(s, 10);   // o ano do registro ou da mensagem
+      return s;
+    }
+    // bônus de tipo, quando a palavra está no nome (pessoa, conversa) ou no rótulo/termos/número (caso): o nome de uma
+    // pessoa vem antes de um caso que só a cita; uma instituição da teia (Ifop, BRB) vem depois do caso dela
+    const ORG = /^(Banco|Instituto|Fundo|Empresa|Loja|Precision|ONG|Associa|Funda)/i;
+    // os termos de busca do caso (curados na Foz: "Vorcaro", "Ifop") dizem que o caso é sobre aquilo: vem antes do nome
+    const bonus = (d, t) => d.tipo==='pessoa' ? (ORG.test(d.n.nome||'') ? 5 : 7) : d.tipo==='caso' ? (t ? 8 : 6) : d.tipo==='conv' ? 5 : 0;
+    const noT = (d, t) => !!d.T && (d.T.indexOf(' '+t+' ')>=0 || (t.length>=3 && d.T.indexOf(' '+t)>=0));
+    const forteEm = d => d.tipo==='caso' ? 7 : 10;
+    const GRUPO = ['caso', 'pessoa', 'zap', 'item'];
+    function procura(q){
+      const {ts, soEle} = termos(q);
+      if(!ts.length) return {ts, soEle, grupos:[], total:0};
+      const hits = [];
+      monta().forEach(doc=>{
+        let s = 0, n = 0, forte = false, tt = false;
+        ts.forEach(t=>{ const p = pontua(doc, t); if(p){ s += p; n++; if(p >= forteEm(doc)) forte = true; if(noT(doc, t)) tt = true; } });
+        if(n) hits.push({doc, s: s + (forte ? bonus(doc, tt) : 0), n});
+      });
+      // todas as palavras, quando há resultado com todas; senão, a maioria
+      const todas = hits.filter(h=> h.n===ts.length);
+      const need = ts.length <= 2 ? 1 : Math.ceil(ts.length*0.6);
+      const ok = todas.length ? todas : hits.filter(h=> h.n>=need);
+      const por = {}; ok.forEach(h=>{ const g = h.doc.tipo==='conv' ? 'zap' : h.doc.tipo; (por[g]=por[g]||[]).push(h); });
+      const grupos = GRUPO.filter(g=> por[g]).map(g=>{
+        const dist = h => h.doc.tipo==='pessoa' ? (GRAU.dist[h.doc.id]==null ? 99 : GRAU.dist[h.doc.id]) : 0;
+        const l = por[g].sort((a,b)=> b.n-a.n || b.s-a.s || (b.doc.tipo==='conv')-(a.doc.tipo==='conv') || dist(a)-dist(b) || String(b.doc.d||'').localeCompare(String(a.doc.d||'')));
+        return {g, l, top: l[0].s};
+      }).sort((a,b)=> b.top-a.top || GRUPO.indexOf(a.g)-GRUPO.indexOf(b.g));
+      return {ts, soEle, grupos, total: ok.length};
+    }
+    return {procura, termos, monta};
+  })();
+
+  // as fichas de cada tipo: número/fato + situação literal + fonte + o link para onde está; um "enviar" por ficha
+  const fonteLink = f => f && /^https?:\/\//.test(f.url||'') ? `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.veiculo||'fonte')}${f.data?', '+esc(fmtData(f.data)):''} ↗</a>` : '';
+  function fichaCaso(e){
+    const nm = e.numero || {}, v = String(nm.valor||''), num = /\d/.test(v) && v.length <= 22;
+    const f = nm.fonte && /^https?:\/\//.test(nm.fonte.url||'') ? nm.fonte : fonte1(e);
+    return `<article class="bf">
+      <p class="bf-k">caso da Foz · ${esc(FAIXA_K[e.faixa]||'')}</p>
+      <h3 class="bf-n">${esc(e.rotulo||e.nome)}</h3>
+      ${v?`<p class="numero ficha${num?'':' frase'}">${num?fmtNum(v):esc(v)}</p>`:''}
+      ${nm.texto?`<p class="bf-t">${esc(nm.texto)}</p>`:''}
+      ${f?`<p class="bf-f">${fonteLink(f)}</p>`:''}
+      <div class="bf-a"><a class="bf-p" href="foz.html#${esc(e.id)}">elo por elo, na Foz →</a><button type="button" class="env" data-share="${esc(e.id)}">enviar ↗</button></div>
+    </article>`;
   }
-  function perguntar(q){
-    q = String(q||'').trim(); if(!q) return;
-    const m = document.createElement('div'); m.className='resp'; m.innerHTML = responder(q);
-    chatMsgs.insertBefore(m, chatMsgs.firstChild);
-    try{ m.scrollIntoView({behavior: RMq() ? 'auto' : 'smooth', block:'nearest'}); }catch(e){}
+  function fichaPessoa(n){
+    const chips = situacaoChips(n.id, n.situacao), es = fozPorNome[n.id] || [], d = GRAU.dist[n.id];
+    return `<article class="bf">
+      <p class="bf-k">na teia · ${esc(GRUPO_LABEL[n.grupo]||'nome')}${d?` · a ${d} ${d===1?'elo':'elos'} dele`:''}</p>
+      <h3 class="bf-n">${esc(n.nome)}</h3>
+      ${n.papel?`<p class="bf-papel">${esc(n.papel)}</p>`:''}
+      ${chips?`<div class="bf-chips">${chips}</div>`:''}
+      ${n.status?`<p class="bf-s">${esc(n.status)}${sitFonte(n)}</p>`:''}
+      ${d>=2 && caminhos(n.id).length ? `<p class="bf-c">O caminho até ele: ${caminhos(n.id)[0].nos.map(x=> esc(nodeById[x] ? nodeById[x].nome : x)).join(' → ')}</p>` : ''}
+      ${es.length?`<p class="bf-c">Na cadeia de ${es.length===1?'um caso':es.length+' casos'} da Foz: ${es.map(e=>`<a href="foz.html#${esc(e.id)}">${esc(e.rotulo||e.nome)}</a>`).join(' · ')}</p>`:''}
+      <div class="bf-a"><button type="button" class="bf-p" data-pessoa="${esc(n.id)}">na teia, o caminho até ele →</button>${zapLink(n.id)}${envioPessoa(n.id)}</div>
+    </article>`;
   }
+  function fichaConv(id, cv){
+    return `<article class="bf">
+      <p class="bf-k">conversa do BolsoZap</p>
+      <h3 class="bf-n">${esc(cv.n||id)}</h3>
+      <div class="bf-a"><a class="bf-p" href="zap.html#${esc(id)}">abrir a conversa →</a></div>
+    </article>`;
+  }
+  function fichaZap(z){
+    const cv = ((window.BD_BUSCA||{}).conversas || {})[z.c] || {}, q = z.q || null;
+    const T = window.BD_TOPICOS || {}, top = cv.foz && T[cv.foz] ? cv.foz : 'abertura';
+    const dia = fmtData(z.d);
+    const texto = (q ? `“${q.t}”, ${q.quem}${q.meio?' ('+q.meio+')':''}` : z.t) + `\n${z.f && z.f.veiculo ? z.f.veiculo : ''}${dia?', '+dia:''}. No BolsoZap, conversa ${cv.n||z.c}:\n`;
+    const k = extra('z:'+z.c+'/'+z.m, {texto, url: BASE + (z.lk || ('zap.html#'+z.c+'/'+z.m))});
+    return `<article class="bf bf-zap">
+      <p class="bf-k">BolsoZap · ${esc(cv.n||z.c)}${dia?' · '+esc(dia):''}</p>
+      ${q?`<blockquote class="bf-q">“${esc(q.t)}”<cite>${esc(q.quem)}${q.meio?', '+esc(q.meio):''}</cite></blockquote>${z.t?`<p class="bf-t">${esc(z.t)}</p>`:''}`:`<p class="bf-m">${esc(z.t)}</p>`}
+      <p class="bf-f">${z.de && z.f && z.de!==z.f.veiculo ? esc(z.de)+' · ' : ''}${fonteLink(z.f)}</p>
+      <div class="bf-a"><a class="bf-p" href="zap.html#${esc(z.c)}/${esc(z.m)}">na conversa →</a><button type="button" class="env" data-share="${esc(top)}" data-x="${esc(k)}">enviar ↗</button></div>
+    </article>`;
+  }
+  const GRUPO_NOME = {caso:['caso da Foz','casos da Foz'], pessoa:['nome na teia','nomes na teia'], zap:['no BolsoZap','no BolsoZap'], item:['registro do arquivo','registros do arquivo']};
+  const GRUPO_VIS = {caso:3, pessoa:3, zap:3, item:4};
+  function fichaDe(h){
+    const d = h.doc;
+    if(d.tipo==='caso') return d.e ? fichaCaso(d.e) : '';
+    if(d.tipo==='pessoa') return fichaPessoa(d.n);
+    if(d.tipo==='conv') return fichaConv(d.id, d.cv);
+    if(d.tipo==='zap') return fichaZap(d.z);
+    if(d.tipo==='item') return regHTML(d.i);
+    return '';
+  }
+  function resultadoHTML(q, o){
+    o = o || {};
+    const r = Busca.procura(q);
+    let h = o.semTopo ? '' : `<p class="resp-q">Você procurou: <b>${esc(q)}</b></p>`;
+    if(r.soEle) return h + `<p class="resp-i">O arquivo inteiro é sobre ele. Comece pela <a class="bf-p" href="foz.html">Foz: os ${ESC.length} casos e como cada um chega a ele →</a></p>`;
+    if(!r.grupos.length) return h + `<p class="resp-i">O arquivo não tem nada com ${r.ts.length>1?'essas palavras':'essa palavra'}. Tente um nome (Queiroz, Vorcaro), um caso (rachadinha, Ifop) ou um ano (2020).</p>`;
+    const conta = r.grupos.map(g=>{ const n = g.l.filter(h=>h.doc.tipo!=='conv').length || g.l.length; return `<b>${n}</b> ${GRUPO_NOME[g.g][n===1?0:1]}`; });
+    h += `<p class="resp-i">${conta.length>1 ? conta.slice(0,-1).join(', ')+' e '+conta[conta.length-1] : conta[0]}.</p>`;
+    r.grupos.forEach(g=>{
+      const max = o.max ? Math.min(o.max, GRUPO_VIS[g.g]) : GRUPO_VIS[g.g], vis = g.l.slice(0, max), resto = o.max ? [] : g.l.slice(max);
+      h += `<section class="bg"><h3 class="kx">${esc(GRUPO_NOME[g.g][1].charAt(0).toUpperCase()+GRUPO_NOME[g.g][1].slice(1))} <span>· ${g.l.length}</span></h3>
+        <div class="${g.g==='item'?'regs':'bfs'}">${vis.map(fichaDe).join('')}${resto.length && g.g!=='item'?`<div class="bfs" hidden>${resto.map(fichaDe).join('')}</div><button type="button" class="lm" data-mais>${resto.length===1 ? (g.g==='zap'?'ver a outra':'ver o outro') : `ver ${g.g==='zap'?'as outras':'os outros'} ${resto.length}`} ↓</button>`:''}</div>
+        ${g.g==='item' && g.l.length>max ? `<button type="button" class="lm" data-busca="${esc(r.ts.join('|'))}">ver os ${g.l.length} registros no Arquivo →</button>` : ''}</section>`;
+    });
+    return h;
+  }
+  const chatMsgs = $('#chat-msgs'), chatInp = $('#chat-inp');
+  let ultimaPergunta = '';
+  function perguntar(q, o){
+    q = String(q||'').trim(); if(!q || !chatMsgs) return;
+    o = o || {};
+    if(chatInp && chatInp.value.trim()!==q) chatInp.value = q;
+    if(q===ultimaPergunta && chatMsgs.firstChild && !o.forca) return;
+    ultimaPergunta = q;
+    chatMsgs.innerHTML = `<div class="resp">${resultadoHTML(q)}</div>`;
+    if(o.rola) try{ chatMsgs.scrollIntoView({behavior: RMq() ? 'auto' : 'smooth', block:'start'}); }catch(e){}
+  }
+  // data/busca.js vem com defer: a pergunta que chegar antes dele espera o DOMContentLoaded
+  function quandoPronto(fn){ if(window.BD_BUSCA || document.readyState!=='loading') fn(); else document.addEventListener('DOMContentLoaded', fn, {once:true}); }
   const chatForm = $('#chat-form');
-  if(chatForm) chatForm.addEventListener('submit', e=>{ e.preventDefault(); const inp=$('#chat-inp'); const v=inp.value.trim(); if(!v) return; inp.value=''; perguntar(v); });
+  if(chatForm) chatForm.addEventListener('submit', e=>{ e.preventDefault(); const v = chatInp.value.trim(); if(!v) return; quandoPronto(()=> perguntar(v, {forca:true})); try{ chatInp.blur(); }catch(_){} });
+  let tDig = null;
+  if(chatInp) chatInp.addEventListener('input', ()=>{ clearTimeout(tDig); const v = chatInp.value.trim(); if(v.length < 3) return; tDig = setTimeout(()=> quandoPronto(()=> perguntar(v)), 220); });
   const chips = $('#chat-chips');
-  if(chips){ chips.innerHTML = D.temas.map(t=>`<button type="button" data-q="${esc(temaNome(t.id))}">${esc(temaNome(t.id))}</button>`).join('') + `<button type="button" data-q="Quem é Fabrício Queiroz?">Quem é Queiroz?</button>`; }
+  if(chips){ chips.innerHTML = ['Queiroz','Ifop','jato','Vorcaro','rachadinha','Adriano','Marielle','2020'].map(t=>`<button type="button" data-q="${esc(t)}">${esc(t)}</button>`).join(''); }
   const chatSub = $('#chat-sub');
-  if(chatSub) chatSub.textContent = `Procura palavra por palavra nos ${VIS.length} registros e nos ${D.grafo.nodes.filter(n=>n.id!=='flavio').length} nomes da teia. A resposta é o que o arquivo tem, com a fonte; nada é escrito na hora.`;
+  // o texto não depende do data/busca.js (que chega depois, com defer): nada muda de tamanho depois de pintado
+  if(chatSub) chatSub.textContent = `Uma caixa para o arquivo inteiro: os ${ESC.length} casos da Foz, os ${D.grafo.nodes.filter(n=>n.id!=='flavio').length} nomes da teia, as mensagens do BolsoZap e os ${VIS.length} registros. A resposta é o que o arquivo tem, com a fonte; nada é escrito na hora.`;
+  // o menu (assets/nav.js) pergunta daqui: window.BDBusca.perguntar('Queiroz')
+  window.BDBusca = { perguntar: q=> quandoPronto(()=>{ showView('chat','push'); perguntar(q, {forca:true}); window.scrollTo(0,0); }), procura: q=> Busca.procura(q) };
 
   /* ---------------- cliques (um só lugar) ---------------- */
   function aoClicar(ev){
-    const t = ev.target && ev.target.closest ? ev.target.closest('[data-abre],[data-pessoa],[data-tema],[data-caso],[data-faixa],[data-go],[data-mais],[data-todos],[data-ano],[data-q],[data-lista],[data-busca],#man-mais,[data-cron]') : null;
+    const t = ev.target && ev.target.closest ? ev.target.closest('[data-abre],[data-pessoa],[data-tema],[data-caso],[data-faixa],[data-go],[data-mais],[data-todos],[data-ano],[data-q],[data-lista],[data-busca],#man-mais,[data-cron],[data-plc-teia],[data-q-arq]') : null;
     if(!t) return;
     const d = t.dataset;
     if(t.id==='man-mais'){ abreManchetes(); return; }
@@ -1447,7 +1800,10 @@
     if('mais' in d){ const r=t.previousElementSibling; if(r) r.hidden=false; t.remove(); return; }
     if('todos' in d){ const s=t.closest('.cr-ano'); if(s){ const ls=$$('.cr-l', s); if(ls[0]) ls[0].hidden=true; if(ls[1]) ls[1].hidden=false; } t.remove(); return; }
     if(d.ano){ const s=$('#ano-'+d.ano); if(s) s.scrollIntoView({block:'start', behavior: RMq() ? 'auto' : 'smooth'}); return; }
-    if(d.q){ perguntar(d.q); return; }
+    if(d.q){ quandoPronto(()=> perguntar(d.q, {forca:true})); return; }
+    if(d.qArq){ window.BDBusca.perguntar(d.qArq); return; }
+    if(d.plcTeia){ const [a,k] = d.plcTeia.split(':'), t0 = PLC.find(x=>x.k===k); if(!t0) return;
+      Grafo.sit(plcConta(a,k).map(n=>n.id), t0.rot.charAt(0).toUpperCase()+t0.rot.slice(1)+', '+ANEL_ROT[a]); irTeia(); return; }
     if(d.lista==='presos'){ showView('rede','push'); Grafo.lista(presosDiretos().map(n=>n.id), 'Presos ou condenados, em volta dele'); irTeia(); return; }
     if(d.busca){ showView('arquivo','push'); busca.value = d.busca; buscar(d.busca); return; }
     if(d.cron){
@@ -1477,9 +1833,15 @@
     const c0 = qs.get('caminho'), caminho0 = c0 && CAMINHOS[c0] ? c0 : null;
     // drive.html?i=<id>#arquivo abre a ficha do registro (o link que vai no envio de um registro sem caso na Foz)
     const i0 = qs.get('i'), item0 = i0 && itemById[i0] ? i0 : null;
+    // drive.html?busca=<termo>#chat abre a "Pergunte ao arquivo" já respondida; o menu (nav.js) passa a pergunta
+    // pelo sessionStorage (bd_pergunta), para o termo não ir no endereço
+    let b0 = qs.get('busca') || '';
+    try{ const sv = sessionStorage.getItem('bd_pergunta'); if(sv){ sessionStorage.removeItem('bd_pergunta'); if(!b0) b0 = sv; } }catch(e){}
     const h = (location.hash||'').slice(1);
-    const v0 = VIEWS.includes(h) ? h : ((pessoa || caminho0) ? 'rede' : (item0 ? 'arquivo' : 'recente'));
+    const v0 = VIEWS.includes(h) ? h : (b0 ? 'chat' : (pessoa || caminho0) ? 'rede' : (item0 ? 'arquivo' : 'recente'));
+    if(!b0 && v0==='chat' && q0) b0 = q0;
     showView(v0);
+    if(b0){ if(v0!=='chat') showView('chat'); quandoPronto(()=> perguntar(b0, {forca:true})); }
     if(caminho0 && v0==='rede'){ Grafo.caminho(caminho0); irTeia(); }
     else if(pessoa && v0==='rede'){ Grafo.focus(pessoa); irTeia(); }
     if(item0) abrirDetalhe(item0);

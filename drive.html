@@ -29,7 +29,7 @@
 <meta name="twitter:image:alt" content="Um rio de escândalos: os nomes, o dinheiro e os casos descem como afluentes até a foto de Flávio Bolsonaro.">
 
 <link rel="stylesheet" href="assets/base.css?v=38ce818e">
-<link rel="stylesheet" href="assets/app.css?v=5b4c7f23">
+<link rel="stylesheet" href="assets/app.css?v=0af44161">
 <link rel="stylesheet" href="assets/header.css?v=84dc371e">
 <link rel="icon" type="image/svg+xml" href="assets/marca/favicon.svg">
 <link rel="icon" sizes="32x32" href="assets/marca/icone-32.png">
@@ -77,7 +77,7 @@
   <section id="view-rede" class="view">
     <div class="view-head">
       <h1 class="sec">A teia de nomes</h1>
-      <p class="sub">Os nomes em volta dele, cada um com a situação jurídica e a fonte. A cor de cada nome é a situação dele; toque num nome para ver a ficha.</p>
+      <p class="sub">Os nomes em volta dele, cada um com a situação jurídica e a fonte. A cor de cada nome é a situação dele; toque num nome para ver a ficha e o caminho até ele.</p>
     </div>
     <div id="rede-dq" class="rede-dq"></div>
     <div class="toolbar">
@@ -120,15 +120,16 @@
     <div id="swimlanes" class="swimlanes" hidden></div>
   </section>
 
-  <!-- PERGUNTE AO ARQUIVO (era FlávioGPT; é uma busca por palavra, não gera texto) -->
+  <!-- PERGUNTE AO ARQUIVO (era FlávioGPT): a busca única — casos da Foz, nomes da teia, BolsoZap e registros
+       (data/busca.js, de bolso-os-fontes/gera_busca.py). É busca por palavra; não gera texto. -->
   <section id="view-chat" class="view">
     <div class="view-head">
       <h1 class="sec">Pergunte ao arquivo</h1>
-      <p class="sub" id="chat-sub">Procura palavra por palavra nos registros e nos nomes da teia. A resposta é o que o arquivo tem, com a fonte; nada é escrito na hora.</p>
+      <p class="sub" id="chat-sub">Uma caixa para o arquivo inteiro: os casos da Foz, os nomes da teia, as mensagens do BolsoZap e os registros. A resposta é o que o arquivo tem, com a fonte; nada é escrito na hora.</p>
     </div>
     <div class="chat-shell">
-      <form id="chat-form" class="chat-form">
-        <div class="busca-box"><input id="chat-inp" type="search" placeholder="Ex.: rachadinha, Queiroz, jato" autocomplete="off" aria-label="Sua pergunta"></div>
+      <form id="chat-form" class="chat-form" role="search">
+        <div class="busca-box"><input id="chat-inp" type="search" enterkeyhint="search" placeholder="Um nome, um caso, uma palavra" autocomplete="off" aria-label="Procure no arquivo: um nome, um caso, uma palavra"></div>
         <button type="submit">procurar</button>
       </form>
       <div id="chat-chips" class="pilulas chat-chips"></div>
@@ -145,14 +146,15 @@
 
 <div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
 
-<script src="data/dados.js?v=d2cfb2ad"></script>
-<script src="data/foz.js?v=880cbd84"></script>
-<script src="data/zap-mapa.js?v=02cdbfdf"></script>
-<script src="data/topicos.js?v=75878a47"></script>
+<script src="data/dados.js?v=2ab1fe89"></script>
+<script src="data/foz.js?v=0c91d9eb"></script>
+<script src="data/zap-mapa.js?v=e26bbba5"></script>
+<script src="data/topicos.js?v=d0b7736c"></script>
 <script src="assets/fotos.js?v=734cce7c"></script>
 <script src="data/noticias.js?v=dc013f5c"></script>
-<script src="assets/compartilhar.js?v=edbe4096" defer></script>
-<script src="assets/app.js?v=be5d5084"></script>
-<script src="assets/nav.js?v=fc36981b"></script>
+<script src="data/busca.js?v=4fe79448" defer></script>
+<script src="assets/compartilhar.js?v=f3f9b497" defer></script>
+<script src="assets/app.js?v=3e32f8d7"></script>
+<script src="assets/nav.js?v=db4ad0ea"></script>
 </body>
 </html>

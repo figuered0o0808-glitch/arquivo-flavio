@@ -60,11 +60,13 @@ const VIS = new Set(st('zap:vistos') || []);
 const EU = st('zap:eu', undefined, 1) || [];
 let memT = 0;
 function grava(){ clearTimeout(memT); memT = setTimeout(() => { st('zap:v1', MEM); if (R.c) linhaDe(R.c.id); }, 500); }
+/* data de entrada de cada mensagem: o índice traz {"*": a data mais comum, id: data} (monta_zap.py, Onda 2) */
+const pDe = (c, id) => c.p ? (c.p[id] || c.p['*'] || '') : '';
 function naoLidas(c){
   const m = MEM[c.id]; if (!m || !m.ate) return c.n;
   const i = c.ids.indexOf(m.ate);
   let n = i < 0 ? Math.max(0, c.n - (m.n | 0)) : c.ids.length - 1 - i;
-  if (m.em && c.p) for (let k = 0; k <= i; k++) if ((c.p[c.ids[k]] || '') > m.em) n++;
+  if (m.em && c.p) for (let k = 0; k <= i; k++) if (pDe(c, c.ids[k]) > m.em) n++;
   return n;
 }
 
@@ -132,7 +134,28 @@ function previa(f){
     (f.length > 1 ? ' · +' + (f.length - 1) + (f.length > 2 ? ' fontes' : ' fonte') : '') + '</span>' + (a.d ? '<span>' + pub(a) + '</span>' : '') + '</span>' + ic('ext') + '</a>';
 }
 const quemMeio = q => q.quem + (q.a ? ', ' + q.a : '') + ' · ' + q.meio;
+/* A Foz (conversa gerada): cada mensagem é o cartão de um caso, como na ficha: rótulo · destaque (âmbar; a situação dele,
+   quando é o destaque, em tinta) · frase · ELE (a situação formal, em tinta) · fonte · a ficha na Foz. Separador = a faixa. */
+const FX = { direto: 'Ele mesmo', gabinete: 'Pelo gabinete', familia: 'Pela família', entorno: 'Pelo entorno' };
+const nbsp = t => esc(t).replace(/R\$ (?=\d)/g, 'R$\u00a0');
+function fzHtml(m, cab){
+  const z = m.fz, f = m.f || [];
+  const rot = m.de + ', ' + z.nome + ': ' + z.v + ' ' + m.t + (z.ele ? ' Situação dele: ' + z.ele : '') + ' Fonte publicada em ' + dCurta(m.d) + '.';
+  let h = '<li class="z-msg z-bl z-fz' + (cab ? ' z-cab' : '') + (m.dest ? ' z-dest' : '') + '" id="zm-' + m.id + '" data-id="' + m.id + '" data-t="m" data-de="' + esc(m.de) + '" data-cat="' + m.cat +
+    '" data-n="' + (m.t || '').length + '" data-fontes="' + f.length + '" tabindex="-1" aria-label="' + esc(rot) + '"><div class="z-bal">';
+  if (cab) h += '<span class="z-de ' + (m.cat === 'inst' ? 'z-ins' : 'z-imp') + '">' + esc(m.de) + '</span>';
+  h += '<span class="z-fzk">' + esc(z.nome) + '</span><b class="z-fzn' + (z.tipo === 'frase' ? ' z-frase' : '') + (z.cor === 'tinta' ? ' z-tinta' : '') + '">' + nbsp(z.v) + '</b>' +
+    '<p class="z-tx">' + nbsp(m.t) + '</p>' + (z.ele ? '<p class="z-fzele"><b>ELE</b>' + esc(z.ele) + '</p>' : '') + previa(f) +
+    '<a class="z-fzp" href="foz.html#' + esc(z.id) + '">A ficha na Foz →</a>';
+  return h + '<span class="z-hora">' + (R.j && R.j.fixada === m.id ? '<span class="z-hpin" title="Fixada">' + ic('pin') + '</span>' : '') + dCurta(m.d) + '</span><button type="button" class="z-mais" aria-label="Fontes desta mensagem" aria-haspopup="dialog">' + ic('bx') + '</button></div>' +
+    '<button type="button" class="z-encb" aria-label="Encaminhar este caso"><span>' + ic('enc') + '</span></button></li>';
+}
+function fxSep(k, M){
+  const n = M.filter(x => x.fz && x.fz.fx === k).length;
+  return '<li class="z-sep z-sepfx" data-t="d" role="note">' + pil(esc((FX[k] || 'A Foz') + ' · ' + n + (n > 1 ? ' casos' : ' caso'))) + '</li>';
+}
 function balHtml(m, cab){
+  if (m.fz) return fzHtml(m, cab);
   const f = m.f || [], q = m.q;
   const rot = m.de + ', ' + dLonga(m.d) + (m.h ? ', ' + m.h : '') + ': ' + (q ? quemMeio(q) + ': ' + aspas(q.t) + (m.t ? ' ' + m.t : '') : m.t) + (m.anota ? ' Depois: ' + m.anota.t + ', ' + dCurta(m.anota.d) + '.' : '');
   let h = '<li class="z-msg z-bl' + (cab ? ' z-cab' : '') + (m.dest ? ' z-dest' : '') + '" id="zm-' + m.id + '" data-id="' + m.id + '" data-t="m" data-de="' + esc(m.de) + '" data-cat="' + m.cat +
@@ -148,7 +171,7 @@ function balHtml(m, cab){
     '<button type="button" class="z-encb" aria-label="Encaminhar esta mensagem"><span>' + ic('enc') + '</span></button></li>';
 }
 const abrev = de => String(de || '').split(' · ')[0];
-function textoFix(m){ const q = m.q; return q ? aspas(q.t) + (m.anota ? ' · Depois: ' + m.anota.t : m.t ? ' ' + m.t : '') : frente(m.t) + (m.anota ? ' · Depois: ' + m.anota.t : ''); }
+function textoFix(m){ const q = m.q; if (m.fz) return m.fz.v + ' ' + m.t; return q ? aspas(q.t) + (m.anota ? ' · Depois: ' + m.anota.t : m.t ? ' ' + m.t : '') : frente(m.t) + (m.anota ? ' · Depois: ' + m.anota.t : ''); }
 function ligas(c, j){
   const L = j.liga || {}, l = [];
   if (L.foz) l.push(['Na Foz', 'foz.html#' + L.foz]);
@@ -172,8 +195,8 @@ function situHtml(j){
   const s = j.sit; if (!s || !s.t) return '';
   const f = s.f || [], vs = f.map(x => x.v).filter((v, i, a) => a.indexOf(v) === i);
   return '<li class="z-sis z-ui z-situ" data-t="s" role="note"><button type="button" class="z-sit" aria-haspopup="dialog" aria-label="' +
-    esc('Situação em ' + dCurta(s.d) + ': ' + s.t + (vs.length ? '. Fontes: ' + vs.join(', ') : '')) + '">' +
-    '<span class="z-situ-k">' + ic('bal') + 'Situação em ' + dCurta(s.d) + '</span><span class="z-situ-t">' + esc(s.t) + '</span>' +
+    esc((j.gera ? 'A Foz em ' : 'Situação em ') + dCurta(s.d) + ': ' + s.t + (vs.length ? '. Fontes: ' + vs.join(', ') : '')) + '">' +
+    '<span class="z-situ-k">' + ic('bal') + (j.gera ? 'A Foz em ' : 'Situação em ') + dCurta(s.d) + '</span><span class="z-situ-t">' + esc(s.t) + '</span>' +
     (vs.length ? '<span class="z-situ-f">' + esc(vs.join(' · ')) + ic('bx') + '</span>' : '') + '</button></li>';
 }
 /* modo: 'inicio' = do começo (o botão "ver desde o início" e "Ler do começo"); sem modo, a 1ª visita (e a volta de quem está
@@ -183,6 +206,7 @@ function monta(c, j, alvo, modo){
   pare();
   const M = j.m, ids = M.map(m => m.id), mem = MEM[c.id], ini = modo === 'inicio';
   R.c = c; R.j = j; R.msgs = {}; M.forEach(m => { R.msgs[m.id] = m; });
+  if (j.gera) topicosFoz();
   let ai = alvo ? ids.indexOf(alvo) : -1;
   if (alvo && ai < 0){ aviso('Mensagem não encontrada'); H.replaceState(H.state, '', '#' + c.id); alvo = null; }
   const ate = !ini && ai < 0 && mem && mem.ate ? ids.indexOf(mem.ate) : -1, nl = ate >= 0 ? M.length - 1 - ate : 0, lido = ate >= 0 && !nl;
@@ -196,10 +220,12 @@ function monta(c, j, alvo, modo){
   }
   else h.push('<li class="z-sis z-ui" data-t="s" role="note"><button type="button" data-dados>' + pil(esc(j.criou)) + '</button></li>');
   let sep = null, de = null;
+  const porFx = j.ordem === 'foz';   /* A Foz: na ordem da Foz, separada pela faixa (a data de cada fonte fica na bolha) */
   M.forEach((m, i) => {
     if (i < i0) return;
     if (nl && i === ate + 1) h.push(leit(nl + (nl > 1 ? ' mensagens não lidas' : ' mensagem não lida')));
-    if (m.d !== sep){ h.push(sepHtml(m.d, i > i0 ? sep : null)); sep = m.d; de = null; }
+    if (porFx){ const k = m.fz ? m.fz.fx : ''; if (k !== sep){ h.push(fxSep(k, M)); sep = k; de = null; } }
+    else if (m.d !== sep){ h.push(sepHtml(m.d, i > i0 ? sep : null)); sep = m.d; de = null; }
     if (m.k === 'sis'){ h.push(sisHtml(m)); de = null; } else { h.push(balHtml(m, m.de !== de)); de = m.de; }
   });
   if (lido) h.push(leit('Você está em dia · conversa atualizada em ' + dCurta(j.gerado)));
@@ -411,14 +437,17 @@ function folhaMsg(m, ancora){
   if (m.ed) h += '<p class="z-fnota">Corrigida em ' + dCurta(m.ed.d) + ': ' + esc(m.ed.nota) + '</p>';
   if (m.anota){ h += '<p class="z-fk">Depois · ' + dCurta(m.anota.d) + '</p><p class="z-fnota">' + esc(m.anota.t) + '</p>'; m.anota.f.forEach(x => { h += linkF(x); }); }
   h += '<p class="z-fk">Esta mensagem</p>' + acao('enc', 'Encaminhar esta mensagem', 'data-enc-msg') + acao('doc', 'Copiar com a fonte', 'data-copia="f"') + acao('ext', 'Copiar link', 'data-copia="l"') +
-    (L.foz ? '<a class="z-fa" href="foz.html#' + L.foz + '">' + ic('rio') + 'Na Foz</a>' : '') + acao('info', 'Dados da mensagem', 'data-dm aria-expanded="false"') +
+    ((m.fz || L.foz) ? '<a class="z-fa" href="foz.html#' + esc(m.fz ? m.fz.id : L.foz) + '">' + ic('rio') + 'Na Foz</a>' : '') + acao('info', 'Dados da mensagem', 'data-dm aria-expanded="false"') +
     '<dl class="z-fdl" hidden><dt>Data do fato</dt><dd>' + dLonga(m.d) + (m.h ? ', ' + m.h : '') + '</dd>' + (a && a.d ? '<dt>Publicada em</dt><dd>' + dCurta(a.d) + ' (' + esc(a.v) + ')</dd>' : '') +
-    (m.p ? '<dt>No BolsoZap</dt><dd>desde ' + dCurta(m.p) + '</dd>' : '') + (L.q ? '<dt>No arquivo</dt><dd><a href="drive.html?q=' + encodeURIComponent(L.q) + '#arquivo">buscar “' + esc(L.q) + '”</a></dd>' : '') + '</dl>';
+    (m.p ? '<dt>No BolsoZap</dt><dd>desde ' + dCurta(m.p) + '</dd>' : '') + (L.q ? '<dt>No arquivo</dt><dd><a href="drive.html?q=' + encodeURIComponent(L.q) + '#arquivo">buscar “' + esc(L.q) + '”</a></dd>' : '') + '</dl>' +
+    '<p class="z-fdica">' + ic('enc') + 'Segure uma mensagem para ver o print dela e enviar.</p>';
   R.fm = m; abreFolha(h, ancora);
 }
 function folhaSit(b){
   const s = R.j.sit, f = ((s || R.j.fecho).f || []);
-  abreFolha('<p class="z-ft" id="z-folha-t">Situação · ' + f.length + (f.length === 1 ? ' fonte' : ' fontes') + '</p><p class="z-fnota">' + esc(s ? 'Situação em ' + dCurta(s.d) + ' · ' + s.t : R.j.fecho.t) + '</p>' + f.map(linkF).join('') +
+  const g = R.j.gera;
+  abreFolha('<p class="z-ft" id="z-folha-t">' + (g ? 'A Foz' : 'Situação · ' + f.length + (f.length === 1 ? ' fonte' : ' fontes')) + '</p><p class="z-fnota">' + esc(s ? (g ? 'A Foz em ' : 'Situação em ') + dCurta(s.d) + ' · ' + s.t : R.j.fecho.t) + '</p>' + f.map(linkF).join('') +
+    (g ? '<a class="z-f1" href="foz.html">Abrir A Foz, caso a caso' + ic('ext') + '</a>' : '') +
     '<p class="z-fk">Esta conversa</p>' + acao('enc', 'Encaminhar esta conversa', 'data-enc-conv') + acao('ext', 'Copiar link', 'data-copia="c"'), b);
 }
 function folhaLink(k){
@@ -482,7 +511,7 @@ function desenhaDados(){
   const cm = (c.comum || []).filter(id => C[id]);
   D.innerHTML = '<div class="z-dcab"><button type="button" class="z-ib" data-fecha-dados aria-label="Fechar os dados da conversa">' + ic('vol') + '</button><span>Dados da conversa</span></div>' +
     '<div class="z-dtop">' + av(c) + '<h2>' + esc(c.nome) + '</h2><p>' + esc(c.papel) + '</p><div class="z-dbts">' + bts.join('') + '</div></div>' +
-    (c.sit ? '<section class="z-dsec"><h3 class="z-dk">Situação</h3><p>' + esc(c.sit.t) + '</p><p class="z-fs">' + (c.sit.f || []).map(x => '<a href="' + esc(x.u) + '" target="_blank" rel="noopener">' + esc(x.v) + (x.d ? ', ' + dCurta(x.d) : '') + ic('ext') + '</a>').join('<span aria-hidden="true">·</span>') + '</p></section>' : '') +
+    (c.sit ? '<section class="z-dsec"><h3 class="z-dk">Situação</h3><p>' + esc(c.sit.t) + '</p><p class="z-fs">' + ((j.sit || c.sit).f || []).map(x => '<a href="' + esc(x.u) + '" target="_blank" rel="noopener">' + esc(x.v) + (x.d ? ', ' + dCurta(x.d) : '') + ic('ext') + '</a>').join('<span aria-hidden="true">·</span>') + '</p></section>' : '') +
     '<section class="z-dsec"><h3 class="z-dk">Links e documentos · ' + nF + '</h3>' + vs.map(v => '<div class="z-dv"><b>' + esc(v) + '</b><div>' +
       Array.from(G[v].values()).sort((a, b) => fimP(a.d) < fimP(b.d) ? -1 : 1).map(x => '<a href="' + esc(x.u) + '" target="_blank" rel="noopener" aria-label="' + esc(x.v + (x.d ? ', ' + pub(x) : '')) + '">' + (pub(x) || 'reportagem') + ic('ext') + '</a>').join('') + '</div></div>').join('') + '</section>' +
     (cm.length ? '<section class="z-dsec"><h3 class="z-dk">Em comum · ' + cm.length + '</h3>' + cm.map(mini).join('') + '</section>' : '') +
@@ -605,7 +634,9 @@ function desenhaRio(){
 /* ---------- encaminhar ---------- */
 const T = () => W.BD_TOPICOS || (W.BD_TOPICOS = {});
 function base(){ const t = T(), u = (t.zap || t.abertura || {}).url; return u ? u.replace(/c\/[^/]*$/, '') : 'https://figuered0o0808-glitch.github.io/arquivo-flavio/'; }
-const linkMsg = (c, m) => base() + 'c/zap-' + c.id + '.html?m=' + encodeURIComponent(m.id);
+/* sem o tópico gerado da conversa (gera_compartilhar.py ainda não rodou para ela), o link é o próprio zap.html: nunca um c/ que não existe */
+const temC = c => { const t = T()['zap-' + c.id]; return !!(t && !t.sint); };
+const linkMsg = (c, m) => m.fz ? base() + 'c/' + m.fz.id + '.html' : temC(c) ? base() + 'c/zap-' + c.id + '.html?m=' + encodeURIComponent(m.id) : base() + 'zap.html#' + c.id + '/' + encodeURIComponent(m.id);
 function topAba(){
   if (!T().zap) T().zap = { titulo: 'Flávio Bolsonaro · BolsoZap', texto: 'Flávio Bolsonaro · BolsoZap: conversas com fonte sobre Flávio, os casos e as pessoas em volta. Cada mensagem é uma reportagem ou um documento público, com data e fonte.', url: base() + 'c/zap.html', img: 'c/img/zap.png' };
   return 'zap';
@@ -616,15 +647,18 @@ function topConv(c){
     const pre = 'BOLSODRIVE · BolsoZap · ' + c.nome;
     let tx = pre + (c.sit ? ' · ' + c.sit.t : '') + '. A conversa, com fonte em cada mensagem.';
     if (tx.length > 220) tx = pre + ': a conversa, com fonte em cada mensagem.';
-    T()[k] = { titulo: pre, texto: tx, url: base() + 'c/' + k + '.html', img: 'c/img/' + k + '.png' };
+    T()[k] = { titulo: pre, texto: tx, url: base() + 'zap.html#' + c.id, img: null, sint: 1 };
   }
   return k;
 }
+/* o tópico de uma mensagem: zap-<conversa>--<mensagem> quando o gerador o fez (com cartão próprio); na Foz, o tópico do caso
+   (data/topicos.js); senão, o da conversa com o texto da mensagem por cima (o cartão da conversa, o link da mensagem) */
 function topMsg(c, m){
+  if (m.fz && T()[m.fz.id] && T()[m.fz.id].url) return m.fz.id;
   const k = 'zap-' + c.id + '--' + m.id, cc = T()['zap-' + c.id];
   if (!T()[k]){
     const tit = (cc || {}).titulo || 'BOLSODRIVE · BolsoZap · ' + c.nome;
-    T()[k] = { titulo: tit, texto: m.env || tit, url: linkMsg(c, m), img: cc && cc.img || 'c/img/zap-' + c.id + '.png' };
+    T()[k] = { titulo: tit, texto: m.env || tit, url: linkMsg(c, m), img: cc && !cc.sint && cc.img || null, sint: 1 };
   }
   return k;
 }
@@ -669,9 +703,48 @@ function topicoDe(b){
   if (b.closest('[data-enc-aba]')) return topAba();
   if (!R.c) return null;
   if (b.closest('[data-enc-conv]')) return topConv(R.c);
-  const li = b.closest('.z-msg'), m = li ? R.msgs[li.dataset.id] : b.closest('[data-enc-msg]') ? R.fm : null;
+  const li = b.closest('.z-fluxo .z-msg'), m = li ? R.msgs[li.dataset.id] : b.closest('[data-enc-msg],[data-print-env]') ? R.fm : null;
   return m ? topMsg(R.c, m) : null;
 }
+
+/* ---------- print de bolha (N09) ----------
+   Segurar uma mensagem (ou o botão direito, no computador) abre o "print" dela: a bolha como está na conversa, com o nome da
+   conversa e a situação, e o botão de enviar. O envio manda o tópico da mensagem: zap-<conversa>--<mensagem> quando existe
+   (cartão próprio); na Foz, o do caso; senão, o da conversa com o texto da mensagem por cima (topMsg). */
+const LP = { t: 0, x: 0, y: 0, li: null, em: 0 };
+function lpLimpa(){ clearTimeout(LP.t); LP.t = 0; if (LP.li) LP.li.classList.remove('z-segura'); LP.li = null; }
+const bolhaDe = t => { const li = t && t.closest && t.closest('.z-fluxo .z-msg.z-bl'); return li && !t.closest('a,button') ? li : null; };
+function tiraPrint(li){
+  const m = R.msgs && R.msgs[li.dataset.id], c = R.c; if (!m || !c) return;
+  LP.em = Date.now();
+  try { if (navigator.vibrate) navigator.vibrate(12); } catch (x) {}
+  const k = topMsg(c, m), S = W.BDShare, f = S && (S.baixa || S.prepara);
+  if (typeof f === 'function') try { f(k); } catch (x) {}
+  const b = li.querySelector('.z-bal').cloneNode(true);
+  b.querySelectorAll('button,.z-hpin').forEach(x => x.remove());
+  b.querySelectorAll('a').forEach(a => { a.removeAttribute('href'); a.removeAttribute('target'); a.setAttribute('aria-hidden', 'true'); });
+  b.removeAttribute('tabindex');
+  R.fm = m;
+  abreFolha('<p class="z-ft" id="z-folha-t">Print da mensagem</p>' +
+    '<figure class="z-print"><div class="z-print-cab">' + av(c) + '<span><b>' + esc(c.nome) + '</b><small>' + esc(stCurto(c)) + '</small></span></div>' +
+    '<div class="z-print-m">' + b.outerHTML + '</div><figcaption>BolsoZap · BOLSODRIVE · cada mensagem com fonte</figcaption></figure>' +
+    '<div class="z-print-a"><button type="button" class="env" data-print-env aria-label="Enviar o print desta mensagem">enviar ↗</button></div>' +
+    acao('doc', 'Copiar com a fonte', 'data-copia="f"') + acao('ext', 'Copiar link', 'data-copia="l"'));
+}
+d.addEventListener('pointerdown', e => {
+  if (e.button || e.isPrimary === false) return;
+  const li = bolhaDe(e.target); if (!li) return;
+  lpLimpa(); LP.li = li; LP.x = e.clientX; LP.y = e.clientY; li.classList.add('z-segura');
+  LP.t = setTimeout(() => { const l = LP.li; lpLimpa(); if (l && l.isConnected) tiraPrint(l); }, 480);
+}, { passive: true });
+d.addEventListener('pointermove', e => { if (LP.t && Math.hypot(e.clientX - LP.x, e.clientY - LP.y) > 10) lpLimpa(); }, { passive: true });
+['pointerup', 'pointercancel'].forEach(t => d.addEventListener(t, lpLimpa, { passive: true }));
+W.addEventListener('scroll', () => { if (LP.t) lpLimpa(); }, { passive: true });
+d.addEventListener('contextmenu', e => {
+  const li = bolhaDe(e.target); if (!li) return;
+  e.preventDefault(); lpLimpa();
+  if (Date.now() - LP.em > 800) tiraPrint(li);
+});
 
 /* ---------- rotas ---------- */
 function le(){
@@ -750,6 +823,8 @@ function doComeco(){ const c = R.c, j = R.j; if (!c || !j) return; delete MEM[c.
 /* ---------- eventos ---------- */
 d.addEventListener('click', e => {
   const t = e.target; if (!t || !t.closest) return;
+  /* o dedo que segurou a mensagem sobe em cima do véu ou da bolha: esse clique não fecha o print nem abre as fontes */
+  if (LP.em && Date.now() - LP.em < 700 && (t.closest('#z-veu') || t.closest('.z-fluxo'))){ e.preventDefault(); return; }
   let b;
   if ((b = t.closest('#z-menu [data-i]'))){ const f = R.menu && R.menu.it[+b.dataset.i]; fechaMenu(); if (f) f[1](); return; }
   if (t.closest('#z-menu a')){ fechaMenu(); return; }
@@ -771,7 +846,7 @@ d.addEventListener('click', e => {
   if ((b = t.closest('[data-menu]'))) return menu(b);
   if (t.closest('[data-enc-aba]')) return envia(topAba(), null);
   if (t.closest('[data-enc-conv]')) return enviaConv();
-  if (t.closest('[data-enc-msg]')){ const m = R.fm; fechaFolha(); return enviaMsg(m); }
+  if (t.closest('[data-enc-msg]') || t.closest('[data-print-env]')){ const m = R.fm; fechaFolha(); return enviaMsg(m); }
   if ((b = t.closest('.z-encb'))) return enviaMsg(R.msgs[b.closest('li').dataset.id]);
   if ((b = t.closest('[data-fix]'))) return pula(b.dataset.fix, 1);
   if (t.closest('[data-inicio]')) return comeca();
@@ -791,7 +866,7 @@ d.addEventListener('click', e => {
 d.addEventListener('pointerdown', e => {
   const t = e.target;
   if (R.menu && t.closest && !t.closest('#z-menu') && !t.closest('[data-menu]')) fechaMenu();
-  const b = t.closest && t.closest('[data-enc-conv],[data-enc-msg],[data-enc-aba],.z-encb,[data-hoje-env]'), S = W.BDShare;
+  const b = t.closest && t.closest('[data-enc-conv],[data-enc-msg],[data-print-env],[data-enc-aba],.z-encb,[data-hoje-env]'), S = W.BDShare;
   if (b && S){
     const o = b.hasAttribute('data-hoje-env') ? hojeDe() : null, k = o ? (o.x && T()[o.x.id] ? o.x.id : null) : topicoDe(b), f = S.baixa || S.prepara;
     if (k && typeof f === 'function') try { f(k); } catch (x) {}
