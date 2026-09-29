@@ -217,7 +217,13 @@ html:not(.og) #palco{display:none}
 /* ---------- a nascente (primeira tela): as frases, o ponto de luz, "siga o rio"; o rio do site nasce do ponto ---------- */
 .nasce{position:relative; z-index:1; min-height:calc(100vh - var(--hdr,57px)); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px 16px 48px; text-align:center}
 @supports (height:100svh){ .nasce{min-height:calc(100svh - var(--hdr,57px))} }
-.nasce-f{min-height:4.6em}
+.nasce-f{max-width:640px}
+.nasce-f .nk{margin:0 0 14px; font:700 clamp(13px,3.6vw,16px) var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--amber)}
+.nasce-f .nk b{color:var(--amber)}
+.nasce-f .nq{font-size:clamp(28px,8.2vw,52px); line-height:1.1; margin:0 0 6px}
+.nasce-f .nq2{color:var(--amber)}
+.nasce-f .nr{margin-top:26px}
+.nasce-f .nr p{font-size:clamp(21px,6vw,36px); font-weight:700; line-height:1.2; margin:0 0 2px}
 .nasce-f p{margin:0 0 2px; font-size:clamp(30px,9vw,58px); font-weight:800; line-height:1.12; letter-spacing:-.015em; color:var(--tinta); opacity:0; transform:translateY(10px); transition:opacity .45s, transform .45s}
 .nasce-f p.on{opacity:1; transform:none}
 .nasce-f p b{color:var(--amber); font-variant-numeric:tabular-nums}
@@ -1746,12 +1752,17 @@ window.addEventListener('load', () => { const h = window.__historia, n = h && h.
 /* ---------- a nascente: as frases (uma a uma na primeira visita da sessão), o ponto de luz e o rio que escorre dele ---------- */
 (function(){
   const box = $('#nasce-f'); if (!box || OG) return;
-  const L = [];
-  if (HOJE && HOJE.antes) L.push(HOJE.faltam === 1 ? 'Falta <b>1</b> dia.' : 'Faltam <b>' + HOJE.faltam + '</b> dias.');
-  L.push('<b>' + ESC.length + '</b> casos.');
-  L.push('<b>' + NOMES.length + '</b> nomes.');
-  if (nNome.grave) L.push('<b>' + nNome.grave + '</b> presos ou condenados.');
-  box.innerHTML = L.map(x => '<p>' + x + '</p>').join('');
+  /* a pergunta (quem é ele?) e a resposta (os números do rio) */
+  const kick = HOJE && HOJE.antes ? (HOJE.faltam === 1 ? 'Falta <b>1</b> dia para a eleição' : 'Faltam <b>' + HOJE.faltam + '</b> dias para a eleição')
+    : HOJE && HOJE.ehDia ? 'Hoje é dia de eleição' : 'Eleição presidencial de 2026';
+  const R = ['<b>' + ESC.length + '</b> casos em volta dele.', '<b>' + NOMES.length + '</b> nomes.'];
+  if (nNome.grave) R.push('<b>' + nNome.grave + '</b> deles, presos ou condenados.');
+  box.innerHTML = '<p class="nk">' + kick + '</p>' +
+    '<p class="nq">Flávio Bolsonaro quer ser presidente.</p>' +
+    '<p class="nq nq2">Mas quem é Flávio Bolsonaro?</p>' +
+    '<div class="nr">' + R.map(x => '<p>' + x + '</p>').join('') + '</div>';
+  /* o ritmo: a data, a frase, a pergunta (com pausa para pensar), e as respostas uma a uma */
+  const RITMO = [200, 800, 1300, 1500, 600, 600];
   const ps = $$('p', box), luz = $('#nascente-luz'), siga = $('#nasce-siga');
   const refaz = () => { try { rioTrechos(); } catch (_){ } };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(refaz);
@@ -1765,9 +1776,8 @@ window.addEventListener('load', () => { const h = window.__historia, n = h && h.
   const y0 = () => { const b = $('#curso').getBoundingClientRect(), r = luz.getBoundingClientRect(); return r.top + r.height / 2 - b.top; };
   mascara(y0() - 150);
   let k = 0;
-  const tic = setInterval(() => {
-    if (k < ps.length){ ps[k++].classList.add('on'); return; }
-    clearInterval(tic);
+  const proxima = () => {
+    if (k < ps.length){ ps[k].classList.add('on'); k++; setTimeout(proxima, RITMO[k] || 600); return; }
     setTimeout(() => { luz.classList.add('on'); siga.classList.add('on'); refaz(); }, 350);
     setTimeout(() => {
       const ini = y0() - 150, fim = y0() + window.innerHeight * 1.8, T = 2800; let t0 = null;
@@ -1776,7 +1786,8 @@ window.addEventListener('load', () => { const h = window.__historia, n = h && h.
         if (f < 1) requestAnimationFrame(passo); else cvs.forEach(c => { c.style.webkitMaskImage = ''; c.style.maskImage = ''; }); };
       requestAnimationFrame(passo);
     }, 1100);
-  }, 520);
+  };
+  setTimeout(proxima, RITMO[0]);
 })();
 window.__abertura = { arvore: () => B, bacia: () => BAC, trechos: () => C, foz: () => CF, saida: () => window.__rioSaida, NOMES, FLUX, ESC, CASOS, SEMANA, VITRINE, hoje: hojeNoRio, refaz: tudo };
 })();
