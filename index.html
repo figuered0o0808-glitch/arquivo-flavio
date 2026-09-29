@@ -156,6 +156,13 @@ body{overflow-x:hidden}
   .casos .legenda, .casos .dica, .assiste{max-width:1100px; margin-left:auto; margin-right:auto}
 }
 
+/* a árvore saiu da abertura (fica só na imagem de prévia, ?og=1): a primeira tela é o caso de hoje e, logo abaixo, a bacia */
+html:not(.og) #palco{display:none}
+@media (min-width:900px){
+  html:not(.og) .abre{grid-template-columns:minmax(320px,500px) minmax(0,560px); grid-template-rows:auto; grid-template-areas:"txt dq"; justify-content:center; align-items:start}
+  html:not(.og) .hoje{margin-top:18px}
+}
+
 /* ---------- blocos comuns: título curto, número grande, uma frase; o envio ao lado do fato ---------- */
 h2.k{margin:0 0 4px; font-family:var(--mono); font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); font-weight:700}
 h2.k span::before{content:"// "; color:var(--cinza2)}
