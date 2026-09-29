@@ -284,7 +284,7 @@ const NCAP = CAPS.length;
 /* 27/09 (Onda 2): ~25% mais curto na rolagem e ~18% no "assistir" (a página tinha 35 telas no celular; agora ≤ 30),
    com os mesmos capítulos, números e elos; o limiar de cada efeito (0,35–0,9 u) continua cabendo em cada fase */
 const U = { intro: 1.7, num: 1.8, entra: 1.35, elo: 0.82, ele: 1.5, sai: 0.6, fim: 1.7 };
-const T = { intro: 2.5, num: 3.0, entra: 1.1, elo: 1.0, ele: 1.8, sai: 0.5, fim: 2.1 };
+const T = { intro: 1.6, num: 2.7, entra: 0.75, elo: 0.55, ele: 1.6, sai: 0.3, fim: 1.5 };   /* o número e a situação dele mantêm o tempo; o resto passa mais rápido */
 const CONTA = 0.55;                /* a contagem ocupa os primeiros 55% da fase do número; o resto é para ler */
 
 /* =====================================================================

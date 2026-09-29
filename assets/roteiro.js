@@ -122,7 +122,7 @@ function monta(){
     if (dur <= 0) return;
     segs.push({ t0: t, t1: t + dur, y0: y, y1, ease }); t += dur; y = y1;
   };
-  const viagem = y1 => { y1 = clamp(Math.max(y1, y), 0, max); const d = y1 - y; if (d < 2) return; vai(y1, clamp(0.5 + d / (desk ? 1100 : 850), 0.6, 3.4), easeViagem); };
+  const viagem = y1 => { y1 = clamp(Math.max(y1, y), 0, max); const d = y1 - y; if (d < 2) return; vai(y1, clamp(0.35 + d / (desk ? 1900 : 1450), 0.45, 2.0), easeViagem); };   /* passagens: mais rápidas */
   const pausa = s => { if (s > 0) vai(y, s, null); };
   let secAnt = null;
   $$('[data-rot]').forEach(el => {
@@ -141,7 +141,7 @@ function monta(){
     } else if (tipo === 'leitura'){
       const y1 = topo(el) + el.offsetHeight - h - util * 0.7;
       const d = clamp(y1, 0, max) - y;
-      if (d > 4) vai(y1, Math.max(1.2, d / (isFinite(n) ? n : 95)), null);
+      if (d > 4) vai(y1, Math.max(0.9, d / (isFinite(n) ? n : 175)), null);   /* listas: lidas de passagem */
     } else if (tipo === 'historia'){
       const H = window.__historia && window.__historia.roteiro ? window.__historia.roteiro() : null;
       if (!H || !H.keys.length) return;
