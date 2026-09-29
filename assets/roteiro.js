@@ -2,17 +2,18 @@
    assets/roteiro.js · O ROTEIRO da abertura (index.html): a página inteira como um vídeo.
 
    "▶ assistir" (#siga, depois da bacia dos 40) faz a página descer sozinha dali até o fim, na ordem da página:
-     o título e o caso de hoje · a bacia dos 40 · 01 a teia de nomes · 02 o dinheiro ·
-     a história (assets/historia.js: abertura, capítulos, fim) · a foto · a semana · o teste · mande adiante
+     o título e o caso de hoje · a bacia dos 40 · as cenas 01 a teia de nomes e 02 o dinheiro (assets/historia.js,
+     o mesmo motor da história) · o patrimônio · a história (abertura, capítulos, fim) · a foto · a semana · o teste · mande adiante
    O rótulo do botão diz quanto dura dali até o fim (#siga-min, calculado do próprio roteiro).
    O roteiro sai do próprio HTML: cada elemento com data-rot diz o que fazer ali.
      data-rot="pausa:2.4"  a tela desliza até ele (acelera no meio, freia na chegada) e para 2,4 s
      data-rot="leitura"    a tela passa devagar por ele (uma lista que se lê enquanto desce)
-     data-rot="historia"   entra o ritmo da história (o tempo de cada fase, em assets/historia.js)
+     data-rot="historia"   entra o ritmo da seção (o tempo de cada fase, em assets/historia.js: el.__motor.roteiro())
      data-rot-marca        ponto para onde "pular ↓" leva (além da primeira parada de cada seção)
    O controle flutuante (#h-ctl) vale para a página toda: pausar / continuar / 1×–2× / pular ↓ / parar.
    Tocar, rolar ou usar o teclado pausa; continuar retoma de onde a pessoa estiver. Para no fim.
-   index.html#assistir abre já tocando. Com prefers-reduced-motion não há rolagem contínua:
+   index.html#assistir abre já tocando. "siga o rio" (a nascente) toca já descendo: toca({ anda: true }) pula a parada
+   em que a página está e começa no primeiro trecho em que a tela se mexe. Com prefers-reduced-motion não há rolagem contínua:
    a página salta de parada em parada.
 
    A rolagem à mão conta a mesma história (as cenas):
@@ -143,7 +144,7 @@ function monta(){
       const d = clamp(y1, 0, max) - y;
       if (d > 4) vai(y1, Math.max(0.9, d / (isFinite(n) ? n : 175)), null);   /* listas: lidas de passagem */
     } else if (tipo === 'historia'){
-      const H = window.__historia && window.__historia.roteiro ? window.__historia.roteiro() : null;
+      const Hm = el.__motor || window.__historia, H = Hm && Hm.roteiro ? Hm.roteiro() : null;
       if (!H || !H.keys.length) return;
       viagem(H.keys[0].y);
       marcas.push(t);
@@ -191,7 +192,9 @@ function toca(o){
   else if (o.doInicio) AP.t = 0;
   else if (!(AP.estado === 'pausado' && Math.abs(window.scrollY - AP.set) < 3)) AP.t = tDeY(window.scrollY);
   if (AP.t >= M.total - 0.05) AP.t = 0;
-  AP.on = true; AP.estado = 'tocando'; AP.acc = reduzido ? PASSO_REDUZIDO - 1.2 : 0;   /* com movimento reduzido, o primeiro salto vem logo */
+  /* já descendo: se o tempo cai numa parada, começa no fim dela (no primeiro trecho em que a tela se mexe) */
+  if (o.anda && !reduzido){ const sg = M.segs.find(x => x.t1 > AP.t + 0.01 && Math.abs(x.y1 - x.y0) > 1); if (sg && sg.t0 > AP.t) AP.t = sg.t0; }
+  AP.on = true; AP.estado = 'tocando'; AP.acc = reduzido ? (o.anda ? PASSO_REDUZIDO : PASSO_REDUZIDO - 1.2) : 0;   /* com movimento reduzido, o primeiro salto vem logo (já descendo: no próximo quadro) */
   semSuave(true);
   const y = yDeT(AP.t);
   if (Math.abs(window.scrollY - y) > 2) window.scrollTo(0, y);

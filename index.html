@@ -345,12 +345,21 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 .cap-n .g{color:var(--amber)}
 .cap-res p{margin:0 0 4px; font-size:16px; line-height:1.4}
 .cap-elos{list-style:none; margin:6px 0 0; padding:0}
+.cap-elos.cortada::before{content:'…'; display:block; margin:0 0 2px 16px; font-size:13px; line-height:1; color:var(--cinza)}   /* celular baixo: os primeiros elos saíram por cima (seguem no palco) */
 .elo{display:none; position:relative; padding:0 0 8px 16px}
 .elo .pt{position:absolute; left:0; top:5px; width:9px; height:9px; border-radius:50%; box-sizing:border-box; border:2px solid var(--cinza2); background:#0a100a}
 .elo.grave .pt{border-color:var(--carimbo)} .elo.medio .pt{border-color:var(--amber)} .elo.leve .pt{border-color:#5c8a63}
 .elo .dp{font-size:14.5px; line-height:1.32; font-weight:700}
 .elo .dp i{font-style:normal; font-weight:400; color:var(--cinza)}
 .elo .sit{margin-left:2px; font-size:11.5px; font-weight:400}
+.elo .v{margin-right:4px; font-family:var(--mono); font-size:13px; font-weight:700; color:var(--amber); white-space:nowrap}   /* cena 02: o valor do fluxo */
+.cap-res .h-leg-cor{margin-top:6px}
+/* cena 02 no celular: os fluxos já lidos ficam numa linha (o valor e a origem); o atual, inteiro, com o status e quem afirma */
+@media (max-width:899px){
+  .cap-dinheiro .elo .dp{display:block}
+  .cap-dinheiro .elo:not(.atual) .dp{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .cap-dinheiro .elo:not(.atual) .sit{display:none}
+}
 .elo .rel{display:none; font-size:13.5px; line-height:1.36; color:var(--cinza); margin:2px 0 0}
 .elo.on{display:block}
 .elo.atual .rel{display:block}
@@ -405,6 +414,7 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
 @media (prefers-reduced-motion:no-preference){
   .cap.on{animation:h-entra .35s ease-out}
   .elo.on, .cap-ele{animation:h-entra .35s ease-out}
+  .cap-num{transition:opacity .2s}
   @keyframes h-entra{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
 }
 @media (max-height:700px) and (max-width:899px){
@@ -492,7 +502,7 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
    A classe só entra com ?og=1 na URL; quem visita o site não vê este modo. */
 html.og, html.og body{overflow:hidden}
 html.og .site-header, html.og .nv-mapa, html.og .nv-segue, html.og .linha-tese, html.og #casos,
-html.og #hoje-no-rio, html.og #historia, html.og #curso-f, html.og .h-ctl, html.og .margem, html.og .rodape{display:none!important}
+html.og #hoje-no-rio, html.og #historia, html.og #cenas, html.og #curso-m, html.og #curso-f, html.og .h-ctl, html.og .margem, html.og .rodape{display:none!important}
 html.og .abre{display:grid; grid-template-columns:440px minmax(0,1fr); grid-template-areas:"txt palco"; align-items:center;
   column-gap:20px; max-width:none; width:1200px; height:630px; min-height:0; margin:0; padding:0 32px 0 60px; overflow:hidden}
 html.og .abre-txt{grid-area:txt; padding:0 0 40px}
@@ -506,7 +516,7 @@ html.og .tese{font-size:68px; line-height:1.02; margin:14px 0 0}
 html.og .og-marca{display:block}
 html.og #curso{max-width:none; margin:0}
 html.og #curso > :not(.abre){display:none!important}
-/* ---------- "compare com você" (trecho 02): o salário de quem lê × o patrimônio declarado e o pedido de R$ 131 milhões.
+/* ---------- "compare com você" (logo depois da cena 02): o salário de quem lê × o patrimônio declarado e o pedido de R$ 131 milhões.
    O que se digita não é guardado nem enviado (sem storage, sem URL, sem rede): a conta fica nesta tela.
    Altura fixa (o resultado sempre na tela, com o salário mínimo até alguém digitar): o rio do trecho não refaz o caminho. */
 .cmp{margin:18px 0 8px; padding:12px 14px 14px; border:1px solid var(--linha); border-radius:4px; background:var(--leve); max-width:480px}
@@ -611,22 +621,33 @@ html.og #curso > :not(.abre){display:none!important}
   </div>
 </section>
 
-<!-- o rio da página nasce aqui e atravessa os trechos 01 e 02 -->
+</div>
 
-
-  <section class="trecho" id="quem" aria-labelledby="h-quem">
-    <div class="col">
-      <h2 class="k" id="h-quem"><span>01 · A teia de nomes</span></h2>
-      <div id="quem-c"></div>
-      <div class="acao"><button type="button" class="env" data-share="quem-anda" aria-label="Enviar: a teia de nomes">enviar ↗</button><a class="porta" href="drive.html#rede">A teia completa →</a></div>
+<!-- 01 · A teia de nomes e 02 · O dinheiro: cenas no formato dos capítulos da história (o mesmo motor, assets/historia.js).
+     O palco fica preso na tela e a rolagem conta: o número, o título, cada nome (ou fluxo) acendendo como afluente, o fecho.
+     O texto inteiro (para leitor de tela) fica em #cenas-txt; sem script, os links. -->
+<div class="so-leitor" id="cenas-txt"></div>
+<noscript><div class="trecho"><div class="col"><h2 class="k"><span>01 · A teia de nomes</span></h2><p class="acao"><a class="porta" href="drive.html#rede">A teia completa →</a></p>
+  <h2 class="k"><span>02 · O dinheiro</span></h2><p class="acao"><a class="porta" href="siga-o-dinheiro.html">Siga o dinheiro →</a></p></div></div></noscript>
+<section class="hist" id="cenas" aria-label="A teia de nomes e o dinheiro" data-rot="historia" hidden>
+  <div class="h-cena">
+    <div class="h-palco" aria-hidden="true">
+      <canvas aria-hidden="true"></canvas>
+      <div class="h-rot"></div>
     </div>
-  </section>
+    <div class="h-leg"></div>
+    <div class="h-barra" aria-hidden="true"><i></i></div>
+  </div>
+</section>
 
+<!-- o patrimônio e o "compare com você", logo depois da cena do dinheiro; o rio desce reto pela faixa (rioMeio) -->
+<div class="curso" id="curso-m">
+  <canvas id="m-leito" aria-hidden="true"></canvas>
+  <canvas id="m-agua" aria-hidden="true"></canvas>
   <section class="trecho" id="dinheiro" aria-labelledby="h-din">
     <div class="col">
-      <h2 class="k" id="h-din"><span>02 · O dinheiro</span></h2>
+      <h2 class="k" id="h-din"><span>O patrimônio</span></h2>
       <div id="din-c"></div>
-      <div class="acao"><button type="button" class="env" data-share="dinheiro" aria-label="Enviar: o dinheiro">enviar ↗</button><a class="porta" href="siga-o-dinheiro.html">Siga o dinheiro →</a></div>
     </div>
   </section>
 </div>
@@ -704,9 +725,9 @@ html.og #curso > :not(.abre){display:none!important}
 <script src="assets/rio.js?v=41d32ea1"></script>
 <script src="assets/bacia.js?v=9d26099f"></script>
 <script src="assets/nav.js?v=db4ad0ea"></script>
-<script src="assets/roteiro.js?v=9098e930" defer></script>
+<script src="assets/roteiro.js?v=57d362a9" defer></script>
 <script src="data/foz-curto.js?v=49585cb8"></script>
-<script src="assets/historia.js?v=477384c4" defer></script>
+<script src="assets/historia.js?v=252b83f4" defer></script>
 <script src="data/topicos.js?v=d0b7736c" defer></script>
 <script src="assets/compartilhar.js?v=f3f9b497" defer></script>
 <script>
@@ -844,7 +865,8 @@ function statusSeco(st){
 
 /* ---------- o dinheiro ---------- */
 /* âmbar só para investigação, denúncia ou inquérito; um pedido de apuração ainda não é investigação */
-const nivelFluxo = s => /PEDIDO DE/i.test(s || '') ? 'leve' : (/INVESTIGA|DEN[ÚU]NCIA|INQU[ÉE]RITO/i.test(s || '') ? 'medio' : 'leve');
+/* "investigado no STF, sem denúncia" é a situação dele (caso Master): nunca em âmbar */
+const nivelFluxo = s => /PEDIDO DE|SEM DEN[ÚU]NCIA/i.test(s || '') ? 'leve' : (/INVESTIGA|DEN[ÚU]NCIA|INQU[ÉE]RITO/i.test(s || '') ? 'medio' : 'leve');
 const saiDele = f => /campanha|flávio/i.test(f.de || '') || /indicad[oa]s? por flávio/i.test(f.para || '');
 const FLUX = (((D.fluxoDinheiro || {}).fluxos) || []).filter(f => f && typeof f.valor === 'string').map((f, k) => {
   let fila;
@@ -1040,24 +1062,34 @@ let BAC = null;
   }));
 })();
 
-/* trecho 01: quantos dos nomes foram presos ou condenados e os que mais aparecem no arquivo, um por linha */
+/* ---------- 01 · A teia de nomes e 02 · O dinheiro: viram cenas da história (assets/historia.js, #cenas) ----------
+   Os dados saem daqui, calculados como antes: quantos dos nomes foram presos ou condenados; os 8 que mais aparecem
+   no arquivo, com a situação de cada um; os fluxos de dinheiro, com o status e quem afirma. O texto inteiro fica
+   também em #cenas-txt (para leitor de tela). */
 const TOP = NOMES.slice().sort((a, b) => b.fila.length - a.fila.length || a.nome.localeCompare(b.nome)).slice(0, 8);
-$('#quem-c').innerHTML =
-  forte(nNome.grave) +
-  '<p class="fr" data-seq>dos <b>' + NOMES.length + ' nomes</b> em volta dele foram presos ou condenados.</p>' +
-  '<p class="nf" data-seq>Os que mais aparecem no arquivo, com a situação de cada um:</p>' +
-  '<ul class="linhas" data-rot="leitura">' + TOP.map(n => '<li class="linha" data-trib="' + esc(n.id) + '" data-seq><span class="nm">' + esc(n.nome) + '</span> ' +
-    '<span class="st' + (n.neutro ? ' neutro' : '') + '">' + (n.sit === 'sem processo' ? '' : esc(n.sit)) + '</span><i class="pt" style="background:' + HEX[n.nivel] + '"></i></li>').join('') + '</ul>';
-
-/* trecho 02: o patrimônio declarado e os fluxos de dinheiro, um por linha */
 const curtoPara = t => String(t || '').split(/,\s/)[0];
+/* o nome no palco: inteiro até 22 letras; senão, o primeiro e o último ("Adriano da Nóbrega", "Raimunda Magalhães") */
+const nomePalco = n => { n = String(n || '').trim(); if (n.length <= 22) return n; const w = n.split(/\s+/), f = w.length - 1;
+  return [w[0]].concat(f > 1 && /^d[aoe]s?$/i.test(w[f - 1]) ? [w[f - 1]] : [], [w[f]]).join(' '); };
+window.__cenasDados = {
+  teia: { total: NOMES.length, graves: nNome.grave,
+    elos: TOP.map(n => ({ id: n.id, nome: n.nome, curto: nomePalco(n.nome), sit: n.sit === 'sem processo' ? '' : n.sit, cls: n.nivel, n: n.fila.length })),
+    fundo: NOMES.filter(n => TOP.indexOf(n) < 0).map(n => ({ id: n.id, nivel: n.nivel })) },
+  dinheiro: { elos: FLUX.map(x => ({ id: x.id, valor: x.f.valor, de: x.f.de, para: curtoPara(x.f.para), sit: stFluxo(x.f.status), cls: x.nivel,
+    sai: !!x.sai, obs: x.f.obs || '', fonte: x.f.fonte && x.f.fonte.url ? x.f.fonte : null })).map(l => Object.assign(l, { sit: norm(l.de + ' ' + l.para).includes(norm(l.sit)) ? '' : l.sit })) }
+};
+$('#cenas-txt').innerHTML =
+  '<h2>01 · A teia de nomes</h2><p>' + nNome.grave + ' dos ' + NOMES.length + ' nomes em volta dele foram presos ou condenados. Os que mais aparecem no arquivo, com a situação de cada um:</p>' +
+  '<ul>' + TOP.map(n => '<li>' + esc(n.nome) + (n.sit === 'sem processo' ? '' : ': ' + esc(n.sit)) + '</li>').join('') + '</ul>' +
+  '<h2>02 · O dinheiro</h2><p>' + FLUX.length + ' fluxos de dinheiro em volta dele, cada um com a fonte e o status:</p>' +
+  '<ul>' + FLUX.map(x => '<li>' + esc(x.f.valor) + ': ' + esc(x.f.de) + ' → ' + esc(curtoPara(x.f.para)) + ' (' + esc(stFluxo(x.f.status)) + ')' +
+    (x.f.fonte && x.f.fonte.url ? ', ' + fonteA(x.f.fonte) : '') + '</li>').join('') + '</ul>';
+
+/* o patrimônio declarado (logo depois da cena do dinheiro, com o "compare com você") */
 $('#din-c').innerHTML =
   (razao ? forte(razao.toFixed(1).replace('.', ',') + '×') +
     '<p class="fr" data-seq>cresceu o patrimônio que ele declarou ao TSE: de <b>' + fmtMi(p0.valor) + '</b> em ' + p0.ano + ' para <b>' + fmtMi(p1.valor) + '</b> em ' + p1.ano + '.</p>' +
-    '<p class="nf">' + fonteA(Object.assign({}, fontePT, { veiculo: 'TSE' })) + ' · valores nominais</p>' : '') +
-  '<ul class="linhas" data-rot="leitura">' + FLUX.map(x => '<li class="linha" data-trib="' + x.id + '" data-seq><span class="v">' + esc(x.f.valor) + '</span>' + esc(x.f.de) + ' → ' + esc(curtoPara(x.f.para)) +
-    ' <span class="st">' + esc(stFluxo(x.f.status)) + '</span>' +
-    '<i class="pt' + (x.sai ? ' sai' : '') + '" style="' + (x.sai ? 'color:' : 'background:') + HEX[x.nivel] + '"></i></li>').join('') + '</ul>';
+    '<p class="nf">' + fonteA(Object.assign({}, fontePT, { veiculo: 'TSE' })) + ' · valores nominais</p>' : '');
 
 /* enviar um tópico com texto próprio (o cartão e o link são os do tópico; o texto é o que a pessoa vê na tela).
    O botão tem data-share (para o cartão ser baixado antes do toque), mas o clique para aqui: não chega à delegação. */
@@ -1121,7 +1153,7 @@ const anoFim = r => r > 0 && r < 5e4 ? new Date(Date.now() + r * 365.2425 * 864e
       (ele ? '<p class="cmp-s">' + esc(cap1(ele)) + '.</p>' : '') : '') +
     '<div class="cmp-a"><button type="button" class="env" id="cmp-env" data-share="dinheiro" aria-label="Enviar a sua conta">enviar ↗</button>' +
     '<p class="cmp-p">Nada do que você digita é guardado nem enviado.</p></div>';
-  box.insertBefore(el, $('ul.linhas', box));
+  box.appendChild(el);
   const inp = $('#cmp-v', el), com = $('#cmp-com', el);
   let sal = 0;
   function conta(){
@@ -1267,7 +1299,7 @@ const ARO = [216, 239, 221];
 const ARMS = [
   { id: 'nomes', itens: NOMES, nm: 'nomes', sb: 'em volta dele', href: '#quem', setor: [138, 302],
     ordem: ['familia', 'operadores', 'milicia', 'financeiro', 'juridico', 'aliado', 'politico', 'outro'] },
-  { id: 'dinheiro', itens: FLUX, nm: FLUX.length === 1 ? 'fluxo' : 'fluxos', sb: 'de dinheiro', href: '#dinheiro', setor: [232, 398], ordem: ['chega', 'sai'] },
+  { id: 'dinheiro', itens: FLUX, nm: FLUX.length === 1 ? 'fluxo' : 'fluxos', sb: 'de dinheiro', href: '#fluxos', setor: [232, 398], ordem: ['chega', 'sai'] },
   { id: 'escandalos', itens: ESC, nm: 'casos', sb: 'em volta dele', href: '#casos', setor: [-82, 84], ordem: ['entorno', 'familia', 'gabinete', 'direto'] },
 ].filter(a => a.itens.length);
 const palco = $('#palco'), bRot = $('#b-rot');
@@ -1527,20 +1559,21 @@ function marcaBacia(){ if (B && B.ctl){ const d = B.destaque; B.ctl.marca(x => !
 function realcaBacia(id){ if (B && B.destaque !== id){ B.destaque = id; pintaBacia(); } }
 
 /* =====================================================================
-   O RIO DA PÁGINA: um curso só, do alto do caso Marielle até a foto dele.
-   Três canvases emendados: #curso (caso Marielle, trechos 01 e 02), o palco da história
-   (assets/historia.js) e #curso-f (a descida até a foto). Em cada emenda a água passa na
-   mesma faixa (x), na vertical, com a mesma largura e a mesma cor; cada canvas desenha a água
-   EMENDA px além da própria borda (a ponta redonda, o fim do reflexo e as gotas que nascem ou
+   O RIO DA PÁGINA: um curso só, do ponto de luz da nascente até a foto dele.
+   Cinco trechos emendados: #curso (a nascente, a abertura e o "assistir"), o palco das cenas
+   01 e 02 (#cenas, assets/historia.js), #curso-m (o patrimônio e o "compare com você"), o palco
+   da história (#historia, o mesmo motor) e #curso-f (a descida até a foto). Em cada emenda a água
+   passa na mesma faixa (x), na vertical, com a mesma largura e a mesma cor; cada canvas desenha a
+   água EMENDA px além da própria borda (a ponta redonda, o fim do reflexo e as gotas que nascem ou
    morrem ficam fora da tela) e cobre SOBRA px da seção vizinha (sem fresta de meio pixel).
    A largura só cresce rumo à foz: cada afluente alarga a água aos poucos; por cima, uma
    variação lenta (RIO.organico), que some perto das emendas.
-   Aqui nasce o rio e recebe um afluente de cada coisa citada (nome, fluxo); sai pelo pé do
-   trecho 02 para dentro da história, onde os escândalos crescem um a um; depois da história,
-   #curso-f desce até a foto. As curvas só descem. No celular ele corre pela margem direita;
-   no desktop tem uma faixa própria à direita do texto.
-   A saída (x, largura, cor) fica em window.__rioSaida, que a história lê para entrar pelo
-   mesmo ponto; a saída da história fica em window.__rioHist, de onde parte a descida final.
+   Aqui o rio nasce fino (sem afluentes: os nomes e os fluxos chegam nas cenas 01 e 02, que o
+   engrossam); depois do bloco do patrimônio entra na história, onde os escândalos crescem um a
+   um; depois da história, #curso-f desce até a foto. As curvas só descem. No celular ele corre
+   pela margem direita; no desktop tem uma faixa própria à direita da coluna de texto.
+   As saídas (x, largura, cor): window.__rioSaida (daqui, lida pelas cenas), window.__rioA (das
+   cenas, lida por #curso-m e pela história) e window.__rioHist (da história, lida por #curso-f).
    ===================================================================== */
 const curso = $('#curso'), cursoF = $('#curso-f');
 const CCIC = 16;
@@ -1553,7 +1586,8 @@ function rioTrechos(){
   const desk = window.innerWidth >= 900;
   const bx = curso.getBoundingClientRect();
   const rel = el => { const r = el.getBoundingClientRect(); return { x: r.left - bx.left + r.width / 2, y: r.top - bx.top + r.height / 2, w: r.width, h: r.height, l: r.left - bx.left, r: r.right - bx.left, t: r.top - bx.top }; };
-  const colR = rel($('#quem .col')).r;
+  /* a faixa do rio, à direita da coluna de texto (a .col dos trechos: 540 px depois do recuo de 24 px) */
+  const colEl = $('#curso-m .col'), colR = colEl && colEl.getClientRects().length ? rel(colEl).r : Math.min(W, 564);
   const laneX = desk ? Math.round((colR + W) / 2) : W - 27;
   const amp = desk ? clamp((W - colR) / 2 - 90, 20, 90) : 8;
   const lam = desk ? 620 : 280;
@@ -1571,7 +1605,9 @@ function rioTrechos(){
   const drop = desk ? 44 : 20;
   const linhas = $$('#curso [data-trib]').map(li => { const p = rel(li.querySelector('.pt')); return { li, id: li.dataset.trib, p, yj: p.y + drop }; });
   /* do ponto de luz (no meio da tela) a água vai deslizando até a faixa do rio */
-  const xRio = L0 ? (y => lerp(L0.x, xLane(y), suave((y - y0 - (desk ? 140 : 24)) / (desk ? 560 : 150)))) : xLane;   /* cai reto do ponto e depois vai para a faixa */
+  /* cai reto do ponto e depois vai para a faixa; chega a ela antes da emenda com as cenas (yReto), por curto que seja o trecho */
+  const iniL = y0 + (desk ? 140 : 24), fimL = Math.max(iniL + 80, Math.min(iniL + (desk ? 560 : 150), yReto - 30));
+  const xRio = L0 ? (y => lerp(L0.x, xLane(y), suave((y - iniL) / (fimL - iniL)))) : xLane;
   const ptsM = []; for (let y = y0; y <= H + EMENDA; y += 3) ptsM.push([xRio(y), y]);
   const main = RIO.curso(ptsM);
 
@@ -1588,7 +1624,8 @@ function rioTrechos(){
     tribs.push({ L, c, q, cor, rotas, sai: rotas.length === 1 && rotas[0].sai });
   });
   const Qtot = 1 + tribs.reduce((s, t) => s + t.q, 0);
-  const wMin = desk ? 1.3 : 1.0, wMax = desk ? 24 : 12;
+  /* sem afluentes aqui (01 e 02 são cenas da história, que engrossam o rio), a água sai fina: WFIM */
+  const wMin = desk ? 1.3 : 1.0, wMax = tribs.length ? (desk ? 24 : 12) : (desk ? 11 : 6);
   const kW = (wMax - wMin) / Math.sqrt(Qtot);
   const larg = Q => wMin + kW * Math.sqrt(Math.max(0, Q));
   tribs.forEach(t => { const wq = larg(t.q); RIO.pinta(t.c, (i, y, s) => [wMin + (wq - wMin) * Math.pow(s, 0.6), t.cor]); });
@@ -1607,7 +1644,7 @@ function rioTrechos(){
   const Hc = H + SOBRA;                       /* o canvas passa SOBRA px do pé da seção */
   /* no desktop o canvas cobre só a faixa do rio (dos pontos das linhas até a borda direita): com a largura
      toda ele passava dos 5 Mpx e perdia nitidez em tela retina */
-  const ox = desk && linhas.length ? Math.max(0, Math.floor(Math.min(...linhas.map(L => L.p.x)) - 24)) : 0;
+  const ox = desk ? Math.max(0, Math.floor(Math.min(laneX - amp - 40, L0 ? L0.x - 40 : W, ...linhas.map(L => L.p.x - 24)))) : 0;
   const Wc = W - ox;
   const dpr = RIO.nitidez(Wc, Hc);
   [leito, agua].forEach(cv => { cv.width = Math.round(Wc * dpr); cv.height = Math.round(Hc * dpr); cv.style.width = Wc + 'px'; cv.style.height = Hc + 'px'; cv.style.left = ox + 'px'; });
@@ -1651,7 +1688,46 @@ function rioTrechos(){
     const off = () => C && C.ctl.marca(() => 1);
     L.li.addEventListener('mouseenter', on); L.li.addEventListener('mouseleave', off);
   });
+  rioMeio();
   rioFoz();
+}
+
+/* o trecho do meio (#curso-m): depois das cenas 01 e 02, a água desce pela mesma faixa, com a largura e a cor com que
+   sai delas (window.__rioA), passa pelo patrimônio e pelo "compare com você" e entra na história no mesmo ponto.
+   Um meandro leve no meio, que some perto das duas emendas; o canvas cobre SOBRA px acima e abaixo da seção.
+   As gotas são os nomes e os fluxos, cada um na sua cor. */
+const cursoM = $('#curso-m');
+let CM = null;
+function rioMeio(){
+  const S = window.__rioA || window.__rioSaida; if (!S || !cursoM || OG) return;
+  const W = Math.round(cursoM.clientWidth); if (!W) return;
+  if (CM){ CM.solta(); CM = null; }
+  const H = Math.round(cursoM.offsetHeight), yE = SOBRA, Hc = H + 2 * SOBRA;
+  const desk = window.innerWidth >= 900;
+  const x0 = S.x, amp = desk ? 26 : 2.5, jan = y => suave((y - yE - 20) / 160) * (1 - suave((y - (yE + H - 180)) / 160));
+  const pts = []; for (let y = yE - EMENDA; y <= yE + H + EMENDA; y += 3) pts.push([x0 + amp * Math.sin(TAU * (y - yE) / (desk ? 560 : 300) + 0.4) * jan(y), y]);
+  const c = RIO.curso(pts);
+  RIO.pinta(c, () => [S.w, S.cor]);
+  RIO.organico(c, { amp: 0.08, onda: desk ? 300 : 230, semente: 41, jan: y => jan(y) });
+  const leito = $('#m-leito'), agua = $('#m-agua');
+  const ox = desk ? Math.max(0, Math.floor(x0 - amp - 60)) : 0, Wc = W - ox;
+  const dpr = RIO.nitidez(Wc, Hc);
+  [leito, agua].forEach(cv => { cv.width = Math.round(Wc * dpr); cv.height = Math.round(Hc * dpr); cv.style.width = Wc + 'px'; cv.style.height = Hc + 'px'; cv.style.top = -yE + 'px'; cv.style.left = ox + 'px'; });
+  const ctx = leito.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, -ox * dpr, 0);
+  RIO.leito(ctx, [{ curso: c, aberto: true }], { fundo: FUNDO });
+  if (reduzido) RIO.setas(ctx, c, 'rgba(232,255,236,.5)', desk ? 120 : 90);
+  const itens = TOP.concat(FLUX);
+  CM = { solta: () => {} };
+  CM.ctl = RIO.correnteza(agua, {
+    W, H: Hc, dpr, ox, vel: desk ? 62 : 48, raio: desk ? 2.7 : 2.3, semente: 19,
+    cursos: [{ curso: c, grupo: 'principal' }],
+    rotas: [{ rota: c, cor: AGUA, fila: [], leve: true, semFoz: true, taxa: 1 / 4, id: 'meio' }].concat(itens.map(x => ({ rota: c, cor: RGB[x.nivel], fila: x.fila, leve: !x.fila.length, semFoz: true,
+      taxa: x.fila.length ? Math.min(0.16, x.fila.length / 40) : 1 / 30, id: x.id }))),
+    janela: () => { const q = cursoM.getBoundingClientRect(); return [-q.top - 40 + yE, window.innerHeight - q.top + 40 + yE]; }
+  });
+  CM.solta = RIO.observa(cursoM, CM.ctl);
+  CM.W = W; CM.H = H;
 }
 
 /* o último trecho: depois da história, a água (na largura e na cor com que sai dela) desce até a foto dele.
@@ -1697,15 +1773,16 @@ function rioFoz(){
   CF.W = W; CF.H = H;
 }
 
-/* ---------- o cabeçalho acompanha o trecho da abertura: 01, 02 e a história marcam 1, 2 e 3; no topo, 0 ---------- */
+/* ---------- o cabeçalho acompanha o trecho da abertura: as cenas 01 e 02 e a história marcam 1, 2 e 3; no topo, 0.
+   As cenas marcam o começo de cada uma com um .h-marca[data-trecho] (assets/historia.js, que chega com defer) ---------- */
 if (!OG){
-  const TRS = [['#quem', 1], ['#dinheiro', 2], ['#historia', 3]].map(p => [$(p[0]), p[1]]).filter(p => p[0]);
+  const TRS = () => $$('#cenas .h-marca[data-trecho]').map(el => [el, +el.dataset.trecho]).concat([[$('#dinheiro'), 2], [$('#historia'), 3]]).filter(p => p[0]);
   let rT = 0;
   const marcaTrecho = () => {
     rT = 0;
     const lim = window.innerHeight * 0.45;
     let t = 0;
-    TRS.forEach(p => { if (!p[0].hidden && p[0].getBoundingClientRect().top <= lim) t = p[1]; });
+    TRS().forEach(p => { if (!p[0].hidden && p[0].getClientRects().length && p[0].getBoundingClientRect().top <= lim) t = p[1]; });
     if (document.body.getAttribute('data-trecho') !== String(t)){
       document.body.setAttribute('data-trecho', String(t));
       if (window.BDNav && BDNav.atualiza) BDNav.atualiza();
@@ -1740,12 +1817,17 @@ window.addEventListener('resize', () => {
 if ('ResizeObserver' in window){
   let ro = 0;
   new ResizeObserver(() => { if (!C || Math.abs(curso.offsetHeight - C.H) < 3 && Math.abs(curso.clientWidth - C.W) < 2) return; clearTimeout(ro); ro = setTimeout(rioTrechos, 150); }).observe(curso);
+  let rm = 0;
+  if (cursoM) new ResizeObserver(() => { if (!CM || Math.abs(cursoM.offsetHeight - CM.H) < 3 && Math.abs(cursoM.clientWidth - CM.W) < 2) return; clearTimeout(rm); rm = setTimeout(rioMeio, 150); }).observe(cursoM);
   let rf = 0;
   new ResizeObserver(() => { if (!CF || Math.abs(cursoF.offsetHeight - CF.H) < 3 && Math.abs(cursoF.clientWidth - CF.W) < 2) return; clearTimeout(rf); rf = setTimeout(rioFoz, 150); }).observe(cursoF);
 }
 /* a história mudou a saída dela (largura, cor, faixa): a descida até a foto parte dali */
 let rh = 0;
 document.addEventListener('rio:hist', () => { if (OG) return; clearTimeout(rh); rh = setTimeout(rioFoz, 40); });
+/* as cenas 01 e 02 mudaram a saída delas: o trecho do meio parte dali */
+let ra = 0;
+document.addEventListener('rio:a', () => { if (OG) return; clearTimeout(ra); ra = setTimeout(rioMeio, 40); });
 window.addEventListener('pageshow', e => { if (e.persisted) tudo(); });
 /* "▶ assistir": quantos casos a história conta de perto (assets/historia.js chega com defer) */
 window.addEventListener('load', () => { const h = window.__historia, n = h && h.caps ? h.caps().length : 0, t = $('#siga-t');
@@ -1765,12 +1847,15 @@ window.addEventListener('load', () => { const h = window.__historia, n = h && h.
   /* o ritmo: a data, a frase, a pergunta (com pausa para pensar), e as respostas uma a uma */
   const RITMO = [200, 800, 1300, 1500, 600, 600];
   const ps = $$('p', box), luz = $('#nascente-luz'), siga = $('#nasce-siga');
-  /* "siga o rio" (o texto ou o ponto): a página começa a descer sozinha dali (o mesmo roteiro do "assistir") */
+  /* "siga o rio" (o texto ou o ponto): a página começa a descer sozinha dali, na hora (o mesmo roteiro do "assistir",
+     sem a parada da nascente), e o rio escorre do ponto junto, sem esperar o fim da abertura */
+  let solta = null;
   [luz, siga].forEach(el => el && el.addEventListener('click', ev => {
     if (!window.BDRoteiro) return;
     ev.preventDefault();
     ps.forEach(p => p.classList.add('on')); luz.classList.add('on'); siga.classList.add('on');
-    window.BDRoteiro.toca({ y: window.scrollY });
+    if (solta) solta();
+    window.BDRoteiro.toca({ y: window.scrollY, anda: true });
   }));
   const refaz = () => { try { rioTrechos(); } catch (_){ } };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(refaz);
@@ -1782,17 +1867,22 @@ window.addEventListener('load', () => { const h = window.__historia, n = h && h.
   const mascara = y => cvs.forEach(c => { const m = 'linear-gradient(to bottom, #000 ' + y + 'px, transparent ' + (y + 140) + 'px)'; c.style.webkitMaskImage = m; c.style.maskImage = m; });
   const y0 = () => { const b = $('#curso').getBoundingClientRect(), r = luz.getBoundingClientRect(); return r.top + r.height / 2 - b.top; };
   mascara(y0() - 150);
-  let k = 0;
+  let k = 0, pulou = false, escorreu = false;
+  /* o rio escorre do ponto para baixo (T ms); uma vez só */
+  const escorre = T => {
+    if (escorreu) return; escorreu = true;
+    const ini = y0() - 150, fim = y0() + window.innerHeight * 1.8; let t0 = null;
+    const passo = ts => { if (t0 === null) t0 = ts; const f = Math.min(1, (ts - t0) / T), e = f * f * (3 - 2 * f);
+      mascara(ini + (fim - ini) * e);
+      if (f < 1) requestAnimationFrame(passo); else cvs.forEach(c => { c.style.webkitMaskImage = ''; c.style.maskImage = ''; }); };
+    requestAnimationFrame(passo);
+  };
+  solta = () => { pulou = true; escorre(1100); };
   const proxima = () => {
+    if (pulou) return;
     if (k < ps.length){ ps[k].classList.add('on'); k++; setTimeout(proxima, RITMO[k] || 600); return; }
     setTimeout(() => { luz.classList.add('on'); siga.classList.add('on'); refaz(); }, 350);
-    setTimeout(() => {
-      const ini = y0() - 150, fim = y0() + window.innerHeight * 1.8, T = 2800; let t0 = null;
-      const passo = ts => { if (t0 === null) t0 = ts; const f = Math.min(1, (ts - t0) / T), e = f * f * (3 - 2 * f);
-        mascara(ini + (fim - ini) * e);
-        if (f < 1) requestAnimationFrame(passo); else cvs.forEach(c => { c.style.webkitMaskImage = ''; c.style.maskImage = ''; }); };
-      requestAnimationFrame(passo);
-    }, 1100);
+    setTimeout(() => escorre(2800), 1100);
   };
   setTimeout(proxima, RITMO[0]);
 })();

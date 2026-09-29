@@ -23,13 +23,21 @@
    em window.__historia.roteiro().
 
    Link de capítulo: index.html#cap-<id> abre a página já naquele capítulo.
+
+   O MESMO MOTOR, DUAS VEZES (motor(sec, capítulos, cfg)):
+     #cenas     01 · a teia de nomes e 02 · o dinheiro, como capítulos (tipos 'teia' e 'dinheiro'): o número
+                que conta, o título e a frase, cada nome (ou fluxo) acendendo como afluente com a cor da situação,
+                o fecho com "enviar ↗" e a porta. Os dados vêm prontos de index.html (window.__cenasDados).
+                O rio entra pela saída do rio da página (__rioSaida) e sai em __rioA (evento rio:a).
+     #historia  a abertura, os capítulos de escândalo e o fim; entra por __rioA (depois do bloco do
+                patrimônio, #curso-m, que desce reto na mesma faixa) e sai em __rioHist (rio:hist).
+   Links: index.html#quem (a teia), #fluxos (o dinheiro), #cap-<id> (os escândalos).
    ===================================================================== */
 (function(){
 'use strict';
-const RIO = window.RIO, FOZ = window.FOZ;
+const RIO = window.RIO, FOZ = window.FOZ || {};
 const doc = document, raiz = doc.documentElement;
-const sec = doc.getElementById('historia');
-if (!RIO || !FOZ || !sec || raiz.classList.contains('og')) return;
+if (!RIO || raiz.classList.contains('og')) return;
 
 const $ = (s, r) => (r || doc).querySelector(s);
 const $$ = (s, r) => Array.prototype.slice.call((r || doc).querySelectorAll(s));
@@ -44,7 +52,6 @@ const GRAV = { preso_ou_condenado_na_cadeia: 'grave', investigado_na_cadeia: 'me
 const FAIXAS = ['entorno', 'familia', 'gabinete', 'direto'];          /* de longe para perto */
 const CURTO = { entorno: 'pelo entorno', familia: 'pela família', gabinete: 'pelo gabinete', direto: 'por ele mesmo' };
 const TODOS = FOZ.escandalos || [];
-if (!TODOS.length) return;
 const EH_ELE = n => /^Flávio Bolsonaro$/.test(String(n || '').trim());
 
 /* ---------- texto (literal, encurtado) ---------- */
@@ -229,7 +236,6 @@ CAND.forEach(poe);
 const ano = e => parseInt((String(e.periodo || '').match(/\d{4}/) || ['9999'])[0], 10);
 /* o caso Marielle vem primeiro; depois, de longe para perto */
 ESCOLHA.sort((a, b) => (b.mari ? 1 : 0) - (a.mari ? 1 : 0) || FAIXAS.indexOf(a.e.faixa) - FAIXAS.indexOf(b.e.faixa) || ano(a.e) - ano(b.e));
-if (!ESCOLHA.length) return;
 
 /* a frase do capítulo: o texto do número; sem número, a frase curta (data/foz-curto.js) ou a primeira frase do resumo */
 const fraseCap = e => e.numero && e.numero.texto ? '' : (((window.FOZ_CURTO || {})[e.id] || {}).frase || relCurta(e.resumo, 170));
@@ -271,14 +277,13 @@ function sitCurta(txt, cls){
   if (/arquivad/.test(s)) return /den[úu]ncia/.test(s) ? 'denúncia arquivada' : 'caso arquivado';
   return 'sem processo';
 }
-const CAPS = ESCOLHA.map((x, k) => {
+const CAPS_H = ESCOLHA.map((x, k) => {
   const e = x.e, nivel = GRAV[e.gravidade] || 'leve';
   const fonte = (e.fontes || []).find(f => f && f.url) || null;
   return { k, e, id: e.id, nivel, cor: RGB[nivel], nos: x.nos, nome: e.nome || e.rotulo, rotulo: e.rotulo || e.nome,
     frase: fraseCap(e), ele: statusSeco(e), fonte, num: numeroDe(e), mari: x.mari || null,
-    nElo: x.mari ? x.mari.passos.length : (e.cadeia || []).length };
+    nElo: x.mari ? x.mari.passos.length : (e.cadeia || []).length, n: (e.cadeia || []).length };
 });
-const NCAP = CAPS.length;
 
 /* ---------- ritmo: comprimento de cada fase (em u, fração da altura da cena) e tempo no "assistir" (s, em 1×) ---------- */
 /* 27/09 (Onda 2): ~25% mais curto na rolagem e ~18% no "assistir" (a página tinha 35 telas no celular; agora ≤ 30),
@@ -288,10 +293,8 @@ const T = { intro: 1.6, num: 2.7, entra: 0.75, elo: 0.55, ele: 1.6, sai: 0.3, fi
 const CONTA = 0.55;                /* a contagem ocupa os primeiros 55% da fase do número; o resto é para ler */
 
 /* =====================================================================
-   DOM: as legendas (uma por cena) e os rótulos do palco
+   DOM: as legendas (uma por cena) e os rótulos do palco — as partes comuns aos dois motores
    ===================================================================== */
-const cena = $('#h-cena'), palco = $('#h-palco'), cv = $('#h-cv'), rot = $('#h-rot'), leg = $('#h-leg'), barra = $('#h-barra');
-const hdrEl = $('.site-header');
 const nFoz = TODOS.length, nDireto = TODOS.filter(e => e.faixa === 'direto').length;
 const legCor = '<p class="h-leg-cor" aria-label="Legenda das cores"><span><i style="background:' + HEX.grave + '"></i>preso ou condenado</span>' +
   '<span><i style="background:' + HEX.medio + '"></i>investigado</span><span><i style="background:' + HEX.leve + '"></i>outros</span></p>';
@@ -304,7 +307,7 @@ const blocoNum = c => {
   const g = n.conta ? '<span class="n1">' + esc(n.pre + fmtNum(n.alvo, n.dec, n.mil)) + '</span><span class="n2">' + esc(n.esc) + '</span>' : '<span class="n1">' + esc(n.valor) + '</span>';
   return '<div class="cap-num' + (n.conta ? ' conta' : (n.frase ? ' cheio frase' : ' cheio')) + '">' +
     '<p class="nv"' + (n.tinta ? ' style="color:var(--tinta)"' : '') + '><span class="so-leitor">' + esc(n.valor) + '</span><span class="ng" aria-hidden="true">' + g + '</span></p>' +
-    '<p class="nt">' + (n.unid ? '<b aria-hidden="true">' + esc(n.unid) + '</b> ' : '') + esc(fimP(c.ele ? semRessalva(n.texto).replace(DESFECHO_FIM, '') : semRessalva(n.texto)).replace(/R\$ (?=\d)/g, 'R$\u00a0')) + '</p>' +
+    '<p class="nt">' + (n.unid ? '<b aria-hidden="true">' + esc(n.unid) + '</b> ' : '') + esc(fimP(c.ele ? semRessalva(n.texto).replace(DESFECHO_FIM, '') : semRessalva(n.texto)).replace(/R\$ (?=\d)/g, 'R$ ')) + '</p>' +
     fonteLink(n.fonte) + '</div>';
 };
 /* os elos na legenda: quem → para quem e a situação de quem está na origem, em poucas palavras
@@ -331,39 +334,114 @@ const eloHtml = (c, l, i) => {
       ' <i>→</i> ' + esc(nomeElo(l.para)) + '</span>' +
     '<span class="rel">' + esc(relCurta(l.relacao, 72)) + '</span></li>';
 };
-
-let html = '<article class="cap cap-intro" data-f="intro" aria-label="A história">' +
-  '<h3 class="cap-n"><span class="g">' + nFoz + '</span> casos em volta dele.</h3>' +
-  '<p class="cap-sub">' + nDireto + ' por ele mesmo, ' + (nFoz - nDireto) + ' pelo gabinete, pela família ou pelo entorno. Alguns, de perto:</p>' +
-  '<ol class="cap-lista">' + CAPS.map(c => '<li><a href="#cap-' + esc(c.id) + '" data-cap="' + c.k + '"><b>' + (c.k + 1) + '</b>' + esc(c.rotulo) + '</a></li>').join('') + '</ol>' +
-  legCor + '</article>';
-CAPS.forEach(c => {
+/* o artigo de um capítulo: o número, o título e a frase, os elos, a situação dele (só quando formal) e o fecho.
+   As cenas 01 e 02 trazem o próprio sobretítulo, os elos e o fecho (kHtml, elosHtml, acoesHtml) */
+function artCap(c, NCAP){
   const e = c.e;
-  html += '<article class="cap" data-f="' + (c.num ? 'num' : 'entra') + '" id="h-cap-' + esc(c.id) + '" aria-labelledby="h-n-' + esc(c.id) + '" aria-hidden="true">' +
-    '<p class="cap-k"><b>' + (c.k + 1) + '</b>/' + NCAP + ' · ' + esc(CURTO[e.faixa] || '') + '<span class="kr"> · ' + esc(c.rotulo) + '</span></p>' +
+  const k = c.kHtml != null ? c.kHtml : '<b>' + (c.k + 1) + '</b>/' + NCAP + ' · ' + esc(CURTO[e.faixa] || '') + '<span class="kr"> · ' + esc(c.rotulo) + '</span>';
+  const elos = c.elosHtml != null ? c.elosHtml : (c.mari ? c.mari.passos : (e.cadeia || [])).map((l, i) => eloHtml(c, l, i)).join('');
+  /* o caso Master tem afluente próprio (dark-horse.html): a porta leva ao dinheiro do filme, mês a mês */
+  const acoes = c.acoesHtml != null ? c.acoesHtml :
+    (c.id === 'master' ? '<a class="porta" href="dark-horse.html">o afluente, mês a mês →</a>' : '<a class="porta" href="foz.html#' + esc(c.id) + '">o caminho completo →</a>') +
+    '<button type="button" class="enviar" data-share="' + esc(c.id) + '" aria-label="Enviar: ' + esc(c.rotulo) + '">enviar ↗</button>';
+  return '<article class="cap' + (c.tipo ? ' cap-' + c.tipo : '') + '" data-f="' + (c.num ? 'num' : 'entra') + '" id="h-cap-' + esc(c.id) + '" aria-labelledby="h-n-' + esc(c.id) + '" aria-hidden="true">' +
+    '<p class="cap-k">' + k + '</p>' +
     blocoNum(c) +
     '<h3 class="cap-n" id="h-n-' + esc(c.id) + '">' + esc(c.nome) + '</h3>' +
-    (c.frase ? '<div class="cap-res"><p>' + esc(fimP(c.frase)) + '</p>' + fonteLink(c.fonte) + '</div>' : '') +
-    '<ol class="cap-elos">' + (c.mari ? c.mari.passos : (e.cadeia || [])).map((l, i) => eloHtml(c, l, i)).join('') + '</ol>' +
+    (c.frase ? '<div class="cap-res"><p>' + esc(fimP(c.frase)) + '</p>' + (c.resHtml || '') + fonteLink(c.fonte) + '</div>' : '') +
+    '<ol class="cap-elos">' + elos + '</ol>' +
     (c.ele ? '<p class="cap-ele"><b>ele neste caso:</b> ' + esc(c.ele) + '</p>' : '') +
-    /* o caso Master tem afluente próprio (dark-horse.html): a porta leva ao dinheiro do filme, mês a mês */
-    '<div class="cap-acoes">' + (c.id === 'master' ? '<a class="porta" href="dark-horse.html">o afluente, mês a mês →</a>' : '<a class="porta" href="foz.html#' + esc(c.id) + '">o caminho completo →</a>') +
-      '<button type="button" class="enviar" data-share="' + esc(c.id) + '" aria-label="Enviar: ' + esc(c.rotulo) + '">enviar ↗</button></div>' +
-    '</article>';
-});
-html += '<article class="cap cap-fim" data-f="fim" aria-label="O fim da história">' +
+    '<div class="cap-acoes">' + acoes + '</div></article>';
+}
+
+/* =====================================================================
+   AS CENAS 01 E 02 (#cenas): a teia de nomes e o dinheiro, no formato dos capítulos de escândalo.
+   Os dados vêm prontos de index.html (window.__cenasDados), calculados como antes:
+     teia     { total, graves, elos: [{ id, nome, curto, sit, cls, n }], fundo: [{ id, nivel }] }
+     dinheiro { elos: [{ id, valor, de, para, sit, cls, sai, obs, fonte }] }
+   Cada nome (ou fluxo) é um elo que chega direto a ele: no palco, um afluente com o nome e a situação
+   (ou o valor e a origem), na cor da situação de cada nome (vermelho só preso ou condenado); ele, neutro.
+   O dinheiro que sai dele (a campanha, as emendas) corre ao contrário: dele para o destino.
+   ===================================================================== */
+const ELE = 'Flávio Bolsonaro';
+function capsCenas(D){
+  const out = [];
+  const mistura = el => RIO.mistura(el.map(l => [RGB[l.cls] || RGB.leve, 1]));
+  const T1 = D && D.teia, D2 = D && D.dinheiro;
+  if (T1 && (T1.elos || []).length){
+    const el = T1.elos;
+    out.push({ tipo: 'teia', id: 'teia', anc: 'quem', trecho: 1, e: { id: 'teia', faixa: '' }, n: el.length, nElo: el.length, rotulos: true, uElo: 0.7,
+      nome: 'Os que mais aparecem no arquivo', rotulo: 'A teia de nomes', ele: '', fonte: null, cor: mistura(el),
+      frase: el.length + ' dos ' + T1.total + ' nomes em volta dele, com a situação de cada um', resHtml: legCor,
+      num: T1.graves ? numeroDe({ numero: { valor: String(T1.graves), texto: 'dos ' + T1.total + ' nomes em volta dele foram presos ou condenados.' } }) : null,
+      kHtml: '<b>01</b> · a teia de nomes',
+      nos: el.map((l, i) => ({ nome: l.id, rot: l.curto || l.nome, sub: l.sit, prof: 1, pai: ELE, elo: i, cls: l.cls })),
+      elosHtml: el.map((l, i) => '<li class="elo ' + l.cls + '" data-i="' + i + '"><i class="pt" aria-hidden="true"></i><span class="dp">' + esc(l.curto || l.nome) +
+        (l.sit ? ' <span class="sit">(' + esc(l.sit) + ')</span>' : '') + '</span>' +
+        (l.n ? '<span class="rel">' + l.n + (l.n === 1 ? ' registro' : ' registros') + ' no arquivo</span>' : '') + '</li>').join(''),
+      acoesHtml: '<a class="porta" href="drive.html#rede">A teia completa →</a>' +
+        '<button type="button" class="enviar" data-share="quem-anda" aria-label="Enviar: a teia de nomes">enviar ↗</button>' });
+  }
+  if (D2 && (D2.elos || []).length){
+    const el = D2.elos, n = el.length;
+    out.push({ tipo: 'dinheiro', id: 'fluxos', anc: 'fluxos', trecho: 2, e: { id: 'fluxos', faixa: '' }, n, nElo: n, rotulos: true, uElo: 0.85,
+      nome: 'De onde vem, para onde vai', rotulo: 'O dinheiro', ele: '', fonte: null, cor: mistura(el),
+      frase: 'Quem paga, quem recebe e quem afirma; valores nominais',
+      num: numeroDe({ numero: { valor: n + (n === 1 ? ' fluxo' : ' fluxos'), texto: 'de dinheiro em volta dele, cada um com a fonte e o status.' } }),
+      kHtml: '<b>02</b> · o dinheiro',
+      nos: el.map((l, i) => ({ nome: l.id, rot: l.valor, sub: l.sai ? '→ ' + semPar(l.para) : semPar(l.de), prof: 1, pai: ELE, elo: i, cls: l.cls, sai: !!l.sai })),
+      elosHtml: el.map((l, i) => {
+        const r = relCurta(l.obs, 80), f = l.fonte && l.fonte.url ? '<a href="' + esc(l.fonte.url) + '" target="_blank" rel="noopener">' + esc(l.fonte.veiculo || 'fonte') + ' ↗</a>' : '';
+        return '<li class="elo ' + l.cls + '" data-i="' + i + '"><i class="pt" aria-hidden="true"></i><span class="dp"><span class="v">' + esc(l.valor) + '</span> ' +
+          esc(l.de) + ' <i>→</i> ' + esc(l.para) + (l.sit ? ' <span class="sit">(' + esc(l.sit) + ')</span>' : '') + '</span>' +
+          (r || f ? '<span class="rel">' + esc(r) + (r && f ? ' · ' : '') + f + '</span>' : '') + '</li>';
+      }).join(''),
+      acoesHtml: '<a class="porta" href="siga-o-dinheiro.html">Siga o dinheiro →</a>' +
+        '<button type="button" class="enviar" data-share="siga" aria-label="Enviar: siga o dinheiro">enviar ↗</button>' });
+  }
+  out.forEach((c, k) => { c.k = k; c.nivel = 'leve'; });
+  return out;
+}
+
+/* =====================================================================
+   O MOTOR: uma seção .hist (o palco preso + as legendas), os capítulos e a configuração
+     cfg.intro, cfg.fim   a abertura ("40 casos em volta dele") e o fim ("O rio termina nele"): só na história
+     cfg.fundo            os afluentes de fundo no palco: [{ id, nivel, n (elos) }]
+     cfg.faixaJ           onde os capítulos chegam ao rio principal (fração da altura do palco)
+     cfg.cresce           quanto o rio engrossa com tudo o que chega (fração da largura com que entra)
+     cfg.entrada()        a saída do trecho de cima ({x, w, cor}); cfg.evEntrada, o evento que avisa quando ela muda
+     cfg.saida            onde fica a saída deste trecho (window[cfg.saida]); cfg.evSaida, o evento
+     cfg.global           o nome da API em window (além de sec.__motor)
+   ===================================================================== */
+function motor(sec, CAPS, cfg){
+const NCAP = CAPS.length;
+if (!sec || !NCAP) return null;
+const I0 = cfg.intro ? 1 : 0;      /* ARTS[c.k + I0] é o artigo do capítulo c */
+const cena = $('.h-cena', sec), palco = $('.h-palco', sec), cv = $('canvas', palco), rot = $('.h-rot', sec), leg = $('.h-leg', sec), barra = $('.h-barra i', sec);
+const hdrEl = $('.site-header');
+const ancId = c => c.anc || 'cap-' + c.id;
+
+let html = cfg.intro ? '<article class="cap cap-intro" data-f="intro" aria-label="A história">' +
+  '<h3 class="cap-n"><span class="g">' + nFoz + '</span> casos em volta dele.</h3>' +
+  '<p class="cap-sub">' + nDireto + ' por ele mesmo, ' + (nFoz - nDireto) + ' pelo gabinete, pela família ou pelo entorno. Alguns, de perto:</p>' +
+  '<ol class="cap-lista">' + CAPS.map(c => '<li><a href="#' + esc(ancId(c)) + '" data-cap="' + c.k + '"><b>' + (c.k + 1) + '</b>' + esc(c.rotulo) + '</a></li>').join('') + '</ol>' +
+  legCor + '</article>' : '';
+CAPS.forEach(c => { html += artCap(c, NCAP); });
+if (cfg.fim) html += '<article class="cap cap-fim" data-f="fim" aria-label="O fim da história">' +
   '<h3 class="cap-n">O rio termina nele.</h3>' +
   '<div class="cap-acoes"><a class="porta" href="foz.html">Os ' + nFoz + ', caso a caso →</a><button type="button" class="porta sec" data-rever>↺ rever</button></div>' +
   '</article>';
 leg.innerHTML = html;
-const ARTS = $$('.cap', leg);        /* 0 = abertura, 1..N = capítulos, N+1 = fim */
-CAPS.forEach(c => { const a = ARTS[c.k + 1]; c.art = a; if (c.num){ c.nv = $('.nv', a); c.ng = $('.ng', a); c.n1 = $('.n1', a); } });
+const ARTS = $$('.cap', leg);        /* na história: 0 = abertura, 1..N = capítulos, N+1 = fim; nas cenas, só os capítulos */
+CAPS.forEach(c => { const a = ARTS[c.k + I0]; c.art = a; if (c.num){ c.numEl = $('.cap-num', a); c.nv = $('.nv', a); c.ng = $('.ng', a); c.n1 = $('.n1', a); } });
 /* régua para medir o número (largura em 100px, sem layout do artigo) */
 const regua = doc.createElement('span'); regua.className = 'h-regua'; regua.setAttribute('aria-hidden', 'true'); leg.appendChild(regua);
 const larg = t => { regua.textContent = t; return regua.getBoundingClientRect().width || 1; };
 
-/* âncoras #cap-<id> no fluxo da página (posição acertada no layout): o link funciona até sem o script terminar */
-const ANC = CAPS.map(c => { const a = doc.createElement('span'); a.id = 'cap-' + c.id; a.className = 'h-ancora'; a.style.cssText = 'position:absolute;left:0;width:1px;height:1px'; sec.appendChild(a); return a; });
+/* âncoras (#cap-<id>, #quem, #fluxos) no fluxo da página (posição acertada no layout): o link funciona até sem o script terminar */
+const ANC = CAPS.map(c => { const a = doc.createElement('span'); a.id = ancId(c); a.className = 'h-ancora'; a.style.cssText = 'position:absolute;left:0;width:1px;height:1px'; sec.appendChild(a); return a; });
+/* marcas de trecho (o "trecho N de 3" do cabeçalho de index.html), no começo de cada capítulo que abre um trecho */
+const MARCA = CAPS.map(c => { if (!c.trecho) return null; const a = doc.createElement('span'); a.className = 'h-marca'; a.dataset.trecho = c.trecho; a.setAttribute('aria-hidden', 'true'); a.style.cssText = 'position:absolute;left:0;width:1px;height:1px'; sec.appendChild(a); return a; });
 
 sec.hidden = false;
 
@@ -376,7 +454,7 @@ const G = { gotas: [], rotas: [], t: 0 };
 function cenas(u){
   const lista = []; let s = 0;
   const add = (o, len) => { o.a = s; o.len = len; s += len; o.b = s; lista.push(o); return o; };
-  add({ tipo: 'intro', t: T.intro }, U.intro * u);
+  if (cfg.intro) add({ tipo: 'intro', t: T.intro }, U.intro * u);
   CAPS.forEach(c => {
     const n = c.nElo;
     const o = { tipo: 'cap', c, fases: [] };
@@ -384,12 +462,12 @@ function cenas(u){
     if (c.num) fa('num', U.num * u, T.num);
     fa('entra', U.entra * u, T.entra);
     /* no caso Marielle cada caminho tem mais o que ler: o elo dura mais */
-    for (let i = 0; i < n; i++) fa('elo', U.elo * u * (c.mari ? 1.7 : 1), T.elo * (c.mari ? 2.4 : 1), i);
+    for (let i = 0; i < n; i++) fa('elo', U.elo * u * (c.mari ? 1.7 : c.uElo || 1), T.elo * (c.mari ? 2.4 : 1), i);
     fa('ele', U.ele * u, T.ele);
     fa('sai', U.sai * u, T.sai);
     add(o, p);
   });
-  add({ tipo: 'fim', t: T.fim }, U.fim * u);
+  if (cfg.fim) add({ tipo: 'fim', t: T.fim }, U.fim * u);
   return { lista, total: s };
 }
 
@@ -578,6 +656,10 @@ function desenhaMarielle(ctx, cap, E, g, lit, k){
   if (aj !== cap.jOp){ cap.jOp = aj; cap.jEl.style.opacity = aj; }
 }
 
+/* o rótulo das cenas 01 e 02: o nome (ou o valor) e, embaixo, a situação (ou a origem; no que sai dele, o destino) */
+const rotHtml = no => '<b>' + esc(no.rot) + '</b>' + (no.sub ? '<span>' + esc(no.sub) + '</span>' : '');
+const rotMax = (desk, J, Ws, left) => Math.max(90, Math.min(desk ? 260 : 196, J.x + (desk ? -10 : 10) - left, Ws - 8 - left));
+
 function monta(){
   const W = Math.round(sec.clientWidth); if (!W) return;
   const desk = window.innerWidth >= 900;
@@ -595,12 +677,13 @@ function monta(){
   C.lista.filter(o => o.tipo === 'cap').forEach(o => {
     const f = o.fases.find(x => x.f === 'ele');
     ANC[o.c.k].style.top = Math.round(o.a + f.a + (f.b - f.a) * 0.3 + 6) + 'px';
+    if (MARCA[o.c.k]) MARCA[o.c.k].style.top = Math.round(o.a) + 'px';
   });
 
   /* ---------- o palco ---------- */
   const Ws = Math.round(palco.clientWidth), Hs = Math.round(palco.clientHeight);
   const Hd = desk ? Hs : palcoH;                                  /* a área do desenho; embaixo (celular) só o rio segue */
-  const S = window.__rioSaida || {};
+  const S = (cfg.entrada && cfg.entrada()) || {};
   const xIn = clamp((S.x != null ? S.x : (desk ? W * 0.74 : W - 27)) - palco.offsetLeft, 20, Ws - 20);
   const m = desk ? 16 : 10;
   /* no celular largo (tablet), o desvio até o meio do palco tem teto: numa volta larga demais, a água
@@ -625,10 +708,10 @@ function monta(){
   const ptsM = []; for (let y = -EMENDA; y <= Hs + EMENDA; y += 3) ptsM.push([xMain(y), y]);
   const main = RIO.curso(ptsM);
 
-  /* afluentes: os capítulos chegam na parte de baixo, pela esquerda (sobra lugar para a árvore); os outros se espalham */
-  const nOut = TODOS.length - NCAP;
-  const idsCap = CAPS.map(c => c.id);
-  const outros = TODOS.filter(e => !idsCap.includes(e.id)).sort((a, b) => FAIXAS.indexOf(a.faixa) - FAIXAS.indexOf(b.faixa) || hash(a.id) - hash(b.id));
+  /* afluentes: os capítulos chegam na parte de baixo, pela esquerda (sobra lugar para a árvore); os outros (cfg.fundo) se espalham.
+     Cada afluente: { id, nivel (a cor), n (quantos elos: a largura) } */
+  const outros = cfg.fundo || [];
+  const nOut = outros.length;
   const tribs = [];
   const faz = (e, yj, lado, longo) => {
     const iJ = RIO.primeiro(main.y, yj), xj = main.x[iJ]; yj = main.y[iJ];
@@ -640,8 +723,8 @@ function monta(){
     const d = Math.hypot(xj - sx, yj - sy);
     const c = RIO.curso(RIO.meandro([sx, sy], [xj, yj], { amp: Math.min(desk ? 5 : 3, d * 0.06), ondas: Math.max(1, Math.round(d / 70)), fase: hh * Math.PI,
       ta: [lado < 0 ? 0.6 : -0.6, 0.8], tb: [lado < 0 ? 0.9 : -0.9, 0.5], tensao: 0.35 }));
-    const nivel = GRAV[e.gravidade] || 'leve', cor = RGB[nivel];
-    const wq = (desk ? 1.2 : 0.9) + (desk ? 0.8 : 0.6) * Math.sqrt((e.cadeia || []).length);
+    const nivel = e.nivel || 'leve', cor = e.cor || RGB[nivel];
+    const wq = (desk ? 1.2 : 0.9) + (desk ? 0.8 : 0.6) * Math.sqrt(e.n || 0);
     RIO.pinta(c, (i, y, t) => [0.7 + (wq - 0.7) * Math.pow(t, 0.6), cor]);
     const t = { e, id: e.id, c, iJ, J: { x: xj, y: yj }, cor, nivel, src: { x: sx, y: sy } };
     tribs.push(t); return t;
@@ -649,7 +732,8 @@ function monta(){
   /* o caso Marielle chega mais embaixo: a cena dos 5 condenados precisa de altura */
   const ordemJ = CAPS.filter(c => !c.mari).concat(CAPS.filter(c => c.mari));
   /* no celular, acima dos botões do "assistir" (que ficam no pé do palco) */
-  ordemJ.forEach((c, k) => { const yj = lerp(0.52, 0.8, NCAP > 1 ? k / (NCAP - 1) : 0.5) * Hd; c.trib = faz(c.e, c.mari && !desk ? Math.min(yj, Hd - 88) : yj, -1, true); });
+  const FJ = cfg.faixaJ || [0.52, 0.8];
+  ordemJ.forEach((c, k) => { const yj = lerp(FJ[0], FJ[1], NCAP > 1 ? k / (NCAP - 1) : 0.5) * Hd; c.trib = faz({ id: c.id, nivel: c.nivel, cor: c.cor, n: c.n }, c.mari && !desk ? Math.min(yj, Hd - 88) : yj, -1, true); });
   outros.forEach((e, j) => {
     const yj = lerp(0.08, 0.93, (j + 0.5) / Math.max(1, nOut)) * Hd;
     let lado = j % 2 ? 1 : -1;
@@ -667,16 +751,17 @@ function monta(){
   RIO.pinta(main, (i, y) => {
     let n = 0; const pares = [[corIn, 8]];
     tribs.forEach(t => { const k = suave((y - t.J.y + 2) / 30); if (k > 0){ n += k; pares.push([t.cor, k]); } });
-    return [w0 * (1 + 0.28 * n / tribs.length), RIO.mix(RIO.mistura(pares), AGUA, suave((y - (yCap - 150)) / 150))];
+    return [w0 * (1 + (cfg.cresce || 0.28) * n / tribs.length), RIO.mix(RIO.mistura(pares), AGUA, suave((y - (yCap - 150)) / 150))];
   });
   /* a largura varia devagar, menos perto das emendas */
   RIO.organico(main, { amp: 0.08, onda: desk ? 300 : 220, semente: 17, jan: y => suave(y / 110) * (1 - suave((y - (Hs - 170)) / 130)) });
   const iS = RIO.primeiro(main.y, Hs);
   const wSai = main.w[iS];
-  /* a saída, para a descida até a foto (index.html, #curso-f): mesma faixa, mesma largura, mesma cor */
-  const saiAntes = window.__rioHist;
-  window.__rioHist = { x: xIn + palco.offsetLeft, w: wSai, cor: main.c[iS] };
-  const mudouSaida = !saiAntes || saiAntes.x !== window.__rioHist.x || Math.abs(saiAntes.w - wSai) > 0.25 || RIO.css(saiAntes.cor) !== RIO.css(main.c[iS]);
+  /* a saída, para o trecho de baixo (das cenas: o bloco do patrimônio e a história; da história: a descida até
+     a foto, #curso-f): mesma faixa, mesma largura, mesma cor */
+  const saiAntes = window[cfg.saida], saiu = { x: xIn + palco.offsetLeft, w: wSai, cor: main.c[iS] };
+  window[cfg.saida] = saiu;
+  const mudouSaida = !saiAntes || saiAntes.x !== saiu.x || Math.abs(saiAntes.w - wSai) > 0.25 || RIO.css(saiAntes.cor) !== RIO.css(main.c[iS]);
 
   /* ---------- a árvore de cada capítulo: os nomes em linhas, de cima (mais longe dele) para baixo, até J ---------- */
   CAPS.forEach(c => {
@@ -686,6 +771,17 @@ function monta(){
     const nos = c.nos.slice().sort((a, b) => b.prof - a.prof || a.elo - b.elo);
     const n = nos.length, zig = Math.min(desk ? 70 : 44, 0.25 * (x1 - x0));
     nos.forEach((no, i) => { no.x = x0 + 6 + (i % 2 ? zig : 0); no.y = n === 1 ? lerp(y0, y1, 0.45) : lerp(y0, y1, i / (n - 1)); });
+    /* cenas 01 e 02: o rótulo tem duas ou três linhas (o nome e a situação; o valor e a origem). Mede cada um e
+       empilha os nós de modo que um rótulo nunca cubra o de baixo (o nó fica no meio do seu rótulo) */
+    if (c.rotulos){
+      const med = doc.createElement('span'); med.className = 'h-no h-mx'; med.style.visibility = 'hidden'; rot.appendChild(med);
+      nos.forEach(no => { no.left = no.x + 9; no.mw = rotMax(desk, J, Ws, no.left); med.style.maxWidth = no.mw + 'px'; med.innerHTML = rotHtml(no); no.h = med.offsetHeight || 18; });
+      med.remove();
+      const yT = Math.max(4, Hd * 0.03), yB = J.y - 14, tot = nos.reduce((s_, no) => s_ + no.h, 0);
+      const gap = n > 1 ? Math.max(2, (yB - yT - tot) / (n - 1)) : 0;
+      let yy = n > 1 ? yT : Math.max(yT, lerp(yT, yB, 0.45) - nos[0].h / 2);
+      nos.forEach(no => { no.top = yy; no.y = yy + no.h / 2; yy += no.h + gap; });
+    }
     const porNome = new Map(nos.map(no => [no.nome, no]));
     /* vazão: 1 + tudo o que chega a este nome */
     const vaz = no => 1 + nos.filter(x => x.pai === no.nome).reduce((s, x) => s + vaz(x), 0);
@@ -704,8 +800,9 @@ function monta(){
     const dJ = no => no.alvo ? no.alvo.c.L + dJ(no.alvo) : 0;
     nos.forEach(no => { no.d0 = dJ(no); no.d1 = no.d0 + no.c.L; });
     c.dMax = Math.max(1, ...nos.map(no => no.d1));
-    /* rota das gotas: do nome até J e rio abaixo */
+    /* rota das gotas: do nome até J e rio abaixo; o dinheiro que sai dele, de J até o destino */
     nos.forEach(no => {
+      if (no.sai){ no.rota = RIO.rota([RIO.inverte(no.c), 0, no.c.n - 1]); return; }
       const partes = []; let x = no;
       while (x){ partes.push([x.c, 0, x.c.n - 1]); x = x.alvo; }
       partes.push([main, c.trib.iJ, main.n - 1]);
@@ -730,6 +827,11 @@ function monta(){
   rot.textContent = '';
   CAPS.forEach(c => {
     if (c.mari) rotMarielle(c, desk, Ws, Hd);
+    else if (c.rotulos) c.rot = c.arv.map(no => {
+      const el = doc.createElement('span'); el.className = 'h-no h-mx ' + no.cls; el.innerHTML = rotHtml(no);
+      el.style.maxWidth = no.mw + 'px'; el.style.transform = 'translate(' + Math.round(no.left) + 'px,' + Math.round(no.top) + 'px)';
+      rot.appendChild(el); no.el = el; no.op = -1; return el;
+    });
     else c.rot = c.arv.map(no => {
       const el = doc.createElement('span'); el.className = 'h-no'; el.textContent = nomeCurto(no.nome);
       const left = no.x + 9, mw = Math.max(90, Math.min(desk ? 230 : 150, (desk ? c.trib.J.x - 10 : c.trib.J.x + 10) - left, Ws - 8 - left));
@@ -737,8 +839,17 @@ function monta(){
       rot.appendChild(el); no.el = el; no.op = -1; return el;
     });
     const j = doc.createElement('span'); j.className = 'h-no ele'; j.textContent = 'FLÁVIO';
-    j.style.transform = 'translate(' + Math.round(c.trib.J.x + 10) + 'px,' + Math.round(c.trib.J.y - 6) + 'px)';
     rot.appendChild(j); c.jEl = j; c.jOp = -1;
+    /* à direita de J; se não cabe no palco, à esquerda; se cobre o rótulo de um nome (palco baixo, rótulos
+       empilhados até J), embaixo do ponto */
+    const J = c.trib.J, wj = j.offsetWidth || 60, hj = j.offsetHeight || 16;
+    const caixas = c.arv.filter(no => no.el).map(no => ({ l: no.left != null ? no.left : no.x + 9, t: no.top != null ? no.top : no.y - 8, w: no.el.offsetWidth, h: no.el.offsetHeight }));
+    const livre = q => q[0] >= 2 && q[0] + wj <= Ws - 4 && !caixas.some(b => q[0] < b.l + b.w + 3 && q[0] + wj > b.l - 3 && q[1] < b.t + b.h + 2 && q[1] + hj > b.t - 2);
+    const dir = J.x + 10, esq = J.x - 10 - wj;
+    /* embaixo do rótulo mais baixo que ocupa a mesma faixa (quando a pilha de rótulos passa de J) */
+    const fundo = Math.max(J.y + 10, ...caixas.filter(b => esq < b.l + b.w + 3 && esq + wj > b.l - 3).map(b => b.t + b.h + 3));
+    const pj = [[dir, J.y - 6], [esq, J.y - 6], [esq, J.y + 10], [dir, J.y + 10], [esq, fundo]].find(q => livre(q) && q[1] + hj <= Hd) || [dir + wj > Ws - 4 ? esq : dir, J.y - 6];
+    j.style.transform = 'translate(' + Math.round(pj[0]) + 'px,' + Math.round(pj[1]) + 'px)';
   });
 
   /* ---------- gotas ---------- */
@@ -746,7 +857,7 @@ function monta(){
   const sp = {}; const sprite = (cor, k) => { const key = cor.join(',') + k; return sp[key] || (sp[key] = RIO.gota(cor, (desk ? 2.6 : 2.2) * k, dpr)); };
   G.rotas = [];
   G.gotas = [];
-  tribs.forEach(t => G.rotas.push({ rota: RIO.rota([t.c, 0, t.c.n - 1], [main, t.iJ, main.n - 1]), sp: sprite(t.cor, 0.8), taxa: 0.16 + 0.05 * (t.e.cadeia || []).length, alfa: 1, acc: hash(t.id) * 3, tipo: 'ov', id: t.id }));
+  tribs.forEach(t => G.rotas.push({ rota: RIO.rota([t.c, 0, t.c.n - 1], [main, t.iJ, main.n - 1]), sp: sprite(t.cor, 0.8), taxa: 0.16 + 0.05 * (t.e.n || 0), alfa: 1, acc: hash(t.id) * 3, tipo: 'ov', id: t.id }));
   G.rotas.push({ rota: main, sp: sprite(AGUA, 0.8), taxa: 0.5, alfa: 1, acc: 0, tipo: 'main' });
   CAPS.forEach(c => c.arv.forEach(no => { if (no.rota) G.rotas.push({ rota: no.rota, sp: sprite(RGB[no.cls], 1), taxa: 1.1, alfa: 0, acc: 0, tipo: 'arv', cap: c.k, no: no.eloG != null ? { elo: no.eloG } : no }); }));
   G.vel = vel;
@@ -758,7 +869,7 @@ function monta(){
   estado = null; legKey = '';
   agenda();
   doc.dispatchEvent(new CustomEvent('historia:layout'));
-  if (mudouSaida) doc.dispatchEvent(new CustomEvent('rio:hist'));
+  if (mudouSaida && cfg.evSaida) doc.dispatchEvent(new CustomEvent(cfg.evSaida));
 }
 
 /* o tamanho do número: o maior que cabe na largura, numa linha ou em duas (número / escala);
@@ -804,7 +915,7 @@ function compacta(){
     a.classList.remove('aperta', 'aperta2', 'aperta3');
     const f0 = a.dataset.f, vis = a.style.visibility;
     a.style.visibility = 'hidden'; a.classList.add('medindo');
-    const cap = CAPS[ia - 1];
+    const cap = CAPS[ia - I0];
     const fases = a.classList.contains('cap-intro') || a.classList.contains('cap-fim') ? [f0] : ['entra', 'elo', 'ele'];
     /* na fase dos elos, mede cada elo como o atual (com os anteriores acesos): o mais alto nem sempre é o último */
     const els = $$('.elo', a);
@@ -820,6 +931,20 @@ function compacta(){
       return alto;
     });
     if (mede()){ a.classList.add('aperta'); if (mede()){ a.classList.add('aperta2'); if (mede()) a.classList.add('aperta3'); } }
+    /* se nem assim cabe (celular baixo, cadeia longa): a lista rola. Os primeiros elos saem por cima (continuam
+       acesos no palco, com "…" no alto da lista); o elo atual e o fecho (a situação dele, a porta, "enviar") ficam à vista.
+       a.__corte: { elo: [o primeiro elo à vista quando o elo n é o atual], ele: [o primeiro elo à vista no fecho] } */
+    a.__corte = null;
+    if (a.classList.contains('aperta3') && els.length && mede()){
+      const ol = $('.cap-elos', a);
+      const cabe = (f, n, k) => { a.dataset.f = f; ol.classList.toggle('cortada', k > 0);
+        els.forEach((x, i) => { x.classList.toggle('on', i >= k && (f === 'ele' || i <= n)); x.classList.toggle('atual', f === 'elo' && i === n); });
+        return a.scrollHeight <= altura; };
+      const corte = { elo: els.map((_, n) => { let k = 0; while (k < n && !cabe('elo', n, k)) k++; return k; }), ele: 0 };
+      while (corte.ele < els.length && !cabe('ele', 0, corte.ele)) corte.ele++;
+      els.forEach(x => x.classList.remove('on', 'atual')); ol.classList.remove('cortada');
+      if (corte.ele || corte.elo.some(k => k)) a.__corte = corte;
+    }
     /* a fase do número: o maior tamanho que cabe (a frase de quem afirma e a fonte vêm sempre junto) */
     if (cap && cap.num){
       a.dataset.f = 'num'; cap.nv.style.setProperty('--nk', '1'); ajustaNum(cap);
@@ -857,7 +982,10 @@ function aplicaLegenda(E){
   const a = ARTS[idx];
   if (o.tipo === 'cap'){
     a.dataset.f = f;
-    $$('.elo', a).forEach((x, i) => { x.classList.toggle('on', i < n); x.classList.toggle('atual', f === 'elo' && i === n - 1); });
+    /* celular baixo: a lista rola (a.__corte, de compacta) */
+    const ct = a.__corte, k0 = !ct ? 0 : f === 'elo' ? ct.elo[n - 1] || 0 : (f === 'ele' || f === 'sai' ? ct.ele : 0);
+    $$('.elo', a).forEach((x, i) => { x.classList.toggle('on', i < n && i >= k0); x.classList.toggle('atual', f === 'elo' && i === n - 1); });
+    const ol = $('.cap-elos', a); if (ol && ol.classList.contains('cortada') !== k0 > 0) ol.classList.toggle('cortada', k0 > 0);
   }
   /* o link acompanha o capítulo (só depois que a pessoa rolou ou tocou em assistir) */
   /* o endereço não muda com a rolagem: quem copia o link da barra manda o começo do site (a animação) */
@@ -871,8 +999,12 @@ function numero(E){
   const c = o.c, n = c.num, F = o.fases[0];
   const p = reduzido || F.f !== 'num' ? 1 : clamp((E.l - F.a) / (CONTA * (F.b - F.a)), 0, 1);
   if (n.conta){
-    const v = n.pre + fmtNum(p >= 1 ? n.alvo : n.alvo * sai3(p), n.dec, n.mil);
+    const x = fmtNum(p >= 1 ? n.alvo : n.alvo * sai3(p), n.dec, n.mil), v = n.pre + x;
     if (c.n1.textContent !== v) c.n1.textContent = v;
+    /* enquanto a contagem mostra zero (a seção entrando na tela, o começo da fase), o bloco do número não aparece:
+       "0 dos 49 nomes… foram presos ou condenados" diria o que não é */
+    const vis = /[1-9]/.test(x) ? '' : '0';
+    if (c.numEl.style.opacity !== vis) c.numEl.style.opacity = vis;
   } else {
     const a = String(Math.round(clamp(p / 0.35, 0, 1) * 20) / 20);
     if (c.ng.style.opacity !== a) c.ng.style.opacity = a;
@@ -945,8 +1077,9 @@ function desenha(E, dt){
       const rev = clamp((D - no.d0) / no.c.L, 0, 1);
       if (rev > 0) RIO.parcial(ctx, no.c, 1 - rev, 1, { fundo: FUNDO, alfa: 0.38, k: 0.7 });
     });
-    cap.arv.forEach(no => { const l = lit[no.elo] || 0; if (l > 0.001) RIO.parcial(ctx, no.c, 0, l, { fundo: FUNDO, alfa: 1 }); });
-    if (reduzido) cap.arv.forEach(no => { if ((lit[no.elo] || 0) >= 1) RIO.setas(ctx, no.c, 'rgba(232,255,236,.6)', 40); });
+    /* acende da nascente até ele; o dinheiro que sai dele, dele até o destino */
+    cap.arv.forEach(no => { const l = lit[no.elo] || 0; if (l > 0.001) RIO.parcial(ctx, no.c, no.sai ? 1 - l : 0, no.sai ? 1 : l, { fundo: FUNDO, alfa: 1 }); });
+    if (reduzido) cap.arv.forEach(no => { if ((lit[no.elo] || 0) >= 1) RIO.setas(ctx, no.sai ? RIO.inverte(no.c) : no.c, 'rgba(232,255,236,.6)', 40); });
     /* os nomes */
     cap.arv.forEach(no => {
       const l = Math.max(lit[no.elo] || 0, ...cap.arv.filter(x => x.pai === no.nome).map(x => lit[x.elo] || 0));
@@ -969,6 +1102,7 @@ function desenha(E, dt){
       const l = Math.max(lit[no.elo] || 0, ...cap.arv.filter(x => x.pai === no.nome).map(x => lit[x.elo] || 0));
       const a = Math.round(clamp(l * 3, 0, 1) * k * 20) / 20;
       if (a !== no.op){ no.op = a; no.el.style.opacity = a; }
+      if (cap.rotulos){ const on = (lit[no.elo] || 0) > 0.5; if (no.el.classList.contains('on') !== on) no.el.classList.toggle('on', on); }
     });
     const aj = Math.round(clamp(lj * 3, 0, 1) * k * 20) / 20;
     if (aj !== cap.jOp){ cap.jOp = aj; cap.jEl.style.opacity = aj; }
@@ -993,7 +1127,7 @@ function desenha(E, dt){
       if (y < vy0 || y > vy1) continue;
       let al = r.alfa * Math.min(1, gt.s / 14);
       if (r.tipo === 'arv' && cap){                          /* a gota da árvore encolhe junto com ela */
-        if (k < 0.999){ const J = cap.trib.J, e_ = 0.35 + 0.65 * k; if (gt.s < ro.L - (L.main.L - L.main.s[cap.trib.iJ])){ const xx = J.x + (x - J.x) * e_, yy = J.y + (y - J.y) * e_; ctx.globalAlpha = al; ctx.drawImage(r.sp.img, xx - r.sp.r, yy - r.sp.r, r.sp.r * 2, r.sp.r * 2); continue; } }
+        if (k < 0.999){ const J = cap.trib.J, e_ = 0.35 + 0.65 * k; if ((r.no && r.no.sai) || gt.s < ro.L - (L.main.L - L.main.s[cap.trib.iJ])){ const xx = J.x + (x - J.x) * e_, yy = J.y + (y - J.y) * e_; ctx.globalAlpha = al; ctx.drawImage(r.sp.img, xx - r.sp.r, yy - r.sp.r, r.sp.r * 2, r.sp.r * 2); continue; } }
       }
       ctx.globalAlpha = al;
       ctx.drawImage(r.sp.img, x - r.sp.r, y - r.sp.r, r.sp.r * 2, r.sp.r * 2);
@@ -1076,7 +1210,7 @@ function vaiCap(k, comport){
   if (comport === 'auto'){ semSuave(true); window.scrollTo(0, y); semSuave(false); }
   else window.scrollTo({ top: y, behavior: comport });
 }
-function capDoHash(){ const m = /^#cap-(.+)$/.exec(decodeURIComponent(location.hash || '')); return m ? CAPS.findIndex(c => c.id === m[1]) : -1; }
+function capDoHash(){ let h = ''; try { h = decodeURIComponent((location.hash || '').slice(1)); } catch (_){} return h ? CAPS.findIndex(c => ancId(c) === h) : -1; }
 
 /* =====================================================================
    Arranque e novo layout
@@ -1084,9 +1218,12 @@ function capDoHash(){ const m = /^#cap-(.+)$/.exec(decodeURIComponent(location.h
 monta();
 const k0 = capDoHash();
 if (k0 >= 0){ vaiCap(k0, 'auto'); window.addEventListener('load', () => { if (capDoHash() === k0 && !interagiu) vaiCap(k0, 'auto'); }, { once: true }); }
-window.addEventListener('hashchange', () => { const k = capDoHash(); if (k >= 0 && '#cap-' + CAPS[k].id !== hashCap) vaiCap(k, reduzido ? 'auto' : 'smooth'); });
+window.addEventListener('hashchange', () => { const k = capDoHash(); if (k >= 0 && '#' + ancId(CAPS[k]) !== hashCap) vaiCap(k, reduzido ? 'auto' : 'smooth'); });
 let largura = window.innerWidth, altura = window.innerHeight, rt = 0;
 const refaz = () => { const s = sAgora(), cap = L ? estadoDe(s) : null; monta(); if (cap && s > 0 && s < L.C.total){ semSuave(true); window.scrollTo(0, yDe(L.C.lista[cap.i].a + cap.l * (L.C.lista[cap.i].len / cap.o.len))); semSuave(false); } };
+/* a letra da página pode chegar depois do primeiro layout: os rótulos do palco e as legendas medidos com a letra
+   provisória ficariam do tamanho errado (a pilha de rótulos, o "FLÁVIO", o que cabe na legenda); refaz quando ela chega */
+if (doc.fonts && doc.fonts.status !== 'loaded' && doc.fonts.ready) doc.fonts.ready.then(() => { if (L) refaz(); });
 window.addEventListener('resize', () => {
   clearTimeout(rt);
   rt = setTimeout(() => {
@@ -1098,17 +1235,38 @@ window.addEventListener('resize', () => {
     if (mudouL || mudouA) refaz();
   }, 200);
 });
-doc.addEventListener('rio:saida', () => { clearTimeout(rt); rt = setTimeout(refaz, 60); });
+if (cfg.evEntrada) doc.addEventListener(cfg.evEntrada, () => { clearTimeout(rt); rt = setTimeout(refaz, 60); });
 /* offsets guardados: se a página acima mudar de altura (fonte, foto, quebra de linha), refaz */
 if ('ResizeObserver' in window){
   let h0 = doc.body.scrollHeight, ro = 0;
   new ResizeObserver(() => { const h = doc.body.scrollHeight; if (Math.abs(h - h0) < 4) return; h0 = h; clearTimeout(ro); ro = setTimeout(() => { if (L){ const y = sec.getBoundingClientRect().top + window.scrollY; if (Math.abs(y - L.Y0) > 2){ L.Y0 = y; agenda(); doc.dispatchEvent(new CustomEvent('historia:layout')); } } }, 120); }).observe(doc.body);
 }
 window.addEventListener('pageshow', e => { if (e.persisted){ monta(); } });
-window.__historia = { caps: () => CAPS.map(c => c.id), criterio: () => CAND.map(x => ({ id: x.e.id, faixa: x.e.faixa, nota: Math.round(x.nota * 100) / 100 })),
+const api = { caps: () => CAPS.map(c => c.id), criterio: () => CAND.map(x => ({ id: x.e.id, faixa: x.e.faixa, nota: Math.round(x.nota * 100) / 100 })),
   layout: () => L && { total: L.C.total, Y0: L.Y0, hdr: L.hdr, cenaH: L.cenaH, palcoH: L.palcoH, u: L.u, cenas: L.C.lista.map(o => ({ tipo: o.tipo, id: o.c && o.c.id, a: o.a, b: o.b, fases: o.fases && o.fases.map(f => ({ f: f.f, a: o.a + f.a, b: o.a + f.b })) })) },
   yDe: s => yDe(s), tempo: () => KT[KT.length - 1],
   /* para o roteiro: as fronteiras de fase em (y, t), os começos de capítulo (para "pular") e as paradas (movimento reduzido) */
   roteiro: () => L ? { keys: KS.map((s, i) => ({ y: yDe(s), t: KT[i] })), marcas: L.C.lista.filter(o => o.tipo !== 'intro').map(o => yDe(o.a)), paradas: paradas().map(yDe) } : null,
   medir: n => { const E = estadoDe(sAgora()), t0 = performance.now(); for (let k = 0; k < n; k++) desenha(E, 1 / 60); return Math.round((performance.now() - t0) / n * 100) / 100 + ' ms/quadro, ' + G.gotas.length + ' gotas'; }, estado: () => estado && { i: estado.i, l: estado.l, legenda: legKey } };
+sec.__motor = api;
+if (cfg.global) window[cfg.global] = api;
+return api;
+}   /* fim do motor */
+
+/* =====================================================================
+   As duas seções: primeiro as cenas 01 e 02 (a saída delas é a entrada da história), depois a história
+   ===================================================================== */
+const secC = doc.getElementById('cenas'), secH = doc.getElementById('historia');
+const CAPS_C = capsCenas(window.__cenasDados);
+if (secC && CAPS_C.length) motor(secC, CAPS_C, {
+  fundo: ((window.__cenasDados.teia || {}).fundo || []).map(x => ({ id: x.id, nivel: x.nivel, n: 1 })),
+  faixaJ: [0.76, 0.8], cresce: 1,
+  entrada: () => window.__rioSaida, evEntrada: 'rio:saida', saida: '__rioA', evSaida: 'rio:a', global: '__cenas' });
+if (secH && CAPS_H.length){
+  const ids = CAPS_H.map(c => c.id);
+  motor(secH, CAPS_H, { intro: true, fim: true,
+    fundo: TODOS.filter(e => !ids.includes(e.id)).sort((a, b) => FAIXAS.indexOf(a.faixa) - FAIXAS.indexOf(b.faixa) || hash(a.id) - hash(b.id))
+      .map(e => ({ id: e.id, nivel: GRAV[e.gravidade] || 'leve', n: (e.cadeia || []).length })),
+    entrada: () => window.__rioA || window.__rioSaida, evEntrada: secC && CAPS_C.length ? 'rio:a' : 'rio:saida', saida: '__rioHist', evSaida: 'rio:hist', global: '__historia' });
+}
 })();
