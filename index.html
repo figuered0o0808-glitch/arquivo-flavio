@@ -1767,9 +1767,8 @@ window.addEventListener('load', () => { const h = window.__historia, n = h && h.
   const refaz = () => { try { rioTrechos(); } catch (_){ } };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(refaz);
   const cvs = ['#c-leito', '#c-agua'].map(q => $(q)).filter(Boolean);
-  let visto = false; try { visto = sessionStorage.getItem('bd_nasce') === '1'; } catch (_){ }
-  const calmo = visto || location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches;
-  try { sessionStorage.setItem('bd_nasce', '1'); } catch (_){ }
+  /* anima sempre que se chega ao topo (não trava nada: dá para rolar a qualquer momento); com link direto ou movimento reduzido, tudo já aparece */
+  const calmo = location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (calmo){ ps.forEach(p => p.classList.add('on')); luz.classList.add('on'); siga.classList.add('on'); return; }
   /* o rio fica escondido abaixo do ponto até a luz acender; depois escorre dele para baixo */
   const mascara = y => cvs.forEach(c => { const m = 'linear-gradient(to bottom, #000 ' + y + 'px, transparent ' + (y + 140) + 'px)'; c.style.webkitMaskImage = m; c.style.maskImage = m; });
