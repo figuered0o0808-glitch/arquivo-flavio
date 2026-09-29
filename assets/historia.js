@@ -860,10 +860,7 @@ function aplicaLegenda(E){
     $$('.elo', a).forEach((x, i) => { x.classList.toggle('on', i < n); x.classList.toggle('atual', f === 'elo' && i === n - 1); });
   }
   /* o link acompanha o capítulo (só depois que a pessoa rolou ou tocou em assistir) */
-  if (interagiu && history.replaceState){
-    const alvo = o.tipo === 'cap' ? '#cap-' + o.c.id : '#historia';
-    if (alvo !== hashCap && location.hash !== alvo){ hashCap = alvo; try { history.replaceState(null, '', alvo); } catch (_){} }
-  }
+  /* o endereço não muda com a rolagem: quem copia o link da barra manda o começo do site (a animação) */
 }
 
 /* o número do capítulo: conta com a rolagem na fase do número (e volta se a pessoa rolar para cima).

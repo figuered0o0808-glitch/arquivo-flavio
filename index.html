@@ -214,6 +214,9 @@ html:not(.og) #palco{display:none}
 .intro-l.some{opacity:0}
 .gota-siga{display:block; width:max-content; margin:6px auto 0; font:700 13px var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--amber); text-decoration:none; padding:10px 8px}
 
+.enviado{margin:16px 16px 0; padding:12px 14px; border:1px solid var(--amber); border-radius:4px; font-size:16px; line-height:1.35}
+.enviado a{color:var(--amber); font-weight:700; text-decoration:none}
+.enviado small{display:block; font:600 12px var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--cinza); margin-bottom:2px}
 /* ---------- a nascente (primeira tela): as frases, o ponto de luz, "siga o rio"; o rio do site nasce do ponto ---------- */
 .nasce{position:relative; z-index:1; min-height:calc(100vh - var(--hdr,57px)); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px 16px 48px; text-align:center}
 @supports (height:100svh){ .nasce{min-height:calc(100svh - var(--hdr,57px))} }
@@ -539,6 +542,7 @@ html.og #curso > :not(.abre){display:none!important}
 .og-marca{display:none; margin:34px 0 0; font-family:var(--mono); font-size:13px; line-height:1.7; letter-spacing:.08em; color:var(--cinza); white-space:nowrap}
 .og-marca b{color:var(--tinta); font-weight:700}
 </style>
+<script>try { if ('scrollRestoration' in history && !location.hash) history.scrollRestoration = 'manual'; } catch (e) {}</script>
 <script>try { document.documentElement.classList.add('js'); if (/[?&]og=1(&|$)/.test(location.search)) document.documentElement.classList.add('og'); } catch (e) {}</script>
 <link rel="stylesheet" href="assets/header.css?v=84dc371e">
 </head>
@@ -570,6 +574,7 @@ html.og #curso > :not(.abre){display:none!important}
 
   <!-- o caso de hoje: a contagem até o 1º turno e um dos 8 casos "de perto" (tabela fixa data → caso, pelo relógio do leitor);
        em 04/10, "Hoje é o dia"; depois, um dos 40 por dia. O .dq do sistema, com o botão de envio ao lado do fato. -->
+  <p class="enviado" id="enviado" hidden></p>
   <article class="dq hoje" id="hoje-no-rio" aria-labelledby="h-hoje" hidden>
     <p class="hoje-k" id="hoje-k"></p>
     <div id="hoje-c"><h2 id="h-hoje">O caso de hoje</h2></div>
@@ -701,7 +706,7 @@ html.og #curso > :not(.abre){display:none!important}
 <script src="assets/nav.js?v=db4ad0ea"></script>
 <script src="assets/roteiro.js?v=b4c6e049" defer></script>
 <script src="data/foz-curto.js?v=49585cb8"></script>
-<script src="assets/historia.js?v=a818a94e" defer></script>
+<script src="assets/historia.js?v=dbee4eec" defer></script>
 <script src="data/topicos.js?v=d0b7736c" defer></script>
 <script src="assets/compartilhar.js?v=f3f9b497" defer></script>
 <script>
@@ -947,6 +952,11 @@ const RODA = (function(){
   return r;
 })();
 const casoDoDia = hoje => RODA.length ? RODA[(((diasEntre(TURNO, hoje) - 1) % RODA.length) + RODA.length) % RODA.length] : DESTAQUE;
+/* link de compartilhamento (c/<id>.html → index.html?c=<id>&d=<destino>): abre na animação; se é um dos 40 casos,
+   ele vira o caso em destaque; senão, um "o que te enviaram →" leva ao destino (só páginas do próprio site) */
+const ENV = (() => { try { const q = new URLSearchParams(location.search), c = q.get('c'), d = q.get('d');
+  if (!c || !/^[a-z0-9-]+$/i.test(c)) return null;
+  return { c, base: c.replace(/--.*$/, ''), d: d && /^[a-z0-9-]+\.html(?:[?#][\w\-\/.=#%&]*)?$/i.test(d) ? d : null }; } catch (_){ return null; } })();
 let HOJE = null;                  /* { id, faltam, antes, ehDia } do caso na tela (para o "copiar o texto de hoje") */
 function hojeNoRio(hoje){
   const box = $('#hoje-c'), kk = $('#hoje-k'), sec = $('#hoje-no-rio');
@@ -955,6 +965,8 @@ function hojeNoRio(hoje){
   const faltam = diasEntre(hoje, TURNO);
   const antes = hoje < TURNO, ehDia = hoje === TURNO;
   let id = antes ? (DIA[hoje] || 'master') : ehDia ? DESTAQUE : casoDoDia(hoje);
+  const enviado = !!(ENV && escPorId[ENV.base]);
+  if (enviado) id = ENV.base;
   if (!escPorId[id]) id = escPorId[DESTAQUE] ? DESTAQUE : (ESC[0] && ESC[0].e.id);
   const x = escPorId[id], e = x && x.e;
   if (!e){ sec.hidden = true; return; }
@@ -965,7 +977,7 @@ function hojeNoRio(hoje){
   if (c.ele) frase = frase.replace(DESFECHO_FIM, '');
   const fonte = (n && n.fonte && n.fonte.url) ? n.fonte : ((e.fontes || []).find(f => f && f.url) || null);
   const rot = e.rotulo || e.nome;
-  kk.innerHTML = antes ? (faltam === 1 ? 'Falta <b>1</b> dia' : 'Faltam <b>' + faltam + '</b> dias') + ' para o 1º turno · o caso de hoje' :
+  kk.innerHTML = antes ? (faltam === 1 ? 'Falta <b>1</b> dia' : 'Faltam <b>' + faltam + '</b> dias') + ' para o 1º turno · ' + (enviado ? 'o caso que te enviaram' : 'o caso de hoje') :
     ehDia ? 'Hoje é o dia. Os ' + ESC.length + ', um a um, logo abaixo.' : 'O caso de hoje · <b>' + dm(hoje) + '</b> · um dos ' + ESC.length;
   kk.hidden = !kk.innerHTML;
   sec.classList.toggle('fim-dia', ehDia);
@@ -1704,19 +1716,8 @@ if (!OG){
   marcaTrecho();
 }
 
-/* ---------- o link acompanha o trecho (para mandar o ponto certo) ---------- */
-if (!OG && 'IntersectionObserver' in window && history.replaceState){
-  const secoes = $$('#casos, #quem, #dinheiro, #desagua, #semana, #teste, #adiante, #nascente');
-  const io = new IntersectionObserver(es => {
-    es.forEach(e => { if (!e.isIntersecting) return;
-      const id = e.target.id, alvo = id === 'nascente' ? location.pathname + location.search : '#' + id;
-      if ((id === 'nascente' && !location.hash) || location.hash === '#' + id) return;
-      try { history.replaceState(null, '', alvo); } catch (_){} });
-  }, { rootMargin: '-45% 0px -54% 0px' });
-  /* só depois que a pessoa rola: ao abrir a página o link não muda sozinho */
-  const liga = () => { window.removeEventListener('scroll', liga); secoes.forEach(s => io.observe(s)); };
-  window.addEventListener('scroll', liga, { passive: true });
-}
+/* o endereço não acompanha a rolagem: o link copiado da barra sempre abre no começo (a animação) */
+
 
 /* ---------- arranque e novo layout (só com mudança de largura: no celular a barra muda a altura) ---------- */
 function tudo(){ arvore(); if (BAC && $('#bacia') && $('#bacia').offsetWidth) BAC.monta(); if (!OG) rioTrechos(); }
@@ -1787,6 +1788,17 @@ window.addEventListener('load', () => { const h = window.__historia, n = h && h.
     }, 1100);
   };
   setTimeout(proxima, RITMO[0]);
+})();
+/* ---------- link de compartilhamento: o que não é um dos 40 casos ganha "o que te enviaram →"; o endereço volta a ser o do começo ---------- */
+(function(){
+  if (!ENV || OG) return;
+  if (ENV.d && !escPorId[ENV.base]){
+    const el = $('#enviado'), poe = () => { const t = ((window.BD_TOPICOS || {})[ENV.c] || {}).titulo || '';
+      const nome = t.replace(/^(Flávio Bolsonaro|BOLSODRIVE)\s*·\s*/, '') || 'o que te enviaram';
+      el.innerHTML = '<small>te enviaram</small><a href="' + esc(ENV.d) + '">' + esc(nome) + ' →</a>'; el.hidden = false; };
+    if (window.BD_TOPICOS) poe(); else document.addEventListener('DOMContentLoaded', poe);
+  }
+  try { history.replaceState(null, '', location.pathname); } catch (_){ }
 })();
 window.__abertura = { arvore: () => B, bacia: () => BAC, trechos: () => C, foz: () => CF, saida: () => window.__rioSaida, NOMES, FLUX, ESC, CASOS, SEMANA, VITRINE, hoje: hojeNoRio, refaz: tudo };
 })();
