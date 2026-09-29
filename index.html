@@ -1765,6 +1765,13 @@ window.addEventListener('load', () => { const h = window.__historia, n = h && h.
   /* o ritmo: a data, a frase, a pergunta (com pausa para pensar), e as respostas uma a uma */
   const RITMO = [200, 800, 1300, 1500, 600, 600];
   const ps = $$('p', box), luz = $('#nascente-luz'), siga = $('#nasce-siga');
+  /* "siga o rio" (o texto ou o ponto): a página começa a descer sozinha dali (o mesmo roteiro do "assistir") */
+  [luz, siga].forEach(el => el && el.addEventListener('click', ev => {
+    if (!window.BDRoteiro) return;
+    ev.preventDefault();
+    ps.forEach(p => p.classList.add('on')); luz.classList.add('on'); siga.classList.add('on');
+    window.BDRoteiro.toca({ y: window.scrollY });
+  }));
   const refaz = () => { try { rioTrechos(); } catch (_){ } };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(refaz);
   const cvs = ['#c-leito', '#c-agua'].map(q => $(q)).filter(Boolean);
