@@ -198,10 +198,7 @@ html.og .gota{display:none}
 /* a árvore saiu da abertura (fica só na imagem de prévia, ?og=1) */
 html:not(.og) #palco{display:none}
 @media (min-width:900px){
-  html:not(.og) .abre{grid-template-columns:minmax(320px,500px) minmax(0,560px); grid-template-rows:auto auto; grid-template-areas:"txt dq" "gota gota"; justify-content:center; align-items:start}
   html:not(.og) .hoje{margin-top:18px}
-  html:not(.og) .gota{display:block; grid-area:gota}
-  html:not(.og) .gota-siga{grid-column:1 / -1}
 }
 /* o ponto de luz da contagem: "siga o rio"; o ponto escorre e vira o rio */
 .intro-luz{position:absolute; left:50%; top:46%; width:14px; height:14px; margin:-7px 0 0 -7px; border-radius:50%; background:#fff4d6;
@@ -216,6 +213,31 @@ html:not(.og) #palco{display:none}
 .intro-l{transition:opacity .4s}
 .intro-l.some{opacity:0}
 .gota-siga{display:block; width:max-content; margin:6px auto 0; font:700 13px var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--amber); text-decoration:none; padding:10px 8px}
+
+/* ---------- a nascente (primeira tela): as frases, o ponto de luz, "siga o rio"; o rio do site nasce do ponto ---------- */
+.nasce{position:relative; z-index:1; min-height:calc(100vh - var(--hdr,57px)); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px 16px 48px; text-align:center}
+@supports (height:100svh){ .nasce{min-height:calc(100svh - var(--hdr,57px))} }
+.nasce-f{min-height:4.6em}
+.nasce-f p{margin:0 0 2px; font-size:clamp(30px,9vw,58px); font-weight:800; line-height:1.12; letter-spacing:-.015em; color:var(--tinta); opacity:0; transform:translateY(10px); transition:opacity .45s, transform .45s}
+.nasce-f p.on{opacity:1; transform:none}
+.nasce-f p b{color:var(--amber); font-variant-numeric:tabular-nums}
+.nasce-luz{position:relative; display:block; width:48px; height:48px; margin:2px auto 0; opacity:0; transition:opacity .9s}
+.nasce-luz i{position:absolute; left:17px; top:17px; width:14px; height:14px; border-radius:50%; background:#fff4d6;
+  box-shadow:0 0 12px 4px rgba(255,176,46,.9), 0 0 44px 14px rgba(255,176,46,.35); animation:pulsa 1.4s ease-in-out infinite}
+.nasce-siga{display:block; margin:30px 0 0; padding:10px 12px; font:700 15px var(--mono); letter-spacing:.18em; text-transform:uppercase; color:var(--amber); text-decoration:none; opacity:0; transition:opacity .9s}
+.nasce-luz.on, .nasce-siga.on{opacity:1}
+@keyframes pulsa{50%{box-shadow:0 0 16px 6px rgba(255,176,46,1), 0 0 60px 20px rgba(255,176,46,.45)}}
+@media (prefers-reduced-motion:reduce){ .nasce-luz i{animation:none} .nasce-f p, .nasce-luz, .nasce-siga{transition:none} }
+/* a abertura corre ao lado do rio: no celular a faixa da direita fica livre; no desktop, a coluna dos trechos */
+@media (max-width:899px){ html:not(.og) .curso > .abre, html:not(.og) .curso > .casos{padding-right:28px} }
+@media (min-width:900px){
+  html:not(.og) .curso > .abre{display:block; max-width:none; margin:0; padding:24px 24px 0}
+  html:not(.og) .curso > .abre > *{max-width:540px}
+  html:not(.og) .curso > .abre .abre-txt{padding:0}
+  html:not(.og) .curso > .casos{padding:10px 24px 0; max-width:none}
+  html:not(.og) .curso > .casos .assiste{margin-left:0; max-width:540px}
+  .nasce-f p{font-size:clamp(34px,4.2vw,56px)}
+}
 
 /* ---------- blocos comuns: título curto, número grande, uma frase; o envio ao lado do fato ---------- */
 h2.k{margin:0 0 4px; font-family:var(--mono); font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); font-weight:700}
@@ -461,7 +483,7 @@ h2.k span::before{content:"// "; color:var(--cinza2)}
    A classe só entra com ?og=1 na URL; quem visita o site não vê este modo. */
 html.og, html.og body{overflow:hidden}
 html.og .site-header, html.og .nv-mapa, html.og .nv-segue, html.og .linha-tese, html.og #casos,
-html.og #hoje-no-rio, html.og #curso, html.og #historia, html.og #curso-f, html.og .h-ctl, html.og .margem, html.og .rodape{display:none!important}
+html.og #hoje-no-rio, html.og #historia, html.og #curso-f, html.og .h-ctl, html.og .margem, html.og .rodape{display:none!important}
 html.og .abre{display:grid; grid-template-columns:440px minmax(0,1fr); grid-template-areas:"txt palco"; align-items:center;
   column-gap:20px; max-width:none; width:1200px; height:630px; min-height:0; margin:0; padding:0 32px 0 60px; overflow:hidden}
 html.og .abre-txt{grid-area:txt; padding:0 0 40px}
@@ -473,6 +495,8 @@ html.og .quem{font-size:14px; margin:0 0 14px}
 html.og .abre h1.sec{font-size:26px; letter-spacing:2px; white-space:nowrap}
 html.og .tese{font-size:68px; line-height:1.02; margin:14px 0 0}
 html.og .og-marca{display:block}
+html.og #curso{max-width:none; margin:0}
+html.og #curso > :not(.abre){display:none!important}
 /* ---------- "compare com você" (trecho 02): o salário de quem lê × o patrimônio declarado e o pedido de R$ 131 milhões.
    O que se digita não é guardado nem enviado (sem storage, sem URL, sem rede): a conta fica nesta tela.
    Altura fixa (o resultado sempre na tela, com o salário mínimo até alguém digitar): o rio do trecho não refaz o caminho. */
@@ -517,7 +541,17 @@ html.og .og-marca{display:block}
 <header class="site-header" data-nav></header>
 
 <main>
-<div class="intro" id="intro" hidden aria-hidden="true"><div class="intro-l" id="intro-l"></div><p class="intro-siga" id="intro-siga">siga o rio</p><i class="intro-fio" id="intro-fio"></i><i class="intro-luz" id="intro-luz"></i><button type="button" class="intro-pula" id="intro-pula">pular ›</button></div>
+<div class="curso" id="curso">
+  <canvas id="c-leito" aria-hidden="true"></canvas>
+  <canvas id="c-agua" aria-hidden="true"></canvas>
+
+  <!-- a nascente: as frases, um ponto de luz e "siga o rio"; o rio do site nasce deste ponto (rioTrechos) -->
+  <section class="nasce" id="nasce" aria-label="A nascente do rio" data-rot="pausa:3.2">
+    <div class="nasce-f" id="nasce-f"><p class="on">Um rio de escândalos.</p></div>
+    <a class="nasce-siga" id="nasce-siga" href="#nascente">siga o rio</a>
+    <a class="nasce-luz" id="nascente-luz" href="#nascente" aria-label="Siga o rio"><i></i></a>
+  </section>
+
 <section class="abre" id="nascente" aria-labelledby="h-abre" data-rot="pausa:2.4" data-rot-al="0">
   <div class="abre-txt">
     <p class="quem">Flávio Bolsonaro · candidato à Presidência</p>
@@ -535,8 +569,6 @@ html.og .og-marca{display:block}
     <div id="hoje-c"><h2 id="h-hoje">O caso de hoje</h2></div>
   </article>
 
-  <div class="gota" aria-hidden="true"><i></i></div>
-  <a class="gota-siga" href="#quem">siga o rio ↓</a>
   <!-- a árvore: o site visto de cima (os nomes, o dinheiro e os casos descem até a foto dele). No celular, uma faixa baixa. -->
   <div class="palco" id="palco" role="img" aria-label="A árvore: os nomes, o dinheiro e os casos descem como afluentes até a foto de Flávio Bolsonaro.">
     <canvas id="b-leito" aria-hidden="true"></canvas>
@@ -569,9 +601,7 @@ html.og .og-marca{display:block}
 </section>
 
 <!-- o rio da página nasce aqui e atravessa os trechos 01 e 02 -->
-<div class="curso" id="curso">
-  <canvas id="c-leito" aria-hidden="true"></canvas>
-  <canvas id="c-agua" aria-hidden="true"></canvas>
+
 
   <section class="trecho" id="quem" aria-labelledby="h-quem">
     <div class="col">
@@ -1512,7 +1542,8 @@ function rioTrechos(){
   /* a nascente: na altura do título do primeiro bloco (o caso Marielle; sem ele, o trecho 01). Mais alto, no
      desktop ela aparecia no pé da primeira tela, logo abaixo da foto, como se a água saísse dele */
   const cab = $$('#curso h2').find(h => h.offsetParent !== null);
-  const y0 = cab ? Math.round(rel(cab).y) : (desk ? 26 : 18);
+  const luzN = $('#nascente-luz'), L0 = luzN && luzN.offsetParent !== null ? rel(luzN) : null;
+  const y0 = L0 ? Math.round(L0.y) : cab ? Math.round(rel(cab).y) : (desk ? 26 : 18);
   /* nos últimos 40 px a água corre reta, na faixa (laneX): é a emenda com a história */
   const yReto = H - 40;
   const onda = y => 0.8 * Math.sin(TAU * (y - y0) / lam + 0.7) + 0.2 * Math.sin(TAU * (y - y0) / (lam * 0.46) + 2.1);
@@ -1521,7 +1552,9 @@ function rioTrechos(){
   /* afluentes: um por linha citada */
   const drop = desk ? 44 : 20;
   const linhas = $$('#curso [data-trib]').map(li => { const p = rel(li.querySelector('.pt')); return { li, id: li.dataset.trib, p, yj: p.y + drop }; });
-  const ptsM = []; for (let y = y0; y <= H + EMENDA; y += 3) ptsM.push([xLane(y), y]);
+  /* do ponto de luz (no meio da tela) a água vai deslizando até a faixa do rio */
+  const xRio = L0 ? (y => lerp(L0.x, xLane(y), suave((y - y0 - (desk ? 140 : 24)) / (desk ? 560 : 150)))) : xLane;   /* cai reto do ponto e depois vai para a faixa */
+  const ptsM = []; for (let y = y0; y <= H + EMENDA; y += 3) ptsM.push([xRio(y), y]);
   const main = RIO.curso(ptsM);
 
   const vazao = n => 1 + Math.sqrt(n) / 3;
@@ -1570,7 +1603,7 @@ function rioTrechos(){
   }
 
   /* as gotas descem e saem pelo pé do trecho (semFoz), já fora da tela: a foz fica depois da história */
-  const rotas = [{ rota: main, cor: AGUA, fila: [], leve: true, semFoz: true, taxa: 1 / 5, id: 'nascente' }];
+  const rotas = [{ rota: main, cor: AGUA, fila: [], leve: true, semFoz: true, taxa: L0 ? 1.1 : 1 / 5, id: 'nascente' }];
   tribs.forEach(t => {
     const iJ = RIO.primeiro(main.y, t.L.yj);
     t.rotas.forEach(r => {
@@ -1710,31 +1743,40 @@ window.addEventListener('pageshow', e => { if (e.persisted) tudo(); });
 /* "▶ assistir": quantos casos a história conta de perto (assets/historia.js chega com defer) */
 window.addEventListener('load', () => { const h = window.__historia, n = h && h.caps ? h.caps().length : 0, t = $('#siga-t');
   if (n && t) t.textContent = 'a página desce sozinha e conta ' + n + (n === 1 ? ' caso' : ' casos') + ' de perto'; });
-/* ---------- a contagem de abertura: só na primeira visita da sessão, sem link direto e sem movimento reduzido; um toque pula ---------- */
+/* ---------- a nascente: as frases (uma a uma na primeira visita da sessão), o ponto de luz e o rio que escorre dele ---------- */
 (function(){
-  const el = $('#intro'); if (!el || OG) return;
-  let visto = false; try { visto = sessionStorage.getItem('bd_intro') === '1'; } catch (_){ }
-  if (visto || location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  try { sessionStorage.setItem('bd_intro', '1'); } catch (_){ }
+  const box = $('#nasce-f'); if (!box || OG) return;
   const L = [];
   if (HOJE && HOJE.antes) L.push(HOJE.faltam === 1 ? 'Falta <b>1</b> dia.' : 'Faltam <b>' + HOJE.faltam + '</b> dias.');
   L.push('<b>' + ESC.length + '</b> casos.');
   L.push('<b>' + NOMES.length + '</b> nomes.');
   if (nNome.grave) L.push('<b>' + nNome.grave + '</b> presos ou condenados.');
-  $('#intro-l').innerHTML = L.map(x => '<p>' + x + '</p>').join('');
-  el.hidden = false; document.documentElement.classList.add('com-intro');
-  const ps = $$('#intro-l p'); let k = 0, fim = false, tic = 0; const tt = [];
-  const depois = (ms, f) => tt.push(setTimeout(f, ms));
-  const sai = () => { if (fim) return; fim = true; clearInterval(tic); tt.forEach(clearTimeout); el.classList.add('sai');
-    setTimeout(() => { el.hidden = true; document.documentElement.classList.remove('com-intro'); }, 520); };
-  /* as frases → um ponto de luz com "siga o rio" → o ponto escorre e vira o rio → a abertura */
-  const luz = () => { $('#intro-l').classList.add('some');
-    depois(450, () => { $('#intro-luz').classList.add('on'); $('#intro-siga').classList.add('on'); });
-    depois(1900, () => { $('#intro-fio').classList.add('corre'); $('#intro-siga').classList.remove('on'); });
-    depois(2900, sai); };
-  tic = setInterval(() => { if (k < ps.length) ps[k++].classList.add('on'); else { clearInterval(tic); depois(700, luz); } }, 560);
-  el.addEventListener('click', sai);
-  addEventListener('keydown', e => { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') sai(); });
+  box.innerHTML = L.map(x => '<p>' + x + '</p>').join('');
+  const ps = $$('p', box), luz = $('#nascente-luz'), siga = $('#nasce-siga');
+  const refaz = () => { try { rioTrechos(); } catch (_){ } };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refaz);
+  const cvs = ['#c-leito', '#c-agua'].map(q => $(q)).filter(Boolean);
+  let visto = false; try { visto = sessionStorage.getItem('bd_nasce') === '1'; } catch (_){ }
+  const calmo = visto || location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { sessionStorage.setItem('bd_nasce', '1'); } catch (_){ }
+  if (calmo){ ps.forEach(p => p.classList.add('on')); luz.classList.add('on'); siga.classList.add('on'); return; }
+  /* o rio fica escondido abaixo do ponto até a luz acender; depois escorre dele para baixo */
+  const mascara = y => cvs.forEach(c => { const m = 'linear-gradient(to bottom, #000 ' + y + 'px, transparent ' + (y + 140) + 'px)'; c.style.webkitMaskImage = m; c.style.maskImage = m; });
+  const y0 = () => { const b = $('#curso').getBoundingClientRect(), r = luz.getBoundingClientRect(); return r.top + r.height / 2 - b.top; };
+  mascara(y0() - 150);
+  let k = 0;
+  const tic = setInterval(() => {
+    if (k < ps.length){ ps[k++].classList.add('on'); return; }
+    clearInterval(tic);
+    setTimeout(() => { luz.classList.add('on'); siga.classList.add('on'); refaz(); }, 350);
+    setTimeout(() => {
+      const ini = y0() - 150, fim = y0() + window.innerHeight * 1.8, T = 2800; let t0 = null;
+      const passo = ts => { if (t0 === null) t0 = ts; const f = Math.min(1, (ts - t0) / T), e = f * f * (3 - 2 * f);
+        mascara(ini + (fim - ini) * e);
+        if (f < 1) requestAnimationFrame(passo); else cvs.forEach(c => { c.style.webkitMaskImage = ''; c.style.maskImage = ''; }); };
+      requestAnimationFrame(passo);
+    }, 1100);
+  }, 520);
 })();
 window.__abertura = { arvore: () => B, bacia: () => BAC, trechos: () => C, foz: () => CF, saida: () => window.__rioSaida, NOMES, FLUX, ESC, CASOS, SEMANA, VITRINE, hoje: hojeNoRio, refaz: tudo };
 })();
