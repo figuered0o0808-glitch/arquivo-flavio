@@ -284,6 +284,8 @@ html.teia-cheia,html.teia-cheia body{overflow:hidden}
 .rede-painel .vrow:hover b{text-decoration:underline; text-underline-offset:3px}
 .rede-painel .vrow .src{font-family:var(--mono); font-size:11px}
 .sit-lista{display:flex; flex-direction:column}
+.sit.sit-preso b, .sit.sit-condenado b{color:#ff6b5c}
+.sit.sit-denunciado b, .sit.sit-investigado b{color:var(--amber)}
 .sit{display:flex; align-items:baseline; gap:10px; width:100%; min-height:48px; padding:10px 0; border:0; border-top:1px solid var(--linha); background:none; text-align:left; font:15px var(--sans); color:var(--tinta); cursor:pointer}
 .sit:first-child{border-top:0}
 .sit b{min-width:2.4em; font-size:20px; font-weight:800; font-variant-numeric:tabular-nums}

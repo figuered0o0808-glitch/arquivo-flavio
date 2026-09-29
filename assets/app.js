@@ -1052,17 +1052,37 @@
     }
     function marcaGrupo(){ $$('.teia-grupos button[data-grupo]').forEach(b=> b.setAttribute('aria-pressed', b.dataset.grupo===grupoAtivo ? 'true' : 'false')); }
     // o painel de entrada: a teia inteira em graus de separação (quantos elos até ele), cada linha abre a lista
+    const temSit = (n,t) => (n.situacao||[]).includes(t);
+    const SITS = [
+      ['preso', 'presos', n=>presoHoje(n)],
+      ['condenado', 'condenados', n=>temSit(n,'condenado')],
+      ['denunciado', 'réus ou denunciados', n=>temSit(n,'denunciado') || temSit(n,'reu')],
+      ['investigado', 'investigados', n=>temSit(n,'investigado')],
+      ['arquivada', 'com denúncia anulada', n=>temSit(n,'arquivada')]
+    ];
     const GRAUS = [[1,'1 elo','ligados diretamente a ele'],[2,'2 elos','ligados a alguém ligado a ele'],[3,'3 elos',''],[4,'4 elos ou mais','']];
     const noGrau = (n,g) => { const d = GRAU.dist[n.id]; return n.id!=='flavio' && d!=null && (g===4 ? d>=4 : d===g); };
     function showOverview(){
       sairCaminho(); sel=null; camSel=null; filterSet=null; filtroTitulo=''; grupoAtivo=null; marcaGrupo();
       const rows = GRAUS.map(([g,rot,t])=>({g, rot, t, n: nodes.filter(n=>noGrau(n,g)).length})).filter(r=>r.n);
+      const sits = SITS.map(([k,rot,f])=>({k, rot, n: nodes.filter(n=>n.id!=='flavio' && f(n)).length})).filter(r=>r.n);
       painel.innerHTML = `<p class="kx">A teia inteira <span>· ${nomesTeia()} nomes</span></p>
-        <p class="gr-t">Quantos elos separam cada nome dele:</p>
+        <p class="gr-t">Filtrar por situação (toque para acender no mapa):</p>
+        <div class="sit-lista">${sits.map(r=>`<button type="button" class="sit sit-${r.k}" data-sit="${r.k}"><b>${r.n}</b> ${esc(r.rot)}<span>→</span></button>`).join('')}</div>
+        <p class="gr-t" style="margin-top:16px">Quantos elos separam cada nome dele:</p>
         <div class="sit-lista">${rows.map(r=>`<button type="button" class="sit" data-grau="${r.g}"><b>${r.n}</b> a ${esc(r.rot)}${r.t?`<i>${esc(r.t)}</i>`:''}<span>→</span></button>`).join('')}</div>
         <p class="ph">Toque num nome, no mapa ou numa lista: aparece o caminho mais curto até ele, elo por elo, com a situação de cada nome e a fonte de cada ligação.</p>`;
       $$('.sit[data-grau]', painel).forEach(b=> b.addEventListener('click', ()=>showGrau(+b.dataset.grau)));
+      $$('.sit[data-sit]', painel).forEach(b=> b.addEventListener('click', ()=>filtraSit(b.dataset.sit)));
       cartao(); pede();
+    }
+    /* o filtro por situação (o token literal de cada nome; preso só se preso hoje; ele fica de fora, em cor neutra) */
+    function filtraSit(k){
+      const r = SITS.find(x=>x[0]===k); if(!r){ showOverview(); return; }
+      grupoAtivo=null; marcaGrupo();
+      const ids = new Set(nodes.filter(n=>n.id!=='flavio' && r[2](n)).map(n=>n.id));
+      mostraLista(ids, r[1], n=>`<div class="vrow" data-node="${esc(n.id)}"><b>${esc(n.nome)}</b>${n.status?`<br>${esc(n.status)}`:''}</div>`,
+        (a,b)=>a.nome.localeCompare(b.nome));
     }
     function mostraLista(ids, titulo, linha, ordem){
       sairCaminho(); sel=null; camSel=null;
@@ -1437,6 +1457,7 @@
       lista(ids, titulo){ this.ensure(); grupoAtivo=null; marcaGrupo(); mostraLista(new Set(ids), titulo); },
       sit(ids, titulo){ this.ensure(); showSit(ids, titulo); },
       caminho(chave){ this.ensure(); showCaminho(chave); },
+      limpa(){ if(started) showOverview(); },
       preloadFotos(){ try{ carregarFotos(); }catch(e){} }
     };
   })();
@@ -1525,6 +1546,10 @@
       if(svg){ svg.classList.toggle('foco', !!v);
         $$('.pd', svg).forEach(c=> c.classList.toggle('on', !!ids && ids.has(c.dataset.id) && (a==='all' || c.dataset.anel==='viz'))); }
       if(lista){ lista.hidden = !v; lista.innerHTML = v ? plcListaHTML(a, k) : ''; }
+      /* o número acende os nomes na teia já no primeiro toque (o filtro de antes, direto) */
+      const t0 = v ? PLC.find(x=>x.k===k) : null;
+      if(t0) Grafo.sit([...ids], t0.rot.charAt(0).toUpperCase()+t0.rot.slice(1)+', '+ANEL_ROT[a]);
+      else Grafo.limpa && Grafo.limpa();
     };
     $$('.plc-n', el).forEach(b=> b.addEventListener('click', ()=> marca(plcSel===b.dataset.plc ? '' : b.dataset.plc)));
     if(svg) svg.addEventListener('click', ev=>{ const c = ev.target.closest && ev.target.closest('.pd'); if(!c) return; Grafo.focus(c.dataset.id); irTeia(); });
