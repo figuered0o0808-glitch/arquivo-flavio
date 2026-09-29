@@ -156,11 +156,12 @@ body{overflow-x:hidden}
   .casos .legenda, .casos .dica, .assiste{max-width:1100px; margin-left:auto; margin-right:auto}
 }
 
-/* a árvore saiu da abertura (fica só na imagem de prévia, ?og=1): a primeira tela é o caso de hoje e, logo abaixo, a bacia */
-html:not(.og) #palco{display:none}
-@media (min-width:900px){
-  html:not(.og) .abre{grid-template-columns:minmax(320px,500px) minmax(0,560px); grid-template-rows:auto; grid-template-areas:"txt dq"; justify-content:center; align-items:start}
-  html:not(.og) .hoje{margin-top:18px}
+/* a abertura é só o começo do rio: o título, o caso de hoje e a árvore; os 40 casos ficam na Foz (a bacia sai daqui) */
+html:not(.og) #faixas, html:not(.og) #bacia, html:not(.og) .casos .legenda, html:not(.og) .casos .dica{display:none}
+html:not(.og) .casos{padding-top:14px}
+@media (max-width:899px){
+  html:not(.og) .palco{height:clamp(340px, calc(100vh - 150px), 560px)}
+  @supports (height:100svh){ html:not(.og) .palco{height:clamp(340px, calc(100svh - 150px), 560px)} }
 }
 
 /* ---------- blocos comuns: título curto, número grande, uma frase; o envio ao lado do fato ---------- */
@@ -917,7 +918,7 @@ const FAIXA_NOME = { direto: 'ele mesmo', gabinete: 'gabinete', familia: 'famíl
 let BAC = null;
 (function(){
   const fx = $('#faixas'), box = $('#bacia');
-  if (!fx || !box || OG || !ESC.length) return;
+  if (!fx || !box || OG || !ESC.length || !box.offsetWidth) return;   /* na abertura a bacia fica escondida (os 40 casos estão na Foz) */
   fx.innerHTML = ['direto', 'gabinete', 'familia', 'entorno'].map(f => {
     const k = ESC.filter(x => x.faixa === f).length;
     return k ? '<button type="button" data-f="' + f + '" aria-pressed="false" aria-label="' + k + ' casos chegam a ele ' + FAIXA_VIA[f] + '"><b>' + k + '</b><span>' + FAIXA_NOME[f] + '</span></button>' : '';
@@ -1200,7 +1201,7 @@ function arvore(){
   const desk = window.innerWidth >= 900, mob = W < 640;
   /* celular: a árvore deitada numa faixa baixa (os braços à esquerda, a foto à direita), para o caso de hoje e a
      bacia caberem na primeira tela; desktop e prévia: em pé, como sempre */
-  const faixa = !OG && !desk;
+  const faixa = false;   /* sem a bacia na abertura, a árvore fica em pé também no celular */
   palco.classList.toggle('faixa', faixa);
   const hdr = ($('.site-header') || { offsetHeight: 57 }).offsetHeight;
   let H;
@@ -1212,8 +1213,7 @@ function arvore(){
   } else {
     /* a faixa fica com o que sobra da primeira tela depois do caso de hoje, deixando à vista as 4 faixas e 4 linhas
        da bacia (8 nomes): 8 + 52 (as faixas) + 40 (cabeçalho da bacia) + 4 × 44 + 6 = 282 px */
-    const topoP = palco.getBoundingClientRect().top + window.scrollY;
-    H = clamp(window.innerHeight - topoP - 282, 84, 150);
+    H = clamp(window.innerHeight - hdr - 90, 340, 560);   /* a árvore ocupa quase uma tela: é o começo do rio */
   }
   H = Math.round(H);
   palco.style.height = H + 'px';
@@ -1624,7 +1624,7 @@ if (!OG && 'IntersectionObserver' in window && history.replaceState){
 }
 
 /* ---------- arranque e novo layout (só com mudança de largura: no celular a barra muda a altura) ---------- */
-function tudo(){ arvore(); if (BAC) BAC.monta(); if (!OG) rioTrechos(); }
+function tudo(){ arvore(); if (BAC && $('#bacia') && $('#bacia').offsetWidth) BAC.monta(); if (!OG) rioTrechos(); }
 tudo();
 let largura = window.innerWidth, altura = window.innerHeight, rt = 0;
 const digitando = () => { const a = document.activeElement; return !!a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA'); };
