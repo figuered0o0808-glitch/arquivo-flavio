@@ -195,8 +195,27 @@ html.com-intro, html.com-intro body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){ .gota i{animation:none; top:30px} }
 @media (min-width:900px){ .gota{display:none} }
 html.og .gota{display:none}
-/* a árvore nasce: o recorte desce com a rolagem (celular) ou com o tempo (desktop) até a foto dele */
-.palco.cresce{clip-path:inset(0 0 var(--corte,100%) 0)}
+/* a árvore saiu da abertura (fica só na imagem de prévia, ?og=1) */
+html:not(.og) #palco{display:none}
+@media (min-width:900px){
+  html:not(.og) .abre{grid-template-columns:minmax(320px,500px) minmax(0,560px); grid-template-rows:auto auto; grid-template-areas:"txt dq" "gota gota"; justify-content:center; align-items:start}
+  html:not(.og) .hoje{margin-top:18px}
+  html:not(.og) .gota{display:block; grid-area:gota}
+  html:not(.og) .gota-siga{grid-column:1 / -1}
+}
+/* o ponto de luz da contagem: "siga o rio"; o ponto escorre e vira o rio */
+.intro-luz{position:absolute; left:50%; top:46%; width:14px; height:14px; margin:-7px 0 0 -7px; border-radius:50%; background:#fff4d6;
+  box-shadow:0 0 12px 4px rgba(255,176,46,.9), 0 0 44px 14px rgba(255,176,46,.35); opacity:0; transform:scale(.2); transition:opacity .6s, transform .6s}
+.intro-luz.on{opacity:1; transform:scale(1); animation:pulsa 1.4s ease-in-out infinite}
+@keyframes pulsa{50%{box-shadow:0 0 16px 6px rgba(255,176,46,1), 0 0 60px 20px rgba(255,176,46,.45)}}
+.intro-fio{position:absolute; left:50%; top:46%; width:3px; margin-left:-1.5px; height:0; border-radius:3px;
+  background:linear-gradient(rgba(255,196,90,1), rgba(255,176,46,.8) 40%, rgba(125,245,154,.55)); box-shadow:0 0 10px rgba(255,176,46,.55); transition:height 1s cubic-bezier(.5,0,.7,1)}
+.intro-fio.corre{height:56vh}
+.intro-siga{position:absolute; left:0; right:0; top:calc(46% - 52px); margin:0; text-align:center; font:700 15px var(--mono); letter-spacing:.18em; text-transform:uppercase; color:var(--amber); opacity:0; transition:opacity .6s}
+.intro-siga.on{opacity:1}
+.intro-l{transition:opacity .4s}
+.intro-l.some{opacity:0}
+.gota-siga{display:block; width:max-content; margin:6px auto 0; font:700 13px var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--amber); text-decoration:none; padding:10px 8px}
 
 /* ---------- blocos comuns: título curto, número grande, uma frase; o envio ao lado do fato ---------- */
 h2.k{margin:0 0 4px; font-family:var(--mono); font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); font-weight:700}
@@ -498,7 +517,7 @@ html.og .og-marca{display:block}
 <header class="site-header" data-nav></header>
 
 <main>
-<div class="intro" id="intro" hidden aria-hidden="true"><div class="intro-l" id="intro-l"></div><button type="button" class="intro-pula" id="intro-pula">pular ›</button></div>
+<div class="intro" id="intro" hidden aria-hidden="true"><div class="intro-l" id="intro-l"></div><p class="intro-siga" id="intro-siga">siga o rio</p><i class="intro-fio" id="intro-fio"></i><i class="intro-luz" id="intro-luz"></i><button type="button" class="intro-pula" id="intro-pula">pular ›</button></div>
 <section class="abre" id="nascente" aria-labelledby="h-abre" data-rot="pausa:2.4" data-rot-al="0">
   <div class="abre-txt">
     <p class="quem">Flávio Bolsonaro · candidato à Presidência</p>
@@ -517,6 +536,7 @@ html.og .og-marca{display:block}
   </article>
 
   <div class="gota" aria-hidden="true"><i></i></div>
+  <a class="gota-siga" href="#quem">siga o rio ↓</a>
   <!-- a árvore: o site visto de cima (os nomes, o dinheiro e os casos descem até a foto dele). No celular, uma faixa baixa. -->
   <div class="palco" id="palco" role="img" aria-label="A árvore: os nomes, o dinheiro e os casos descem como afluentes até a foto de Flávio Bolsonaro.">
     <canvas id="b-leito" aria-hidden="true"></canvas>
@@ -1701,33 +1721,20 @@ window.addEventListener('load', () => { const h = window.__historia, n = h && h.
   L.push('<b>' + ESC.length + '</b> casos.');
   L.push('<b>' + NOMES.length + '</b> nomes.');
   if (nNome.grave) L.push('<b>' + nNome.grave + '</b> presos ou condenados.');
-  $('#intro-l').innerHTML = L.map(x => '<p>' + x + '</p>').join('') + '<p class="pe">Um rio de escândalos</p>';
+  $('#intro-l').innerHTML = L.map(x => '<p>' + x + '</p>').join('');
   el.hidden = false; document.documentElement.classList.add('com-intro');
-  const ps = $$('#intro-l p'); let k = 0, fim = false, tic = 0;
-  const sai = () => { if (fim) return; fim = true; clearInterval(tic); el.classList.add('sai');
+  const ps = $$('#intro-l p'); let k = 0, fim = false, tic = 0; const tt = [];
+  const depois = (ms, f) => tt.push(setTimeout(f, ms));
+  const sai = () => { if (fim) return; fim = true; clearInterval(tic); tt.forEach(clearTimeout); el.classList.add('sai');
     setTimeout(() => { el.hidden = true; document.documentElement.classList.remove('com-intro'); }, 520); };
-  tic = setInterval(() => { if (k < ps.length) ps[k++].classList.add('on'); else { clearInterval(tic); setTimeout(sai, 900); } }, 560);
+  /* as frases → um ponto de luz com "siga o rio" → o ponto escorre e vira o rio → a abertura */
+  const luz = () => { $('#intro-l').classList.add('some');
+    depois(450, () => { $('#intro-luz').classList.add('on'); $('#intro-siga').classList.add('on'); });
+    depois(1900, () => { $('#intro-fio').classList.add('corre'); $('#intro-siga').classList.remove('on'); });
+    depois(2900, sai); };
+  tic = setInterval(() => { if (k < ps.length) ps[k++].classList.add('on'); else { clearInterval(tic); depois(700, luz); } }, 560);
   el.addEventListener('click', sai);
   addEventListener('keydown', e => { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') sai(); });
-})();
-/* ---------- a árvore nasce: no celular, o recorte desce com a rolagem; no desktop, em 2,6 s ---------- */
-(function(){
-  const p = $('#palco'); if (!p || OG || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  p.classList.add('cresce');
-  const poe = f => { const e = 1 - Math.pow(1 - Math.max(0, Math.min(1, f)), 2); p.style.setProperty('--corte', ((1 - e) * 100).toFixed(1) + '%'); return f >= 1; };
-  if (window.innerWidth >= 900){
-    let t0 = null;
-    const esperaIntro = () => document.documentElement.classList.contains('com-intro');
-    const passo = ts => { if (esperaIntro()){ requestAnimationFrame(passo); return; } if (t0 === null) t0 = ts;
-      if (poe((ts - t0) / 2600)) p.classList.remove('cresce'); else requestAnimationFrame(passo); };
-    requestAnimationFrame(passo);
-  } else {
-    let pedido = 0;
-    const mede = () => { pedido = 0; const r = p.getBoundingClientRect();
-      if (poe((window.innerHeight * 0.92 - r.top) / (r.height * 1.15))){ p.classList.remove('cresce'); removeEventListener('scroll', rola); } };
-    const rola = () => { if (!pedido) pedido = requestAnimationFrame(mede); };
-    addEventListener('scroll', rola, { passive: true }); mede();
-  }
 })();
 window.__abertura = { arvore: () => B, bacia: () => BAC, trechos: () => C, foz: () => CF, saida: () => window.__rioSaida, NOMES, FLUX, ESC, CASOS, SEMANA, VITRINE, hoje: hojeNoRio, refaz: tudo };
 })();
