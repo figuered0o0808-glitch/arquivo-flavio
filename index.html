@@ -164,6 +164,40 @@ html:not(.og) .casos{padding-top:14px}
   @supports (height:100svh){ html:not(.og) .palco{height:clamp(340px, calc(100svh - 150px), 560px)} }
 }
 
+/* ---------- a abertura em três tempos: a contagem (uma vez por sessão) → o caso de hoje em tela cheia → a árvore que nasce ao rolar ---------- */
+.intro{position:fixed; inset:0; z-index:60; background:var(--papel); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; transition:opacity .5s}
+.intro[hidden]{display:none}
+.intro.sai{opacity:0; pointer-events:none}
+.intro-l p{margin:0 0 4px; font-size:clamp(30px,9vw,58px); font-weight:800; line-height:1.12; letter-spacing:-.015em; color:var(--tinta); opacity:0; transform:translateY(10px); transition:opacity .35s, transform .35s}
+.intro-l p.on{opacity:1; transform:none}
+.intro-l p b{color:var(--amber); font-variant-numeric:tabular-nums}
+.intro-l p.pe{margin-top:18px; font:700 clamp(14px,3.8vw,18px) var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--amber)}
+.intro-pula{position:absolute; right:16px; bottom:max(16px, env(safe-area-inset-bottom)); min-height:44px; padding:0 16px; background:none; border:1px solid var(--linha); border-radius:4px; color:var(--cinza); font:600 14px var(--mono); cursor:pointer}
+html.com-intro, html.com-intro body{overflow:hidden}
+/* o caso de hoje ocupa a primeira tela no celular */
+@media (max-width:899px){
+  html:not(.og) .abre-txt .linha-tese{display:none}
+  /* sem caixa: o caso de hoje é a tela, como um story */
+  html:not(.og) .hoje{min-height:0; margin:22px 0 0; padding:0 16px; border:0; background:transparent}
+  html:not(.og) .gota{height:120px; margin-top:14px}
+  html:not(.og) .hoje .hoje-k{font-size:14px}
+  html:not(.og) .hoje h2{font-size:23px}
+  html:not(.og) .hoje .dq-t{font-size:17px}
+  html:not(.og) .js .hoje[hidden], html:not(.og) .hoje[hidden]{visibility:hidden}
+  html:not(.og) .hoje .numero.destaque{font-size:clamp(56px,17vw,92px)}
+  html:not(.og) .hoje .numero.frase{font-size:clamp(36px,10.5vw,54px)}
+}
+/* a gota: escorre do caso de hoje e vira o rio */
+.gota{position:relative; width:2px; height:72px; margin:4px auto 0}
+.gota::before{content:''; position:absolute; inset:0; background:linear-gradient(rgba(255,176,46,.55), rgba(125,245,154,.35)); border-radius:2px}
+.gota i{position:absolute; left:-4px; top:0; width:10px; height:12px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; background:var(--amber); box-shadow:0 0 12px rgba(255,176,46,.8); animation:gota 1.9s ease-in infinite}
+@keyframes gota{0%{transform:translateY(-8px); opacity:0} 18%{opacity:1} 100%{transform:translateY(66px); opacity:0}}
+@media (prefers-reduced-motion:reduce){ .gota i{animation:none; top:30px} }
+@media (min-width:900px){ .gota{display:none} }
+html.og .gota{display:none}
+/* a árvore nasce: o recorte desce com a rolagem (celular) ou com o tempo (desktop) até a foto dele */
+.palco.cresce{clip-path:inset(0 0 var(--corte,100%) 0)}
+
 /* ---------- blocos comuns: título curto, número grande, uma frase; o envio ao lado do fato ---------- */
 h2.k{margin:0 0 4px; font-family:var(--mono); font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); font-weight:700}
 h2.k span::before{content:"// "; color:var(--cinza2)}
@@ -464,6 +498,7 @@ html.og .og-marca{display:block}
 <header class="site-header" data-nav></header>
 
 <main>
+<div class="intro" id="intro" hidden aria-hidden="true"><div class="intro-l" id="intro-l"></div><button type="button" class="intro-pula" id="intro-pula">pular ›</button></div>
 <section class="abre" id="nascente" aria-labelledby="h-abre" data-rot="pausa:2.4" data-rot-al="0">
   <div class="abre-txt">
     <p class="quem">Flávio Bolsonaro · candidato à Presidência</p>
@@ -481,6 +516,7 @@ html.og .og-marca{display:block}
     <div id="hoje-c"><h2 id="h-hoje">O caso de hoje</h2></div>
   </article>
 
+  <div class="gota" aria-hidden="true"><i></i></div>
   <!-- a árvore: o site visto de cima (os nomes, o dinheiro e os casos descem até a foto dele). No celular, uma faixa baixa. -->
   <div class="palco" id="palco" role="img" aria-label="A árvore: os nomes, o dinheiro e os casos descem como afluentes até a foto de Flávio Bolsonaro.">
     <canvas id="b-leito" aria-hidden="true"></canvas>
@@ -1654,6 +1690,45 @@ window.addEventListener('pageshow', e => { if (e.persisted) tudo(); });
 /* "▶ assistir": quantos casos a história conta de perto (assets/historia.js chega com defer) */
 window.addEventListener('load', () => { const h = window.__historia, n = h && h.caps ? h.caps().length : 0, t = $('#siga-t');
   if (n && t) t.textContent = 'a página desce sozinha e conta ' + n + (n === 1 ? ' caso' : ' casos') + ' de perto'; });
+/* ---------- a contagem de abertura: só na primeira visita da sessão, sem link direto e sem movimento reduzido; um toque pula ---------- */
+(function(){
+  const el = $('#intro'); if (!el || OG) return;
+  let visto = false; try { visto = sessionStorage.getItem('bd_intro') === '1'; } catch (_){ }
+  if (visto || location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  try { sessionStorage.setItem('bd_intro', '1'); } catch (_){ }
+  const L = [];
+  if (HOJE && HOJE.antes) L.push(HOJE.faltam === 1 ? 'Falta <b>1</b> dia.' : 'Faltam <b>' + HOJE.faltam + '</b> dias.');
+  L.push('<b>' + ESC.length + '</b> casos.');
+  L.push('<b>' + NOMES.length + '</b> nomes.');
+  if (nNome.grave) L.push('<b>' + nNome.grave + '</b> presos ou condenados.');
+  $('#intro-l').innerHTML = L.map(x => '<p>' + x + '</p>').join('') + '<p class="pe">Um rio de escândalos</p>';
+  el.hidden = false; document.documentElement.classList.add('com-intro');
+  const ps = $$('#intro-l p'); let k = 0, fim = false, tic = 0;
+  const sai = () => { if (fim) return; fim = true; clearInterval(tic); el.classList.add('sai');
+    setTimeout(() => { el.hidden = true; document.documentElement.classList.remove('com-intro'); }, 520); };
+  tic = setInterval(() => { if (k < ps.length) ps[k++].classList.add('on'); else { clearInterval(tic); setTimeout(sai, 900); } }, 560);
+  el.addEventListener('click', sai);
+  addEventListener('keydown', e => { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') sai(); });
+})();
+/* ---------- a árvore nasce: no celular, o recorte desce com a rolagem; no desktop, em 2,6 s ---------- */
+(function(){
+  const p = $('#palco'); if (!p || OG || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  p.classList.add('cresce');
+  const poe = f => { const e = 1 - Math.pow(1 - Math.max(0, Math.min(1, f)), 2); p.style.setProperty('--corte', ((1 - e) * 100).toFixed(1) + '%'); return f >= 1; };
+  if (window.innerWidth >= 900){
+    let t0 = null;
+    const esperaIntro = () => document.documentElement.classList.contains('com-intro');
+    const passo = ts => { if (esperaIntro()){ requestAnimationFrame(passo); return; } if (t0 === null) t0 = ts;
+      if (poe((ts - t0) / 2600)) p.classList.remove('cresce'); else requestAnimationFrame(passo); };
+    requestAnimationFrame(passo);
+  } else {
+    let pedido = 0;
+    const mede = () => { pedido = 0; const r = p.getBoundingClientRect();
+      if (poe((window.innerHeight * 0.92 - r.top) / (r.height * 1.15))){ p.classList.remove('cresce'); removeEventListener('scroll', rola); } };
+    const rola = () => { if (!pedido) pedido = requestAnimationFrame(mede); };
+    addEventListener('scroll', rola, { passive: true }); mede();
+  }
+})();
 window.__abertura = { arvore: () => B, bacia: () => BAC, trechos: () => C, foz: () => CF, saida: () => window.__rioSaida, NOMES, FLUX, ESC, CASOS, SEMANA, VITRINE, hoje: hojeNoRio, refaz: tudo };
 })();
 </script>
